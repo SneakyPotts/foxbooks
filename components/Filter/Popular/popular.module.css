@@ -1,0 +1,42 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropBtn {
+  background-color: #3498db;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.dropBtn:hover,
+.dropBtn:focus {
+  background-color: #2980b9;
+}
+
+.dropContent {
+  /* display: none; */
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropLink {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropLink:hover {
+  background-color: #ddd;
+}
+.arrowAll {
+  transform: rotate(-90deg);
+  stroke: #2980b9;
+}
+.arrowAllReverse {
+  stroke: #2980b9;
+  transform: rotate(90deg);
+}
