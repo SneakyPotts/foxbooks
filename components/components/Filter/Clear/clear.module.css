@@ -1,0 +1,12 @@
+.clearAll {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 138px;
+  height: 32px;
+  border: none;
+  border-radius: 64px;
+}

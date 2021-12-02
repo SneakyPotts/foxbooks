@@ -1,0 +1,43 @@
+.categNav {
+  text-align: start;
+  width: 180px;
+}
+.categList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.13;
+  margin: 0;
+  margin-bottom: 20px;
+  color: #333333;
+}
+.categ {
+  font-size: 14px;
+  line-height: 1.43;
+}
+.categ:not(:last-child) {
+  margin-bottom: 10px;
+}
+.all {
+  font-size: 14px;
+  line-height: 1.43;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  margin-top: 22px;
+  text-decoration: none;
+  color: #f1f1f1;
+  stroke: #0e263e;
+}
+.all:hover {
+  color: #ff781d;
+  stroke: #fff;
+}
+.textAll {
+  color: #ff781d;
+}
