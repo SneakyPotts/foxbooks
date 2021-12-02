@@ -23,7 +23,7 @@ const Header = () => {
           <div className={css.menu}>
             <FiBell className={css.iconBell} />
             <div className={css.userMenu}>
-              <User className={css.iconUser} />
+              {/* <User className={css.iconUser} /> */}
               Войти
             </div>
           </div>

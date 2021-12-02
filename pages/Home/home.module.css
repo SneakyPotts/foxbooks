@@ -1,8 +1,8 @@
-.mainContainer {
+.container {
   width: 1200px;
   margin: auto;
 }
-.container {
+.mainContainer {
   display: flex;
   padding-top: 30px;
 }
@@ -79,6 +79,6 @@
   position: relative;
   margin: 60px 0;
 }
-.filters {
+.wrapper {
   display: flex;
 }

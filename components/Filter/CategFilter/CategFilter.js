@@ -1,50 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import ArrowAll from '../../../public/chevron-down.svg';
-import categories from '../../Categories/categories.json';
+import categories from '../../HomePage/Categories/categories.json';
 import css from '../Popular/popular.module.css';
 
 
-class CategFilter extends Component {
-    constructor() {
-    super();
+const CategFilter = () => {
+  const [menu, setMenu] = useState(false)
+  const [optionIndex, setOptionIndex] = useState(null);
+  console.log(categories)
 
-    this.state = {
-      showMenu: false,
-    };
+  const togleMenu=(e)=> {
+    e.preventDefault();
 
-    this.showMenu = this.showMenu.bind(this);
-    console.log(this.state.showMenu);
+    setMenu(prevMenu=>!prevMenu);
+    console.log('showMenu',menu)
   }
 
-  showMenu(event) {
-    event.preventDefault();
-    this.setState({ showMenu: !this.state.showMenu });
-    console.log('showMenu',this.state.showMenu)
-
+  const handleOnClick = (e) => {
+    setOptionIndex(e.target.value)
+    console.log('handleOnClick', optionIndex)
   }
 
-  render() {
-    return (
+  return (
       <>
         <div className={css.dropdown}>
-          <button className={`${css.dropBtn} ${this.state.showMenu?css.open:css.close}`} onClick={this.showMenu}>
+          <button className={`${css.dropBtn} ${menu?css.open:css.close}`} onClick={togleMenu}>
             <span className={css.dropBtnText}>Категории</span>{' '}
-              <ArrowAll className={`${this.state.showMenu&&css.up}`} />
+              <ArrowAll className={`${menu&&css.up}`} />
           </button>
-          {this.state.showMenu ? (
-                    <ul className={css.dropContent}>
-                        {categories.map(({ id, name }) => (
-                            <li key={id} className={css.dropLink}>
-                                <input type='radio' className={css.radio} />
-                  {name}
-                </li>))}
-               
+          {menu ? (
+          <ul value={optionIndex} className={css.dropContent}>
+            {categories.map((it, index) => (
+              <li key={it.id} value={index} onClick={handleOnClick} className={css.dropLink}>
+                <span className={css.dropText}>{it.name}</span>
+              </li>
+            ))}               
             </ul>
           ) : null}
         </div>
       </>
     );
-  }
 }
 
-export default CategFilter;
+export default CategFilter

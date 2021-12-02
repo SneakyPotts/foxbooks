@@ -10,3 +10,14 @@
   border: none;
   border-radius: 64px;
 }
+.clearAll:hover {
+  color: #0e263e;
+  background: #f1f7ff;
+}
+.clearAll:active {
+  color: #fff;
+  background: #0e263e;
+}
+.clearIcon {
+  width: 14px;
+}

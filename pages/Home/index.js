@@ -1,18 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiChevronRight } from 'react-icons/fi';
-import Categories from '../../components/Categories/categories';
-import Alphabet from '../../components/Alphabet/Alphabet';
+import Categories from '../../components/HomePage/Categories/categories';
+import Alphabet from '../../components/HomePage/Alphabet/Alphabet';
 import ArrowNext from '../../public/arrow-next.svg';
-import Hero from '../../components/Hero/Hero';
-import BookUpdates from '../../components/Updates/BookUpdates';
+import Hero from '../../components/HomePage/Hero/Hero';
+import BookUpdates from '../../components/HomePage/Updates/BookUpdates';
 import Filters from '../../components/Filter';
+import Introductory from '../../components/HomePage/Introductory block';
 import css from './home.module.css';
 
 const HomeView = () => {
   return (
-    <div className={css.mainContainer}>
-      <div className={css.container}>
+    <div className={css.container}>
+      <div className={css.mainContainer}>
         <Categories />
         <div className={css.mainBlock}>
           <Alphabet />
@@ -87,11 +88,13 @@ const HomeView = () => {
         </div>
       </div>
       <Hero />
-      <div className={css.filters}>
-        <BookUpdates />
+      <div className={css.wrapper}>
+        <BookUpdates className={ css.updates}/>
         <Filters />
         {/* <Filtred/> */}
+        
       </div>
+      <Introductory/>
     </div>
   );
 };
