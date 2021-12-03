@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import alphabet from './alphabet.json';
+import alphabet from '../../data/alphabet.json';
 import css from './alphabet.module.css';
 const Alphabet = () => {
   return (
@@ -7,10 +7,10 @@ const Alphabet = () => {
       <div className={css.filter}>
         <p className={css.title}>Автор:</p>
         <ul className={css.alphabet}>
-          {alphabet.map(({ id, letter }) => (
+          {alphabet.map(({ id, name }) => (
             <li key={id} className={css.leter}>
               <Link href="#">
-                <a>{letter}</a>
+                <a>{name}</a>
               </Link>
             </li>
           ))}
@@ -19,10 +19,10 @@ const Alphabet = () => {
       <div className={css.filter}>
         <p className={css.title}>Книги:</p>
         <ul className={css.alphabet}>
-          {alphabet.map(({ id, letter }) => (
+          {alphabet.map(({ id, name }) => (
             <li key={id} className={css.leter}>
               <Link href="#">
-                <a>{letter}</a>
+                <a>{name}</a>
               </Link>
             </li>
           ))}

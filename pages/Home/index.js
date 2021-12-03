@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { FiChevronRight } from 'react-icons/fi';
+import ArrowRight from '../../public/chevron-right.svg'
 import Categories from '../../components/HomePage/Categories/categories';
 import Alphabet from '../../components/HomePage/Alphabet/Alphabet';
 import ArrowNext from '../../public/arrow-next.svg';
@@ -21,7 +21,7 @@ const HomeView = () => {
             <h2 className={css.newTitle}>Новинки книг</h2>
             <Link href="/new">
               <a className={css.newLink}>
-                Смотреть все <FiChevronRight size="24px" />
+                Смотреть все <ArrowRight />
               </a>
             </Link>
           </div>

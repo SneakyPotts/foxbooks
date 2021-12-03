@@ -1,38 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import classnames from 'classnames'
 import ArrowAll from '../../../public/chevron-down.svg';
 import css from './popular.module.css';
 
-const Popular= ()=> {
+const Popular = ({title, data, optionIndex1, index, setpOptionIndex}) => {
   const [menu, setMenu] = useState(false)
-  // const [optionIndex, setOptionIndex] = useState(null);
+  const [active, setActive] = useState(false)
+  const [optionIndex, setOptionIndex] = useState([]);
+  console.log(optionIndex);
 
-  const togleMenu=(event)=> {
-    event.preventDefault();
-    setMenu(prevMenu=>!prevMenu);
-    console.log('showMenu',menu)
+  useEffect(() => {
+    const body = document.querySelector('body');
+    body.addEventListener('click', closeMenu);
+    
+    return (() => {
+      body.removeEventListener('click', closeMenu);
+    })
+  }, [])
+
+  const togleMenu = (e) => {
+    e.stopPropagation();
+
+    setMenu(!menu);
   }
-const handleOnClick = (e) => {
-    setOptionIndex(e.target.value)
-    console.log('handleOnClick', optionIndex)
+
+  const handleOnClick = (index) => {
+    if (optionIndex.includes(index)) {
+      setOptionIndex(optionIndex.filter(it => it !== index))
+    } else {
+      setOptionIndex([...optionIndex, index])
+    }
+    
   }
-      return (
+  
+  const closeMenu = () => {
+    setMenu(false);
+    console.log(111);
+  }
+  
+  return (
       <>
-        <div className={css.dropdown}>
-          <button className={`${css.dropBtn} ${menu?css.open:css.close}`} onClick={togleMenu}>
-            <span className={css.dropBtnText}>Популярные</span>{' '}
+      <div className={css.dropdown}>
+        <button className={`${css.dropBtn} ${menu ? css.open : css.close}`} onClick={(e) => {setpOptionIndex(index)}}>
+          <span className={css.dropBtnText}>{ title }</span>{' '}
               <ArrowAll className={`${menu&&css.up}`} />
           </button>
-          {menu ? (
-            <ul className={css.dropContent}>
-                <li onClick={handleOnClick} className={css.dropLink}><span className={css.dropText}>
-                  Популярные</span>
-                </li>
-                <li onClick={handleOnClick} className={css.dropLink}><span className={css.dropText}>Высокий рейтинг</span></li>
-            
-                <li onClick={handleOnClick} className={css.dropLink}><span className={css.dropText}>
-                  Много отзывов</span></li>
-                <li onClick={handleOnClick} className={css.dropLink}><span className={css.dropText}>
-                  Сейчас читают</span></li>
+          {menu || index === optionIndex1? (
+            <ul className={css.dropContent} onClick={e=>e.stopPropagation()}>
+                {data.map((it, index) => (
+                  <li key={it.id} onClick={()=>handleOnClick(index)}
+                    className={css.dropLink}>
+                    <span className={classnames(css.radio, { [css.active]: optionIndex.includes(index) })}></span>
+                <span className={css.dropText}>{it}</span>
+              </li>
+            ))}      
             </ul>
           ) : null}
         </div>

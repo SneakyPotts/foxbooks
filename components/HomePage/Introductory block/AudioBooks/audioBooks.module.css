@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 62px;
+  color: #0e263e;
 }
 .title {
   font-family: Merriweather;
@@ -9,7 +10,6 @@
   font-size: 24px;
   line-height: 1.25;
   margin: 0;
-  color: #0e263e;
 }
 .newLink {
   display: flex;
@@ -17,7 +17,6 @@
   line-height: 1.13;
   align-items: center;
   text-decoration: none;
-  color: #0e263e;
 }
 .newLink:hover {
   color: #ff781d;

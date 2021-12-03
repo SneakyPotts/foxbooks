@@ -9,7 +9,8 @@
   line-height: 1.4;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 6px 15px;
   width: 138px;
   height: 32px;
   border: none;
@@ -32,17 +33,18 @@
   position: absolute;
   z-index: 1;
   box-sizing: border-box;
-  padding: 0;
+  padding: 30px 20px;
   min-width: 237px;
   max-width: 278px;
   max-height: 435px;
   overflow-y: scroll;
-  margin-top: 22px;
+  /* margin-top: 22px; */
   background-color: #fff;
   box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
   border: 1px solid #f1f1f1;
   border-radius: 10px;
 }
+
 .dropContent::-webkit-scrollbar {
   width: 6px;
   background-color: transparent;
@@ -60,9 +62,11 @@
   align-items: center;
   font-size: 14px;
   line-height: 1.4;
-  margin: 15px 20px;
   text-decoration: none;
   color: #4f4f4f;
+}
+.dropLink:not(:last-child) {
+  margin-bottom: 15px;
 }
 .dropLink:hover {
   color: #0e263e;
@@ -73,35 +77,57 @@
 .dropText {
   margin-left: 10px;
 }
-/* .radio {
-  position: relative;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-} */
-.dropLink::before {
-  content: "";
+.radio {
+  display: block;
   box-sizing: border-box;
-
-  /* display: inline-block; */
   width: 24px;
   height: 24px;
+  border-radius: 50%;
+
+  border: 3px solid#fff;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #909190;
+}
+.active {
+  background-color: #909190;
+}
+/* .dropLink::before {
+  content: "";
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
   border: 2px solid #909190;
-  border-radius: 50%;
-}
+} */
+
 .dropLink:hover::before {
   border: 2px solid #0e263e;
 }
 .dropLink:checked::before {
   border: 2px solid #0e263e;
   background-image: url("../../../public/ellipse.svg");
+}
+.dropLinkAuthor {
+  list-style: none;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.dropLinkAuthor:hover {
+  color: #ff781d;
+}
+
+.dropContentAuthor {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  padding-bottom: -10px;
+  min-width: 237px;
+  max-width: 278px;
+  max-height: 435px;
+  background-color: #fff;
+  box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
 }

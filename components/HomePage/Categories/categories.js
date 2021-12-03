@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import categories from './categories.json';
+import categories from '../../data/categories.json';
 import ArrowAll from '../../../public/arrow-all.svg';
 import css from './categories.module.css';
 

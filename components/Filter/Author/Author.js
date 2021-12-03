@@ -1,40 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link'
 import ArrowAll from '../../../public/chevron-down.svg';
-import categories from '../../HomePage/Categories/categories.json';
 import css from '../Popular/popular.module.css';
 
 
-const Author =()=> {
-    const [menu, setMenu] = useState(false)
+const Author =({title, data, optionIndex1, index, setpOptionIndex})=> {
+  const [menu, setMenu] = useState(false)
   const [optionIndex, setOptionIndex] = useState(null);
 
-  const togleMenu=(e)=> {
-    e.preventDefault();
+   useEffect(() => {
+    const body = document.querySelector('body');
+    body.addEventListener('click', closeMenu);
+    
+    return (() => {
+      body.removeEventListener('click', closeMenu);
+    })
+   }, [])
+  
+  const togleMenu = (e) => {
+    e.stopPropagation();
 
     setMenu(prevMenu=>!prevMenu);
-    console.log('showMenu',menu)
   }
- 
-   const handleOnClick = (e) => {
+
+  const handleOnClick = (e) => {
     setOptionIndex(e.target.value)
-    console.log('handleOnClick', optionIndex)
+  }
+
+  const closeMenu = () => {
+    setMenu(false);
   }
 
     return (
       <>
         <div className={css.dropdown}>
           <button className={`${css.dropBtn} ${menu?css.open:css.close}`} onClick={togleMenu}>
-            <span className={css.dropBtnText}>Автор</span>{' '}
+            <span className={css.dropBtnText}>{ title }</span>{' '}
               <ArrowAll className={`${menu&&css.up}`} />
           </button>
           {menu ? (
-                    <ul className={css.dropContent}>
-                        {categories.map((it, index) => (
-                            <li key={it.id} value={index} onClick={handleOnClick} className={css.dropLink}>
-                                <span className={css.dropText}>
-                  {it.name}</span>
-                </li>))}
-               
+            <ul className={css.dropContentAuthor}>
+              {data.map((it, index) => (
+                <Link key={it.id} href='#' value={index} onClick={handleOnClick}>
+                  <a className={css.dropLinkAuthor}>{it.name}</a>
+                </Link>))}
             </ul>
           ) : null}
         </div>
