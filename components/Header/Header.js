@@ -1,6 +1,7 @@
 import { FiSearch, FiBell } from 'react-icons/fi';
 import Menu from './Menu/Menu';
 import User from '../../public/user.svg';
+import Logo from '../Logo';
 import css from './header.module.css';
 
 const Header = () => {
@@ -8,10 +9,7 @@ const Header = () => {
     <div className={css.main}>
       <div className={css.container}>
         <header className={css.header}>
-          <a href="/categories" className={css.logo}>
-            <span className={css.logoAccent}>Fox</span>
-            <span>Books</span>
-          </a>
+          <Logo/>
           <div className={css.input}>
             <input
               type="text"

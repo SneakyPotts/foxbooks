@@ -1,0 +1,39 @@
+.dropDown {
+  padding-top: 23px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #d4d4d4;
+}
+.dropDownBtn {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+.dropDownTitle {
+  font-family: Ubuntu;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: #0e263e;
+}
+.dropDownText {
+  font-size: 14px;
+  line-height: 1.43;
+  color: #4f4f4f;
+  padding: 0;
+  margin: 0;
+  margin-top: 23px;
+  margin-left: 24px;
+}
+.active {
+  border-bottom: 1px solid #ff781d;
+}
+.activeBtn {
+  color: #fff;
+  fill: #ff781d;
+
+  transform: rotate(180deg);
+}

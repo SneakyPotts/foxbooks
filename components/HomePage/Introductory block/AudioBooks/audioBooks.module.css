@@ -21,3 +21,9 @@
 .newLink:hover {
   color: #ff781d;
 }
+.containerReviews {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 39px;
+  color: #0e263e;
+}

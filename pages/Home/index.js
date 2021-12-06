@@ -8,6 +8,7 @@ import Hero from '../../components/HomePage/Hero/Hero';
 import BookUpdates from '../../components/HomePage/Updates/BookUpdates';
 import Filters from '../../components/Filter';
 import Introductory from '../../components/HomePage/Introductory block';
+import About from '../../components/HomePage/About'
 import css from './home.module.css';
 
 const HomeView = () => {
@@ -94,7 +95,8 @@ const HomeView = () => {
         {/* <Filtred/> */}
         
       </div>
-      <Introductory/>
+      <Introductory />
+      <About/>
     </div>
   );
 };

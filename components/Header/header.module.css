@@ -13,14 +13,6 @@
   justify-content: space-between;
   color: #0e263e;
 }
-.logo {
-  font-size: 30px;
-  color: #0e263e;
-  text-decoration: none;
-}
-.logoAccent {
-  color: #ff781d;
-}
 .input {
   position: relative;
   align-items: center;

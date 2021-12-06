@@ -3,11 +3,10 @@ import classnames from 'classnames'
 import ArrowAll from '../../../public/chevron-down.svg';
 import css from './popular.module.css';
 
-const Popular = ({title, data, optionIndex1, index, setpOptionIndex}) => {
-  const [menu, setMenu] = useState(false)
-  const [active, setActive] = useState(false)
+const Popular = ({title, data, filterStateIdx, elIdx, setFilStateIdx}) => {
+  const [menu, setMenu] = useState(false);
   const [optionIndex, setOptionIndex] = useState([]);
-  console.log(optionIndex);
+  console.log('menu', menu);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -20,8 +19,10 @@ const Popular = ({title, data, optionIndex1, index, setpOptionIndex}) => {
 
   const togleMenu = (e) => {
     e.stopPropagation();
-
+    
     setMenu(!menu);
+    console.log('togle', menu);
+    setFilStateIdx(elIdx);
   }
 
   const handleOnClick = (index) => {
@@ -30,28 +31,27 @@ const Popular = ({title, data, optionIndex1, index, setpOptionIndex}) => {
     } else {
       setOptionIndex([...optionIndex, index])
     }
-    
   }
   
   const closeMenu = () => {
     setMenu(false);
-    console.log(111);
+    console.log('closeMenu', menu);
   }
   
   return (
       <>
       <div className={css.dropdown}>
-        <button className={`${css.dropBtn} ${menu ? css.open : css.close}`} onClick={(e) => {setpOptionIndex(index)}}>
+        <button className={`${css.dropBtn} ${menu ? css.open : css.close}`} onClick={togleMenu}>
           <span className={css.dropBtnText}>{ title }</span>{' '}
               <ArrowAll className={`${menu&&css.up}`} />
           </button>
-          {menu || index === optionIndex1? (
+          {menu || elIdx === filterStateIdx? (
             <ul className={css.dropContent} onClick={e=>e.stopPropagation()}>
                 {data.map((it, index) => (
-                  <li key={it.id} onClick={()=>handleOnClick(index)}
+                  <li key={index} onClick={()=>handleOnClick(index)}
                     className={css.dropLink}>
-                    <span className={classnames(css.radio, { [css.active]: optionIndex.includes(index) })}></span>
-                <span className={css.dropText}>{it}</span>
+                    <span className={classnames(css.radio, { [css.radioActive]: optionIndex.includes(index) })}></span>
+                <span className={classnames(css.dropText, { [css.active]: optionIndex.includes(index) })}>{it}</span>
               </li>
             ))}      
             </ul>

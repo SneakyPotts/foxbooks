@@ -3,7 +3,7 @@ import ArrowRight from '../../../../public/chevron-right.svg'
 import css from '../AudioBooks/audioBooks.module.css'
 
 const Reviews = () => {
-  return <div className={css.container}>
+  return <div className={css.containerReviews}>
         <h2 className={css.title}>Рецензии</h2>
         <Link href="/reviews">
               <a className={css.newLink}>

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Header/Header';
 import Home from './Home';
+import Footer from '../components/Footer';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       </Head>
       <Header />
       <Home />
+      <Footer/>
     </>
   );
 }

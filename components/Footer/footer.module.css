@@ -1,0 +1,49 @@
+.wrapper {
+  box-sizing: border-box;
+  background: #f1f1f1;
+  padding: 28px 0;
+  box-shadow: 0 0 0 5px #fff;
+}
+.container {
+  display: flex;
+  width: 1200px;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+.slogan {
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+  margin-top: 10px;
+}
+.footerInfo {
+  display: flex;
+  align-items: center;
+}
+.socialmedia {
+  box-sizing: border-box;
+  height: 30px;
+  padding: 5px 40px;
+  border-right: 1px solid #909190;
+}
+.socialmediaLink:not(:last-child) {
+  margin-right: 15px;
+}
+.pagesList {
+  font-size: 14px;
+  line-height: 1.43;
+  padding: 5px 40px;
+  margin: 0;
+  border-right: 1px solid #909190;
+  color: #909190;
+}
+.page:not(:last-child) {
+  margin-right: 30px;
+}
+.label {
+  font-size: 14px;
+  line-height: 1.43;
+  margin-left: 40px;
+  color: #0e263e;
+}
