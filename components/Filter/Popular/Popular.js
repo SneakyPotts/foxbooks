@@ -6,7 +6,6 @@ import css from './popular.module.css';
 const Popular = ({title, data, filterStateIdx, elIdx, setFilStateIdx}) => {
   const [menu, setMenu] = useState(false);
   const [optionIndex, setOptionIndex] = useState([]);
-  console.log('menu', menu);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -19,10 +18,17 @@ const Popular = ({title, data, filterStateIdx, elIdx, setFilStateIdx}) => {
 
   const togleMenu = (e) => {
     e.stopPropagation();
-    
-    setMenu(!menu);
-    console.log('togle', menu);
-    setFilStateIdx(elIdx);
+    if (setFilStateIdx) {
+      setFilStateIdx((prev) => {
+        if (prev === elIdx) {
+          return null
+        } else {
+          return elIdx
+        }
+      });
+    } else {
+      setMenu(!menu);
+    }
   }
 
   const handleOnClick = (index) => {
@@ -35,30 +41,28 @@ const Popular = ({title, data, filterStateIdx, elIdx, setFilStateIdx}) => {
   
   const closeMenu = () => {
     setMenu(false);
-    console.log('closeMenu', menu);
+    setFilStateIdx(null);
   }
-  
+
   return (
-      <>
-      <div className={css.dropdown}>
-        <button className={`${css.dropBtn} ${menu ? css.open : css.close}`} onClick={togleMenu}>
-          <span className={css.dropBtnText}>{ title }</span>{' '}
-              <ArrowAll className={`${menu&&css.up}`} />
-          </button>
-          {menu || elIdx === filterStateIdx? (
-            <ul className={css.dropContent} onClick={e=>e.stopPropagation()}>
-                {data.map((it, index) => (
-                  <li key={index} onClick={()=>handleOnClick(index)}
-                    className={css.dropLink}>
-                    <span className={classnames(css.radio, { [css.radioActive]: optionIndex.includes(index) })}></span>
-                <span className={classnames(css.dropText, { [css.active]: optionIndex.includes(index) })}>{it}</span>
-              </li>
-            ))}      
-            </ul>
-          ) : null}
-        </div>
-      </>
-    );
-  
+    <div className={css.dropdown}>
+      <button className={`${css.dropBtn} ${menu || elIdx === filterStateIdx  ? css.open : css.close}`}
+        onClick={togleMenu}>
+        <span className={css.dropBtnText}>{ title }</span>{' '}
+        <ArrowAll className={`${menu || elIdx === filterStateIdx && css.up}`} />
+      </button>
+      {menu || elIdx === filterStateIdx ? (
+        <ul className={css.dropContent} onClick={e=>e.stopPropagation()}>
+          {data.map((it, index) => (
+            <li key={index} onClick={()=>handleOnClick(index)}
+              className={css.dropLink}>
+              <span className={classnames(css.radio, { [css.radioActive]: optionIndex.includes(index) })}></span>
+              <span className={classnames(css.dropText, { [css.active]: optionIndex.includes(index) })}>{it}</span>
+            </li>
+          ))}      
+        </ul>
+      ) : null}
+    </div>
+  );
 }
 export default Popular;

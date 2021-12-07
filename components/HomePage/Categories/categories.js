@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import categories from '../../data/categories.json';
-import ArrowAll from '../../../public/arrow-all.svg';
+import ArrowAll from '../../../public/chevron-down.svg';
 import css from './categories.module.css';
 
 const Categories = () => {
@@ -19,7 +19,7 @@ const Categories = () => {
         <Link href="/books">
           <a className={css.all}>
             <p className={css.textAll}>Все категории</p>
-            <ArrowAll className={css.arrowAll} />
+            <span className={css.iconAll}><ArrowAll className={css.arrowAll} /></span>
           </a>
         </Link>
       </div>

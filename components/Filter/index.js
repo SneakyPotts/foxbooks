@@ -29,7 +29,14 @@ const Filters = () => {
         {data.map((it, index) => 
           it.isAuthor ?
             <Author key={it.title} setFilStateIdx={setStateIndex} elIdx={index}  filterStateIdx={stateIndex} title={it.title} data={it.options} /> :
-            <Popular key={it.title} setFilStateIdx={setStateIndex} elIdx={index} filterStateIdx={stateIndex} title={it.title} data={it.options} />
+            <Popular
+              key={it.title}
+              setFilStateIdx={setStateIndex}
+              elIdx={index}
+              filterStateIdx={stateIndex}
+              title={it.title}
+              data={it.options}
+            />
         )}
       </div>
       <div><ClearAll /></div>

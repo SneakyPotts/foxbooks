@@ -31,13 +31,24 @@
   margin: 0;
   margin-top: 22px;
   text-decoration: none;
-  color: #f1f1f1;
   stroke: #0e263e;
 }
-.all:hover {
-  color: #ff781d;
-  stroke: #fff;
+.all:hover .iconAll {
+  stroke: #f1f1f1;
+  background-color: #ff781d;
 }
 .textAll {
   color: #ff781d;
+}
+.iconAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+}
+.arrowAll {
+  transform: rotate(90deg);
 }

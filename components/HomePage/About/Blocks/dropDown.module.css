@@ -11,6 +11,15 @@
   align-items: center;
   background-color: transparent;
   border: none;
+  stroke: #0e263e;
+}
+.dropDownBtn:hover {
+  cursor: pointer;
+}
+.dropDownBtn:hover .dropDownIcon {
+  cursor: pointer;
+  stroke: #fff;
+  background-color: #ff781d;
 }
 .dropDownTitle {
   font-family: Ubuntu;
@@ -28,12 +37,22 @@
   margin-top: 23px;
   margin-left: 24px;
 }
+.dropDownIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  transform: rotate(180deg);
+}
 .active {
   border-bottom: 1px solid #ff781d;
 }
 .activeBtn {
-  color: #fff;
-  fill: #ff781d;
+  stroke: #fff;
+  background-color: #ff781d;
 
   transform: rotate(180deg);
 }

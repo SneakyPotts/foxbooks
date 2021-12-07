@@ -1,27 +1,29 @@
 import { useState } from 'react'
 import classnames from 'classnames'
-import DropDownArrow from '../../../../public/dropDownArrow.svg'
+import DropDownArrow from '../../../../public/chevron-down.svg'
 import css from './dropDown.module.css'
 
-const DropDownBooksOnline = () => {
-    const [showText, setShowText] = useState(false)
+const DropDownBooksOnline = ({title, text}) => {
+    const [showText, setShowText] = useState(false);
+        console.log('books', showText);
+
 
     const onBtnClick = () => {
         setShowText(prevSetShowText=>!prevSetShowText)
     }
-    return <>
-        <div className={classnames(css.dropDown,{[css.active]:showText})}>
-            <button onClick={onBtnClick} className={css.dropDownBtn}>
-                <span className={css.dropDownTitle}>Книги онлайн</span>
-                <DropDownArrow className={classnames({[css.activeBtn]:showText})}/>
+
+    return (
+        <div className={classnames(css.dropDown, { [css.active]: showText })}>
+        <button onClick={onBtnClick} className={css.dropDownBtn}>
+            <span className={css.dropDownTitle}>{title}</span>
+            <span className={classnames(css.dropDownIcon, { [css.activeBtn]: showText })}>
+                <DropDownArrow />
+            </span>
             </button >
-            {showText||<div>
-                <p className={css.dropDownText}>Понимание сути ресурсосберегающих технологий влечет за собой процесс внедрения и модернизации благоприятных перспектив.
-                    Современные технологии достигли такого уровня, что выбранный нами инновационный путь прекрасно подходит для реализации соответствующих условий активизации.
-                    В целом, конечно, новая модель организационной деятельности влечет за собой процесс внедрения и модернизации глубокомысленных рассуждений.</p>
-            </div>}
+            {showText &&
+                <p className={css.dropDownText}>{text}</p>
+            }
         </div>
-        
-    </>
+    )
 }
-export default DropDownBooksOnline
+export default DropDownBooksOnline;
