@@ -1,4 +1,4 @@
-import DropDownBooksOnline from "./Blocks/dropDownBooksOnline"
+// import DropDownBooksOnline from "./Blocks/dropDownBooksOnline"
     import css from './about.module.css'
 
 const About = () => {
@@ -9,9 +9,9 @@ const About = () => {
     ]
     return (
         <div className={css.container}>
-            {data.map(({title, text}) => (
+            {/* {data.map(({title, text}) => (
                 <DropDownBooksOnline key={title} title={title} text={text} />
-            ))}
+            ))} */}
         </div>
     )
 }

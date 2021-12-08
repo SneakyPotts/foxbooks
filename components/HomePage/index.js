@@ -14,7 +14,6 @@ import Introductory from './Introductory block';
 import css from './home.module.css';
 import books from '../data/books.json'
 
-
 const HomeView = () => {
 
   return (
