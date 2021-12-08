@@ -2,7 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  /* font-family: 'Merriweather', serif; */
   font-family: "Ubuntu", sans-serif, "Merriweather", serif;
   background-color: #fbfbfb;
 }
@@ -14,4 +13,50 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.container {
+  width: 1200px;
+  margin: auto;
+}
+.nextArrow {
+  position: absolute;
+  top: 111px;
+  right: 0;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #f1f1f1;
+  background: rgba(255, 255, 255, 0.5);
+}
+.nextArrow:hover {
+  border-color: #fff;
+  background-color: #fff;
+}
+.nextArrow:hover .arrowNext {
+  stroke: #ff781d;
+}
+.prevArrow {
+  position: absolute;
+  top: 111px;
+  left: 0;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transform: rotate(180deg);
+  border: 1px solid #f1f1f1;
+  background: rgba(255, 255, 255, 0.5);
+}
+.prevArrow:hover {
+  border-color: #fff;
+  background-color: #fff;
+}
+.prevArrow:hover .arrowNext {
+  stroke: #ff781d;
+}
+.arrowNext {
+  width: 24px;
+  height: 24px;
+  stroke: #0e263e;
 }

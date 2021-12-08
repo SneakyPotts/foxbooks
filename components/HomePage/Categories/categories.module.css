@@ -1,6 +1,6 @@
 .categNav {
   text-align: start;
-  width: 180px;
+  min-width: 180px;
 }
 .categList {
   list-style: none;

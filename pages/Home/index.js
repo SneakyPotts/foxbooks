@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { Navigation } from 'swiper/core';
+import { Swiper, SwiperSlide} from 'swiper/react';
+import 'swiper/css/bundle';
 import ArrowRight from '../../public/chevron-right.svg'
 import Categories from '../../components/HomePage/Categories/categories';
 import Alphabet from '../../components/HomePage/Alphabet/Alphabet';
-import ArrowNext from '../../public/arrow-next.svg';
 import Hero from '../../components/HomePage/Hero/Hero';
 import BookUpdates from '../../components/HomePage/Updates';
 import Filters from '../../components/Filter';
@@ -27,6 +27,7 @@ const data = [
 ]
 
 const HomeView = () => {
+
   return (
     <div className={css.container}>
       <div className={css.mainContainer}>
@@ -42,27 +43,38 @@ const HomeView = () => {
             </Link>
           </div>
           <Swiper
-            spaceBetween={50}
+            modules={[Navigation]}
+            spaceBetween={24}
             slidesPerView={5}
-            // onSlideChange={() => console.log('slide change')}
+            navigation={{
+              prevEl: '.prevArrow',
+              nextEl: '.nextArrow',
+            }}
+
+            onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
-            className={css.booksList}
+            
           >
-            {data.map(({ id, img, rating, name, author }) => <SwiperSlide key={id} className={css.bookItem}>
-                <Image
-                  src={img}
+            {data.map(it => (<SwiperSlide key={it.id} className={css.swiperSlide} >
+              <Image
+                  src={it.img}
                   alt=""
                   width="180"
                   height="271"
                   placeholder="blur"
                   blurDataURL="/images/blur.jpg"
                 />
-                <p className={css.bookRating}>{rating}</p>
-                <h3 className={css.bookName}>{name}</h3>
-                <p className={css.bookAuthor}>{author}</p>
-              </SwiperSlide>)}
+                <p className={css.bookRating}>{it.rating}</p>
+                <h3 className={css.bookName}>{it.name}</h3>
+                <p className={css.bookAuthor}>{it.author}</p></SwiperSlide>))}
+          <button className="prevArrow">
+              <ArrowRight className='arrowNext' />
+            </button>
+            <button className="nextArrow">
+              <ArrowRight className='arrowNext' />
+            </button>
           </Swiper>
-          <ArrowNext className={css.arrowNext} onSlideChange={() => console.log('slide change')}/>
+          
         </div>
       </div>
       <Hero />

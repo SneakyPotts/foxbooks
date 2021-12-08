@@ -16,7 +16,7 @@ const Categories = () => {
           ))}
         </ul>
 
-        <Link href="/books">
+        <Link href="/categories">
           <a className={css.all}>
             <p className={css.textAll}>Все категории</p>
             <span className={css.iconAll}><ArrowAll className={css.arrowAll} /></span>
