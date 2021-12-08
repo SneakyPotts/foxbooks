@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import DropDownArrow from '../../../public/chevron-down.svg'
+// import DropDownArrow from '../../../public/chevron-down.svg'
 import css from './about.module.css'
 
 const About = () => {
@@ -21,7 +21,7 @@ const About = () => {
         <button onClick={onBtnClick} className={css.dropDownBtn}>
             <span className={css.dropDownTitle}>{title}</span>
             <span className={classnames(css.dropDownIcon, { [css.activeBtn]: showText })}>
-                <DropDownArrow />
+                {/* <DropDownArrow /> */}
             </span>
             </button >
             {showText &&
