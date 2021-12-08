@@ -17,7 +17,11 @@ const About = () => {
         setShowText(prevSetShowText=>!prevSetShowText)
     }
     return (
-        <div className={css.container}>
+        <>
+        {data.map(({title,text}) => {
+            return (
+                <>
+                <div className={css.container}>
          <div className={classnames(css.dropDown, { [css.active]: showText })}>
         <button onClick={onBtnClick} className={css.dropDownBtn}>
             <span className={css.dropDownTitle}>{title}</span>
@@ -30,6 +34,12 @@ const About = () => {
             }
         </div>
         </div>
+                </>
+            )
+        })}
+        
+        </>
+    
     )
 }
 export default About;
