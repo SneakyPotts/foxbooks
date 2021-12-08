@@ -9,9 +9,9 @@ const About = () => {
     ]
     return (
         <div className={css.container}>
-            {data.map(({title, text}) => (
+            {/* {data.map(({title, text}) => (
                 <DropDownBooksOnline key={title} title={title} text={text} />
-            ))}
+            ))} */}
         </div>
     )
 }
