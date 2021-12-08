@@ -1,4 +1,4 @@
-import DropDownBooksOnline from "./Blocks/dropDownBooksOnline"
+// import DropDownBooksOnline from "./Blocks/dropDownBooksOnline"
     import css from './about.module.css'
 
 const About = () => {

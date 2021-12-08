@@ -10,7 +10,7 @@ import Hero from './Hero/Hero';
 import BookUpdates from './Updates';
 import Filters from '../Filter';
 import Introductory from './Introductory block';
-import About from './About'
+// import About from './About'
 import css from './home.module.css';
 
 import books from '../data/books.json'
@@ -76,7 +76,7 @@ const HomeView = () => {
         
       </div>
       <Introductory />
-      <About/>
+      {/* <About/> */}
     </div>
   );
 };
