@@ -4,27 +4,18 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css/bundle';
 import ArrowRight from '../../public/chevron-right.svg'
-import Categories from '../../components/HomePage/Categories/categories';
-import Alphabet from '../../components/HomePage/Alphabet/Alphabet';
-import Hero from '../../components/HomePage/Hero/Hero';
-import BookUpdates from '../../components/HomePage/Updates';
-import Filters from '../../components/Filter';
-import Introductory from '../../components/HomePage/Introductory block';
-import About from '../../components/HomePage/About'
+import Categories from './Categories/categories';
+import Alphabet from './Alphabet/Alphabet';
+import Hero from './Hero/Hero';
+import BookUpdates from './Updates';
+import Filters from '../Filter';
+import Introductory from './Introductory block';
+import About from './About'
 import css from './home.module.css';
 
-const data = [
-  { id: '0', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '1', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '2', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '3', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '4', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '5', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '6', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '7', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '8', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' },
-  { id: '9', img: 'http://dummyimage.com/180x271/c0c0c0&text=No+image', rating: 'rating', name: 'book Title', author: 'book Author' }
-]
+import books from '../data/books.json'
+
+// const data = 
 
 const HomeView = () => {
 
@@ -55,7 +46,7 @@ const HomeView = () => {
             onSwiper={(swiper) => console.log(swiper)}
             
           >
-            {data.map(it => (<SwiperSlide key={it.id} className={css.swiperSlide} >
+            {books.map(it => (<SwiperSlide key={it.id} className={css.swiperSlide} >
               <Image
                   src={it.img}
                   alt=""
