@@ -9,6 +9,7 @@ const About = () => {
     ]
     return (
         <div className={css.container}>
+            qweqweqweqweqweqweqwewqe
             {/* {data.map(({title, text}) => (
                 <DropDownBooksOnline key={title} title={title} text={text} />
             ))} */}
