@@ -1,5 +1,6 @@
 import { useState } from 'react'
 // import DropDownArrow from '../../../public/chevron-down.svg'
+import classnames from 'classnames'
 import css from './about.module.css'
 
 const About = () => {
