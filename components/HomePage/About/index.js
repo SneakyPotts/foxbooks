@@ -10,35 +10,39 @@ const About = () => {
         { title: 'Книги на IPhone, IPad и Android онлайн', text: 'Понимание сути ресурсосберегающих технологий влечет за собой процесс внедрения и модернизации благоприятных перспектив.Современные технологии достигли такого уровня, что выбранный нами инновационный путь прекрасно подходит для реализации соответствующих условий активизации.В целом, конечно, новая модель организационной деятельности влечет за собой процесс внедрения и модернизации глубокомысленных рассуждений.' }
     ]
 
-        const [showText, setShowText] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(null)
 
 
-    const onBtnClick = () => {
-        setShowText(prevSetShowText=>!prevSetShowText)
+    const handleClick = (index) => {
+        setCurrentIndex((prev) => {
+            if (prev === index) {
+                console.log(1);
+            return null
+            } else {
+                return index
+            }})
     }
     return (
-        <>
-        {data.map(({title,text}) => {
+        <div className={css.container}>
+        {data.map(({title,text}, index) => {
             return (
                 <>
-                <div className={css.container}>
-         <div className={classnames(css.dropDown, { [css.active]: showText })}>
-        <button onClick={onBtnClick} className={css.dropDownBtn}>
-            <span className={css.dropDownTitle}>{title}</span>
-            <span className={classnames(css.dropDownIcon, { [css.activeBtn]: showText })}>
-                <DropDownArrow />
-            </span>
-            </button >
-            {showText &&
-                <p className={css.dropDownText}>{text}</p>
-            }
-        </div>
-        </div>
+                     <div key={index}>
+                        <div className={classnames(css.dropDown, { [css.active]: currentIndex === index })}>
+                            <button onClick={()=>handleClick(index)} className={css.dropDownBtn}>
+                            <span className={css.dropDownTitle}>{title}</span>
+                            <span className={classnames(css.dropDownIcon, { [css.activeBtn]: currentIndex === index })}>
+                                <DropDownArrow />
+                            </span>
+                            </button >
+                            {currentIndex === index  && <p className={css.dropDownText}>{text}</p>}
+                        </div>
+                     </div>
                 </>
             )
         })}
         
-        </>
+        </div>
     
     )
 }
