@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Popular from './Popular/Popular';
 import Author from './Author/Author';
 import ClearAll from './Clear/Clear';
-// import Categories from '../data/categories.json'
-// import PopularOptions from '../data/popularOptions.json'
-// import Alphabet from '../data/alphabet.json'
+import Book from '../book/book';
+import books from '../data/books.json'
+
 import css from './filter.module.css';
 
 const data = [
@@ -15,15 +15,9 @@ const data = [
 ]
 
 const Filters = () => {
-  // const [active, setActive] = useState(false);
   const [stateIndex, setStateIndex] = useState(null)
 
-  // const handleOnClick = () => {
-  //   setActive(!active);
-  //   console.log(active);
-  // }
-
-  return (
+  return (<div className={css.wrapper}>
     <div className={css.container}>
       <div className={css.options}>
         {data.map((it, index) => 
@@ -41,6 +35,12 @@ const Filters = () => {
       </div>
       <div><ClearAll /></div>
     </div>
+    <ul className={css.bookList}>
+      {books.map(book => (
+        <li key={book.id} className={css.book}><Book book={book} /></li>
+      ))}
+    </ul>
+  </div>
   );
 };
 export default Filters;

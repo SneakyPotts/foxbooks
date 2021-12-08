@@ -11,8 +11,8 @@ import BookUpdates from './Updates';
 import Filters from '../Filter';
 import Introductory from './Introductory block';
 import About from './About'
-import css from './home.module.css';
 import books from '../data/books.json'
+import css from './home.module.css';
 
 const HomeView = () => {
 
@@ -69,9 +69,9 @@ const HomeView = () => {
       <div className={css.wrapper}>
         <BookUpdates className={ css.updates}/>
         <Filters />
-        {/* <Filtred/> */}
-        
       </div>
+      
+        
       <Introductory />
       <About/>
     </div>
