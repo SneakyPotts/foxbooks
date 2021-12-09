@@ -1,0 +1,99 @@
+@import "styles/variables.scss";
+
+.container {
+  margin-top: 70px;
+  margin-bottom: 60px;
+
+  .wrapHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 42px;
+    color: #0e263e;
+
+    .newLink {
+      display: flex;
+      font-size: 16px;
+      line-height: 1.13;
+      align-items: center;
+      text-decoration: none;
+
+      &:hover {
+        color: #ff781d;
+      }
+    }
+
+    .title {
+      font-family: Merriweather;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 0;
+    }
+  }
+
+  .selection {
+
+    &Block {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 384px;
+    }
+
+    &Img {
+      position: relative;
+
+      &Count {
+        font-family: Ubuntu, sans-serif;
+        position: absolute;
+        background: #fff;
+        bottom: 10px;
+        right: 10px;
+        border-radius: 58px;
+        color: $cl-0E263E;
+        padding: 6px 10px;
+        font-size: 14px;
+      }
+
+      &img {
+        border-radius: 5px;
+      }
+    }
+
+    &Date {
+      display: flex;
+      justify-content: space-between;
+      font-family: Ubuntu, sans-serif;
+      color: $cl-909190;
+      margin: 13px 0px;
+
+      &Views {
+        display: flex;
+        align-items: center;
+
+        > span {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    &Description {
+      font-family: Ubuntu, sans-serif;
+      font-size: 14px;
+      color: $cl-4F4F4F;
+
+      > h3 {
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: $cl-0E263E;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .positionButton {
+    top: 67px!important;
+  }
+}
+

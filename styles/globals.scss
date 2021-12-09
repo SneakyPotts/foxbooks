@@ -19,6 +19,10 @@ a {
   margin: auto;
 }
 .nextArrow {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 111px;
   right: 0;
@@ -37,6 +41,10 @@ a {
   stroke: #ff781d;
 }
 .prevArrow {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 111px;
   left: 0;
