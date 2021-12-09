@@ -53,7 +53,6 @@ const HomeView = () => {
                             <ArrowRight className='arrowNext'/>
                         </button>
                     </Swiper>
-
                 </div>
             </div>
             <Hero/>

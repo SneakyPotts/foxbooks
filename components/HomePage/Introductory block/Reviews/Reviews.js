@@ -5,7 +5,11 @@ import 'swiper/css/bundle';
 import { Navigation } from 'swiper/core';
 import classnames from "classnames";
 import ArrowRight from '../../../../public/chevron-right.svg'
+<<<<<<< HEAD
 import css from './reviews.module.scss'
+=======
+import css from '../AudioBooks/audioBooks.module.scss'
+>>>>>>> c83194239a16ff3d1431ce426f3e9612f50ced03
 
 const Reviews = () => {
   const data = [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }, { id: '5' }, { id: '6' },{ id: '7' }, { id: '8' }]

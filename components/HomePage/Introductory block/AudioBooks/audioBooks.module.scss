@@ -1,11 +1,16 @@
 @import "styles/variables.scss";
 
 .container {
+  margin-bottom: 60px;
+}
+
+.wrapHeader {
   display: flex;
   justify-content: space-between;
   margin-bottom: 62px;
   color: #0e263e;
 }
+
 .title {
   font-family: Merriweather;
   font-weight: 700;
@@ -13,6 +18,7 @@
   line-height: 1.25;
   margin: 0;
 }
+
 .newLink {
   display: flex;
   font-size: 16px;
@@ -21,7 +27,15 @@
   text-decoration: none;
   stroke: #0e263e;
 }
+
 .newLink:hover {
   color: #ff781d;
   stroke: #ff781d;
+}
+
+.containerReviews {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 39px;
+  color: #0e263e;
 }
