@@ -17,9 +17,11 @@
   line-height: 1.13;
   align-items: center;
   text-decoration: none;
+  stroke: #0e263e;
 }
 .newLink:hover {
   color: #ff781d;
+  stroke: #ff781d;
 }
 .containerReviews {
   display: flex;

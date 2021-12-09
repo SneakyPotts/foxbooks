@@ -2,7 +2,7 @@ import Image from 'next/image';
 import css from './book.module.css';
 
 const Book = ({book}) => {
-    return <>
+    return <div className={css.wrapper}>
         <Image
             src={book.img}
             alt=""
@@ -14,6 +14,7 @@ const Book = ({book}) => {
         <p className={css.bookRating}>{book.rating}</p>
         <h3 className={css.bookName}>{book.name}</h3>
         <p className={css.bookAuthor}>{book.author}</p>
-    </>
+        <span className={css.bookCategorie}>{ book.categorie}</span>
+    </div>
 }
 export default Book

@@ -15,14 +15,17 @@
   height: 32px;
   border: none;
   border-radius: 64px;
+  stroke: #0e263e;
 }
 .dropBtn:hover {
   color: #0e263e;
   background: #f1f7ff;
+  stroke: #0e263e;
 }
 .open {
   color: #fff;
   background: #0e263e;
+  stroke: #fff;
 }
 .close {
   color: #0e263e;

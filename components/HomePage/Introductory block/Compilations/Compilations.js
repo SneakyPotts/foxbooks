@@ -36,7 +36,7 @@ const Compilations = () => {
                 {dataTest.map((r, i) => {
                     return (
                         <>
-                            <SwiperSlide key={i}>
+                            <SwiperSlide>
                                 <div className={styles.selection}>
                                     <div className={styles.selectionBlock}>
                                         <div className={styles.selectionImg}>

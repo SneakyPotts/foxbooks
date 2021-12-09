@@ -12,6 +12,7 @@ import Filters from '../Filter';
 import Introductory from './Introductory block';
 import About from './About'
 import books from '../data/books.json'
+import Book from '../book'
 import css from './home.module.css';
 
 const HomeView = () => {
@@ -43,18 +44,8 @@ const HomeView = () => {
                         onSwiper={(swiper) => console.log(swiper)}
 
                     >
-                        {books.map(it => (<SwiperSlide key={it.id} className={css.swiperSlide}>
-                            <Image
-                                src={it.img}
-                                alt=""
-                                width="180"
-                                height="271"
-                                placeholder="blur"
-                                blurDataURL="/images/blur.jpg"
-                            />
-                            <p className={css.bookRating}>{it.rating}</p>
-                            <h3 className={css.bookName}>{it.name}</h3>
-                            <p className={css.bookAuthor}>{it.author}</p></SwiperSlide>))}
+                        {books.map(book => (<SwiperSlide key={book.id} className={css.swiperSlide}>
+                            <Book book={book}/></SwiperSlide>))}
                         <button className="prevArrow">
                             <ArrowRight className='arrowNext'/>
                         </button>

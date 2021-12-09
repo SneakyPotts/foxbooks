@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Popular from './Popular/Popular';
 import Author from './Author/Author';
 import ClearAll from './Clear/Clear';
-import Book from '../book/book';
+import Book from '../book';
 import books from '../data/books.json'
 
 import css from './filter.module.css';

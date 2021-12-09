@@ -1,6 +1,12 @@
+.wrapper {
+  position: relative;
+}
 .bookRating {
   margin: 0;
   margin-top: 5px;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #909190;
 }
 .bookName {
   /* font-family: Ubuntu, sans-serif; */
@@ -17,4 +23,16 @@
   margin: 0;
   margin-top: 10px;
   color: #4f4f4f;
+}
+.bookCategorie {
+  font-size: 12px;
+  line-height: 1.167;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 18px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #0e263e;
 }
