@@ -1,4 +1,4 @@
-@import "styles/variables.scss";
+@import "/styles/variables.scss";
 
 .containerReviews {
   display: flex;
@@ -28,5 +28,5 @@
 .reviewsCover {
   min-width: 384px;
   min-height: 183px;
-  background-color: $cl-909190;
+  //   background-color: $cl-909190;
 }
