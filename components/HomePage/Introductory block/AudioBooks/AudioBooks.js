@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import ArrowRight from '../../../../public/chevron-right.svg'
-import css from './audioBooks.module.css'
+import css from './audioBooks.module.scss'
 
 const AudioBooks = () => {
     return <div className={css.container}>
