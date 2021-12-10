@@ -1,12 +1,16 @@
+@import 'styles/variables';
+
 .wrapper {
   position: relative;
+  img {
+    object-fit: cover;
+  }
 }
 .bookRating {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0;
-  margin-top: 5px;
+  margin: 5px 0 0;
   font-size: 14px;
   line-height: 1.43;
   color: #909190;
@@ -16,18 +20,20 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  cursor: pointer;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.13;
-  margin: 0;
-  margin-top: 10px;
+  margin: 10px 0 0;
   color: #0e263e;
+  &:hover {
+    color: $text-hover;
+  }
 }
 .bookAuthor {
   font-size: 14px;
   line-height: 1.43;
-  margin: 0;
-  margin-top: 10px;
+  margin: 10px 0 0;
   color: #4f4f4f;
 }
 .bookCategorie {
@@ -42,3 +48,16 @@
   color: #fff;
   background-color: #0e263e;
 }
+.audioIcon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 10px;
+  bottom: 10px;
+  height: 35px;
+  width: 35px;
+  background: #0E263E;
+  border-radius: 50%;
+}
+
