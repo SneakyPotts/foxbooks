@@ -1,3 +1,5 @@
+@import "styles/variables";
+
 .wrapper {
   position: fixed;
   top: 0;
@@ -12,6 +14,12 @@
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   z-index: 50;
+  transform: scale(0);
+
+
+  &Active {
+    transform: scale(1);
+  }
 
   &Block {
     position: relative;
@@ -22,12 +30,42 @@
     border-radius: 5px;
 
     &Cross {
+      cursor: pointer;
       position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       top: 26px;
       right: 26px;
-      background: red;
       height: 24px;
       width: 24px;
+
+      &:hover {
+        > span:nth-child(1) {
+          background-color: $text-hover;
+        }
+
+        > span:nth-child(2) {
+          background-color: $text-hover;
+        }
+      }
+
+      > span:nth-child(1) {
+        width: 15px;
+        height: 2px;
+        background-color: #909190;
+        transform: rotate(45deg);
+        border-radius: 2px;
+      }
+
+      > span:nth-child(2) {
+        position: absolute;
+        width: 15px;
+        height: 2px;
+        border-radius: 2px;
+        background-color: #909190;
+        transform: rotate(-45deg);
+      }
     }
   }
 }
