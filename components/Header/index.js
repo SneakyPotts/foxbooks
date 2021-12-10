@@ -4,8 +4,13 @@ import User from '../../public/user.svg';
 import Logo from '../Logo';
 import css from './header.module.scss';
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
+import {useState} from "react";
+
 
 const Header = () => {
+
+    const [modal, setModal] = useState(true)
+
     return (
         <div className={css.main}>
             <div className={css.container}>
@@ -19,7 +24,7 @@ const Header = () => {
                         />
                         <FiSearch className={css.iconSearch}/>
                     </div>
-                    <div className={css.menu}>
+                    <div onClick={()=>setModal(!modal)} className={css.menu}>
                         <FiBell className={css.iconBell}/>
                         <div className={css.userMenu}>
                             <User className={css.iconUser}/>
