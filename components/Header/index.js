@@ -29,7 +29,9 @@ const Header = () => {
                 </header>
                 <Menu/>
             </div>
-            {/* <ModalWindow/> */}
+            <ModalWindow modal={modal} setModal={(e)=>setModal(e)}>
+                testsetsetset
+            </ModalWindow>
         </div>
     );
 };
