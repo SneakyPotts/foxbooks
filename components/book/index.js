@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import ReactStars from "react-rating-stars-component";
-import css from './book.module.css';
+import css from './book.module.scss';
+import Headphones from "../shared/icons/headphones";
 
 
-const Book = ({book}) => {
+const Book = ({audio}) => {
 
     const secondExample = {
         size: 15,
@@ -14,23 +15,31 @@ const Book = ({book}) => {
         edit: false,
         // a11y: true,
         isHalf: true,
-        emptyIcon: <i className="far fa-star" />,
-        halfIcon: <i className="fa fa-star-half-alt" />,
-        filledIcon: <i className="fa fa-star" />
+        emptyIcon: <i className="far fa-star"/>,
+        halfIcon: <i className="fa fa-star-half-alt"/>,
+        filledIcon: <i className="fa fa-star"/>
         // onChange: (newValue) => {
         //     setRating(newValue);
         // }
     };
     return (
-        <div className={css.wrapper}>
-            <Image
-                src='/horizontalBookCovers/book.png'
-                alt=""
-                width="180"
-                height="271"
-                placeholder="blur"
-                blurDataURL="/images/blur.jpg"
-            />
+        <>
+            <div className={css.wrapper}>
+                <Image
+                    src='/horizontalBookCovers/book.png'
+                    alt=""
+                    width="180"
+                    height={audio ? "180" : "271"}
+                    placeholder="blur"
+                    blurDataURL="/images/blur.jpg"
+                />
+                <span className={css.bookCategorie}>Фентези</span>
+                {audio &&
+                <span className={css.audioIcon}>
+                    <Headphones/>
+                </span>
+                }
+            </div>
             <div className={css.bookRating}>
                 <ReactStars {...secondExample} />
                 <div>
@@ -41,8 +50,7 @@ const Book = ({book}) => {
             </div>
             <h3 className={css.bookName}>Искатели неба: Холодные берега Искатели неба: Холодные берега</h3>
             <p className={css.bookAuthor}>Сергей Лукьяненко</p>
-            <span className={css.bookCategorie}>Фентези</span>
-        </div>
+        </>
     )
 }
 export default Book
