@@ -1,0 +1,88 @@
+@import "styles/variables.scss";
+
+.abContainer {
+  margin-bottom: 43px;
+}
+.abTitle {
+  font-family: Merriweather;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-top: 30px;
+  margin-bottom: 36px;
+  color: $color-main;
+}
+.abCateg {
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 8px 15px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 33px;
+  color: $color-main;
+  border: 1px solid $color-star-border;
+  background-color: $color-categories-btn;
+}
+.abCateg:hover {
+  color: $text-hover;
+}
+.showAll {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 40px;
+  color: $color-main;
+  stroke: $color-main;
+}
+.showAll:hover {
+  cursor: pointer;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.abFilter {
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 8px 15px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 33px;
+  color: $color-main;
+  border: none;
+  background: $color-bg-icon;
+}
+.abFilter:hover {
+  color: $color-categories-btn;
+  background-color: $color-main;
+}
+.active {
+  color: $color-categories-btn;
+  background-color: $color-main;
+}
+.booksGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 24px;
+  grid-row-gap: 40px;
+}
+.mainBlock {
+  display: flex;
+  margin-top: 40px;
+}
+.advertisingBlok {
+  display: block;
+  margin-left: 24px;
+  max-width: 384px;
+  min-height: 1104px;
+}
+.banner {
+  margin-bottom: 40px;
+}
+.active {
+  color: $color-categories-btn;
+  background-color: $color-main;
+}

@@ -19,7 +19,7 @@ const AudioBooks = () => {
                 <h2 className={css.title}>Некогда читать - слушайте!</h2>
                 <Link href="/audioBooks">
                     <a className={css.newLink}>
-                        Смотреть все <ArrowRight className={css.arrowRight}/>
+                        Смотреть все <ArrowRight className='showAll'/>
                     </a>
                 </Link>
             </div>

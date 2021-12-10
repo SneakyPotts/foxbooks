@@ -27,7 +27,7 @@ const HomeView = () => {
                         <h2 className={css.newTitle}>Новинки книг</h2>
                         <Link href="/new">
                             <a className={css.newLink}>
-                                Смотреть все <ArrowRight/>
+                                Смотреть все <ArrowRight className='showAll'/>
                             </a>
                         </Link>
                     </div>

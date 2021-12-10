@@ -28,10 +28,10 @@ const Navigation = () => {
             Книги
           </a>
         </Link>
-        <Link href="/audioBooks">
+        <Link href="/audiobooks">
           <a
             className={`${css.link} ${
-              router.pathname == '/audioBooks' ? css.active : css.link
+              router.pathname == '/audiobooks' ? css.active : css.link
             }`}
           >
             Аудиокниги
@@ -55,10 +55,10 @@ const Navigation = () => {
             Новинки
           </a>
         </Link>
-        <Link href="/myBooks">
+        <Link href="/mybooks">
           <a
             className={`${css.link} ${
-              router.pathname == '/myBooks' ? css.active : css.link
+              router.pathname == '/mybooks' ? css.active : css.link
             }`}
           >
             Мои книги

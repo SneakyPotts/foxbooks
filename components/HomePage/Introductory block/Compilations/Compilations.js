@@ -18,7 +18,7 @@ const Compilations = () => {
                 <h2 className={styles.title}>Подборки</h2>
                 <Link href="/compilations">
                     <a className={styles.newLink}>
-                        Смотреть все <ArrowRight/>
+                        Смотреть все <ArrowRight className='showAll'/>
                     </a>
                 </Link>
             </div>

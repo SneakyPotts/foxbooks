@@ -29,7 +29,7 @@ const Header = () => {
                 </header>
                 <Menu/>
             </div>
-            <ModalWindow/>
+            {/* <ModalWindow/> */}
         </div>
     );
 };

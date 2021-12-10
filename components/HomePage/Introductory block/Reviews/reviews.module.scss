@@ -1,5 +1,8 @@
 @import "/styles/variables.scss";
 
+.reviewSwiper {
+  margin-bottom: 63px;
+}
 .containerReviews {
   display: flex;
   justify-content: space-between;
@@ -74,7 +77,14 @@
 .btn {
   top: 67px;
 }
+.reviewStatistic {
+  display: flex;
+  font-size: 14px;
+  line-height: 1.43;
+  color: $color-third;
+}
 .reviewIcon {
+  display: block;
   margin-right: 10px;
 }
 .reviewLike {
@@ -90,6 +100,10 @@
 .reviewText {
   font-size: 14px;
   line-height: 1.43;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
   margin: 0;
   margin-bottom: 20px;
   color: $color-second;

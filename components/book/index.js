@@ -23,7 +23,7 @@ const Book = ({audio}) => {
         // }
     };
     return (
-        <>
+        <div className={css.container}>
             <div className={css.wrapper}>
                 <Image
                     src='/horizontalBookCovers/book.png'
@@ -50,7 +50,7 @@ const Book = ({audio}) => {
             </div>
             <h3 className={css.bookName}>Искатели неба: Холодные берега Искатели неба: Холодные берега</h3>
             <p className={css.bookAuthor}>Сергей Лукьяненко</p>
-        </>
+        </div>
     )
 }
 export default Book

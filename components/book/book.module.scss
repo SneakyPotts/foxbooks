@@ -1,7 +1,11 @@
-@import 'styles/variables';
+@import "styles/variables";
 
+.container {
+  max-width: 180px;
+}
 .wrapper {
   position: relative;
+
   img {
     object-fit: cover;
   }
@@ -13,7 +17,7 @@
   margin: 5px 0 0;
   font-size: 14px;
   line-height: 1.43;
-  color: #909190;
+  color: $color-third;
 }
 .bookName {
   display: -webkit-box;
@@ -25,7 +29,7 @@
   font-size: 16px;
   line-height: 1.13;
   margin: 10px 0 0;
-  color: #0e263e;
+  color: $color-main;
   &:hover {
     color: $text-hover;
   }
@@ -34,7 +38,7 @@
   font-size: 14px;
   line-height: 1.43;
   margin: 10px 0 0;
-  color: #4f4f4f;
+  color: $color-second;
 }
 .bookCategorie {
   font-size: 12px;
@@ -45,8 +49,8 @@
   height: 18px;
   padding: 2px 4px;
   border-radius: 3px;
-  color: #fff;
-  background-color: #0e263e;
+  color: $color-categories-btn;
+  background-color: $color-main;
 }
 .audioIcon {
   position: absolute;
@@ -57,7 +61,6 @@
   bottom: 10px;
   height: 35px;
   width: 35px;
-  background: #0E263E;
+  background: $color-main;
   border-radius: 50%;
 }
-

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import css from './logo.module.css';
 
 const Logo = () => {
-    return <Link href="/categories" >
+    return <Link href="/" >
         <a className={css.logo}><span className={css.logoAccent}>Fox</span>
             <span>Books</span>
         </a>

@@ -18,7 +18,7 @@ const Reviews = () => {
     <h2 className={st.title}>Рецензии</h2>
     <Link href="/reviews">
       <a className={st.newLink}>
-        Смотреть все <ArrowRight />
+        Смотреть все <ArrowRight className='showAll'/>
       </a>
     </Link>
   </div>
@@ -31,7 +31,8 @@ const Reviews = () => {
         spaceBetween={24}
         slidesPerView={3}
         onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}>
+      onSwiper={(swiper) => console.log(swiper)}
+    className={st.reviewSwiper}>
       {dataReview.map(review => (<SwiperSlide key={review.id}>
         <div className={st.reviewsCover}>
           <Image src={review.img} alt="" width="86" height="143" />
@@ -49,10 +50,10 @@ const Reviews = () => {
         </div>
         <p className={st.reviewTitle}>{review.review_title}</p>
         <p className={st.reviewText}>{review.review_text}</p>
-        <div>
-          <Like className={st.reviewIcon}/>
+        <div className={st.reviewStatistic}>
+          <span className={st.reviewIcon}><Like /></span>
           <span className={st.reviewLike}>{review.likes}</span>
-          <Comment className={st.reviewIcon}/>
+          <span className={st.reviewIcon}><Comment/></span>
           <span>{review.comments}</span>
         </div>
       </SwiperSlide>))}
