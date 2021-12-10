@@ -80,3 +80,17 @@
 .reviewLike {
   margin-right: 26px;
 }
+.reviewTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.19;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.reviewText {
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0;
+  margin-bottom: 20px;
+  color: $color-second;
+}

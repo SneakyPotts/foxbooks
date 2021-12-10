@@ -47,8 +47,8 @@ const Reviews = () => {
             <Eye />
           </div>
         </div>
-        <p>{review.review_title}</p>
-        <p>{review.review_text}</p>
+        <p className={st.reviewTitle}>{review.review_title}</p>
+        <p className={st.reviewText}>{review.review_text}</p>
         <div>
           <Like className={st.reviewIcon}/>
           <span className={st.reviewLike}>{review.likes}</span>
