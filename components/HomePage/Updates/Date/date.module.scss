@@ -1,17 +1,19 @@
+@import 'styles/variables';
+
 .releaseDates {
   font-family: Ubuntu;
   font-size: 16px;
   line-height: 1.125;
   width: 100%;
-  color: #0e263e;
+  color: $color-main;
   padding: 10px 0;
-  border-bottom: 1px solid #d5d5d5;
+  border-bottom: 1px solid $color-star-border;
 }
 .releaseDates:hover .dropDownIcon {
-  background-color: #ff781d;
+  background-color: $text-hover;
 }
 .releaseDates:hover .dropDownIcon {
-  stroke: #fff;
+  stroke: $color-categories-btn;
 }
 .btn {
   font-weight: 500;
@@ -26,7 +28,7 @@
   align-items: center;
   background-color: transparent;
   border: none;
-  stroke: #0e263e;
+  stroke: $color-main;
 }
 .dropDownIcon {
   display: flex;
@@ -35,7 +37,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #f1f1f1;
+  background-color: $color-bg-icon;
   transform: rotate(180deg);
 }
 .dates {
@@ -58,7 +60,7 @@
 }
 .date:not(:last-child) {
   margin-right: 48px;
-  border-bottom: 1px solid #d5d5d5;
+  border-bottom: 1px solid $color-star-border;
 }
 .data:last-child {
   padding-right: 48px;
@@ -69,15 +71,15 @@
   height: 3px;
   margin: 0 10px;
   border-radius: 50%;
-  background-color: #909190;
+  background-color: $color-third;
 }
 .author {
   font-size: 14px;
   line-height: 1.43;
-  color: #909190;
+  color: $color-third;
 }
 .active {
-  color: #ff781d;
-  stroke: #fff;
-  background-color: #ff781d;
+  color: $text-hover;
+  stroke: $color-categories-btn;
+  background-color: $text-hover;
 }
