@@ -6,17 +6,17 @@
 .filterStatus {
   padding: 20px 0;
   border-bottom: 1px solid $color-star-border;
+  //   color: tomato;
 }
 .btn {
   font-weight: 500;
-  font-family: Ubuntu;
+  font-family: 'Ubuntu';
   font-size: 16px;
   line-height: 1.125;
   color: #0e263e;
   display: flex;
   width: 100%;
   padding: 0;
-  //   margin-bottom: 20px;
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
@@ -53,7 +53,7 @@
   font-size: 14px;
   line-height: 1.4;
   text-decoration: none;
-  color: #4f4f4f;
+  color: $color-second;
   padding: 2px 0 2px 2px;
   margin-top: 20px;
 }
@@ -89,6 +89,21 @@
   padding: 0;
   margin: 0;
 }
+.input {
+  width: 180px;
+  height: 32px;
+  padding: 6px 15px;
+  margin-top: 23px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid $color-star-border;
+  outline: none;
+  color: $color-second;
+  background-color: transparent;
+}
+.input:hover {
+  border-color: $color-third;
+}
 .dropContentAuthor {
   font-size: 12px;
   line-height: 1.167;
@@ -96,15 +111,15 @@
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  //   max-height: 435px;
-  background-color: #fff;
 }
-
 .dropLinkAuthor {
   list-style: none;
   margin-right: 3px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .dropLinkAuthor:hover {
   color: #ff781d;
+}
+.inputFilters {
+  margin-bottom: 60px;
 }

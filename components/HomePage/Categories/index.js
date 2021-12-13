@@ -4,6 +4,7 @@ import ArrowAll from '../../../public/chevron-down.svg';
 import css from './categories.module.css';
 
 const Categories = () => {
+  // console.log(categories);
   return (
     <>
       <div className={css.categNav}>

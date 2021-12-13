@@ -47,14 +47,14 @@ const Navigation = () => {
           </a>
         </Link>
         <Link
-          // href="/audiobooks"
-          href={{
-            pathname: '/audiobooks',
-            query: {
-              page: 'Аудиокниги',
-              comingFrom: 'home',
-            },
-          }}
+          href="/audiobooks"
+          // href={{
+          //   pathname: '/audiobooks',
+          //   query: {
+          //     page: 'Аудиокниги',
+          //     comingFrom: 'home',
+          //   },
+          // }}
         >
           <a
             className={`${css.link} ${
