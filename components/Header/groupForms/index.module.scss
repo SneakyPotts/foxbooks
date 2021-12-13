@@ -1,0 +1,72 @@
+@import "styles/variables";
+
+.login {
+  width: 298px;
+
+  > h1 {
+    color: $color-main;
+    font-family: Merriweather, sans-serif;
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 40px;
+  }
+
+  &Button {
+    margin: 20px 0 10px 0;
+  }
+
+  &Buttons {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+
+    > button {
+      color: $color-second;
+      font-family: Ubuntu, sans-serif;
+      padding: 0;
+      background: transparent;
+    }
+  }
+
+  &Social {
+    margin-top: 40px;
+
+    > h4 {
+      color: $color-main;
+      font-family: Ubuntu, sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      margin-bottom: 20px;
+    }
+
+    &Buttons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      > button {
+        min-width: 42px;
+        min-height: 42px;
+        max-width: 42px;
+        max-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid $color-star-border;
+      }
+    }
+  }
+
+  &Min {
+    margin-bottom: 10px!important;
+  }
+
+  .message {
+    color: $color-second;
+    font-family: Ubuntu, sans-serif;
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+}

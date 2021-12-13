@@ -11,9 +11,49 @@ a {
   text-decoration: none;
 }
 
-* {
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
+
+ul,
+ol {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd,
+menu {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
 .container {
   width: 1200px;
   margin: auto;
