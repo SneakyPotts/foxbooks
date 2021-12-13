@@ -32,9 +32,9 @@ const Header = () => {
         </header>
         <Menu />
       </div>
-      <ModalWindow modal={modal} setModal={e => setModal(e)}>
+      {/* <ModalWindow modal={modal} setModal={e => setModal(e)}>
         testsetsetset
-      </ModalWindow>
+      </ModalWindow> */}
     </div>
   );
 };

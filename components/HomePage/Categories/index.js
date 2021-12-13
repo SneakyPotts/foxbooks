@@ -9,9 +9,9 @@ const Categories = () => {
       <div className={css.categNav}>
         <h3 className={css.title}>Категории книг</h3>
         <ul className={css.categList}>
-          {categories.map(({ id, name }) => (
+          {categories.map(({ id, category }) => (
             <li key={id} className={css.categ}>
-              {name}
+              {category}
             </li>
           ))}
         </ul>
@@ -19,7 +19,9 @@ const Categories = () => {
         <Link href="/categories">
           <a className={css.all}>
             <p className={css.textAll}>Все категории</p>
-            <span className={css.iconAll}><ArrowAll className={css.arrowAll} /></span>
+            <span className={css.iconAll}>
+              <ArrowAll className={css.arrowAll} />
+            </span>
           </a>
         </Link>
       </div>
