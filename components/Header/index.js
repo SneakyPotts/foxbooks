@@ -3,11 +3,11 @@ import Menu from './Menu/Menu';
 import User from '../../public/user.svg';
 import Logo from '../Logo';
 import css from './header.module.scss';
-import ModalWindow from '../shared/common/modalWindow/ModalWindow';
 import { useState } from 'react';
+import GroupForms from './groupForms/GroupForms';
 
 const Header = () => {
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
   return (
     <div className={css.main}>
@@ -32,9 +32,7 @@ const Header = () => {
         </header>
         <Menu />
       </div>
-      {/* <ModalWindow modal={modal} setModal={e => setModal(e)}>
-        testsetsetset
-      </ModalWindow> */}
+      <GroupForms setModal={setModal} modal={modal} />
     </div>
   );
 };
