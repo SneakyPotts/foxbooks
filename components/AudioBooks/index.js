@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import classnames from 'classnames';
 import Book from '../book';
 import ArrowRight from '../../public/chevron-right.svg';
-import Breadcrumbs from '../BreadCrumps/BreadCrumps';
+// import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import categories from '../data/categories.json';
 import st from './audioBooks.module.scss';
 
@@ -74,13 +75,13 @@ const AudioBooks = () => {
   //           path: `${router.pathname}`,
   //         };
 
-  const breadcrumbsData = [
-    // searchBreadcrumb,
-    {
-      label: `${router.query.page}`,
-      path: `${router.pathname}`,
-    },
-  ];
+  // const breadcrumbsData = [
+  //   // searchBreadcrumb,
+  //   {
+  //     label: `${router.query.page}`,
+  //     path: `${router.pathname}`,
+  //   },
+  // ];
 
   const [currentIdx, setCurrentIdx] = useState(null);
 
@@ -90,11 +91,13 @@ const AudioBooks = () => {
 
   return (
     <div className={classnames('container', st.abContainer)}>
-      <Breadcrumbs data={breadcrumbsData} />
+      {/* <Breadcrumbs data={breadcrumbsData} /> */}
       <h2 className={st.abTitle}>Аудиокниги</h2>
-      {categories.map(({ id, name }) => (
+      {categories.map(({ id, category }) => (
         <button key={id} className={st.abCateg}>
-          {name}
+          <Link href={`/audiobooks/${id}`}>
+            <a>{category}</a>
+          </Link>
         </button>
       ))}
       <p className={st.showAll}>

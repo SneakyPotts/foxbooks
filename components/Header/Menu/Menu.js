@@ -11,13 +11,14 @@ const Navigation = () => {
       <nav className={css.navigation}>
         <BiGridAlt className={css.icon} />
         <Link
-          href={{
-            pathname: '/categories',
-            query: {
-              page: 'Категории',
-              comingFrom: 'home',
-            },
-          }}
+          href="/categories"
+          // href={{
+          //   pathname: '/categories',
+          //   query: {
+          //     page: 'Категории',
+          //     comingFrom: 'home',
+          //   },
+          // }}
         >
           <a
             className={`${css.link} ${
@@ -28,13 +29,14 @@ const Navigation = () => {
           </a>
         </Link>
         <Link
-          href={{
-            pathname: '/books',
-            query: {
-              page: 'Книги',
-              comingFrom: 'home',
-            },
-          }}
+          href="/books"
+          // href={{
+          //   pathname: '/books',
+          //   query: {
+          //     page: 'Книги',
+          //     comingFrom: 'home',
+          //   },
+          // }}
         >
           <a
             className={`${css.link} ${
@@ -45,6 +47,7 @@ const Navigation = () => {
           </a>
         </Link>
         <Link
+          // href="/audiobooks"
           href={{
             pathname: '/audiobooks',
             query: {
@@ -62,13 +65,14 @@ const Navigation = () => {
           </a>
         </Link>
         <Link
-          href={{
-            pathname: '/compilations',
-            query: {
-              page: 'Подборки',
-              comingFrom: 'home',
-            },
-          }}
+          href="/compilations"
+          // href={{
+          //   pathname: '/compilations',
+          //   query: {
+          //     page: 'Подборки',
+          //     comingFrom: 'home',
+          //   },
+          // }}
         >
           <a
             className={`${css.link} ${
@@ -79,13 +83,14 @@ const Navigation = () => {
           </a>
         </Link>
         <Link
-          href={{
-            pathname: '/new',
-            query: {
-              page: 'Новинки',
-              comingFrom: 'home',
-            },
-          }}
+          href="/new"
+          // href={{
+          //   pathname: '/new',
+          //   query: {
+          //     page: 'Новинки',
+          //     comingFrom: 'home',
+          //   },
+          // }}
         >
           <a
             className={`${css.link} ${
@@ -96,13 +101,14 @@ const Navigation = () => {
           </a>
         </Link>
         <Link
-          href={{
-            pathname: '/mybooks',
-            query: {
-              page: 'Мои книги',
-              comingFrom: 'home',
-            },
-          }}
+          href="/mybooks"
+          // href={{
+          //   pathname: '/mybooks',
+          //   query: {
+          //     page: 'Мои книги',
+          //     comingFrom: 'home',
+          //   },
+          // }}
         >
           <a
             className={`${css.link} ${

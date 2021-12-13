@@ -1,0 +1,110 @@
+@import 'styles/variables';
+
+.container {
+  width: 180px;
+}
+.filterStatus {
+  padding: 20px 0;
+  border-bottom: 1px solid $color-star-border;
+}
+.btn {
+  font-weight: 500;
+  font-family: Ubuntu;
+  font-size: 16px;
+  line-height: 1.125;
+  color: #0e263e;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  //   margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  stroke: $color-main;
+}
+.dropDownIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: $color-bg-icon;
+  transform: rotate(180deg);
+}
+.dates {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.showMenu {
+  overflow: initial;
+  max-height: 400px;
+  transition: max-height 0.2s ease-out;
+}
+.dropLink {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+  color: #4f4f4f;
+  padding: 2px 0 2px 2px;
+  margin-top: 20px;
+}
+.dropLink:hover {
+  cursor: pointer;
+  color: #0e263e;
+}
+.radio {
+  display: block;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid#fff;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #909190;
+}
+.radio:hover {
+  box-shadow: 0 0 0 2px #0e263e;
+}
+.radioActive {
+  background-color: #0e263e;
+  box-shadow: 0 0 0 2px #0e263e;
+}
+.dropText {
+  margin-left: 10px;
+}
+.active {
+  color: #0e263e;
+}
+.filters {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dropContentAuthor {
+  font-size: 12px;
+  line-height: 1.167;
+  color: #909190;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  //   max-height: 435px;
+  background-color: #fff;
+}
+
+.dropLinkAuthor {
+  list-style: none;
+  margin-right: 3px;
+  margin-bottom: 10px;
+}
+.dropLinkAuthor:hover {
+  color: #ff781d;
+}
