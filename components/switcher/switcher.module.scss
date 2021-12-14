@@ -1,0 +1,43 @@
+@import 'styles/variables.scss';
+
+.field {
+  display: flex;
+  width: 86px;
+  height: 32px;
+  padding: 2px;
+  background-color: $color-bg-icon;
+  border-radius: 94px;
+
+  > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    width: 40px;
+    height: 28px;
+
+    > svg {
+      stroke: $color-third;
+    }
+  }
+
+  .ball {
+    background-color: $color-categories-btn;
+    border-radius: 52px;
+    box-shadow: 0px 3px 10px rgba(121, 121, 121, 0.1);
+    transition: transform 0.2s linear;
+
+    > svg {
+      stroke: $text-hover !important;
+    }
+  }
+
+  .iconList {
+    top: 6px;
+    left: 12px;
+  }
+  .iconGrid {
+    top: 6px;
+    right: 12px;
+  }
+}

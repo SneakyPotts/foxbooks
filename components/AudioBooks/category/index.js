@@ -1,8 +1,16 @@
+import { useState, useRef } from 'react';
+import classnames from 'classnames';
+import Switcher from '../../switcher/Switcher';
 import Book from '../../book';
 import SideFilters from '../../SideFilters';
+import Popular from '../../Filter/Popular/Popular';
+
 import st from './category.module.scss';
 
 const Category = () => {
+  const [stateIndex, setStateIndex] = useState(null);
+  const [flagSwitcher, setFlagSwitcher] = useState(false);
+
   const books = [
     { id: '0' },
     { id: '1' },
@@ -53,17 +61,55 @@ const Category = () => {
     { id: '46' },
     { id: '47' },
   ];
+  const data = [
+    {
+      title: 'Популярные',
+      options: [
+        'Популярные',
+        'Высокий рейтинг',
+        'Много отзывов',
+        'Сейчас читают',
+      ],
+    },
+  ];
 
   return (
     <div className="container">
-      <h2 className={st.title}>Category</h2>
+      <div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
+        <h2 className={st.title}>Category</h2>
+        {data.map((it, index) => (
+          <Popular
+            key={it.title}
+            title={it.title}
+            data={it.options}
+            filterStateIdx={stateIndex}
+            elIdx={index}
+            setFilStateIdx={setStateIndex}
+          />
+        ))}
+        <Switcher
+          setFlagSwitcher={setFlagSwitcher}
+          flagSwitcher={flagSwitcher}
+        />
+      </div>
+
       <div className={st.mainBlock}>
         <div>
           <SideFilters />
         </div>
-        <div className={st.booksGrid}>
+        <div
+          className={classnames({
+            [st.booksGrid]: !flagSwitcher,
+            [st.booksColumn]: flagSwitcher,
+          })}
+        >
           {books.map(book => (
-            <Book key={book.id} audio={true} className={st.book} />
+            <Book
+              key={book.id}
+              audio={true}
+              flagSwitcher={flagSwitcher}
+              className={st.book}
+            />
           ))}
         </div>
         <div className={st.advertisingBlok}>

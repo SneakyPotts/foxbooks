@@ -92,6 +92,9 @@ const AudioBooks = () => {
   return (
     <div className={classnames('container', st.abContainer)}>
       {/* <Breadcrumbs data={breadcrumbsData} /> */}
+      <div>
+        <div></div>
+      </div>
       <h2 className={st.abTitle}>Аудиокниги</h2>
       {categories.map(({ id, category }) => (
         <button key={id} className={st.abCateg}>
@@ -123,7 +126,7 @@ const AudioBooks = () => {
         </div>
         <div className={st.advertisingBlok}>
           <img src="/banner.png" alt="" className={st.banner} />
-          <img src="/banner.png" alt="" />
+          <img src="/banner.png" alt="" className={st.banner} />
         </div>
       </div>
     </div>

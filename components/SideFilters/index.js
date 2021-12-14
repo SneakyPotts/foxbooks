@@ -9,19 +9,28 @@ import st from './sideFilters.module.scss';
 const SideFilters = () => {
   const [menu, setMenu] = useState(false);
   const [optionIndex, setOptionIndex] = useState([]);
-  const [showFilter, setShowFilter] = useState(false);
-  const [filterIdx, setFilterIdx] = useState(null);
+
+  const [filters, setFilters] = useState([
+    { id: '0', flag: false, option: 'Автор', placeholder: 'Найти автора' },
+    { id: '1', flag: false, option: 'Аудиокнига', placeholder: 'Найти книгу' },
+    {
+      id: '2',
+      flag: false,
+      option: 'Издательство',
+      placeholder: 'Найти издательство',
+    },
+  ]);
 
   const options = [
     { id: '0', option: 'Бестселлеры' },
     { id: '1', option: 'Новинки' },
   ];
 
-  const filters = [
-    { id: '0', option: 'Автор', placeholder: 'Найти автора' },
-    { id: '1', option: 'Аудиокнига', placeholder: 'Найти книгу' },
-    { id: '2', option: 'Издательство', placeholder: 'Найти издательство' },
-  ];
+  // const filters = [
+  //   { id: '0', flag: false, option: 'Автор', placeholder: 'Найти автора' },
+  //   { id: '1', flag: false, option: 'Аудиокнига', placeholder: 'Найти книгу' },
+  //   { id: '2', flag:false, option: 'Издательство', placeholder: 'Найти издательство' },
+  // ];
 
   const toggle = e => {
     e.stopPropagation();
@@ -29,23 +38,15 @@ const SideFilters = () => {
   };
 
   const filterShow = index => {
-    console.log('filterShow');
-    // e.stopPropagation();
-    if (setFilterIdx) {
-      setFilterIdx(prev => {
-        if (prev === index) {
-          return null;
-        } else {
-          return index;
-        }
+    setFilters(prev => {
+      const filterMap = prev.map(({ flag, ...rest }, i) => {
+        return {
+          flag: index === i ? !flag : flag,
+          ...rest,
+        };
       });
-    } else {
-      setShowFilter(!showFilter);
-      console.log(showFilter, 'showFilter');
-    }
-    // console.log(filterIdx, 'filterIdx');
-    // console.log(index, 'index');
-    // console.log(showFilter, 'showFilter');
+      return filterMap;
+    });
   };
 
   const handleOnClick = index => {
@@ -102,7 +103,9 @@ const SideFilters = () => {
                 </span>
               </button>
               <div
-                className={classnames(st.dates, { [st.showMenu]: showFilter })}
+                className={classnames(st.dates, {
+                  [st.showMenu]: it.flag,
+                })}
                 onClick={e => e.stopPropagation()}
               >
                 <input placeholder={it.placeholder} className={st.input} />

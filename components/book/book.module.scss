@@ -1,10 +1,15 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .container {
-  max-width: 180px;
+  min-width: 180px;
+}
+.containerColumn {
+  display: flex;
+  margin-bottom: 40px;
 }
 .wrapper {
   position: relative;
+  min-width: 180px;
 
   img {
     object-fit: cover;
@@ -14,7 +19,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 5px 0 0;
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 10px;
   font-size: 14px;
   line-height: 1.43;
   color: $color-third;
@@ -28,7 +35,6 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.13;
-  margin: 10px 0 0;
   color: $color-main;
   &:hover {
     color: $text-hover;
@@ -63,4 +69,32 @@
   width: 35px;
   background: $color-main;
   border-radius: 50%;
+}
+.bookInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+}
+.starOrder {
+  margin: 0;
+  order: 3;
+}
+.extraInfo {
+  font-size: 14px;
+  line-height: 1.43;
+  margin-top: 10px;
+  margin-bottom: 32px;
+  color: $color-second;
+}
+.aboutBook {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.bookYear {
+  margin-bottom: 10px;
+}
+.bookGenre {
+  margin-left: 20px;
 }

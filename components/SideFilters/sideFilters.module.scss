@@ -2,18 +2,18 @@
 
 .container {
   width: 180px;
+  margin-right: 24px;
 }
 .filterStatus {
   padding: 20px 0;
   border-bottom: 1px solid $color-star-border;
-  //   color: tomato;
 }
 .btn {
   font-weight: 500;
   font-family: 'Ubuntu';
   font-size: 16px;
   line-height: 1.125;
-  color: #0e263e;
+  color: $color-main;
   display: flex;
   width: 100%;
   padding: 0;
@@ -59,7 +59,7 @@
 }
 .dropLink:hover {
   cursor: pointer;
-  color: #0e263e;
+  color: $color-main;
 }
 .radio {
   display: block;
@@ -67,22 +67,22 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 3px solid#fff;
-  background-color: #fff;
-  box-shadow: 0 0 0 2px #909190;
+  border: 3px solid$color-categories-btn;
+  background-color: $color-categories-btn;
+  box-shadow: 0 0 0 2px $color-third;
 }
 .radio:hover {
-  box-shadow: 0 0 0 2px #0e263e;
+  box-shadow: 0 0 0 2px $color-main;
 }
 .radioActive {
-  background-color: #0e263e;
-  box-shadow: 0 0 0 2px #0e263e;
+  background-color: $color-main;
+  box-shadow: 0 0 0 2px $color-main;
 }
 .dropText {
   margin-left: 10px;
 }
 .active {
-  color: #0e263e;
+  color: $color-main;
 }
 .filters {
   list-style: none;
@@ -90,6 +90,7 @@
   margin: 0;
 }
 .input {
+  font-family: Ubuntu, sans-serif;
   width: 180px;
   height: 32px;
   padding: 6px 15px;
@@ -100,6 +101,14 @@
   outline: none;
   color: $color-second;
   background-color: transparent;
+
+  &::-webkit-input-placeholder {
+    color: $color-third;
+  }
+
+  &::-moz-placeholder {
+    color: $color-third;
+  }
 }
 .input:hover {
   border-color: $color-third;
@@ -107,7 +116,7 @@
 .dropContentAuthor {
   font-size: 12px;
   line-height: 1.167;
-  color: #909190;
+  color: $color-third;
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
@@ -118,7 +127,7 @@
   margin-top: 10px;
 }
 .dropLinkAuthor:hover {
-  color: #ff781d;
+  color: $text-hover;
 }
 .inputFilters {
   margin-bottom: 60px;

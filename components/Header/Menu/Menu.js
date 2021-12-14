@@ -58,7 +58,7 @@ const Navigation = () => {
         >
           <a
             className={`${css.link} ${
-              router.pathname == '/audiobooks' ? css.active : css.link
+              router.pathname.includes('audiobooks') ? css.active : css.link
             }`}
           >
             Аудиокниги
