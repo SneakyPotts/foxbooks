@@ -1,15 +1,22 @@
 import Script from 'next/script'
-import { Provider } from 'react-redux'
-import store from "../store/store";
+import {Provider} from 'react-redux'
+
 import '../styles/globals.scss';
+import store from "../store/store";
+import Layout from "../components/shared/common/specific/Layout";
 
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <Provider store={store}>
-      <Script strategy="afterInteractive" src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" />
-      <Component {...pageProps} />
-    </Provider>
-  );
+function MyApp({Component, pageProps}) {
+
+    return (
+        <Provider store={store}>
+            <Script strategy="afterInteractive" src="https://use.fontawesome.com/releases/v5.13.1/js/all.js"
+                    data-auto-replace-svg="nest"/>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </Provider>
+    );
 }
+
 export default MyApp;

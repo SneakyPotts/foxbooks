@@ -58,6 +58,61 @@
 
   .menu {
     display: flex;
+    align-items: center;
+
+    .avatarUser {
+      position: relative;
+      cursor: pointer;
+
+      > div {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      img {
+        object-fit: cover;
+      }
+
+      .settingAccount {
+        background: $color-categories-btn;
+        position: absolute;
+        padding: 30px 20px;
+        border: 1px solid #F1F1F1;
+        box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
+        border-radius: 10px;
+        height: auto;
+        width: 237px;
+        right: 0;
+        transform: scale(0);
+
+        li:first-of-type {
+          margin-bottom: 20px;
+        }
+
+        li {
+          font-family: Ubuntu , sans-serif;
+          font-size: 14px;
+          color: $color-second;
+          display: flex;
+          align-items: center;
+          list-style: none;
+
+          &:hover {
+            color: $text-hover;
+          }
+
+          > svg {
+            margin-right: 15px;
+          }
+        }
+
+        &Active {
+          transform: scale(1) translateY(20px);
+        }
+      }
+    }
   }
 
   .userMenu {
