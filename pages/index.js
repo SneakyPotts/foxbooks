@@ -17,9 +17,9 @@ export default function App() {
         {/* beforeInteractive */}
         {/* <Script src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" /> */}
       </Head>
-      <Header />
+      {/*<Header />*/}
       <Home />
-      <Footer />
+      {/*<Footer/>*/}
     </>
   );
 }

@@ -1,10 +1,11 @@
 import { configureStore} from '@reduxjs/toolkit'
+import headerSlice from "../components/Header/headerSlice";
 
 
 export function makeStore() {
     return configureStore({
         reducer: {
-
+            headerSlice
         }
     })
 }

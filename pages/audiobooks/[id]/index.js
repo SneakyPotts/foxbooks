@@ -11,9 +11,7 @@ const Categories = () => {
   return (
     <>
       {/* <Breadcrumbs data={breadcrumbsData} /> */}
-      <Header />
       <Category />
-      <Footer />
     </>
   );
 };

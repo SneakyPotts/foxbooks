@@ -12,13 +12,13 @@ export const headerSlice = createSlice({
     initialState,
 
     reducers: {
-        increment: (state, action) => {
-            state.number += action.payload
+        AuthAccount: (state, action) => {
+            state.authFlag = action.payload
         }
     }
 })
 
-export const {increment} = testSlice.actions
+export const {AuthAccount} = headerSlice.actions
 
 
 export default headerSlice.reducer

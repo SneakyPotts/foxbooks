@@ -12,6 +12,8 @@ import ModalWindow from "../../shared/common/modalWindow/ModalWindow";
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
+import {useDispatch} from "react-redux";
+import {AuthAccount} from "../headerSlice";
 
 const GroupForms = ({modal,setModal}) => {
 
@@ -20,6 +22,8 @@ const GroupForms = ({modal,setModal}) => {
     const [flagSendEmail, setFlagSendEmail] = useState(false)
     const [flagForgetPassword, setFlagForgetPassword] = useState(false)
     const [flagResetPassMessage, setFlagResetPassMessage] = useState(false)
+
+    const dispatch = useDispatch()
 
     const schema = yup.object().shape({
         email: yup.string().email('Неправильно введена электронная почта').required('Это поле не может быть пустым.'),
@@ -35,6 +39,8 @@ const GroupForms = ({modal,setModal}) => {
 
 
     const onSubmitLogin = data =>{
+        dispatch(AuthAccount(true))
+        setModal(!modal)
         console.log(data, 'Форма входа');
     }
 
