@@ -40,7 +40,7 @@ const Navigation = () => {
         >
           <a
             className={`${css.link} ${
-              router.pathname == '/books' ? css.active : css.link
+              router.pathname.includes('/books') ? css.active : css.link
             }`}
           >
             Книги

@@ -21,10 +21,18 @@
   align-items: center;
   margin: 0;
   margin-top: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-size: 14px;
   line-height: 1.43;
   color: $color-third;
+}
+.starOrder {
+  margin: 0;
+  order: 3;
+}
+.starOrderList {
+  position: absolute;
+  bottom: 53px;
 }
 .bookName {
   display: -webkit-box;
@@ -35,6 +43,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.13;
+  margin-right: 20px;
   color: $color-main;
   &:hover {
     color: $text-hover;
@@ -71,13 +80,10 @@
   border-radius: 50%;
 }
 .bookInfo {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 24px;
-}
-.starOrder {
-  margin: 0;
-  order: 3;
 }
 .extraInfo {
   font-size: 14px;
@@ -86,15 +92,99 @@
   margin-bottom: 32px;
   color: $color-second;
 }
+.addInfo {
+  margin-bottom: 10px;
+}
 .aboutBook {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+.lines {
+  -webkit-line-clamp: 5;
+}
 .bookYear {
   margin-bottom: 10px;
 }
 .bookGenre {
   margin-left: 20px;
+}
+.addIcon {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  stroke: $color-main;
+}
+.addIcon:hover {
+  stroke: $text-hover;
+}
+.hide {
+  display: none;
+}
+.dotsIcon {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 4.16667px;
+  border: 1px solid $color-star-border;
+}
+.dotsIcon:hover {
+  border-color: $text-hover;
+}
+.optionWindow {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  font-size: 14px;
+  line-height: 1.43;
+  width: 237px;
+  height: 120px;
+  padding: 30px 20px;
+  color: $color-second;
+  background: $color-categories-btn;
+  box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
+  border-radius: 10px;
+  stroke: $color-third;
+}
+.optionRead {
+  display: flex;
+  margin-bottom: 20px;
+}
+.optionRead:hover {
+  cursor: pointer;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.optionIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+}
+.optionDelete {
+  display: flex;
+}
+.optionDelete:hover {
+  cursor: pointer;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.reviewStatistic {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  font-size: 14px;
+  line-height: 1.43;
+  // margin-top: 33px;
+  color: $color-third;
+}
+.reviewIcon {
+  display: block;
+  margin-right: 10px;
+}
+.reviewLike {
+  margin-right: 26px;
 }

@@ -104,12 +104,7 @@ const Category = () => {
           })}
         >
           {books.map(book => (
-            <Book
-              key={book.id}
-              audio={true}
-              flagSwitcher={flagSwitcher}
-              className={st.book}
-            />
+            <Book key={book.id} flagSwitcher={flagSwitcher} />
           ))}
         </div>
         <div className={st.advertisingBlok}>

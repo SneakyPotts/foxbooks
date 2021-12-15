@@ -1,14 +1,10 @@
 import Category from '../../../components/AudioBooks/category';
 
-
 const Categories = () => {
-
-
-    return (
-        <>
-            {/* <Breadcrumbs data={breadcrumbsData} /> */}
-            <Category/>
-        </>
-    );
+  return (
+    <>
+      <Category />
+    </>
+  );
 };
 export default Categories;

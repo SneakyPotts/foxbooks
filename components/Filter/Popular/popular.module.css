@@ -39,6 +39,7 @@
   min-width: 237px;
   max-width: 278px;
   max-height: 435px;
+  margin-top: 22px;
   overflow-y: scroll;
   background-color: #fff;
   box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
@@ -84,7 +85,7 @@
   height: 24px;
   border-radius: 50%;
   border: 3px solid#fff;
-  background-color: #fff;
+  background-color: transparent;
   box-shadow: 0 0 0 2px #909190;
 }
 .radio:hover {

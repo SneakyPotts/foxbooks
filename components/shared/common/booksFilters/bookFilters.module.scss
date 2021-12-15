@@ -1,0 +1,22 @@
+@import 'styles/variables.scss';
+
+.abFilter {
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 8px 15px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 33px;
+  color: $color-main;
+  border: none;
+  background: $color-bg-icon;
+}
+.abFilter:hover {
+  color: $color-categories-btn;
+  background-color: $color-main;
+}
+.active {
+  color: $color-categories-btn;
+  background-color: $color-main;
+}

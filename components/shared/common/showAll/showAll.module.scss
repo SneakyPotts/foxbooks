@@ -1,0 +1,16 @@
+@import 'styles/variables.scss';
+
+.showAll {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 40px;
+  color: $color-main;
+  stroke: $color-main;
+}
+.showAll:hover {
+  cursor: pointer;
+  color: $text-hover;
+  stroke: $text-hover;
+}

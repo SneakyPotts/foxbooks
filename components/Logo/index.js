@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import css from './logo.module.css';
+import LogoIcon from '../../public/Logo.svg';
 
 const Logo = () => {
-    return <Link href="/" >
-        <a className={css.logo}><span className={css.logoAccent}>Fox</span>
-            <span>Books</span>
-        </a>
+  return (
+    <Link href="/">
+      <a>
+        <LogoIcon />
+      </a>
     </Link>
-}
+  );
+};
 export default Logo;

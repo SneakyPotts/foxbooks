@@ -1,0 +1,25 @@
+@import 'styles/variables.scss';
+
+.mainBlock {
+  display: flex;
+  margin-top: 40px;
+}
+.booksGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 24px;
+  grid-row-gap: 40px;
+}
+.advertisingBlok {
+  display: block;
+  margin-left: 24px;
+  max-width: 384px;
+  min-height: 1104px;
+}
+.banner {
+  height: 1104px;
+}
+.banner:not(:last-child) {
+  margin-bottom: 40px;
+}

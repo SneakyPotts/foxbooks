@@ -62,7 +62,7 @@ const SideFilters = () => {
       <div className={st.filterStatus}>
         <button className={st.btn} onClick={toggle}>
           Статус
-          <span className={st.dropDownIcon}>
+          <span className={classnames(st.dropDownIcon, { [st.up]: menu })}>
             <DropDownArrow />
           </span>
         </button>
@@ -98,7 +98,9 @@ const SideFilters = () => {
             <li key={it.id} className={st.filterStatus}>
               <button className={st.btn} onClick={() => filterShow(index)}>
                 {it.option}
-                <span className={st.dropDownIcon}>
+                <span
+                  className={classnames(st.dropDownIcon, { [st.up]: it.flag })}
+                >
                   <DropDownArrow />
                 </span>
               </button>
