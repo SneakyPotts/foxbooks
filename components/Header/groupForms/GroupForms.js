@@ -14,6 +14,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useDispatch} from "react-redux";
 import {AuthAccount} from "../headerSlice";
+import SocialNetwork from "../../shared/common/SocialNetwork/SocialNetwork";
 
 const GroupForms = ({modal,setModal}) => {
 
@@ -111,15 +112,7 @@ const GroupForms = ({modal,setModal}) => {
                             type='button'>Зарегистрироваться
                         </button>
                     </div>
-                    <div className={css.loginSocial}>
-                        <h4>Войти через аккаунт социальной сети</h4>
-                        <div className={css.loginSocialButtons}>
-                            <button type='button'><Yandex/></button>
-                            <button type='button'><Google/></button>
-                            <button type='button'><VK/></button>
-                            <button type='button'><OK/></button>
-                        </div>
-                    </div>
+                    <SocialNetwork/>
                 </form>}
 
                 {flagRegistration && <form onSubmit={handleSubmit(onSubmitRegistration)}>
