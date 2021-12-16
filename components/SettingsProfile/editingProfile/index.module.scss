@@ -1,0 +1,87 @@
+@import '/styles/variables';
+
+.formProfile {
+  width: 384px;
+
+  &Wrap {
+    cursor: pointer;
+    position: relative;
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+
+    .image {
+      border-radius: 50%;
+      overflow: hidden;
+      max-width: 102px;
+      max-height: 102px;
+      width: 102px;
+      height: 102px;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    img {
+      object-fit: cover;
+    }
+
+
+    .file {
+      position: absolute;
+      bottom: 0;
+      transform: translateX(30px);
+      height: 30px;
+      width: 30px;
+      background-color: $text-hover;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+
+  .inputNik {
+    padding-bottom: 40px;
+  }
+
+  .social {
+    font-family: Ubuntu, sans-serif;
+    font-size: 14px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid $color-star-border;
+
+    > span {
+      color: $color-third;
+    }
+
+    > p {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      color: $color-second;
+    }
+
+    .socialProfile {
+      margin-top: 0;
+
+      > div {
+        justify-content: center;
+      }
+    }
+  }
+
+  .delProfile {
+    font-size: 14px;
+    color: $color-third;
+    text-align: center;
+    cursor: pointer;
+
+    :hover {
+      color: $text-hover;
+    }
+  }
+}

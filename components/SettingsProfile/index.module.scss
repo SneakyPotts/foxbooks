@@ -46,6 +46,7 @@
           > span {
             padding-bottom: 16px;
             border-bottom: 1px solid $color-star-border;
+            flex: 1;
           }
         }
 
@@ -59,67 +60,6 @@
       border: 1px solid $color-bg-icon;
       padding: 60px;
       border-radius: 5px;
-
-      .formProfile {
-        width: 384px;
-        &Wrap {
-          position: relative;
-          margin: 40px 0;
-          display: flex;
-          justify-content: center;
-
-          .image {
-            border-radius: 50%;
-            overflow: hidden;
-            max-width: 102px;
-            max-height: 102px;
-            width: 102px;
-            height: 102px;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-          }
-
-          img{
-            object-fit: cover;
-          }
-
-
-          .file {
-            position: absolute;
-            bottom: 0;
-            transform: translateX(30px);
-            height: 30px;
-            width: 30px;
-            background-color: $text-hover;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-          }
-        }
-
-        .inputNik {
-          padding-bottom: 40px;
-        }
-
-        .social {
-          font-family: Ubuntu, sans-serif;
-          font-size: 14px;
-          >span{
-            color: $color-third;
-          }
-
-          >p {
-            margin-top: 10px;
-            color: $color-second;
-          }
-        }
-      }
     }
   }
 }
