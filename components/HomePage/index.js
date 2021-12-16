@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
@@ -12,7 +11,7 @@ import Filters from '../Filter';
 import Introductory from './Introductory block';
 import About from './About';
 import books from '../data/books.json';
-import Book from '../book';
+import Book from '../shared/common/book';
 import css from './home.module.css';
 
 const HomeView = () => {
@@ -38,8 +37,8 @@ const HomeView = () => {
               prevEl: '.prevArrow',
               nextEl: '.nextArrow',
             }}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={swiper => console.log(swiper)}
+            // onSlideChange={() => console.log('slide change')}
+            // onSwiper={swiper => console.log(swiper)}
           >
             {books.map(book => (
               <SwiperSlide key={book.id} className={css.swiperSlide}>

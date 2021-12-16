@@ -1,0 +1,138 @@
+@import 'styles/variables.scss';
+
+.wrapper {
+  display: flex;
+}
+.bookInfo {
+  display: flex;
+}
+.bookCover {
+  min-width: 270px;
+  height: 406px;
+  background-color: bisque;
+}
+.aboutBook {
+  font-size: 14px;
+  line-height: 1.43;
+  max-width: 584px;
+
+  margin-left: 24px;
+  color: $color-second;
+}
+.bookTitle {
+  font-family: Merriweather;
+  font-size: 28px;
+  line-height: 1.25;
+  margin: 0;
+  margin-bottom: 11px;
+  padding: 0;
+  color: $color-main;
+}
+.bookAuthor {
+  margin-bottom: 20px;
+}
+.bookAuthorName {
+  font-size: 16px;
+  line-height: 1.125;
+  color: $color-second;
+  margin-right: 10px;
+}
+.bookAuthorLink {
+  color: $color-third;
+}
+.bookDate {
+  margin-bottom: 23px;
+}
+.bookDateYear {
+  margin-right: 20px;
+}
+.bookRaiting {
+  display: flex;
+}
+.bookRaitingCount {
+  margin-right: 10px;
+}
+.buttons {
+  display: flex;
+  margin: 20px 0;
+}
+.readButton {
+  width: 200px;
+  height: 40px;
+  margin-right: 20px;
+  background-color: $text-hover;
+  color: $color-categories-btn;
+  border-radius: 5px;
+}
+.dotsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid $color-star-border;
+  border-radius: 5px;
+}
+.navLinks {
+  list-style: none;
+  display: flex;
+  //
+  margin-bottom: 20px;
+
+  & li {
+    margin-right: 30px;
+  }
+}
+.ditalInfo {
+  margin-top: 20px;
+
+  & p {
+    margin-bottom: 10px;
+  }
+
+  & span {
+    color: $color-main;
+  }
+}
+.starsBlock {
+  font-size: 16px;
+  line-height: 1.125;
+  display: flex;
+  //   align-items: baseline;
+  margin-top: 13px;
+  margin-bottom: 60px;
+  color: $color-second;
+
+  & p {
+    margin-right: 20px;
+  }
+  & span {
+    margin-right: 5px;
+  }
+}
+
+.advertisingBlok {
+  display: block;
+  margin-left: 24px;
+  max-width: 294px;
+  min-height: 1104px;
+}
+.banner {
+  height: 1104px;
+}
+.banner:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.slide {
+  max-width: 129px;
+  min-width: 129px;
+  > div:first-child {
+    max-width: 129px;
+    min-width: 129px;
+    max-height: 195px;
+  }
+}
+.swiper {
+  margin-bottom: 60px;
+}

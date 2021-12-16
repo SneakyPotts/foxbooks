@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classnames from 'classnames';
 import Switcher from '../../switcher/Switcher';
-import Book from '../../book';
+import Book from '../../shared/common/book';
 import SideFilters from '../../SideFilters';
 import Popular from '../../Filter/Popular/Popular';
 

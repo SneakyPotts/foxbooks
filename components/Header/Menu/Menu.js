@@ -5,7 +5,7 @@ import css from './menu.module.css';
 
 const Navigation = () => {
   const router = useRouter();
-  console.log(router);
+  // console.log(router);
   return (
     <>
       <nav className={css.navigation}>

@@ -3,39 +3,22 @@ import { useState } from 'react';
 import Link from 'next/link';
 import classnames from 'classnames';
 import Image from 'next/image';
-import ReactStars from 'react-rating-stars-component';
+import Stars from '../stars/Stars';
+import Headphones from '../../icons/headphones';
+import AddToBooks from '../../icons/add';
+import HorizontalDots from '../../../../public/horizontalDots.svg';
+import OpenBook from '../../../../public/book-open.svg';
+import Like from '../../icons/heart';
+import Comment from '../../icons/comment';
+import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
-import Headphones from '../shared/icons/headphones';
-import AddToBooks from '../shared/icons/add';
-import HorizontalDots from '../../public/horizontalDots.svg';
-import OpenBook from '../../public/book-open.svg';
-import Like from '../shared/icons/heart';
-import Comment from '../shared/icons/comment';
 
-import Basket from '../../public/trash.svg';
-
-const Book = ({ audio, flagSwitcher, activeStart = false }) => {
-  const secondExample = {
-    size: 15,
-    count: 5,
-    value: 4.5,
-    color: '#D5D5D5',
-    activeColor: '#FEC420',
-    edit: activeStart,
-    // a11y: false,
-    isHalf: true,
-    emptyIcon: <i className="far fa-star" />,
-    halfIcon: <i className="fa fa-star-half-alt" />,
-    filledIcon: <i className="fa fa-star" />,
-    // onChange: (newValue) => {
-    //     setRating(newValue);
-    // }
-  };
+const Book = ({ audio, flagSwitcher, classNames, similar }) => {
   const [changeIcon, setChangeIcon] = useState(false);
   const [options, setOptions] = useState(false);
 
   const route = useRouter();
-  console.log(route, 'router');
+  // console.log(route, 'router');
 
   const onChangeIcon = () => {
     setChangeIcon(true);
@@ -47,7 +30,7 @@ const Book = ({ audio, flagSwitcher, activeStart = false }) => {
 
   return (
     <div
-      className={classnames({
+      className={classnames(classNames, {
         [st.container]: !flagSwitcher,
         [st.containerColumn]: flagSwitcher,
       })}
@@ -58,10 +41,11 @@ const Book = ({ audio, flagSwitcher, activeStart = false }) => {
             <Image
               src="/horizontalBookCovers/book.png"
               alt=""
-              width="180"
+              width={180}
               height={audio ? '180' : '271'}
               placeholder="blur"
               blurDataURL="/images/blur.jpg"
+              layout="responsive"
             />
           </a>
         </Link>
@@ -79,15 +63,24 @@ const Book = ({ audio, flagSwitcher, activeStart = false }) => {
             [st.starOrderList]: flagSwitcher && !audio,
           })}
         >
-          <ReactStars {...secondExample} />
+          <Stars />
           <div>
             <span>4,9 </span>
-            <span>(450)</span>
+            {!similar && <span>(450)</span>}
           </div>
         </div>
-        <h3 className={st.bookName}>
-          Искатели неба: Холодные берега Искатели неба: Холодные берега
-        </h3>
+        <Link href="/book">
+          <a>
+            <h3
+              className={classnames(st.bookName, {
+                [st.bookNameSmaller]: similar,
+              })}
+            >
+              Искатели неба: Холодные берега Искатели неба: Холодные берега
+            </h3>
+          </a>
+        </Link>
+
         <p className={st.bookAuthor}>Сергей Лукьяненко</p>
         {flagSwitcher && (
           <div className={classnames(st.extraInfo, { [st.addInfo]: !audio })}>

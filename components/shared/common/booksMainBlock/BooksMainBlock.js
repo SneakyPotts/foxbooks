@@ -1,5 +1,5 @@
 import React from 'react';
-import Book from '../../../book';
+import Book from '../book';
 import st from './booksMainBlock.module.scss';
 
 const BooksMainBlock = ({ audio }) => {
