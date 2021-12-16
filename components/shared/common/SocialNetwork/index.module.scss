@@ -17,19 +17,29 @@
     align-items: center;
     gap: 20px;
 
-    > button {
-      min-width: 42px;
-      min-height: 42px;
-      max-width: 42px;
-      max-height: 42px;
+    > div {
+      font-size: 12px;
+      line-height: 14px;
+      cursor: pointer;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      border: 1px solid $color-star-border;
+      gap: 10px;
 
-      &:hover {
-        border: 1px solid $text-hover;
+      > button {
+        min-width: 42px;
+        min-height: 42px;
+        max-width: 42px;
+        max-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid $color-star-border;
+
+        &:hover {
+          border: 1px solid $text-hover;
+        }
       }
     }
   }
