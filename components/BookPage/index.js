@@ -10,6 +10,7 @@ import Dots from '../../public/horizontalDots.svg';
 import books from '../data/books.json';
 import ArrowRight from '../../public/chevron-right.svg';
 import Book from '../shared/common/book';
+import Reviews from '../Reviews';
 import st from './bookpage.module.scss';
 
 const BookPage = () => {
@@ -44,6 +45,8 @@ const BookPage = () => {
                   height={406}
                   width={270}
                   layout="responsive"
+                  placeholder="blur"
+                  blurDataURL="/images/blur.jpg"
                 />
               </div>
               <div className={st.aboutBook}>
@@ -77,7 +80,7 @@ const BookPage = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="#">
+                    <Link href="#reviews">
                       <a>Рецензии 37</a>
                     </Link>
                   </li>
@@ -141,9 +144,7 @@ const BookPage = () => {
                   </Swiper>
                 </div>
                 <Image src="/advertising.png" width={588} height={250} />
-                <div>
-                  <h3>Reviews</h3>
-                </div>
+                <Reviews />
               </div>
             </div>
           </div>
