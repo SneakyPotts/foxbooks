@@ -1,0 +1,275 @@
+@import 'styles/variables.scss';
+
+.reviewsTitle {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  color: $color-main;
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+}
+.reviewerIcon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.reviewerName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-right: 10px;
+  color: $color-main;
+}
+.reviewInfo {
+  font-size: 12px;
+  line-height: 1.167;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+  color: $color-third;
+}
+.reviewView {
+  display: flex;
+  align-items: center;
+}
+.reviewViewCount {
+  margin-right: 10px;
+}
+.reviewTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  color: $color-main;
+  margin-bottom: 8px;
+}
+.reviewBlock {
+  padding: 20px 0;
+  border-bottom: 1px solid $color-star-border;
+}
+.nonComment {
+  border-bottom: none;
+}
+.sizes {
+  width: 484px;
+  margin: auto;
+}
+.reviewText {
+  margin-bottom: 10px;
+}
+.reviewTextHide {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  overflow: hidden;
+}
+.showMoreLink {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.dropDownArrow {
+  margin-left: 10px;
+  transform: rotate(180deg);
+}
+.up {
+  transform: rotate(0deg);
+}
+.reviewStatistic {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  color: $color-third;
+}
+.reviewLike {
+  margin-right: 30px;
+}
+.reviewIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.commentator {
+  display: flex;
+  align-items: baseline;
+}
+.commentContainer {
+  padding-left: 45px;
+}
+.commentDate {
+  font-size: 12px;
+  line-height: 1.167;
+  color: $color-third;
+}
+.reply {
+  cursor: pointer;
+  color: $color-main;
+}
+.replyDirection {
+  display: flex;
+  margin-top: 20px;
+}
+.replyArea {
+  width: 431px;
+  height: 100px;
+  margin-bottom: 40px;
+  border: 1px solid $color-star-border;
+  border-radius: 5px;
+  background-color: transparent;
+}
+.replierIcon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 16px;
+  overflow: hidden;
+}
+.controllBtn {
+  display: flex;
+  align-items: center;
+  margin-left: 41px;
+}
+.controllBtnsLeaveReview {
+  margin: 0;
+  margin-top: 40px;
+}
+.replyBtn {
+  font-size: 14px;
+  line-height: 1.43;
+  width: 200px;
+  height: 40px;
+  margin-right: 30px;
+  border-radius: 5px;
+  color: $color-categories-btn;
+  background-color: $text-hover;
+}
+.cancelBtn {
+  cursor: pointer;
+  color: $color-second;
+}
+.showReplysLink {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 45px;
+  color: $color-third;
+  stroke: $color-third;
+}
+.showReplysBtn {
+  margin-left: 10px;
+  transform: rotate(90deg);
+}
+.down {
+  transform: rotate(-90deg);
+}
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.userIcon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.userInput {
+  font-family: Ubuntu;
+  width: 484px;
+  height: 35px;
+  padding: 8px 20px;
+
+  border: 1px solid $color-star-border;
+  background-color: transparent;
+  border-radius: 59px;
+  outline: none;
+
+  &::-webkit-input-placeholder {
+    font-family: Ubuntu;
+    color: $color-third;
+  }
+
+  &::-moz-placeholder {
+    color: $color-third;
+  }
+}
+.userInput:hover {
+  border-color: $color-third;
+}
+.showNextComments {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-bottom: 30px;
+  color: $text-hover;
+}
+
+// LEAVE REVIEW
+.leaveReviewTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-top: 23px;
+  margin-bottom: 20px;
+  color: $color-main;
+}
+.leaveReviewInput {
+  font-family: Ubuntu;
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: $color-second;
+  border: 1px solid $color-star-border;
+  border-radius: 59px;
+  outline: none;
+
+  &::-webkit-input-placeholder {
+    font-family: Ubuntu;
+    color: $color-third;
+  }
+
+  &::-moz-placeholder {
+    color: $color-third;
+  }
+}
+.leaveReviewInputLabel {
+  font-size: 14px;
+  line-height: 1.143;
+  margin-bottom: 10px;
+  color: $color-third;
+}
+.leaveReviewField {
+  resize: none;
+  width: 100%;
+  min-height: 150px;
+  padding: 20px;
+  background-color: transparent;
+  outline: none;
+  //   overflow: auto;
+  color: $color-second;
+  border: 1px solid $color-star-border;
+  border-radius: 5px;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+.leaveReviewFieldLabel {
+  margin-top: 40px;
+  margin-bottom: 10px;
+
+  color: $color-third;
+}

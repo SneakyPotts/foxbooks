@@ -15,7 +15,6 @@
   font-size: 14px;
   line-height: 1.43;
   max-width: 584px;
-
   margin-left: 24px;
   color: $color-second;
 }
@@ -64,6 +63,9 @@
   color: $color-categories-btn;
   border-radius: 5px;
 }
+.readButton:hover {
+  background-color: $accent-hover;
+}
 .dotsButton {
   display: flex;
   align-items: center;
@@ -98,7 +100,6 @@
   font-size: 16px;
   line-height: 1.125;
   display: flex;
-  //   align-items: baseline;
   margin-top: 13px;
   margin-bottom: 60px;
   color: $color-second;
@@ -110,7 +111,6 @@
     margin-right: 5px;
   }
 }
-
 .advertisingBlok {
   display: block;
   margin-left: 24px;
@@ -136,3 +136,5 @@
 .swiper {
   margin-bottom: 60px;
 }
+
+//  REVIEWS
