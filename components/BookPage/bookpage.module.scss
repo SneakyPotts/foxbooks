@@ -3,113 +3,13 @@
 .wrapper {
   display: flex;
 }
-.bookInfo {
+.mainBlock {
   display: flex;
+  flex-direction: column;
+  align-items: end;
 }
-.bookCover {
-  min-width: 270px;
-  height: 406px;
-  background-color: bisque;
-}
-.aboutBook {
-  font-size: 14px;
-  line-height: 1.43;
-  max-width: 584px;
-  margin-left: 24px;
-  color: $color-second;
-}
-.bookTitle {
-  font-family: Merriweather;
-  font-size: 28px;
-  line-height: 1.25;
-  margin: 0;
-  margin-bottom: 11px;
-  padding: 0;
-  color: $color-main;
-}
-.bookAuthor {
-  margin-bottom: 20px;
-}
-.bookAuthorName {
-  font-size: 16px;
-  line-height: 1.125;
-  color: $color-second;
-  margin-right: 10px;
-}
-.bookAuthorLink {
-  color: $color-third;
-}
-.bookDate {
-  margin-bottom: 23px;
-}
-.bookDateYear {
-  margin-right: 20px;
-}
-.bookRaiting {
-  display: flex;
-}
-.bookRaitingCount {
-  margin-right: 10px;
-}
-.buttons {
-  display: flex;
-  margin: 20px 0;
-}
-.readButton {
-  width: 200px;
-  height: 40px;
-  margin-right: 20px;
-  background-color: $text-hover;
-  color: $color-categories-btn;
-  border-radius: 5px;
-}
-.readButton:hover {
-  background-color: $accent-hover;
-}
-.dotsButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid $color-star-border;
-  border-radius: 5px;
-}
-.navLinks {
-  list-style: none;
-  display: flex;
-  //
-  margin-bottom: 20px;
-
-  & li {
-    margin-right: 30px;
-  }
-}
-.ditalInfo {
-  margin-top: 20px;
-
-  & p {
-    margin-bottom: 10px;
-  }
-
-  & span {
-    color: $color-main;
-  }
-}
-.starsBlock {
-  font-size: 16px;
-  line-height: 1.125;
-  display: flex;
-  margin-top: 13px;
-  margin-bottom: 60px;
-  color: $color-second;
-
-  & p {
-    margin-right: 20px;
-  }
-  & span {
-    margin-right: 5px;
-  }
+.relatedInfo {
+  max-width: 588px;
 }
 .advertisingBlok {
   display: block;
@@ -124,17 +24,96 @@
   margin-bottom: 40px;
 }
 
-.slide {
-  max-width: 129px;
-  min-width: 129px;
-  > div:first-child {
-    max-width: 129px;
-    min-width: 129px;
-    max-height: 195px;
-  }
-}
-.swiper {
+.compilBlock {
   margin-bottom: 60px;
 }
+.compilTitle {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-bottom: 40px;
+  color: $color-main;
+}
+.compilBookCover {
+  position: relative;
+  border-radius: 5px;
 
-//  REVIEWS
+  &Stat {
+    font-size: 12px;
+    line-height: 1.167;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 62px;
+    height: 24px;
+    padding: 5px 10px;
+    color: $color-main;
+    background-color: $color-categories-btn;
+    border-radius: 58px;
+  }
+}
+.compilBookTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.143;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 10px;
+  color: $color-main;
+}
+.btnCompil {
+  top: 29px;
+}
+.recommendations {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.42;
+  margin-bottom: 10px;
+  color: $color-main;
+
+  &Label {
+    font-size: 16px;
+    line-height: 1.29;
+    color: $color-second;
+  }
+}
+.recomInput {
+  font-family: Ubuntu;
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  border: 1px solid $color-star-border;
+  background-color: transparent;
+  border-radius: 59px;
+  outline: none;
+
+  &::-webkit-input-placeholder {
+    font-family: Ubuntu;
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-third;
+  }
+
+  &::-moz-placeholder {
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-third;
+  }
+
+  &Label {
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-second;
+    margin-bottom: 60px;
+  }
+}
+.userInput:hover {
+  border-color: $color-third;
+}

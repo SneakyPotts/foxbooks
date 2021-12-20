@@ -1,0 +1,25 @@
+@import 'styles/variables.scss';
+.container {
+  margin-bottom: 60px;
+}
+.blockTitle {
+  font-family: Merriweather;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-bottom: 40px;
+  color: $color-main;
+}
+.slide {
+  max-width: 129px;
+  min-width: 129px;
+  > div:first-child {
+    max-width: 129px;
+    min-width: 129px;
+    max-height: 195px;
+  }
+}
+.btn {
+  top: 39px;
+}
