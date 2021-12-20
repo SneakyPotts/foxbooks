@@ -1,0 +1,64 @@
+@import 'styles/variables';
+
+.quotesTitle {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  //   margin-bottom: 40px;
+  color: $color-main;
+}
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+  margin-top: 40px;
+}
+.userIcon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.userName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-right: 10px;
+  color: $color-main;
+}
+.quoteInfo {
+  font-size: 12px;
+  line-height: 1.167;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+  color: $color-third;
+}
+.quoteView {
+  display: flex;
+  align-items: center;
+}
+.quoteViewCount {
+  margin-right: 10px;
+}
+.quoteStatistic {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  color: $color-third;
+}
+.quoteIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.quoteLike {
+  margin-right: 30px;
+}
+.pagination {
+  margin-top: 43px;
+  margin-bottom: 63px;
+}

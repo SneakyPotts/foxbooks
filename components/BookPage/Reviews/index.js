@@ -2,19 +2,29 @@ import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
 import classnames from 'classnames';
-import Eye from '../shared/icons/eye';
-import DropDownArrow from '../../public/chevron-down.svg';
-import Like from '../shared/icons/heart';
-import Comment from '../shared/icons/comment';
-import ArrowRight from '../../public/chevron-right.svg';
+import Eye from '../../shared/icons/eye';
+import DropDownArrow from '../../../public/chevron-down.svg';
+import Like from '../../shared/icons/heart';
+import Comment from '../../shared/icons/comment';
+import ArrowRight from '../../../public/chevron-right.svg';
 
 import st from './reviews.module.scss';
 
 const Reviews = () => {
   const [showMore, setShowMore] = useState(false);
   const [reply, setReply] = useState(false);
-  const [showReplys, setShowReplys] = useState(false);
+  const [showReplys, setShowReplys] = useState([
+    { id: '0', flag: false },
+    { id: '1', flag: false },
+    { id: '2', flag: false },
+  ]);
   const [reviewTyping, setReviewTyping] = useState(false);
+
+  const data = [
+    { id: '0', flag: false },
+    { id: '1', flag: false },
+    { id: '2', flag: false },
+  ];
 
   const onShowMore = () => {
     setShowMore(!showMore);
@@ -24,8 +34,16 @@ const Reviews = () => {
     setReply(!reply);
   };
 
-  const handleOnShowReplys = () => {
-    setShowReplys(!showReplys);
+  const handleOnShowReplys = index => {
+    setShowReplys(prev => {
+      const showReplaysMap = prev.map(({ flag, ...rest }, i) => {
+        return {
+          flag: index === i ? !flag : flag,
+          ...rest,
+        };
+      });
+      return showReplaysMap;
+    });
   };
 
   const handleLeaveReviewInput = () => {
@@ -42,6 +60,7 @@ const Reviews = () => {
       <h2 id="reviews" className={st.reviewsTitle}>
         Рецензии
       </h2>
+
       <div className={st.reviewBlock}>
         <div className={st.reviewer}>
           <div className={st.reviewerIcon}>
@@ -54,7 +73,7 @@ const Reviews = () => {
               blurDataURL="/images/blur.jpg"
             />
           </div>
-          <span className={st.reviewerName}>Ник</span>
+          <h3 className={st.reviewerName}>Ник</h3>
         </div>
         <div className={st.reviewInfo}>
           <span className={st.reviewDate}>20 октября 2021 в 14:05</span>
@@ -117,189 +136,146 @@ const Reviews = () => {
           </div>
         </div>
       </div>
-      <div className={st.reviewBlock}>
-        <div className={st.reviewer}>
-          <div className={st.reviewerIcon}>
-            <Image
-              src="/horizontalBookCovers/bookCover1.png"
-              alt=""
-              width="35"
-              height="35"
-              placeholder="blur"
-              blurDataURL="/images/blur.jpg"
-            />
-          </div>
-          <div className={st.commentator}>
-            <span className={st.reviewerName}>Марина Цветкова</span>
-            <span className={st.commentDate}>3 часа назад</span>
-          </div>
-        </div>
-        <div>
-          <div className={st.commentContainer}>
-            <p className={st.commentText}>
-              Для меня М. Коннелли - лучший автор современного детектива. В его
-              романах частная история преступления раскрывается в тесной
-              взаимосвязи с глобальной историей человечества. Это всегда ярко,
-              этично и талантливо.
-            </p>
-            <div className={st.reviewStatistic}>
-              <span className={st.reviewIcon}>
-                <Like />
-              </span>
-              <span className={st.reviewLike}>10</span>
-              <span className={st.reply} onClick={replyToComment}>
-                Ответить
-              </span>
+
+      {showReplys.map(({ id, flag }, index) => (
+        <div key={id}>
+          <div className={classnames(st.reviewBlock, st.reviewMainBlock)}>
+            <div className={st.reviewer}>
+              <div className={st.reviewerIcon}>
+                <Image
+                  src="/horizontalBookCovers/bookCover1.png"
+                  alt=""
+                  width="35"
+                  height="35"
+                  placeholder="blur"
+                  blurDataURL="/images/blur.jpg"
+                />
+              </div>
+              <div className={st.commentator}>
+                <h3 className={st.reviewerName}>Марина Цветкова</h3>
+                <span className={st.commentDate}>3 часа назад</span>
+              </div>
             </div>
-          </div>
-          {reply && (
             <div>
-              <div className={st.replyDirection}>
-                <div className={st.replierIcon}>
-                  <Image
-                    src="/horizontalBookCovers/book.png"
-                    alt=""
-                    width="25"
-                    height="25"
-                    placeholder="blur"
-                    blurDataURL="/images/blur.jpg"
-                  />
+              <div className={st.commentContainer}>
+                <p className={st.commentText}>
+                  Для меня М. Коннелли - лучший автор современного детектива. В
+                  его романах частная история преступления раскрывается в тесной
+                  взаимосвязи с глобальной историей человечества. Это всегда
+                  ярко, этично и талантливо.
+                </p>
+                <div className={st.reviewStatistic}>
+                  <span className={st.reviewIcon}>
+                    <Like />
+                  </span>
+                  <span className={st.reviewLike}>10</span>
+                  <span className={st.reply} onClick={replyToComment}>
+                    Ответить
+                  </span>
                 </div>
-                <textarea className={st.replyArea}></textarea>
               </div>
-              <div className={st.controllBtn}>
-                <button className={st.replyBtn}>Отправить</button>
-                <span className={st.cancelBtn}>Отменить</span>
-              </div>
+              {reply && (
+                <div>
+                  <div className={st.replyDirection}>
+                    <div className={st.replierIcon}>
+                      <Image
+                        src="/horizontalBookCovers/book.png"
+                        alt=""
+                        width="25"
+                        height="25"
+                        placeholder="blur"
+                        blurDataURL="/images/blur.jpg"
+                      />
+                    </div>
+                    <textarea className={st.replyArea}></textarea>
+                  </div>
+                  <div className={st.controllBtn}>
+                    <button className={st.replyBtn}>Отправить</button>
+                    <span className={st.cancelBtn}>Отменить</span>
+                  </div>
+                </div>
+              )}
+            </div>
+            <span
+              onClick={() => handleOnShowReplys(index)}
+              className={st.showReplysLink}
+            >
+              {!flag ? (
+                <span>Показать 5 ответов</span>
+              ) : (
+                <span>Скрыть 5 ответов</span>
+              )}
+              <ArrowRight
+                className={classnames(st.showReplysBtn, {
+                  [st.down]: flag,
+                })}
+              />
+            </span>
+          </div>
+          {flag && (
+            <div>
+              {data.map(({ id }) => (
+                <div key={id} className={classnames(st.reviewBlock, st.sizes)}>
+                  {' '}
+                  <div className={st.reviewer}>
+                    <div className={st.reviewerIcon}>
+                      <Image
+                        src="/horizontalBookCovers/bookCover1.png"
+                        alt=""
+                        width="35"
+                        height="35"
+                        placeholder="blur"
+                        blurDataURL="/images/blur.jpg"
+                      />
+                    </div>
+                    <div className={st.commentator}>
+                      <h3 className={st.reviewerName}>Светлана Смирнова</h3>
+                      <span className={st.commentDate}>3 часа назад</span>
+                    </div>
+                  </div>
+                  <div className={st.commentContainer}>
+                    <p className={st.commentText}>
+                      Марина, постоянный количественный рост и сфера нашей
+                      активности требует от нас анализа анализа существующих
+                      паттернов поведения.
+                    </p>
+                    <div className={st.reviewStatistic}>
+                      <span className={st.reviewIcon}>
+                        <Like />
+                      </span>
+                      <span className={st.reviewLike}>10</span>
+                      <span className={st.reply} onClick={replyToComment}>
+                        Ответить
+                      </span>
+                    </div>
+                  </div>
+                  {reply && (
+                    <div>
+                      <div className={st.replyDirection}>
+                        <div className={st.userIcon}>
+                          <Image
+                            src="/horizontalBookCovers/book.png"
+                            alt=""
+                            width="25"
+                            height="25"
+                            placeholder="blur"
+                            blurDataURL="/images/blur.jpg"
+                          />
+                        </div>
+                        <textarea className={st.replyArea}></textarea>
+                      </div>
+                      <div className={st.controllBtn}>
+                        <button className={st.replyBtn}>Отправить</button>
+                        <span className={st.cancelBtn}>Отменить</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           )}
         </div>
-        <span onClick={handleOnShowReplys} className={st.showReplysLink}>
-          {!showReplys ? (
-            <span>Показать 5 ответов</span>
-          ) : (
-            <span>Скрыть 5 ответов</span>
-          )}
-          <ArrowRight
-            className={classnames(st.showReplysBtn, { [st.down]: showReplys })}
-          />
-        </span>
-      </div>
-      {showReplys && (
-        <div>
-          <div className={classnames(st.reviewBlock, st.sizes)}>
-            {' '}
-            <div className={st.reviewer}>
-              <div className={st.reviewerIcon}>
-                <Image
-                  src="/horizontalBookCovers/bookCover1.png"
-                  alt=""
-                  width="35"
-                  height="35"
-                  placeholder="blur"
-                  blurDataURL="/images/blur.jpg"
-                />
-              </div>
-              <div className={st.commentator}>
-                <span className={st.reviewerName}>Светлана Смирнова</span>
-                <span className={st.commentDate}>3 часа назад</span>
-              </div>
-            </div>
-            <div className={st.commentContainer}>
-              <p className={st.commentText}>
-                Марина, постоянный количественный рост и сфера нашей активности
-                требует от нас анализа анализа существующих паттернов поведения.
-              </p>
-              <div className={st.reviewStatistic}>
-                <span className={st.reviewIcon}>
-                  <Like />
-                </span>
-                <span className={st.reviewLike}>10</span>
-                <span className={st.reply} onClick={replyToComment}>
-                  Ответить
-                </span>
-              </div>
-            </div>
-            {reply && (
-              <div>
-                <div className={st.replyDirection}>
-                  <div className={st.userIcon}>
-                    <Image
-                      src="/horizontalBookCovers/book.png"
-                      alt=""
-                      width="25"
-                      height="25"
-                      placeholder="blur"
-                      blurDataURL="/images/blur.jpg"
-                    />
-                  </div>
-                  <textarea className={st.replyArea}></textarea>
-                </div>
-                <div className={st.controllBtn}>
-                  <button className={st.replyBtn}>Отправить</button>
-                  <span className={st.cancelBtn}>Отменить</span>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className={classnames(st.reviewBlock, st.sizes)}>
-            {' '}
-            <div className={st.reviewer}>
-              <div className={st.reviewerIcon}>
-                <Image
-                  src="/horizontalBookCovers/bookCover1.png"
-                  alt=""
-                  width="35"
-                  height="35"
-                  placeholder="blur"
-                  blurDataURL="/images/blur.jpg"
-                />
-              </div>
-              <div className={st.commentator}>
-                <span className={st.reviewerName}>Марина Цветкова</span>
-                <span className={st.commentDate}>3 часа назад</span>
-              </div>
-            </div>
-            <div className={st.commentContainer}>
-              <p className={st.commentText}>
-                Светлана, лишь некоторые особенности внутренней политики лишь
-                добавляют фракционных разногласий и смешаны с не уникальными
-                данными
-              </p>
-              <div className={st.reviewStatistic}>
-                <span className={st.reviewIcon}>
-                  <Like />
-                </span>
-                <span className={st.reviewLike}>10</span>
-                <span className={st.reply} onClick={replyToComment}>
-                  Ответить
-                </span>
-              </div>
-            </div>
-            {reply && (
-              <div>
-                <div className={st.replyDirection}>
-                  <div className={st.userIcon}>
-                    <Image
-                      src="/horizontalBookCovers/book.png"
-                      alt=""
-                      width="25"
-                      height="25"
-                      placeholder="blur"
-                      blurDataURL="/images/blur.jpg"
-                    />
-                  </div>
-                  <textarea className={st.replyArea}></textarea>
-                </div>
-                <div className={st.controllBtn}>
-                  <button className={st.replyBtn}>Отправить</button>
-                  <span className={st.cancelBtn}>Отменить</span>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      ))}
       <h3 className={st.showNextComments}>Показать следующие комментарии</h3>
       <div className={st.user}>
         <div className={st.userIcon}>
@@ -415,6 +391,7 @@ const Reviews = () => {
           </div>
         </div>
       )}
+      <p className={st.pagination}>1 2 3 4 </p>
     </div>
   );
 };
