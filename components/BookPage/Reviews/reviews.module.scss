@@ -53,14 +53,14 @@
 }
 .reviewBlock {
   padding: 20px 0;
-  // border-bottom: 1px solid $color-star-border;
-}
-.reviewBlock:not(:last-child) {
   border-bottom: 1px solid $color-star-border;
 }
-.reviewMainBlock:not(:last-child) {
-  border-bottom: 1px solid $color-star-border;
-}
+// .reviewBlock:not(:last-child) {
+//   border-bottom: 1px solid $color-star-border;
+// }
+// .reviewMainBlock:not(:last-child) {
+//   border-bottom: 1px solid $color-star-border;
+// }
 .nonComment {
   border-bottom: none;
 }

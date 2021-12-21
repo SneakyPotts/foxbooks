@@ -65,9 +65,9 @@ const Navigation = () => {
           </a>
         </Link>
         <Link
-          href="/compilations"
+          href="/selections"
           // href={{
-          //   pathname: '/compilations',
+          //   pathname: '/selections',
           //   query: {
           //     page: 'Подборки',
           //     comingFrom: 'home',
@@ -76,7 +76,7 @@ const Navigation = () => {
         >
           <a
             className={`${css.link} ${
-              router.pathname == '/compilations' ? css.active : css.link
+              router.pathname == '/selections' ? css.active : css.link
             }`}
           >
             Подборки
