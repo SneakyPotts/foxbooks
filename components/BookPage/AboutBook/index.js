@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import classnames from 'classnames';
 import Image from 'next/image';
 import Stars from '../../shared/common/stars/Stars';
 import Dots from '../../../public/horizontalDots.svg';
@@ -32,10 +33,37 @@ const AboutBook = ({ audio }) => {
     },
   ];
 
+  const dataOptions = [
+    { id: '0', svg: <BookMark />, option: 'Хочу прочитать', link: '#' },
+    { id: '1', svg: <OpenBook />, option: 'Читаю', link: '#' },
+    { id: '2', svg: <Flag />, option: 'Прочитано', link: '#' },
+    { id: '3', svg: <Add />, option: 'В мои подборки', link: '/mybooks' },
+    {
+      id: '4',
+      svg: <Basket />,
+      option: 'Удалить из моих книг',
+      link: '#',
+    },
+  ];
+
   const [openMenu, setOpenMenu] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [optionIndex, setOptioIndex] = useState(null);
 
   const handleDotsClick = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const setTimeOut = () => {
+    setTimeout(() => setShowPopUp(false), 5000);
+  };
+
+  const handleClick = index => {
+    if (index === 0) {
+      setShowPopUp(true);
+      setTimeOut();
+    }
+    setOptioIndex(index);
   };
 
   return (
@@ -86,29 +114,30 @@ const AboutBook = ({ audio }) => {
                   <button className={st.readButton}>Читать</button>
                 )}
                 <div className={st.dropdown}>
-                  <span className={st.dotsButton} onClick={handleDotsClick}>
+                  <span
+                    className={classnames(st.dotsButton, {
+                      [st.activBtn]: openMenu,
+                    })}
+                    onClick={handleDotsClick}
+                  >
                     <Dots />
                   </span>
                   {openMenu && (
                     <ul className={st.menu}>
-                      <li>
-                        <BookMark /> <span>Хочу прочитать</span>
-                      </li>
-                      <li>
-                        <OpenBook /> <span>Читаю</span>
-                      </li>
-                      <li>
-                        <Flag />
-                        <span>Прочитано</span>
-                      </li>
-                      <li>
-                        <Add />
-                        <span>В мои подборки</span>
-                      </li>
-                      <li>
-                        <Basket />
-                        <span>Удалить из моих книг</span>
-                      </li>
+                      {dataOptions.map((it, index) => (
+                        <Link href={it.link} key={it.id}>
+                          <a
+                            onClick={() => handleClick(index)}
+                            className={classnames({
+                              [st.menuOption]: optionIndex === index,
+                            })}
+                          >
+                            {' '}
+                            {it.svg}
+                            <span>{it.option}</span>
+                          </a>
+                        </Link>
+                      ))}
                     </ul>
                   )}
                 </div>
@@ -175,6 +204,16 @@ const AboutBook = ({ audio }) => {
           </div>
         </div>
       ))}
+      {showPopUp && (
+        <div className={st.popUp}>
+          <p>
+            Книга “Гарри Поттер и философский камень” добавлена{' '}
+            <Link href="#">
+              <a className={st.popUpLink}>в вашу библиотеку</a>
+            </Link>
+          </p>
+        </div>
+      )}
     </div>
   );
 };
