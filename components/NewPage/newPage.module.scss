@@ -1,21 +1,17 @@
 @import 'styles/variables.scss';
 
-.title {
+.newsTitle {
   font-family: Merriweather;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
   color: $color-main;
 }
-.filters {
+.filtersBtns {
   display: flex;
-  width: calc(100% - 204px);
+  width: calc(100% - 408px);
   justify-content: space-between;
   margin: 40px 0;
-
-  &Btns {
-    display: flex;
-  }
 }
 .popularSelections {
   margin-right: 101px;
@@ -36,33 +32,30 @@
     margin-right: 10px;
   }
 }
-.selectTitle {
-  font-family: Merriweather;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 1.25;
-  color: $color-main;
-}
 .mainBlock {
   display: flex;
+  margin-top: 40px;
+}
+.booksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 24px;
 }
 .advertisingBlok {
-  display: block;
+  max-width: 384px;
   margin-left: 24px;
-  max-width: 180px;
-  min-height: 1104px;
 }
 .bannerBlock {
-  max-width: 180px;
-  display: block;
   width: 100%;
   margin-bottom: 40px;
 }
 .banner {
-  width: 100%;
-  height: 1104px;
+  border-radius: 5px;
 }
 .pagination {
   margin-top: 40px;
+  margin-bottom: 60px;
+}
+.mountains {
   margin-bottom: 60px;
 }

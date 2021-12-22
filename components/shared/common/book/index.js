@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
+import { AudioBook } from './bookSlice';
 import Image from 'next/image';
 import Stars from '../stars/Stars';
 import Headphones from '../../icons/headphones';
@@ -14,11 +16,22 @@ import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
 
 const Book = ({ audio, flagSwitcher, classNames, similar }) => {
+  const dispatch = useDispatch();
+  // const { audioFlag } = useSelector(state => state.bookSlice);
+
   const [changeIcon, setChangeIcon] = useState(false);
   const [options, setOptions] = useState(false);
 
   const route = useRouter();
   // console.log(route, 'router');
+
+  const bookLinkClick = () => {
+    if (audio) {
+      dispatch(AudioBook(true));
+    } else if (!audio) {
+      dispatch(AudioBook(false));
+    }
+  };
 
   const onChangeIcon = () => {
     setChangeIcon(true);
@@ -37,7 +50,7 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
     >
       <div className={st.wrapper}>
         <Link href="/book">
-          <a>
+          <a onClick={bookLinkClick}>
             <Image
               src="/horizontalBookCovers/book.png"
               alt=""
