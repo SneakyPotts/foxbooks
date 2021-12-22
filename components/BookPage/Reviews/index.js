@@ -56,7 +56,7 @@ const Reviews = () => {
   };
 
   return (
-    <div>
+    <div className={st.test}>
       <h2 id="reviews" className={st.reviewsTitle}>
         Рецензии
       </h2>
@@ -69,7 +69,7 @@ const Reviews = () => {
               alt=""
               width="35"
               height="35"
-              placeholder="blur"
+              // placeholder="blur"
               blurDataURL="/images/blur.jpg"
             />
           </div>
@@ -147,7 +147,7 @@ const Reviews = () => {
                   alt=""
                   width="35"
                   height="35"
-                  placeholder="blur"
+                  // placeholder="blur"
                   blurDataURL="/images/blur.jpg"
                 />
               </div>
@@ -183,7 +183,7 @@ const Reviews = () => {
                         alt=""
                         width="25"
                         height="25"
-                        placeholder="blur"
+                        // placeholder="blur"
                         blurDataURL="/images/blur.jpg"
                       />
                     </div>
@@ -224,7 +224,7 @@ const Reviews = () => {
                         alt=""
                         width="35"
                         height="35"
-                        placeholder="blur"
+                        // placeholder="blur"
                         blurDataURL="/images/blur.jpg"
                       />
                     </div>
@@ -258,7 +258,7 @@ const Reviews = () => {
                             alt=""
                             width="25"
                             height="25"
-                            placeholder="blur"
+                            // placeholder="blur"
                             blurDataURL="/images/blur.jpg"
                           />
                         </div>
@@ -284,7 +284,7 @@ const Reviews = () => {
             alt=""
             width="35"
             height="35"
-            placeholder="blur"
+            // placeholder="blur"
             blurDataURL="/images/blur.jpg"
           />
         </div>
@@ -298,7 +298,7 @@ const Reviews = () => {
               alt=""
               width="35"
               height="35"
-              placeholder="blur"
+              // placeholder="blur"
               blurDataURL="/images/blur.jpg"
             />
           </div>
