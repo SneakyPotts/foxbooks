@@ -10,9 +10,9 @@ import SettingNotification from "./settingNotification";
 
 const SettingsProfile = () => {
     const settingMenu = [
-        {text: 'Редактировать профиль'},
-        {text: 'Настройки уведомлений'},
-        {text: 'Настройки пароля'}
+        {text: 'Редактировать профиль', icon: <Pencil/>},
+        {text: 'Настройки уведомлений', icon: <Bell/>},
+        {text: 'Настройки пароля', icon: <Lock/>}
     ]
 
     const [currentIndexMenu, setCurrentIndexMenu] = useState(0)
@@ -29,7 +29,7 @@ const SettingsProfile = () => {
                         {settingMenu.map((r, index) => {
                             return (
                                 <li onClick={() => setCurrentIndexMenu(index)} key={r.text}>
-                                    {index === 0 ? <Pencil/> : index === 1 ? <Bell/> : <Lock/>}
+                                    {r.icon}
                                     <span>{r.text}</span>
                                 </li>
                             )
