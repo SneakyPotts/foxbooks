@@ -58,7 +58,7 @@ const Navigation = () => {
         >
           <a
             className={`${css.link} ${
-              router.pathname.includes('audiobooks') ? css.active : css.link
+              router.pathname.includes('/audiobooks') ? css.active : css.link
             }`}
           >
             Аудиокниги
@@ -76,7 +76,7 @@ const Navigation = () => {
         >
           <a
             className={`${css.link} ${
-              router.pathname == '/selections' ? css.active : css.link
+              router.pathname.includes('/selections') ? css.active : css.link
             }`}
           >
             Подборки
@@ -94,7 +94,7 @@ const Navigation = () => {
         >
           <a
             className={`${css.link} ${
-              router.pathname == '/new' ? css.active : css.link
+              router.pathname.includes('/new') ? css.active : css.link
             }`}
           >
             Новинки

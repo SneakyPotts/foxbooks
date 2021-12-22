@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
 import Image from 'next/image';
@@ -8,6 +9,7 @@ import BookMark from '../../../public/bookmark.svg';
 import OpenBook from '../../../public/book-open.svg';
 import Flag from '../../../public/flag.svg';
 import Add from '../../../public/plus.svg';
+import Headphones from '../../shared/icons/headphones';
 import Basket from '../../../public/trash.svg';
 
 import st from './aboutBook.module.scss';
@@ -46,6 +48,8 @@ const AboutBook = ({ audio }) => {
     },
   ];
 
+  const { audioFlag } = useSelector(state => state.bookSlice);
+
   const [openMenu, setOpenMenu] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [optionIndex, setOptioIndex] = useState(null);
@@ -71,15 +75,25 @@ const AboutBook = ({ audio }) => {
       {dataBook.map(book => (
         <div key={book.id} className={st.bookInfo}>
           <div className={st.bookMainInfo}>
-            <div className={st.bookCover}>
+            <div
+              className={classnames(st.bookCover, {
+                [st.bookCoverAudio]: audioFlag,
+              })}
+            >
               <Image
                 src={book.img}
-                height={audio ? 270 : 406}
+                height={audioFlag ? 270 : 406}
                 width={270}
-                layout="responsive"
+                layout="fill"
                 placeholder="blur"
                 blurDataURL="/images/blur.jpg"
               />
+
+              {audioFlag && (
+                <div className={st.bookCoverIcon}>
+                  <Headphones />
+                </div>
+              )}
             </div>
             <div className={st.aboutBook}>
               <h1 className={st.bookTitle}>{book.title}</h1>
@@ -90,7 +104,7 @@ const AboutBook = ({ audio }) => {
                 </Link>
               </p>
               <div className={st.bookDate}>
-                {audio && (
+                {audioFlag && (
                   <div>
                     <span className={st.audioInfo}>
                       <span>40</span>мин.
@@ -108,7 +122,7 @@ const AboutBook = ({ audio }) => {
                 <Stars />
               </div>
               <div className={st.buttons}>
-                {audio ? (
+                {audioFlag ? (
                   <button className={st.readButton}>Начать слушать</button>
                 ) : (
                   <button className={st.readButton}>Читать</button>
@@ -155,7 +169,7 @@ const AboutBook = ({ audio }) => {
                   </Link>
                 </li>
                 <li>
-                  {audio ? (
+                  {audioFlag ? (
                     <Link href="#quotes">
                       <a>Слушают 129</a>
                     </Link>
@@ -173,7 +187,7 @@ const AboutBook = ({ audio }) => {
               </ul>
               <p>{book.about_book}</p>
               <div className={st.ditalInfo}>
-                {audio ? (
+                {audioFlag ? (
                   <p>
                     Чтец: <span>{book.reader}</span>
                   </p>

@@ -1,8 +1,10 @@
+@import 'styles/variables.scss';
+
 .wrapper {
   box-sizing: border-box;
-  background: #f1f1f1;
+  background: $color-bg-icon;
   padding: 28px 0;
-  box-shadow: 0 0 0 5px #fff;
+  /* box-shadow: 0 0 0 5px #fff; */
 }
 .container {
   display: flex;
@@ -25,7 +27,7 @@
   box-sizing: border-box;
   height: 30px;
   padding: 5px 40px;
-  border-right: 1px solid #909190;
+  border-right: 1px solid $color-third;
 }
 .socialmediaLink:not(:last-child) {
   margin-right: 15px;
@@ -35,8 +37,8 @@
   line-height: 1.43;
   padding: 5px 40px;
   margin: 0;
-  border-right: 1px solid #909190;
-  color: #909190;
+  border-right: 1px solid $color-third;
+  color: $color-third;
 }
 .page:not(:last-child) {
   margin-right: 30px;
@@ -45,5 +47,5 @@
   font-size: 14px;
   line-height: 1.43;
   margin-left: 40px;
-  color: #0e263e;
+  color: $color-main;
 }

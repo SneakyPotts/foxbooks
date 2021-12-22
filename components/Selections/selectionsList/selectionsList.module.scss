@@ -1,0 +1,49 @@
+@import 'styles/variables.scss';
+
+.selectionsSwiper {
+  display: block;
+  max-width: 85%;
+
+  &False {
+    display: none;
+  }
+}
+.selSlider {
+  display: block;
+
+  &Head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    &Btn {
+      font-size: 14px;
+      line-height: 1.43;
+      min-width: 162px;
+      height: 26px;
+      border-radius: 5px;
+      color: $color-categories-btn;
+      background-color: $text-hover;
+    }
+
+    &Title {
+      font-family: Merriweather;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 1.25;
+      color: $color-main;
+
+      &:hover {
+        color: $text-hover;
+      }
+    }
+  }
+}
+.selSlider:not(:first-child) {
+  margin-top: 60px;
+}
+
+.added {
+  color: $color-main;
+  background: $color-bg-icon;
+}
