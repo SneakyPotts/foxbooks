@@ -6,7 +6,7 @@ import data from '../../../data/popularOptions.json';
 import st from './bookFilters.module.scss';
 
 const BookFilters = () => {
-  const [currentIdx, setCurrentIdx] = useState(null);
+  const [currentIdx, setCurrentIdx] = useState(0);
 
   const handleOnClick = idx => {
     setCurrentIdx(idx);
