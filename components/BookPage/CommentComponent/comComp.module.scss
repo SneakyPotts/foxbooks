@@ -1,0 +1,97 @@
+@import 'styles/variables.scss';
+
+.reviewsTitle {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  color: $color-main;
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+}
+.reviewerIcon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.reviewerName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-right: 10px;
+  color: $color-main;
+}
+.reviewInfo {
+  font-size: 12px;
+  line-height: 1.167;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+  color: $color-third;
+}
+.reviewView {
+  display: flex;
+  align-items: center;
+}
+.reviewViewCount {
+  margin-right: 10px;
+}
+.reviewTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  color: $color-main;
+  margin-bottom: 8px;
+}
+.reviewText {
+  margin-bottom: 10px;
+
+  &Hide {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    overflow: hidden;
+  }
+}
+.showMoreLink {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.dropDownArrow {
+  margin-left: 10px;
+  transform: rotate(180deg);
+}
+.up {
+  transform: rotate(0deg);
+}
+.reviewStatistic {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  color: $color-third;
+  stroke: $color-third;
+}
+.reviewIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+  &:hover {
+    cursor: pointer;
+    stroke: $text-hover;
+  }
+}
+.reviewLike {
+  margin-right: 30px;
+}

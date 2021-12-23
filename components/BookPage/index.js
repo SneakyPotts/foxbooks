@@ -6,6 +6,7 @@ import 'swiper/css/bundle';
 import classnames from 'classnames';
 import ArrowRight from '../../public/chevron-right.svg';
 import AboutBook from './AboutBook';
+import Comments from './Comments';
 import Reviews from './Reviews';
 import Quotes from './Quotes';
 import AuthorOtherBooks from './AuthorOtherBooks';
@@ -37,6 +38,7 @@ const BookPage = () => {
           // audio={true}
           />
           <Image src="/advertising.png" width={588} height={250} />
+          <Comments />
           <Reviews />
           <Quotes />
           <AuthorOtherBooks />

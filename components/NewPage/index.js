@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Book from '../shared/common/book';
 import Image from 'next/image';
+import classNames from 'classnames';
 import st from './newPage.module.scss';
 
 const NewPage = () => {
@@ -13,6 +15,7 @@ const NewPage = () => {
     { id: '1', option: 'Книги' },
     { id: '2', option: 'Аудиокниги' },
   ];
+
   const newBooks = [
     { id: '0' },
     { id: '1' },
@@ -49,20 +52,38 @@ const NewPage = () => {
     { id: '32' },
     { id: '33' },
   ];
+
+  const [activePopSel, setActivPopSel] = useState(0);
+  const [activeBookSel, setActiveBookSel] = useState(0);
+
   return (
     <div className="container">
       <h2 className={st.newsTitle}>Новинки</h2>
       <div className={st.filtersBtns}>
         <div className={st.popularSelections}>
-          {popularSelections.map(select => (
-            <button key={select.id} className={st.selectFilters}>
+          {popularSelections.map((select, index) => (
+            <button
+              key={select.id}
+              className={classNames(st.selectFilters, {
+                [st.selectFiltersActive]: index === activePopSel,
+              })}
+              onClick={() => setActivPopSel(index)}
+            >
               {select.option}
             </button>
           ))}
         </div>
         <div className={st.booksSelections}>
-          {booksSelections.map(select => (
-            <button key={select.id} className={st.selectFilters}>
+          {booksSelections.map((select, index) => (
+            <button
+              key={select.id}
+              className={classNames(st.selectFilters, {
+                [st.selectFiltersActive]: index === activeBookSel,
+              })}
+              onClick={() => {
+                setActiveBookSel(index);
+              }}
+            >
               {select.option}
             </button>
           ))}

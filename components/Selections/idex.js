@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Switcher from '../switcher/Switcher';
 import SelectionGrid from './selectionsGrid';
 import SelectionsList from './selectionsList';
+import classNames from 'classnames';
 import st from './selections.module.scss';
 
 const SelectionsPage = ({ audio }) => {
@@ -19,31 +20,59 @@ const SelectionsPage = ({ audio }) => {
 
   //   const [stateIndex, setStateIndex] = useState(null);
   const [flagSwitcher, setFlagSwitcher] = useState(false);
+  const [activePopSel, setActivePopSel] = useState(0);
+  const [activeBookSel, setActiveBookSel] = useState(0);
 
   return (
     <div className="container">
       <h2 className={st.title}>Подборки</h2>
       <div className={st.filters}>
-        <div className={st.filtersBtns}>
-          <div className={st.popularSelections}>
-            {popularSelections.map(select => (
-              <button key={select.id} className={st.selectFilters}>
+        <div
+          className={classNames(st.filtersBtns, {
+            [st.filtersBtnsActive]: activePopSel !== 0,
+          })}
+        >
+          <div
+            className={classNames({
+              [st.popularSelections]: activePopSel === 0,
+            })}
+          >
+            {popularSelections.map((select, idx) => (
+              <button
+                key={select.id}
+                className={classNames(st.selectFilters, {
+                  [st.selectFiltersActive]: activePopSel === idx,
+                })}
+                onClick={() => {
+                  setActivePopSel(idx);
+                }}
+              >
                 {select.option}
               </button>
             ))}
           </div>
           <div className={st.booksSelections}>
-            {booksSelections.map(select => (
-              <button key={select.id} className={st.selectFilters}>
+            {booksSelections.map((select, idx) => (
+              <button
+                key={select.id}
+                className={classNames(st.selectFilters, {
+                  [st.selectFiltersActive]: activeBookSel === idx,
+                })}
+                onClick={() => {
+                  setActiveBookSel(idx);
+                }}
+              >
                 {select.option}
               </button>
             ))}
           </div>
         </div>
-        <Switcher
-          setFlagSwitcher={setFlagSwitcher}
-          flagSwitcher={flagSwitcher}
-        />
+        {activePopSel === 0 && (
+          <Switcher
+            setFlagSwitcher={setFlagSwitcher}
+            flagSwitcher={flagSwitcher}
+          />
+        )}
       </div>
       <div className={st.mainBlock}>
         <SelectionsList flagSwitcher={flagSwitcher} audio={audio} />

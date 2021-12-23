@@ -1,0 +1,265 @@
+@import 'styles/variables.scss';
+
+.reviewsTitle {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  color: $color-main;
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+}
+.reviewerIcon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.reviewerName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-right: 10px;
+  color: $color-main;
+}
+// .reviewInfo {
+//   font-size: 12px;
+//   line-height: 1.167;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin-bottom: 13px;
+//   color: $color-third;
+// }
+// .reviewView {
+//   display: flex;
+//   align-items: center;
+// }
+// .reviewViewCount {
+//   margin-right: 10px;
+// }
+// .reviewTitle {
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.125;
+//   color: $color-main;
+//   margin-bottom: 8px;
+// }
+.reviewBlock {
+  font-size: 14px;
+  line-height: 1.43;
+  padding: 20px 0;
+  // border-bottom: 1px solid $color-star-border;
+}
+.nonComment {
+  border-bottom: none;
+}
+.sizes {
+  width: 484px;
+  margin: auto;
+  border-top: 1px solid $color-star-border;
+}
+// .sizes:last-of-type {
+//   border: none;
+// }
+.reviewText {
+  margin-bottom: 10px;
+
+  &Hide {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    overflow: hidden;
+  }
+}
+
+.showMoreLink {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.dropDownArrow {
+  margin-left: 10px;
+  transform: rotate(180deg);
+}
+.up {
+  transform: rotate(0deg);
+}
+.reviewStatistic {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  color: $color-third;
+  stroke: $color-third;
+}
+.reviewLike {
+  margin-right: 30px;
+}
+.reviewIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+  &:hover {
+    cursor: pointer;
+    stroke: $text-hover;
+  }
+}
+.reviewComment {
+  font-size: 14px;
+  line-height: 1.43;
+  padding: 20px 0;
+  border-top: 1px solid $color-star-border;
+
+  // &:last-of-type {
+  //   border: none;
+  // }
+}
+.commentator {
+  display: flex;
+  align-items: baseline;
+}
+.commentContainer {
+  padding-left: 45px;
+}
+.commentDate {
+  font-size: 12px;
+  line-height: 1.167;
+  color: $color-third;
+}
+.reply {
+  cursor: pointer;
+  color: $color-main;
+}
+.replyDirection {
+  display: flex;
+  margin-top: 20px;
+}
+.replyArea {
+  width: 431px;
+  height: 100px;
+  margin-bottom: 40px;
+  border: 1px solid $color-star-border;
+  border-radius: 5px;
+  background-color: transparent;
+}
+.replierIcon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 16px;
+  overflow: hidden;
+}
+.controllBtn {
+  display: flex;
+  align-items: center;
+  margin-left: 41px;
+}
+.controllBtnsLeaveReview {
+  margin: 0;
+  margin-top: 40px;
+}
+.submitButton {
+  font-size: 14px;
+  line-height: 1.43;
+  width: 200px;
+  height: 40px;
+  margin-right: 30px;
+  border-radius: 5px;
+  color: $color-categories-btn;
+  background-color: $text-hover;
+}
+.cancelBtn {
+  cursor: pointer;
+  color: $color-second;
+}
+.showReplysLink {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 45px;
+  color: $color-third;
+  stroke: $color-third;
+}
+.showReplysBtn {
+  margin-left: 10px;
+  transform: rotate(90deg);
+}
+.down {
+  transform: rotate(-90deg);
+}
+.userForm {
+  margin-top: 40px;
+
+  &Header {
+    display: flex;
+    margin-bottom: 20px;
+  }
+}
+.userIcon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+
+  &UnderCom {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    overflow: hidden;
+  }
+}
+.userComment {
+  display: flex;
+  align-items: center;
+}
+.userInput {
+  font-family: Ubuntu;
+  width: 484px;
+  height: 35px;
+  padding: 8px 20px;
+
+  border: 1px solid $color-star-border;
+  background-color: transparent;
+  border-radius: 59px;
+  outline: none;
+
+  &::-webkit-input-placeholder {
+    font-family: Ubuntu;
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-third;
+  }
+
+  &::-moz-placeholder {
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-third;
+  }
+}
+.userInput:hover {
+  border-color: $color-third;
+}
+
+.showNextComments {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-top: 20px;
+  color: $text-hover;
+}
+.pagination {
+  margin-top: 43px;
+  margin-bottom: 63px;
+}
