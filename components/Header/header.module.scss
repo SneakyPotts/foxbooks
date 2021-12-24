@@ -1,11 +1,12 @@
-@import "styles/variables.scss";
+@import 'styles/variables.scss';
 
 .main {
   background-color: #fff;
   padding: 30px 0;
 
   .container {
-    width: 1200px;
+    position: relative;
+    max-width: 1200px;
     margin: auto;
   }
 
@@ -79,7 +80,7 @@
         background: $color-categories-btn;
         position: absolute;
         padding: 30px 20px;
-        border: 1px solid #F1F1F1;
+        border: 1px solid #f1f1f1;
         box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
         border-radius: 10px;
         height: auto;
@@ -92,7 +93,7 @@
         }
 
         li {
-          font-family: Ubuntu , sans-serif;
+          font-family: Ubuntu, sans-serif;
           font-size: 14px;
           color: $color-second;
           display: flex;
@@ -129,5 +130,25 @@
 
   .iconUser {
     margin-right: 10px;
+  }
+}
+.dropdownArea {
+  // position: relative;
+}
+.dropDown {
+  position: absolute;
+  // width: 100%;
+  z-index: 2;
+  background-color: #fff;
+  &Popular {
+    display: flex;
+    justify-content: flex-end;
+    &Item {
+      max-width: 124px;
+
+      &:not(:last-child) {
+        margin-right: 50px;
+      }
+    }
   }
 }

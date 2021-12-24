@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { BiGridAlt } from 'react-icons/bi';
 import { useRouter } from 'next/router';
 import css from './menu.module.css';
 
@@ -9,25 +8,6 @@ const Navigation = () => {
   return (
     <>
       <nav className={css.navigation}>
-        <BiGridAlt className={css.icon} />
-        <Link
-          href="/categories"
-          // href={{
-          //   pathname: '/categories',
-          //   query: {
-          //     page: 'Категории',
-          //     comingFrom: 'home',
-          //   },
-          // }}
-        >
-          <a
-            className={`${css.link} ${
-              router.pathname == '/categories' ? css.active : css.link
-            }`}
-          >
-            Категории
-          </a>
-        </Link>
         <Link
           href="/books"
           // href={{

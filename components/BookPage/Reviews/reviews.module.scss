@@ -5,7 +5,7 @@
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
-  margin-top: 23px;
+  // margin-top: 23px;
   margin-bottom: 20px;
   color: $color-main;
 }
@@ -15,7 +15,7 @@
   width: 200px;
   height: 40px;
   margin-bottom: 40px;
-  // margin-right: 30px;
+  margin-right: 30px;
   border-radius: 5px;
   color: $color-categories-btn;
   background-color: $text-hover;
@@ -27,29 +27,17 @@
   padding: 10px 20px;
   // margin-bottom: 43px;
 
-  background-color: transparent;
+  background-color: $color-categories-btn;
   color: $color-second;
   border: 1px solid $color-star-border;
   border-radius: 59px;
   outline: none;
-
-  &::-webkit-input-placeholder {
-    font-family: Ubuntu;
-    font-size: 14px;
-    line-height: 1.43;
-    color: $color-third;
-  }
-
-  &::-moz-placeholder {
-    font-size: 14px;
-    line-height: 1.43;
-    color: $color-third;
-  }
 }
 .leaveReviewInputLabel {
   font-size: 14px;
   line-height: 1.143;
   margin-bottom: 10px;
+
   color: $color-third;
 }
 .leaveReviewField {
@@ -57,9 +45,9 @@
   width: 100%;
   min-height: 150px;
   padding: 20px;
-  background-color: transparent;
+  background-color: #fff;
   outline: none;
-  //   overflow: auto;
+  margin-bottom: 40px;
   color: $color-second;
   border: 1px solid $color-star-border;
   border-radius: 5px;
@@ -67,10 +55,111 @@
   &::-webkit-scrollbar {
     width: 0;
   }
+  &:hover {
+    border: 1px solid $color-third;
+  }
 }
 .leaveReviewFieldLabel {
   margin-top: 40px;
   margin-bottom: 10px;
-
   color: $color-third;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 12px;
+  margin-bottom: 40px;
+}
+.dropBtn {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 15px;
+  width: 294px;
+  height: 40px;
+  stroke: #0e263e;
+
+  background-color: $color-categories-btn;
+  border: 1px solid $color-star-border;
+  border-radius: 59px;
+}
+.dropBtn:hover {
+  border: 1px solid $color-third;
+}
+.open {
+  color: $color-categories-btn;
+  background: #0e263e;
+  stroke: $color-categories-btn;
+}
+.dropText {
+  margin-left: 10px;
+}
+.down {
+  transform: rotate(180deg);
+}
+.up {
+  transform: rotate(0deg);
+}
+.dropContent {
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  width: 294px;
+  max-height: 435px;
+  margin-top: 22px;
+  overflow-y: scroll;
+  background-color: $color-categories-btn;
+  box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
+  border: 1px solid $color-bg-icon;
+  border-radius: 10px;
+}
+.dropContent::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+.dropContent::-webkit-scrollbar-thumb {
+  margin-top: 5px;
+  height: 120px;
+  background-color: #0e263e;
+  border: 1px solid $color-bg-icon;
+  border-radius: 37px;
+}
+.dropLink {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+  color: $color-second;
+}
+.dropLink:not(:last-child) {
+  margin-bottom: 15px;
+}
+.dropLink:hover {
+  cursor: pointer;
+  color: #0e263e;
+}
+.radio {
+  display: block;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid$color-categories-btn;
+  background-color: transparent;
+  box-shadow: 0 0 0 2px $color-third;
+}
+.radio:hover {
+  box-shadow: 0 0 0 2px $color-main;
+}
+.radioActive {
+  background-color: $color-main;
+  box-shadow: 0 0 0 2px $color-main;
+}
+.active {
+  color: $color-main;
 }

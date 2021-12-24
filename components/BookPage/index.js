@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,6 +27,7 @@ const BookPage = () => {
     { id: '2', title: 'Дружба в книгах' },
     { id: '3', title: 'Что читает Дэниел Рэдклифф' },
   ];
+  const { audioFlag } = useSelector(state => state.bookSlice);
 
   return (
     <div className={classnames('container', st.wrapper)}>
@@ -40,47 +42,49 @@ const BookPage = () => {
           <Image src="/advertising.png" width={588} height={250} />
           <Comments />
           <Reviews />
-          <Quotes />
+          {!audioFlag && <Quotes />}
           <AuthorOtherBooks />
           <AuthorOtherAudioBooks />
-          <div className={st.compilBlock}>
-            <h3 className={st.compilTitle}>Подборки с этой книгой</h3>
-            <Swiper
-              spaceBetween={24}
-              modules={[Navigation]}
-              navigation={{
-                prevEl: '.prevArrow',
-                nextEl: '.nextArrow',
-              }}
-              slidesPerView={3}
-            >
-              {compilationsBook.map(book => (
-                <SwiperSlide key={book.id}>
-                  <div>
-                    <div className={st.compilBookCover}>
-                      <Image
-                        src="/horizontalBookCovers/bookCover2.png"
-                        width={180}
-                        height={108}
-                        alt=""
-                      />
-                      <div className={st.compilBookCoverStat}>
-                        <span>15</span>
-                        <span>книг</span>
+          {!audioFlag && (
+            <div className={st.compilBlock}>
+              <h3 className={st.compilTitle}>Подборки с этой книгой</h3>
+              <Swiper
+                spaceBetween={24}
+                modules={[Navigation]}
+                navigation={{
+                  prevEl: '.prevArrow',
+                  nextEl: '.nextArrow',
+                }}
+                slidesPerView={3}
+              >
+                {compilationsBook.map(book => (
+                  <SwiperSlide key={book.id}>
+                    <div>
+                      <div className={st.compilBookCover}>
+                        <Image
+                          src="/horizontalBookCovers/bookCover2.png"
+                          width={180}
+                          height={108}
+                          alt=""
+                        />
+                        <div className={st.compilBookCoverStat}>
+                          <span>15</span>
+                          <span>книг</span>
+                        </div>
                       </div>
+                      <h4 className={st.compilBookTitle}>{book.title}</h4>
                     </div>
-                    <h4 className={st.compilBookTitle}>{book.title}</h4>
-                  </div>
-                </SwiperSlide>
-              ))}
-              <button className={classnames('prevArrow', st.btnCompil)}>
-                <ArrowRight className="arrowNext" />
-              </button>
-              <button className={classnames('nextArrow', st.btnCompil)}>
-                <ArrowRight className="arrowNext" />
-              </button>
-            </Swiper>
-          </div>
+                  </SwiperSlide>
+                ))}
+                <button className={classnames('prevArrow', st.btnCompil)}>
+                  <ArrowRight className="arrowNext" />
+                </button>
+                <button className={classnames('nextArrow', st.btnCompil)}>
+                  <ArrowRight className="arrowNext" />
+                </button>
+              </Swiper>
+            </div>
+          )}
           <p className={st.recommendations}>
             Порекомендуйте книги, похожие на “Гарри Поттер и философский камень”
           </p>
