@@ -19,9 +19,9 @@ const Comments = () => {
     { id: '2', flag: false },
   ]);
   // const [showInput, setShowInput] = useState(false);
-  const [inputIdx, setInputIdx] = useState(null);
+
   const [firstInput, setFirstInput] = useState(false);
-  const [mainCommentIdx, setMainCommenIdx] = useState(null);
+  // const [mainCommentIdx, setMainCommenIdx] = useState(null);
 
   const data = [
     { id: '0', flag: false },
@@ -52,14 +52,11 @@ const Comments = () => {
   const handleFirstInput = () => {
     setFirstInput(true);
   };
-  const handleInputMap = idx => {
-    setInputIdx(idx);
-  };
 
   const handleCancelBtn = () => {
-    setInputIdx(null);
+    // setInputIdx(null);
     setFirstInput(null);
-    setMainCommenIdx(null);
+    // setMainCommenIdx(null);
     setReplyIdx(null);
     setUnderComIdx(null);
   };
@@ -117,47 +114,7 @@ const Comments = () => {
       {data.map(({ id }, idx) => (
         <>
           <div key={id} className={st.reviewBlock}>
-            <CommentComp idx={idx} setMainCommenIdx={setMainCommenIdx} />
-            {mainCommentIdx === idx && (
-              <form className={st.userForm}>
-                <div className={st.userFormHeader}>
-                  <div className={st.userIcon}>
-                    <Image
-                      src="/horizontalBookCovers/book.png"
-                      alt=""
-                      width="35"
-                      height="35"
-                      // placeholder="blur"
-                      blurDataURL="/images/blur.jpg"
-                    />
-                  </div>
-                  <input
-                    placeholder="Написать комментарий"
-                    className={st.userInput}
-                    onClick={() => {
-                      handleInputMap(idx);
-                    }}
-                  />
-                </div>
-                <div className={st.userComment}>
-                  {inputIdx === idx && (
-                    <div className={st.controllBtn}>
-                      <Button
-                        typeButton="submit"
-                        text="Отправить"
-                        classNames={st.submitButton}
-                      />
-                      <button
-                        className={st.cancelBtn}
-                        onClick={handleCancelBtn}
-                      >
-                        Отменить
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </form>
-            )}
+            <CommentComp idx={idx} />
           </div>
 
           <>

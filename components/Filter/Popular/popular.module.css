@@ -72,8 +72,11 @@
   cursor: pointer;
   color: #0e263e;
 }
-.up {
+.down {
   transform: rotate(180deg);
+}
+.up {
+  transform: rotate(0deg);
 }
 .dropText {
   margin-left: 10px;

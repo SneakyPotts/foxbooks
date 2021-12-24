@@ -4,6 +4,7 @@ const initialState = {
   authFlag: false,
   status: 'idle',
   error: '',
+  showMenu: false,
 };
 
 export const headerSlice = createSlice({
@@ -14,9 +15,12 @@ export const headerSlice = createSlice({
     AuthAccount: (state, action) => {
       state.authFlag = action.payload;
     },
+    ShowMenu: (state, action) => {
+      state.showMenu = action.payload;
+    },
   },
 });
 
-export const { AuthAccount } = headerSlice.actions;
+export const { AuthAccount, ShowMenu } = headerSlice.actions;
 
 export default headerSlice.reducer;
