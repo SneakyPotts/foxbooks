@@ -85,3 +85,27 @@
     }
   }
 }
+
+.wrapDel {
+  >h2 {
+    color: $color-main;
+    font-family: Merriweather, sans-serif;
+    font-size: 28px;
+    line-height: 35px;
+  }
+  >p{
+    margin-top: 10px;
+    font-family: Ubuntu, sans-serif;
+    color: $color-second;
+    font-size: 14px;
+  }
+  .Button {
+    margin-bottom: 0px;
+    flex-direction: row-reverse;
+    >button {
+      margin-left: 0px;
+      margin-right: 30px;
+      width: 200px;
+    }
+  }
+}
