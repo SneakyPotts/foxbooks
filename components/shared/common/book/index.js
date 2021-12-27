@@ -94,7 +94,9 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
           </a>
         </Link>
 
-        <p className={st.bookAuthor}>Сергей Лукьяненко</p>
+        <Link href="/author">
+          <a className={st.bookAuthor}>Сергей Лукьяненко</a>
+        </Link>
         {flagSwitcher && (
           <div className={classnames(st.extraInfo, { [st.addInfo]: !audio })}>
             <p className={st.bookYear}>

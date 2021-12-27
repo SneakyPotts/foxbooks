@@ -1,0 +1,116 @@
+@import 'styles/variables.scss';
+
+.wrapper {
+  display: flex;
+}
+.authorImg {
+  margin-bottom: 118px;
+}
+.mainBlok {
+  margin-left: 24px;
+  margin-right: 24px;
+  max-width: 588px;
+}
+.authorInfo {
+  margin-bottom: 64px;
+
+  &Name {
+    font-family: Merriweather;
+    font-size: 28px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    color: $color-main;
+  }
+
+  &Count {
+    font-size: 16px;
+    line-height: 1.125;
+    margin-bottom: 20px;
+    color: $color-main;
+  }
+
+  &Btn {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 16px;
+    background: $text-hover;
+    color: $color-categories-btn;
+    border-radius: 5px;
+    &:hover {
+      background-color: $accent-hover;
+    }
+  }
+}
+.authorBiography {
+  font-size: 14px;
+  line-height: 1.43;
+  color: $color-second;
+
+  &Hide {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow: hidden;
+  }
+}
+.showMoreLink {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.dropDownArrow {
+  margin-left: 10px;
+  transform: rotate(180deg);
+}
+.up {
+  transform: rotate(0deg);
+}
+.series {
+  &Title {
+    font-family: Merriweather;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 42px;
+    color: $color-main;
+  }
+
+  &List {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 24px;
+
+    &Book {
+      list-style: none;
+      max-width: 129px;
+      min-width: 129px;
+      height: 292px;
+
+      &Item {
+        max-width: 129px;
+        min-width: 129px;
+        max-height: 195px;
+        > div:first-child {
+          max-width: 129px;
+          min-width: 129px;
+          max-height: 195px;
+        }
+      }
+    }
+  }
+}
+.outOfSeries {
+  margin-top: 60px;
+
+  &Title {
+    font-family: Merriweather;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 42px;
+    color: $color-main;
+  }
+}

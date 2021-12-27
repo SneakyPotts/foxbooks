@@ -29,7 +29,45 @@
     height: 40px;
     padding: 10px 20px;
     border-radius: 45px;
+    outline: none;
     border: 1px solid #d4d4d4;
+
+    &::-webkit-input-placeholder {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    &::-moz-placeholder {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    &:-moz-placeholder {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    &:-ms-input-placeholder {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    &:focus::-webkit-input-placeholder {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    &:focus::-moz-placeholder {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    &:focus:-moz-placeholder {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    &:focus:-ms-input-placeholder {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:focus {
+      padding-left: 64px;
+    }
   }
 
   .inputCastom::placeholder {
@@ -41,6 +79,27 @@
     position: absolute;
     top: 8px;
     right: 20px;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    color: #ff781d;
+  }
+
+  .closeIcon {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    stroke: #0e263e;
+  }
+
+  .active {
+    position: absolute;
+    top: 8px;
+    left: 20px;
     padding: 0;
     width: 24px;
     height: 24px;
@@ -125,30 +184,82 @@
   }
 
   .userMenu:hover {
-    color: #ff781d;
+    color: $text-hover;
   }
 
   .iconUser {
     margin-right: 10px;
   }
 }
-.dropdownArea {
-  // position: relative;
+.overlay {
+  position: fixed;
+  z-index: 5;
+  top: 109px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(52, 52, 52, 0.6);
+  backdrop-filter: blur(10px);
 }
 .dropDown {
   position: absolute;
-  // width: 100%;
-  z-index: 2;
-  background-color: #fff;
-  &Popular {
-    display: flex;
-    justify-content: flex-end;
-    &Item {
-      max-width: 124px;
+  width: 100%;
+  z-index: 5;
+  background-color: $color-categories-btn;
 
-      &:not(:last-child) {
-        margin-right: 50px;
+  &Content {
+    max-width: 994px;
+    margin-left: auto;
+
+    padding-bottom: 40px;
+
+    &Title {
+      font-family: Merriweather;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 1.25;
+      color: $color-main;
+
+      margin-top: 30px;
+
+      margin-bottom: 40px;
+    }
+
+    &Popular {
+      display: flex;
+      // justify-content: flex-end;
+      padding-bottom: 56px;
+      border-bottom: 1px solid $color-star-border;
+
+      &Item {
+        max-width: 124px;
+
+        &:not(:last-child) {
+          margin-right: 50px;
+        }
+
+        &Name {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 1.143;
+          margin-top: 10px;
+          color: $color-main;
+        }
       }
     }
   }
+}
+.border {
+  border-top: 1px solid $color-star-border;
+}
+.authorsList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 20px;
+}
+.authorName {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.143;
+  color: $color-main;
 }
