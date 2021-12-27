@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Ubuntu", sans-serif, "Merriweather", serif;
+  font-family: 'Ubuntu', sans-serif, 'Merriweather', serif;
   background-color: #fafafa;
 }
 
@@ -10,7 +10,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
 
 *,
 *::before,
@@ -55,7 +54,7 @@ ol[class] {
 }
 
 .container {
-  width: 1200px;
+  max-width: 1200px;
   margin: auto;
 }
 .nextArrow {
@@ -120,4 +119,10 @@ ol[class] {
 }
 .showAll {
   margin-left: 5px;
+}
+.nonScroll {
+  overflow: hidden;
+}
+.blur {
+  filter: blur(10px);
 }

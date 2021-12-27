@@ -98,7 +98,9 @@ const AboutBook = ({ audio }) => {
             <div className={st.aboutBook}>
               <h1 className={st.bookTitle}>{book.title}</h1>
               <p className={st.bookAuthor}>
-                <span className={st.bookAuthorName}>{book.author}</span>
+                <Link href="/author">
+                  <a className={st.bookAuthorName}>{book.author}</a>
+                </Link>
                 <Link href="#">
                   <a className={st.bookAuthorLink}>(все книги автора)</a>
                 </Link>
