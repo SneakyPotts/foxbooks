@@ -1,0 +1,60 @@
+@import 'styles/variables.scss';
+
+.reviewsList {
+  margin-top: 40px;
+}
+.review {
+  display: flex;
+  margin-bottom: 40px;
+
+  &Book {
+    max-width: 129px;
+    margin-right: 24px;
+
+    &Raiting {
+      display: flex;
+      justify-content: space-between;
+      //   margin-top: 5px;
+    }
+
+    &Name {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.143;
+      margin: 10px 0;
+      color: $color-main;
+    }
+
+    &Autor {
+      font-size: 14px;
+      line-height: 1.43;
+      color: $color-second;
+    }
+  }
+
+  &Date {
+    font-size: 12px;
+    line-height: 1.17;
+    color: $color-third;
+    margin-bottom: 23px;
+  }
+
+  &Head {
+    width: 100%;
+    padding-bottom: 13px;
+    border-bottom: 1px solid $color-star-border;
+  }
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &Img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+}

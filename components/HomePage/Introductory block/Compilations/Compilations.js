@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
+import ShowAll from '../../../shared/common/showAll/ShowAll';
 
 const Compilations = () => {
   const dataTest = [
@@ -20,14 +21,8 @@ const Compilations = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.wrapHeader}>
-        <h2 className={styles.title}>Подборки</h2>
-        <Link href="/compilations">
-          <a className={styles.newLink}>
-            Смотреть все <ArrowRight className="showAll" />
-          </a>
-        </Link>
-      </div>
+      <ShowAll title="Подборки" url="/selections" />
+
       <Swiper
         modules={[Navigation]}
         navigation={{

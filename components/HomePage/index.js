@@ -12,6 +12,7 @@ import Introductory from './Introductory block';
 import About from './About';
 import books from '../data/books.json';
 import Book from '../shared/common/book';
+import ShowAll from '../shared/common/showAll/ShowAll';
 import css from './home.module.css';
 
 const HomeView = () => {
@@ -21,14 +22,8 @@ const HomeView = () => {
         <Categories />
         <div className={css.mainBlock}>
           <Alphabet />
-          <div className={css.new}>
-            <h2 className={css.newTitle}>Новинки книг</h2>
-            <Link href="/new">
-              <a className={css.newLink}>
-                Смотреть все <ArrowRight className="showAll" />
-              </a>
-            </Link>
-          </div>
+          <ShowAll title="Новинки книг" url="/new" />
+
           <Swiper
             modules={[Navigation]}
             spaceBetween={24}

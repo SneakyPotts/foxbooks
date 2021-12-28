@@ -10,19 +10,13 @@ import Like from '../../../shared/icons/heart';
 import Comment from '../../../shared/icons/comment';
 import dataReview from '../../../data/reviews.json';
 import st from './reviews.module.scss';
+import ShowAll from '../../../shared/common/showAll/ShowAll';
 
 const Reviews = () => {
   return (
     <>
       {' '}
-      <div className={st.containerReviews}>
-        <h2 className={st.title}>Рецензии</h2>
-        <Link href="/reviews">
-          <a className={st.newLink}>
-            Смотреть все <ArrowRight className="showAll" />
-          </a>
-        </Link>
-      </div>
+      <ShowAll title="Рецензии" url="/reviews" text="Показать все" />
       <Swiper
         modules={[Navigation]}
         navigation={{

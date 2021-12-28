@@ -1,16 +1,31 @@
 @import 'styles/variables.scss';
 
 .showAll {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &Title {
+    font-family: Merriweather;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.25;
+    color: $color-main;
+  }
+}
+
+.showAllLink {
   display: flex;
   align-items: center;
   margin: 0;
   margin-top: 8px;
-  margin-bottom: 40px;
   color: $color-main;
   stroke: $color-main;
-}
-.showAll:hover {
-  cursor: pointer;
-  color: $text-hover;
-  stroke: $text-hover;
+
+  &:hover {
+    cursor: pointer;
+    color: $text-hover;
+    stroke: $text-hover;
+  }
 }
