@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,6 +6,7 @@ import 'swiper/css/bundle';
 import ArrowRight from '../../../../public/chevron-right.svg';
 import Book from '../../../shared/common/book';
 import css from './audioBooks.module.scss';
+import ShowAll from '../../../shared/common/showAll/ShowAll';
 
 const AudioBooks = () => {
   const testData = [
@@ -21,14 +22,8 @@ const AudioBooks = () => {
 
   return (
     <div className={css.container}>
-      <div className={css.wrapHeader}>
-        <h2 className={css.title}>Некогда читать - слушайте!</h2>
-        <Link href="/audioBooks">
-          <a className={css.newLink}>
-            Смотреть все <ArrowRight className="showAll" />
-          </a>
-        </Link>
-      </div>
+      <ShowAll title="Некогда читать - слушайте!" url="/audiobooks" />
+
       <Swiper
         modules={[Navigation]}
         navigation={{

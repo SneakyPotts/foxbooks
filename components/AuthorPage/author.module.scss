@@ -3,8 +3,17 @@
 .wrapper {
   display: flex;
 }
+.wrapperMain {
+  display: flex;
+  margin-top: 64px;
+}
+.centralBlock {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 384px);
+}
 .authorImg {
-  margin-bottom: 118px;
+  // margin-bottom: 118px;
 }
 .mainBlok {
   margin-left: 24px;
@@ -13,6 +22,8 @@
 }
 .authorInfo {
   margin-bottom: 64px;
+  max-width: 588px;
+  margin: 0 24px;
 
   &Name {
     font-family: Merriweather;
@@ -102,7 +113,7 @@
     }
   }
 }
-.outOfSeries {
+.selection {
   margin-top: 60px;
 
   &Title {
@@ -112,5 +123,146 @@
     line-height: 1.25;
     margin-bottom: 42px;
     color: $color-main;
+  }
+  &List {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 24px;
+
+    &Book {
+      list-style: none;
+      max-width: 129px;
+      min-width: 129px;
+      // height: 292px;
+
+      &Item {
+        max-width: 129px;
+        min-width: 129px;
+        // max-height: 195px;
+        > div:first-child {
+          max-width: 129px;
+          min-width: 129px;
+          // max-height: 195px;
+        }
+      }
+
+      &Author {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.125;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin: 10px 0;
+        color: $color-second;
+      }
+
+      &Count {
+        font-size: 14px;
+        line-height: 1.43;
+        color: $color-third;
+      }
+    }
+  }
+}
+.defolt {
+  max-height: 292px;
+}
+.similarAuthors {
+  margin-top: 62px;
+  margin-bottom: 56px;
+}
+.compilTitle {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-bottom: 40px;
+  color: $color-main;
+}
+.compilBookCover {
+  position: relative;
+  border-radius: 5px;
+
+  &Stat {
+    font-size: 12px;
+    line-height: 1.167;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 62px;
+    height: 24px;
+    padding: 5px 10px;
+    color: $color-main;
+    background-color: $color-categories-btn;
+    border-radius: 58px;
+  }
+}
+.compilBookTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.143;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 10px;
+  color: $color-main;
+}
+.btnCompil {
+  top: 29px;
+}
+
+.reviewBlock {
+  font-size: 16px;
+  line-height: 1.125;
+  height: 86px;
+  padding: 20px;
+  color: #909190;
+  background: $color-bg-icon;
+  border-radius: 5px;
+
+  &Title {
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: $color-main;
+  }
+}
+.advertisingBlok {
+  display: block;
+  // margin-left: 24px;
+  max-width: 384px;
+  min-height: 1104px;
+}
+.banner {
+  height: 1104px;
+}
+.banner:not(:last-child) {
+  margin-bottom: 40px;
+}
+.popUp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: 60px;
+  padding: 18px 0;
+  color: $color-categories-btn;
+  background: $color-main;
+  transition: 5s;
+}
+.popUpLink {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    // bottom: -5px;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $color-categories-btn;
   }
 }

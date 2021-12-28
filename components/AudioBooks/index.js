@@ -39,7 +39,7 @@ const AudioBooks = () => {
           </Link>
         </button>
       ))}
-      <ShowAll />
+      <ShowAll url="#" text="Показать все" />
       <BookFilters />
       <BooksMainBlock audio={true} />
     </div>
