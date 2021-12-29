@@ -148,7 +148,11 @@ const AuthorPage = () => {
             <Categories />
             <div className={st.mainBlok}>
               <div className={st.series}>
-                <h2 className={st.seriesTitle}>Серия книг: Гарри Поттер</h2>
+                <Link href="/series">
+                  <a>
+                    <h2 className={st.seriesTitle}>Серия книг: Гарри Поттер</h2>
+                  </a>
+                </Link>
                 <ul className={st.seriesList}>
                   {bookSeries.map(book => (
                     <li key={book.id} className={st.seriesListBook}>
@@ -225,7 +229,7 @@ const AuthorPage = () => {
               <div className={st.selection}>
                 <Link href="/reviews">
                   <a>
-                    <h2 className={st.selectionTitle}>Рецензии</h2>
+                    <h2 className={st.seriesTitle}>Рецензии</h2>
                   </a>
                 </Link>
                 <div className={st.reviewBlock}>
@@ -234,7 +238,11 @@ const AuthorPage = () => {
                 </div>
               </div>
               <div className={st.selection}>
-                <h2 className={st.selectionTitle}>Цитаты</h2>
+                <Link href="/quotes">
+                  <a>
+                    <h2 className={st.seriesTitle}>Цитаты</h2>
+                  </a>
+                </Link>{' '}
                 <div className={st.reviewBlock}>
                   <h3 className={st.reviewBlockTitle}>Цитаты из книг</h3>
                   <p>27697</p>

@@ -62,7 +62,7 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
             />
           </a>
         </Link>
-        <span className={st.bookCategorie}>Фентези</span>
+        {!flagSwitcher && <span className={st.bookCategorie}>Фентези</span>}
         {audio && (
           <span className={st.audioIcon}>
             <Headphones />
@@ -76,8 +76,10 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
             [st.starOrderList]: flagSwitcher && !audio,
           })}
         >
-          <Stars />
-          <div>
+          <div className={st.stars}>
+            <Stars />
+          </div>
+          <div className={classnames({ [st.raitingAmount]: flagSwitcher })}>
             <span>4,9 </span>
             {!similar && <span>(450)</span>}
           </div>
