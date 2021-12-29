@@ -7,7 +7,7 @@
 
   .helpTitle {
     max-width: 588px;
-    >h1 {
+    > h1 {
       font-family: Merriweather, sans-serif;
       font-size: 24px;
       line-height: 30px;
@@ -15,7 +15,7 @@
       color: $color-main;
     }
 
-    >p{
+    > p {
       font-family: Ubuntu, sans-serif;
       font-size: 14px;
       color: $color-second;
@@ -23,6 +23,39 @@
   }
 
   .form {
-    margin-top: 40px;
+    max-width: 588px;
+    .inputWidth {
+      margin-top: 40px;
+      max-width: 298px;
+      padding-bottom: 0;
+    }
+  }
+}
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+
+  > button:nth-child(2) {
+    margin-left: 0;
+    margin-right: 30px;
+  }
+}
+.inputArea {
+  min-width: 298px;
+  max-width: 588px;
+  background: $color-categories-btn;
+  border: 1px solid $color-star-border;
+  border-radius: 5px;
+}
+.textArea {
+  resize: none;
+  width: 100%;
+  // outline: none;
+  // border: none;
+  padding: 20px;
+
+  &Clip {
+    display: flex;
   }
 }
