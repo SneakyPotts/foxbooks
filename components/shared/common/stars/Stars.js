@@ -3,7 +3,7 @@ import ReactStars from 'react-rating-stars-component';
 
 const Stars = ({ activeStart = false, value = 3.5, color = '#D5D5D5' }) => {
   const secondExample = {
-    size: 15,
+    size: 14,
     count: 5,
     value: value,
     color: color,

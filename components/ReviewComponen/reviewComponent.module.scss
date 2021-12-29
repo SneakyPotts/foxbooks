@@ -1,0 +1,110 @@
+@import 'styles/variables.scss';
+
+.review {
+  display: flex;
+  margin-bottom: 40px;
+
+  &Book {
+    min-width: 129px;
+    margin-right: 24px;
+
+    &Raiting {
+      display: flex;
+      justify-content: space-between;
+
+      & span:not(:last-of-type) {
+        margin-right: 3px;
+      }
+    }
+
+    &Name {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.143;
+      margin: 10px 0;
+      color: $color-main;
+    }
+
+    &Autor {
+      font-size: 14px;
+      line-height: 1.43;
+      color: $color-second;
+    }
+  }
+
+  &Date {
+    font-size: 12px;
+    line-height: 1.17;
+    color: $color-third;
+    margin-bottom: 20px;
+  }
+
+  &Head {
+    width: 100%;
+    padding-bottom: 13px;
+    border-bottom: 1px solid $color-star-border;
+  }
+}
+.quotes {
+  padding-bottom: 0;
+  border: none;
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &Img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+}
+.reviewRaiting {
+  display: flex;
+  justify-content: flex-start;
+  & p {
+    margin-right: 10px;
+  }
+
+  & span {
+    margin-right: 5px;
+  }
+}
+.reviewTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.125;
+  margin-top: 30px;
+  margin-bottom: 8px;
+  color: $color-main;
+}
+.reviewText {
+  font-size: 14px;
+  line-height: 1.43;
+  color: $color-second;
+
+  &Hide {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow: hidden;
+  }
+}
+.showMoreLink {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.dropDownArrow {
+  margin-left: 10px;
+  transform: rotate(180deg);
+}
+.up {
+  transform: rotate(0deg);
+}
