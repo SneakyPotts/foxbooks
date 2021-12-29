@@ -1,0 +1,28 @@
+@import 'styles/variables';
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 30px;
+
+  .helpTitle {
+    max-width: 588px;
+    >h1 {
+      font-family: Merriweather, sans-serif;
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 20px;
+      color: $color-main;
+    }
+
+    >p{
+      font-family: Ubuntu, sans-serif;
+      font-size: 14px;
+      color: $color-second;
+    }
+  }
+
+  .form {
+    margin-top: 40px;
+  }
+}

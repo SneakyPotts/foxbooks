@@ -3,10 +3,9 @@ import SupportCom from "../components/Support/Support";
 
 const Support = () => {
     return (
-        <div>
-            1111111111
-            {/*<SupportCom/>*/}
-        </div>
+        <>
+            <SupportCom/>
+        </>
     );
 };
 
