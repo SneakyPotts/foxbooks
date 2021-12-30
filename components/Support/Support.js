@@ -9,9 +9,6 @@ import styles from './index.module.scss';
 const SupportCom = () => {
   const inputFile = useRef();
   const [file64, setFile64] = useState(null);
-  const [imgGroup, setImgGroup] = useState([]);
-
-  let test = [];
 
   const {
     register,
@@ -29,31 +26,37 @@ const SupportCom = () => {
     inputFile.current.click();
   };
 
-  //   renderListImages(arrayPhotoLoaded);
-
   const generateBase64img = data => {
+    let promisesAll = []
     for (let i = 0; i < data.length; i++) {
-      console.log(data[i]);
-      (function (file) {
+      let item = data[i]
+
+      const onloadPhoto = new Promise((resolver) => {
         const reader = new FileReader();
+        reader.readAsDataURL(item);
         reader.onload = function (e) {
-          setImgGroup([...imgGroup, { name: e.target.result }]);
+          resolver({test: e.target.result})
         };
-        reader.readAsDataURL(file);
-      })(data[i]);
+      })
+      promisesAll[i] = onloadPhoto
+
     }
+    Promise.all(promisesAll).then(values => {
+      setFile64(values)
+    });
   };
 
-  console.log(imgGroup);
-  console.log(test);
-  const onChange = e => {
-    let reader = new FileReader();
+  const onChange =  e => {
     const files = Array.from(e.target.files);
-    generateBase64img(files);
+     generateBase64img(files)
   };
 
+  const [asd, asdasdasdas] = useState(null);
   return (
     <div className={styles.container}>
+      <div onClick={()=>asdasdasdas(1)}>
+        ОБНОВЛЕНИЕ СОСТОЯНИЕ
+      </div>
       <div className={styles.helpTitle}>
         <h1>Нужна помощь? </h1>
         <p>
@@ -88,19 +91,13 @@ const SupportCom = () => {
               <Clip />
               <p>Файл</p>
             </div>
-            {imgGroup?.map(r => {
+            {file64?.map(r => {
               return (
                 <>
-                  <img src={r.name} />
+                  <img height='100px' width='100px' src={r.test} />
                 </>
               );
             })}
-            {/* {file64 ? (
-              <>
-              
-              </>
-            ) : null} */}
-
             <input
               multiple
               onChange={onChange}
