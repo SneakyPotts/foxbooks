@@ -39,7 +39,6 @@ const SupportCom = () => {
         };
       })
       promisesAll[i] = onloadPhoto
-
     }
     Promise.all(promisesAll).then(values => {
       setFile64(values)
