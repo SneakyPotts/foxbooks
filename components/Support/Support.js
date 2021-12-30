@@ -35,7 +35,6 @@ const SupportCom = () => {
     let promisesAll = [];
     for (let i = 0; i < data.length; i++) {
       let item = data[i];
-
       const onloadPhoto = new Promise(resolver => {
         const reader = new FileReader();
         reader.readAsDataURL(item);

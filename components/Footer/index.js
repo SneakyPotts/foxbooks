@@ -28,7 +28,7 @@ const Footer = () => {
             <Link href="#">
               <a className={st.page}>Аудиокниги</a>
             </Link>
-            <Link href="#">
+            <Link href="/holders">
               <a className={st.page}>Правообладателям</a>
             </Link>
             <Link href="/support">
