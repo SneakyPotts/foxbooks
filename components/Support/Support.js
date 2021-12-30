@@ -35,7 +35,7 @@ const SupportCom = () => {
         const reader = new FileReader();
         reader.readAsDataURL(item);
         reader.onload = function (e) {
-          resolver({test: e.target.result})
+          resolver({image: e.target.result})
         };
       })
       promisesAll[i] = onloadPhoto
@@ -94,7 +94,7 @@ const SupportCom = () => {
             {file64?.map(r => {
               return (
                 <>
-                  <img height='100px' width='100px' src={r.test} />
+                  <img height='100px' width='100px' src={r.image} />
                 </>
               );
             })}
