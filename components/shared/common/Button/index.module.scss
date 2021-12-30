@@ -1,11 +1,12 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .button {
   font-family: Ubuntu, sans-serif;
   outline: none;
   border: none;
   text-align: center;
-  width: 100%;
+  width: 200px;
+  height: 40px;
   padding: 10px;
   font-size: 14px;
   background-color: $text-hover;
