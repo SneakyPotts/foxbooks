@@ -4,6 +4,7 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router'
 import Menu from './Menu/Menu';
 import User from '../../public/user.svg';
 import Logo from '../Logo';
@@ -11,13 +12,13 @@ import GroupForms from './groupForms/GroupForms';
 import Setting from '../shared/icons/setting';
 import Exit from '../shared/icons/exit';
 import Close from '../../public/close.svg';
-import { AuthAccount, ShowMenu } from './headerSlice';
+import {AuthAccount, ShowMenu} from './headerSlice';
 import st from './header.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const router = useRouter()
   const { authFlag, showMenu } = useSelector(state => state.headerSlice);
-
   const [modal, setModal] = useState(false);
   const [flagSettings, setFlagSettings] = useState(false);
 
@@ -77,124 +78,126 @@ const Header = () => {
     { id: '8', author: 'Джордж Оруэлл' },
     { id: '9', author: 'Антуан де Сент-Экзюпери' },
   ];
-  console.log(showMenu);
 
   return (
-    <div className={st.main}>
-      <div className={st.container}>
-        <header className={st.header}>
-          <Logo />
-          <div className={st.input}>
-            <input
-              type="text"
-              placeholder="Искать книги, авторов, жанры, издательства"
-              className={st.inputCastom}
-              onClick={onSearchInput}
-            />
-            <FiSearch
-              className={classNames({
-                [st.iconSearch]: !showMenu,
-                [st.active]: showMenu,
-              })}
-            />
-            {showMenu && (
-              <span className={st.closeIcon} onClick={closeModal}>
+      <>
+        {!router.pathname.includes('reader') && <div className={st.main}>
+          <div className={st.container}>
+            <header className={st.header}>
+              <Logo />
+              <div className={st.input}>
+                <input
+                    type="text"
+                    placeholder="Искать книги, авторов, жанры, издательства"
+                    className={st.inputCastom}
+                    onClick={onSearchInput}
+                />
+                <FiSearch
+                    className={classNames({
+                      [st.iconSearch]: !showMenu,
+                      [st.active]: showMenu,
+                    })}
+                />
+                {showMenu && (
+                    <span className={st.closeIcon} onClick={closeModal}>
                 <Close />
               </span>
-            )}
+                )}
+              </div>
+              <div className={st.menu}>
+                <FiBell className={st.iconBell} />
+                {authFlag ? (
+                    <div
+                        onClick={() => setFlagSettings(!flagSettings)}
+                        className={st.avatarUser}
+                    >
+                      <div>
+                        <Image
+                            src="/horizontalBookCovers/book.png"
+                            alt=""
+                            width="40"
+                            height="40"
+                            placeholder="blur"
+                            blurDataURL="/images/blur.jpg"
+                        />
+                      </div>
+                      <div
+                          className={classNames(st.settingAccount, {
+                            [st.settingAccountActive]: flagSettings,
+                          })}
+                      >
+                        <ul>
+                          <li>
+                            <Setting />
+                            <Link href="/settings">
+                              <a>Настройки профиля</a>
+                            </Link>
+                          </li>
+                          <li onClick={() => dispatch(AuthAccount(false))}>
+                            <Exit />
+                            <span>Выйти</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                ) : (
+                    <div onClick={() => setModal(!modal)} className={st.userMenu}>
+                      <User className={st.iconUser} />
+                      Войти
+                    </div>
+                )}
+              </div>
+            </header>
           </div>
-          <div className={st.menu}>
-            <FiBell className={st.iconBell} />
-            {authFlag ? (
-              <div
-                onClick={() => setFlagSettings(!flagSettings)}
-                className={st.avatarUser}
-              >
-                <div>
-                  <Image
-                    src="/horizontalBookCovers/book.png"
-                    alt=""
-                    width="40"
-                    height="40"
-                    placeholder="blur"
-                    blurDataURL="/images/blur.jpg"
-                  />
-                </div>
+          {showMenu && (
+              <div className={st.overlay} onClick={closeModal}>
                 <div
-                  className={classNames(st.settingAccount, {
-                    [st.settingAccountActive]: flagSettings,
-                  })}
+                    className={classNames(st.dropDown)}
+                    onClick={e => e.stopPropagation()}
                 >
-                  <ul>
-                    <li>
-                      <Setting />
-                      <Link href="/settings">
-                        <a>Настройки профиля</a>
-                      </Link>
-                    </li>
-                    <li onClick={() => dispatch(AuthAccount(false))}>
-                      <Exit />
-                      <span>Выйти</span>
-                    </li>
-                  </ul>
+                  <div className={classNames('container', st.border)}>
+                    <div className={st.dropDownContent}>
+                      <h2 className={st.dropDownContentTitle}>Часто ищут</h2>
+                      <ul className={st.dropDownContentPopular}>
+                        {popularBooks.map(it => (
+                            <li key={it.id} className={st.dropDownContentPopularItem}>
+                              <Image
+                                  src={it.img}
+                                  width={124}
+                                  height={187}
+                                  // layout="fill"
+                                  placeholder="blur"
+                                  blurDataURL="/images/blur.jpg"
+                              />
+                              <h4 className={st.dropDownContentPopularItemName}>
+                                {it.name}
+                              </h4>
+                            </li>
+                        ))}
+                      </ul>
+                      <h2 className={st.dropDownContentTitle}>Авторы</h2>
+                      <ul className={st.authorsList}>
+                        {authors.map(({ id, author }) => (
+                            <Link href="#" key={id} className={st.author}>
+                              <a>
+                                <h4 className={st.authorName}>{author}</h4>
+                              </a>
+                            </Link>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-            ) : (
-              <div onClick={() => setModal(!modal)} className={st.userMenu}>
-                <User className={st.iconUser} />
-                Войти
-              </div>
-            )}
+          )}
+          <div className="container">
+            <Menu />
           </div>
-        </header>
-      </div>
-      {showMenu && (
-        <div className={st.overlay} onClick={closeModal}>
-          <div
-            className={classNames(st.dropDown)}
-            onClick={e => e.stopPropagation()}
-          >
-            <div className={classNames('container', st.border)}>
-              <div className={st.dropDownContent}>
-                <h2 className={st.dropDownContentTitle}>Часто ищут</h2>
-                <ul className={st.dropDownContentPopular}>
-                  {popularBooks.map(it => (
-                    <li key={it.id} className={st.dropDownContentPopularItem}>
-                      <Image
-                        src={it.img}
-                        width={124}
-                        height={187}
-                        // layout="fill"
-                        placeholder="blur"
-                        blurDataURL="/images/blur.jpg"
-                      />
-                      <h4 className={st.dropDownContentPopularItemName}>
-                        {it.name}
-                      </h4>
-                    </li>
-                  ))}
-                </ul>
-                <h2 className={st.dropDownContentTitle}>Авторы</h2>
-                <ul className={st.authorsList}>
-                  {authors.map(({ id, author }) => (
-                    <Link href="#" key={id} className={st.author}>
-                      <a>
-                        <h4 className={st.authorName}>{author}</h4>
-                      </a>
-                    </Link>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      <div className="container">
-        <Menu />
-      </div>
 
-      <GroupForms setModal={setModal} modal={modal} />
-    </div>
+          <GroupForms setModal={setModal} modal={modal} />
+        </div>}
+      </>
+
   );
 };
 export default Header;

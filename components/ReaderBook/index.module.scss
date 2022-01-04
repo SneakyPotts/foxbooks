@@ -1,0 +1,89 @@
+@import "styles/variables";
+
+.containerHeader {
+  max-width: 1200px;
+  width: 100%;
+  margin: 23px auto 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logoWrap {
+    display: flex;
+    align-items: center;
+    .arrow {
+      stroke: $color-main;
+      transform: rotate(180deg);
+      margin-right: 14px;
+    }
+  }
+
+  .iconGroup {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    >div {
+      cursor: pointer;
+      :hover {
+        path {
+          fill: $text-hover;
+          stroke: $text-hover;
+        }
+      }
+    }
+
+    .control {
+      position: absolute;
+      padding: 30px 20px;
+      max-width: 279px;
+      width: 279px;
+      top: 0;
+      transform: translate(-40px, 43px);
+      box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
+      border: 1px solid $color-bg-icon;
+      border-radius: 10px;
+      cursor: default;
+      background: $color-categories-btn;
+      z-index: 50;
+    }
+  }
+}
+
+.wrapText {
+  max-width: 792px;
+  margin: 0 auto;
+  >h1 {
+    font-family: Merriweather, sans-serif;
+    font-size: 28px;
+    line-height: 35px;
+    color: $color-main;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  >span {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-family: Ubuntu, sans-serif;
+    color: $color-second;
+  }
+  >h3 {
+    margin: 26px auto 30px;
+    color: $color-main;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  >p{
+    font-family: Ubuntu, sans-serif;
+    font-size: 16px;
+    color: $color-second;
+    text-align: center;
+    text-indent: 20px;
+    line-height: 140%;
+  }
+}
