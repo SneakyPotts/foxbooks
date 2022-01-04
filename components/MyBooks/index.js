@@ -1,12 +1,20 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { FiSearch } from 'react-icons/fi';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import ArrowRight from '../../public/chevron-right.svg';
 import Headphones from '../shared/icons/headphones';
+import ArrowAll from '../../public/chevron-down.svg';
+import All from '../../public/all.svg';
+import BookMark from '../../public/bookmark.svg';
+import OpenBook from '../../public/book-open.svg';
+import Flag from '../../public/flag.svg';
+
 import st from './myBooks.module.scss';
-import link from 'next/link';
 
 const MyBooks = () => {
   const dataBooks = [
@@ -73,6 +81,66 @@ const MyBooks = () => {
     { text: 'Цитаты', count: 5 },
     { text: 'Авторы', count: 6 },
   ];
+  const options = [
+    { option: 'Все', svg: <All /> },
+    { option: 'Хочу прочитать', svg: <BookMark /> },
+    { option: 'Читаю', svg: <OpenBook /> },
+    { option: 'Прочитано', svg: <Flag /> },
+  ];
+  const popular = [
+    { option: 'Популярные' },
+    { option: 'По дате добавления' },
+    { option: 'По алфавиту' },
+  ];
+  const books = [
+    { id: '0' },
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+    { id: '4' },
+    { id: '5' },
+    { id: '6' },
+  ];
+
+  const [menu, setMenu] = useState(false);
+  const [filter, setFilter] = useState(false);
+  const [filterIdx, setFilterIdx] = useState(null);
+  const [showInput, setShowInput] = useState(false);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    body.addEventListener('click', close);
+
+    return () => {
+      body.removeEventListener('click', close);
+    };
+  }, []);
+
+  const togle = e => {
+    e.stopPropagation();
+    setMenu(!menu);
+  };
+
+  const handleClick = e => {
+    e.stopPropagation();
+    setFilter(!filter);
+  };
+
+  const filterClick = idx => {
+    setFilterIdx(idx);
+  };
+
+  const handleInput = e => {
+    e.stopPropagation();
+    setShowInput(true);
+  };
+
+  const close = () => {
+    setShowInput(false);
+    setFilter(null);
+    setMenu(false);
+  };
+
   return (
     <>
       <div className="container">
@@ -135,6 +203,83 @@ const MyBooks = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="container">
+        <div className={st.header}>
+          <div className={st.options}>
+            <span className={st.optionsLabel}>Статус</span>
+            <div className={st.dropdown}>
+              <button
+                className={classnames(st.dropdownBtn, { [st.active]: menu })}
+                onClick={togle}
+              >
+                Все
+                <ArrowAll
+                  className={classnames(st.down, {
+                    [st.up]: menu,
+                  })}
+                />
+              </button>
+              {menu && (
+                <ul className={st.dropdownList}>
+                  {options.map(opt => (
+                    <li className={st.dropdownListItem}>
+                      {opt.svg}
+                      <span>{opt.option}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+          <div className={st.filter}>
+            <div className={st.input} onClick={handleInput}>
+              <FiSearch
+                className={classnames(st.inputSvg, {
+                  [st.inputSvgIcon]: showInput,
+                })}
+              />
+              {showInput && (
+                <input placeholder="Искать книгу" className={st.inputSearch} />
+              )}
+            </div>
+            <div className={st.dropdownPopular}>
+              <button
+                className={classnames(st.dropdownPopularBtn, {
+                  [st.active]: filter,
+                })}
+                onClick={handleClick}
+              >
+                Популярные
+                <ArrowAll
+                  className={classnames(st.down, {
+                    [st.up]: filter,
+                  })}
+                />
+              </button>
+              {filter && (
+                <ul
+                  className={st.dropdownPopularList}
+                  onClick={e => e.stopPropagation()}
+                >
+                  {popular.map((opt, idx) => (
+                    <li
+                      className={st.dropdownPopularListItem}
+                      onClick={() => filterClick(idx)}
+                    >
+                      <span
+                        className={classnames(st.radio, {
+                          [st.radioActive]: filterIdx === idx,
+                        })}
+                      ></span>
+                      <span>{opt.option}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
