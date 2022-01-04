@@ -17,10 +17,10 @@ export const headerSlice = createSlice({
     },
     ShowMenu: (state, action) => {
       state.showMenu = action.payload;
-    },
+    }
   },
 });
 
-export const { AuthAccount, ShowMenu } = headerSlice.actions;
+export const { AuthAccount, ShowMenu, ShowHeader } = headerSlice.actions;
 
 export default headerSlice.reducer;
