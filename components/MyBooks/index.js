@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
+import Book from '../shared/common/book';
 import ArrowRight from '../../public/chevron-right.svg';
 import Headphones from '../shared/icons/headphones';
 import ArrowAll from '../../public/chevron-down.svg';
@@ -13,6 +14,7 @@ import All from '../../public/all.svg';
 import BookMark from '../../public/bookmark.svg';
 import OpenBook from '../../public/book-open.svg';
 import Flag from '../../public/flag.svg';
+import Delete from '../../public/delete.svg';
 
 import st from './myBooks.module.scss';
 
@@ -92,15 +94,15 @@ const MyBooks = () => {
     { option: 'По дате добавления' },
     { option: 'По алфавиту' },
   ];
-  const books = [
-    { id: '0' },
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' },
-    { id: '6' },
-  ];
+  // const books = [
+  //   { id: '0' },
+  //   { id: '1' },
+  //   { id: '2' },
+  //   { id: '3' },
+  //   { id: '4' },
+  //   { id: '5' },
+  //   { id: '6' },
+  // ];
 
   const [menu, setMenu] = useState(false);
   const [filter, setFilter] = useState(false);
@@ -139,6 +141,21 @@ const MyBooks = () => {
     setShowInput(false);
     setFilter(null);
     setMenu(false);
+  };
+  const [books, setBooks] = useState([
+    { id: '0' },
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+    { id: '4' },
+    { id: '5' },
+    { id: '6' },
+  ]);
+  console.log(books);
+
+  const deleteBook = idx => {
+    console.log(1111);
+    setBooks(books.filter((book, index) => book[index] === idx));
   };
 
   return (
@@ -279,6 +296,19 @@ const MyBooks = () => {
               )}
             </div>
           </div>
+        </div>
+        <div className={st.bookList}>
+          {books.map((book, idx) => (
+            <div key={book.id} className={st.bookListItem}>
+              <Book />
+              <span
+                className={st.bookListItemDelete}
+                onClick={() => deleteBook(idx)}
+              >
+                <Delete />
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </>
