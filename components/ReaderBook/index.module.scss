@@ -1,13 +1,36 @@
 @import "styles/variables";
 
-@mixin changeStyle($bg, $bg-c, $cb, $bb, $h1-color, $span-color, $h3-color, $p-color,) {
+@mixin changeStyle($bg, $bg-c, $cb, $bb, $h1-color, $span-color, $h3-color, $p-color, $color-svg:$color-star-border,
+ $iconRight: $color-third, $color-arrow:$color-main) {
   background: $bg;
-  .containerHeader .iconGroup .control {
-    background: $bg-c;
-    border: 1px solid $cb;
+  .containerHeader {
+    .arrow {
+      >path {
+        stroke: $color-arrow;
+      }
+    }
 
-    .controlBlock {
-      border-bottom: 1px solid $bb;
+    .svgChange {
+      >g>path {
+        fill: $color-svg;
+      }
+    }
+
+    .iconGroup{
+      .iconRight {
+        >path {
+          fill: $iconRight;
+          stroke: $iconRight;
+        }
+      }
+      .control {
+        background: $bg-c;
+        border: 1px solid $cb;
+
+        .controlBlock {
+          border-bottom: 1px solid $bb;
+        }
+      }
     }
   }
 
@@ -34,7 +57,8 @@
 
   &Default {
     @include changeStyle($bg:#ffffff, $bg-c:$color-categories-btn, $cb:$color-bg-icon, $bb:$color-star-border,
-            $h1-color:$color-main, $span-color:$color-second, $h3-color:$color-main, $p-color:$color-second)
+            $h1-color:$color-main, $span-color:$color-second, $h3-color:$color-main, $p-color:$color-second,
+    )
   }
 
   &Fifth {
@@ -44,22 +68,27 @@
 
   &Fourth {
     @include changeStyle($bg:$fourth, $bg-c:#FDF8EA, $cb:rgba(127, 96, 76, 0.2), $bb:$color-star-border,
-    $h1-color:#7F604C, $span-color:#7F604C, $h3-color:#7F604C, $p-color:$color-second)
+    $h1-color:#7F604C, $span-color:#7F604C, $h3-color:#7F604C, $p-color:$color-second, $iconRight: #7F604C,
+    $color-arrow:#7F604C)
   }
 
   &Third {
     @include changeStyle($bg:$third, $bg-c:$third, $cb:$color-second, $bb:$color-star-border,
-    $h1-color:#D4D4D4, $span-color:#D4D4D4, $h3-color:#D4D4D4, $p-color:#696969)
+    $h1-color:#D4D4D4, $span-color:#D4D4D4, $h3-color:#D4D4D4, $p-color:#696969, $iconRight: $color-star-border,
+    $color-arrow: $color-star-border)
   }
 
   &Second {
     @include changeStyle($bg:$third, $bg-c:$third, $cb:$color-second, $bb:$color-third,
-    $h1-color:$color-third, $span-color:$color-third, $h3-color:$color-third, $p-color:#585858)
+    $h1-color:$color-third, $span-color:$color-third, $h3-color:$color-third, $p-color:#585858,
+    $color-svg:$color-third, $color-arrow: $color-third)
   }
 
   &First {
     @include changeStyle($bg:$third, $bg-c:$third, $cb:#676767, $bb:#676767,
-    $h1-color:#676767, $span-color:#676767, $h3-color:#676767, $p-color:$color-second)
+    $h1-color:#676767, $span-color:#676767, $h3-color:#676767, $p-color:$color-second, $color-svg:#676767,$iconRight:#676767,
+    $color-arrow:#676767
+    )
   }
 
   .containerHeader {
@@ -123,7 +152,7 @@
   }
 
   .wrapText {
-    max-width: 792px;
+
     margin: 0 auto;
 
     > h1 {
