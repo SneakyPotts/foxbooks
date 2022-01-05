@@ -19,13 +19,13 @@ const Logo = () => {
             </g>
             <defs>
                 <linearGradient id="paint0_linear_2283_12900" x1="10.4905" y1="19.3354" x2="38.3988" y2="19.3354" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#EB4C00"/>
-                    <stop offset="1" stopColor="#FBB931"/>
+                    <stop stopColor="red"/>
+                    <stop offset="1" stopColor="red"/>
                 </linearGradient>
                 <linearGradient id="paint1_linear_2283_12900" x1="-2.38535e-05" y1="34.2372" x2="33.5028" y2="34.2372" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#EB4C00"/>
-                    <stop offset="0.844" stopColor="#FAB32E"/>
-                    <stop offset="1" stopColor="#FBB931"/>
+                    <stop stopColor="red"/>
+                    <stop offset="0.844" stopColor="red"/>
+                    <stop offset="1" stopColor="red"/>
                 </linearGradient>
                 <clipPath id="clip0_2283_12900">
                     <rect width="174" height="48" fill="white"/>

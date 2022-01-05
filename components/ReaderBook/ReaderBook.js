@@ -8,15 +8,27 @@ import Letter from "../shared/icons/Letter";
 import FullScreen from "../shared/icons/FullScreen";
 import BookMark from "../shared/icons/BookMark";
 import InputRange from "../shared/common/InputRange/InputRange";
+import classNames from "classnames";
+
+
+
 
 const ReaderBook = () => {
     const [ controlDrop, setControlDrop ] = useState(false)
-    const [ fontSize, setFontSize ] = useState(16)
-
-    console.log(fontSize)
+    const [ fontSize, setFontSize ] = useState(0)
+    const [ brightness, setBrightness ] = useState(5)
 
     return (
-        <>
+        <div
+            className={classNames(styles.wrapper,
+                {[styles.wrapperDefault] : Number(brightness) === 5},
+                {[styles.wrapperFifth] : Number(brightness) === 4},
+                {[styles.wrapperFourth] : Number(brightness) === 3},
+                {[styles.wrapperThird] : Number(brightness) === 2},
+                {[styles.wrapperSecond] : Number(brightness) === 1},
+                {[styles.wrapperFirst] : Number(brightness) === 0},
+            ) }
+        >
             <div className={styles.containerHeader}>
                 <div className={styles.logoWrap}>
                     <ArrowRight className={styles.arrow}/>
@@ -32,12 +44,24 @@ const ReaderBook = () => {
                     <BookMark/>
                     {controlDrop &&
                     <div className={styles.control}>
-                        <InputRange
-                        value={fontSize}
-                        setValue={setFontSize}
-                        // max='28'
-                        // min='16'
-                        />
+                        <div className={styles.controlBlock}>
+                            <InputRange
+                                brightness={brightness}
+                                value={fontSize}
+                                setValue={setFontSize}
+                                textLabel='Размер шрифта'
+                                max='12'
+                            />
+                        </div>
+                        <div>
+                            <InputRange
+                                brightness={brightness}
+                                value={brightness}
+                                setValue={setBrightness}
+                                textLabel='Яркость'
+                                max='5'
+                            />
+                        </div>
                     </div>
                     }
 
@@ -47,7 +71,9 @@ const ReaderBook = () => {
                 <h1>Гарри Поттер и философский камень</h1>
                 <span>Джоан Роулинг</span>
                 <h3>Глава 1. Мальчик, который выжил</h3>
-                <p>
+                <p
+                style={{fontSize: `${Number(fontSize) + 16}px`}}
+                >
                     Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли,
                     что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать,
                     чтобы они попали в какую-нибудь странную или загадочную ситуацию. Мистер и миссис Дурсль весьма
@@ -116,7 +142,7 @@ const ReaderBook = () => {
                     пальцами. Большинство этих людей в жизни своей не видели ни единой совы, даже в ночное время.
                 </p>
             </div>
-        </>
+        </div>
 
     );
 };

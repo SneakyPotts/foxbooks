@@ -1,89 +1,162 @@
 @import "styles/variables";
 
-.containerHeader {
-  max-width: 1200px;
-  width: 100%;
-  margin: 23px auto 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@mixin changeStyle($bg, $bg-c, $cb, $bb, $h1-color, $span-color, $h3-color, $p-color,) {
+  background: $bg;
+  .containerHeader .iconGroup .control {
+    background: $bg-c;
+    border: 1px solid $cb;
 
-  .logoWrap {
-    display: flex;
-    align-items: center;
-    .arrow {
-      stroke: $color-main;
-      transform: rotate(180deg);
-      margin-right: 14px;
+    .controlBlock {
+      border-bottom: 1px solid $bb;
     }
   }
 
-  .iconGroup {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    >div {
-      cursor: pointer;
-      :hover {
-        path {
-          fill: $text-hover;
-          stroke: $text-hover;
-        }
-      }
+  .wrapText {
+    > h1 {
+      color: $h1-color;
     }
 
-    .control {
-      position: absolute;
-      padding: 30px 20px;
-      max-width: 279px;
-      width: 279px;
-      top: 0;
-      transform: translate(-40px, 43px);
-      box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
-      border: 1px solid $color-bg-icon;
-      border-radius: 10px;
-      cursor: default;
-      background: $color-categories-btn;
-      z-index: 50;
+    > span {
+      color: $span-color;
+    }
+
+    > h3 {
+      color: $h3-color;
+    }
+
+    > p {
+      color: $p-color;
     }
   }
 }
 
-.wrapText {
-  max-width: 792px;
-  margin: 0 auto;
-  >h1 {
-    font-family: Merriweather, sans-serif;
-    font-size: 28px;
-    line-height: 35px;
-    color: $color-main;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  >span {
-    display: block;
-    text-align: center;
-    font-size: 16px;
-    font-family: Ubuntu, sans-serif;
-    color: $color-second;
-  }
-  >h3 {
-    margin: 26px auto 30px;
-    color: $color-main;
-    font-family: Ubuntu, sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
-    text-align: center;
+.wrapper {
+
+  &Default {
+    @include changeStyle($bg:#ffffff, $bg-c:$color-categories-btn, $cb:$color-bg-icon, $bb:$color-star-border,
+            $h1-color:$color-main, $span-color:$color-second, $h3-color:$color-main, $p-color:$color-second)
   }
 
-  >p{
-    font-family: Ubuntu, sans-serif;
-    font-size: 16px;
-    color: $color-second;
-    text-align: center;
-    text-indent: 20px;
-    line-height: 140%;
+  &Fifth {
+    @include changeStyle($bg:$fifth, $bg-c:#FCF9F2, $cb:$color-star-border, $bb:$color-star-border,
+    $h1-color:$color-main, $span-color:$color-main, $h3-color:$color-main, $p-color:$color-second)
+  }
+
+  &Fourth {
+    @include changeStyle($bg:$fourth, $bg-c:#FDF8EA, $cb:rgba(127, 96, 76, 0.2), $bb:$color-star-border,
+    $h1-color:#7F604C, $span-color:#7F604C, $h3-color:#7F604C, $p-color:$color-second)
+  }
+
+  &Third {
+    @include changeStyle($bg:$third, $bg-c:$third, $cb:$color-second, $bb:$color-star-border,
+    $h1-color:#D4D4D4, $span-color:#D4D4D4, $h3-color:#D4D4D4, $p-color:#696969)
+  }
+
+  &Second {
+    @include changeStyle($bg:$third, $bg-c:$third, $cb:$color-second, $bb:$color-third,
+    $h1-color:$color-third, $span-color:$color-third, $h3-color:$color-third, $p-color:#585858)
+  }
+
+  &First {
+    @include changeStyle($bg:$third, $bg-c:$third, $cb:#676767, $bb:#676767,
+    $h1-color:#676767, $span-color:#676767, $h3-color:#676767, $p-color:$color-second)
+  }
+
+  .containerHeader {
+
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto 58px;
+    padding-top: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logoWrap {
+      display: flex;
+      align-items: center;
+
+      .arrow {
+        stroke: $color-main;
+        transform: rotate(180deg);
+        margin-right: 14px;
+      }
+    }
+
+    .iconGroup {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      > div {
+        cursor: pointer;
+
+        :hover {
+          path {
+            fill: $text-hover;
+            stroke: $text-hover;
+          }
+        }
+      }
+
+      .control {
+        position: absolute;
+        padding: 30px 20px;
+        max-width: 279px;
+        width: 279px;
+        top: 0;
+        transform: translate(-40px, 43px);
+        box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
+        border-radius: 10px;
+        cursor: default;
+
+        z-index: 50;
+
+        &Block {
+          padding-bottom: 20px;
+
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  .wrapText {
+    max-width: 792px;
+    margin: 0 auto;
+
+    > h1 {
+      font-family: Merriweather, sans-serif;
+      font-size: 28px;
+      line-height: 35px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    > span {
+      display: block;
+      text-align: center;
+      font-size: 16px;
+      font-family: Ubuntu, sans-serif;
+
+    }
+
+    > h3 {
+      margin: 26px auto 30px;
+      font-family: Ubuntu, sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      text-align: center;
+    }
+
+    > p {
+      font-family: Ubuntu, sans-serif;
+      font-size: 16px;
+      text-align: center;
+      text-indent: 20px;
+      line-height: 140%;
+    }
   }
 }
