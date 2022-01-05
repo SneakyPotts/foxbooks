@@ -121,6 +121,7 @@
 
   &List {
     position: absolute;
+    z-index: 1;
     width: 237px;
     padding: 30px 20px;
     margin-top: 20px;
@@ -169,7 +170,7 @@
 
   &SvgIcon {
     position: absolute;
-    top: 6px;
+    top: 3px;
     left: 17px;
     width: 24px;
     height: 24px;
@@ -209,6 +210,7 @@
 
   &List {
     position: absolute;
+    z-index: 1;
     width: 237px;
     padding: 30px 20px;
     margin-top: 20px;
@@ -264,4 +266,36 @@
 .radioActive {
   background-color: $color-main;
   box-shadow: 0 0 0 2px $color-main;
+}
+.bookList {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 40px 24px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+
+  &Item {
+    position: relative;
+
+    &Delete {
+      position: absolute;
+      top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: 10px;
+      width: 22px;
+      height: 22px;
+      padding: 6px;
+
+      border-radius: 50%;
+      background-color: #fff;
+      opacity: 0;
+    }
+  }
+}
+.bookListItem:hover {
+  .bookListItemDelete {
+    opacity: 1;
+  }
 }
