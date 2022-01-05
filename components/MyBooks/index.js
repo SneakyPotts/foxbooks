@@ -143,19 +143,19 @@ const MyBooks = () => {
     setMenu(false);
   };
   const [books, setBooks] = useState([
-    { id: '0' },
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' },
-    { id: '6' },
+    { id: 0 },
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
   ]);
   console.log(books);
 
   const deleteBook = idx => {
-    console.log(1111);
-    setBooks(books.filter((book, index) => book[index] === idx));
+    console.log(idx, 'deleteBookIndx');
+    setBooks(books.filter((book, index) => book.id !== idx));
   };
 
   return (
@@ -303,7 +303,7 @@ const MyBooks = () => {
               <Book />
               <span
                 className={st.bookListItemDelete}
-                onClick={() => deleteBook(idx)}
+                onClick={() => deleteBook(book.id)}
               >
                 <Delete />
               </span>
