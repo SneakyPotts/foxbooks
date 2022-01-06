@@ -20,8 +20,6 @@ const ReaderBook = () => {
     const [ Fields, setFields ] = useState(2)
     const [ line, setLine ] = useState(2)
 
-    console.log(3 <= brightness)
-
     return (
         <div
             className={classNames(styles.wrapper,
@@ -88,7 +86,6 @@ const ReaderBook = () => {
                         </div>
                     </div>
                     }
-
                 </div>
             </div>
             <div
