@@ -12,13 +12,23 @@ import classNames from "classnames";
 
 
 
-
 const ReaderBook = () => {
     const [ controlDrop, setControlDrop ] = useState(false)
+    const [ column, setСolumn ] = useState(false)
+    const [ alignment, setAlignment ] = useState(false)
     const [ fontSize, setFontSize ] = useState(0)
     const [ brightness, setBrightness ] = useState(5)
     const [ Fields, setFields ] = useState(2)
     const [ line, setLine ] = useState(2)
+
+    const controlData = [
+        {textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
+        {textLabel:'Размер шрифта', value: fontSize, setValue: setFontSize, max:'12', dot: false},
+        {textLabel:'Яркость', value: brightness, setValue: setBrightness, max:'5', dot: false},
+        {textLabel:'Поля', value: Fields, setValue: setFields, max:'4', dot: true},
+        {textLabel:'Высота Строк', value: line, setValue: setLine, max:'4', dot: true},
+        {textLabel:'Выравнивание по ширине', value: alignment, setValue: setAlignment, max:'0'},
+    ]
 
     return (
         <div
@@ -48,42 +58,30 @@ const ReaderBook = () => {
                     <BookMark classNames={styles.iconRight}/>
                     {controlDrop &&
                     <div className={styles.control}>
-                        <div className={styles.controlBlock}>
-                            <InputRange
-                                brightness={brightness}
-                                value={fontSize}
-                                setValue={setFontSize}
-                                textLabel='Размер шрифта'
-                                max='12'
-                            />
-                        </div>
-                        <div className={styles.controlBlock}>
-                            <InputRange
-                                brightness={brightness}
-                                value={brightness}
-                                setValue={setBrightness}
-                                textLabel='Яркость'
-                                max='5'
-                            />
-                        </div>
-                        <div className={styles.controlBlock}>
-                            <InputRange
-                                brightness={brightness}
-                                value={Fields}
-                                setValue={setFields}
-                                textLabel='Поля'
-                                max='4'
-                            />
-                        </div>
-                        <div className={styles.controlBlock}>
-                            <InputRange
-                                brightness={brightness}
-                                value={line}
-                                setValue={setLine}
-                                textLabel='Высота Строк'
-                                max='4'
-                            />
-                        </div>
+                        {controlData.map(({textLabel, value, setValue, max, dot},i)=> {
+                            return i === 0 || i === 5 ?
+                                <div className={styles.controlBlock}>
+                                    <div className={styles.wrapSwitch}>
+                                        <span>{textLabel}</span>
+                                        <input className={styles.switch}
+                                               checked={value}
+                                               onChange={()=>setValue(!value)}
+                                               type="checkbox"/>
+                                    </div>
+                                </div>
+                                :
+                                <div className={styles.controlBlock}>
+                                    <InputRange
+                                        dot={dot}
+                                        brightness={brightness}
+                                        value={value}
+                                        setValue={setValue}
+                                        textLabel={textLabel}
+                                        max={max}
+                                    />
+                                </div>
+
+                        })}
                     </div>
                     }
                 </div>

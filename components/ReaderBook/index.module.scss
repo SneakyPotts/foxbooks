@@ -1,33 +1,49 @@
 @import "styles/variables";
 
 @mixin changeStyle($bg, $bg-c, $cb, $bb, $h1-color, $span-color, $h3-color, $p-color, $color-svg:$color-star-border,
- $iconRight: $color-third, $color-arrow:$color-main) {
+ $iconRight: $color-third, $color-arrow:$color-main, $switcher-text: $color-main) {
   background: $bg;
   .containerHeader {
     .arrow {
-      >path {
+      > path {
         stroke: $color-arrow;
       }
     }
 
     .svgChange {
-      >g>path {
+      > g > path {
         fill: $color-svg;
       }
     }
 
-    .iconGroup{
+    .iconGroup {
       .iconRight {
-        >path {
+        > path {
           fill: $iconRight;
           stroke: $iconRight;
         }
       }
+
       .control {
         background: $bg-c;
         border: 1px solid $cb;
 
         .controlBlock {
+          .wrapSwitch {
+            > span {
+              color: $switcher-text;
+            }
+
+            .switch {
+              background-color: $bg-c;
+              border: 2px solid $bb;
+
+              &:before {
+                border: 2px solid $bg-c;
+              }
+            }
+          }
+
           border-bottom: 1px solid $bb;
         }
       }
@@ -56,39 +72,38 @@
 .wrapper {
 
   &Default {
-    @include changeStyle($bg:#ffffff, $bg-c:$color-categories-btn, $cb:$color-bg-icon, $bb:$color-star-border,
-            $h1-color:$color-main, $span-color:$color-second, $h3-color:$color-main, $p-color:$color-second,
-    )
+    @include changeStyle($bg: #ffffff, $bg-c: $color-categories-btn, $cb: $color-bg-icon, $bb: $color-star-border,
+    $h1-color: $color-main, $span-color: $color-second, $h3-color: $color-main, $p-color: $color-second)
   }
 
   &Fifth {
-    @include changeStyle($bg:$fifth, $bg-c:#FCF9F2, $cb:$color-star-border, $bb:$color-star-border,
-    $h1-color:$color-main, $span-color:$color-main, $h3-color:$color-main, $p-color:$color-second)
+    @include changeStyle($bg: $fifth, $bg-c: #FCF9F2, $cb: $color-star-border, $bb: $color-star-border,
+    $h1-color: $color-main, $span-color: $color-main, $h3-color: $color-main, $p-color: $color-second,
+    $switcher-text: $color-second)
   }
 
   &Fourth {
-    @include changeStyle($bg:$fourth, $bg-c:#FDF8EA, $cb:rgba(127, 96, 76, 0.2), $bb:$color-star-border,
-    $h1-color:#7F604C, $span-color:#7F604C, $h3-color:#7F604C, $p-color:$color-second, $iconRight: #7F604C,
-    $color-arrow:#7F604C)
+    @include changeStyle($bg: $fourth, $bg-c: #FDF8EA, $cb: rgba(127, 96, 76, 0.2), $bb: $color-star-border,
+    $h1-color: #7F604C, $span-color: #7F604C, $h3-color: #7F604C, $p-color: $color-second, $iconRight: #7F604C,
+    $color-arrow: #7F604C, $switcher-text: #7F604C)
   }
 
   &Third {
-    @include changeStyle($bg:$third, $bg-c:$third, $cb:$color-second, $bb:$color-star-border,
-    $h1-color:#D4D4D4, $span-color:#D4D4D4, $h3-color:#D4D4D4, $p-color:#696969, $iconRight: $color-star-border,
-    $color-arrow: $color-star-border)
+    @include changeStyle($bg: $third, $bg-c: $third, $cb: $color-second, $bb: $color-star-border,
+    $h1-color: #D4D4D4, $span-color: #D4D4D4, $h3-color: #D4D4D4, $p-color: #696969, $iconRight: $color-star-border,
+    $color-arrow: $color-star-border, $switcher-text: $color-star-border)
   }
 
   &Second {
-    @include changeStyle($bg:$third, $bg-c:$third, $cb:$color-second, $bb:$color-third,
-    $h1-color:$color-third, $span-color:$color-third, $h3-color:$color-third, $p-color:#585858,
-    $color-svg:$color-third, $color-arrow: $color-third)
+    @include changeStyle($bg: $third, $bg-c: $third, $cb: $color-second, $bb: $color-third,
+    $h1-color: $color-third, $span-color: $color-third, $h3-color: $color-third, $p-color: #585858,
+    $color-svg: $color-third, $color-arrow: $color-third, $switcher-text: $color-third)
   }
 
   &First {
-    @include changeStyle($bg:$third, $bg-c:$third, $cb:#676767, $bb:#676767,
-    $h1-color:#676767, $span-color:#676767, $h3-color:#676767, $p-color:$color-second, $color-svg:#676767,$iconRight:#676767,
-    $color-arrow:#676767
-    )
+    @include changeStyle($bg: $third, $bg-c: $third, $cb: #676767, $bb: #676767,
+    $h1-color: #676767, $span-color: #676767, $h3-color: #676767, $p-color: $color-second, $color-svg: #676767,
+    $iconRight: #676767, $color-arrow: #676767, $switcher-text: #676767)
   }
 
   .containerHeader {
@@ -139,13 +154,63 @@
         box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
         border-radius: 10px;
         cursor: default;
-
         z-index: 50;
+
+        > div:last-of-type {
+          padding-bottom: 0 !important;
+          margin-bottom: 0 !important;
+          border-bottom: none !important;
+        }
 
         &Block {
           padding-bottom: 20px;
-
           margin-bottom: 20px;
+
+          .wrapSwitch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            > span {
+              font-family: Ubuntu, sans-serif;
+              max-width: 140px;
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 18px;
+            }
+
+            .switch {
+              appearance: none;
+              height: 24px;
+              width: 45px;
+              cursor: pointer;
+              border-radius: 38px;
+              position: relative;
+              transition: background-color 0.3s ease;
+
+              &:before {
+                content: "";
+                height: 100%;
+                width: 50%;
+                position: absolute;
+                border-radius: 50%;
+                background: $color-star-border;
+
+                transition: transform 0.3s ease, border-color 0.3s ease;
+              }
+
+              &:checked {
+                border-color: $text-hover;
+                background-color: $text-hover;
+
+                &:before {
+                  background: #fff;
+                  border-color: $text-hover;
+                  transform: translateX(100%);
+                }
+              }
+            }
+          }
         }
       }
     }
