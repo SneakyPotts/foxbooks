@@ -9,6 +9,10 @@
     .bar {
       background-color: $bg-track;
     }
+
+    .dot {
+      background: $bg-track;
+    }
   }
 }
 
@@ -51,6 +55,19 @@
 }
 .sliderContainer{
   position: relative;
+
+  .dot {
+    position: absolute;
+    min-width: 22px;
+    min-height: 22px;
+    border-radius: 50%;
+
+
+    &Active {
+      background: $text-hover !important;
+    }
+  }
+
   .bar {
     position: absolute;
     z-index: 1;
@@ -84,6 +101,9 @@
       border-radius: 50%;
       cursor: pointer;
       outline: none;
+    }
+    &:active::-webkit-slider-thumb {
+      background-color: #D55600;
     }
   }
 }
