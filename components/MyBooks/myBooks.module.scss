@@ -153,9 +153,11 @@
 }
 
 .down {
+  margin-left: 10px;
   transform: rotate(180deg);
 }
 .up {
+  margin-left: 10px;
   transform: rotate(0deg);
 }
 .filter {
@@ -190,9 +192,10 @@
 }
 
 .dropdownPopular {
+  position: relative;
   margin-left: 30px;
+
   &Btn {
-    position: relative;
     font-size: 14px;
     line-height: 1.43;
     display: flex;
@@ -200,7 +203,6 @@
     justify-content: space-between;
     padding: 6px 15px;
 
-    width: 138px;
     height: 32px;
     border-radius: 47px;
 
@@ -215,7 +217,7 @@
     width: 237px;
     padding: 30px 20px;
     margin-top: 20px;
-    transform: translateX(-40%);
+    right: 0;
     background-color: $color-categories-btn;
     border: 1px solid $color-bg-icon;
     box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
@@ -246,6 +248,14 @@
     }
   }
 }
+.dropdownSelection {
+  margin-left: 0;
+
+  &List {
+    left: 0;
+  }
+}
+
 .active {
   background-color: $color-main;
   color: $color-categories-btn;
@@ -349,6 +359,35 @@
       line-height: 18px;
     }
   }
+}
+
+.mySelection {
+  display: flex;
+  align-items: center;
+  width: 384px;
+  height: 116px;
+  padding: 30px 20px;
+  margin-top: 64px;
+  background: $color-bg-icon;
+  border-radius: 5px;
+
+  &Data {
+    font-size: 12px;
+    line-height: 14px;
+
+    flex-direction: column;
+    margin-left: 10px;
+    color: $color-third;
+
+    &Name {
+      font-size: 14px;
+      line-height: 1.43;
+      color: $color-main;
+    }
+  }
+}
+.selectionIcon {
+  border-radius: 5px;
 }
 
 // MODAL
