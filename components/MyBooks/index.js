@@ -7,6 +7,8 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import Book from '../shared/common/book';
+import ModalWindow from '../shared/common/modalWindow/ModalWindow';
+import ButtonGroup from '../SettingsProfile/buttonGroup';
 import ArrowRight from '../../public/chevron-right.svg';
 import Headphones from '../shared/icons/headphones';
 import ArrowAll from '../../public/chevron-down.svg';
@@ -94,20 +96,24 @@ const MyBooks = () => {
     { option: 'По дате добавления' },
     { option: 'По алфавиту' },
   ];
-  // const books = [
-  //   { id: '0' },
-  //   { id: '1' },
-  //   { id: '2' },
-  //   { id: '3' },
-  //   { id: '4' },
-  //   { id: '5' },
-  //   { id: '6' },
-  // ];
 
   const [menu, setMenu] = useState(false);
   const [filter, setFilter] = useState(false);
   const [filterIdx, setFilterIdx] = useState(null);
   const [showInput, setShowInput] = useState(false);
+  const [deletePopap, setDeletePopap] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  const [tabValue, setTabValue] = useState('Книги');
+  const [books, setBooks] = useState([
+    { id: 0 },
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+  ]);
+  console.log(books);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -142,20 +148,25 @@ const MyBooks = () => {
     setFilter(null);
     setMenu(false);
   };
-  const [books, setBooks] = useState([
-    { id: 0 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-  ]);
-  console.log(books);
 
-  const deleteBook = idx => {
-    console.log(idx, 'deleteBookIndx');
-    setBooks(books.filter((book, index) => book.id !== idx));
+  const showDeletePopap = id => {
+    setDeletePopap(true);
+    deleteBook(id);
+  };
+
+  const test = () => {
+    console.log(111111111111);
+    setConfirm(true);
+  };
+
+  const deleteBook = id => {
+    // console.log(id, 'deleteBookIndx');
+    if (confirm) {
+      setBooks(books.filter(book => book.id !== id));
+    } else {
+      return books;
+    }
+    // setDeletePopap(false);
   };
 
   return (
@@ -214,7 +225,7 @@ const MyBooks = () => {
       <div className={st.myMenu}>
         <ul className={st.tabList}>
           {tab.map(({ text, count }) => (
-            <li key={text} className={st.tab}>
+            <li key={text} className={st.tab} onClick={() => setTabValue(text)}>
               <h2>{count}</h2>
               <p>{text}</p>
             </li>
@@ -224,7 +235,10 @@ const MyBooks = () => {
       <div className="container">
         <div className={st.header}>
           <div className={st.options}>
-            <span className={st.optionsLabel}>Статус</span>
+            {tabValue === 'Книги' ||
+              (tabValue === 'Аудиокниги' && (
+                <span className={st.optionsLabel}>Статус</span>
+              ))}
             <div className={st.dropdown}>
               <button
                 className={classnames(st.dropdownBtn, { [st.active]: menu })}
@@ -298,19 +312,100 @@ const MyBooks = () => {
           </div>
         </div>
         <div className={st.bookList}>
-          {books.map((book, idx) => (
-            <div key={book.id} className={st.bookListItem}>
-              <Book />
-              <span
-                className={st.bookListItemDelete}
-                onClick={() => deleteBook(book.id)}
-              >
-                <Delete />
-              </span>
-            </div>
-          ))}
+          {tabValue === 'Книги' &&
+            books.map(book => (
+              <>
+                <div key={book.id} className={st.bookListItem}>
+                  <Book />
+                  <span
+                    className={st.bookListItemDelete}
+                    onClick={() => showDeletePopap(book.id)}
+                    // onClick={() => deleteBook(book.id)}
+                  >
+                    <Delete />
+                  </span>
+                </div>
+                {/* {deletePopap && (
+                <ModalWindow modal={deletePopap} setModal={setDeletePopap}>
+                  <div className={st.modal}>
+                    <h1 className={st.modalTitle}>Удалить книгу</h1>
+                    <p className={st.modalText}>
+                      Вы действительно хотите удалить книгу “Колдовской мир.
+                      Тройка мечей”?
+                    </p>
+                    <ButtonGroup
+                      text="Удалить"
+                      ClassName={st.modalBtns}
+                      click={() => deleteBook(book.id)}
+                    />
+                  </div>
+                </ModalWindow>
+              )} */}
+              </>
+            ))}
+          {tabValue === 'Аудиокниги' &&
+            books.map(book => (
+              <div key={book.id} className={st.bookListItem}>
+                <Book audio={true} />
+                <span
+                  className={st.bookListItemDelete}
+                  onClick={() => showDeletePopap(book.id)}
+                  // onClick={() => deleteBook(book.id)}
+                >
+                  <Delete />
+                </span>
+              </div>
+            ))}
+          {tabValue === 'Подборки' &&
+            books.map(book => (
+              <div key={book.id} className={st.selectionsList}>
+                <div className={st.selection}>
+                  <div className={st.selectionBlock}>
+                    <div className={st.selectionImg}>
+                      <img src="/horizontalBookCovers/bookCover1.png" alt="" />
+                      <div className={st.selectionImgCount}>
+                        <span>65 </span>
+                        <span>книг</span>
+                      </div>
+                    </div>
+
+                    <div className={st.selectionDescription}>
+                      <h3>Романтическое фэнтези</h3>
+                    </div>
+                  </div>
+                </div>
+                <span
+                  className={st.bookListItemDelete}
+                  onClick={() => showDeletePopap(book.id)}
+                  // onClick={() => deleteBook(book.id)}
+                >
+                  <Delete />
+                </span>
+              </div>
+            ))}
         </div>
       </div>
+      {deletePopap && (
+        <ModalWindow
+          modal={deletePopap}
+          setModal={setDeletePopap}
+          click={deleteBook}
+        >
+          <div className={st.modal}>
+            <h1 className={st.modalTitle}>Удалить книгу</h1>
+            <p className={st.modalText}>
+              Вы действительно хотите удалить книгу “Колдовской мир. Тройка
+              мечей”?
+            </p>
+            <ButtonGroup
+              text="Удалить"
+              typeButton="button"
+              ClassName={st.modalBtns}
+              click={test}
+            />
+          </div>
+        </ModalWindow>
+      )}
     </>
   );
 };
