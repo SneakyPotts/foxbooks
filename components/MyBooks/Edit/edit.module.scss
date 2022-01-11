@@ -8,11 +8,7 @@
     position: relative;
     width: 1600;
     min-height: 581px;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    );
+    background: $color-second;
 
     &Active {
       &:before {
@@ -35,6 +31,54 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.imgSvg {
+  margin-bottom: 60px;
+}
+.changeInput {
+  font-family: Merriweather;
+  font-size: 28px;
+  line-height: 35px;
+  color: $color-categories-btn;
+  text-align: center;
+  display: flex;
+  background-color: transparent;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+
+  &::-webkit-input-placeholder {
+    font-family: Merriweather;
+    font-size: 28px;
+    line-height: 35px;
+    color: $color-categories-btn;
+  }
+  &::-moz-placeholder {
+    font-family: Merriweather;
+    font-size: 28px;
+    line-height: 35px;
+    color: $color-categories-btn;
+  }
+}
+.changeInputLabel {
+  font-size: 14px;
+  line-height: 1.43;
+  margin-top: 30px;
+  color: $color-third;
+}
+.replyArea {
+  display: block;
+  margin: auto;
+  margin-bottom: 40px;
+  width: 792px;
+  height: 188px;
+
+  border: 1px solid $color-star-border;
+  border-radius: 5px;
+  background-color: transparent;
+  resize: none;
 }
