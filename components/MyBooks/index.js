@@ -188,7 +188,7 @@ const MyBooks = () => {
     setDeletePopap(false);
   };
 
-  console.log(tabValue);
+  // console.log(tabValue);
   return (
     <>
       {!createSelection ? (
@@ -260,7 +260,7 @@ const MyBooks = () => {
               ))}
             </ul>
           </div>
-          <div className="container">
+          <div className={classnames('container', st.section)}>
             <div className={st.header}>
               <div className={st.options}>
                 {(tabValue === 'Книги' || tabValue === 'Аудиокниги') && (
@@ -432,25 +432,7 @@ const MyBooks = () => {
                 </div>
               )}
             </>
-            {tabValue === 'Подборки' && activeSelections === 'Мои' ? (
-              <>
-                <div className={st.mySelection}>
-                  <Image
-                    src="/createSelectionCover.png"
-                    width={56}
-                    height={56}
-                    alt="selectionCover"
-                    className={st.selectionIcon}
-                  />
-                  <div className={st.mySelectionData}>
-                    <p className={st.mySelectionDataName}>Дизайн</p>
-                    <p>
-                      <span>1</span>книга
-                    </p>
-                  </div>
-                </div>
-              </>
-            ) : (
+            {tabValue === 'Подборки' && activeSelections !== 'Мои' && (
               <div className={st.selectionsList}>
                 {books.map(book => (
                   <div key={book.id}>
@@ -480,6 +462,23 @@ const MyBooks = () => {
                     </span>
                   </div>
                 ))}
+              </div>
+            )}
+            {tabValue === 'Подборки' && activeSelections === 'Мои' && (
+              <div className={st.mySelection}>
+                <Image
+                  src="/createSelectionCover.png"
+                  width={56}
+                  height={56}
+                  alt="selectionCover"
+                  className={st.selectionIcon}
+                />
+                <div className={st.mySelectionData}>
+                  <p className={st.mySelectionDataName}>Дизайн</p>
+                  <p>
+                    <span>1</span>книга
+                  </p>
+                </div>
               </div>
             )}
           </div>

@@ -1,7 +1,5 @@
 @import 'styles/variables';
 
-.border {
-}
 .title {
   font-family: Merriweather;
   font-weight: bold;
@@ -58,7 +56,7 @@
 }
 .myMenu {
   padding: 20px 0;
-  margin: 60px 0;
+  margin-top: 60px;
   border-top: 1px solid #d5d5d5;
   border-bottom: 1px solid #d5d5d5;
 }
@@ -85,6 +83,10 @@
     line-height: 1.43;
     color: $color-third;
   }
+}
+.section {
+  min-height: 967px;
+  padding: 60px 0;
 }
 .header {
   display: flex;
