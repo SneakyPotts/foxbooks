@@ -13,97 +13,97 @@ import classNames from "classnames";
 
 
 const ReaderBook = () => {
-    const [ controlDrop, setControlDrop ] = useState(false)
-    const [ column, setСolumn ] = useState(false)
-    const [ alignment, setAlignment ] = useState(false)
-    const [ fontSize, setFontSize ] = useState(0)
-    const [ brightness, setBrightness ] = useState(5)
-    const [ Fields, setFields ] = useState(2)
-    const [ line, setLine ] = useState(2)
+	const [ controlDrop, setControlDrop ] = useState(false)
+	const [ column, setСolumn ] = useState(false)
+	const [ alignment, setAlignment ] = useState(false)
+	const [ fontSize, setFontSize ] = useState(0)
+	const [ brightness, setBrightness ] = useState(5)
+	const [ Fields, setFields ] = useState(2)
+	const [ line, setLine ] = useState(2)
 
-    const controlData = [
-        {textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
-        {textLabel:'Размер шрифта', value: fontSize, setValue: setFontSize, max:'12', dot: false},
-        {textLabel:'Яркость', value: brightness, setValue: setBrightness, max:'5', dot: false},
-        {textLabel:'Поля', value: Fields, setValue: setFields, max:'4', dot: true},
-        {textLabel:'Высота Строк', value: line, setValue: setLine, max:'4', dot: true},
-        {textLabel:'Выравнивание по ширине', value: alignment, setValue: setAlignment, max:'0'},
-    ]
+	const controlData = [
+		{textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
+		{textLabel:'Размер шрифта', value: fontSize, setValue: setFontSize, max:'12', dot: false},
+		{textLabel:'Яркость', value: brightness, setValue: setBrightness, max:'5', dot: false},
+		{textLabel:'Поля', value: Fields, setValue: setFields, max:'4', dot: true},
+		{textLabel:'Высота Строк', value: line, setValue: setLine, max:'4', dot: true},
+		{textLabel:'Выравнивание по ширине', value: alignment, setValue: setAlignment, max:'0'},
+	]
 
-    return (
-        <div
-            className={classNames(styles.wrapper,
-                {[styles.wrapperDefault] : Number(brightness) === 5},
-                {[styles.wrapperFifth] : Number(brightness) === 4},
-                {[styles.wrapperFourth] : Number(brightness) === 3},
-                {[styles.wrapperThird] : Number(brightness) === 2},
-                {[styles.wrapperSecond] : Number(brightness) === 1},
-                {[styles.wrapperFirst] : Number(brightness) === 0},
-            ) }
-        >
-            <div className={styles.containerHeader}>
-                <div className={styles.logoWrap}>
-                    <ArrowRight className={styles.arrow}/>
-                    <Logo classNames={3 > brightness && styles.svgChange}/>
-                </div>
-                <div className={styles.iconGroup}>
-                    <ReaderGambgurger
-                        classNames={styles.iconRight}
-                    />
-                    <Quote classNames={styles.iconRight}/>
-                    <Letter
-                        click={()=>setControlDrop(!controlDrop)}
-                        classNames={styles.iconRight}/>
-                    <FullScreen classNames={styles.iconRight}/>
-                    <BookMark classNames={styles.iconRight}/>
-                    {controlDrop &&
+	return (
+		<div
+			className={classNames(styles.wrapper,
+				{[styles.wrapperDefault] : Number(brightness) === 5},
+				{[styles.wrapperFifth] : Number(brightness) === 4},
+				{[styles.wrapperFourth] : Number(brightness) === 3},
+				{[styles.wrapperThird] : Number(brightness) === 2},
+				{[styles.wrapperSecond] : Number(brightness) === 1},
+				{[styles.wrapperFirst] : Number(brightness) === 0},
+			) }
+		>
+			<div className={styles.containerHeader}>
+				<div className={styles.logoWrap}>
+					<ArrowRight className={styles.arrow}/>
+					<Logo classNames={3 > brightness && styles.svgChange}/>
+				</div>
+				<div className={styles.iconGroup}>
+					<ReaderGambgurger
+						classNames={styles.iconRight}
+					/>
+					<Quote classNames={styles.iconRight}/>
+					<Letter
+						click={()=>setControlDrop(!controlDrop)}
+						classNames={styles.iconRight}/>
+					<FullScreen classNames={styles.iconRight}/>
+					<BookMark classNames={styles.iconRight}/>
+					{controlDrop &&
                     <div className={styles.control}>
-                        {controlData.map(({textLabel, value, setValue, max, dot},i)=> {
-                            return i === 0 || i === 5 ?
-                                <div className={styles.controlBlock}>
-                                    <div className={styles.wrapSwitch}>
-                                        <span>{textLabel}</span>
-                                        <input className={styles.switch}
-                                               checked={value}
-                                               onChange={()=>setValue(!value)}
-                                               type="checkbox"/>
-                                    </div>
-                                </div>
-                                :
-                                <div className={styles.controlBlock}>
-                                    <InputRange
-                                        dot={dot}
-                                        brightness={brightness}
-                                        value={value}
-                                        setValue={setValue}
-                                        textLabel={textLabel}
-                                        max={max}
-                                    />
-                                </div>
+                    	{controlData.map(({textLabel, value, setValue, max, dot},i)=> {
+                    		return i === 0 || i === 5 ?
+                    			<div className={styles.controlBlock}>
+                    				<div className={styles.wrapSwitch}>
+                    					<span>{textLabel}</span>
+                    					<input className={styles.switch}
+                    						checked={value}
+                    						onChange={()=>setValue(!value)}
+                    						type="checkbox"/>
+                    				</div>
+                    			</div>
+                    			:
+                    			<div className={styles.controlBlock}>
+                    				<InputRange
+                    					dot={dot}
+                    					brightness={brightness}
+                    					value={value}
+                    					setValue={setValue}
+                    					textLabel={textLabel}
+                    					max={max}
+                    				/>
+                    			</div>
 
-                        })}
+                    	})}
                     </div>
-                    }
-                </div>
-            </div>
-            <div
-                style={{maxWidth:Number(Fields) === 2 ?
-                        '792px' : Number(Fields) === 1 ?
-                            '852px' : Number(Fields) === 0 ?
-                                '912px' : Number(Fields) === 3 ?
-                                    '732px': '672px'}}
-                className={styles.wrapText}>
-                <h1>Гарри Поттер и философский камень</h1>
-                <span>Джоан Роулинг</span>
-                <h3>Глава 1. Мальчик, который выжил</h3>
-                <p
-                style={{fontSize: `${Number(fontSize) + 16}px`,
-                    lineHeight:Number(line) === 2 ?
-                        '22px' : Number(line) === 1 ?
-                            '21px' : Number(line) === 0 ?
-                                '18px' : Number(line) === 3 ?
-                                    '24px': '26px'}}
-                >
+					}
+				</div>
+			</div>
+			<div
+				style={{maxWidth:Number(Fields) === 2 ?
+					'792px' : Number(Fields) === 1 ?
+						'852px' : Number(Fields) === 0 ?
+							'912px' : Number(Fields) === 3 ?
+								'732px': '672px'}}
+				className={styles.wrapText}>
+				<h1>Гарри Поттер и философский камень</h1>
+				<span>Джоан Роулинг</span>
+				<h3>Глава 1. Мальчик, который выжил</h3>
+				<p
+					style={{fontSize: `${Number(fontSize) + 16}px`,
+						lineHeight:Number(line) === 2 ?
+							'22px' : Number(line) === 1 ?
+								'21px' : Number(line) === 0 ?
+									'18px' : Number(line) === 3 ?
+										'24px': '26px'}}
+				>
                     Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли,
                     что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать,
                     чтобы они попали в какую-нибудь странную или загадочную ситуацию. Мистер и миссис Дурсль весьма
@@ -170,11 +170,11 @@ const ReaderBook = () => {
                     В отличие от мистера Дурсля, находившиеся на улице люди отлично видели этих сов, стремительно
                     пролетающих мимо них одна за другой, и широко раскрывали рты от удивления и показывали на них
                     пальцами. Большинство этих людей в жизни своей не видели ни единой совы, даже в ночное время.
-                </p>
-            </div>
-        </div>
+				</p>
+			</div>
+		</div>
 
-    );
+	);
 };
 
 export default ReaderBook;
