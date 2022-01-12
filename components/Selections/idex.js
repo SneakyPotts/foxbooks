@@ -18,7 +18,6 @@ const SelectionsPage = ({ audio }) => {
     { id: '2', option: 'Аудиокниги' },
   ];
 
-  //   const [stateIndex, setStateIndex] = useState(null);
   const [flagSwitcher, setFlagSwitcher] = useState(false);
   const [activePopSel, setActivePopSel] = useState(0);
   const [activeBookSel, setActiveBookSel] = useState(0);

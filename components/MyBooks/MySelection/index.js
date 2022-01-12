@@ -5,14 +5,15 @@ import { FiSearch } from 'react-icons/fi';
 import Button from '../../shared/common/Button/Button';
 import Book from '../../shared/common/book';
 import Dots from '../../../public/horizontalDots.svg';
-import Edit from '../../../public/edit-pencil.svg';
+import EditPensil from '../../../public/edit-pencil.svg';
 import Bin from '../../../public/trash.svg';
 import ArrowAll from '../../../public/chevron-down.svg';
 import All from '../../../public/all.svg';
 import BookMark from '../../../public/bookmark.svg';
 import OpenBook from '../../../public/book-open.svg';
 import Flag from '../../../public/flag.svg';
-
+import AddBook from './AddBook';
+import Edit from '../Edit';
 import st from './mySelection.module.scss';
 
 const mySelection = () => {
@@ -24,6 +25,8 @@ const mySelection = () => {
   const [filter, setFilter] = useState(false);
   const [filterIdx, setFilterIdx] = useState(null);
   const [books, setBooks] = useState([{ id: 0 }, { id: 1 }]);
+  const [addBookPage, setAddBookPage] = useState(false);
+  const [editPage, setEditPage] = useState(false);
 
   const options = [
     { option: 'Все', svg: <All /> },
@@ -46,9 +49,19 @@ const mySelection = () => {
     };
   }, []);
 
+  const handleAddBtn = () => {
+    setAddBookPage(true);
+  };
+
   const openEditMenu = e => {
     e.stopPropagation();
     setEditMenu(!editMenu);
+  };
+
+  const handleEditPageClick = () => {
+    setEditPage(true);
+    const body = document.querySelector('body');
+    body.classList.add('nonScroll');
   };
 
   const togle = e => {
@@ -88,7 +101,7 @@ const mySelection = () => {
       <div className={st.selectionCover}>
         <h1 className={st.selectionName}>Дизайн</h1>
         <div className={st.selectionBtns}>
-          <Button text="Добавить книгу" />
+          <Button text="Добавить книгу" click={handleAddBtn} />
           <div
             className={classnames(st.selectionBtnsDots, {
               [st.dotsActive]: editMenu,
@@ -98,12 +111,10 @@ const mySelection = () => {
             <Dots />
             {editMenu && (
               <div className={st.editMenu}>
-                <Link href="/mybooks/edit">
-                  <a className={st.editMenuOption}>
-                    <Edit />{' '}
-                    <span className={st.editMenuOptionText}>Редактировать</span>
-                  </a>
-                </Link>
+                <p className={st.editMenuOption} onClick={handleEditPageClick}>
+                  <EditPensil />{' '}
+                  <span className={st.editMenuOptionText}>Редактировать</span>
+                </p>
 
                 <p className={st.editMenuOption}>
                   <Bin /> <span className={st.editMenuOptionText}>Удалить</span>
@@ -200,12 +211,26 @@ const mySelection = () => {
         </div>
         <div className={st.bookList}>
           {books.map(book => (
-            <div key={book.id} className={st.bookListItem}>
+            <div
+              key={book.id}
+              className={st.bookListItem}
+              onClick={e => onBookClick(e)}
+            >
               <Book />
             </div>
           ))}
         </div>
       </div>
+      {addBookPage && (
+        <div className={st.addBook}>
+          <AddBook setAddBookPage={setAddBookPage} />
+        </div>
+      )}
+      {editPage && (
+        <div className={st.addBook}>
+          <Edit setEditPage={setEditPage} setAddBookPage={setAddBookPage} />
+        </div>
+      )}
     </>
   );
 };

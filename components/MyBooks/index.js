@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import classnames from 'classnames';
@@ -121,7 +121,6 @@ const MyBooks = () => {
     { id: 5 },
     { id: 6 },
   ]);
-  // console.log(books);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -137,9 +136,8 @@ const MyBooks = () => {
     setMenu(!menu);
   };
 
-  const handleOptions = idx => {
-    // e.stopPropagation();
-    // console.log(options[idx].option);
+  const handleOptions = (idx, e) => {
+    e.stopPropagation();
     setActiveOption(options[idx].option);
   };
 
@@ -171,6 +169,7 @@ const MyBooks = () => {
   const handleCreateSelection = () => {
     setCreateSelection(true);
   };
+
   const close = () => {
     setShowInput(false);
     setFilter(null);
@@ -188,7 +187,6 @@ const MyBooks = () => {
     setDeletePopap(false);
   };
 
-  // console.log(tabValue);
   return (
     <>
       {!createSelection ? (
@@ -285,7 +283,7 @@ const MyBooks = () => {
                           {options.map((opt, idx) => (
                             <li
                               className={st.dropdownListItem}
-                              onClick={() => handleOptions(idx)}
+                              onClick={e => handleOptions(idx, e)}
                             >
                               {opt.svg}
                               <span>{opt.option}</span>

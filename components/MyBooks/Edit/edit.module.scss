@@ -1,5 +1,8 @@
 @import 'styles/variables';
 
+.container {
+  // overflow: hidden;
+}
 .dropblock {
   width: 1600;
   min-height: 581px;
@@ -9,7 +12,8 @@
     width: 1600;
     min-height: 581px;
     background: $color-second;
-
+    background-repeat: no-repeat;
+    background-size: cover;
     &Active {
       &:before {
         content: '';
@@ -37,6 +41,14 @@
 }
 .imgSvg {
   margin-bottom: 60px;
+}
+.closeSvg {
+  cursor: pointer;
+
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  stroke: #fff;
 }
 .changeInput {
   font-family: Merriweather;
@@ -70,15 +82,32 @@
   margin-top: 30px;
   color: $color-third;
 }
-.replyArea {
-  display: block;
-  margin: auto;
-  margin-bottom: 40px;
-  width: 792px;
-  height: 188px;
 
-  border: 1px solid $color-star-border;
-  border-radius: 5px;
-  background-color: transparent;
-  resize: none;
+.textArea {
+  max-width: 792px;
+  margin: auto;
+  &Label {
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-third;
+    margin-top: 54px;
+    margin-bottom: 10px;
+  }
+  &Input {
+    margin-bottom: 40px;
+    width: 792px;
+    height: 188px;
+
+    border: 1px solid $color-star-border;
+    border-radius: 5px;
+    background-color: transparent;
+    resize: none;
+  }
+  &BtnLabel {
+    font-size: 14px;
+    line-height: 1.43;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    color: $color-third;
+  }
 }

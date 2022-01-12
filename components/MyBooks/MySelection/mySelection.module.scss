@@ -1,7 +1,7 @@
 @import 'styles/variables';
 
 .selectionCover {
-  min-width: 1600px;
+  // min-width: 1600px;
   min-height: 581px;
   padding: 60px 0;
   background-size: cover;
@@ -29,6 +29,7 @@
   justify-content: center;
 
   &Dots {
+    cursor: pointer;
     position: relative;
     display: flex;
     align-items: center;
@@ -66,8 +67,10 @@
   color: $color-second;
 
   &Option {
+    cursor: pointer;
     display: flex;
     align-items: center;
+
     &Text {
       margin-left: 15px;
     }
@@ -292,4 +295,13 @@
   &Item {
     position: relative;
   }
+}
+.addBook {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: #fff;
 }
