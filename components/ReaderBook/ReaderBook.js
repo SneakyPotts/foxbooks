@@ -8,8 +8,7 @@ import Letter from "../shared/icons/Letter";
 import FullScreen from "../shared/icons/FullScreen";
 import BookMark from "../shared/icons/BookMark";
 import InputRange from "../shared/common/InputRange/InputRange";
-import classnames from "classnames";
-
+import classNames from "classnames";
 
 
 

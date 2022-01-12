@@ -28,26 +28,26 @@ const mySelection = () => {
   const [addBookPage, setAddBookPage] = useState(false);
   const [editPage, setEditPage] = useState(false);
 
-  const options = [
-    { option: 'Все', svg: <All /> },
-    { option: 'Хочу прочитать', svg: <BookMark /> },
-    { option: 'Читаю', svg: <OpenBook /> },
-    { option: 'Прочитано', svg: <Flag /> },
-  ];
-  const popular = [
-    { option: 'Популярные' },
-    { option: 'По дате добавления' },
-    { option: 'По алфавиту' },
-  ];
+	const options = [
+		{ option: 'Все', svg: <All /> },
+		{ option: 'Хочу прочитать', svg: <BookMark /> },
+		{ option: 'Читаю', svg: <OpenBook /> },
+		{ option: 'Прочитано', svg: <Flag /> },
+	];
+	const popular = [
+		{ option: 'Популярные' },
+		{ option: 'По дате добавления' },
+		{ option: 'По алфавиту' },
+	];
 
-  useEffect(() => {
-    const body = document.querySelector('body');
-    body.addEventListener('click', close);
+	useEffect(() => {
+		const body = document.querySelector('body');
+		body.addEventListener('click', close);
 
-    return () => {
-      body.removeEventListener('click', close);
-    };
-  }, []);
+		return () => {
+			body.removeEventListener('click', close);
+		};
+	}, []);
 
   const handleAddBtn = () => {
     setAddBookPage(true);

@@ -1,4 +1,6 @@
 import { useState, useRef } from 'react';
+import Image from 'next/image';
+import st from './edit.module.scss';
 import classnames from 'classnames';
 import Img from '../../../public/img.svg';
 import Button from '../../shared/common/Button/Button';

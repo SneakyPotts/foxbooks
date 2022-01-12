@@ -1,5 +1,5 @@
 import Image from 'next/image';
-// import Link from 'next/link';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import classnames from 'classnames';
