@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/http/AuthService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/HomeService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/homeSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioBooks/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioBooks/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AuthorPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AuthorOtherAudiobooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AuthorOtherAudiobooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AuthorOtherBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AuthorOtherBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentComponent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentComponent/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Pagination/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Pagination/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Quotes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Quotes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BreadCrumps/BreadCrumps.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BreadCrumps/BreadCrumps.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Author/Author.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Author/Author.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Clear/Clear.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Clear/Clear.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/headerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/headerSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Holders/HoldersRight.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Holders/HoldersRight.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/About/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/About/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Categories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Categories/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Hero/Hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Hero/Hero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/Compilations.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/Compilations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Reviews/Reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Reviews/Reviews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Logo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Logo/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Edit/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Edit/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelection/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NewPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/QuotesPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/QuotesPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewComponen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewComponen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/idex.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/idex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/selectionsGrid/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selectionsGrid/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/selectionsList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selectionsList/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SeriesPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SeriesPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Support/Support.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/Support.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/Button/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Button/Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/Input/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/Input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/SocialNetwork/SocialNetwork.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/SocialNetwork/SocialNetwork.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/bookSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/checkbox/checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/checkbox/checkbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/modalWindow/ModalWindow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/modalWindow/ModalWindow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/showAll/ShowAll.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/showAll/ShowAll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/Bell.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/Bell.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/BookMark.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/BookMark.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/FullScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/FullScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/Letter.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/Letter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/Lock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/Lock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/Logo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/OK.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/OK.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/ReadderGambgurger.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/ReadderGambgurger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/VK.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/VK.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/add.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/add.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/commentSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/commentSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/exit.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/exit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/eye.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/eye.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/google.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/google.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/headphones.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/headphones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/heart.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/heart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/heartSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/heartSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/pencil.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/pencil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/setting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/sgbCommentSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/sgbCommentSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/yandex.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/yandex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/switcher/Switcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/switcher/Switcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/audiobooks/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/audiobooks/[id]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/audiobooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/audiobooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/author/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/author/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/books/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/[id]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/holders.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/holders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/[edit]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/[edit]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/new/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/new/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/quotes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/quotes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reviews/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/selections/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/[id]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/series.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/series.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/support.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/support.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="23auBythzjH9L767PJFjYNP9OaI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\library-next\store" />
+      <recent name="D:\library-next\http" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="" />
+      <created>1641984388072</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1641984388072</updated>
+      <workItem from="1641984391310" duration="1245000" />
+      <workItem from="1641985757995" duration="9955000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
