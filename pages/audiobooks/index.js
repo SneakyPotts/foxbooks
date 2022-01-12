@@ -1,10 +1,10 @@
 import AudioBooks from '../../components/AudioBooks';
 
 const Audiobooks = () => {
-  return (
-    <>
-      <AudioBooks />
-    </>
-  );
+	return (
+		<>
+			<AudioBooks />
+		</>
+	);
 };
 export default Audiobooks;

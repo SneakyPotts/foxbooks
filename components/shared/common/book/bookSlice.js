@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  audioFlag: false,
+	audioFlag: false,
 };
 
 export const bookSlice = createSlice({
-  name: 'book',
-  initialState,
+	name: 'book',
+	initialState,
 
-  reducers: {
-    AudioBook: (state, action) => {
-      state.audioFlag = action.payload;
-    },
-  },
+	reducers: {
+		AudioBook: (state, action) => {
+			state.audioFlag = action.payload;
+		},
+	},
 });
 
 export const { AudioBook } = bookSlice.actions;

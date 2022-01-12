@@ -4,9 +4,10 @@ import ReaderBook from "../components/ReaderBook/ReaderBook";
 
 const Reader = () => {
 
+
     return (
         <>
-            <ReaderBook/>
+            <ReaderBook />
         </>
     );
 };

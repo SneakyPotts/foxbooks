@@ -1,3 +1,6 @@
 {
-  "extends": ["next/babel"]
+  "extends": "next",
+  "rules": {
+    "indent": [2, "tab"]
+  }
 }
