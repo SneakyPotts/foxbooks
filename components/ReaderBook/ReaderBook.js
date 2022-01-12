@@ -8,7 +8,8 @@ import Letter from "../shared/icons/Letter";
 import FullScreen from "../shared/icons/FullScreen";
 import BookMark from "../shared/icons/BookMark";
 import InputRange from "../shared/common/InputRange/InputRange";
-import classNames from "classnames";
+import classnames from "classnames";
+
 
 
 
@@ -20,19 +21,31 @@ const ReaderBook = () => {
     const [ brightness, setBrightness ] = useState(5)
     const [ Fields, setFields ] = useState(2)
     const [ line, setLine ] = useState(2)
+    const [ font, setFont ] = useState('Ubuntu')
+    const [dropFont, setDropFont] = useState(false)
 
     const controlData = [
         {textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
         {textLabel:'Размер шрифта', value: fontSize, setValue: setFontSize, max:'12', dot: false},
         {textLabel:'Яркость', value: brightness, setValue: setBrightness, max:'5', dot: false},
+        {textLabel:'Шрифт', value: font, setValue: setFont, max:'', dot: false},
         {textLabel:'Поля', value: Fields, setValue: setFields, max:'4', dot: true},
         {textLabel:'Высота Строк', value: line, setValue: setLine, max:'4', dot: true},
         {textLabel:'Выравнивание по ширине', value: alignment, setValue: setAlignment, max:'0'},
     ]
 
+    const dataDropDownFonts = [
+        {text: 'Times New Roman'},
+        {text: 'Georgia'},
+        {text: 'Arial'},
+        {text: 'Ubuntu'},
+        {text: 'Verdana'},
+    ]
+
+
     return (
         <div
-            className={classNames(styles.wrapper,
+            className={classnames(styles.wrapper,
                 {[styles.wrapperDefault] : Number(brightness) === 5},
                 {[styles.wrapperFifth] : Number(brightness) === 4},
                 {[styles.wrapperFourth] : Number(brightness) === 3},
@@ -44,18 +57,18 @@ const ReaderBook = () => {
             <div className={styles.containerHeader}>
                 <div className={styles.logoWrap}>
                     <ArrowRight className={styles.arrow}/>
-                    <Logo classNames={3 > brightness && styles.svgChange}/>
+                    <Logo className={3 > brightness && styles.svgChange}/>
                 </div>
                 <div className={styles.iconGroup}>
                     <ReaderGambgurger
-                        classNames={styles.iconRight}
+                        className={styles.iconRight}
                     />
-                    <Quote classNames={styles.iconRight}/>
+                    <Quote className={styles.iconRight}/>
                     <Letter
                         click={()=>setControlDrop(!controlDrop)}
-                        classNames={styles.iconRight}/>
-                    <FullScreen classNames={styles.iconRight}/>
-                    <BookMark classNames={styles.iconRight}/>
+                        className={styles.iconRight}/>
+                    <FullScreen className={styles.iconRight}/>
+                    <BookMark className={styles.iconRight}/>
                     {controlDrop &&
                     <div className={styles.control}>
                         {controlData.map(({textLabel, value, setValue, max, dot},i)=> {
@@ -69,7 +82,26 @@ const ReaderBook = () => {
                                                type="checkbox"/>
                                     </div>
                                 </div>
-                                :
+                                : i === 3 ?
+                                    <div className={classnames(styles.controlBlock, styles.fontBlock)}>
+                                        <span>{textLabel}</span>
+                                        <div onClick={()=>setDropFont(!dropFont)} className={styles.changeFont}>
+                                            <span>{value}</span>
+                                            <span className={styles.changeFontSvg}>
+                                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 1L7 7L13 1" stroke="#909190" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                                </svg>
+                                            </span>
+                                            <div className={classnames(styles.fontDropDown, {[styles.fontDropDownActive]: dropFont})}>
+                                                {dataDropDownFonts.map(({text})=> (
+                                                    <button type='button'>
+                                                        {text}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    :
                                 <div className={styles.controlBlock}>
                                     <InputRange
                                         dot={dot}
