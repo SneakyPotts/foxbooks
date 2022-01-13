@@ -24,6 +24,8 @@ const ReaderBook = () => {
     const [ font, setFont ] = useState('Ubuntu')
     const [dropFont, setDropFont] = useState(false)
 
+    console.log(1)
+
     const controlData = [
         {textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
         {textLabel:'Размер шрифта', value: fontSize, setValue: setFontSize, max:'12', dot: false},
