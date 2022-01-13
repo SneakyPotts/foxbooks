@@ -227,12 +227,11 @@ const mySelection = () => {
         </div>
       )}
       {editPage && (
-        <div className={st.addBook}>
+        <div className={st.editPage}>
           <Edit setEditPage={setEditPage} setAddBookPage={setAddBookPage} />
         </div>
       )}
     </>
   );
 };
-
 export default mySelection;
