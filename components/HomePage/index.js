@@ -14,49 +14,68 @@ import books from '../data/books.json';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import css from './home.module.css';
+import {useDispatch} from "react-redux";
+import {setAuth, verifyEmail} from "../../store/authSlice";
+import {useEffect} from "react";
+import axios from "axios";
+import {useRouter} from "next/router";
 
 const HomeView = () => {
-  return (
-    <div className={css.container}>
-      <div className={css.mainContainer}>
-        <Categories />
-        <div className={css.mainBlock}>
-          <Alphabet />
-          <ShowAll title="Новинки книг" url="/new" />
+	const dispatch = useDispatch()
+	const router = useRouter()
 
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={24}
-            slidesPerView={5}
-            navigation={{
-              prevEl: '.prevArrow',
-              nextEl: '.nextArrow',
-            }}
-            // onSlideChange={() => console.log('slide change')}
-            // onSwiper={swiper => console.log(swiper)}
-          >
-            {books.map(book => (
-              <SwiperSlide key={book.id} className={css.swiperSlide}>
-                <Book book={book} />
-              </SwiperSlide>
-            ))}
-            <button className="prevArrow">
-              <ArrowRight className="arrowNext" />
-            </button>
-            <button className="nextArrow">
-              <ArrowRight className="arrowNext" />
-            </button>
-          </Swiper>
-        </div>
-      </div>
-      <Hero />
-      <div className={css.wrapper}>
-        <BookUpdates className={css.updates} />
-        <Filters />
-      </div>
-      <Introductory />
-      <About />
-    </div>
-  );
+	useEffect(() => {
+		const storageToken = localStorage.getItem('token')
+		const { email, token } = router.query
+
+		if(storageToken) {
+			dispatch(setAuth(true))
+		} else {
+			dispatch(verifyEmail({email, token}))
+		}
+	}, []);
+
+	return (
+		<div className={css.container}>
+			<div className={css.mainContainer}>
+				<Categories />
+				<div className={css.mainBlock}>
+					<Alphabet />
+					<ShowAll title="Новинки книг" url="/new" />
+
+					<Swiper
+						modules={[Navigation]}
+						spaceBetween={24}
+						slidesPerView={5}
+						navigation={{
+							prevEl: '.prevArrow',
+							nextEl: '.nextArrow',
+						}}
+						// onSlideChange={() => console.log('slide change')}
+						// onSwiper={swiper => console.log(swiper)}
+					>
+						{books.map(book => (
+							<SwiperSlide key={book.id} className={css.swiperSlide}>
+								<Book book={book} />
+							</SwiperSlide>
+						))}
+						<button className="prevArrow">
+							<ArrowRight className="arrowNext" />
+						</button>
+						<button className="nextArrow">
+							<ArrowRight className="arrowNext" />
+						</button>
+					</Swiper>
+				</div>
+			</div>
+			<Hero />
+			<div className={css.wrapper}>
+				<BookUpdates className={css.updates} />
+				<Filters />
+			</div>
+			<Introductory />
+			<About />
+		</div>
+	);
 };
 export default HomeView;
