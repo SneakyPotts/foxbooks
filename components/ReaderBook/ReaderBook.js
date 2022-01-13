@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styles from './index.module.scss'
 import Logo from "../shared/icons/Logo";
 import ArrowRight from '../../public/chevron-right.svg'
@@ -14,102 +14,129 @@ import classnames from "classnames";
 
 
 const ReaderBook = () => {
-    const [controlDrop, setControlDrop] = useState(false)
-    const [column, setСolumn] = useState(false)
-    const [alignment, setAlignment] = useState(false)
-    const [fontSize, setFontSize] = useState(0)
-    const [brightness, setBrightness] = useState(5)
-    const [Fields, setFields] = useState(2)
-    const [line, setLine] = useState(2)
+    const [ controlDrop, setControlDrop ] = useState(false)
+    const [ column, setСolumn ] = useState(false)
+    const [ alignment, setAlignment ] = useState(false)
+    const [ fontSize, setFontSize ] = useState(0)
+    const [ brightness, setBrightness ] = useState(5)
+    const [ Fields, setFields ] = useState(2)
+    const [ line, setLine ] = useState(2)
+    const [ font, setFont ] = useState('Ubuntu')
+    const [dropFont, setDropFont] = useState(false)
 
-    console.log(1)
+    console.log(111111111)
 
     const controlData = [
-        { textLabel: 'Текст в 2 колонки', value: column, setValue: setСolumn, max: '0', dot: false },
-        { textLabel: 'Размер шрифта', value: fontSize, setValue: setFontSize, max: '12', dot: false },
-        { textLabel: 'Яркость', value: brightness, setValue: setBrightness, max: '5', dot: false },
-        { textLabel: 'Поля', value: Fields, setValue: setFields, max: '4', dot: true },
-        { textLabel: 'Высота Строк', value: line, setValue: setLine, max: '4', dot: true },
-        { textLabel: 'Выравнивание по ширине', value: alignment, setValue: setAlignment, max: '0' },
+        {textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
+        {textLabel:'Размер шрифта', value: fontSize, setValue: setFontSize, max:'12', dot: false},
+        {textLabel:'Яркость', value: brightness, setValue: setBrightness, max:'5', dot: false},
+        {textLabel:'Шрифт', value: font, setValue: setFont, max:'', dot: false},
+        {textLabel:'Поля', value: Fields, setValue: setFields, max:'4', dot: true},
+        {textLabel:'Высота Строк', value: line, setValue: setLine, max:'4', dot: true},
+        {textLabel:'Выравнивание по ширине', value: alignment, setValue: setAlignment, max:'0'},
     ]
+
+    const dataDropDownFonts = [
+        {text: 'Times New Roman'},
+        {text: 'Georgia'},
+        {text: 'Arial'},
+        {text: 'Ubuntu'},
+        {text: 'Verdana'},
+    ]
+
 
     return (
         <div
-            className={classNames(styles.wrapper,
-                { [styles.wrapperDefault]: Number(brightness) === 5 },
-                { [styles.wrapperFifth]: Number(brightness) === 4 },
-                { [styles.wrapperFourth]: Number(brightness) === 3 },
-                { [styles.wrapperThird]: Number(brightness) === 2 },
-                { [styles.wrapperSecond]: Number(brightness) === 1 },
-                { [styles.wrapperFirst]: Number(brightness) === 0 },
-            )}
+            className={classnames(styles.wrapper,
+                {[styles.wrapperDefault] : Number(brightness) === 5},
+                {[styles.wrapperFifth] : Number(brightness) === 4},
+                {[styles.wrapperFourth] : Number(brightness) === 3},
+                {[styles.wrapperThird] : Number(brightness) === 2},
+                {[styles.wrapperSecond] : Number(brightness) === 1},
+                {[styles.wrapperFirst] : Number(brightness) === 0},
+            ) }
         >
             <div className={styles.containerHeader}>
                 <div className={styles.logoWrap}>
-                    <ArrowRight className={styles.arrow} />
-                    <Logo classNames={3 > brightness && styles.svgChange} />
+                    <ArrowRight className={styles.arrow}/>
+                    <Logo className={3 > brightness && styles.svgChange}/>
                 </div>
                 <div className={styles.iconGroup}>
                     <ReaderGambgurger
-                        classNames={styles.iconRight}
+                        className={styles.iconRight}
                     />
-                    <Quote classNames={styles.iconRight} />
+                    <Quote className={styles.iconRight}/>
                     <Letter
-                        click={() => setControlDrop(!controlDrop)}
-                        classNames={styles.iconRight} />
-                    <FullScreen classNames={styles.iconRight} />
-                    <BookMark classNames={styles.iconRight} />
+                        click={()=>setControlDrop(!controlDrop)}
+                        className={styles.iconRight}/>
+                    <FullScreen className={styles.iconRight}/>
+                    <BookMark className={styles.iconRight}/>
                     {controlDrop &&
-                        <div className={styles.control}>
-                            {controlData.map(({ textLabel, value, setValue, max, dot }, i) => {
-                                return i === 0 || i === 5 ?
-                                    <div className={styles.controlBlock}>
-                                        <div className={styles.wrapSwitch}>
-                                            <span>{textLabel}</span>
-                                            <input className={styles.switch}
-                                                checked={value}
-                                                onChange={() => setValue(!value)}
-                                                type="checkbox" />
+                    <div className={styles.control}>
+                        {controlData.map(({textLabel, value, setValue, max, dot},i)=> {
+                            return i === 0 || i === 5 ?
+                                <div className={styles.controlBlock}>
+                                    <div className={styles.wrapSwitch}>
+                                        <span>{textLabel}</span>
+                                        <input className={styles.switch}
+                                               checked={value}
+                                               onChange={()=>setValue(!value)}
+                                               type="checkbox"/>
+                                    </div>
+                                </div>
+                                : i === 3 ?
+                                    <div className={classnames(styles.controlBlock, styles.fontBlock)}>
+                                        <span>{textLabel}</span>
+                                        <div onClick={()=>setDropFont(!dropFont)} className={styles.changeFont}>
+                                            <span>{value}</span>
+                                            <span className={styles.changeFontSvg}>
+                                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 1L7 7L13 1" stroke="#909190" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                                </svg>
+                                            </span>
+                                            <div className={classnames(styles.fontDropDown, {[styles.fontDropDownActive]: dropFont})}>
+                                                {dataDropDownFonts.map(({text})=> (
+                                                    <button type='button'>
+                                                        {text}
+                                                    </button>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                     :
-                                    <div className={styles.controlBlock}>
-                                        <InputRange
-                                            dot={dot}
-                                            brightness={brightness}
-                                            value={value}
-                                            setValue={setValue}
-                                            textLabel={textLabel}
-                                            max={max}
-                                        />
-                                    </div>
+                                <div className={styles.controlBlock}>
+                                    <InputRange
+                                        dot={dot}
+                                        brightness={brightness}
+                                        value={value}
+                                        setValue={setValue}
+                                        textLabel={textLabel}
+                                        max={max}
+                                    />
+                                </div>
 
-                            })}
-                        </div>
+                        })}
+                    </div>
                     }
                 </div>
             </div>
             <div
-                style={{
-                    maxWidth: Number(Fields) === 2 ?
+                style={{maxWidth:Number(Fields) === 2 ?
                         '792px' : Number(Fields) === 1 ?
                             '852px' : Number(Fields) === 0 ?
                                 '912px' : Number(Fields) === 3 ?
-                                    '732px' : '672px'
-                }}
+                                    '732px': '672px'}}
                 className={styles.wrapText}>
                 <h1>Гарри Поттер и философский камень</h1>
                 <span>Джоан Роулинг</span>
                 <h3>Глава 1. Мальчик, который выжил</h3>
                 <p
-                    style={{
-                        fontSize: `${Number(fontSize) + 16}px`,
-                        lineHeight: Number(line) === 2 ?
-                            '22px' : Number(line) === 1 ?
-                                '21px' : Number(line) === 0 ?
-                                    '18px' : Number(line) === 3 ?
-                                        '24px' : '26px'
-                    }}
+                style={{fontSize: `${Number(fontSize) + 16}px`,
+                    lineHeight:Number(line) === 2 ?
+                        '22px' : Number(line) === 1 ?
+                            '21px' : Number(line) === 0 ?
+                                '18px' : Number(line) === 3 ?
+                                    '24px': '26px'}}
                 >
                     Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли,
                     что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать,
