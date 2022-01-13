@@ -24,7 +24,6 @@ const ReaderBook = () => {
     const [ font, setFont ] = useState('Ubuntu')
     const [dropFont, setDropFont] = useState(false)
 
-    console.log(111111111)
 
     const controlData = [
         {textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
@@ -74,7 +73,7 @@ const ReaderBook = () => {
                     {controlDrop &&
                     <div className={styles.control}>
                         {controlData.map(({textLabel, value, setValue, max, dot},i)=> {
-                            return i === 0 || i === 5 ?
+                            return i === 0 || i === 6 ?
                                 <div className={styles.controlBlock}>
                                     <div className={styles.wrapSwitch}>
                                         <span>{textLabel}</span>
