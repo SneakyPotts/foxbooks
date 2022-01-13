@@ -15,11 +15,6 @@ import Comment from '../../icons/comment';
 import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
 
-<<<<<<< HEAD
-const Book = ({ audio, flagSwitcher, classNames, similar }) => {
-	const dispatch = useDispatch();
-	// const { audioFlag } = useSelector(state => state.bookSlice);
-=======
 const Book = ({
   audio,
   flagSwitcher,
@@ -29,29 +24,28 @@ const Book = ({
 }) => {
   const dispatch = useDispatch();
   // const { audioFlag } = useSelector(state => state.bookSlice);
->>>>>>> origin/test
 
-	const [changeIcon, setChangeIcon] = useState(false);
-	const [options, setOptions] = useState(false);
+  const [changeIcon, setChangeIcon] = useState(false);
+  const [options, setOptions] = useState(false);
 
-	const route = useRouter();
-	// console.log(route, 'router');
+  const route = useRouter();
+  // console.log(route, 'router');
 
-	const bookLinkClick = () => {
-		if (audio) {
-			dispatch(AudioBook(true));
-		} else if (!audio) {
-			dispatch(AudioBook(false));
-		}
-	};
+  const bookLinkClick = () => {
+    if (audio) {
+      dispatch(AudioBook(true));
+    } else if (!audio) {
+      dispatch(AudioBook(false));
+    }
+  };
 
-	const onChangeIcon = () => {
-		setChangeIcon(true);
-	};
+  const onChangeIcon = () => {
+    setChangeIcon(true);
+  };
 
-	const checkOptions = () => {
-		setOptions(!options);
-	};
+  const checkOptions = () => {
+    setOptions(!options);
+  };
 
   return (
     <div
@@ -151,54 +145,54 @@ const Book = ({
               окончательно запуталась. Жизнь сложилась не так радужно, как Я —
               Макеева Кира Александровна. И я окончательно запуталась. Жизнь
               сложилась не так радужно, как Я — Макеева Кира Александровна.
-						</p>
-						{!audio && (
-							<div className={st.reviewStatistic}>
-								<span className={st.reviewIcon}>
-									<Like />
-								</span>
-								<span className={st.reviewLike}>3115</span>
-								<span className={st.reviewIcon}>
-									<Comment />
-								</span>
-								<span>700</span>
-							</div>
-						)}
-					</div>
-				)}
-				{flagSwitcher && (
-					<div>
-						<span
-							className={classnames(st.addIcon, { [st.hide]: changeIcon })}
-							onClick={onChangeIcon}
-						>
-							<AddToBooks />
-						</span>
-						{changeIcon && (
-							<span className={classnames(st.dotsIcon)} onClick={checkOptions}>
-								<HorizontalDots />
-							</span>
-						)}
-						{options && (
-							<div className={st.optionWindow}>
-								<p className={st.optionRead}>
-									<span className={st.optionIcon}>
-										<OpenBook />
-									</span>
+            </p>
+            {!audio && (
+              <div className={st.reviewStatistic}>
+                <span className={st.reviewIcon}>
+                  <Like />
+                </span>
+                <span className={st.reviewLike}>3115</span>
+                <span className={st.reviewIcon}>
+                  <Comment />
+                </span>
+                <span>700</span>
+              </div>
+            )}
+          </div>
+        )}
+        {flagSwitcher && (
+          <div>
+            <span
+              className={classnames(st.addIcon, { [st.hide]: changeIcon })}
+              onClick={onChangeIcon}
+            >
+              <AddToBooks />
+            </span>
+            {changeIcon && (
+              <span className={classnames(st.dotsIcon)} onClick={checkOptions}>
+                <HorizontalDots />
+              </span>
+            )}
+            {options && (
+              <div className={st.optionWindow}>
+                <p className={st.optionRead}>
+                  <span className={st.optionIcon}>
+                    <OpenBook />
+                  </span>
                   Читаю
-								</p>
-								<p className={st.optionDelete}>
-									<span className={st.optionIcon}>
-										<Basket />
-									</span>
+                </p>
+                <p className={st.optionDelete}>
+                  <span className={st.optionIcon}>
+                    <Basket />
+                  </span>
                   Удалить из моих книг
-								</p>
-							</div>
-						)}
-					</div>
-				)}
-			</div>
-		</div>
-	);
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 export default Book;
