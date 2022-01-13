@@ -15,7 +15,13 @@ import Comment from '../../icons/comment';
 import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
 
-const Book = ({ audio, flagSwitcher, classNames, similar }) => {
+const Book = ({
+  audio,
+  flagSwitcher,
+  classNames,
+  similar,
+  noLinks = false,
+}) => {
   const dispatch = useDispatch();
   // const { audioFlag } = useSelector(state => state.bookSlice);
 
@@ -49,19 +55,32 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
       })}
     >
       <div className={st.wrapper}>
-        <Link href="/book">
-          <a onClick={bookLinkClick}>
-            <Image
-              src="/horizontalBookCovers/book.png"
-              alt=""
-              width={180}
-              height={audio ? '180' : '271'}
-              placeholder="blur"
-              blurDataURL="/images/blur.jpg"
-              layout="responsive"
-            />
-          </a>
-        </Link>
+        {!noLinks ? (
+          <Link href="/book">
+            <a onClick={bookLinkClick}>
+              <Image
+                src="/horizontalBookCovers/book.png"
+                alt=""
+                width={180}
+                height={audio ? '180' : '271'}
+                placeholder="blur"
+                blurDataURL="/images/blur.jpg"
+                layout="responsive"
+              />
+            </a>
+          </Link>
+        ) : (
+          <Image
+            src="/horizontalBookCovers/book.png"
+            alt=""
+            width={180}
+            height={audio ? '180' : '271'}
+            placeholder="blur"
+            blurDataURL="/images/blur.jpg"
+            layout="responsive"
+          />
+        )}
+
         {!flagSwitcher && <span className={st.bookCategorie}>Фентези</span>}
         {audio && (
           <span className={st.audioIcon}>
@@ -84,21 +103,36 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
             {!similar && <span>(450)</span>}
           </div>
         </div>
-        <Link href="/book">
-          <a>
-            <h3
-              className={classnames(st.bookName, {
-                [st.bookNameSmaller]: similar,
-              })}
-            >
-              Искатели неба: Холодные берега Искатели неба: Холодные берега
-            </h3>
-          </a>
-        </Link>
+        {noLinks ? (
+          <h3
+            className={classnames(st.bookName, {
+              [st.bookNameSmaller]: similar,
+            })}
+          >
+            Искатели неба: Холодные берега Искатели неба: Холодные берега
+          </h3>
+        ) : (
+          <Link href="/book">
+            <a>
+              <h3
+                className={classnames(st.bookName, {
+                  [st.bookNameSmaller]: similar,
+                })}
+              >
+                Искатели неба: Холодные берега Искатели неба: Холодные берега
+              </h3>
+            </a>
+          </Link>
+        )}
 
-        <Link href="/author">
-          <a className={st.bookAuthor}>Сергей Лукьяненко</a>
-        </Link>
+        {noLinks ? (
+          <span className={st.bookAuthor}>Сергей Лукьяненко</span>
+        ) : (
+          <Link href="/author">
+            <a className={st.bookAuthor}>Сергей Лукьяненко</a>
+          </Link>
+        )}
+
         {flagSwitcher && (
           <div className={classnames(st.extraInfo, { [st.addInfo]: !audio })}>
             <p className={st.bookYear}>

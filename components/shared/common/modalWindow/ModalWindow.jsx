@@ -11,7 +11,6 @@ const ModalWindow = ({ children, modal, setModal, click }) => {
         {children}
         <div
           onClick={() => setModal(!modal)}
-          //   onClick={click}
           className={styles.wrapperBlockCross}
         >
           <span />

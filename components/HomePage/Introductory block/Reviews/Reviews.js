@@ -15,7 +15,6 @@ import ShowAll from '../../../shared/common/showAll/ShowAll';
 const Reviews = () => {
   return (
     <>
-      {' '}
       <ShowAll title="Рецензии" url="/reviews" text="Показать все" />
       <Swiper
         modules={[Navigation]}

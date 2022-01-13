@@ -5,11 +5,15 @@ import classnames from 'classnames';
 import ArrowRight from '../../../../public/chevron-right.svg';
 import Book from '../../../shared/common/book';
 import ModalWindow from '../../../shared/common/modalWindow/ModalWindow';
+import Button from '../../../shared/common/Button/Button';
 import st from './addBook.module.scss';
 
 const AddBook = ({ setAddBookPage }) => {
   const [activeBookSel, setActiveBookSel] = useState(0);
-  const [addBook, setAddBook] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  // const [closeMosal, setCloseModal] = useState(false)
+
   const books = [
     { id: 0 },
     { id: 1 },
@@ -22,6 +26,7 @@ const AddBook = ({ setAddBookPage }) => {
     { id: 8 },
     { id: 9 },
   ];
+
   const booksSelections = [
     { id: '0', option: 'Все' },
     { id: '1', option: 'Книги' },
@@ -29,9 +34,18 @@ const AddBook = ({ setAddBookPage }) => {
     { id: '3', option: 'Авторы' },
   ];
 
-  const onBookClick = e => {
-    e.preventDefault();
-    setAddBook(true);
+  const onBookClick = () => {
+    console.log(111111);
+    setModal(true);
+  };
+
+  const handleClick = () => {
+    setModal(false);
+    setConfirm(true);
+  };
+
+  const handleCloseModal = () => {
+    setConfirm(false);
   };
 
   return (
@@ -71,20 +85,16 @@ const AddBook = ({ setAddBookPage }) => {
       <h2 className={st.title}>Книги</h2>
       <div className={st.myBooks}>
         {books.map(book => (
-          <div
-            key={book.id}
-            className={st.myBooksItem}
-            onClick={e => onBookClick(e)}
-          >
-            <Book />
+          <div key={book.id} className={st.myBooksItem} onClick={onBookClick}>
+            <Book noLinks={true} />
           </div>
         ))}
       </div>
       <h2 className={st.title}>Аудиокниги</h2>
       <div className={st.myBooks}>
         {books.map(book => (
-          <div key={book.id} className={st.myBooksItem}>
-            <Book audio={true} />
+          <div key={book.id} className={st.myBooksItem} onClick={onBookClick}>
+            <Book noLinks={true} audio={true} />
           </div>
         ))}
       </div>
@@ -97,9 +107,34 @@ const AddBook = ({ setAddBookPage }) => {
           <span> книг</span>
         </p>
       </div>
-      {addBook && (
-        <ModalWindow>
-          <p>dfhuyigsulghb</p>
+      {modal && (
+        <ModalWindow modal={modal} setModal={setModal}>
+          <div className={st.modalContent}>
+            <h1 className={st.modalContentTitle}>
+              Добавить книгу в подборку “Дизайн”?
+            </h1>
+            <Button
+              text="Добавить"
+              typeButton="button"
+              click={handleClick}
+              classNames={st.modalContentBtn}
+            />
+          </div>
+        </ModalWindow>
+      )}
+      {confirm && (
+        <ModalWindow modal={confirm} setModal={setConfirm}>
+          <div className={st.modalContent}>
+            <h1 className={st.modalContentTitle}>
+              Книга добавлена в подборку “Дизайн”
+            </h1>
+            <Button
+              text="Закрыть"
+              typeButton="button"
+              click={handleCloseModal}
+              classNames={st.modalContentBtn}
+            />
+          </div>
         </ModalWindow>
       )}
     </div>

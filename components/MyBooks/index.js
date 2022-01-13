@@ -19,7 +19,9 @@ import Flag from '../../public/flag.svg';
 import Delete from '../../public/delete.svg';
 import Button from '../shared/common/Button/Button';
 import MySelection from './MySelection';
+import Review from './Review';
 import st from './myBooks.module.scss';
+// import Reviews from '../HomePage/Introductory block/Reviews/Reviews';
 
 const MyBooks = () => {
   const dataBooks = [
@@ -112,6 +114,7 @@ const MyBooks = () => {
   const [activeOption, setActiveOption] = useState('Все');
   const [activeSelections, setActiveSelections] = useState('Все');
   const [createSelection, setCreateSelection] = useState(false);
+  const [confirm, setConfirm] = useState(false);
   const [books, setBooks] = useState([
     { id: 0 },
     { id: 1 },
@@ -185,6 +188,11 @@ const MyBooks = () => {
   const deleteBook = () => {
     setBooks(books.filter(book => book.id !== shoudlDelete));
     setDeletePopap(false);
+    setConfirm(true);
+  };
+
+  const confirmDeleteBook = () => {
+    setConfirm(false);
   };
 
   return (
@@ -479,13 +487,10 @@ const MyBooks = () => {
                 </div>
               </div>
             )}
+            {tabValue === 'Рецензии' && <Review />}
           </div>
           {deletePopap && (
-            <ModalWindow
-              modal={deletePopap}
-              setModal={setDeletePopap}
-              click={deleteBook}
-            >
+            <ModalWindow modal={deletePopap} setModal={setDeletePopap}>
               <div className={st.modal}>
                 <h1 className={st.modalTitle}>Удалить книгу</h1>
                 <p className={st.modalText}>
@@ -497,6 +502,20 @@ const MyBooks = () => {
                   typeButton="button"
                   ClassName={st.modalBtns}
                   click={deleteBook}
+                />
+              </div>
+            </ModalWindow>
+          )}
+          {confirm && (
+            <ModalWindow modal={confirm} setModal={setConfirm}>
+              <div className={st.modal}>
+                <h1 className={st.modalTitle}>Книга удалена</h1>
+
+                <Button
+                  text="Закрыть"
+                  typeButton="button"
+                  click={confirmDeleteBook}
+                  classNames={st.modalBtn}
                 />
               </div>
             </ModalWindow>
