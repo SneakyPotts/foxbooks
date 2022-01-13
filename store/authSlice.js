@@ -32,6 +32,15 @@ export const verifyEmail = createAsyncThunk(
 	}
 )
 
+export const signInWithSocial = createAsyncThunk(
+	'auth/signInWithSocial',
+	async data => {
+		const response = await AuthService.signInWithSocial(data)
+		localStorage.setItem('token', response.data.accessToken)
+		return response.data
+	}
+)
+
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
@@ -76,6 +85,20 @@ export const authSlice = createSlice({
 			state.isLoading = false
 		},
 		[verifyEmail.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
+		[signInWithSocial.pending]: state => {
+			state.isLoading = true
+		},
+		[signInWithSocial.fulfilled]: state => {
+			state.isError = false
+			state.isLoading = false
+			state.isAuth = true
+		},
+		[signInWithSocial.rejected]: state => {
 			state.isError = true
 			state.isLoading = false
 		},
