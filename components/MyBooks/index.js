@@ -1,5 +1,4 @@
 import Image from 'next/image';
-// import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import classnames from 'classnames';
@@ -21,7 +20,6 @@ import Button from '../shared/common/Button/Button';
 import MySelection from './MySelection';
 import Review from './Review';
 import st from './myBooks.module.scss';
-// import Reviews from '../HomePage/Introductory block/Reviews/Reviews';
 
 const MyBooks = () => {
   const dataBooks = [
@@ -111,10 +109,12 @@ const MyBooks = () => {
   const [deletePopap, setDeletePopap] = useState(false);
   const [shoudlDelete, setShouldDelete] = useState(null);
   const [tabValue, setTabValue] = useState('Книги');
+  const [activeTab, setActiveTab] = useState(null);
   const [activeOption, setActiveOption] = useState('Все');
   const [activeSelections, setActiveSelections] = useState('Все');
   const [createSelection, setCreateSelection] = useState(false);
   const [confirm, setConfirm] = useState(false);
+
   const [books, setBooks] = useState([
     { id: 0 },
     { id: 1 },
@@ -137,6 +137,11 @@ const MyBooks = () => {
   const togle = e => {
     e.stopPropagation();
     setMenu(!menu);
+  };
+
+  const handleTabClick = (text, idx) => {
+    setTabValue(text);
+    setActiveTab(idx);
   };
 
   const handleOptions = (idx, e) => {
@@ -254,11 +259,13 @@ const MyBooks = () => {
           </div>
           <div className={st.myMenu}>
             <ul className={st.tabList}>
-              {tab.map(({ text, count }) => (
+              {tab.map(({ text, count }, idx) => (
                 <li
                   key={text}
-                  className={st.tab}
-                  onClick={() => setTabValue(text)}
+                  className={classnames(st.tab, {
+                    [st.activeTab]: activeTab === idx,
+                  })}
+                  onClick={() => handleTabClick(text, idx)}
                 >
                   <h2>{count}</h2>
                   <p>{text}</p>
@@ -368,41 +375,43 @@ const MyBooks = () => {
                       />
                     )}
                   </div>
-                  <div className={st.dropdownPopular}>
-                    <button
-                      className={classnames(st.dropdownPopularBtn, {
-                        [st.active]: filter,
-                      })}
-                      onClick={handleClick}
-                    >
-                      {activeFilter}
-                      <ArrowAll
-                        className={classnames(st.down, {
-                          [st.up]: filter,
+                  {tabValue !== 'Рецензии' && (
+                    <div className={st.dropdownPopular}>
+                      <button
+                        className={classnames(st.dropdownPopularBtn, {
+                          [st.active]: filter,
                         })}
-                      />
-                    </button>
-                    {filter && (
-                      <ul
-                        className={st.dropdownPopularList}
-                        onClick={e => e.stopPropagation()}
+                        onClick={handleClick}
                       >
-                        {popular.map((opt, idx) => (
-                          <li
-                            className={st.dropdownPopularListItem}
-                            onClick={() => filterClick(idx)}
-                          >
-                            <span
-                              className={classnames(st.radio, {
-                                [st.radioActive]: filterIdx === idx,
-                              })}
-                            ></span>
-                            <span>{opt.option}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
+                        {activeFilter}
+                        <ArrowAll
+                          className={classnames(st.down, {
+                            [st.up]: filter,
+                          })}
+                        />
+                      </button>
+                      {filter && (
+                        <ul
+                          className={st.dropdownPopularList}
+                          onClick={e => e.stopPropagation()}
+                        >
+                          {popular.map((opt, idx) => (
+                            <li
+                              className={st.dropdownPopularListItem}
+                              onClick={() => filterClick(idx)}
+                            >
+                              <span
+                                className={classnames(st.radio, {
+                                  [st.radioActive]: filterIdx === idx,
+                                })}
+                              ></span>
+                              <span>{opt.option}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

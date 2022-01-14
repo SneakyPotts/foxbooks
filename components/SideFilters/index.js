@@ -26,12 +26,6 @@ const SideFilters = () => {
     { id: '1', option: 'Новинки' },
   ];
 
-  // const filters = [
-  //   { id: '0', flag: false, option: 'Автор', placeholder: 'Найти автора' },
-  //   { id: '1', flag: false, option: 'Аудиокнига', placeholder: 'Найти книгу' },
-  //   { id: '2', flag:false, option: 'Издательство', placeholder: 'Найти издательство' },
-  // ];
-
   const toggle = e => {
     e.stopPropagation();
     setMenu(!menu);

@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import { AudioBook } from './bookSlice';
 import Image from 'next/image';
 import Stars from '../stars/Stars';
-import Headphones from '../../icons/headphones';
 import AddToBooks from '../../icons/add';
 import HorizontalDots from '../../../../public/horizontalDots.svg';
 import OpenBook from '../../../../public/book-open.svg';
@@ -14,6 +13,7 @@ import Like from '../../icons/heart';
 import Comment from '../../icons/comment';
 import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
+import Headphones from "../../icons/headphones";
 
 const Book = ({
   audio,

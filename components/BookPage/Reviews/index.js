@@ -82,7 +82,7 @@ const Reviews = () => {
               className={`${st.dropBtn} ${menu && st.open}`}
               onClick={togleMenu}
             >
-              <span className={st.dropBtnText}>{activeOption}</span>{' '}
+              <span className={st.dropBtnText}>{activeOption}</span>
               <ArrowAll
                 className={classnames(st.down, {
                   [st.up]: menu,
