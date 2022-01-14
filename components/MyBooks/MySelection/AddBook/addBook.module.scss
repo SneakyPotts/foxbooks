@@ -152,3 +152,16 @@
 .defolt {
   max-height: 292px;
 }
+.modalContent {
+  width: 318px;
+  &Title {
+    font-family: Merriweather;
+    font-size: 28px;
+    line-height: 35px;
+    color: $color-main;
+  }
+  &Btn {
+    width: 298px;
+    margin-top: 40px;
+  }
+}

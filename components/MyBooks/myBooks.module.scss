@@ -394,7 +394,7 @@
 
 // MODAL
 .modal {
-  width: 318px;
+  max-width: 318px;
 
   &Title {
     font-family: Merriweather;
@@ -412,11 +412,17 @@
 
   &Btns {
     margin-bottom: 0;
+    margin-top: 40px;
     flex-direction: row-reverse;
 
     > button:nth-child(2) {
       margin-left: 0;
       margin-right: 30px;
     }
+  }
+
+  &Btn {
+    width: 298px;
+    margin-top: 40px;
   }
 }
