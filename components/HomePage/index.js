@@ -14,27 +14,8 @@ import books from '../data/books.json';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import css from './home.module.css';
-import {useDispatch} from "react-redux";
-import {setAuth, verifyEmail} from "../../store/authSlice";
-import {useEffect} from "react";
-import axios from "axios";
-import {useRouter} from "next/router";
 
 const HomeView = () => {
-	const dispatch = useDispatch()
-	const router = useRouter()
-
-	useEffect(() => {
-		const storageToken = localStorage.getItem('token')
-		const { email, token } = router.query
-
-		if(storageToken) {
-			dispatch(setAuth(true))
-		} else {
-			dispatch(verifyEmail({email, token}))
-		}
-	}, []);
-
 	return (
 		<div className={css.container}>
 			<div className={css.mainContainer}>

@@ -5,6 +5,7 @@ import VK from "../../icons/VK";
 import OK from "../../icons/OK";
 import styles from './index.module.scss'
 import classnames from "classnames";
+import {API_URL} from "../../../../http";
 
 const SocialNetwork = ({title = true, connect = false, ClassNames}) => {
 	return (
@@ -12,19 +13,19 @@ const SocialNetwork = ({title = true, connect = false, ClassNames}) => {
 			{title && <h4>Войти через аккаунт социальной сети</h4>}
 			<div className={styles.SocialButtons}>
 				<div>
-					<button type='button'><Yandex/></button>
+					<a href={`${API_URL}/auth/yandex`} target="_blank" rel="noreferrer"><Yandex/></a>
 					{connect && <p>Подключить</p>}
 				</div>
 				<div>
-					<button type='button'><Google/></button>
+					<a href={`${API_URL}/auth/google`} target="_blank" rel="noreferrer"><Google/></a>
 					{connect && <p>Подключить</p>}
 				</div>
 				<div>
-					<button type='button'><VK/></button>
+					<a href={`${API_URL}/auth/vkontakte`} target="_blank" rel="noreferrer"><VK/></a>
 					{connect && <p>Подключить</p>}
 				</div>
 				<div>
-					<button type='button'><OK/></button>
+					<a href={`${API_URL}/auth/odnoklassniki`} target="_blank" rel="noreferrer"><OK/></a>
 					{connect && <p>Подключить</p>}
 				</div>
 			</div>

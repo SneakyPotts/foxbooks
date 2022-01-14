@@ -13,4 +13,8 @@ export default class AuthService {
 	static async verifyEmail({ email, token }) {
 		return axios.post(`${API_URL}/verify_email`, { email, token })
 	}
+
+	static async signInWithSocial({ id, token }) {
+		return axios.post(`${API_URL}/auth`, { id, token })
+	}
 }

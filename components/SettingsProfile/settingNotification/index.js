@@ -6,28 +6,31 @@ import HeartSetting from "../../shared/icons/heartSetting";
 import CommentSetting from "../../shared/icons/commentSetting";
 import SgbCommentSetting from "../../shared/icons/sgbCommentSetting";
 import ButtonGroup from "../buttonGroup";
+import {useDispatch} from "react-redux";
+import {setNotificationSettings} from "../../../store/profileSlice";
 
 const SettingNotification = () => {
+	const dispatch = useDispatch()
+
 	const {register, handleSubmit, unregister,  formState: {errors}, reset} = useForm();
+
 	const data = [
-		{svg:<HeartSetting/> , bg:'#E92A20',title: 'Отметка нравится', subTitle: 'Уведомления о реакциях к вашим комментариям.', name: 'like'},
-		{svg:<CommentSetting/> , bg:'#2D9CDB', title: 'Комментарии', subTitle: 'Оповестим, что на ваш комментарий ответили.', name: 'comment'},
-		{svg:<SgbCommentSetting/> , bg:'#27AE60', title: 'Также прокомментировали', subTitle: 'Кто-то еще написал в той же ветке обсуждений.', name: 'subcomment'}
+		{svg:<HeartSetting/> , bg:'#E92A20',title: 'Отметка нравится', subTitle: 'Уведомления о реакциях к вашим комментариям.', name: 'likes'},
+		{svg:<CommentSetting/> , bg:'#2D9CDB', title: 'Комментарии', subTitle: 'Оповестим, что на ваш комментарий ответили.', name: 'commented'},
+		{svg:<SgbCommentSetting/> , bg:'#27AE60', title: 'Также прокомментировали', subTitle: 'Кто-то еще написал в той же ветке обсуждений.', name: 'commentedOthers'}
 	]
 
-
-	const HandleSubmit = data => {
-		reset()
-		console.log(data)
+	const onSubmit = data => {
+		dispatch(setNotificationSettings(data))
 	}
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.notification}>
-				<form onSubmit={handleSubmit(HandleSubmit)} className={styles.formContainer}>
+				<form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
 					{data.map(({svg, title, subTitle, name, bg})=>{
 						return (
-							<div className={styles.settingWrap}>
+							<div className={styles.settingWrap} key={title}>
 								<div className={styles.setting}>
 									<div style={{background: `${bg}`}} className={styles.settingIcon}>
 										{svg}

@@ -11,7 +11,7 @@ import ArrowRight from '../../../public/chevron-right.svg';
 import st from './similarBooks.module.scss';
 
 const SimilarBooks = ({ audio }) => {
-	const { audioFlag } = useSelector(state => state.bookSlice);
+	const { audioFlag } = useSelector(state => state.book);
 
 	return (
 		<div className={st.swiper}>

@@ -1,21 +1,19 @@
 import Link from 'next/link';
-import categories from '../../data/categories.json';
 import ArrowAll from '../../../public/chevron-down.svg';
-import css from './categories.module.css';
+import css from './categories.module.scss';
 import {useSelector} from "react-redux";
 
 const Categories = () => {
-	// const { categories } = useSelector(state => state.home)
+	const { categories } = useSelector(state => state.home)
 
-	// console.log('categories', categories)
 	return (
 		<>
 			<div className={css.categNav}>
 				<h3 className={css.title}>Категории книг</h3>
 				<ul className={css.categList}>
-					{categories.map(({ id, category }) => (
+					{categories?.map(({ id, name }) => (
 						<li key={id} className={css.categ}>
-							{category}
+							{name}
 						</li>
 					))}
 				</ul>

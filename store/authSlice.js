@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import AuthService from "../http/AuthService";
+import Cookies from 'js-cookie'
 
 const initialState = {
 	isAuth: false,
@@ -19,7 +20,7 @@ export const signIn = createAsyncThunk(
 	'auth/signIn',
 	async data => {
 		const response = await AuthService.signIn(data)
-		localStorage.setItem('token', response.data.token)
+		Cookies.set('token', response.data.token, { expires: 7 })
 		return response.data
 	}
 )
@@ -28,6 +29,15 @@ export const verifyEmail = createAsyncThunk(
 	'auth/verifyEmail',
 	async data => {
 		const response = await AuthService.verifyEmail(data)
+		return response.data
+	}
+)
+
+export const signInWithSocial = createAsyncThunk(
+	'auth/signInWithSocial',
+	async data => {
+		const response = await AuthService.signInWithSocial(data)
+		Cookies.set('token', response.data.accessToken, { expires: 7 })
 		return response.data
 	}
 )
@@ -76,6 +86,20 @@ export const authSlice = createSlice({
 			state.isLoading = false
 		},
 		[verifyEmail.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
+		[signInWithSocial.pending]: state => {
+			state.isLoading = true
+		},
+		[signInWithSocial.fulfilled]: state => {
+			state.isError = false
+			state.isLoading = false
+			state.isAuth = true
+		},
+		[signInWithSocial.rejected]: state => {
 			state.isError = true
 			state.isLoading = false
 		},

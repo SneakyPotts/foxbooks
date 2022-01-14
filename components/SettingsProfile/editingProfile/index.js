@@ -7,8 +7,11 @@ import SocialNetwork from '../../shared/common/SocialNetwork/SocialNetwork';
 import { useForm } from 'react-hook-form';
 import ButtonGroup from '../buttonGroup';
 import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
+import {useDispatch} from "react-redux";
+import {deleteUser} from "../../../store/profileSlice";
 
 const EditingProfile = () => {
+	const dispatch = useDispatch()
 	const inputFile = useRef();
 	const [file64, setFile64] = useState(null);
 	const [modal, setModal] = useState(false);
@@ -34,15 +37,14 @@ const EditingProfile = () => {
 		};
 	};
 
-	const HandleSubmit = data => {
-		reset();
+	const onSubmit = data => {
 		console.log(data);
 	};
 
 	return (
 		<>
 			<form
-				onSubmit={handleSubmit(HandleSubmit)}
+				onSubmit={handleSubmit(onSubmit)}
 				className={styles.formProfile}
 			>
 				<div onClick={HandleClick} className={styles.formProfileWrap}>
@@ -96,6 +98,7 @@ const EditingProfile = () => {
 					<p>Вы действительно хотите удалить профиль?</p>
 					<ButtonGroup
 						cancelClick={() => setModal(false)}
+						click={() => dispatch(deleteUser()).then(() => setModal(false))}
 						text="Удалить"
 						ClassName={styles.Button}
 					/>
