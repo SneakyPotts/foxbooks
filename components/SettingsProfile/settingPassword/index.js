@@ -3,40 +3,45 @@ import styles from "./index.module.scss";
 import Input from "../../shared/common/Input/Input";
 import {useForm} from "react-hook-form";
 import ButtonGroup from "../buttonGroup";
+import {useDispatch} from "react-redux";
+import {resetPassword} from "../../../store/profileSlice";
 
 const SettingPassword = () => {
-
+	const dispatch = useDispatch()
 	const {register, handleSubmit, unregister,  formState: {errors}, reset} = useForm();
 
-
-	const HandleSubmit = data => {
+	const onSubmit = data => {
+		dispatch(resetPassword(data))
 		reset()
-		console.log(data)
 	}
 
 	return (
 		<form
 			className={styles.settingPassword}
-			onSubmit={handleSubmit(HandleSubmit)}>
+			onSubmit={handleSubmit(onSubmit)}
+		>
 			<Input
 				classNames={styles.inputCurrent}
 				err={errors.current?.message}
 				textLabel='Текущий пароль'
-				name='current'
+				name='old_password'
+				typeInput="password"
 				register={register}
 			/>
 			<Input
 				classNames={styles.inputNew}
 				err={errors.new?.message}
 				textLabel='Новый пароль'
-				name='new'
+				name='password'
+				typeInput="password"
 				register={register}
 			/>
 			<Input
 				classNames={styles.inputLast}
 				err={errors.repeat?.message}
 				textLabel='Повторите новый пароль'
-				name='repeat'
+				name='password_confirm'
+				typeInput="password"
 				register={register}
 			/>
 			<ButtonGroup/>

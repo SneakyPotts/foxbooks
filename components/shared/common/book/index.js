@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
-import { AudioBook } from './bookSlice';
 import Image from 'next/image';
 import Stars from '../stars/Stars';
 import Headphones from '../../icons/headphones';
@@ -14,10 +13,11 @@ import Like from '../../icons/heart';
 import Comment from '../../icons/comment';
 import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
+import {audioBook} from "../../../../store/bookSlice";
 
 const Book = ({ audio, flagSwitcher, classNames, similar }) => {
 	const dispatch = useDispatch();
-	// const { audioFlag } = useSelector(state => state.bookSlice);
+	// const { audioFlag } = useSelector(state => state.book);
 
 	const [changeIcon, setChangeIcon] = useState(false);
 	const [options, setOptions] = useState(false);
@@ -27,9 +27,9 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
 
 	const bookLinkClick = () => {
 		if (audio) {
-			dispatch(AudioBook(true));
+			dispatch(audioBook(true));
 		} else if (!audio) {
-			dispatch(AudioBook(false));
+			dispatch(audioBook(false));
 		}
 	};
 

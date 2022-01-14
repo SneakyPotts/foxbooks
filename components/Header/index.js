@@ -15,6 +15,7 @@ import Close from '../../public/close.svg';
 import {ShowMenu} from './headerSlice';
 import st from './header.module.scss';
 import {setAuth} from "../../store/authSlice";
+import Cookies from 'js-cookie'
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Header = () => {
 
 	const logOut = () => {
 		dispatch(setAuth(false))
-		localStorage.removeItem('token')
+		Cookies.remove('token')
 	}
 
 	const popularBooks = [

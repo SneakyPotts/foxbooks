@@ -48,7 +48,7 @@ const AboutBook = ({ audio }) => {
 		},
 	];
 
-	const { audioFlag } = useSelector(state => state.bookSlice);
+	const { audioFlag } = useSelector(state => state.book);
 
 	const [openMenu, setOpenMenu] = useState(false);
 	const [showPopUp, setShowPopUp] = useState(false);

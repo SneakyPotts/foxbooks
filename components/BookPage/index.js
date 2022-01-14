@@ -27,7 +27,7 @@ const BookPage = () => {
 		{ id: '2', title: 'Дружба в книгах' },
 		{ id: '3', title: 'Что читает Дэниел Рэдклифф' },
 	];
-	const { audioFlag } = useSelector(state => state.bookSlice);
+	const { audioFlag } = useSelector(state => state.book);
 
 	return (
 		<div className={classnames('container', st.wrapper)}>

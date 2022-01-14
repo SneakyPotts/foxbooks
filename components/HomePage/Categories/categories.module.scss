@@ -1,3 +1,5 @@
+@import "styles/variables";
+
 .categNav {
   text-align: start;
   min-width: 180px;
@@ -18,6 +20,12 @@
 .categ {
   font-size: 14px;
   line-height: 1.43;
+  cursor: pointer;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .categ:not(:last-child) {
   margin-bottom: 10px;
