@@ -14,7 +14,7 @@ import Basket from '../../../public/trash.svg';
 
 import st from './aboutBook.module.scss';
 
-const AboutBook = ({ audio }) => {
+const AboutBook = ({ book, audio }) => {
 	const dataBook = [
 		{
 			id: '0',
@@ -72,154 +72,152 @@ const AboutBook = ({ audio }) => {
 
 	return (
 		<div>
-			{dataBook.map(book => (
-				<div key={book.id} className={st.bookInfo}>
-					<div className={st.bookMainInfo}>
-						<div
-							className={classnames(st.bookCover, {
-								[st.bookCoverAudio]: audioFlag,
-							})}
-						>
-							<Image
-								src={book.img}
-								height={audioFlag ? 270 : 406}
-								width={270}
-								layout="fill"
-								placeholder="blur"
-								blurDataURL="/images/blur.jpg"
-							/>
+			<div key={book.id} className={st.bookInfo}>
+				<div className={st.bookMainInfo}>
+					<div
+						className={classnames(st.bookCover, {
+							[st.bookCoverAudio]: audioFlag,
+						})}
+					>
+						<Image
+							src="/horizontalBookCovers/book.png"
+							height={audioFlag ? 270 : 406}
+							width={270}
+							layout="fill"
+							placeholder="blur"
+							blurDataURL="/images/blur.jpg"
+						/>
 
+						{audioFlag && (
+							<div className={st.bookCoverIcon}>
+								<Headphones />
+							</div>
+						)}
+					</div>
+					<div className={st.aboutBook}>
+						<h1 className={st.bookTitle}>{book?.title}</h1>
+						<p className={st.bookAuthor}>
+							<Link href="/author">
+								<a className={st.bookAuthorName}>{book?.authors[0]?.author}</a>
+							</Link>
+							<Link href="#">
+								<a className={st.bookAuthorLink}>(все книги автора)</a>
+							</Link>
+						</p>
+						<div className={st.bookDate}>
 							{audioFlag && (
-								<div className={st.bookCoverIcon}>
-									<Headphones />
+								<div>
+									<span className={st.audioInfo}>
+										<span>40</span>мин.
+									</span>
+									<span className={st.audioInfo}>
+										<span>42</span> Мбайт
+									</span>
 								</div>
 							)}
+							<span className={st.bookDateYear}>{book?.year}год</span>
+							<span>{book.age}</span>
 						</div>
-						<div className={st.aboutBook}>
-							<h1 className={st.bookTitle}>{book.title}</h1>
-							<p className={st.bookAuthor}>
-								<Link href="/author">
-									<a className={st.bookAuthorName}>{book.author}</a>
-								</Link>
+						<div className={st.bookRaiting}>
+							<p className={st.bookRaitingCount}>Рейтинг {book?.rates_count}</p>
+							<Stars value={book?.rates_count} />
+						</div>
+						<div className={st.buttons}>
+							{audioFlag ? (
+								<button className={st.readButton}>Начать слушать</button>
+							) : (
+								<button className={st.readButton}>Читать</button>
+							)}
+							<div className={st.dropdown}>
+								<span
+									className={classnames(st.dotsButton, {
+										[st.activBtn]: openMenu,
+									})}
+									onClick={handleDotsClick}
+								>
+									<Dots />
+								</span>
+								{openMenu && (
+									<ul className={st.menu}>
+										{dataOptions.map((it, index) => (
+											<Link href={it.link} key={it.id}>
+												<a
+													onClick={() => handleClick(index)}
+													className={classnames({
+														[st.menuOption]: optionIndex === index,
+													})}
+												>
+													{' '}
+													{it.svg}
+													<span>{it.option}</span>
+												</a>
+											</Link>
+										))}
+									</ul>
+								)}
+							</div>
+						</div>
+
+						<ul className={st.navLinks}>
+							<li>
 								<Link href="#">
-									<a className={st.bookAuthorLink}>(все книги автора)</a>
+									<a>О книге</a>
 								</Link>
-							</p>
-							<div className={st.bookDate}>
-								{audioFlag && (
-									<div>
-										<span className={st.audioInfo}>
-											<span>40</span>мин.
-										</span>
-										<span className={st.audioInfo}>
-											<span>42</span> Мбайт
-										</span>
-									</div>
-								)}
-								<span className={st.bookDateYear}>{book.year}год</span>
-								<span>{book.age}</span>
-							</div>
-							<div className={st.bookRaiting}>
-								<p className={st.bookRaitingCount}>Рейтинг {book.raiting}</p>
-								<Stars />
-							</div>
-							<div className={st.buttons}>
+							</li>
+							<li>
+								<Link href="#reviews">
+									<a>Рецензии 37</a>
+								</Link>
+							</li>
+							<li>
 								{audioFlag ? (
-									<button className={st.readButton}>Начать слушать</button>
+									<Link href="#quotes">
+										<a>Слушают 129</a>
+									</Link>
 								) : (
-									<button className={st.readButton}>Читать</button>
+									<Link href="#quotes">
+										<a>Цитаты 15</a>
+									</Link>
 								)}
-								<div className={st.dropdown}>
-									<span
-										className={classnames(st.dotsButton, {
-											[st.activBtn]: openMenu,
-										})}
-										onClick={handleDotsClick}
-									>
-										<Dots />
-									</span>
-									{openMenu && (
-										<ul className={st.menu}>
-											{dataOptions.map((it, index) => (
-												<Link href={it.link} key={it.id}>
-													<a
-														onClick={() => handleClick(index)}
-														className={classnames({
-															[st.menuOption]: optionIndex === index,
-														})}
-													>
-														{' '}
-														{it.svg}
-														<span>{it.option}</span>
-													</a>
-												</Link>
-											))}
-										</ul>
-									)}
-								</div>
-							</div>
-
-							<ul className={st.navLinks}>
-								<li>
-									<Link href="#">
-										<a>О книге</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="#reviews">
-										<a>Рецензии 37</a>
-									</Link>
-								</li>
-								<li>
-									{audioFlag ? (
-										<Link href="#quotes">
-											<a>Слушают 129</a>
-										</Link>
-									) : (
-										<Link href="#quotes">
-											<a>Цитаты 15</a>
-										</Link>
-									)}
-								</li>
-								<li>
-									<Link href="#similar">
-										<a>Похожие книги</a>
-									</Link>
-								</li>
-							</ul>
-							<p>{book.about_book}</p>
-							<div className={st.ditalInfo}>
-								{audioFlag ? (
-									<p>
+							</li>
+							<li>
+								<Link href="#similar">
+									<a>Похожие книги</a>
+								</Link>
+							</li>
+						</ul>
+						<p>{book.about_book}</p>
+						<div className={st.ditalInfo}>
+							{audioFlag ? (
+								<p>
                     Чтец: <span>{book.reader}</span>
-									</p>
-								) : (
-									<>
-										<p>
+								</p>
+							) : (
+								<>
+									<p>
                       Издательство: <span>{book.publishing}</span>
-										</p>
-										<p>
+									</p>
+									<p>
                       Переводчик: <span>{book.translater}</span>
-										</p>
-									</>
-								)}
+									</p>
+								</>
+							)}
 
-								<p>
+							<p>
                   Жанр: <span>{book.ganre}</span>
-								</p>
-								<p>
+							</p>
+							<p>
                   Правообладатель: <span>{book.copyright_holder}</span>
-								</p>
-								<p>Серия: {book.series}</p>
-							</div>
-							<div className={st.starsBlock}>
-								<p>Оцените книгу</p>
-								<Stars activeStart={true} value={0} color={'#4f4f4f'} />
-							</div>
+							</p>
+							<p>Серия: {book.series}</p>
+						</div>
+						<div className={st.starsBlock}>
+							<p>Оцените книгу</p>
+							<Stars activeStart={true} value={0} color={'#4f4f4f'} />
 						</div>
 					</div>
 				</div>
-			))}
+			</div>
 			{showPopUp && (
 				<div className={st.popUp}>
 					<p>

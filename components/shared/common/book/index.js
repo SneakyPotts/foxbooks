@@ -15,7 +15,7 @@ import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
 import {audioBook} from "../../../../store/bookSlice";
 
-const Book = ({ audio, flagSwitcher, classNames, similar }) => {
+const Book = ({ audio, flagSwitcher, classNames, similar, book }) => {
 	const dispatch = useDispatch();
 	// const { audioFlag } = useSelector(state => state.book);
 
@@ -49,7 +49,7 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
 			})}
 		>
 			<div className={st.wrapper}>
-				<Link href="/book">
+				<Link href={`/book/${book?.id}`}>
 					<a onClick={bookLinkClick}>
 						<Image
 							src="/horizontalBookCovers/book.png"
@@ -62,7 +62,7 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
 						/>
 					</a>
 				</Link>
-				{!flagSwitcher && <span className={st.bookCategorie}>Фентези</span>}
+				{!flagSwitcher && <span className={st.bookCategorie}>{book?.book_genres?.length ? book?.book_genres[0] : ''}</span>}
 				{audio && (
 					<span className={st.audioIcon}>
 						<Headphones />
@@ -77,40 +77,32 @@ const Book = ({ audio, flagSwitcher, classNames, similar }) => {
 					})}
 				>
 					<div className={st.stars}>
-						<Stars />
+						<Stars value={book?.rates_count} />
 					</div>
 					<div className={classnames({ [st.raitingAmount]: flagSwitcher })}>
-						<span>4,9 </span>
-						{!similar && <span>(450)</span>}
+						<span>{book?.rates_avg} </span>
+						{!similar && <span>({book?.book_likes_count})</span>}
 					</div>
 				</div>
-				<Link href="/book">
-					<a>
-						<h3
-							className={classnames(st.bookName, {
-								[st.bookNameSmaller]: similar,
-							})}
-						>
-              Искатели неба: Холодные берега Искатели неба: Холодные берега
-						</h3>
+				<Link href={`/book/${book?.id}`}>
+					<a className={classnames(st.bookName, {
+						[st.bookNameSmaller]: similar,
+					})}>
+						{book?.title}
 					</a>
 				</Link>
 
 				<Link href="/author">
-					<a className={st.bookAuthor}>Сергей Лукьяненко</a>
+					<a className={st.bookAuthor}>{book?.authors?.length ? book?.authors[0]?.author : ''}</a>
 				</Link>
 				{flagSwitcher && (
 					<div className={classnames(st.extraInfo, { [st.addInfo]: !audio })}>
 						<p className={st.bookYear}>
 							<span>2021</span>
-							<span className={st.bookGenre}>Фэнтези</span>
+							<span className={st.bookGenre}>{book?.book_genres?.length ? book?.book_genres[0] : ''}</span>
 						</p>
 						<p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
-              Я — Макеева Кира Александровна. И я окончательно запуталась. Жизнь
-              сложилась не так радужно, как Я — Макеева Кира Александровна. И я
-              окончательно запуталась. Жизнь сложилась не так радужно, как Я —
-              Макеева Кира Александровна. И я окончательно запуталась. Жизнь
-              сложилась не так радужно, как Я — Макеева Кира Александровна.
+							{book?.text}
 						</p>
 						{!audio && (
 							<div className={st.reviewStatistic}>

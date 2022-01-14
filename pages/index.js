@@ -51,7 +51,7 @@ export async function getServerSideProps ({ req }) {
 	return {
 		props: {
 			categories: categories?.data?.data,
-			books: books?.data,
+			books: books?.data?.data,
 			profile: profile?.data || {},
 		}
 	}

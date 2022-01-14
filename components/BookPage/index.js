@@ -28,11 +28,13 @@ const BookPage = () => {
 		{ id: '3', title: 'Что читает Дэниел Рэдклифф' },
 	];
 	const { audioFlag } = useSelector(state => state.book);
+	const { book } = useSelector(state => state.book);
 
 	return (
 		<div className={classnames('container', st.wrapper)}>
 			<div className={st.mainBlock}>
 				<AboutBook
+					book={book}
 					// audio={true}
 				/>
 				<div className={st.relatedInfo}>
