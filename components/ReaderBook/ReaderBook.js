@@ -11,7 +11,6 @@ import InputRange from "../shared/common/InputRange/InputRange";
 import classnames from "classnames";
 
 
-
 const ReaderBook = () => {
     const [ controlDrop, setControlDrop ] = useState(false)
     const [ column, setСolumn ] = useState(false)
@@ -28,9 +27,9 @@ const ReaderBook = () => {
         {textLabel:'Текст в 2 колонки', value: column, setValue: setСolumn, max:'0', dot: false},
         {textLabel:'Размер шрифта', value: fontSize, setValue: setFontSize, max:'12', dot: false},
         {textLabel:'Яркость', value: brightness, setValue: setBrightness, max:'5', dot: false},
-        {textLabel:'Шрифт', value: font, setValue: setFont, max:'', dot: false},
-        {textLabel:'Поля', value: Fields, setValue: setFields, max:'4', dot: true},
-        {textLabel:'Высота Строк', value: line, setValue: setLine, max:'4', dot: true},
+        {textLabel:'Шрифт', value:  font === 'Times New Roman' ? 'Times' : font, setValue: setFont, max:'', dot: false},
+        {textLabel:'Поля', value: Fields, setValue: setFields, max:'4', labelOne:'узкие', labelSecond:'широкие', dot: true},
+        {textLabel:'Высота Строк', value: line, setValue: setLine, max:'4', labelOne:'маленькая', labelSecond:'большая', dot: true},
         {textLabel:'Выравнивание по ширине', value: alignment, setValue: setAlignment, max:'0'},
     ]
 
@@ -71,7 +70,7 @@ const ReaderBook = () => {
                     <BookMark className={styles.iconRight}/>
                     {controlDrop &&
                     <div className={styles.control}>
-                        {controlData.map(({textLabel, value, setValue, max, dot},i)=> {
+                        {controlData.map(({textLabel, labelOne, labelSecond, value, setValue, max, dot},i)=> {
                             return i === 0 || i === 6 ?
                                 <div className={styles.controlBlock}>
                                     <div className={styles.wrapSwitch}>
@@ -85,7 +84,7 @@ const ReaderBook = () => {
                                 : i === 3 ?
                                     <div className={classnames(styles.controlBlock, styles.fontBlock)}>
                                         <span>{textLabel}</span>
-                                        <div onClick={()=>setDropFont(!dropFont)} className={styles.changeFont}>
+                                        <div onClick={()=>setDropFont(!dropFont)} className={classnames(styles.changeFont, {[styles.changeFontActive]: dropFont}) }>
                                             <span>{value}</span>
                                             <span className={styles.changeFontSvg}>
                                                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +93,7 @@ const ReaderBook = () => {
                                             </span>
                                             <div className={classnames(styles.fontDropDown, {[styles.fontDropDownActive]: dropFont})}>
                                                 {dataDropDownFonts.map(({text})=> (
-                                                    <button type='button'>
+                                                    <button style={{color: font === text && '#ff781d'}} onClick={() => setFont(text)} type='button'>
                                                         {text}
                                                     </button>
                                                 ))}
@@ -109,6 +108,8 @@ const ReaderBook = () => {
                                         value={value}
                                         setValue={setValue}
                                         textLabel={textLabel}
+                                        labelOne={labelOne && labelOne}
+                                        labelSecond={labelSecond && labelSecond}
                                         max={max}
                                     />
                                 </div>
@@ -134,7 +135,8 @@ const ReaderBook = () => {
                         '22px' : Number(line) === 1 ?
                             '21px' : Number(line) === 0 ?
                                 '18px' : Number(line) === 3 ?
-                                    '24px': '26px'}}
+                                    '24px': '26px',
+                fontFamily: font}}
                 >
                     Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли,
                     что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать,

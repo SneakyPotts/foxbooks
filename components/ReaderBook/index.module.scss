@@ -41,6 +41,16 @@
               }
             }
           }
+
+          .fontDropDown {
+            background: $bg-c;
+            >button {
+              color:  $switcher-text;
+            }
+          }
+          .fontDropDownActive {
+            border: 1px solid $bb;
+          }
         }
 
         .controlBlock {
@@ -198,16 +208,32 @@
             display: flex;
             align-items: center;
 
+            &Active {
+              >span {
+                color: $text-hover;
+              }
+              path {
+                stroke: $text-hover!important;
+              }
+              .changeFontSvg {
+                transform: rotate(180deg);
+                transition: transform 0.3s;
+              }
+            }
+
             &Svg {
+              transform: rotate(0deg);
+              transition: transform 0.3s;
               margin-left: 36px;
             }
 
             .fontDropDown {
               display: flex;
               flex-direction: column;
-              padding: 0px 80px;
+              gap: 20px;
+              padding: 0px 78px;
               position: absolute;
-              background: #FAFAFA;
+              //background: #FAFAFA;
               box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
               border-radius: 10px;
               height: 0px;
@@ -220,14 +246,21 @@
               transition: height 0.3s, padding 0.3s;
 
               >button {
+                font-family: Ubuntu, sans-serif;
+                font-size: 14px;
+                line-height: 20px;
                 padding: 0;
+                //color: $color-second;
+                &:hover {
+                  color: $text-hover;
+                }
               }
 
               &Active {
-                height: 240px;
-                max-height: 240px;
-                border: 1px solid #F1F1F1;
-                padding: 30px 80px;
+                height: 262px;
+                max-height: 262px;
+                //border: 1px solid #F1F1F1;
+                padding: 30px 78px;
                 transition: height 0.3s, padding 0.3s;
               }
             }

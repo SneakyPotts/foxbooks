@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 import classNames from "classnames";
 
 const InputRange = ({value, setValue, max = '100', min = '0', textLabel, step = '1',
-	brightness, dot = false}) => {
+	brightness, dot = false, labelOne, labelSecond }) => {
 
 	const dataDot = [
 		{x: 2, y: -1},
@@ -44,6 +44,11 @@ const InputRange = ({value, setValue, max = '100', min = '0', textLabel, step = 
 					type="range"
 					min={min}
 					max={max}/>
+				{dot &&
+				<div className={styles.underTextInput}>
+					<span>{labelOne}</span>
+					<span>{labelSecond}</span>
+				</div> }
 			</div>
 		</div>
 	);
