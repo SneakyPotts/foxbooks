@@ -2,16 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioBooks/category/category.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioBooks/category/category.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Filter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/book/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/category/category.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/category.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Author/Author.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Author/Author.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/popular.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksMainBlock/booksMainBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksMainBlock/booksMainBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/switcher/Switcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/switcher/Switcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/switcher/switcher.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/switcher/switcher.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/books/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/[id]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/profileSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/profileSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +93,7 @@
       <workItem from="1641985757995" duration="9955000" />
       <workItem from="1642076628102" duration="6423000" />
       <workItem from="1642151891944" duration="13122000" />
+      <workItem from="1642405978800" duration="17821000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

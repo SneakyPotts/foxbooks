@@ -32,17 +32,19 @@ export default function App(props) {
 	);
 }
 
-export async function getServerSideProps ({ req }) {
+export async function getServerSideProps ({ req, query }) {
 	const { cookies } = req
 	const token = cookies.token
 
 	const categories = await HomeService.getHomeCategories()
-	const books = await BookService.getBooks()
+	const books = await BookService.getBooks(query)
 
 	let profile = {}
 
 	if (token) {
 		// profile = await ProfileService.getProfile(token)
+
+		// console.log(profile)
 	}
 
 	// 		res.writeHead(302, { Location: '/' });

@@ -13,6 +13,8 @@ import Headphones from '../../shared/icons/headphones';
 import Basket from '../../../public/trash.svg';
 
 import st from './aboutBook.module.scss';
+import {setBookRating} from "../../../store/bookSlice";
+import {useRouter} from "next/router";
 
 const AboutBook = ({ book, audio }) => {
 	const dataBook = [
@@ -48,6 +50,9 @@ const AboutBook = ({ book, audio }) => {
 		},
 	];
 
+	const dispatch = useDispatch()
+	const router = useRouter()
+
 	const { audioFlag } = useSelector(state => state.book);
 
 	const [openMenu, setOpenMenu] = useState(false);
@@ -69,6 +74,10 @@ const AboutBook = ({ book, audio }) => {
 		}
 		setOptioIndex(index);
 	};
+
+	const setRating = value => {
+		dispatch(setBookRating({id: router.query.id, value}))
+	}
 
 	return (
 		<div>
@@ -186,7 +195,7 @@ const AboutBook = ({ book, audio }) => {
 								</Link>
 							</li>
 						</ul>
-						<p>{book.about_book}</p>
+						<p>{book?.text}</p>
 						<div className={st.ditalInfo}>
 							{audioFlag ? (
 								<p>
@@ -213,7 +222,12 @@ const AboutBook = ({ book, audio }) => {
 						</div>
 						<div className={st.starsBlock}>
 							<p>Оцените книгу</p>
-							<Stars activeStart={true} value={0} color={'#4f4f4f'} />
+							<Stars
+								activeStart={true}
+								value={0}
+								color={'#4f4f4f'}
+								onChange={value => setRating(value)}
+							/>
 						</div>
 					</div>
 				</div>

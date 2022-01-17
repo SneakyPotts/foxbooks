@@ -5,20 +5,18 @@ import DropDownArrow from '../../public/chevron-down.svg';
 import Categories from '../HomePage/Categories';
 import alphabet from '../data/alphabet.json';
 import st from './sideFilters.module.scss';
+import {useRouter} from "next/router";
+import debounce from "lodash.debounce";
 
 const SideFilters = () => {
+	const router = useRouter()
 	const [menu, setMenu] = useState(false);
 	const [optionIndex, setOptionIndex] = useState([]);
 
 	const [filters, setFilters] = useState([
-		{ id: '0', flag: false, option: 'Автор', placeholder: 'Найти автора' },
-		{ id: '1', flag: false, option: 'Аудиокнига', placeholder: 'Найти книгу' },
-		{
-			id: '2',
-			flag: false,
-			option: 'Издательство',
-			placeholder: 'Найти издательство',
-		},
+		{ id: '0', flag: false, option: 'Автор', placeholder: 'Найти автора', queryName: 'findByAuthor' },
+		{ id: '1', flag: false, option: 'Книга', placeholder: 'Найти книгу', queryName: 'findByTitle' },
+		{ id: '2', flag: false, option: 'Издательство', placeholder: 'Найти издательство', queryName: 'findByPublisher'	},
 	]);
 
 	const options = [
@@ -57,6 +55,10 @@ const SideFilters = () => {
 		}
 	};
 
+	const handleChange = debounce((value, queryName) => {
+		router.push({query: {...router.query, [queryName]: value}})
+	}, 300)
+
 	return (
 		<div className={st.container}>
 			<div className={st.filterStatus}>
@@ -80,7 +82,7 @@ const SideFilters = () => {
 								className={classnames(st.radio, {
 									[st.radioActive]: optionIndex.includes(index),
 								})}
-							></span>
+							/>
 							<span
 								className={classnames(st.dropText, {
 									[st.active]: optionIndex.includes(index),
@@ -110,7 +112,11 @@ const SideFilters = () => {
 								})}
 								onClick={e => e.stopPropagation()}
 							>
-								<input placeholder={it.placeholder} className={st.input} />
+								<input
+									placeholder={it.placeholder}
+									className={st.input}
+									onChange={ev => handleChange(ev.target.value, it?.queryName)}
+								/>
 								<p>Алфавитный указатель</p>
 								<div className={st.dropContentAuthor}>
 									{alphabet.map((it, index) => (

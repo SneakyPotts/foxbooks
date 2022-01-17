@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import ArrowAll from '../../../public/chevron-down.svg';
-import css from '../Popular/popular.module.css';
+import css from '../Popular/popular.module.scss';
 
 
 const Author =({title, data, filterStateIdx, elIdx, setFilStateIdx})=> {

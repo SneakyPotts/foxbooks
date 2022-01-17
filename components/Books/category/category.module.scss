@@ -17,6 +17,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 24px;
   grid-row-gap: 40px;
+  align-self: self-start;
 }
 .booksColumn {
   display: flex;

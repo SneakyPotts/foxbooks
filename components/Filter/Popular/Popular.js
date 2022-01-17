@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import ArrowAll from '../../../public/chevron-down.svg';
-import css from './popular.module.css';
+import css from './popular.module.scss';
+import {useRouter} from "next/router";
 
-const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
+const Popular = ({
+	title,
+	data,
+	queryName,
+	filterStateIdx,
+	elIdx,
+	setFilStateIdx
+}) => {
+	const router = useRouter();
 	const [menu, setMenu] = useState(false);
 	const [optionIndex, setOptionIndex] = useState([]);
 
@@ -31,10 +40,13 @@ const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
 		}
 	};
 
-	const handleOnClick = index => {
+	const handleOnClick = (index, value) => {
 		if (optionIndex.includes(index)) {
+			// remove
 			setOptionIndex(optionIndex.filter(it => it !== index));
 		} else {
+			// add
+			router.push({query: {...router.query, [queryName]: value}});
 			setOptionIndex([...optionIndex, index]);
 		}
 	};
@@ -62,23 +74,23 @@ const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
 			</button>
 			{menu || elIdx === filterStateIdx ? (
 				<ul className={css.dropContent} onClick={e => e.stopPropagation()}>
-					{data.map((it, index) => (
+					{data?.map((i, index) => (
 						<li
-							key={index}
-							onClick={() => handleOnClick(index)}
+							key={i?.id}
+							onClick={() => handleOnClick(index, i?.value)}
 							className={css.dropLink}
 						>
 							<span
 								className={classnames(css.radio, {
 									[css.radioActive]: optionIndex.includes(index),
 								})}
-							></span>
+							/>
 							<span
 								className={classnames(css.dropText, {
 									[css.active]: optionIndex.includes(index),
 								})}
 							>
-								{it}
+								{i?.title}
 							</span>
 						</li>
 					))}

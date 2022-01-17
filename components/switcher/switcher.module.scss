@@ -8,6 +8,7 @@
   margin-left: 18px;
   background-color: $color-bg-icon;
   border-radius: 94px;
+  cursor: pointer;
 
   > span {
     display: flex;
@@ -19,6 +20,13 @@
 
     > svg {
       stroke: $color-third;
+      transition: .15s;
+    }
+
+    &:hover {
+      > svg {
+        stroke: $text-hover !important;
+      }
     }
   }
 
