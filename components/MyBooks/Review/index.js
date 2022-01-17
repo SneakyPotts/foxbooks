@@ -19,6 +19,8 @@ const Review = () => {
   const [menu, setMenu] = useState(false);
   const [optionIndex, setOptionIndex] = useState(null);
   const [activeOption, setActiveOption] = useState('Тип рецензии');
+  const [reviews, setReviews] = useState([...dataReview]);
+  const [shoudlDelete, setShouldDelete] = useState(null);
 
   const options = ['Положительная', 'Отрицательная', 'Нейтральная'];
 
@@ -40,12 +42,18 @@ const Review = () => {
         setDotsMenu(idx);
       }
     });
+    setShouldDelete(idx);
   };
 
   const handleEditPageClick = e => {
     e.stopPropagation();
-    console.log(11111111);
     setEdit(true);
+  };
+
+  const handleDeleteClick = (e, idx) => {
+    e.stopPropagation();
+    setReviews(reviews.filter((_, index) => index !== idx));
+    setDotsMenu(null);
   };
 
   const togleMenu = e => {
@@ -74,9 +82,9 @@ const Review = () => {
 
   return (
     <div>
-      <div className={st.reviews}>
-        {dataReview.map((review, idx) => (
-          <div>
+      <ul className={st.reviews}>
+        {reviews.map((review, idx) => (
+          <li>
             <div className={st.reviewsCover}>
               <Image src={review.img} alt="" width="86" height="143" />
               <div className={st.bookMainInfo}>
@@ -119,20 +127,23 @@ const Review = () => {
                     className={st.editMenuOption}
                     onClick={e => handleEditPageClick(e)}
                   >
-                    <EditPensil />
+                    <EditPensil className={st.editMenuOptionIcon} />
                     <span className={st.editMenuOptionText}>Редактировать</span>
                   </p>
 
-                  <p className={st.editMenuOption}>
-                    <Bin />
+                  <p
+                    className={st.editMenuOption}
+                    onClick={e => handleDeleteClick(e, idx)}
+                  >
+                    <Bin className={st.editMenuOptionIcon} />
                     <span className={st.editMenuOptionText}>Удалить</span>
                   </p>
                 </div>
               )}
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       {edit && (
         <ModalWindow modal={edit} setModal={setEdit}>
           <form className={st.editReview}>

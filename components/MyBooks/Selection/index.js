@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import classnames from 'classnames';
 import { FiSearch } from 'react-icons/fi';
 import Button from '../../shared/common/Button/Button';
@@ -8,15 +7,15 @@ import Dots from '../../../public/horizontalDots.svg';
 import EditPensil from '../../../public/edit-pencil.svg';
 import Bin from '../../../public/trash.svg';
 import ArrowAll from '../../../public/chevron-down.svg';
-import All from '../../../public/all.svg';
+import All from '../../shared/icons/all';
 import BookMark from '../../../public/bookmark.svg';
 import OpenBook from '../../../public/book-open.svg';
 import Flag from '../../../public/flag.svg';
 import AddBook from './AddBook';
 import Edit from '../Edit';
-import st from './mySelection.module.scss';
+import st from './selection.module.scss';
 
-const mySelection = () => {
+const Selection = () => {
   const [editMenu, setEditMenu] = useState(false);
   const [menu, setMenu] = useState(false);
   const [activeOption, setActiveOption] = useState('Все');
@@ -112,7 +111,7 @@ const mySelection = () => {
             {editMenu && (
               <div className={st.editMenu}>
                 <p className={st.editMenuOption} onClick={handleEditPageClick}>
-                  <EditPensil />{' '}
+                  <EditPensil />
                   <span className={st.editMenuOptionText}>Редактировать</span>
                 </p>
 
@@ -126,7 +125,7 @@ const mySelection = () => {
       </div>
       <div className={classnames('container', st.section)}>
         <div className={st.tab}>
-          <h2>1</h2>
+          <h2>{books.length}</h2>
           <p>Книги</p>
         </div>
         <div className={st.filters}>
@@ -234,4 +233,4 @@ const mySelection = () => {
     </>
   );
 };
-export default mySelection;
+export default Selection;

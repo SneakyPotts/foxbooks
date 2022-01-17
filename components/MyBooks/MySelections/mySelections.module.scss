@@ -1,0 +1,52 @@
+@import 'styles/variables';
+
+.selectionsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 24px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.selection {
+  &Block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 384px;
+  }
+
+  &Img {
+    position: relative;
+
+    &Count {
+      font-family: Ubuntu, sans-serif;
+      position: absolute;
+      background: #fff;
+      bottom: 10px;
+      right: 10px;
+      border-radius: 58px;
+      color: $color-main;
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+
+    &img {
+      border-radius: 5px;
+    }
+  }
+
+  &Description {
+    font-family: Ubuntu, sans-serif;
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-second;
+
+    > h3 {
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: $color-main;
+      line-height: 18px;
+    }
+  }
+}

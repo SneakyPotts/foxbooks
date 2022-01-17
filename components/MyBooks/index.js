@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import classnames from 'classnames';
@@ -11,14 +12,17 @@ import ButtonGroup from '../SettingsProfile/buttonGroup';
 import ArrowRight from '../../public/chevron-right.svg';
 import Headphones from '../shared/icons/headphones';
 import ArrowAll from '../../public/chevron-down.svg';
-import All from '../../public/all.svg';
+import All from '../shared/icons/all';
 import BookMark from '../../public/bookmark.svg';
 import OpenBook from '../../public/book-open.svg';
 import Flag from '../../public/flag.svg';
 import Delete from '../../public/delete.svg';
 import Button from '../shared/common/Button/Button';
-import MySelection from './MySelection';
+import MySelections from './MySelections';
+import Selection from './Selection';
 import Review from './Review';
+import Quotes from './Quotes';
+import Authors from './Authors';
 import st from './myBooks.module.scss';
 
 const MyBooks = () => {
@@ -109,7 +113,7 @@ const MyBooks = () => {
   const [deletePopap, setDeletePopap] = useState(false);
   const [shoudlDelete, setShouldDelete] = useState(null);
   const [tabValue, setTabValue] = useState('Книги');
-  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab, setActiveTab] = useState(0);
   const [activeOption, setActiveOption] = useState('Все');
   const [activeSelections, setActiveSelections] = useState('Все');
   const [createSelection, setCreateSelection] = useState(false);
@@ -207,7 +211,6 @@ const MyBooks = () => {
           <div className="container">
             <h2 className={st.title}>Мои книги</h2>
             <div>
-              {' '}
               <Swiper
                 modules={[Navigation]}
                 navigation={{
@@ -227,25 +230,29 @@ const MyBooks = () => {
                     })}
                     key={book.id}
                   >
-                    <div className={st.bookProgress}>
-                      <span className={st.bookProgressCount}>
-                        {book.progress}%
-                      </span>
-                      <div>
-                        <img
-                          src={book.img}
-                          className={classnames({
-                            [st.bookCover]: !book.audio,
-                            [st.audioBookCover]: book.audio,
-                          })}
-                        />
-                      </div>
-                      {book.audio && (
-                        <div className={st.bookIcon}>
-                          <Headphones />
+                    <Link href="/reader">
+                      <a>
+                        <div className={st.bookProgress}>
+                          <span className={st.bookProgressCount}>
+                            {book.progress}%
+                          </span>
+                          <div>
+                            <img
+                              src={book.img}
+                              className={classnames({
+                                [st.bookCover]: !book.audio,
+                                [st.audioBookCover]: book.audio,
+                              })}
+                            />
+                          </div>
+                          {book.audio && (
+                            <div className={st.bookIcon}>
+                              <Headphones />
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
+                      </a>
+                    </Link>
                   </SwiperSlide>
                 ))}
                 <button className={classnames('prevArrow', st.positionButton)}>
@@ -362,20 +369,22 @@ const MyBooks = () => {
                 />
               ) : (
                 <div className={st.filter}>
-                  <div className={st.input} onClick={handleInput}>
-                    <FiSearch
-                      className={classnames(st.inputSvg, {
-                        [st.inputSvgIcon]: showInput,
-                      })}
-                    />
-                    {showInput && (
-                      <input
-                        placeholder="Искать книгу"
-                        className={st.inputSearch}
+                  {tabValue !== 'Цитаты' && (
+                    <div className={st.input} onClick={handleInput}>
+                      <FiSearch
+                        className={classnames(st.inputSvg, {
+                          [st.inputSvgIcon]: showInput,
+                        })}
                       />
-                    )}
-                  </div>
-                  {tabValue !== 'Рецензии' && (
+                      {showInput && (
+                        <input
+                          placeholder="Искать книгу"
+                          className={st.inputSearch}
+                        />
+                      )}
+                    </div>
+                  )}
+                  {(tabValue !== 'Рецензии' || tabValue !== 'Авторы') && (
                     <div className={st.dropdownPopular}>
                       <button
                         className={classnames(st.dropdownPopularBtn, {
@@ -417,9 +426,9 @@ const MyBooks = () => {
             </div>
             <>
               {tabValue === 'Книги' && (
-                <div className={st.bookList}>
+                <ul className={st.bookList}>
                   {books.map(book => (
-                    <div key={book.id} className={st.bookListItem}>
+                    <li key={book.id} className={st.bookListItem}>
                       <Book />
                       <span
                         className={st.bookListItemDelete}
@@ -427,14 +436,14 @@ const MyBooks = () => {
                       >
                         <Delete />
                       </span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
               {tabValue === 'Аудиокниги' && (
-                <div className={st.bookList}>
+                <ul className={st.bookList}>
                   {books.map(book => (
-                    <div key={book.id} className={st.bookListItem}>
+                    <li key={book.id} className={st.bookListItem}>
                       <Book audio={true} />
                       <span
                         className={st.bookListItemDelete}
@@ -442,61 +451,34 @@ const MyBooks = () => {
                       >
                         <Delete />
                       </span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </>
             {tabValue === 'Подборки' && activeSelections !== 'Мои' && (
-              <div className={st.selectionsList}>
-                {books.map(book => (
-                  <div key={book.id}>
-                    <div className={st.selection}>
-                      <div className={st.selectionBlock}>
-                        <div className={st.selectionImg}>
-                          <img
-                            src="/horizontalBookCovers/bookCover1.png"
-                            alt=""
-                          />
-                          <div className={st.selectionImgCount}>
-                            <span>65 </span>
-                            <span>книг</span>
-                          </div>
-                        </div>
-
-                        <div className={st.selectionDescription}>
-                          <h3>Романтическое фэнтези</h3>
-                        </div>
-                      </div>
-                    </div>
-                    <span
-                      className={st.bookListItemDelete}
-                      onClick={() => showDeletePopap(book.id)}
-                    >
-                      <Delete />
-                    </span>
-                  </div>
-                ))}
-              </div>
+              <MySelections />
             )}
             {tabValue === 'Подборки' && activeSelections === 'Мои' && (
-              <div className={st.mySelection}>
-                <Image
-                  src="/createSelectionCover.png"
-                  width={56}
-                  height={56}
-                  alt="selectionCover"
-                  className={st.selectionIcon}
-                />
-                <div className={st.mySelectionData}>
-                  <p className={st.mySelectionDataName}>Дизайн</p>
-                  <p>
-                    <span>1</span>книга
-                  </p>
+              <div className={st.selection}>
+                <div className={st.selectionBlock}>
+                  <div className={st.selectionImg}>
+                    <img src="/horizontalBookCovers/bookCover1.png" alt="" />
+                    <div className={st.selectionImgCount}>
+                      <span>1 </span>
+                      <span>книг</span>
+                    </div>
+                  </div>
+
+                  <div className={st.selectionTitle}>
+                    <h3>Романтическое фэнтези</h3>
+                  </div>
                 </div>
               </div>
             )}
             {tabValue === 'Рецензии' && <Review />}
+            {tabValue === 'Цитаты' && <Quotes />}
+            {tabValue === 'Авторы' && <Authors />}
           </div>
           {deletePopap && (
             <ModalWindow modal={deletePopap} setModal={setDeletePopap}>
@@ -531,7 +513,7 @@ const MyBooks = () => {
           )}
         </>
       ) : (
-        <MySelection />
+        <Selection />
       )}
     </>
   );
