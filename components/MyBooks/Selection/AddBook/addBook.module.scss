@@ -67,10 +67,6 @@
       transition: opacity 0.3s ease;
     }
 
-    &:focus {
-      padding-left: 64px;
-    }
-
     &::placeholder {
       font-size: 14px;
       color: $color-third;

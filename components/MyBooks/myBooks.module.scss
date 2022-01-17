@@ -69,20 +69,27 @@
 
 .tab {
   cursor: pointer;
+  color: $color-third;
+
+  &:hover {
+    color: $color-main;
+  }
+
   > h2 {
     font-family: Merriweather;
     font-weight: bold;
     font-size: 24px;
     line-height: 30px;
     margin-bottom: 5px;
-    color: $color-main;
   }
 
   > p {
     font-size: 14px;
     line-height: 1.43;
-    color: $color-third;
   }
+}
+.activeTab {
+  color: $color-main;
 }
 .section {
   min-height: 967px;
@@ -320,6 +327,7 @@
   margin-bottom: 60px;
 }
 .selection {
+  margin-top: 40px;
   &Block {
     display: flex;
     flex-direction: column;
@@ -347,10 +355,11 @@
     }
   }
 
-  &Description {
+  &Title {
     font-family: Ubuntu, sans-serif;
     font-size: 14px;
     line-height: 1.43;
+    margin-top: 10px;
     color: $color-second;
 
     > h3 {
@@ -361,35 +370,6 @@
       line-height: 18px;
     }
   }
-}
-
-.mySelection {
-  display: flex;
-  align-items: center;
-  width: 384px;
-  height: 116px;
-  padding: 30px 20px;
-  margin-top: 64px;
-  background: $color-bg-icon;
-  border-radius: 5px;
-
-  &Data {
-    font-size: 12px;
-    line-height: 14px;
-
-    flex-direction: column;
-    margin-left: 10px;
-    color: $color-third;
-
-    &Name {
-      font-size: 14px;
-      line-height: 1.43;
-      color: $color-main;
-    }
-  }
-}
-.selectionIcon {
-  border-radius: 5px;
 }
 
 // MODAL

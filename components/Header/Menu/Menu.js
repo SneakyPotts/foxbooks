@@ -1,105 +1,110 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Books from '../../../public/navMenu/books.svg';
+import Fire from '../../../public/navMenu/fire.svg';
+import MyBooks from '../../../public/navMenu/myBooks.svg';
+
 import css from './menu.module.css';
 
 const Navigation = () => {
-	const router = useRouter();
-	// console.log(router);
-	return (
-		<>
-			<nav className={css.navigation}>
-				<Link
-					href="/books"
-					// href={{
-					//   pathname: '/books',
-					//   query: {
-					//     page: 'Книги',
-					//     comingFrom: 'home',
-					//   },
-					// }}
-				>
-					<a
-						className={`${css.link} ${
-							router.pathname.includes('/books') ? css.active : css.link
-						}`}
-					>
+  const router = useRouter();
+  // console.log(router);
+  return (
+    <>
+      <nav className={css.navigation}>
+        <Link
+          href="/books"
+          // href={{
+          //   pathname: '/books',
+          //   query: {
+          //     page: 'Книги',
+          //     comingFrom: 'home',
+          //   },
+          // }}
+        >
+          <a
+            className={`${css.link} ${
+              router.pathname.includes('/books') ? css.active : css.link
+            }`}
+          >
+            <Books />
             Книги
-					</a>
-				</Link>
-				<Link
-					href="/audiobooks"
-					// href={{
-					//   pathname: '/audiobooks',
-					//   query: {
-					//     page: 'Аудиокниги',
-					//     comingFrom: 'home',
-					//   },
-					// }}
-				>
-					<a
-						className={`${css.link} ${
-							router.pathname.includes('/audiobooks') ? css.active : css.link
-						}`}
-					>
+          </a>
+        </Link>
+        <Link
+          href="/audiobooks"
+          // href={{
+          //   pathname: '/audiobooks',
+          //   query: {
+          //     page: 'Аудиокниги',
+          //     comingFrom: 'home',
+          //   },
+          // }}
+        >
+          <a
+            className={`${css.link} ${
+              router.pathname.includes('/audiobooks') ? css.active : css.link
+            }`}
+          >
             Аудиокниги
-					</a>
-				</Link>
-				<Link
-					href="/selections"
-					// href={{
-					//   pathname: '/selections',
-					//   query: {
-					//     page: 'Подборки',
-					//     comingFrom: 'home',
-					//   },
-					// }}
-				>
-					<a
-						className={`${css.link} ${
-							router.pathname.includes('/selections') ? css.active : css.link
-						}`}
-					>
+          </a>
+        </Link>
+        <Link
+          href="/selections"
+          // href={{
+          //   pathname: '/selections',
+          //   query: {
+          //     page: 'Подборки',
+          //     comingFrom: 'home',
+          //   },
+          // }}
+        >
+          <a
+            className={`${css.link} ${
+              router.pathname.includes('/selections') ? css.active : css.link
+            }`}
+          >
             Подборки
-					</a>
-				</Link>
-				<Link
-					href="/new"
-					// href={{
-					//   pathname: '/new',
-					//   query: {
-					//     page: 'Новинки',
-					//     comingFrom: 'home',
-					//   },
-					// }}
-				>
-					<a
-						className={`${css.link} ${
-							router.pathname.includes('/new') ? css.active : css.link
-						}`}
-					>
+          </a>
+        </Link>
+        <Link
+          href="/new"
+          // href={{
+          //   pathname: '/new',
+          //   query: {
+          //     page: 'Новинки',
+          //     comingFrom: 'home',
+          //   },
+          // }}
+        >
+          <a
+            className={`${css.link} ${
+              router.pathname.includes('/new') ? css.active : css.link
+            }`}
+          >
             Новинки
-					</a>
-				</Link>
-				<Link
-					href="/mybooks"
-					// href={{
-					//   pathname: '/mybooks',
-					//   query: {
-					//     page: 'Мои книги',
-					//     comingFrom: 'home',
-					//   },
-					// }}
-				>
-					<a
-						className={`${css.link} ${
-							router.pathname == '/mybooks' ? css.active : css.link
-						}`}
-					>
+          </a>
+        </Link>
+        <Link
+          href="/mybooks"
+          // href={{
+          //   pathname: '/mybooks',
+          //   query: {
+          //     page: 'Мои книги',
+          //     comingFrom: 'home',
+          //   },
+          // }}
+        >
+          <a
+            className={`${css.link} ${
+              router.pathname == '/mybooks' ? css.active : css.link
+            }`}
+          >
             Мои книги
-					</a>
-				</Link>
-			</nav>
-		</>
-	);
+          </a>
+        </Link>
+      </nav>
+    </>
+  );
 };
 export default Navigation;
