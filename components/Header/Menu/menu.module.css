@@ -9,10 +9,12 @@
   margin-right: 30px;
   padding-bottom: 6px;
   color: #4f4f4f;
+  stroke: #4f4f4f;
 }
 .link:hover {
   position: relative;
   color: #ff781d;
+  stroke: #ff781d;
 }
 .link:hover::after {
   content: '';
@@ -26,6 +28,7 @@
 .active {
   position: relative;
   color: #ff781d;
+  stroke: #ff781d;
 }
 .active::after {
   content: '';

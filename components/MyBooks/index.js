@@ -384,7 +384,7 @@ const MyBooks = () => {
                       )}
                     </div>
                   )}
-                  {(tabValue !== 'Рецензии' || tabValue !== 'Авторы') && (
+                  {tabValue !== 'Рецензии' && tabValue !== 'Авторы' && (
                     <div className={st.dropdownPopular}>
                       <button
                         className={classnames(st.dropdownPopularBtn, {

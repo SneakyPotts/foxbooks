@@ -1,5 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Books from '../../../public/navMenu/books.svg';
+import Fire from '../../../public/navMenu/fire.svg';
+import MyBooks from '../../../public/navMenu/myBooks.svg';
+
 import css from './menu.module.css';
 
 const Navigation = () => {
@@ -23,6 +27,7 @@ const Navigation = () => {
               router.pathname.includes('/books') ? css.active : css.link
             }`}
           >
+            <Books />
             Книги
           </a>
         </Link>
