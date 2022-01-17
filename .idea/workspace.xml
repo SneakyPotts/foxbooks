@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/ProfileService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/profileSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Categories/categories.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Categories/categories.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Categories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Categories/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/bookSlice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
-    </list>
+    <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +10,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="louie2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -127,6 +103,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -162,6 +141,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixes" />
     <MESSAGE value="social auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="social auth" />
+    <MESSAGE value="books" />
+    <option name="LAST_COMMIT_MESSAGE" value="books" />
   </component>
 </project>
