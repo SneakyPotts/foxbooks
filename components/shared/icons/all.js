@@ -1,6 +1,6 @@
 import React from 'react';
 
-const all = () => {
+const All = () => {
   return (
     <svg
       width="20"
@@ -18,7 +18,7 @@ const all = () => {
   );
 };
 
-export default all;
+export default All;
 {
   /* <svg
   width="20"
