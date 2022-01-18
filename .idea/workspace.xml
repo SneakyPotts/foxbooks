@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/MyPagination/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/MyPagination/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/MyPagination/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/MyPagination/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +40,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
