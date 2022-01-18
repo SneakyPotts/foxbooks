@@ -30,31 +30,9 @@ const ReaderBook = () => {
         {textLabel: 'Текст в 2 колонки', value: column, setValue: setСolumn, max: '0', dot: false},
         {textLabel: 'Размер шрифта', value: fontSize, setValue: setFontSize, max: '12', dot: false},
         {textLabel: 'Яркость', value: brightness, setValue: setBrightness, max: '5', dot: false},
-        {
-            textLabel: 'Шрифт',
-            value: font === 'Times New Roman' ? 'Times' : font,
-            setValue: setFont,
-            max: '',
-            dot: false
-        },
-        {
-            textLabel: 'Поля',
-            value: Fields,
-            setValue: setFields,
-            max: '4',
-            labelOne: 'узкие',
-            labelSecond: 'широкие',
-            dot: true
-        },
-        {
-            textLabel: 'Высота Строк',
-            value: line,
-            setValue: setLine,
-            max: '4',
-            labelOne: 'маленькая',
-            labelSecond: 'большая',
-            dot: true
-        },
+        {textLabel: 'Шрифт', value: font === 'Times New Roman' ? 'Times' : font, setValue: setFont, max: '', dot: false},
+        {textLabel: 'Поля', value: Fields, setValue: setFields, max: '4', labelOne: 'узкие', labelSecond: 'широкие', dot: true},
+        {textLabel: 'Высота Строк', value: line, setValue: setLine, max: '4', labelOne: 'маленькая', labelSecond: 'большая', dot: true},
         {textLabel: 'Выравнивание по ширине', value: alignment, setValue: setAlignment, max: '0'},
     ]
 
@@ -65,6 +43,8 @@ const ReaderBook = () => {
         {text: 'Ubuntu'},
         {text: 'Verdana'},
     ]
+
+    const dataColor = [{color:'#A5D5FF'},{color:'#FFE371'},{color:'#FED3CA'},{color:'#B8DF70'},]
 
     const getTextselection = () => {
         const selectionText = window.getSelection().toString()
@@ -210,8 +190,8 @@ const ReaderBook = () => {
                         <li>
                             <div>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.6667 7.5H9.16667C8.24619 7.5 7.5 8.24619 7.5 9.16667V16.6667C7.5 17.5871 8.24619 18.3333 9.16667 18.3333H16.6667C17.5871 18.3333 18.3333 17.5871 18.3333 16.6667V9.16667C18.3333 8.24619 17.5871 7.5 16.6667 7.5Z" stroke="#FF781D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M4.16602 12.4993H3.33268C2.89065 12.4993 2.46673 12.3238 2.15417 12.0112C1.84161 11.6986 1.66602 11.2747 1.66602 10.8327V3.33268C1.66602 2.89065 1.84161 2.46673 2.15417 2.15417C2.46673 1.84161 2.89065 1.66602 3.33268 1.66602H10.8327C11.2747 1.66602 11.6986 1.84161 12.0112 2.15417C12.3238 2.46673 12.4993 2.89065 12.4993 3.33268V4.16602" stroke="#FF781D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16.6667 7.5H9.16667C8.24619 7.5 7.5 8.24619 7.5 9.16667V16.6667C7.5 17.5871 8.24619 18.3333 9.16667 18.3333H16.6667C17.5871 18.3333 18.3333 17.5871 18.3333 16.6667V9.16667C18.3333 8.24619 17.5871 7.5 16.6667 7.5Z" stroke="#FF781D" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M4.16602 12.4993H3.33268C2.89065 12.4993 2.46673 12.3238 2.15417 12.0112C1.84161 11.6986 1.66602 11.2747 1.66602 10.8327V3.33268C1.66602 2.89065 1.84161 2.46673 2.15417 2.15417C2.46673 1.84161 2.89065 1.66602 3.33268 1.66602H10.8327C11.2747 1.66602 11.6986 1.84161 12.0112 2.15417C12.3238 2.46673 12.4993 2.89065 12.4993 3.33268V4.16602" stroke="#FF781D" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <span>Скопировать</span>
@@ -219,9 +199,9 @@ const ReaderBook = () => {
                         <li>
                             <div>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.33398 10V16.6667C3.33398 17.1087 3.50958 17.5326 3.82214 17.8452C4.1347 18.1577 4.55862 18.3333 5.00065 18.3333H15.0007C15.4427 18.3333 15.8666 18.1577 16.1792 17.8452C16.4917 17.5326 16.6673 17.1087 16.6673 16.6667V10" stroke="#FF781D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M13.3327 4.99935L9.99935 1.66602L6.66602 4.99935" stroke="#FF781D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10 1.66602V12.4993" stroke="#FF781D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3.33398 10V16.6667C3.33398 17.1087 3.50958 17.5326 3.82214 17.8452C4.1347 18.1577 4.55862 18.3333 5.00065 18.3333H15.0007C15.4427 18.3333 15.8666 18.1577 16.1792 17.8452C16.4917 17.5326 16.6673 17.1087 16.6673 16.6667V10" stroke="#FF781D" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M13.3327 4.99935L9.99935 1.66602L6.66602 4.99935" stroke="#FF781D" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M10 1.66602V12.4993" stroke="#FF781D" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <span>Поделиться</span>
@@ -229,12 +209,17 @@ const ReaderBook = () => {
                         <li>
                             <div>
                                 <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.66605 4.99939V3.3327C3.66605 2.89067 3.84164 2.46674 4.15421 2.15418C4.46677 1.84161 4.8907 1.66602 5.33273 1.66602H8.66611C9.10814 1.66602 9.53207 1.84161 9.84463 2.15418C10.1572 2.46674 10.3328 2.89067 10.3328 3.3327V4.99939M12.8328 4.99939V16.6662C12.8328 17.1082 12.6572 17.5322 12.3447 17.8447C12.0321 18.1573 11.6082 18.3329 11.1661 18.3329H2.8327C2.39067 18.3329 1.96674 18.1573 1.65418 17.8447C1.34161 17.5322 1.16602 17.1082 1.16602 16.6662V4.99939H12.8328Z" stroke="#FF781D" stroke-width="1.66669" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3.66605 4.99939V3.3327C3.66605 2.89067 3.84164 2.46674 4.15421 2.15418C4.46677 1.84161 4.8907 1.66602 5.33273 1.66602H8.66611C9.10814 1.66602 9.53207 1.84161 9.84463 2.15418C10.1572 2.46674 10.3328 2.89067 10.3328 3.3327V4.99939M12.8328 4.99939V16.6662C12.8328 17.1082 12.6572 17.5322 12.3447 17.8447C12.0321 18.1573 11.6082 18.3329 11.1661 18.3329H2.8327C2.39067 18.3329 1.96674 18.1573 1.65418 17.8447C1.34161 17.5322 1.16602 17.1082 1.16602 16.6662V4.99939H12.8328Z" stroke="#FF781D" strokeWidth="1.66669" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <span>Удалить</span>
                         </li>
                     </ul>
+                    <div
+                        onMouseUp={(e)=> e.stopPropagation()}
+                        className={styles.selectColor}>
+                        {dataColor.map(({color}) => <button style={{background: color}} type='button'/>)}
+                    </div>
                 </div>
             </div>
         </div>
