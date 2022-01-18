@@ -1,0 +1,74 @@
+@import 'styles/variables';
+
+.wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+.lineV {
+  margin-left: 200px;
+  width: 20px;
+  height: 100vh;
+  background-color: $text-hover;
+}
+.lineH {
+  position: absolute;
+  top: 271px;
+  left: 0;
+  width: 100vw;
+  height: 20px;
+  background-color: $text-hover;
+}
+.centralBlok {
+  position: absolute;
+  top: 67px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.book {
+  width: 354px;
+  height: 481px;
+  padding: 42px 0;
+  margin: auto;
+  margin-top: 60px;
+  background: url(/error.png);
+  box-shadow: 16px 15px 14px rgba(100, 100, 100, 0.68);
+  border-radius: 15px;
+
+  &Letters {
+    font-family: Merriweather;
+    font-weight: 300;
+    font-size: 71px;
+    line-height: 99px;
+    color: #0e263e;
+    // text-transform: uppercase;
+  }
+  &Number {
+    font-family: Merriweather;
+    font-weight: 300;
+    font-size: 71px;
+    line-height: 89px;
+    color: #ff781d;
+    > span {
+      margin-left: 10px;
+    }
+  }
+}
+.errorTitle {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  margin: 60px 0;
+  color: $color-second;
+}
+.errorText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 27px;
+  width: 437px;
+  margin: auto;
+  margin-bottom: 50px;
+  color: $color-second;
+}
