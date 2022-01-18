@@ -8,13 +8,23 @@
   text-decoration: none;
   margin-right: 30px;
   padding-bottom: 6px;
+  display: flex;
+  align-items: center;
   color: #4f4f4f;
+  fill: #4f4f4f;
+}
+.linkStroke {
   stroke: #4f4f4f;
+  fill: none;
 }
 .link:hover {
   position: relative;
   color: #ff781d;
+  fill: #ff781d;
+}
+.linkStroke:hover {
   stroke: #ff781d;
+  fill: none;
 }
 .link:hover::after {
   content: '';
@@ -28,6 +38,11 @@
 .active {
   position: relative;
   color: #ff781d;
+  fill: #ff781d;
+}
+.activeStroke {
+  position: relative;
+  color: #ff781d;
   stroke: #ff781d;
 }
 .active::after {
@@ -39,9 +54,20 @@
   height: 1px;
   background-color: #ff781d;
 }
+.activeStroke::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #ff781d;
+}
 .icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-  color: #4f4f4f;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  /* color: #4f4f4f; */
 }
