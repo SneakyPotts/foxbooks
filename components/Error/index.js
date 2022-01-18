@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 import Logo from '../Logo';
 import Button from '../shared/common/Button/Button';
 import st from './error.module.scss';
@@ -25,7 +25,11 @@ const Error = () => {
           К сожалению, запрашиваемая страница потерялась. Мы обязательно
           разберемся с этим недоразумением.
         </p>
-        <Button text="Вернуться на главную" />
+        <Link href="/">
+          <a>
+            <Button text="Вернуться на главную" />
+          </a>
+        </Link>
       </div>
     </div>
   );
