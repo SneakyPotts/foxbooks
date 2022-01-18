@@ -73,7 +73,10 @@ const ReaderBook = () => {
     const dataColor = [{color: '#A5D5FF'}, {color: '#FFE371'}, {color: '#FED3CA'}, {color: '#B8DF70'},]
 
 
-    const getTextselection = (selectText) => {
+    const [arrayQuotes, setArrayQuotes] = useState([{text:'Мистер и миссис Дурсль проживали в доме', color: '#FFE371'}])
+
+    const getTextselection = (quotes = false) => {
+        // selectText
         // console.log('prevvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv')
         // const positionText = textPage.indexOf(selectText)
         // const textWithMark = textPage.slice(0, positionText)
@@ -82,9 +85,12 @@ const ReaderBook = () => {
         // const lastPieceTextWithMark = textWithMark + markText + remainderText
         // // .replace(/<\/?[^>]+(>|$)/g, '')
         // setTextPage(lastPieceTextWithMark)
+
        return (
            <>
-               <p></p>
+               <p>
+                   {!quotes && textPage}
+               </p>
            </>
        )
 
@@ -188,26 +194,28 @@ const ReaderBook = () => {
                 <h1>Гарри Поттер и философский камень</h1>
                 <span>Джоан Роулинг</span>
                 <h3>Глава 1. Мальчик, который выжил</h3>
-                <p
-                    className={styles.containerTextMain}
-                    style={{
-                        fontSize: `${Number(fontSize) + 16}px`,
-                        lineHeight: Number(line) === 2 ?
-                            '22px' : Number(line) === 1 ?
-                                '21px' : Number(line) === 0 ?
-                                    '18px' : Number(line) === 3 ?
-                                        '24px' : '26px',
-                        fontFamily: font
-                    }}
+                {/*<p*/}
+                {/*    className={styles.containerTextMain}*/}
+                {/*    style={{*/}
+                {/*        fontSize: `${Number(fontSize) + 16}px`,*/}
+                {/*        lineHeight: Number(line) === 2 ?*/}
+                {/*            '22px' : Number(line) === 1 ?*/}
+                {/*                '21px' : Number(line) === 0 ?*/}
+                {/*                    '18px' : Number(line) === 3 ?*/}
+                {/*                        '24px' : '26px',*/}
+                {/*        fontFamily: font*/}
+                {/*    }}*/}
 
-                    onMouseUp={(e) => {
-                        let selectText = window.getSelection().toString()
-                        if (selectText.length > 0) {
-                            setCurrentSelectionText(selectText)
-                            getTextselection(selectText)
-                        }
-                    }} dangerouslySetInnerHTML={{__html: `${textPage}`}}
-                />
+                {/*    onMouseUp={(e) => {*/}
+                {/*        let selectText = window.getSelection().toString()*/}
+                {/*        if (selectText.length > 0) {*/}
+                {/*            setCurrentSelectionText(selectText)*/}
+                {/*            getTextselection(selectText)*/}
+                {/*        }*/}
+                {/*    }} dangerouslySetInnerHTML={{__html: `${textPage}`}}*/}
+                {/*/>*/}
+
+                {getTextselection()}
 
                 <div
                     onMouseUp={e => {
