@@ -5,6 +5,7 @@ import Fire from '../../shared/icons/navMenu/fire';
 import MyBooks from '../../shared/icons/navMenu/myBooks';
 import Selections from '../../shared/icons/navMenu/selections';
 import Headphones from '../../shared/icons/headphones';
+import Grid from '../../../public/grid.svg';
 import css from './menu.module.css';
 
 const Navigation = () => {
@@ -100,6 +101,18 @@ const Navigation = () => {
               <Fire />
             </div>
             Новинки
+          </a>
+        </Link>
+        <Link href="/categories">
+          <a
+            className={`${css.link} ${css.linkStroke} ${
+              router.pathname == '/categories' ? css.activeStroke : css.link
+            }`}
+          >
+            <div className={css.icon}>
+              <Grid />
+            </div>
+            Категории
           </a>
         </Link>
         <Link
