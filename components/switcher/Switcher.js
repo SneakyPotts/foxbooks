@@ -8,7 +8,7 @@ const Switcher = ({ flagSwitcher, setFlagSwitcher }) => {
 	const router = useRouter()
 
 	const handleClick = value => {
-		router.push({query: {...router.query, ['showType']: value}});
+		router.push({query: {...router.query, ['showType']: value}}, null, {scroll: false});
 		setFlagSwitcher(value === 'list' ? true : false)
 	}
 

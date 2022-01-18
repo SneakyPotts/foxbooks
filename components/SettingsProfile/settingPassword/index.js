@@ -40,7 +40,7 @@ const SettingPassword = () => {
 				classNames={styles.inputLast}
 				err={errors.repeat?.message}
 				textLabel='Повторите новый пароль'
-				name='password_confirm'
+				name='password_confirmation'
 				typeInput="password"
 				register={register}
 			/>

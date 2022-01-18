@@ -2,30 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
+      <change afterPath="$PROJECT_DIR$/components/shared/common/Loader/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/Loader/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/MyPagination/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/MyPagination/locale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/MyPagination/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AudioBooks/category/category.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioBooks/category/category.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/category/category.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/category.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Pagination/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Pagination/pagination.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Filter/Author/Author.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Author/Author.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/popular.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/SideFilters/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/booksMainBlock/booksMainBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksMainBlock/booksMainBlock.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/switcher/Switcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/switcher/Switcher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/switcher/switcher.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/switcher/switcher.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/books/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/[id]/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/profileSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/profileSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +38,23 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="louie2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="23auBythzjH9L767PJFjYNP9OaI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -56,6 +70,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -94,6 +109,7 @@
       <workItem from="1642076628102" duration="6423000" />
       <workItem from="1642151891944" duration="13122000" />
       <workItem from="1642405978800" duration="17821000" />
+      <workItem from="1642506937562" duration="7704000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -134,7 +150,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/louie2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -146,12 +174,12 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/main" />
+                  <option value="origin/louie2" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/louie2" />
+                  <option value="origin/main" />
                 </option>
               </RecentGroup>
             </list>
@@ -165,5 +193,9 @@
     <MESSAGE value="fixes" />
     <MESSAGE value="social auth" />
     <option name="LAST_COMMIT_MESSAGE" value="social auth" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

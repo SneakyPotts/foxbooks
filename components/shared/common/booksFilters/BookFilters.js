@@ -17,7 +17,7 @@ const BookFilters = () => {
 	const [currentIdx, setCurrentIdx] = useState(+router.query['sortBy'] || 1);
 
 	const handleOnClick = value => {
-		router.push({query: {['sortBy']: value}})
+		router.push({query: {['sortBy']: value}}, null, {scroll: false})
 		setCurrentIdx(value);
 	};
 

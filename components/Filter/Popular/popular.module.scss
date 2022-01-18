@@ -16,6 +16,14 @@
   border: none;
   border-radius: 64px;
   stroke: #0e263e;
+  transition: .15s;
+
+  & > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 5px;
+  }
 }
 .dropBtn:hover {
   color: #0e263e;
@@ -65,6 +73,7 @@
   text-decoration: none;
   color: #4f4f4f;
   cursor: pointer;
+  transition: .15s;
 }
 .dropLink:not(:last-child) {
   margin-bottom: 15px;
@@ -78,6 +87,7 @@
 }
 .down {
   transform: rotate(180deg);
+  transition: .15s;
 }
 .up {
   transform: rotate(0deg);
@@ -94,6 +104,7 @@
   border: 3px solid#fff;
   background-color: transparent;
   box-shadow: 0 0 0 2px #909190;
+  transition: .15s;
 }
 .radioActive {
   background-color: #0e263e;

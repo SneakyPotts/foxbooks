@@ -141,10 +141,10 @@ const MyBooks = () => {
 		e.stopPropagation();
 		setFilter(!filter);
 	};
-
-	e.stopPropagation();
-	setShowSelections(!showSelections);
-};
+//
+// 	e.stopPropagation();
+// 	setShowSelections(!showSelections);
+// };
 
 const handleSelectionClick = idx => {
 	setActiveSelections(selections[idx]);
@@ -160,9 +160,9 @@ const handleInput = e => {
 	e.stopPropagation();
 	setShowInput(true);
 };
-
-setShouldDelete(id);
-	};
+//
+// setShouldDelete(id);
+// 	};
 
 const deleteBook = () => {
 	setBooks(books.filter(book => book.id !== shoudlDelete));

@@ -16,7 +16,7 @@ const Books = () => {
 			<h2 className={st.abTitle}>Книги</h2>
 			{categories.map(({ id, category }) => (
 				<button key={id} className={st.abCateg}>
-					<Link href={`/books/${id}`}>
+					<Link href={`/books/${id}?showType=block&sortBy=3`}>
 						<a className={st.abCategLink}>{category}</a>
 					</Link>
 				</button>

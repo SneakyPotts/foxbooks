@@ -56,7 +56,7 @@ const SideFilters = () => {
 	};
 
 	const handleChange = debounce((value, queryName) => {
-		router.push({query: {...router.query, [queryName]: value}})
+		router.push({query: {...router.query, [queryName]: value}}, null, {scroll: false})
 	}, 300)
 
 	return (

@@ -4,8 +4,8 @@ import classnames from 'classnames';
 import Button from '../../shared/common/Button/Button';
 import ArrowAll from '../../../public/chevron-down.svg';
 import CommentComp from '../CommentComponent';
-import Pagination from '../Pagination';
 import st from './reviews.module.scss';
+import MyPagination from "../../shared/common/MyPagination";
 
 const Reviews = () => {
 	const options = ['Положительная', 'Отрицательная', 'Нейтральная'];
@@ -145,7 +145,7 @@ const Reviews = () => {
 					<CommentComp idx={idx} type={it.type} />
 				</div>
 			))}
-			<Pagination />
+			<MyPagination />
 		</div>
 	);
 };

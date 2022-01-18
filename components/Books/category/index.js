@@ -11,7 +11,6 @@ import {useRouter} from "next/router";
 
 const data = [
 	{
-		title: 'Популярные',
 		options: [
 			{id: 1, title: 'Популярные', value: 3},
 			{id: 2, title: 'Высокий рейтинг', value: 3},
@@ -35,8 +34,7 @@ const Category = () => {
 				<h2 className={st.title}>Category</h2>
 				{data.map((it, index) => (
 					<Popular
-						key={it.title}
-						title={it.title}
+						key={index}
 						data={it.options}
 						queryName={it.queryName}
 						filterStateIdx={stateIndex}
