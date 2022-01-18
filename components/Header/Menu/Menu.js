@@ -1,21 +1,17 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Book from '../../shared/icons/navMenu/book';
-import Fire from '../../shared/icons/navMenu/fire';
-import MyBooks from '../../shared/icons/navMenu/myBooks';
-import Selections from '../../shared/icons/navMenu/selections';
-import Headphones from '../../shared/icons/headphones';
-import Grid from '../../../public/grid.svg';
 import css from './menu.module.css';
+import {useSelector} from "react-redux";
 
 const Navigation = () => {
   const router = useRouter();
+	const { isAuth } = useSelector(state => state.auth)
   // console.log(router);
   return (
     <>
       <nav className={css.navigation}>
         <Link
-          href="/books"
+          href="/books?sortBy=1"
           // href={{
           //   pathname: '/books',
           //   query: {
@@ -115,7 +111,7 @@ const Navigation = () => {
             Категории
           </a>
         </Link>
-        <Link
+		  {isAuth &&  <Link
           href="/mybooks"
           // href={{
           //   pathname: '/mybooks',
@@ -135,7 +131,7 @@ const Navigation = () => {
             </div>
             Мои книги
           </a>
-        </Link>
+        </Link>}
       </nav>
     </>
   );

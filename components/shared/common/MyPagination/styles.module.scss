@@ -1,0 +1,105 @@
+@import "styles/variables";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+
+  :global(.rc-pagination-prev),
+  :global(.rc-pagination-next) {
+    width: 24px;
+    height: 24px;
+    stroke: $text-hover;
+    cursor: pointer;
+
+    svg path {
+      transition: .15s;
+    }
+
+    &:hover {
+      stroke: $accent-hover;
+    }
+  }
+
+  :global(.rc-pagination-prev) {
+    transform: rotate(180deg);
+    margin-right: 15px;
+  }
+
+  :global(.rc-pagination-item) {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-main;
+    margin-right: 15px;
+    transition: .15s;
+    cursor: pointer;
+
+    &:hover {
+      color: $text-hover;
+    }
+  }
+
+  :global(.rc-pagination-item-active) {
+    color: $text-hover;
+  }
+
+  :global(.rc-pagination-jump-next),
+  :global(.rc-pagination-jump-prev) {
+    margin-right: 15px;
+
+    &:hover {
+      :global(.rc-pagination-item-link) {
+        &::before {
+          color: $text-hover;
+        }
+      }
+    }
+
+    :global(.rc-pagination-item-link) {
+      &::before {
+        content: '...';
+        height: 24px;
+        font-size: 16px;
+        font-weight: 400;
+        color: $color-main;
+        transition: .15s;
+      }
+    }
+  }
+
+  :global(.rc-pagination-options) {
+    margin-left: auto;
+  }
+
+  :global(.rc-pagination-options-quick-jumper) {
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-second;
+
+    input {
+      border: 1px solid #D5D5D5;
+      border-radius: 5px;
+      padding: 6px 16px;
+      width: 70px;
+      margin-left: 10px;
+      margin-right: 28px;
+      transition: .15s;
+
+      &:hover,
+      &:focus {
+        border-color: #909190;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .btn {
+    width: 119px;
+  }
+}

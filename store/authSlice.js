@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 const initialState = {
 	isAuth: false,
 	isLoading: false,
-	error: ''
+	isError: false
 };
 
 export const signUp = createAsyncThunk(

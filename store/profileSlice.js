@@ -2,7 +2,9 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import ProfileService from "../http/ProfileService";
 
 const initialState = {
-	profile: []
+	profile: [],
+	isLoading: false,
+	isError: false
 };
 
 export const resetPassword = createAsyncThunk(

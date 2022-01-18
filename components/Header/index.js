@@ -37,10 +37,13 @@ const Header = () => {
     body.classList.remove('nonScroll');
   };
 
-  const logOut = () => {
-    dispatch(setAuth(false));
-    Cookies.remove('token');
-  };
+	const logOut = () => {
+		if(router.pathname.includes('settings')) {
+			router.push('/')
+		}
+		dispatch(setAuth(false))
+		Cookies.remove('token')
+	}
 
   const popularBooks = [
     {

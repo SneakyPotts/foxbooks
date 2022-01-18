@@ -32,27 +32,30 @@ export default function App(props) {
   );
 }
 
-export async function getServerSideProps({ req }) {
-  const { cookies } = req;
-  const token = cookies.token;
+export async function getServerSideProps ({ req, query }) {
+	const { cookies } = req
+	const token = cookies.token
 
-  const categories = await HomeService.getHomeCategories();
-  const books = await BookService.getBooks();
+	const categories = await HomeService.getHomeCategories()
+	const books = await BookService.getBooks(query)
 
-  let profile = {};
+	let profile = {}
 
-  if (token) {
-    // profile = await ProfileService.getProfile(token)
-  }
+	if (token) {
+		// profile = await ProfileService.getProfile(token)
 
-  // 		res.writeHead(302, { Location: '/' });
-  // 		res.end();
+		// console.log(profile)
+	}
 
-  return {
-    props: {
-      categories: categories?.data?.data,
-      books: books?.data,
-      profile: profile?.data || {},
-    },
-  };
+	// 		res.writeHead(302, { Location: '/' });
+	// 		res.end();
+
+	return {
+		props: {
+			categories: categories?.data?.data,
+			books: books?.data?.data,
+			profile: profile?.data || {},
+		}
+	}
 }
+

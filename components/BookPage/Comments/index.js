@@ -7,8 +7,8 @@ import CommentComp from '../CommentComponent';
 import Button from '../../shared/common/Button/Button';
 import Like from '../../shared/icons/heart';
 import ArrowRight from '../../../public/chevron-right.svg';
-import Pagination from '../Pagination';
 import st from './comments.module.scss';
+import MyPagination from "../../shared/common/MyPagination";
 
 const Comments = () => {
 	const [replyIdx, setReplyIdx] = useState(null);
@@ -297,7 +297,7 @@ const Comments = () => {
 				</>
 			))}
 
-			<Pagination />
+			<MyPagination />
 		</div>
 	);
 };

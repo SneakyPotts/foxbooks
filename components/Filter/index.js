@@ -3,9 +3,9 @@ import Popular from './Popular/Popular';
 import Author from './Author/Author';
 import ClearAll from './Clear/Clear';
 import Book from '../shared/common/book';
-import books from '../data/books.json';
 
 import css from './filter.module.css';
+import {useSelector} from "react-redux";
 
 const data = [
 	{
@@ -75,6 +75,7 @@ const data = [
 
 const Filters = () => {
 	const [stateIndex, setStateIndex] = useState(null);
+	const { books } = useSelector(state => state.book)
 
 	return (
 		<div className={css.wrapper}>
@@ -107,7 +108,7 @@ const Filters = () => {
 				</div>
 			</div>
 			<ul className={css.bookList}>
-				{books.map(book => (
+				{books?.data?.map(book => (
 					<li key={book.id} className={css.book}>
 						<Book book={book} />
 					</li>

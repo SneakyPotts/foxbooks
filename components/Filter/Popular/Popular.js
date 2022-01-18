@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import ArrowAll from '../../../public/chevron-down.svg';
-import css from './popular.module.css';
+import css from './popular.module.scss';
+import {useRouter} from "next/router";
 
-const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
+const Popular = ({
+	data,
+	queryName,
+	filterStateIdx,
+	elIdx,
+	setFilStateIdx
+}) => {
+	const router = useRouter();
+
 	const [menu, setMenu] = useState(false);
-	const [optionIndex, setOptionIndex] = useState([]);
+	const [activeTitle, setActiveTitle] = useState(data?.find(i => i?.value === +router.query[queryName])?.title);
+	const [activeEl, setActiveEl] = useState(+router.query[queryName]);
 
 	useEffect(() => {
 		const body = document.querySelector('body');
@@ -16,7 +26,7 @@ const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
 		};
 	}, []);
 
-	const togleMenu = e => {
+	const toggleMenu = e => {
 		e.stopPropagation();
 		if (setFilStateIdx) {
 			setFilStateIdx(prev => {
@@ -31,12 +41,10 @@ const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
 		}
 	};
 
-	const handleOnClick = index => {
-		if (optionIndex.includes(index)) {
-			setOptionIndex(optionIndex.filter(it => it !== index));
-		} else {
-			setOptionIndex([...optionIndex, index]);
-		}
+	const handleOnClick = (value, title) => {
+		router.push({query: {...router.query, [queryName]: value}}, null, {scroll: false});
+		setActiveEl(value);
+		setActiveTitle(title)
 	};
 
 	const closeMenu = () => {
@@ -51,9 +59,9 @@ const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
 				className={`${css.dropBtn} ${
 					menu || elIdx === filterStateIdx ? css.open : css.close
 				}`}
-				onClick={togleMenu}
+				onClick={toggleMenu}
 			>
-				<span className={css.dropBtnText}>{title}</span>{' '}
+				<span className={css.dropBtnText}>{activeTitle}</span>{' '}
 				<ArrowAll
 					className={classnames(css.down, {
 						[css.up]: menu || elIdx === filterStateIdx,
@@ -62,23 +70,23 @@ const Popular = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
 			</button>
 			{menu || elIdx === filterStateIdx ? (
 				<ul className={css.dropContent} onClick={e => e.stopPropagation()}>
-					{data.map((it, index) => (
+					{data?.map(i => (
 						<li
-							key={index}
-							onClick={() => handleOnClick(index)}
+							key={i?.id}
+							onClick={() => handleOnClick(i?.value, i?.title)}
 							className={css.dropLink}
 						>
 							<span
 								className={classnames(css.radio, {
-									[css.radioActive]: optionIndex.includes(index),
+									[css.radioActive]: activeEl === i?.value,
 								})}
-							></span>
+							/>
 							<span
 								className={classnames(css.dropText, {
-									[css.active]: optionIndex.includes(index),
+									[css.active]: activeEl === i?.value,
 								})}
 							>
-								{it}
+								{i?.title}
 							</span>
 						</li>
 					))}
