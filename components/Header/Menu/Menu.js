@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Books from '../../../public/navMenu/books.svg';
-import Fire from '../../../public/navMenu/fire.svg';
-import MyBooks from '../../../public/navMenu/myBooks.svg';
-
+import Book from '../../shared/icons/navMenu/book';
+import Fire from '../../shared/icons/navMenu/fire';
+import MyBooks from '../../shared/icons/navMenu/myBooks';
+import Selections from '../../shared/icons/navMenu/selections';
+import Headphones from '../../shared/icons/headphones';
+import Grid from '../../../public/grid.svg';
 import css from './menu.module.css';
 
 const Navigation = () => {
@@ -27,7 +29,9 @@ const Navigation = () => {
               router.pathname.includes('/books') ? css.active : css.link
             }`}
           >
-            <Books />
+            <div className={css.icon}>
+              <Book />
+            </div>
             Книги
           </a>
         </Link>
@@ -42,11 +46,17 @@ const Navigation = () => {
           // }}
         >
           <a
-            className={`${css.link} ${
-              router.pathname.includes('/audiobooks') ? css.active : css.link
+            className={`${css.link} ${css.linkStroke} ${
+              router.pathname.includes('/audiobooks')
+                ? css.activeStroke
+                : css.link
             }`}
           >
-            Аудиокниги
+            <div className={css.icon}>
+              <Headphones />
+            </div>
+
+            <span>Аудиокниги</span>
           </a>
         </Link>
         <Link
@@ -60,10 +70,15 @@ const Navigation = () => {
           // }}
         >
           <a
-            className={`${css.link} ${
-              router.pathname.includes('/selections') ? css.active : css.link
+            className={`${css.link} ${css.linkStroke} ${
+              router.pathname.includes('/selections')
+                ? css.activeStroke
+                : css.link
             }`}
           >
+            <div className={css.icon}>
+              <Selections />
+            </div>
             Подборки
           </a>
         </Link>
@@ -82,7 +97,22 @@ const Navigation = () => {
               router.pathname.includes('/new') ? css.active : css.link
             }`}
           >
+            <div className={css.icon}>
+              <Fire />
+            </div>
             Новинки
+          </a>
+        </Link>
+        <Link href="/categories">
+          <a
+            className={`${css.link} ${css.linkStroke} ${
+              router.pathname == '/categories' ? css.activeStroke : css.link
+            }`}
+          >
+            <div className={css.icon}>
+              <Grid />
+            </div>
+            Категории
           </a>
         </Link>
         <Link
@@ -96,10 +126,13 @@ const Navigation = () => {
           // }}
         >
           <a
-            className={`${css.link} ${
-              router.pathname == '/mybooks' ? css.active : css.link
+            className={`${css.link} ${css.linkStroke} ${
+              router.pathname == '/mybooks' ? css.activeStroke : css.link
             }`}
           >
+            <div className={css.icon}>
+              <MyBooks />
+            </div>
             Мои книги
           </a>
         </Link>

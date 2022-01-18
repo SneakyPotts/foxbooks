@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
@@ -304,6 +304,7 @@ const MyBooks = () => {
                         <ul className={st.dropdownList}>
                           {options.map((opt, idx) => (
                             <li
+                              key={opt.option}
                               className={st.dropdownListItem}
                               onClick={e => handleOptions(idx, e)}
                             >
