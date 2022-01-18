@@ -2,6 +2,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import css from './menu.module.css';
 import {useSelector} from "react-redux";
+import Book from '../../shared/icons/navMenu/book';
+import Fire from '../../shared/icons/navMenu/fire';
+import MyBooks from '../../shared/icons/navMenu/myBooks';
+import Selections from '../../shared/icons/navMenu/selections';
+import Headphones from '../../shared/icons/headphones';
+import Grid from '../../../public/grid.svg';
 
 const Navigation = () => {
   const router = useRouter();
