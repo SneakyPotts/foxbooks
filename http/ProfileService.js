@@ -3,7 +3,7 @@ import api, { API_URL } from ".";
 
 export default class ProfileService {
 	static async getProfile(token) {
-		return axios.post(
+		return axios.get(
 			`${API_URL}/profile`, 
 			null,
 			{headers: {'Authorization': `Bearer ${token}`}}

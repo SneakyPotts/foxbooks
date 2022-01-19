@@ -13,7 +13,7 @@ const Books = () => {
 
 	return (
 		<div className={classnames('container', st.abContainer)}>
-			{/* <Breadcrumbs data={breadcrumbsData} /> */}
+			 {/*<Breadcrumbs data={breadcrumbsData} />*/}
 
 			<h2 className={st.abTitle}>Книги</h2>
 			{categories?.map(i => (
@@ -23,7 +23,7 @@ const Books = () => {
 					</Link>
 				</button>
 			))}
-			<ShowAll url="#" text="Показать все" />
+			<ShowAll url="/categories" text="Показать все" />
 			<BookFilters />
 			<BooksMainBlock />
 		</div>

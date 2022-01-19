@@ -11,13 +11,17 @@ const Settings = () => {
 
 export default Settings;
 
-export async function getServerSideProps ({ req, res }) {
+export async function getServerSideProps ({ req }) {
 	const { cookies } = req
 	const token = cookies.token
 
 	if(!token) {
-		res.writeHead(302, { Location: '/' });
-		res.end();
+		return {
+			redirect: {
+				destination: '/',
+				parameter: false
+			}
+		}
 	}
 
 	return {

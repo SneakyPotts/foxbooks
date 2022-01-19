@@ -43,12 +43,7 @@ export async function getServerSideProps ({ req, query }) {
 
 	if (token) {
 		// profile = await ProfileService.getProfile(token)
-
-		// console.log(profile)
 	}
-
-	// 		res.writeHead(302, { Location: '/' });
-	// 		res.end();
 
 	return {
 		props: {

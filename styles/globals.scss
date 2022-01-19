@@ -127,3 +127,10 @@ ol[class] {
 .blur {
   filter: blur(10px);
 }
+.booksWrapper {
+  width: 100%;
+
+  .empty {
+    text-align: center;
+  }
+}
