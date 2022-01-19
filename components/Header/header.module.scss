@@ -6,8 +6,16 @@
 
   .container {
     position: relative;
-    max-width: 1200px;
     margin: auto;
+    // @media (min-width: $tablet) {
+    //   max-width: 768px;
+    // }
+
+    // @media (min-width: $desktop) {
+    //   max-width: 1200px;
+    // }
+    max-width: 1200px;
+    // margin: auto;
   }
 
   .header {
@@ -16,11 +24,25 @@
     align-items: center;
     justify-content: space-between;
     color: #0e263e;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
+
+  // .logo {
+  //   @media (max-width: 768px) {
+  //     width: 117px;
+  //   }
+  // }
 
   .input {
     position: relative;
     align-items: center;
+
+    @media (max-width: 768px) {
+      margin-top: 20px;
+    }
   }
 
   .inputCastom {
@@ -67,6 +89,10 @@
 
     &:focus {
       padding-left: 64px;
+    }
+
+    @media (max-width: $tablet) {
+      width: 345px;
     }
   }
 
@@ -119,6 +145,10 @@
   .menu {
     display: flex;
     align-items: center;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
 
     .avatarUser {
       position: relative;
@@ -191,6 +221,12 @@
   .iconUser {
     margin-right: 10px;
   }
+
+  @media (max-width: $desktop) {
+    .main {
+      padding: 20px 15px;
+    }
+  }
 }
 .overlay {
   position: fixed;
@@ -262,4 +298,10 @@
   font-size: 14px;
   line-height: 1.143;
   color: $color-main;
+}
+
+@media (max-width: 1200px) {
+  .main {
+    padding: 30px 15px;
+  }
 }

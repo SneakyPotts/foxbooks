@@ -1,0 +1,128 @@
+@import 'styles/variables';
+
+.navigation {
+  display: flex;
+  font-size: 14px;
+  text-align: start;
+  align-items: center;
+}
+.link {
+  text-decoration: none;
+  margin-right: 30px;
+  padding-bottom: 6px;
+  display: flex;
+  align-items: center;
+  color: $color-second;
+  fill: $color-second;
+}
+.linkStroke {
+  stroke: $color-second;
+  fill: none;
+}
+.link:hover {
+  position: relative;
+  color: $text-hover;
+  fill: $text-hover;
+}
+.linkStroke:hover {
+  stroke: $text-hover;
+  fill: none;
+}
+.link:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $text-hover;
+}
+.active {
+  position: relative;
+  color: $text-hover;
+  fill: $text-hover;
+}
+.activeStroke {
+  position: relative;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $text-hover;
+}
+.activeStroke::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $text-hover;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+.dovnMenu {
+  display: none;
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 69px;
+    padding: 10px 15px;
+
+    background-color: $color-main;
+  }
+
+  &Logo {
+    font-size: 14px;
+    line-height: 1.43;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $text-hover;
+  }
+
+  > .link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 30px;
+    stroke: $color-categories-btn;
+    color: $color-categories-btn;
+
+    > .icon {
+      display: flex;
+      // flex-direction: column;
+      align-items: center;
+      width: 24px;
+      height: 24px;
+      margin-bottom: 5px;
+    }
+  }
+  > .activeStroke {
+    position: relative;
+    color: $text-hover;
+    stroke: $text-hover;
+  }
+  > .activeStroke::after {
+    display: none;
+  }
+}

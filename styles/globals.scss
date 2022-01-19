@@ -1,3 +1,5 @@
+@import 'variables';
+
 html,
 body {
   padding: 0;
@@ -57,6 +59,14 @@ ol[class] {
 .container {
   max-width: 1200px;
   margin: auto;
+
+  @media (min-width: $tablet) {
+    max-width: 768px;
+  }
+
+  @media (min-width: $desktop) {
+    max-width: 1200px;
+  }
 }
 .nextArrow {
   cursor: pointer;

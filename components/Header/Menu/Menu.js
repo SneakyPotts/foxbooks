@@ -1,31 +1,24 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import css from './menu.module.css';
-import {useSelector} from "react-redux";
+import { useSelector } from 'react-redux';
 import Book from '../../shared/icons/navMenu/book';
 import Fire from '../../shared/icons/navMenu/fire';
 import MyBooks from '../../shared/icons/navMenu/myBooks';
 import Selections from '../../shared/icons/navMenu/selections';
 import Headphones from '../../shared/icons/headphones';
 import Grid from '../../../public/grid.svg';
+import LogoMobileWhite from '../../shared/icons/logoMobileWhite';
+import LogoMobileActive from '../../shared/icons/logoMobileActive';
+import css from './menu.module.scss';
 
-const Navigation = () => {
+const Navigation = ({ setModal }) => {
   const router = useRouter();
-	const { isAuth } = useSelector(state => state.auth)
+  const { isAuth } = useSelector(state => state.auth);
   // console.log(router);
   return (
     <>
       <nav className={css.navigation}>
-        <Link
-          href="/books?sortBy=1"
-          // href={{
-          //   pathname: '/books',
-          //   query: {
-          //     page: 'Книги',
-          //     comingFrom: 'home',
-          //   },
-          // }}
-        >
+        <Link href="/books?sortBy=1">
           <a
             className={`${css.link} ${
               router.pathname.includes('/books') ? css.active : css.link
@@ -37,16 +30,7 @@ const Navigation = () => {
             Книги
           </a>
         </Link>
-        <Link
-          href="/audiobooks"
-          // href={{
-          //   pathname: '/audiobooks',
-          //   query: {
-          //     page: 'Аудиокниги',
-          //     comingFrom: 'home',
-          //   },
-          // }}
-        >
+        <Link href="/audiobooks">
           <a
             className={`${css.link} ${css.linkStroke} ${
               router.pathname.includes('/audiobooks')
@@ -61,16 +45,7 @@ const Navigation = () => {
             <span>Аудиокниги</span>
           </a>
         </Link>
-        <Link
-          href="/selections"
-          // href={{
-          //   pathname: '/selections',
-          //   query: {
-          //     page: 'Подборки',
-          //     comingFrom: 'home',
-          //   },
-          // }}
-        >
+        <Link href="/selections">
           <a
             className={`${css.link} ${css.linkStroke} ${
               router.pathname.includes('/selections')
@@ -84,16 +59,7 @@ const Navigation = () => {
             Подборки
           </a>
         </Link>
-        <Link
-          href="/new"
-          // href={{
-          //   pathname: '/new',
-          //   query: {
-          //     page: 'Новинки',
-          //     comingFrom: 'home',
-          //   },
-          // }}
-        >
+        <Link href="/new">
           <a
             className={`${css.link} ${
               router.pathname.includes('/new') ? css.active : css.link
@@ -105,39 +71,50 @@ const Navigation = () => {
             Новинки
           </a>
         </Link>
-        <Link href="/categories">
-          <a
-            className={`${css.link} ${css.linkStroke} ${
-              router.pathname == '/categories' ? css.activeStroke : css.link
-            }`}
-          >
-            <div className={css.icon}>
-              <Grid />
-            </div>
-            Категории
-          </a>
-        </Link>
-		  {isAuth &&  <Link
-          href="/mybooks"
-          // href={{
-          //   pathname: '/mybooks',
-          //   query: {
-          //     page: 'Мои книги',
-          //     comingFrom: 'home',
-          //   },
-          // }}
-        >
-          <a
-            className={`${css.link} ${css.linkStroke} ${
-              router.pathname == '/mybooks' ? css.activeStroke : css.link
-            }`}
-          >
-            <div className={css.icon}>
-              <MyBooks />
-            </div>
-            Мои книги
-          </a>
-        </Link>}
+
+        <div className={css.dovnMenu}>
+          <Link href="/">
+            <a
+              className={`${css.dovnMenuLogo} ${
+                router.pathname !== '/' ? css.dovnMenuLogo : css.active
+              }`}
+            >
+              {router.pathname === '/' ? (
+                <LogoMobileActive />
+              ) : (
+                <LogoMobileWhite />
+              )}
+              <div onClick={() => setModal()}>profilb</div>
+              Главная
+            </a>
+          </Link>
+          <Link href="/categories">
+            <a
+              className={`${css.link} ${css.linkStroke} ${
+                router.pathname == '/categories' ? css.activeStroke : css.link
+              }`}
+            >
+              <div className={css.icon}>
+                <Grid />
+              </div>
+              Категории
+            </a>
+          </Link>
+          {isAuth && (
+            <Link href="/mybooks">
+              <a
+                className={`${css.link} ${css.linkStroke} ${
+                  router.pathname == '/mybooks' ? css.activeStroke : css.link
+                }`}
+              >
+                <div className={css.icon}>
+                  <MyBooks />
+                </div>
+                Мои книги
+              </a>
+            </Link>
+          )}
+        </div>
       </nav>
     </>
   );
