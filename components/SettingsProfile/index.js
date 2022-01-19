@@ -22,9 +22,7 @@ const SettingsProfile = () => {
 		<div className={styles.container}>
 			<div className={styles.setting}>
 				<div className={styles.settingMenu}>
-					<h1>
-                        Настройки профиля
-					</h1>
+					<h1>Настройки профиля</h1>
 					<ul>
 						{settingMenu.map((r, index) => {
 							return (

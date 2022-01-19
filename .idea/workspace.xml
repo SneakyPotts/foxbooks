@@ -3,14 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="pagination">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksMainBlock/BooksMainBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/ProfileService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ProfileService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mybooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/profileSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/profileSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +91,8 @@
       <workItem from="1642151891944" duration="13122000" />
       <workItem from="1642405978800" duration="17821000" />
       <workItem from="1642506937562" duration="7704000" />
+      <workItem from="1642590398842" duration="1310000" />
+      <workItem from="1642602830087" duration="4116000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -143,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642522129621</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="pagination">
+      <created>1642589568943</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642589568943</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

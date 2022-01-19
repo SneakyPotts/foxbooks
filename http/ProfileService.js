@@ -2,12 +2,8 @@ import axios from "axios";
 import api, { API_URL } from ".";
 
 export default class ProfileService {
-	static async getProfile(token) {
-		return axios.get(
-			`${API_URL}/profile`, 
-			null,
-			{headers: {'Authorization': `Bearer ${token}`}}
-		)
+	static async getProfile() {
+		return api.get(`${API_URL}/users`)
 	}
 
 	static async resetPassword(data) {

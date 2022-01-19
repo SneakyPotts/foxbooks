@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './index.module.scss';
 import Image from 'next/image';
 import Pencil from '../../shared/icons/pencil';
@@ -7,7 +7,7 @@ import SocialNetwork from '../../shared/common/SocialNetwork/SocialNetwork';
 import { useForm } from 'react-hook-form';
 import ButtonGroup from '../buttonGroup';
 import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteUser} from "../../../store/profileSlice";
 
 const EditingProfile = () => {
@@ -16,10 +16,13 @@ const EditingProfile = () => {
 	const [file64, setFile64] = useState(null);
 	const [modal, setModal] = useState(false);
 
+	const { profile } = useSelector(state => state.profile)
+
 	const {
 		register,
 		handleSubmit,
 		unregister,
+		setValue,
 		formState: { errors },
 		reset,
 	} = useForm();
@@ -40,6 +43,11 @@ const EditingProfile = () => {
 	const onSubmit = data => {
 		console.log(data);
 	};
+
+	useEffect(() => {
+		setValue('name', profile?.name)
+		setValue('email', profile?.email)
+	}, [profile])
 
 	return (
 		<>
