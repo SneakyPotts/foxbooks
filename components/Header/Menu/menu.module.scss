@@ -71,52 +71,17 @@
   width: 20px;
   height: 20px;
   margin-right: 5px;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 }
 .dovnMenu {
-  display: none;
-  @media (max-width: 768px) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 69px;
-    padding: 10px 15px;
-
-    background-color: $color-main;
-  }
+  display: flex;
 
   &Logo {
-    font-size: 14px;
-    line-height: 1.43;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: $text-hover;
-  }
-
-  > .link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 30px;
-    stroke: $color-categories-btn;
-    color: $color-categories-btn;
-
-    > .icon {
-      display: flex;
-      // flex-direction: column;
-      align-items: center;
-      width: 24px;
-      height: 24px;
-      margin-bottom: 5px;
+    display: none;
+    &Text {
+      margin-top: 5px;
     }
   }
+
   > .activeStroke {
     position: relative;
     color: $text-hover;
@@ -124,5 +89,93 @@
   }
   > .activeStroke::after {
     display: none;
+  }
+  > .active::after {
+    display: none;
+  }
+}
+.noSpace {
+  margin-right: 0;
+}
+
+//@media (max-width: 1400px) {
+//
+//}
+//
+
+@media (min-width: 768px) {
+  .dovnMenu {
+    &Link {
+      display: none;
+    }
+  }
+  .noSpace {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .link {
+    padding-bottom: 0;
+  }
+  .active {
+    color: $text-hover !important;
+  }
+  .active::after {
+    bottom: -2px;
+  }
+  .icon {
+    display: none;
+  }
+  .dovnMenu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 69px;
+    padding: 10px 15px;
+    background-color: $color-main;
+
+    .link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      stroke: $color-categories-btn;
+      color: $color-categories-btn;
+
+      > .icon {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        stroke: $color-categories-btn;
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+    > .activeStroke {
+      position: relative;
+      color: $text-hover;
+
+      path {
+        stroke: $text-hover !important;
+      }
+    }
+    > .activeStroke::after {
+      display: none;
+    }
+    &Logo {
+      font-size: 14px;
+      line-height: 1.43;
+      display: flex;
+      flex-direction: column;
+      // margin-right: 30px;
+      align-items: center;
+      color: $color-categories-btn;
+    }
   }
 }
