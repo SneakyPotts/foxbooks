@@ -15,6 +15,14 @@ export const getProfile = createAsyncThunk(
 	}
 )
 
+export const updateProfile = createAsyncThunk(
+	'profile/updateProfile',
+	async data => {
+		const response = await ProfileService.updateProfile(data)
+		return response.data
+	}
+)
+
 export const resetPassword = createAsyncThunk(
 	'profile/resetPassword',
 	async data => {
@@ -52,11 +60,25 @@ export const profileSlice = createSlice({
 			state.isLoading = true
 		},
 		[getProfile.fulfilled]: (state, action) => {
-			state.profile = action.payload
+			state.profile = action.payload.data
 			state.isError = false
 			state.isLoading = false
 		},
 		[getProfile.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
+		[updateProfile.pending]: state => {
+			state.isLoading = true
+		},
+		[updateProfile.fulfilled]: (state, action) => {
+			state.profile = action.payload.data
+			state.isError = false
+			state.isLoading = false
+		},
+		[updateProfile.rejected]: state => {
 			state.isError = true
 			state.isLoading = false
 		},

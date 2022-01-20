@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="pagination">
+      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarWithWord/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarWithWord/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/ProfileService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ProfileService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/profileSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/profileSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +97,7 @@
       <workItem from="1642405978800" duration="17821000" />
       <workItem from="1642506937562" duration="7704000" />
       <workItem from="1642590398842" duration="1310000" />
-      <workItem from="1642602830087" duration="4116000" />
+      <workItem from="1642602830087" duration="18514000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -150,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642589568943</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="push">
+      <created>1642608753834</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642608753834</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,9 +220,9 @@
     <MESSAGE value="social auth" />
     <MESSAGE value="books" />
     <MESSAGE value="ygjhj" />
-    <MESSAGE value="push" />
     <MESSAGE value="pagination" />
-    <option name="LAST_COMMIT_MESSAGE" value="pagination" />
+    <MESSAGE value="push" />
+    <option name="LAST_COMMIT_MESSAGE" value="push" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

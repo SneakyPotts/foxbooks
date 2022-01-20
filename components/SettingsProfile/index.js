@@ -7,16 +7,14 @@ import EditingProfile from "./editingProfile";
 import SettingPassword from "./settingPassword";
 import SettingNotification from "./settingNotification";
 
+const settingMenu = [
+	{text: 'Редактировать профиль', icon: <Pencil/>},
+	{text: 'Настройки уведомлений', icon: <Bell/>},
+	{text: 'Настройки пароля', icon: <Lock/>}
+]
 
 const SettingsProfile = () => {
-	const settingMenu = [
-		{text: 'Редактировать профиль', icon: <Pencil/>},
-		{text: 'Настройки уведомлений', icon: <Bell/>},
-		{text: 'Настройки пароля', icon: <Lock/>}
-	]
-
 	const [currentIndexMenu, setCurrentIndexMenu] = useState(0)
-
 
 	return (
 		<div className={styles.container}>

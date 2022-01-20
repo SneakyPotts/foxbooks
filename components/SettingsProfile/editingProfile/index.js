@@ -1,7 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './index.module.scss';
-import Image from 'next/image';
-import Pencil from '../../shared/icons/pencil';
 import Input from '../../shared/common/Input/Input';
 import SocialNetwork from '../../shared/common/SocialNetwork/SocialNetwork';
 import { useForm } from 'react-hook-form';
@@ -9,11 +7,11 @@ import ButtonGroup from '../buttonGroup';
 import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteUser} from "../../../store/profileSlice";
+import AvatarUploader from "../../shared/common/AvatarUploader";
+import {generateFormData} from "../../../utils";
 
 const EditingProfile = () => {
 	const dispatch = useDispatch()
-	const inputFile = useRef();
-	const [file64, setFile64] = useState(null);
 	const [modal, setModal] = useState(false);
 
 	const { profile } = useSelector(state => state.profile)
@@ -27,21 +25,8 @@ const EditingProfile = () => {
 		reset,
 	} = useForm();
 
-	const HandleClick = () => {
-		inputFile.current.click();
-	};
-
-	const onChange = e => {
-		let reader = new FileReader();
-		const files = e.target.files;
-		reader.readAsDataURL(files[0]);
-		reader.onload = () => {
-			setFile64(reader.result);
-		};
-	};
-
 	const onSubmit = data => {
-		console.log(data);
+		console.log(generateFormData(data))
 	};
 
 	useEffect(() => {
@@ -55,23 +40,7 @@ const EditingProfile = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				className={styles.formProfile}
 			>
-				<div onClick={HandleClick} className={styles.formProfileWrap}>
-					<div className={styles.image}>
-						<Image
-							src={file64 === null ? '/horizontalBookCovers/book.png' : file64}
-							alt=""
-							width="102"
-							height="102"
-							placeholder="blur"
-							blurDataURL="/images/blur.jpg"
-							layout="responsive"
-						/>
-					</div>
-					<div className={styles.file}>
-						<Pencil w="20" h="20" c="#FFFFFF" />
-						<input onChange={onChange} ref={inputFile} type="file" hidden />
-					</div>
-				</div>
+				<AvatarUploader name='avatar' setValue={setValue} />
 				<Input
 					classNames={styles.inputNik}
 					err={errors.name?.message}
@@ -79,7 +48,6 @@ const EditingProfile = () => {
 					name="name"
 					register={register}
 				/>
-
 				<Input
 					err={errors.email?.message}
 					textLabel="Электронная почта"
