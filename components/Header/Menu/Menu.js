@@ -9,6 +9,7 @@ import Headphones from '../../shared/icons/headphones';
 import Grid from '../../../public/grid.svg';
 import LogoMobileWhite from '../../shared/icons/logoMobileWhite';
 import LogoMobileActive from '../../shared/icons/logoMobileActive';
+import User from '../../shared/icons/user';
 import css from './menu.module.scss';
 
 const Navigation = ({ setModal }) => {
@@ -84,13 +85,12 @@ const Navigation = ({ setModal }) => {
               ) : (
                 <LogoMobileWhite />
               )}
-              <div onClick={() => setModal()}>profilb</div>
-              Главная
+              <span className={css.dovnMenuLogoText}>Главная</span>
             </a>
           </Link>
           <Link href="/categories">
             <a
-              className={`${css.link} ${css.linkStroke} ${
+              className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
                 router.pathname == '/categories' ? css.activeStroke : css.link
               }`}
             >
@@ -100,20 +100,35 @@ const Navigation = ({ setModal }) => {
               Категории
             </a>
           </Link>
-          {isAuth && (
-            <Link href="/mybooks">
-              <a
-                className={`${css.link} ${css.linkStroke} ${
-                  router.pathname == '/mybooks' ? css.activeStroke : css.link
-                }`}
-              >
-                <div className={css.icon}>
-                  <MyBooks />
-                </div>
-                Мои книги
-              </a>
-            </Link>
-          )}
+
+          <Link href="/mybooks">
+            <a
+              onClick={e => {
+                if (!isAuth) {
+                  e.preventDefault();
+                  setModal();
+                }
+              }}
+              className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
+                router.pathname == '/mybooks' ? css.activeStroke : css.link
+              }`}
+            >
+              <div className={css.icon}>
+                <MyBooks />
+              </div>
+              Мои книги
+            </a>
+          </Link>
+
+          <div
+            onClick={() => setModal()}
+            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.dovnMenuLink}`}
+          >
+            <div className={css.icon}>
+              <User />
+            </div>
+            Профиль
+          </div>
         </div>
       </nav>
     </>

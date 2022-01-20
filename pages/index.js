@@ -27,35 +27,33 @@ export default function App(props) {
         {/* beforeInteractive */}
         {/* <Script src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" /> */}
       </Head>
-      <Home />
+      {/* <Home /> */}
     </>
   );
 }
 
-export async function getServerSideProps ({ req, query }) {
-	const { cookies } = req
-	const token = cookies.token
+export async function getServerSideProps({ req, query }) {
+  const { cookies } = req;
+  const token = cookies.token;
 
-	const categories = await HomeService.getHomeCategories()
-	const books = await BookService.getBooks(query)
+  const categories = await HomeService.getHomeCategories();
+  const books = await BookService.getBooks(query);
 
-	let profile = {}
+  let profile = {};
 
-	if (token) {
-		// profile = await ProfileService.getProfile(token)
+  if (token) {
+    // profile = await ProfileService.getProfile(token)
+    // console.log(profile)
+  }
 
-		// console.log(profile)
-	}
+  // 		res.writeHead(302, { Location: '/' });
+  // 		res.end();
 
-	// 		res.writeHead(302, { Location: '/' });
-	// 		res.end();
-
-	return {
-		props: {
-			categories: categories?.data?.data,
-			books: books?.data?.data,
-			profile: profile?.data || {},
-		}
-	}
+  return {
+    props: {
+      categories: categories?.data?.data,
+      books: books?.data?.data,
+      profile: profile?.data || {},
+    },
+  };
 }
-

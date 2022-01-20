@@ -6,16 +6,16 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Menu from './Menu/Menu';
-import User from '../../public/user.svg';
+import User from '../shared/icons/user';
 import Logo from '../Logo';
 import GroupForms from './groupForms/GroupForms';
 import Setting from '../shared/icons/setting';
 import Exit from '../shared/icons/exit';
 import Close from '../../public/close.svg';
 import { ShowMenu, setBreakPoint } from './headerSlice';
-import st from './header.module.scss';
 import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
+import st from './header.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -93,11 +93,13 @@ const Header = () => {
   ];
 
   useEffect(() => {
+    dispatch(setBreakPoint(window.innerWidth));
     window.addEventListener('resize', function () {
       dispatch(setBreakPoint(this.innerWidth));
     });
   }, []);
 
+  console.log(innerWidthWindow);
   return (
     <>
       {!router.pathname.includes('reader') &&
@@ -172,12 +174,15 @@ const Header = () => {
                       onClick={() => setModal(!modal)}
                       className={st.userMenu}
                     >
-                      <User className={st.iconUser} />
+                      <div className={st.iconUser}>
+                        <User style={{ minWidth: '24px', minHeight: '24px' }} />
+                      </div>
                       Войти
                     </div>
                   )}
                 </div>
               </header>
+              <Menu setModal={() => setModal(!modal)} />
             </div>
             {showMenu && (
               <div className={st.overlay} onClick={closeModal}>
@@ -223,9 +228,9 @@ const Header = () => {
                 </div>
               </div>
             )}
-            <div className="container">
-              <Menu setModal={() => setModal(!modal)} />
-            </div>
+            {/* <div className="container">
+              
+            </div> */}
 
             <GroupForms setModal={setModal} modal={modal} />
           </div>
