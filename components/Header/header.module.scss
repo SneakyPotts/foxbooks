@@ -300,6 +300,10 @@
     .inputCastom {
       width: 345px;
     }
+    .inputCastom::placeholder {
+      font-size: 16px;
+      line-height: 18px;
+    }
   }
 }
 

@@ -1,5 +1,8 @@
 @import 'styles/variables';
 
+.topMenu {
+  display: flex;
+}
 .navigation {
   display: flex;
   font-size: 14px;
@@ -115,8 +118,22 @@
 }
 
 @media (max-width: 768px) {
+  .topMenu {
+    font-size: 16px;
+    line-height: 18px;
+    flex: 1;
+    justify-content: space-between;
+    margin: auto;
+
+    .link {
+      margin-right: 0;
+    }
+  }
   .link {
     padding-bottom: 0;
+  }
+  .link:hover::after {
+    display: none;
   }
   .active {
     color: $text-hover !important;
@@ -152,8 +169,8 @@
         margin-bottom: 5px;
         stroke: $color-categories-btn;
         svg {
-          width: 24px;
-          height: 24px;
+          min-width: 24px;
+          min-height: 24px;
         }
       }
     }
