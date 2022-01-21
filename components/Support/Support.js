@@ -103,7 +103,7 @@ const SupportCom = () => {
 						<div className={styles.dropImgs}>
 							{file64?.map(r => {
 								return (
-									<div className={styles.dropBlock}>
+									<div key={r.image} className={styles.dropBlock}>
 										<img
 											height="86px"
 											width="86px"

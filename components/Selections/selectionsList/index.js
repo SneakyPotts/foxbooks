@@ -46,7 +46,7 @@ const SelectionsList = ({ audio, flagSwitcher }) => {
 			})}
 		>
 			{selections.map((sel, index) => (
-				<div className={st.selSlider}>
+				<div key={sel.name + 1} className={st.selSlider}>
 					<div className={st.selSliderHead}>
 						<Link href={`/selections/${sel.id}`}>
 							<a>

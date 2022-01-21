@@ -153,7 +153,7 @@ const SelectionGrid = () => {
 	return (
 		<div className={st.selGrid}>
 			{selectionsData.map(sel => (
-				<div className={st.selGridBlock}>
+				<div key={sel.name} className={st.selGridBlock}>
 					<div className={st.selGridCover}>
 						<Image src={sel.img} width={231} height={166} alt="" />
 						<div className={st.selGridCoverAmount}>

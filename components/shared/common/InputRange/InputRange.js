@@ -34,6 +34,7 @@ const InputRange = ({value, setValue, max = '100', min = '0', textLabel, step = 
 				</span>
 				{dot && dataDot.map(({x, y}, i) => (
 					<span
+						key={x}
 						style={{transform: `translate(${x}px, ${y}px)`}}
 						className={classNames(styles.dot, {[styles.dotActive]: value >= i})}/>))}
 				<input

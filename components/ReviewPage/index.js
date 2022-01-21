@@ -49,7 +49,7 @@ const ReviewPage = () => {
 			<div className={st.wrapper}>
 				<ul className={st.reviewsList}>
 					{reviews.map((it, idx) => (
-						<ReviewComponent it={it} idx={idx} />
+						<ReviewComponent key={idx} it={it} idx={idx} />
 					))}
 				</ul>
 				<div className={st.advertisingBlok}>

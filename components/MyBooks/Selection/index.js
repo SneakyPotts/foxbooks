@@ -149,6 +149,7 @@ const Selection = () => {
                 <ul className={st.dropdownList}>
                   {options.map((opt, idx) => (
                     <li
+                        key={opt.option}
                       className={st.dropdownListItem}
                       onClick={e => handleOptions(idx, e)}
                     >
@@ -192,6 +193,7 @@ const Selection = () => {
                 >
                   {popular.map((opt, idx) => (
                     <li
+                        key={opt.option + 1}
                       className={st.dropdownPopularListItem}
                       onClick={() => filterClick(idx)}
                     >
