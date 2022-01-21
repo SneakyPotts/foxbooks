@@ -84,7 +84,7 @@ const Review = () => {
     <div>
       <ul className={st.reviews}>
         {reviews.map((review, idx) => (
-          <li key={review.book_title}>
+          <li key={idx * 0.5}>
             <div className={st.reviewsCover}>
               <Image src={review.img} alt="" width="86" height="143" />
               <div className={st.bookMainInfo}>
@@ -171,7 +171,7 @@ const Review = () => {
                 >
                   {options.map((it, index) => (
                     <li
-                      key={it}
+                      key={index + 1}
                       onClick={() => handleOnClick(index)}
                       className={st.dropLink}
                     >

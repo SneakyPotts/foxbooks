@@ -228,7 +228,7 @@ const MyBooks = () => {
                       [st.slider]: !book.audio,
                       [st.sliderAudio]: book.audio,
                     })}
-                    key={book.id}
+                    key={book.id + 5}
                   >
                     <Link href="/reader">
                       <a>
@@ -268,7 +268,7 @@ const MyBooks = () => {
             <ul className={st.tabList}>
               {tab.map(({ text, count }, idx) => (
                 <li
-                  key={text}
+                  key={idx + 3}
                   className={classnames(st.tab, {
                     [st.activeTab]: activeTab === idx,
                   })}
@@ -304,7 +304,7 @@ const MyBooks = () => {
                         <ul className={st.dropdownList}>
                           {options.map((opt, idx) => (
                             <li
-                              key={opt.option}
+                              key={opt.option + 4}
                               className={st.dropdownListItem}
                               onClick={e => handleOptions(idx, e)}
                             >
@@ -347,7 +347,7 @@ const MyBooks = () => {
                       >
                         {selections.map((opt, idx) => (
                           <li
-                              key={opt}
+                              key={idx * 7}
                             className={st.dropdownPopularListItem}
                             onClick={() => handleSelectionClick(idx)}
                           >
