@@ -12,12 +12,6 @@ export const isFileImage = fileName => {
 	);
 }
 
-export const fileSizeIsValid = (fileSize, maxSize) => {
-	const currentSize = fileSize / 1024 / 1024;
-
-	return currentSize <= maxSize;
-}
-
 export const generateFormData = data => {
 	const formData = new FormData()
 

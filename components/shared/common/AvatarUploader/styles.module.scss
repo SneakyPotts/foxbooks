@@ -1,6 +1,10 @@
 @import "./../../../../styles/variables";
 
 .wrapper {
+  position: relative;
+}
+
+.label {
   display: block;
   width: 102px;
   height: 102px;
@@ -27,5 +31,10 @@
 }
 
 .error {
-
+  text-align: center;
+  font-size: 14px;
+  color: #e92a20;
+  position: absolute;
+  width: 100%;
+  bottom: -30px;
 }

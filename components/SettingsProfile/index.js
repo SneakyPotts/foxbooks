@@ -6,6 +6,7 @@ import Lock from "../shared/icons/Lock";
 import EditingProfile from "./editingProfile";
 import SettingPassword from "./settingPassword";
 import SettingNotification from "./settingNotification";
+import classNames from "classnames";
 
 const settingMenu = [
 	{text: 'Редактировать профиль', icon: <Pencil/>},
@@ -24,7 +25,11 @@ const SettingsProfile = () => {
 					<ul>
 						{settingMenu.map((r, index) => {
 							return (
-								<li onClick={() => setCurrentIndexMenu(index)} key={r.text}>
+								<li
+									key={r.text}
+									className={classNames({[styles.active]: currentIndexMenu === index})}
+									onClick={() => setCurrentIndexMenu(index)}
+								>
 									{r.icon}
 									<span>{r.text}</span>
 								</li>
@@ -35,17 +40,17 @@ const SettingsProfile = () => {
 				<div className={styles.settingContent}>
 					{currentIndexMenu === 0 ?
 						<>
-							<h1>Редактировать профиль</h1>
+							<h2>Редактировать профиль</h2>
 							<EditingProfile/>
 						</>
 						: currentIndexMenu === 1 ?
 							<>
-								<h1>Настройки уведомлений</h1>
+								<h2>Настройки уведомлений</h2>
 								<SettingNotification/>
 							</>
 							:
 							<>
-								<h1>Настройки пароля</h1>
+								<h2>Настройки пароля</h2>
 								<SettingPassword/>
 							</>}
 				</div>

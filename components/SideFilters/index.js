@@ -8,6 +8,7 @@ import st from './sideFilters.module.scss';
 
 import {useRouter} from "next/router";
 import debounce from "lodash.debounce";
+import classNames from "classnames";
 
 const SideFilters = () => {
 	const router = useRouter()
@@ -15,44 +16,67 @@ const SideFilters = () => {
 	const [optionIndex, setOptionIndex] = useState([]);
 
 	const [filters, setFilters] = useState([
-		{ id: '0', flag: false, option: 'Автор', placeholder: 'Найти автора', queryName: 'findByAuthor' },
-		{ id: '1', flag: false, option: 'Книга', placeholder: 'Найти книгу', queryName: 'findByTitle' },
-		{ id: '2', flag: false, option: 'Издательство', placeholder: 'Найти издательство', queryName: 'findByPublisher'	},
+		{
+			id: '0',
+			flag: false,
+			option: 'Автор',
+			placeholder: 'Найти автора',
+			queryName: 'findByAuthor',
+			alphabetQuery: 'alphabetAuthorIndex'
+		},
+		{
+			id: '1',
+			flag: false,
+			option: 'Книга',
+			placeholder: 'Найти книгу',
+			queryName: 'findByTitle',
+			alphabetQuery: 'alphabetPublisherIndex'
+		},
+		{
+			id: '2',
+			flag: false,
+			option: 'Издательство',
+			placeholder: 'Найти издательство',
+			queryName: 'findByPublisher',
+			alphabetQuery: 'alphabetTitleIndex'
+		},
 	]);
 
-  const options = [
-    { id: '0', option: 'Бестселлеры' },
-    { id: '1', option: 'Новинки' },
-  ];
+	const options = [
+		{ id: '0', option: 'Бестселлеры' },
+		{ id: '1', option: 'Новинки' },
+	];
 
-  const toggle = e => {
-    e.stopPropagation();
-    setMenu(!menu);
-  };
+	const toggle = e => {
+		e.stopPropagation();
+		setMenu(!menu);
+	};
 
-  const filterShow = index => {
-    setFilters(prev => {
-      const filterMap = prev.map(({ flag, ...rest }, i) => {
-        return {
-          flag: index === i ? !flag : flag,
-          ...rest,
-        };
-      });
-      return filterMap;
-    });
-  };
+	const filterShow = index => {
+		setFilters(prev => {
+			const filterMap = prev.map(({ flag, ...rest }, i) => {
+				return {
+					flag: index === i ? !flag : flag,
+					...rest,
+				};
+			});
+			return filterMap;
+		});
+	};
 
-  const handleOnClick = index => {
-    if (optionIndex.includes(index)) {
-      setOptionIndex(optionIndex.filter(it => it !== index));
-    } else {
-      setOptionIndex([...optionIndex, index]);
-    }
-  };
+	const handleOnClick = index => {
+		if (optionIndex.includes(index)) {
+			setOptionIndex(optionIndex.filter(it => it !== index));
+		} else {
+			setOptionIndex([...optionIndex, index]);
+		}
+	};
 
-	const handleChange = debounce((value, queryName) => {
+	const setQuery = (value, queryName) => {
 		router.push({query: {...router.query, [queryName]: value}}, null, {scroll: false})
-	}, 300)
+	}
+
+	const handleChange = debounce(setQuery, 300)
 
 	return (
 		<div className={st.container}>
@@ -91,38 +115,40 @@ const SideFilters = () => {
 			</div>
 			<div className={st.inputFilters}>
 				<ul className={st.filters}>
-					{filters.map((it, index) => (
-						<li key={it.id} className={st.filterStatus}>
+					{filters?.map((it, index) => (
+						<li key={it?.id} className={st.filterStatus}>
 							<button className={st.btn} onClick={() => filterShow(index)}>
-								{it.option}
+								{it?.option}
 								<span
-									className={classnames(st.dropDownIcon, { [st.up]: it.flag })}
+									className={classnames(st.dropDownIcon, { [st.up]: it?.flag })}
 								>
 									<DropDownArrow />
 								</span>
 							</button>
 							<div
 								className={classnames(st.dates, {
-									[st.showMenu]: it.flag,
+									[st.showMenu]: it?.flag,
 								})}
 								onClick={e => e.stopPropagation()}
 							>
 								<input
-									placeholder={it.placeholder}
+									placeholder={it?.placeholder}
 									className={st.input}
 									onChange={ev => handleChange(ev.target.value, it?.queryName)}
 								/>
-								<p>Алфавитный указатель</p>
+								<p className={st.alphabetTitle}>Алфавитный указатель</p>
 								<div className={st.dropContentAuthor}>
-									{alphabet.map((it, index) => (
-										<Link
-											key={it.id}
-											href="#"
-											value={index}
-											//   onClick={handleOnClick}
+									{alphabet?.map(i => (
+										<span
+											key={i?.id}
+											className={classNames(
+												st.dropLinkAuthor, 
+												{[st.active]: router.query[it?.alphabetQuery] === it?.alphabetQuery}
+											)}
+											onClick={() => setQuery(i?.name, it.alphabetQuery)}
 										>
-											<a className={st.dropLinkAuthor}>{it.name}</a>
-										</Link>
+											{i?.name}
+										</span>
 									))}
 								</div>
 							</div>

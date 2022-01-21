@@ -5,10 +5,14 @@ import {useForm} from "react-hook-form";
 import ButtonGroup from "../buttonGroup";
 import {useDispatch} from "react-redux";
 import {resetPassword} from "../../../store/profileSlice";
+import {yupResolver} from "@hookform/resolvers/yup";
+import schema from "./schema";
 
 const SettingPassword = () => {
 	const dispatch = useDispatch()
-	const {register, handleSubmit, unregister,  formState: {errors}, reset} = useForm();
+	const {register, handleSubmit,  formState: {errors}, reset} = useForm({
+		resolver: yupResolver(schema)
+	});
 
 	const onSubmit = data => {
 		dispatch(resetPassword(data))
@@ -22,7 +26,7 @@ const SettingPassword = () => {
 		>
 			<Input
 				classNames={styles.inputCurrent}
-				err={errors.current?.message}
+				err={errors.old_password?.message}
 				textLabel='Текущий пароль'
 				name='old_password'
 				typeInput="password"
@@ -30,7 +34,7 @@ const SettingPassword = () => {
 			/>
 			<Input
 				classNames={styles.inputNew}
-				err={errors.new?.message}
+				err={errors.password?.message}
 				textLabel='Новый пароль'
 				name='password'
 				typeInput="password"
@@ -38,7 +42,7 @@ const SettingPassword = () => {
 			/>
 			<Input
 				classNames={styles.inputLast}
-				err={errors.repeat?.message}
+				err={errors.password_confirmation?.message}
 				textLabel='Повторите новый пароль'
 				name='password_confirmation'
 				typeInput="password"

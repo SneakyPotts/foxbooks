@@ -4,6 +4,7 @@ import {isFileImage} from "../../../../utils";
 import Image from "next/image";
 import Pencil from "../../icons/pencil";
 import AvatarWithWord from "../AvatarWithWord";
+import Compressor from 'compressorjs';
 import styles from './styles.module.scss'
 
 const AvatarUploader = ({ name, setValue }) => {
@@ -14,22 +15,31 @@ const AvatarUploader = ({ name, setValue }) => {
 	const handleChange = ev => {
 		const file = ev.target.files[0];
 
-		let reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onloadend = function () {
-			if (isFileImage(file.name)) {
-				setError('')
-				setImgSrc(reader.result)
-				setValue(name, file)
-			} else {
-				setError('Неверный формат файла')
-			}
-		};
+		if (isFileImage(file.name)) {
+			setError('')
+			new Compressor(file, {
+				quality: 1,
+				resize: 'cover',
+				width: 102,
+				height: 102,
+				convertSize: 1,
+				success(result) {
+					let reader = new FileReader()
+					reader.readAsDataURL(result)
+					reader.onloadend = function () {
+						setImgSrc(reader.result)
+						setValue(name, result)
+					}
+				}
+			})
+		} else {
+			setError('Неверный формат файла')
+		}
 	};
 
 	return (
-		<>
-			<label className={styles.wrapper}>
+		<div className={styles.wrapper}>
+			<label className={styles.label}>
 				<input type="file" className="visually-hidden" onChange={handleChange} />
 				{imgSrc || profile?.avatar ?
 					<Image
@@ -51,7 +61,7 @@ const AvatarUploader = ({ name, setValue }) => {
 				</span>
 			</label>
 			<span className={styles.error}>{error}</span>
-		</>
+		</div>
 	);
 };
 

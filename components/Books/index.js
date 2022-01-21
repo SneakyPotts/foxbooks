@@ -7,13 +7,14 @@ import BooksMainBlock from '../shared/common/booksMainBlock/BooksMainBlock';
 
 import st from './books.module.scss';
 import {useSelector} from "react-redux";
+import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 
 const Books = () => {
 	const { categories } = useSelector(state => state.home)
 
 	return (
 		<div className={classnames('container', st.abContainer)}>
-			 {/*<Breadcrumbs data={breadcrumbsData} />*/}
+			<Breadcrumbs data={[{path: '/books?sortBy=1', title: 'Книги'}]} />
 
 			<h2 className={st.abTitle}>Книги</h2>
 			{categories?.map(i => (

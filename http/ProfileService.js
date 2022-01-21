@@ -7,7 +7,7 @@ export default class ProfileService {
 	}
 
 	static async updateProfile(data) {
-		return api.get(`${API_URL}/profile`, data)
+		return api.post(`${API_URL}/profile`, data)
 	}
 
 	static async resetPassword(data) {

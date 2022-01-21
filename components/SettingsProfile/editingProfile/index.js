@@ -6,9 +6,11 @@ import { useForm } from 'react-hook-form';
 import ButtonGroup from '../buttonGroup';
 import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
 import {useDispatch, useSelector} from "react-redux";
-import {deleteUser} from "../../../store/profileSlice";
+import {deleteUser, updateProfile} from "../../../store/profileSlice";
 import AvatarUploader from "../../shared/common/AvatarUploader";
 import {generateFormData} from "../../../utils";
+import {yupResolver} from "@hookform/resolvers/yup";
+import schema from "./schema";
 
 const EditingProfile = () => {
 	const dispatch = useDispatch()
@@ -19,14 +21,17 @@ const EditingProfile = () => {
 	const {
 		register,
 		handleSubmit,
-		unregister,
 		setValue,
 		formState: { errors },
-		reset,
-	} = useForm();
+	} = useForm({
+		resolver: yupResolver(schema)
+	});
 
 	const onSubmit = data => {
-		console.log(generateFormData(data))
+		let {email, ...rest} = data
+		const newDate = email !== profile?.email ? data : rest
+
+		dispatch(updateProfile(generateFormData(newDate)))
 	};
 
 	useEffect(() => {

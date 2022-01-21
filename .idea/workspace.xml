@@ -2,18 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="pagination">
-      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarWithWord/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/common/AvatarWithWord/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/schema.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BreadCrumps/BreadCrumps.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BreadCrumps/BreadCrumps.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BreadCrumps/breadCrumps.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BreadCrumps/breadCrumps.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/sideFilters.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/sideFilters.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/AvatarUploader/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/Button/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Button/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/checkbox/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/checkbox/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/ProfileService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ProfileService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/profileSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/profileSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +108,7 @@
       <workItem from="1642405978800" duration="17821000" />
       <workItem from="1642506937562" duration="7704000" />
       <workItem from="1642590398842" duration="1310000" />
-      <workItem from="1642602830087" duration="18514000" />
+      <workItem from="1642602830087" duration="33045000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -162,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642608753834</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="push">
+      <created>1642694714731</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1642694714731</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
