@@ -73,7 +73,7 @@ const SideFilters = () => {
 	};
 
 	const setQuery = (value, queryName) => {
-		router.push({query: {...router.query, [queryName]: value}}, null, {scroll: false})
+		router.push({query: {...router.query, [queryName]: encodeURI(value)}}, null, {scroll: false})
 	}
 
 	const handleChange = debounce(setQuery, 300)

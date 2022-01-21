@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/AvatarWithWord/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/AvatarWithLetter/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/AvatarWithWord/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/AvatarWithLetter/styles.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +91,7 @@
       <workItem from="1642506937562" duration="7704000" />
       <workItem from="1642590398842" duration="1310000" />
       <workItem from="1642602830087" duration="33045000" />
+      <workItem from="1642781235686" duration="870000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

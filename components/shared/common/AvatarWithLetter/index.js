@@ -10,14 +10,20 @@ const colors = [
 	'#945D47'
 ]
 
-const randomColor = colors[Math.floor(Math.random()*colors.length)]
+const AvatarWithLetter = ({letter, width, id = 0}) => {
+	const count = (() => {
+		let num = id
+		while (num > +colors?.length) {
+			num -= +colors?.length
+		}
+		return num
+	})()
 
-const AvatarWithWord = ({word, width}) => {
 	return (
-		<span className={styles.wrapper} style={{background: randomColor, width, height: width}}>
-			{word}
+		<span className={styles.wrapper} style={{background: colors[count], width, height: width}}>
+			{letter}
 		</span>
 	);
 };
 
-export default AvatarWithWord;
+export default AvatarWithLetter;
