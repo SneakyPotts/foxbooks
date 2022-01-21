@@ -19,6 +19,10 @@
     &:hover {
       stroke: $accent-hover;
     }
+
+    &:global(.rc-pagination-disabled) {
+      stroke: $color-third;
+    }
   }
 
   :global(.rc-pagination-prev) {

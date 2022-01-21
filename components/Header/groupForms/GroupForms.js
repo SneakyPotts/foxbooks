@@ -44,7 +44,7 @@ const GroupForms = ({modal,setModal}) => {
 				setModal(!modal)
 			}
 		})
-		console.log(data, 'Форма входа');
+		// console.log(data, 'Форма входа');
 	}
 
 	const onSubmitRegistration = data => {
@@ -54,13 +54,13 @@ const GroupForms = ({modal,setModal}) => {
 				setFlagSendEmail(true)
 			}
 		})
-		console.log(data, 'Форма регистрации');
+		// console.log(data, 'Форма регистрации');
 	}
 
 	const onSubmitForgetPassword = data => {
 		setFlagForgetPassword(false)
 		setFlagResetPassMessage(true)
-		console.log(data, 'Форма забыл пороль');
+		// console.log(data, 'Форма забыл пороль');
 	}
 
 	useEffect(()=>{

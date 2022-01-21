@@ -4,24 +4,27 @@ import classnames from 'classnames';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import BookFilters from '../shared/common/booksFilters/BookFilters';
 import BooksMainBlock from '../shared/common/booksMainBlock/BooksMainBlock';
-import categories from '../data/categories.json';
 
 import st from './books.module.scss';
+import {useSelector} from "react-redux";
+import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 
 const Books = () => {
+	const { categories } = useSelector(state => state.home)
+
 	return (
 		<div className={classnames('container', st.abContainer)}>
-			{/* <Breadcrumbs data={breadcrumbsData} /> */}
+			<Breadcrumbs data={[{path: '/books?sortBy=1', title: 'Книги'}]} />
 
 			<h2 className={st.abTitle}>Книги</h2>
-			{categories.map(({ id, category }) => (
-				<button key={id} className={st.abCateg}>
-					<Link href={`/books/${id}?showType=block&sortBy=3`}>
-						<a className={st.abCategLink}>{category}</a>
+			{categories?.map(i => (
+				<button key={i?.id} className={st.abCateg}>
+					<Link href={`/books/${i?.id}?showType=block&sortBy=3`}>
+						<a className={st.abCategLink}>{i?.name}</a>
 					</Link>
 				</button>
 			))}
-			<ShowAll url="#" text="Показать все" />
+			<ShowAll url="/categories" text="Показать все" />
 			<BookFilters />
 			<BooksMainBlock />
 		</div>

@@ -9,6 +9,9 @@ export default class BookService {
 		findByAuthor = '',
 		findByPublisher = '',
 		findByTitle = '',
+		alphabetAuthorIndex = '',
+		alphabetPublisherIndex = '',
+		alphabetTitleIndex = ''
 	}) {
 		return axios.get(`${API_URL}/books?
 			${page && `&page=${page}`}
@@ -17,6 +20,9 @@ export default class BookService {
 			${findByAuthor && `&findByAuthor=${findByAuthor}`}
 			${findByPublisher && `&findByPublisher=${findByPublisher}`}
 			${findByTitle && `&findByTitle=${findByTitle}`}
+			${alphabetAuthorIndex && `&alphabetAuthorIndex=${alphabetAuthorIndex}`}
+			${alphabetPublisherIndex && `&alphabetPublisherIndex=${alphabetPublisherIndex}`}
+			${alphabetTitleIndex && `&alphabetTitleIndex=${alphabetTitleIndex}`}
 		`)
 	}
 

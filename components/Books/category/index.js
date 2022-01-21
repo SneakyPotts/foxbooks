@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import Switcher from '../../switcher/Switcher';
 import Book from '../../shared/common/book';
@@ -8,6 +8,8 @@ import Popular from '../../Filter/Popular/Popular';
 import st from './category.module.scss';
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import MyPagination from "../../shared/common/MyPagination";
+import Breadcrumbs from "../../BreadCrumps/BreadCrumps";
 
 const data = [
 	{
@@ -30,6 +32,7 @@ const Category = () => {
 
 	return (
 		<div className="container">
+			<Breadcrumbs data={[{path: '/books?sortBy=1', title: 'Книги'}]} />
 			<div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
 				<h2 className={st.title}>Category</h2>
 				{data.map((it, index) => (
@@ -52,15 +55,23 @@ const Category = () => {
 				<div>
 					<SideFilters />
 				</div>
-				<div
-					className={classnames({
-						[st.booksGrid]: !flagSwitcher,
-						[st.booksColumn]: flagSwitcher,
-					})}
-				>
-					{books?.data?.map(book => (
-						<Book key={book.id} flagSwitcher={flagSwitcher} book={book} />
-					))}
+				<div className="booksWrapper">
+					{books?.data?.length ?
+						<>
+							<div
+								className={classnames({
+									[st.booksGrid]: !flagSwitcher,
+									[st.booksColumn]: flagSwitcher,
+								})}
+							>
+								{books?.data?.map(book => (
+									<Book key={book.id} flagSwitcher={flagSwitcher} book={book} />
+								))}
+							</div>
+							<MyPagination lastPage={books?.last_page} />
+						</> :
+						<p className="empty">Книги не найдены</p>
+					}					
 				</div>
 				<div className={st.advertisingBlok}>
 					<div className={st.bannerBlock}>

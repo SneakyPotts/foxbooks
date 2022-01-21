@@ -7,6 +7,22 @@ const initialState = {
 	isError: false
 };
 
+export const getProfile = createAsyncThunk(
+	'profile/getProfile',
+	async () => {
+		const response = await ProfileService.getProfile()
+		return response.data
+	}
+)
+
+export const updateProfile = createAsyncThunk(
+	'profile/updateProfile',
+	async data => {
+		const response = await ProfileService.updateProfile(data)
+		return response.data
+	}
+)
+
 export const resetPassword = createAsyncThunk(
 	'profile/resetPassword',
 	async data => {
@@ -40,6 +56,34 @@ export const profileSlice = createSlice({
 		}
 	},
 	extraReducers: {
+		[getProfile.pending]: state => {
+			state.isLoading = true
+		},
+		[getProfile.fulfilled]: (state, action) => {
+			state.profile = action.payload.data
+			state.isError = false
+			state.isLoading = false
+		},
+		[getProfile.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
+		[updateProfile.pending]: state => {
+			state.isLoading = true
+		},
+		[updateProfile.fulfilled]: (state, action) => {
+			state.profile = action.payload.data
+			state.isError = false
+			state.isLoading = false
+		},
+		[updateProfile.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
 		[resetPassword.pending]: state => {
 			state.isLoading = true
 		},

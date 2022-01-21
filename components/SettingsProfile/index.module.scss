@@ -7,7 +7,7 @@
   padding-bottom: 60px;
   min-height: calc(100vh - 272px);
 
-  h1 {
+  h1, h2 {
     color: $color-main;
     font-family: Merriweather, sans-serif;
     font-size: 24px;
@@ -17,7 +17,6 @@
   ul > li {
     list-style: none;
   }
-
 
   .setting {
     display: flex;
@@ -39,14 +38,35 @@
           margin-bottom: 15px;
           cursor: pointer;
 
+          &.active {
+            svg path {
+              stroke: $text-hover;
+            }
+          }
+
+          &:hover {
+            svg path {
+              stroke: $text-hover;
+            }
+            span {
+              color: $text-hover;
+            }
+          }
+
           > svg {
             margin-right: 13px;
+
+            path {
+              transition: .15s;
+            }
           }
 
           > span {
             padding-bottom: 16px;
             border-bottom: 1px solid $color-star-border;
             flex: 1;
+
+            transition: .15s;
           }
         }
 

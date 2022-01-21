@@ -1,0 +1,40 @@
+@import "./../../../../styles/variables";
+
+.wrapper {
+  position: relative;
+}
+
+.label {
+  display: block;
+  width: 102px;
+  height: 102px;
+  margin: 40px auto;
+  cursor: pointer;
+  position: relative;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: $text-hover;
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+}
+
+.error {
+  text-align: center;
+  font-size: 14px;
+  color: #e92a20;
+  position: absolute;
+  width: 100%;
+  bottom: -30px;
+}

@@ -126,13 +126,25 @@
   flex-wrap: wrap;
   box-sizing: border-box;
 }
+.alphabetTitle {
+  font-size: 14px;
+}
 .dropLinkAuthor {
   list-style: none;
-  margin-right: 3px;
+  margin-right: 1px;
   margin-top: 10px;
-}
-.dropLinkAuthor:hover {
-  color: $text-hover;
+  cursor: pointer;
+  transition: .15s;
+  width: 11px;
+  text-align: center;
+
+  &:hover {
+    color: $text-hover;
+  }
+
+  &.active {
+    color: $text-hover;
+  }
 }
 .inputFilters {
   margin-bottom: 60px;

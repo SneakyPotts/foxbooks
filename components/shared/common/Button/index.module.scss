@@ -13,4 +13,9 @@
   color: $color-categories-btn;
   border-radius: 5px;
   cursor: pointer;
+  transition: .15s;
+
+  &:hover {
+    background-color: $accent-hover;
+  }
 }
