@@ -12,7 +12,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="louie2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,6 +34,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -84,6 +85,8 @@
       <workItem from="1642151891944" duration="13122000" />
       <workItem from="1642405978800" duration="17821000" />
       <workItem from="1642506937562" duration="7704000" />
+      <workItem from="1642590398842" duration="1310000" />
+      <workItem from="1642602830087" duration="33045000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -127,7 +130,35 @@
       <option name="project" value="LOCAL" />
       <updated>1642519651042</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="pagination">
+      <created>1642522129621</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1642522129621</updated>
+    </task>
+    <task id="LOCAL-00008" summary="pagination">
+      <created>1642589568943</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642589568943</updated>
+    </task>
+    <task id="LOCAL-00009" summary="push">
+      <created>1642608753834</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642608753834</updated>
+    </task>
+    <task id="LOCAL-00010" summary="push">
+      <created>1642694714731</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1642694714731</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,6 +216,7 @@
     <MESSAGE value="social auth" />
     <MESSAGE value="books" />
     <MESSAGE value="ygjhj" />
+    <MESSAGE value="pagination" />
     <MESSAGE value="push" />
     <option name="LAST_COMMIT_MESSAGE" value="push" />
   </component>
