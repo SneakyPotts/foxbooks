@@ -36,16 +36,17 @@ export async function getServerSideProps ({ req, query }) {
 	const categories = await HomeService.getHomeCategories()
 	const books = await BookService.getBooks(query)
 
-
+	// let profile = {}
+	//
 	// if (token) {
 	// 	profile = await ProfileService.getProfile(token)
-	// 	console.log(profile)
 	// }
 
 	return {
 		props: {
 			categories: categories?.data?.data,
 			books: books?.data?.data,
+			// profile: profile?.data?.data || {}
 		}
 	}
 }

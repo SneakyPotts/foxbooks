@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import '../styles/globals.scss';
 import store from '../store/store';

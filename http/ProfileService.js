@@ -1,4 +1,3 @@
-import axios from "axios";
 import api, { API_URL } from ".";
 
 export default class ProfileService {

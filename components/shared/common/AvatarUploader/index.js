@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {isFileImage} from "../../../../utils";
 import Image from "next/image";
 import Pencil from "../../icons/pencil";
-import AvatarWithWord from "../AvatarWithWord";
+import AvatarWithLetter from "../AvatarWithLetter";
 import Compressor from 'compressorjs';
 import styles from './styles.module.scss'
 
@@ -51,9 +51,11 @@ const AvatarUploader = ({ name, setValue }) => {
 						blurDataURL="/images/blur.jpg"
 						layout="responsive"
 					/> :
-					<AvatarWithWord
-						word={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
+					<AvatarWithLetter
+						letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
 						width={102}
+						id={profile?.id}
+						isProfile
 					/>
 				}
 				<span className={styles.icon}>
