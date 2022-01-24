@@ -45,7 +45,9 @@ const Footer = () => {
                     <a className={st.page}>Поддержка</a>
                   </Link>
                 </ul>
-                <p className={st.label}>© 2021 Foxbooks</p>
+                <div className={st.txt}>
+                  <p className={st.label}>© 2021 Foxbooks</p>
+                </div>
               </div>
             </div>
           </div>

@@ -29,3 +29,18 @@
     stroke: $text-hover;
   }
 }
+
+@media (max-width: 1200px) {
+}
+@media (max-width: 768px) {
+  .showAll {
+    &Title {
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
+  .showAllLink {
+    font-size: 14px;
+    line-height: 1.43;
+  }
+}

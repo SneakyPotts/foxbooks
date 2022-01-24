@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setBreakPoint } from '../../../Header/headerSlice';
 import Link from 'next/link';
 import classnames from 'classnames';
 // import { AudioBook } from './bookSlice';
@@ -13,16 +14,16 @@ import Like from '../../icons/heart';
 import Comment from '../../icons/comment';
 import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
-import Headphones from "../../icons/headphones";
-import {audioBook} from "../../../../store/bookSlice";
-
+import Headphones from '../../icons/headphones';
+import { audioBook } from '../../../../store/bookSlice';
 
 const Book = ({
   audio,
   flagSwitcher,
   classNames,
   similar,
-  noLinks = false,book
+  noLinks = false,
+  book,
 }) => {
   const dispatch = useDispatch();
   // const { audioFlag } = useSelector(state => state.bookSlice);
@@ -31,15 +32,15 @@ const Book = ({
   const [options, setOptions] = useState(false);
 
   const route = useRouter();
-  // console.log(route, 'router');
+  const { innerWidthWindow } = useSelector(state => state.headerSlice);
 
-	const bookLinkClick = () => {
-		if (audio) {
-			dispatch(audioBook(true));
-		} else if (!audio) {
-			dispatch(audioBook(false));
-		}
-	};
+  const bookLinkClick = () => {
+    if (audio) {
+      dispatch(audioBook(true));
+    } else if (!audio) {
+      dispatch(audioBook(false));
+    }
+  };
 
   const onChangeIcon = () => {
     setChangeIcon(true);
@@ -63,8 +64,16 @@ const Book = ({
               <Image
                 src="/horizontalBookCovers/book.png"
                 alt=""
-                width={180}
-                height={audio ? '180' : '271'}
+                width={innerWidthWindow >= 768 ? 180 : 108}
+                height={
+                  audio
+                    ? innerWidthWindow >= 768
+                      ? 180
+                      : 108
+                    : innerWidthWindow >= 768
+                    ? 271
+                    : 160
+                }
                 placeholder="blur"
                 blurDataURL="/images/blur.jpg"
                 layout="responsive"
@@ -106,39 +115,46 @@ const Book = ({
           </div>
         </div>
         {noLinks ? (
-
           <h3
             className={classnames(st.bookName, {
               [st.bookNameSmaller]: similar,
             })}
           >
-			  {book?.title}
+            {book?.title}
           </h3>
         ) : (
-			<Link href={`/book/${book?.id}`}>
-				<a className={classnames(st.bookName, {
-					[st.bookNameSmaller]: similar,
-				})}>
-					{book?.title}
-				</a>
-			</Link>
+          <Link href={`/book/${book?.id}`}>
+            <a
+              className={classnames(st.bookName, {
+                [st.bookNameSmaller]: similar,
+              })}
+            >
+              {book?.title}
+            </a>
+          </Link>
         )}
 
         {noLinks ? (
-          <span className={st.bookAuthor}>{book?.authors?.length ? book?.authors[0]?.author : ''}</span>
+          <span className={st.bookAuthor}>
+            {book?.authors?.length ? book?.authors[0]?.author : ''}
+          </span>
         ) : (
-			<Link href="/author">
-				<a className={st.bookAuthor}>{book?.authors?.length ? book?.authors[0]?.author : ''}</a>
-			</Link>
+          <Link href="/author">
+            <a className={st.bookAuthor}>
+              {book?.authors?.length ? book?.authors[0]?.author : ''}
+            </a>
+          </Link>
         )}
         {flagSwitcher && (
           <div className={classnames(st.extraInfo, { [st.addInfo]: !audio })}>
             <p className={st.bookYear}>
               <span>2021</span>
-              <span className={st.bookGenre}>{book?.book_genres?.length ? book?.book_genres[0] : ''}</span>
+              <span className={st.bookGenre}>
+                {book?.book_genres?.length ? book?.book_genres[0] : ''}
+              </span>
             </p>
             <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
-				{book?.text}
+              {book?.text}
             </p>
             {!audio && (
               <div className={st.reviewStatistic}>

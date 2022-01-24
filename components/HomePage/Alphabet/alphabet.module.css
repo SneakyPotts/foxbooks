@@ -28,3 +28,11 @@
 .leter:hover {
   color: #ff781d;
 }
+
+@media (max-width: 1200px) {
+}
+@media (max-width: 768px) {
+  .filterContainer {
+    display: none;
+  }
+}
