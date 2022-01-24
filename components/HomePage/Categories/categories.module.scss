@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .categNav {
   text-align: start;
@@ -21,7 +21,7 @@
   font-size: 14px;
   line-height: 1.43;
   cursor: pointer;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     color: $text-hover;
@@ -59,4 +59,15 @@
 }
 .arrowAll {
   transform: rotate(90deg);
+}
+
+@media (max-width: 1200px) {
+}
+@media (max-width: 768px) {
+  .categNav {
+    display: none;
+  }
+  .filterContainer {
+    display: none;
+  }
 }

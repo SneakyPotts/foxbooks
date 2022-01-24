@@ -16,7 +16,7 @@
   border: none;
   border-radius: 64px;
   stroke: #0e263e;
-  transition: .15s;
+  transition: 0.15s;
 
   & > span {
     white-space: nowrap;
@@ -73,7 +73,7 @@
   text-decoration: none;
   color: #4f4f4f;
   cursor: pointer;
-  transition: .15s;
+  transition: 0.15s;
 }
 .dropLink:not(:last-child) {
   margin-bottom: 15px;
@@ -87,7 +87,7 @@
 }
 .down {
   transform: rotate(180deg);
-  transition: .15s;
+  transition: 0.15s;
 }
 .up {
   transform: rotate(0deg);
@@ -104,7 +104,7 @@
   border: 3px solid#fff;
   background-color: transparent;
   box-shadow: 0 0 0 2px #909190;
-  transition: .15s;
+  transition: 0.15s;
 }
 .radioActive {
   background-color: #0e263e;
@@ -115,8 +115,8 @@
 }
 .dropLinkAuthor {
   list-style: none;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  // margin-right: 10px;
+  margin-bottom: 4px;
 }
 .dropLinkAuthor:hover {
   color: #ff781d;
@@ -125,10 +125,12 @@
   position: absolute;
   z-index: 1;
   display: flex;
+  gap: 6px;
   flex-wrap: wrap;
   box-sizing: border-box;
   padding: 30px 20px;
   padding-bottom: -10px;
+  margin-top: 22px;
   min-width: 237px;
   max-width: 278px;
   max-height: 435px;
