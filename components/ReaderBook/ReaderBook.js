@@ -136,7 +136,7 @@ const ReaderBook = () => {
                     <div className={styles.control}>
                         {controlData.map(({textLabel, labelOne, labelSecond, value, setValue, max, dot}, i) => {
                             return i === 0 || i === 6 ?
-                                <div className={styles.controlBlock}>
+                                <div className={styles.controlBlock} key={textLabel}>
                                     <div className={styles.wrapSwitch}>
                                         <span>{textLabel}</span>
                                         <input className={styles.switch}
@@ -161,7 +161,7 @@ const ReaderBook = () => {
                                             <div
                                                 className={classnames(styles.fontDropDown, {[styles.fontDropDownActive]: dropFont})}>
                                                 {dataDropDownFonts.map(({text}) => (
-                                                    <button style={{color: font === text && '#ff781d'}}
+                                                    <button key={text} style={{color: font === text && '#ff781d'}}
                                                             onClick={() => setFont(text)} type='button'>
                                                         {text}
                                                     </button>
@@ -302,6 +302,7 @@ const ReaderBook = () => {
                     <div className={styles.selectColor}>
                         {dataColor.map(({color}) => (
                             <button
+                                key={color}
                                 id={color}
                                 onClick={() => {
                                     {

@@ -1,0 +1,198 @@
+@import 'styles/variables';
+
+.topMenu {
+  display: flex;
+}
+.navigation {
+  display: flex;
+  font-size: 14px;
+  text-align: start;
+  align-items: center;
+}
+.link {
+  text-decoration: none;
+  margin-right: 30px;
+  padding-bottom: 6px;
+  display: flex;
+  align-items: center;
+  color: $color-second;
+  fill: $color-second;
+}
+.linkStroke {
+  stroke: $color-second;
+  fill: none;
+}
+.link:hover {
+  position: relative;
+  color: $text-hover;
+  fill: $text-hover;
+}
+.linkStroke:hover {
+  stroke: $text-hover;
+  fill: none;
+}
+.link:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $text-hover;
+}
+.active {
+  position: relative;
+  color: $text-hover;
+  fill: $text-hover;
+}
+.activeStroke {
+  position: relative;
+  color: $text-hover;
+  stroke: $text-hover;
+}
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $text-hover;
+}
+.activeStroke::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $text-hover;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+.dovnMenu {
+  display: flex;
+
+  &Logo {
+    display: none;
+    &Text {
+      margin-top: 5px;
+    }
+  }
+
+  > .activeStroke {
+    position: relative;
+    color: $text-hover;
+    stroke: $text-hover;
+  }
+  > .activeStroke::after {
+    display: none;
+  }
+  > .active::after {
+    display: none;
+  }
+}
+.noSpace {
+  margin-right: 0;
+}
+
+//@media (max-width: 1400px) {
+//
+//}
+//
+
+@media (min-width: 768px) {
+  .dovnMenu {
+    &Link {
+      display: none;
+    }
+  }
+  .noSpace {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topMenu {
+    font-size: 16px;
+    line-height: 18px;
+    flex: 1;
+    justify-content: space-between;
+    margin: auto;
+
+    .link {
+      margin-right: 0;
+    }
+  }
+  .link {
+    padding-bottom: 0;
+  }
+  .link:hover::after {
+    display: none;
+  }
+  .active {
+    color: $text-hover !important;
+  }
+  .active::after {
+    bottom: -2px;
+  }
+  .icon {
+    display: none;
+  }
+  .dovnMenu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 69px;
+    padding: 10px 15px;
+    background-color: $color-main;
+
+    .link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      stroke: $color-categories-btn;
+      color: $color-categories-btn;
+
+      > .icon {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        stroke: $color-categories-btn;
+        svg {
+          min-width: 24px;
+          min-height: 24px;
+        }
+      }
+    }
+    > .activeStroke {
+      position: relative;
+      color: $text-hover;
+
+      path {
+        stroke: $text-hover !important;
+      }
+    }
+    > .activeStroke::after {
+      display: none;
+    }
+    &Logo {
+      font-size: 14px;
+      line-height: 1.43;
+      display: flex;
+      flex-direction: column;
+      // margin-right: 30px;
+      align-items: center;
+      color: $color-categories-btn;
+    }
+  }
+}

@@ -12,9 +12,9 @@ const MyBooks = () => {
       <path
         d="M4.18066 3.34375V17.1405M9.19767 3.34375V17.1405M13.7966 3.34375L16.7232 17.1405"
         stroke="inherit"
-        stroke-width="1.67233"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.67233"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

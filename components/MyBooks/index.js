@@ -228,7 +228,7 @@ const MyBooks = () => {
                       [st.slider]: !book.audio,
                       [st.sliderAudio]: book.audio,
                     })}
-                    key={book.id}
+                    key={book.id + 5}
                   >
                     <Link href="/reader">
                       <a>
@@ -268,7 +268,7 @@ const MyBooks = () => {
             <ul className={st.tabList}>
               {tab.map(({ text, count }, idx) => (
                 <li
-                  key={text}
+                  key={idx + 3}
                   className={classnames(st.tab, {
                     [st.activeTab]: activeTab === idx,
                   })}
@@ -304,7 +304,7 @@ const MyBooks = () => {
                         <ul className={st.dropdownList}>
                           {options.map((opt, idx) => (
                             <li
-                              key={opt.option}
+                              key={opt.option + 4}
                               className={st.dropdownListItem}
                               onClick={e => handleOptions(idx, e)}
                             >
@@ -347,6 +347,7 @@ const MyBooks = () => {
                       >
                         {selections.map((opt, idx) => (
                           <li
+                              key={idx * 7}
                             className={st.dropdownPopularListItem}
                             onClick={() => handleSelectionClick(idx)}
                           >
@@ -407,6 +408,7 @@ const MyBooks = () => {
                         >
                           {popular.map((opt, idx) => (
                             <li
+                                key={opt.option + 2}
                               className={st.dropdownPopularListItem}
                               onClick={() => filterClick(idx)}
                             >
@@ -429,7 +431,7 @@ const MyBooks = () => {
               {tabValue === 'Книги' && (
                 <ul className={st.bookList}>
                   {books.map(book => (
-                    <li key={book.id} className={st.bookListItem}>
+                    <li key={book.id + 1} className={st.bookListItem}>
                       <Book />
                       <span
                         className={st.bookListItemDelete}
@@ -444,7 +446,7 @@ const MyBooks = () => {
               {tabValue === 'Аудиокниги' && (
                 <ul className={st.bookList}>
                   {books.map(book => (
-                    <li key={book.id} className={st.bookListItem}>
+                    <li key={book.id + 2} className={st.bookListItem}>
                       <Book audio={true} />
                       <span
                         className={st.bookListItemDelete}

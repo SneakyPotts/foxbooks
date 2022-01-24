@@ -70,7 +70,7 @@ const AddBook = ({ setAddBookPage }) => {
       <div>
         {booksSelections.map((select, idx) => (
           <button
-            key={select.id}
+            key={idx * 0.2}
             className={classnames(st.selectFilters, {
               [st.selectFiltersActive]: activeBookSel === idx,
             })}
@@ -84,16 +84,16 @@ const AddBook = ({ setAddBookPage }) => {
       </div>
       <h2 className={st.title}>Книги</h2>
       <div className={st.myBooks}>
-        {books.map(book => (
-          <div key={book.id} className={st.myBooksItem} onClick={onBookClick}>
+        {books.map((book, ind) => (
+          <div key={ind * 2} className={st.myBooksItem} onClick={onBookClick}>
             <Book noLinks={true} />
           </div>
         ))}
       </div>
       <h2 className={st.title}>Аудиокниги</h2>
       <div className={st.myBooks}>
-        {books.map(book => (
-          <div key={book.id} className={st.myBooksItem} onClick={onBookClick}>
+        {books.map((book, inx) => (
+          <div key={inx * 3} className={st.myBooksItem} onClick={onBookClick}>
             <Book noLinks={true} audio={true} />
           </div>
         ))}

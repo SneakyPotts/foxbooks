@@ -12,23 +12,23 @@ const Selections = () => {
       <path
         d="M10 2.5L10 17.5"
         stroke="inherit"
-        stroke-width="1.67233"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.67233"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M15 2.5L15 17.5"
         stroke="inherit"
-        stroke-width="1.67233"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.67233"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M5 2.5L5 17.5"
         stroke="inherit"
-        stroke-width="1.67233"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.67233"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

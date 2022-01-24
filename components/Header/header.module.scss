@@ -1,13 +1,17 @@
 @import 'styles/variables.scss';
 
 .main {
-  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  background-color: $color-categories-btn;
   padding: 30px 0;
 
   .container {
     position: relative;
-    max-width: 1200px;
     margin: auto;
+    max-width: 1200px;
   }
 
   .header {
@@ -15,7 +19,7 @@
     margin-bottom: 33px;
     align-items: center;
     justify-content: space-between;
-    color: #0e263e;
+    color: $color-main;
   }
 
   .input {
@@ -72,7 +76,7 @@
 
   .inputCastom::placeholder {
     font-size: 14px;
-    color: #909190;
+    color: $color-third;
   }
 
   .iconSearch {
@@ -82,7 +86,7 @@
     padding: 0;
     width: 24px;
     height: 24px;
-    color: #ff781d;
+    color: $text-hover;
   }
 
   .closeIcon {
@@ -93,7 +97,7 @@
     padding: 0;
     width: 24px;
     height: 24px;
-    stroke: #0e263e;
+    stroke: $color-main;
   }
 
   .active {
@@ -103,7 +107,7 @@
     padding: 0;
     width: 24px;
     height: 24px;
-    color: #ff781d;
+    color: $text-hover;
   }
 
   .iconBell {
@@ -113,7 +117,7 @@
   }
 
   .iconBell:hover {
-    color: #ff781d;
+    color: $text-hover;
   }
 
   .menu {
@@ -139,7 +143,7 @@
         background: $color-categories-btn;
         position: absolute;
         padding: 30px 20px;
-        border: 1px solid #f1f1f1;
+        border: 1px solid $color-bg-icon;
         box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
         border-radius: 10px;
         height: auto;
@@ -189,7 +193,20 @@
   }
 
   .iconUser {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
     margin-right: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    stroke: $color-main;
+    border: 2px solid $color-main;
+    svg {
+      min-width: 24px;
+      min-height: 24px;
+    }
   }
 }
 .overlay {
@@ -262,4 +279,36 @@
   font-size: 14px;
   line-height: 1.143;
   color: $color-main;
+}
+
+@media (max-width: 768px) {
+  .main {
+    .header {
+      flex-direction: column;
+    }
+    .input {
+      margin-top: 20px;
+    }
+    .menu {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 970px) {
+  .main {
+    .inputCastom {
+      width: 345px;
+    }
+    .inputCastom::placeholder {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .main {
+    padding: 20px 15px;
+  }
 }

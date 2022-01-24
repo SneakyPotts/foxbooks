@@ -1,0 +1,8 @@
+@import 'styles/variables.scss';
+
+.logo {
+  @media (max-width: 768px) {
+    width: 117px;
+    height: 32px;
+  }
+}

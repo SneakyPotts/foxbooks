@@ -2,25 +2,27 @@ import { FiSearch, FiBell } from 'react-icons/fi';
 import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Menu from './Menu/Menu';
-import User from '../../public/user.svg';
+import User from '../shared/icons/user';
 import Logo from '../Logo';
 import GroupForms from './groupForms/GroupForms';
 import Setting from '../shared/icons/setting';
 import Exit from '../shared/icons/exit';
 import Close from '../../public/close.svg';
-import { ShowMenu } from './headerSlice';
-import st from './header.module.scss';
+import { ShowMenu, setBreakPoint } from './headerSlice';
 import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
+import st from './header.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { showMenu } = useSelector(state => state.headerSlice);
+  const { showMenu, innerWidthWindow } = useSelector(
+    state => state.headerSlice
+  );
   const { isAuth } = useSelector(state => state.auth);
   const [modal, setModal] = useState(false);
   const [flagSettings, setFlagSettings] = useState(false);
@@ -37,13 +39,13 @@ const Header = () => {
     body.classList.remove('nonScroll');
   };
 
-	const logOut = () => {
-		if(router.pathname.includes('settings')) {
-			router.push('/')
-		}
-		dispatch(setAuth(false))
-		Cookies.remove('token')
-	}
+  const logOut = () => {
+    if (router.pathname.includes('settings')) {
+      router.push('/');
+    }
+    dispatch(setAuth(false));
+    Cookies.remove('token');
+  };
 
   const popularBooks = [
     {
@@ -90,18 +92,32 @@ const Header = () => {
     { id: '9', author: 'Антуан де Сент-Экзюпери' },
   ];
 
+  useEffect(() => {
+    dispatch(setBreakPoint(window.innerWidth));
+    window.addEventListener('resize', function () {
+      dispatch(setBreakPoint(this.innerWidth));
+    });
+  }, []);
+
+  console.log(innerWidthWindow);
   return (
     <>
       {!router.pathname.includes('reader') &&
         !router.pathname.includes('/404') && (
-          <div className={st.main}>
+          <div className={classNames(st.main)}>
             <div className={st.container}>
               <header className={st.header}>
-                <Logo />
+                <div className={st.logo}>
+                  <Logo />
+                </div>
                 <div className={st.input}>
                   <input
                     type="text"
-                    placeholder="Искать книги, авторов, жанры, издательства"
+                    placeholder={
+                      innerWidthWindow >= 970
+                        ? 'Искать книги, авторов, жанры, издательства'
+                        : 'Искать книги'
+                    }
                     className={st.inputCastom}
                     onClick={onSearchInput}
                   />
@@ -158,12 +174,15 @@ const Header = () => {
                       onClick={() => setModal(!modal)}
                       className={st.userMenu}
                     >
-                      <User className={st.iconUser} />
+                      <div className={st.iconUser}>
+                        <User style={{ minWidth: '24px', minHeight: '24px' }} />
+                      </div>
                       Войти
                     </div>
                   )}
                 </div>
               </header>
+              <Menu setModal={() => setModal(!modal)} />
             </div>
             {showMenu && (
               <div className={st.overlay} onClick={closeModal}>
@@ -209,9 +228,9 @@ const Header = () => {
                 </div>
               </div>
             )}
-            <div className="container">
-              <Menu />
-            </div>
+            {/* <div className="container">
+              
+            </div> */}
 
             <GroupForms setModal={setModal} modal={modal} />
           </div>

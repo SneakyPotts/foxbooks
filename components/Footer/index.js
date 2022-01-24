@@ -5,6 +5,7 @@ import Telegram from '../../public/telegram.svg';
 import Vk from '../../public/vkontakte.svg';
 import st from './footer.module.scss';
 import { useRouter } from 'next/router';
+import classNames from 'classnames';
 
 const Footer = () => {
   const router = useRouter();
@@ -25,7 +26,9 @@ const Footer = () => {
               <div className={st.footerInfo}>
                 <div className={st.socialmedia}>
                   <Twitter className={st.socialmediaLink} />
-                  <Telegram className={st.socialmediaLink} />
+                  <Telegram
+                    className={classNames(st.socialmediaLink, st.mobile)}
+                  />
                   <Vk className={st.socialmediaLink} />
                 </div>
                 <ul className={st.pagesList}>
