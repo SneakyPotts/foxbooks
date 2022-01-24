@@ -88,7 +88,16 @@ const ReaderBook = () => {
 
        return (
            <>
-               <p>
+               <p   className={styles.containerTextMain}
+                    style={{
+                        fontSize: `${Number(fontSize) + 16}px`,
+                        lineHeight: Number(line) === 2 ?
+                            '22px' : Number(line) === 1 ?
+                                '21px' : Number(line) === 0 ?
+                                    '18px' : Number(line) === 3 ?
+                                        '24px' : '26px',
+                        fontFamily: font
+                    }}>
                    {!quotes && textPage}
                </p>
            </>
