@@ -18,7 +18,6 @@ const Layout = ({ children }) => {
 	useEffect(() => {
 		const storageToken = Cookies.get('token');
 		const { email, token, id } = router.query;
-		const { pathname } = router;
 
 		if (storageToken) {
 		  dispatch(getProfile())

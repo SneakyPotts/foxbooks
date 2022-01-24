@@ -55,6 +55,7 @@ const AvatarUploader = ({ name, setValue }) => {
 						letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
 						width={102}
 						id={profile?.id}
+						isProfile
 					/>
 				}
 				<span className={styles.icon}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import styles from './styles.module.scss';
 
 const colors = [
@@ -10,17 +10,32 @@ const colors = [
 	'#945D47'
 ]
 
-const AvatarWithLetter = ({letter, width, id = 0}) => {
-	const count = (() => {
+const AvatarWithLetter = ({letter, width, id, isProfile}) => {
+	const [color, setColor] = useState('')
+	const getIndex = useCallback(() => {
 		let num = id
 		while (num > +colors?.length) {
 			num -= +colors?.length
 		}
 		return num
-	})()
+	}, [id])
+
+	useEffect(() => {
+		if(isProfile) {
+			const storageColor = localStorage.getItem('avatarColor')
+			if(storageColor) {
+				setColor(storageColor)
+			} else if(id) {
+				setColor(colors[getIndex()])
+				localStorage.setItem('avatarColor', color)
+			}
+		} else if(id) {
+			setColor(colors[getIndex(i)])
+		}
+	}, [id])
 
 	return (
-		<span className={styles.wrapper} style={{background: colors[count], width, height: width}}>
+		<span className={styles.wrapper} style={{background: color, width, height: width}}>
 			{letter}
 		</span>
 	);
