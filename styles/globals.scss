@@ -59,14 +59,6 @@ ol[class] {
 .container {
   max-width: 1200px;
   margin: auto;
-
-  @media (min-width: $tablet) {
-    max-width: 768px;
-  }
-
-  @media (min-width: $desktop) {
-    max-width: 1200px;
-  }
 }
 .nextArrow {
   cursor: pointer;
@@ -136,4 +128,18 @@ ol[class] {
 }
 .blur {
   filter: blur(10px);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 15px;
+  }
+  .nextArrow {
+    display: none;
+  }
+  .prevArrow {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
 }
