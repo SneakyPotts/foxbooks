@@ -30,10 +30,12 @@
   }
 }
 
-@media (max-width: 1200px) {
-}
+// @media (max-width: 1200px) {
+// }
 @media (max-width: 768px) {
   .showAll {
+    margin-bottom: 30px;
+
     &Title {
       font-size: 20px;
       line-height: 25px;

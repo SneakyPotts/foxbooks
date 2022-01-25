@@ -2,9 +2,7 @@
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setBreakPoint } from '../Header/headerSlice';
+import { useSelector } from 'react-redux';
 import ArrowRight from '../../public/chevron-right.svg';
 import Categories from './Categories/index';
 import Alphabet from './Alphabet/Alphabet';
@@ -28,20 +26,24 @@ const HomeView = () => {
         <div className={css.mainBlock}>
           <Alphabet />
           <ShowAll
-            title={innerWidthWindow >= 798 ? 'Новинки книг' : 'Новинки'}
+            title={innerWidthWindow >= 768 ? 'Новинки книг' : 'Новинки'}
             url="/new"
           />
 
           <Swiper
             modules={[Navigation]}
-            spaceBetween={innerWidthWindow <= 798 ? 10 : 24}
-            // slidesPerView={(innerWidthWindow === 798 && 3) || (innerWidthWindow >== 798 && <==1200 && 4) || (innerWidthWindow >==1200 && 5)}
+            spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
+            slidesPerView={
+              (innerWidthWindow <= 500 && 3) ||
+              (innerWidthWindow <= 1024 && 4) ||
+              (innerWidthWindow >= 1200 && 5)
+            }
+            //   slidesPerView={innerWidthWindow === 798 && 3 innerWidthWindow >= 798 && <= 1200 && 4 innerWidthWindow >= 1200 && 5}
 
-            //   slidesPerView={innerWidthWindow === 798 && 3 innerWidthWindow >== 798 && <==1200 && 4 innerWidthWindow >==1200 && 5}
+            //   slidesPerView={`${${innerWidthWindow === 798 && 3} ${innerWidthWindow >= 798 && <= 1200 && 4} ${innerWidthWindow >= 1200 && 5}}`}
 
-            //   slidesPerView={`${${innerWidthWindow === 798 && 3} ${innerWidthWindow >== 798 && <==1200 && 4} ${innerWidthWindow >==1200 && 5}}`}
+            // slidesPerView={innerWidthWindow <= 798 ? 3 : 5}
 
-            slidesPerView={innerWidthWindow === 798 && 3}
             navigation={{
               prevEl: '.prevArrow',
               nextEl: '.nextArrow',
