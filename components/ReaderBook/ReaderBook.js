@@ -82,14 +82,13 @@ const ReaderBook = () => {
         function generateRandomClass() {
             let text = "";
             const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
             for (let i = 0; i < 8; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
 
             return text;
         }
 
-        function treatmentSelectionText(selectText, color, textBooks) {
+        function generateSelectionText(selectText, color, textBooks) {
             const positionText = textBooks.indexOf(selectText)
             const textWithMark = textBooks.slice(0, positionText)
             const markText = `<mark class=${generateRandomClass()} style="background-color: ${color}">${textBooks.slice(positionText, positionText + selectText.length)}</mark>`
@@ -101,7 +100,7 @@ const ReaderBook = () => {
 
         if (arrayQuotes) {
             for(let i = 0; i < arrayQuotes.length; i++) {
-                treatmentSelectionText(arrayQuotes[i].text, arrayQuotes[i].color, newTextBooks)
+                generateSelectionText(arrayQuotes[i].text, arrayQuotes[i].color, newTextBooks)
             }
             setTextPage(newTextBooks)
             // .replace(/<\/?[^>]+(>|$)/g, '')
@@ -235,7 +234,6 @@ const ReaderBook = () => {
                 <div
                     onMouseUp={e => {
                         e.stopPropagation()
-
                     }}
                     style={{top: `${positionPopUp[0].y}px`, left: `${positionPopUp[0].x}px`}}
                     className={styles.popUpAddQuotes}>
