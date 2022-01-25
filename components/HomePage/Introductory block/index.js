@@ -1,12 +1,15 @@
-import Compilations from "./Compilations/Compilations"
-import AudioBooks from "./AudioBooks/AudioBooks"
-import Reviews from "./Reviews/Reviews"
+import { useSelector } from 'react-redux';
+import Compilations from './Compilations/Compilations';
+import AudioBooks from './AudioBooks/AudioBooks';
+import Reviews from './Reviews/Reviews';
 
 const Introductory = () => {
-	return <>
-		<Compilations/>
-		<AudioBooks/>
-		<Reviews/>
-	</>
-}
-export default Introductory
+  return (
+    <>
+      <Compilations />
+      <AudioBooks />
+      <Reviews />
+    </>
+  );
+};
+export default Introductory;
