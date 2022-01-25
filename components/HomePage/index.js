@@ -3,7 +3,7 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import { useSelector } from 'react-redux';
-import ArrowRight from '../../public/chevron-right.svg';
+import ArrowRight from '../shared/icons/ArrowRight';
 import Categories from './Categories/index';
 import Alphabet from './Alphabet/Alphabet';
 import Hero from './Hero/Hero';
@@ -38,12 +38,6 @@ const HomeView = () => {
               (innerWidthWindow <= 1024 && 4) ||
               (innerWidthWindow >= 1200 && 5)
             }
-            //   slidesPerView={innerWidthWindow === 798 && 3 innerWidthWindow >= 798 && <= 1200 && 4 innerWidthWindow >= 1200 && 5}
-
-            //   slidesPerView={`${${innerWidthWindow === 798 && 3} ${innerWidthWindow >= 798 && <= 1200 && 4} ${innerWidthWindow >= 1200 && 5}}`}
-
-            // slidesPerView={innerWidthWindow <= 798 ? 3 : 5}
-
             navigation={{
               prevEl: '.prevArrow',
               nextEl: '.nextArrow',

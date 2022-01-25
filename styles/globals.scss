@@ -72,6 +72,7 @@ ol[class] {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  stroke: #0e263e;
   border: 1px solid #f1f1f1;
   background: rgba(255, 255, 255, 0.5);
 }
@@ -95,6 +96,7 @@ ol[class] {
   height: 50px;
   border-radius: 50%;
   transform: rotate(180deg);
+  stroke: #0e263e;
   border: 1px solid #f1f1f1;
   background: rgba(255, 255, 255, 0.5);
 }
@@ -145,4 +147,18 @@ ol[class] {
   padding: 0;
   overflow: hidden;
   clip: rect(0 0 0 0);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 15px;
+  }
+  .nextArrow {
+    display: none;
+  }
+  .prevArrow {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
 }

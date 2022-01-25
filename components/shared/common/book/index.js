@@ -65,7 +65,6 @@ const Book = ({
                 src="/horizontalBookCovers/book.png"
                 alt=""
                 width={innerWidthWindow >= 768 ? 180 : 108}
-                // width={180}
                 height={
                   audio
                     ? innerWidthWindow >= 768
@@ -85,17 +84,8 @@ const Book = ({
           <Image
             src="/horizontalBookCovers/book.png"
             alt=""
-            width={innerWidthWindow >= 1200 ? 180 : 108}
-            // width={180}
-            height={
-              audio
-                ? innerWidthWindow >= 1200
-                  ? 180
-                  : 108
-                : innerWidthWindow >= 1200
-                ? 271
-                : 160
-            }
+            width={180}
+            height={audio ? '180' : '271'}
             placeholder="blur"
             blurDataURL="/images/blur.jpg"
             layout="responsive"

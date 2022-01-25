@@ -15,7 +15,7 @@
   line-height: 1.13;
   margin: 0;
   margin-bottom: 20px;
-  color: #333333;
+  color: $color-main;
 }
 .categ {
   font-size: 14px;
@@ -39,14 +39,14 @@
   margin: 0;
   margin-top: 22px;
   text-decoration: none;
-  stroke: #0e263e;
+  stroke: $color-main;
 }
 .all:hover .iconAll {
-  stroke: #f1f1f1;
-  background-color: #ff781d;
+  stroke: $color-bg-icon;
+  background-color: $text-hover;
 }
 .textAll {
-  color: #ff781d;
+  color: $text-hover;
 }
 .iconAll {
   display: flex;
@@ -55,16 +55,16 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #f1f1f1;
+  background-color: $color-bg-icon;
 }
 .arrowAll {
   transform: rotate(90deg);
 }
 
 @media (max-width: 1200px) {
-}
-@media (max-width: 768px) {
   .categNav {
     display: none;
   }
+}
+@media (max-width: 768px) {
 }

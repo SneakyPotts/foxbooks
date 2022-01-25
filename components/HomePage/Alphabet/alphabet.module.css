@@ -30,9 +30,9 @@
 }
 
 @media (max-width: 1200px) {
-}
-@media (max-width: 768px) {
   .filterContainer {
     display: none;
   }
+}
+@media (max-width: 768px) {
 }
