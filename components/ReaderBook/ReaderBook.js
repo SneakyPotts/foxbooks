@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './index.module.scss'
 import Logo from "../shared/icons/Logo";
 import ArrowRight from '../../public/chevron-right.svg'
@@ -9,6 +9,7 @@ import FullScreen from "../shared/icons/FullScreen";
 import BookMark from "../shared/icons/BookMark";
 import InputRange from "../shared/common/InputRange/InputRange";
 import classnames from "classnames";
+import {loadGetInitialProps} from "next/dist/shared/lib/utils";
 
 
 const ReaderBook = () => {
@@ -23,12 +24,8 @@ const ReaderBook = () => {
     const [positionPopUp, setPositionPopUp] = useState([{x: 0, y: 0}])
     const [colorSelectText, setColorSelectText] = useState('#A5D5FF')
     const [currentSelectionText, setCurrentSelectionText] = useState('')
-    // const [flagActiveSelect, setFlagActiveSelect] = useState(false)
-
     const [dropFont, setDropFont] = useState(false)
     const [textPage, setTextPage] = useState(`Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли,что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать,чтобы они попали в какую-нибудь странную или загадочную ситуацию. Мистер и миссис Дурсль весьманеодобрительно относились к любым странностям, загадкам и прочей ерунде.Мистер Дурсль возглавлял фирму под названием «Граннингс», которая специализировалась на производстведрелей. Это был полный мужчина с очень пышными усами и очень короткой шеей. Что же касается миссисДурсль, она была тощей блондинкой с шеей почти вдвое длиннее, чем положено при ее росте. Однако этотнедостаток пришелся ей весьма кстати, поскольку большую часть времени миссис Дурсль следила засоседями и подслушивала их разговоры. А с такой шеей, как у нее, было очень удобно заглядывать зачужие заборы. У мистера и миссис Дурсль был маленький сын по имени Дадли, и, по их мнению, он былсамым чудесным ребенком на свете.Семья Дурсль ей имела все, чего только можно пожелать. Но был у них и один секрет. Причем большевсего на свете они боялись, что кто-нибудь о нем узнает. Дурсли даже представить себе не могли, что с ними будет, если выплывет правда о Поттерах. Миссис Поттер приходилась миссис Дурсль родной сестрой, но они не виделись вот уже несколько лет. Миссис Дурсль даже делала вид, что у нее вовсе нет никакой сестры, потому что сестра и ее никчемный муж были полной противоположностью Дурслям. Дурсли содрогались при одной мысли о том, что скажут соседи, если на Тисовую улицу пожалуют Поттеры. Дурсли знали, что у Поттеров тоже есть маленький сын, но они никогда его не видели. И они категорически не хотели, чтобы их Дадли общался с ребенком таких родителей. Когда во вторник мистер и миссис Дурсль проснулись скучным и серым утром — а именно с этого утраначинается наша история, — ничто, включая покрытое тучами небо, не предвещало, что вскоре по всейстране начнут происходить странные и загадочные вещи. Мистер Дурсль что-то напевал себе под нос,завязывая самый отвратительный из своих галстуков. А миссис Дурсль, с трудом усадивсопротивляющегося и орущего Дадли на высокий детский стульчик, со счастливой улыбкой пересказываламужу последние сплетни.Никто из них не заметил, как за окном пролетела большая сова-неясыть.В половине девятого мистер Дурсль взял свой портфель, клюнул миссис Дурсль в щеку и попытался напрощанье поцеловать Дадли, но промахнулся, потому что Дадли впал в ярость, что с ним происходилодовольно часто. Он раскачивался взад-вперед на стульчике, ловко выуживал из тарелки кашу и заляпывалею стены.— Ух, ты моя крошка, — со смехом выдавил из себя мистер Дурсль, выходя из дома.Он сел в машину и выехал со двора.На углу улицы мистер Дурсль заметил, что происходит что-то странное, — на тротуаре стояла кошка ивнимательно изучала лежащую перед ней карту. В первую секунду мистер Дурсль даже не понял, чтоименно он увидел, но затем, уже миновав кошку, затормозил и резко оглянулся. На углу Тисовой улицыдействительно стояла полосатая кошка, но никакой карты видно не было.— И привидится же такое! — буркнул мистер Дурсль.Наверное, во всем были виноваты мрачное утро и тусклый свет фонаря. На всякий случай мистер Дурсльзакрыл глаза, потом открыл их и уставился на кошку. А кошка уставилась на него.Мистер Дурсль отвернулся и поехал дальше, продолжая следить за кошкой в зеркало заднего вида. Онзаметил, что кошка читает табличку, на которой написано «Тисовая улица». Нет, конечно же, не читает,поспешно поправил он самого себя, а просто смотрит на табличку. Ведь кошки не умеют читать — равнокак и изучать карты.Мистер Дурсль потряс головой и попытался выбросить из нее кошку. И пока его автомобиль ехал кполучить.Но когда он подъехал к Лондону, заполнившие его голову дрели вылетели оттуда в мгновение ока, потому что, попав в обычную утреннюю автомобильную пробку и от нечего делать глядя по сторонам, мистер Дурсль заметил, что на улицах появилось множество очень странно одетых людей. Людей в мантиях.Мистер Дурсль не переносил людей в нелепой одежде, да взять хотя бы нынешнюю молодежь, которая расхаживает черт знает в чем! И вот теперь эти, нарядившиеся по какой-то дурацкой моде. Мистер Дурсль забарабанил пальцами по рулю. Его взгляд упал на сгрудившихся неподалеку странных типов, оживленно шептавшихся друг с другом. Мистер Дурсль пришел в ярость, увидев, что некоторые из них совсем не молоды, — подумать только, один из мужчин выглядел даже старше него, а позволил себе облачиться в изумрудно-зеленую мантию! Ну и тип! Но тут мистера Дурсля осенила мысль, что этинепонятные личности наверняка всего лишь собирают пожертвования или что-нибудь в этом роде… Так онои есть! Стоявшие в пробке машины наконец тронулись с места, и несколько минут спустя мистер Дурсль въехал на парковку фирмы «Граннингс». Его голова снова была забита дрелями. Кабинет мистера Дурсля находился на девятом этаже, где он всегда сидел спиной к окну. Предпочитай он сидеть лицом к окну, ему, скорее всего, трудно было бы этим утром сосредоточиться на дрелях. Но он сидел к окну спиной и не видел пролетающих сов — подумать только, сов, летающих не ночью, когда им и положено, а средь бела дня! И это уже не говоря о том, что совы — лесные птицы, и в городах, тем более таких больших, как Лондон, не живут. В отличие от мистера Дурсля, находившиеся на улице люди отлично видели этих сов, стремительно пролетающих мимо них одна за другой, и широко раскрывали рты от удивления и показывали на них пальцами. Большинство этих людей в жизни своей не видели ни единой совы, даже в ночное время.`)
-
-    console.log(textPage)
 
     const controlData = [
         {textLabel: 'Текст в 2 колонки', value: column, setValue: setСolumn, max: '0', dot: false},
@@ -73,37 +70,48 @@ const ReaderBook = () => {
     const dataColor = [{color: '#A5D5FF'}, {color: '#FFE371'}, {color: '#FED3CA'}, {color: '#B8DF70'},]
 
 
-    const [arrayQuotes, setArrayQuotes] = useState([{text:'Мистер и миссис Дурсль проживали в доме', color: '#FFE371'}])
+    const [arrayQuotes, setArrayQuotes] = useState([
+        {text: 'юди. Уж от кого-кого, а от них никак нельзя', color: '#FFE371'},
+        {text: 'Дурсль возглавлял фирму под названием «Граннингс», которая специализировалась на', color: '#FED3CA'},
+        {text: 'сли о том, что скажут соседи, если на Тисовую улицу пожалуют Поттеры. Дурсли знали, что у Поттеров тоже есть маленький сын,', color: '#B8DF70'},
+    ])
 
-    const getTextselection = (quotes = false) => {
-        // selectText
-        // console.log('prevvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv')
-        // const positionText = textPage.indexOf(selectText)
-        // const textWithMark = textPage.slice(0, positionText)
-        // const markText = `<mark ref={test} style="background-color: ${colorSelectText}">${textPage.slice(positionText, positionText + selectText.length)}</mark>`
-        // const remainderText = textPage.slice(textPage.slice(0, positionText).length + selectText.length)
-        // const lastPieceTextWithMark = textWithMark + markText + remainderText
-        // // .replace(/<\/?[^>]+(>|$)/g, '')
-        // setTextPage(lastPieceTextWithMark)
+    const getTextselection = (arrayQuotes, textBooks) => {
+        let newTextBooks = textBooks
 
-       return (
-           <>
-               <p   className={styles.containerTextMain}
-                    style={{
-                        fontSize: `${Number(fontSize) + 16}px`,
-                        lineHeight: Number(line) === 2 ?
-                            '22px' : Number(line) === 1 ?
-                                '21px' : Number(line) === 0 ?
-                                    '18px' : Number(line) === 3 ?
-                                        '24px' : '26px',
-                        fontFamily: font
-                    }}>
-                   {!quotes && textPage}
-               </p>
-           </>
-       )
+        function generateRandomClass() {
+            let text = "";
+            const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+            for (let i = 0; i < 8; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
+
+        function treatmentSelectionText(selectText, color, textBooks) {
+            const positionText = textBooks.indexOf(selectText)
+            const textWithMark = textBooks.slice(0, positionText)
+            const markText = `<mark class=${generateRandomClass()} style="background-color: ${color}">${textBooks.slice(positionText, positionText + selectText.length)}</mark>`
+            const remainderText = textBooks.slice(textBooks.slice(0, positionText).length + selectText.length)
+            const lastPieceTextWithMark = textWithMark + markText + remainderText
+            newTextBooks = lastPieceTextWithMark
+            return lastPieceTextWithMark
+        }
+
+        if (arrayQuotes) {
+            for(let i = 0; i < arrayQuotes.length; i++) {
+                treatmentSelectionText(arrayQuotes[i].text, arrayQuotes[i].color, newTextBooks)
+            }
+            setTextPage(newTextBooks)
+            // .replace(/<\/?[^>]+(>|$)/g, '')
+
+        }
     }
+
+    useEffect(() => {
+        getTextselection(arrayQuotes, textPage)
+    }, [])
 
 
     return (
@@ -136,7 +144,7 @@ const ReaderBook = () => {
                     <div className={styles.control}>
                         {controlData.map(({textLabel, labelOne, labelSecond, value, setValue, max, dot}, i) => {
                             return i === 0 || i === 6 ?
-                                <div className={styles.controlBlock} key={textLabel}>
+                                <div className={styles.controlBlock}>
                                     <div className={styles.wrapSwitch}>
                                         <span>{textLabel}</span>
                                         <input className={styles.switch}
@@ -161,7 +169,7 @@ const ReaderBook = () => {
                                             <div
                                                 className={classnames(styles.fontDropDown, {[styles.fontDropDownActive]: dropFont})}>
                                                 {dataDropDownFonts.map(({text}) => (
-                                                    <button key={text} style={{color: font === text && '#ff781d'}}
+                                                    <button style={{color: font === text && '#ff781d'}}
                                                             onClick={() => setFont(text)} type='button'>
                                                         {text}
                                                     </button>
@@ -190,7 +198,7 @@ const ReaderBook = () => {
             <div
                 onMouseUp={(e) => {
                     setPositionPopUp([{x: e.nativeEvent.layerX, y: e.nativeEvent.layerY}])
-                    console.log(e.nativeEvent)
+                    // console.log(e.nativeEvent)
                 }}
                 style={{
                     maxWidth: Number(Fields) === 2 ?
@@ -203,33 +211,31 @@ const ReaderBook = () => {
                 <h1>Гарри Поттер и философский камень</h1>
                 <span>Джоан Роулинг</span>
                 <h3>Глава 1. Мальчик, который выжил</h3>
-                {/*<p*/}
-                {/*    className={styles.containerTextMain}*/}
-                {/*    style={{*/}
-                {/*        fontSize: `${Number(fontSize) + 16}px`,*/}
-                {/*        lineHeight: Number(line) === 2 ?*/}
-                {/*            '22px' : Number(line) === 1 ?*/}
-                {/*                '21px' : Number(line) === 0 ?*/}
-                {/*                    '18px' : Number(line) === 3 ?*/}
-                {/*                        '24px' : '26px',*/}
-                {/*        fontFamily: font*/}
-                {/*    }}*/}
+                <p
+                    className={styles.containerTextMain}
+                    style={{
+                        fontSize: `${Number(fontSize) + 16}px`,
+                        lineHeight: Number(line) === 2 ?
+                            '22px' : Number(line) === 1 ?
+                                '21px' : Number(line) === 0 ?
+                                    '18px' : Number(line) === 3 ?
+                                        '24px' : '26px',
+                        fontFamily: font
+                    }}
 
-                {/*    onMouseUp={(e) => {*/}
-                {/*        let selectText = window.getSelection().toString()*/}
-                {/*        if (selectText.length > 0) {*/}
-                {/*            setCurrentSelectionText(selectText)*/}
-                {/*            getTextselection(selectText)*/}
-                {/*        }*/}
-                {/*    }} dangerouslySetInnerHTML={{__html: `${textPage}`}}*/}
-                {/*/>*/}
-
-                {getTextselection()}
+                    onMouseUp={(e) => {
+                        let selectText = window.getSelection().toString()
+                        if (selectText.length > 0) {
+                            setCurrentSelectionText(selectText)
+                            getTextselection(selectText)
+                        }
+                    }} dangerouslySetInnerHTML={{__html: `${textPage}`}}
+                />
 
                 <div
                     onMouseUp={e => {
                         e.stopPropagation()
-                        console.log('qweqweqweqweqweqwe')
+
                     }}
                     style={{top: `${positionPopUp[0].y}px`, left: `${positionPopUp[0].x}px`}}
                     className={styles.popUpAddQuotes}>
@@ -302,12 +308,11 @@ const ReaderBook = () => {
                     <div className={styles.selectColor}>
                         {dataColor.map(({color}) => (
                             <button
-                                key={color}
                                 id={color}
                                 onClick={() => {
                                     {
                                         setColorSelectText(color)
-                                        console.log(2)
+
                                         getTextselection(currentSelectionText)
                                     }
                                 }}
