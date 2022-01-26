@@ -13,6 +13,8 @@ import Breadcrumbs from "../../BreadCrumps/BreadCrumps";
 
 const data = [
 	{
+		title: 'Популярные',
+		defaultValue: 3,
 		options: [
 			{id: 1, title: 'Популярные', value: 3},
 			{id: 2, title: 'Высокий рейтинг', value: 3},
@@ -45,8 +47,10 @@ const Category = () => {
 				{data.map((it, index) => (
 					<Popular
 						key={index}
-						data={it.options}
-						queryName={it.queryName}
+						title={it?.title}
+						defaultValue={it?.defaultValue}
+						data={it?.options}
+						queryName={it?.queryName}
 						filterStateIdx={stateIndex}
 						elIdx={index}
 						setFilStateIdx={setStateIndex}

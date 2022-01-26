@@ -11,7 +11,7 @@ export default class BookService {
 		page = 1,
 		findByCategory = '',
 		showType = 'block',
-		sortBy = 1,
+		sortBy = 3,
 		findByAuthor = '',
 		findByPublisher = '',
 		findByTitle = '',
