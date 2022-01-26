@@ -16,9 +16,8 @@ import { ShowMenu, setBreakPoint } from './headerSlice';
 import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';
-import AvatarWithLetter from "../shared/common/AvatarWithLetter";
+import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 const Header = () => {
-
   const dispatch = useDispatch();
   const router = useRouter();
   const { showMenu, innerWidthWindow } = useSelector(
@@ -47,7 +46,7 @@ const Header = () => {
     }
     dispatch(setAuth(false));
     Cookies.remove('token');
-    localStorage.removeItem('avatarColor')
+    localStorage.removeItem('avatarColor');
   };
 
   const popularBooks = [
@@ -112,84 +111,93 @@ const Header = () => {
                 <div className={st.logo}>
                   <Logo />
                 </div>
-                <div className={st.input}>
-                  <input
-                    type="text"
-                    placeholder={
-                      innerWidthWindow >= 970
-                        ? 'Искать книги, авторов, жанры, издательства'
-                        : 'Искать книги'
-                    }
-                    className={st.inputCastom}
-                    onClick={onSearchInput}
-                  />
-                  <FiSearch
-                    className={classNames({
-                      [st.iconSearch]: !showMenu,
-                      [st.active]: showMenu,
-                    })}
-                  />
-                  {showMenu && (
-                    <span className={st.closeIcon} onClick={closeModal}>
-                      <Close />
-                    </span>
-                  )}
-                </div>
-                <div className={st.menu}>
-                  <FiBell className={st.iconBell} />
-                  {isAuth ? (
-                    <div
-                      onClick={() => setFlagSettings(!flagSettings)}
-                      className={st.avatarUser}
-                    >
-                      <div>
-                        {profile?.avatar ?
-                          <Image
-                            src={profile?.avatar}
-                            alt="Avatar"
-                            width="40"
-                            height="40"
-                            placeholder="blur"
-                            blurDataURL="/images/blur.jpg"
-                          /> :
-                          <AvatarWithLetter
-                            letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
-                            width={40}
-                            id={profile?.id}
-                            isProfile
-                          />
-                        }
-                      </div>
+                <div className={st.inputMenu}>
+                  <div className={st.input}>
+                    <input
+                      type="text"
+                      placeholder={
+                        innerWidthWindow >= 970
+                          ? 'Искать книги, авторов, жанры, издательства'
+                          : 'Искать книги'
+                      }
+                      className={st.inputCastom}
+                      onClick={onSearchInput}
+                    />
+                    <FiSearch
+                      className={classNames({
+                        [st.iconSearch]: !showMenu,
+                        [st.active]: showMenu,
+                      })}
+                    />
+                    {showMenu && (
+                      <span className={st.closeIcon} onClick={closeModal}>
+                        <Close />
+                      </span>
+                    )}
+                  </div>
+                  <div className={st.menu}>
+                    <FiBell className={st.iconBell} />
+                    {isAuth ? (
                       <div
-                        className={classNames(st.settingAccount, {
-                          [st.settingAccountActive]: flagSettings,
-                        })}
+                        onClick={() => setFlagSettings(!flagSettings)}
+                        className={st.avatarUser}
                       >
-                        <ul>
-                          <li>
-                            <Setting />
-                            <Link href="/settings">
-                              <a>Настройки профиля</a>
-                            </Link>
-                          </li>
-                          <li onClick={logOut}>
-                            <Exit />
-                            <span>Выйти</span>
-                          </li>
-                        </ul>
+                        <div>
+                          {profile?.avatar ? (
+                            <Image
+                              src={profile?.avatar}
+                              alt="Avatar"
+                              width="40"
+                              height="40"
+                              placeholder="blur"
+                              blurDataURL="/images/blur.jpg"
+                            />
+                          ) : (
+                            <AvatarWithLetter
+                              letter={
+                                profile?.nickname?.slice(0, 1) ||
+                                profile?.name?.slice(0, 1) ||
+                                'П'
+                              }
+                              width={40}
+                              id={profile?.id}
+                              isProfile
+                            />
+                          )}
+                        </div>
+                        <div
+                          className={classNames(st.settingAccount, {
+                            [st.settingAccountActive]: flagSettings,
+                          })}
+                        >
+                          <ul>
+                            <li>
+                              <Setting />
+                              <Link href="/settings">
+                                <a>Настройки профиля</a>
+                              </Link>
+                            </li>
+                            <li onClick={logOut}>
+                              <Exit />
+                              <span>Выйти</span>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div
-                      onClick={() => setModal(!modal)}
-                      className={st.userMenu}
-                    >
-                      <div className={st.iconUser}>
-                        <User style={{ minWidth: '24px', minHeight: '24px' }} />
+                    ) : (
+                      <div
+                        onClick={() => setModal(!modal)}
+                        className={st.userMenu}
+                      >
+                        <div className={st.iconUser}>
+                          <User
+                            style={{ minWidth: '24px', minHeight: '24px' }}
+                          />
+                        </div>
+                        Войти
                       </div>
-                      Войти
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </header>
               <Menu setModal={() => setModal(!modal)} />

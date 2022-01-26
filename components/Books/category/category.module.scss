@@ -47,9 +47,9 @@
 }
 .head {
   display: flex;
-  width: calc(100% - 204px);
+  // width: calc(100% - 204px);
 
   &Active {
-    width: calc(100% - 408px);
+    // width: calc(100% - 408px);
   }
 }

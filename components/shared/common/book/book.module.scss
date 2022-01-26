@@ -203,6 +203,17 @@
 .reviewLike {
   margin-right: 26px;
 }
+.selectionDateViews {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Ubuntu, sans-serif;
+  color: $color-third;
+
+  > span {
+    margin-right: 10px;
+  }
+}
 
 @media (max-width: 1200px) {
   .mainBlock {

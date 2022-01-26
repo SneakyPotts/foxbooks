@@ -11,8 +11,6 @@
 }
 .releaseDates:hover .dropDownIcon {
   background-color: $text-hover;
-}
-.releaseDates:hover .dropDownIcon {
   stroke: $color-categories-btn;
 }
 .btn {
@@ -37,10 +35,11 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-    stroke-width: 2px;
+  stroke-width: 2px;
 
   background-color: $color-bg-icon;
   transform: rotate(180deg);
+  transition: 0.15s;
 }
 .dates {
   list-style: none;
@@ -84,4 +83,8 @@
   color: $text-hover;
   stroke: $color-categories-btn;
   background-color: $text-hover;
+  transform: rotate(0deg);
+}
+.activeBtn {
+  color: $text-hover;
 }
