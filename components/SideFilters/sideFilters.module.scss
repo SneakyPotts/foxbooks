@@ -30,6 +30,7 @@
   align-items: center;
   width: 24px;
   height: 24px;
+  stroke-width: 2px;
   border-radius: 50%;
   background-color: $color-bg-icon;
   transform: rotate(180deg);
@@ -134,7 +135,7 @@
   margin-right: 1px;
   margin-top: 10px;
   cursor: pointer;
-  transition: .15s;
+  transition: 0.15s;
   width: 11px;
   text-align: center;
 

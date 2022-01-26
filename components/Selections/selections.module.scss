@@ -10,6 +10,7 @@
 .filters {
   display: flex;
   width: calc(100% - 180px);
+  max-width: 996px;
   justify-content: space-between;
   margin: 40px 0;
 
@@ -69,7 +70,7 @@
   margin-bottom: 40px;
 }
 .banner {
-  width: 100%;
+  width: 180px;
   height: 1104px;
 }
 .pagination {

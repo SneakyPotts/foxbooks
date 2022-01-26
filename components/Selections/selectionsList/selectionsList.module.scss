@@ -2,7 +2,7 @@
 
 .selectionsSwiper {
   display: block;
-  max-width: 85%;
+  max-width: 996px;
 
   &False {
     display: none;
@@ -46,4 +46,7 @@
 .added {
   color: $color-main;
   background: $color-bg-icon;
+}
+.btnAudio {
+  top: 65px !important;
 }
