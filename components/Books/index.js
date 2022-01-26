@@ -10,7 +10,7 @@ import {useSelector} from "react-redux";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 
 const Books = () => {
-	const { categories } = useSelector(state => state.home)
+	const { categories } = useSelector(state => state.book)
 
 	return (
 		<div className={classnames('container', st.abContainer)}>

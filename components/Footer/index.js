@@ -10,7 +10,6 @@ import classNames from 'classnames';
 const Footer = () => {
   const router = useRouter();
 
-  console.log(router);
   return (
     <>
       {!router.pathname.includes('reader') &&

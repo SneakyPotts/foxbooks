@@ -26,6 +26,10 @@
   &:hover {
     color: $text-hover;
   }
+
+  a {
+    display: block;
+  }
 }
 .categ:not(:last-child) {
   margin-bottom: 10px;

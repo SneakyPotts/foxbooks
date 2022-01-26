@@ -4,7 +4,7 @@ import css from './categories.module.scss';
 import {useSelector} from "react-redux";
 
 const Categories = () => {
-	const { categories } = useSelector(state => state.home)
+	const { categories } = useSelector(state => state.book)
 
 	return (
 		<>
@@ -13,7 +13,9 @@ const Categories = () => {
 				<ul className={css.categList}>
 					{categories?.map(({ id, name }) => (
 						<li key={id} className={css.categ}>
-							{name}
+							<Link href={`/books/${id}?showType=block&sortBy=3`}>
+								{name}
+							</Link>
 						</li>
 					))}
 				</ul>

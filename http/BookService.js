@@ -2,8 +2,14 @@ import axios from "axios";
 import api, { API_URL } from ".";
 
 export default class BookService {
+	static async getCategories() {
+		return axios.get(`${API_URL}/genres`)
+	}
+
 	static async getBooks({
+		type = 'books',
 		page = 1,
+		findByCategory = '',
 		showType = 'block',
 		sortBy = 1,
 		findByAuthor = '',
@@ -14,7 +20,9 @@ export default class BookService {
 		alphabetTitleIndex = ''
 	}) {
 		return axios.get(`${API_URL}/books?
+			${type && `&type=${type}`}
 			${page && `&page=${page}`}
+			${findByCategory && `&findByCategory=${findByCategory}`}
 			${showType && `&showType=${showType}`}
 			${sortBy && `&sortBy=${sortBy}`}
 			${findByAuthor && `&findByAuthor=${findByAuthor}`}
