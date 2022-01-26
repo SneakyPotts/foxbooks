@@ -23,19 +23,22 @@ const AvatarWithLetter = ({letter, width, id, isProfile}) => {
 	useEffect(() => {
 		if(isProfile) {
 			const storageColor = localStorage.getItem('avatarColor')
-			if(storageColor) {
+			if(storageColor && storageColor !== 'undefined') {
 				setColor(storageColor)
 			} else if(id) {
 				setColor(colors[getIndex()])
-				localStorage.setItem('avatarColor', color)
+				localStorage.setItem('avatarColor', colors[getIndex()])
 			}
 		} else if(id) {
-			setColor(colors[getIndex(i)])
+			setColor(colors[getIndex()])
 		}
 	}, [id])
 
 	return (
-		<span className={styles.wrapper} style={{background: color, width, height: width}}>
+		<span
+			className={styles.wrapper}
+			style={{background: color, width, height: width, fontSize: `${width * 0.64}px`}}
+		>
 			{letter}
 		</span>
 	);

@@ -11,7 +11,7 @@ const Breadcrumbs = ({ data }) => {
 						<a className={st.link}>Главная</a>
 					</Link>
 				</li>
-				<li className={st.dot}></li>
+				<li className={st.dot} />
 
 				{data?.map(({path, title}, index) => {
 					return (
@@ -23,7 +23,7 @@ const Breadcrumbs = ({ data }) => {
 									</Link>
 								</li>
 
-								{data?.length - 1 !== index && <li>•</li>}
+								{data?.length - 1 !== index && <li className={st.dot} />}
 							</React.Fragment>
 						)
 					);
