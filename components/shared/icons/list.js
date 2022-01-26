@@ -1,6 +1,6 @@
 import React from 'react';
 
-const list = () => {
+const List = () => {
   return (
     <svg
       width="20"
@@ -55,4 +55,4 @@ const list = () => {
   );
 };
 
-export default list;
+export default List;
