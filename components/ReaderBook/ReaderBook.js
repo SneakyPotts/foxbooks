@@ -100,7 +100,7 @@ const ReaderBook = () => {
     ]
 
     const dataColor = [{color: '#A5D5FF'}, {color: '#FFE371'}, {color: '#FED3CA'}, {color: '#B8DF70'},]
-    const constantSelectText = []
+    const [listenerSelect, setListenerSelect] = useState(['kJ9O2uJo'])
 
     const getTextselection = ({arrayQuotes, textBooks, selectText = ''}) => {
         let newTextBooks = textBooks
@@ -115,7 +115,8 @@ const ReaderBook = () => {
 
         function generateSelectionText({selectText, color = '#B8DF70', textBooks, index}) {
             const uniqueClass = generateRandomClass()
-            constantSelectText.push(uniqueClass)
+            setListenerSelect(prev => [...prev, uniqueClass])
+            console.log(listenerSelect)
             const positionText = textBooks.indexOf(selectText)
             const textWithMark = textBooks.slice(0, positionText)
             const markText = `<mark class=${uniqueClass} data-index=${index} style="background-color: ${color}">${textBooks.slice(positionText, positionText + selectText.length)}</mark>`
@@ -123,6 +124,15 @@ const ReaderBook = () => {
             const lastPieceTextWithMark = textWithMark + markText + remainderText
             newTextBooks = lastPieceTextWithMark
             return lastPieceTextWithMark
+        }
+
+        function addListenerOnSelect(elem) {
+            if(listenerSelect.indexOf(elem) !== -1) {
+                console.log(document.querySelector(`.${elem}`))
+                document.querySelector(`.${elem}`).addEventListener('click', function () {
+                    console.log(1111111)
+                })
+            }
         }
 
         if (arrayQuotes) {
@@ -140,6 +150,7 @@ const ReaderBook = () => {
         if (selectText.length > 0) {
             generateSelectionText({selectText: selectText, textBooks: newTextBooks})
             setTextPage(newTextBooks)
+            addListenerOnSelect(listenerSelect.at(-1))
         }
     }
 
