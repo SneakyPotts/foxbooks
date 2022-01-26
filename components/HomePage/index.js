@@ -3,7 +3,7 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import { useSelector } from 'react-redux';
-import ArrowRight from '../shared/icons/ArrowRight';
+import ArrowRight from '../../public/chevron-right.svg';
 import Categories from './Categories/index';
 import Alphabet from './Alphabet/Alphabet';
 import Hero from './Hero/Hero';
