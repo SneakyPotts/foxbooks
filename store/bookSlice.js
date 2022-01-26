@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import BookService from "../http/BookService";
 
 const initialState = {
+	categories: [],
 	books: [],
 	book: [],
 	audioFlag: false,
@@ -21,6 +22,9 @@ export const bookSlice = createSlice({
 	name: 'book',
 	initialState,
 	reducers: {
+		setCategories: (state, action) => {
+			state.categories = action.payload
+		},
 		setBooks: (state, action) => {
 			state.books = action.payload
 		},
@@ -46,6 +50,6 @@ export const bookSlice = createSlice({
 	}
 });
 
-export const { setBooks, setBook, audioBook } = bookSlice.actions;
+export const { setCategories, setBooks, setBook, audioBook } = bookSlice.actions;
 
 export default bookSlice.reducer;

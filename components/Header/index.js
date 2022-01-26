@@ -2,7 +2,7 @@ import { FiSearch, FiBell } from 'react-icons/fi';
 import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Menu from './Menu/Menu';
@@ -16,14 +16,16 @@ import { ShowMenu, setBreakPoint } from './headerSlice';
 import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';
-
+import AvatarWithLetter from "../shared/common/AvatarWithLetter";
 const Header = () => {
+
   const dispatch = useDispatch();
   const router = useRouter();
   const { showMenu, innerWidthWindow } = useSelector(
     state => state.headerSlice
   );
   const { isAuth } = useSelector(state => state.auth);
+  const { profile } = useSelector(state => state.profile);
   const [modal, setModal] = useState(false);
   const [flagSettings, setFlagSettings] = useState(false);
 
@@ -45,6 +47,7 @@ const Header = () => {
     }
     dispatch(setAuth(false));
     Cookies.remove('token');
+    localStorage.removeItem('avatarColor')
   };
 
   const popularBooks = [
@@ -99,7 +102,6 @@ const Header = () => {
     });
   }, []);
 
-  console.log(innerWidthWindow);
   return (
     <>
       {!router.pathname.includes('reader') &&
@@ -141,14 +143,22 @@ const Header = () => {
                       className={st.avatarUser}
                     >
                       <div>
-                        <Image
-                          src="/horizontalBookCovers/book.png"
-                          alt=""
-                          width="40"
-                          height="40"
-                          placeholder="blur"
-                          blurDataURL="/images/blur.jpg"
-                        />
+                        {profile?.avatar ?
+                          <Image
+                            src={profile?.avatar}
+                            alt="Avatar"
+                            width="40"
+                            height="40"
+                            placeholder="blur"
+                            blurDataURL="/images/blur.jpg"
+                          /> :
+                          <AvatarWithLetter
+                            letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
+                            width={40}
+                            id={profile?.id}
+                            isProfile
+                          />
+                        }
                       </div>
                       <div
                         className={classNames(st.settingAccount, {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useMemo, useState} from 'react';
 import classnames from 'classnames';
 import Switcher from '../../switcher/Switcher';
 import Book from '../../shared/common/book';
@@ -28,13 +28,20 @@ const Category = () => {
 	const [stateIndex, setStateIndex] = useState(null);
 	const [flagSwitcher, setFlagSwitcher] = useState(router.query['showType'] === 'list');
 
-	const { books } = useSelector(state => state.book)
+	const { categories, books } = useSelector(state => state.book)
+
+	const currentCategory = categories?.find(i => i?.id == router?.query?.id)?.name
 
 	return (
 		<div className="container">
-			<Breadcrumbs data={[{path: '/books?sortBy=1', title: 'Книги'}]} />
+			<Breadcrumbs
+				data={[
+					{path: '/books?sortBy=1', title: 'Книги'},
+					{path: router.asPath, title: currentCategory}
+				]}
+			/>
 			<div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
-				<h2 className={st.title}>Category</h2>
+				<h2 className={st.title}>{currentCategory}</h2>
 				{data.map((it, index) => (
 					<Popular
 						key={index}
