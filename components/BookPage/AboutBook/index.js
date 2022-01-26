@@ -13,7 +13,7 @@ import Headphones from '../../shared/icons/headphones';
 import Basket from '../../../public/trash.svg';
 
 import st from './aboutBook.module.scss';
-import {setBookRating} from "../../../store/bookSlice";
+import {setBookRating, setBookStatus} from "../../../store/bookSlice";
 import {useRouter} from "next/router";
 
 const AboutBook = ({ book, audio }) => {
@@ -38,16 +38,11 @@ const AboutBook = ({ book, audio }) => {
 	];
 
 	const dataOptions = [
-		{ id: '0', svg: <BookMark />, option: 'Хочу прочитать', link: '#' },
-		{ id: '1', svg: <OpenBook />, option: 'Читаю', link: '#' },
-		{ id: '2', svg: <Flag />, option: 'Прочитано', link: '#' },
-		{ id: '3', svg: <Add />, option: 'В мои подборки', link: '/mybooks' },
-		{
-			id: '4',
-			svg: <Basket />,
-			option: 'Удалить из моих книг',
-			link: '#',
-		},
+		{ id: '0', svg: <BookMark />, option: 'Хочу прочитать', value: 1 },
+		{ id: '1', svg: <OpenBook />, option: 'Читаю', value: 2 },
+		{ id: '2', svg: <Flag />, option: 'Прочитано', value: 3 },
+		{ id: '3', svg: <Add />, option: 'В мои подборки' },
+		{ id: '4', svg: <Basket />, option: 'Удалить из моих книг' },
 	];
 
 	const dispatch = useDispatch()
@@ -57,23 +52,18 @@ const AboutBook = ({ book, audio }) => {
 
 	const [openMenu, setOpenMenu] = useState(false);
 	const [showPopUp, setShowPopUp] = useState(false);
-	const [optionIndex, setOptioIndex] = useState(null);
 
-	const handleDotsClick = () => {
-		setOpenMenu(!openMenu);
-	};
-
-	const setTimeOut = () => {
-		setTimeout(() => setShowPopUp(false), 5000);
-	};
-
-	const handleClick = index => {
-		if (index === 0) {
+	const showPopup = res => {
+		if (res.meta.requestStatus === "fulfilled") {
 			setShowPopUp(true);
-			setTimeOut();
+			setTimeout(() => setShowPopUp(false), 5000);
 		}
-		setOptioIndex(index);
-	};
+	}
+
+	const changeBookStatus = value => {
+		setOpenMenu(false)
+		dispatch(setBookStatus({id: router.query?.id, value})).then(res => showPopup(res))
+	}
 
 	const setRating = value => {
 		dispatch(setBookRating({id: router.query.id, value}))
@@ -142,25 +132,21 @@ const AboutBook = ({ book, audio }) => {
 									className={classnames(st.dotsButton, {
 										[st.activBtn]: openMenu,
 									})}
-									onClick={handleDotsClick}
+									onClick={() => setOpenMenu(!openMenu)}
 								>
 									<Dots />
 								</span>
 								{openMenu && (
 									<ul className={st.menu}>
 										{dataOptions.map((it, index) => (
-											<Link href={it.link} key={it.id}>
-												<a
-													onClick={() => handleClick(index)}
-													className={classnames({
-														[st.menuOption]: optionIndex === index,
-													})}
-												>
-													{' '}
-													{it.svg}
-													<span>{it.option}</span>
-												</a>
-											</Link>
+											<li
+												key={it?.id}
+												onClick={() => changeBookStatus(it?.value)}
+												className={st.menuItem}
+											>
+												{it?.svg}
+												<span>{it?.option}</span>
+											</li>
 										))}
 									</ul>
 								)}

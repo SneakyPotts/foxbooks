@@ -210,7 +210,7 @@ const Header = () => {
                             className={st.dropDownContentPopularItem}
                           >
                             <Image
-                              src={it.img}
+                              src={it?.img}
                               width={124}
                               height={187}
                               // layout="fill"

@@ -13,7 +13,7 @@ const Categories = () => {
 				<ul className={css.categList}>
 					{categories?.map(({ id, name }) => (
 						<li key={id} className={css.categ}>
-							<Link href={`/books/${id}?showType=block&sortBy=3`}>
+							<Link href={`/books/${id}?type=books&showType=block&sortBy=3`}>
 								{name}
 							</Link>
 						</li>

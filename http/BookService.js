@@ -38,6 +38,10 @@ export default class BookService {
 		return axios.get(`${API_URL}/books/${id}`)
 	}
 
+	static async setBookStatus({id, value}) {
+		return api.put(`${API_URL}/books/save?book_id=${id}&status=${value}`)
+	}
+
 	static async setBookRating({id, value}) {
 		return api.post(`${API_URL}/ratings?book_id=${id}&rating=${value}`)
 	}

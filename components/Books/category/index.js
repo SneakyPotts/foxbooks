@@ -38,7 +38,7 @@ const Category = () => {
 		<div className="container">
 			<Breadcrumbs
 				data={[
-					{path: '/books?sortBy=1', title: 'Книги'},
+					{path: '/books?type=books&sortBy=1', title: 'Книги'},
 					{path: router.asPath, title: currentCategory}
 				]}
 			/>
@@ -76,7 +76,12 @@ const Category = () => {
 								})}
 							>
 								{books?.data?.map(book => (
-									<Book key={book.id} flagSwitcher={flagSwitcher} book={book} />
+									<Book
+										key={book.id}
+										audio={router.query?.type === 'audioBooks'}
+										flagSwitcher={flagSwitcher}
+										book={book}
+									/>
 								))}
 							</div>
 							<MyPagination lastPage={books?.last_page} />

@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
 		const { email, token, id } = router.query;
 
 		if (storageToken) {
-		  dispatch(getProfile())
+		  // dispatch(getProfile())
 			dispatch(setAuth(true));
 		} else if (email && token) {
 			dispatch(verifyEmail({ email, token }));
