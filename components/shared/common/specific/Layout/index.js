@@ -10,6 +10,7 @@ import {
 } from '../../../../../store/authSlice';
 import Cookies from 'js-cookie';
 import {getProfile} from "../../../../../store/profileSlice";
+import AudioPlayer from "../../../../AudioPlayer";
 
 const Layout = ({ children }) => {
 	const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Layout = ({ children }) => {
 		<>
 			<Header />
 			{children}
+			{/*<AudioPlayer />*/}
 			<Footer />
 		</>
 	);

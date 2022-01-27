@@ -20,7 +20,7 @@ export default class BookService {
 		alphabetTitleIndex = ''
 	}) {
 		return axios.get(`${API_URL}/books?
-			${type && `&type=${type}`}
+			${type && `type=${type}`}
 			${page && `&page=${page}`}
 			${findByCategory && `&findByCategory=${findByCategory}`}
 			${showType && `&showType=${showType}`}

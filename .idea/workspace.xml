@@ -2,17 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
+      <change afterPath="$PROJECT_DIR$/components/AudioPlayer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerBack.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerNext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/SelectionService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/selectionSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Categories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Categories/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/selections/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/[id]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/shared/icons" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -60,6 +65,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\library-next\components\shared\icons" />
       <recent name="D:\library-next\store" />
       <recent name="D:\library-next\http" />
     </key>
@@ -99,7 +105,7 @@
       <workItem from="1642602830087" duration="33045000" />
       <workItem from="1642781235686" duration="16944000" />
       <workItem from="1643105993313" duration="11255000" />
-      <workItem from="1643191269639" duration="18644000" />
+      <workItem from="1643191269639" duration="31095000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -192,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643205988763</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="change book status">
+      <created>1643213168174</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643213168174</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +267,8 @@
     <MESSAGE value="push" />
     <MESSAGE value="avatar" />
     <MESSAGE value="ome page filters" />
-    <option name="LAST_COMMIT_MESSAGE" value="ome page filters" />
+    <MESSAGE value="change book status" />
+    <option name="LAST_COMMIT_MESSAGE" value="change book status" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

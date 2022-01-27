@@ -41,11 +41,11 @@ const SideFilters = () => {
 			alphabetQuery: 'alphabetTitleIndex'
 		},
 	]);
-
+/*
 	const options = [
 		{ id: '0', option: 'Бестселлеры' },
 		{ id: '1', option: 'Новинки' },
-	];
+	];*/
 
 	const toggle = e => {
 		e.stopPropagation();
@@ -80,7 +80,7 @@ const SideFilters = () => {
 
 	return (
 		<div className={st.container}>
-			<div className={st.filterStatus}>
+			{/*<div className={st.filterStatus}>
 				<button className={st.btn} onClick={toggle}>
           Статус
 					<span className={classnames(st.dropDownIcon, { [st.up]: menu })}>
@@ -112,7 +112,7 @@ const SideFilters = () => {
 						</li>
 					))}
 				</ul>
-			</div>
+			</div>*/}
 			<div className={st.inputFilters}>
 				<ul className={st.filters}>
 					{filters?.map((it, index) => (

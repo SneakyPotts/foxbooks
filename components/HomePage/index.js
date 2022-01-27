@@ -14,6 +14,7 @@ import books from '../data/books.json';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import css from './home.module.scss';
+import {useRef} from "react";
 
 const HomeView = () => {
   const { innerWidthWindow } = useSelector(state => state.headerSlice);
