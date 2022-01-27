@@ -109,15 +109,22 @@ const Book = ({
           })}
         >
           <div className={st.stars}>
-            <Stars value={book?.rates_count} />
+            {similar ? (
+              <div className={st.starsBlock}>
+                <Stars count={1} value={book?.rates_count} />
+                <span>1{book?.rates_count}</span>
+              </div>
+            ) : (
+              <Stars value={book?.rates_count} />
+            )}
           </div>
           <div className={st.selectionDateViews}>
             <span>456</span>
             <Eye />
           </div>
           {/* <div className={classnames({ [st.raitingAmount]: flagSwitcher })}>
-            <span>{book?.rates_avg}</span>
-            {!similar && <span>({book?.book_likes_count})</span>}
+            <span>1{book?.rates_avg}</span>
+            {!similar && <span>(2{book?.book_likes_count})</span>}
           </div> */}
         </div>
         {noLinks ? (

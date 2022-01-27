@@ -12,9 +12,6 @@
   flex-direction: column;
   max-width: calc(100% - 384px);
 }
-.authorImg {
-  // margin-bottom: 118px;
-}
 .mainBlok {
   margin-left: 24px;
   margin-right: 24px;
@@ -37,16 +34,20 @@
     font-size: 16px;
     line-height: 1.125;
     margin-bottom: 20px;
-    color: $color-main;
+    color: $color-third;
   }
 
   &Btn {
+    font-family: Ubuntu;
+    font-size: 14px;
+    line-height: 1.43;
     width: 200px;
     height: 40px;
     margin-bottom: 16px;
     background: $text-hover;
     color: $color-categories-btn;
     border-radius: 5px;
+
     &:hover {
       background-color: $accent-hover;
     }
@@ -87,6 +88,7 @@
   line-height: 1.25;
   margin-bottom: 42px;
   color: $color-main;
+
   &:hover {
     color: $text-hover;
   }
@@ -136,16 +138,14 @@
       list-style: none;
       max-width: 129px;
       min-width: 129px;
-      // height: 292px;
 
       &Item {
         max-width: 129px;
         min-width: 129px;
-        // max-height: 195px;
+
         > div:first-child {
           max-width: 129px;
           min-width: 129px;
-          // max-height: 195px;
         }
       }
 
@@ -175,42 +175,41 @@
   margin-top: 62px;
   margin-bottom: 56px;
 }
-.compilTitle {
-  font-family: Merriweather;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 1.25;
-  margin-bottom: 40px;
-  color: $color-main;
-}
-.compilBookCover {
-  position: relative;
-  border-radius: 5px;
-
-  &Stat {
-    font-size: 12px;
-    line-height: 1.167;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    width: 62px;
-    height: 24px;
-    padding: 5px 10px;
-    color: $color-main;
-    background-color: $color-categories-btn;
-    border-radius: 58px;
+.compil {
+  &Block {
+    display: flex;
+    justify-content: space-between;
   }
-}
-.compilBookTitle {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.143;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  margin-top: 10px;
-  color: $color-main;
+
+  &BookCover {
+    position: relative;
+    border-radius: 5px;
+
+    &Stat {
+      font-size: 12px;
+      line-height: 1.167;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      width: 62px;
+      height: 24px;
+      padding: 5px 10px;
+      color: $color-main;
+      background-color: $color-categories-btn;
+      border-radius: 58px;
+    }
+  }
+  &BookTitle {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.143;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-top: 10px;
+    color: $color-main;
+  }
 }
 .btnCompil {
   top: 29px;

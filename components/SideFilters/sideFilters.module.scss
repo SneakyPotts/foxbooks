@@ -78,7 +78,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 3px solid$color-categories-btn;
+
   background-color: transparent;
   box-shadow: 0 0 0 2px $color-third;
 }
@@ -87,6 +87,7 @@
 }
 .radioActive {
   background-color: $color-main;
+  border: 3px solid $color-categories-btn;
   box-shadow: 0 0 0 2px $color-main;
 }
 .dropText {

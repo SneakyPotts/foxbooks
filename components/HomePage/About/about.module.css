@@ -52,6 +52,7 @@
 
   background-color: #f1f1f1;
   transform: rotate(180deg);
+  transition: 0.15s;
 }
 .active {
   border-bottom: 1px solid #ff781d;
