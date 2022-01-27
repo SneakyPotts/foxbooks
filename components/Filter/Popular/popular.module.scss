@@ -86,10 +86,14 @@
   }
 }
 .down {
+    stroke-width: 2px;
+
   transform: rotate(180deg);
   transition: 0.15s;
 }
 .up {
+    stroke-width: 2px;
+
   transform: rotate(0deg);
 }
 .dropText {

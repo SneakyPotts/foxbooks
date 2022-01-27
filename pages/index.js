@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import Home from '../components/HomePage';
-import HomeService from '../http/HomeService';
-import { useDispatch } from 'react-redux';
-import { setCategories } from '../store/homeSlice';
 import BookService from '../http/BookService';
-import { setBooks } from '../store/bookSlice';
+import { useDispatch } from 'react-redux';
+import {setBooks, setCategories} from '../store/bookSlice';
 
 export default function App(props) {
 	const dispatch = useDispatch();
@@ -33,7 +31,7 @@ export async function getServerSideProps ({ req, query }) {
 	// const { cookies } = req
 	// const token = cookies.token
 
-	const categories = await HomeService.getHomeCategories()
+	const categories = await BookService.getCategories()
 	const books = await BookService.getBooks(query)
 
 	// let profile = {}

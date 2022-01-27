@@ -20,7 +20,7 @@
 
     > svg {
       stroke: $color-third;
-      transition: .15s;
+      transition: 0.15s;
     }
 
     &:hover {
@@ -44,9 +44,11 @@
   .iconList {
     top: 6px;
     left: 12px;
+    stroke-width: 2px;
   }
   .iconGrid {
     top: 6px;
     right: 12px;
+    stroke-width: 2px;
   }
 }

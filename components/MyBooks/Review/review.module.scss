@@ -169,6 +169,8 @@
   stroke: $color-categories-btn;
 }
 .down {
+    stroke-width: 2px;
+
   transform: rotate(180deg);
 }
 .up {

@@ -72,6 +72,7 @@ ol[class] {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  stroke-width: 2px;
   stroke: #0e263e;
   border: 1px solid #f1f1f1;
   background: rgba(255, 255, 255, 0.5);
@@ -96,6 +97,8 @@ ol[class] {
   height: 50px;
   border-radius: 50%;
   transform: rotate(180deg);
+  stroke-width: 2px;
+
   stroke: #0e263e;
   border: 1px solid #f1f1f1;
   background: rgba(255, 255, 255, 0.5);

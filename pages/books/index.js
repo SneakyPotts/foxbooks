@@ -2,9 +2,7 @@ import React from 'react';
 import BooksComponent from '../../components/Books';
 import BookService from "../../http/BookService";
 import {useDispatch} from "react-redux";
-import {setBooks} from "../../store/bookSlice";
-import HomeService from "../../http/HomeService";
-import {setCategories} from "../../store/homeSlice";
+import {setBooks, setCategories} from "../../store/bookSlice";
 
 const Books = (props) => {
 	const dispatch = useDispatch()
@@ -22,7 +20,7 @@ const Books = (props) => {
 export default Books;
 
 export async function getServerSideProps ({ query }) {
-	const categories = await HomeService.getHomeCategories()
+	const categories = await BookService.getCategories()
 	const books = await BookService.getBooks(query)
 
 	return {
