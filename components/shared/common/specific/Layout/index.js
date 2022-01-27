@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
 		<>
 			<Header />
 			{children}
-			{/*<AudioPlayer />*/}
+			<AudioPlayer />
 			<Footer />
 		</>
 	);
