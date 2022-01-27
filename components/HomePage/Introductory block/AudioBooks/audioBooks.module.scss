@@ -1,4 +1,4 @@
-@import "styles/variables.scss";
+@import 'styles/variables.scss';
 
 .container {
   margin-bottom: 60px;
@@ -41,5 +41,9 @@
 }
 
 .positionButton {
-  top: 65px!important;
+  top: 65px !important;
+}
+
+.slideAudio {
+  max-width: 180px;
 }

@@ -3,6 +3,7 @@ import headerSlice from '../components/Header/headerSlice';
 import authSlice from "./authSlice";
 import profileSlice from "./profileSlice";
 import bookSlice from "./bookSlice";
+import selectionSlice from "./selectionSlice";
 
 export function makeStore() {
 	return configureStore({
@@ -11,6 +12,7 @@ export function makeStore() {
 			auth: authSlice,
 			profile: profileSlice,
 			book: bookSlice,
+			selection: selectionSlice,
 		},
 	});
 }

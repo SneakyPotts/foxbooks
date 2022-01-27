@@ -1,3 +1,5 @@
+@import './../../../styles/variables';
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -15,7 +17,7 @@
   height: 32px;
   border: none;
   border-radius: 64px;
-  stroke: #0e263e;
+  stroke: $color-main;
   transition: 0.15s;
 
   & > span {
@@ -26,17 +28,17 @@
   }
 }
 .dropBtn:hover {
-  color: #0e263e;
+  color: $color-main;
   background: #f1f7ff;
-  stroke: #0e263e;
+  stroke: $color-main;
 }
 .open {
   color: #fff;
-  background: #0e263e;
+  background: $color-main;
   stroke: #fff;
 }
 .close {
-  color: #0e263e;
+  color: $color-main;
   background-color: #f1f1f1;
 }
 .dropContent {
@@ -61,11 +63,11 @@
 .dropContent::-webkit-scrollbar-thumb {
   margin-top: 5px;
   height: 120px;
-  background-color: #0e263e;
+  background-color: $color-main;
   border: 1px solid #f1f1f1;
   border-radius: 37px;
 }
-.dropLink {
+.dropItem {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -74,20 +76,40 @@
   color: #4f4f4f;
   cursor: pointer;
   transition: 0.15s;
-}
-.dropLink:not(:last-child) {
-  margin-bottom: 15px;
-}
-.dropLink:hover {
-  color: #0e263e;
 
-  .radio {
-    box-shadow: 0 0 0 2px #0e263e;
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  &:hover {
+    color: $color-main;
+
+    .radio {
+      box-shadow: 0 0 0 2px $color-main;
+    }
   }
 }
-.down {
-    stroke-width: 2px;
 
+.dropWord {
+  padding-bottom: 15px;
+  flex-wrap: wrap;
+  min-width: 203px;
+
+  .dropItem {
+    display: inline-flex;
+    height: 16px;
+    flex: 1;
+    letter-spacing: 0.3em;
+    margin-bottom: 10px;
+  }
+
+  .activeWord {
+    color: $color-main;
+  }
+}
+
+.down {
+  stroke-width: 2px;
   transform: rotate(180deg);
   transition: 0.15s;
 }
@@ -111,35 +133,9 @@
   transition: 0.15s;
 }
 .radioActive {
-  background-color: #0e263e;
-  box-shadow: 0 0 0 2px #0e263e;
+  background-color: $color-main;
+  box-shadow: 0 0 0 2px $color-main;
 }
 .active {
-  color: #0e263e;
-}
-.dropLinkAuthor {
-  list-style: none;
-  // margin-right: 10px;
-  margin-bottom: 4px;
-}
-.dropLinkAuthor:hover {
-  color: #ff781d;
-}
-.dropContentAuthor {
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  padding: 30px 20px;
-  padding-bottom: -10px;
-  margin-top: 22px;
-  min-width: 237px;
-  max-width: 278px;
-  max-height: 435px;
-  background-color: #fff;
-  box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
-  border: 1px solid #f1f1f1;
-  border-radius: 10px;
+  color: $color-main;
 }

@@ -11,7 +11,7 @@ export default class BookService {
 		page = 1,
 		findByCategory = '',
 		showType = 'block',
-		sortBy = 1,
+		sortBy = 3,
 		findByAuthor = '',
 		findByPublisher = '',
 		findByTitle = '',
@@ -20,7 +20,7 @@ export default class BookService {
 		alphabetTitleIndex = ''
 	}) {
 		return axios.get(`${API_URL}/books?
-			${type && `&type=${type}`}
+			${type && `type=${type}`}
 			${page && `&page=${page}`}
 			${findByCategory && `&findByCategory=${findByCategory}`}
 			${showType && `&showType=${showType}`}
@@ -36,6 +36,10 @@ export default class BookService {
 
 	static async getBookById(id) {
 		return axios.get(`${API_URL}/books/${id}`)
+	}
+
+	static async setBookStatus({id, value}) {
+		return api.put(`${API_URL}/books/save?book_id=${id}&status=${value}`)
 	}
 
 	static async setBookRating({id, value}) {

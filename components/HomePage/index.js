@@ -1,4 +1,3 @@
-// import Link from 'next/link';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
@@ -15,6 +14,7 @@ import books from '../data/books.json';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import css from './home.module.scss';
+import {useRef} from "react";
 
 const HomeView = () => {
   const { innerWidthWindow } = useSelector(state => state.headerSlice);

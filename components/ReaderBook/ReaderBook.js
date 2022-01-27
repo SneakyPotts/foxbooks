@@ -13,6 +13,7 @@ import classnames from "classnames";
 
 const ReaderBook = () => {
     const [controlDrop, setControlDrop] = useState(false)
+    const [flagRender, setFlagRender] = useState(false)
     const [column, setСolumn] = useState(false)
     const [alignment, setAlignment] = useState(false)
     const [fontSize, setFontSize] = useState(0)
@@ -100,15 +101,15 @@ const ReaderBook = () => {
     ]
 
     const dataColor = [{color: '#A5D5FF'}, {color: '#FFE371'}, {color: '#FED3CA'}, {color: '#B8DF70'},]
-    const [listenerSelect, setListenerSelect] = useState(['kJ9O2uJo'])
+    const [listenerSelect, setListenerSelect] = useState([])
 
     const getTextselection = ({arrayQuotes, textBooks, selectText = ''}) => {
         let newTextBooks = textBooks
 
         function generateRandomClass() {
             let text = "";
-            const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            for (let i = 0; i < 8; i++)
+            const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
+            for (let i = 0; i < 10; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
             return text;
         }
@@ -116,23 +117,13 @@ const ReaderBook = () => {
         function generateSelectionText({selectText, color = '#B8DF70', textBooks, index}) {
             const uniqueClass = generateRandomClass()
             setListenerSelect(prev => [...prev, uniqueClass])
-            console.log(listenerSelect)
             const positionText = textBooks.indexOf(selectText)
             const textWithMark = textBooks.slice(0, positionText)
-            const markText = `<mark class=${uniqueClass} data-index=${index} style="background-color: ${color}">${textBooks.slice(positionText, positionText + selectText.length)}</mark>`
+            const markText = `<mark class=${uniqueClass} data-index='' style="background-color: ${color}">${textBooks.slice(positionText, positionText + selectText.length)}</mark>`
             const remainderText = textBooks.slice(textBooks.slice(0, positionText).length + selectText.length)
             const lastPieceTextWithMark = textWithMark + markText + remainderText
             newTextBooks = lastPieceTextWithMark
             return lastPieceTextWithMark
-        }
-
-        function addListenerOnSelect(elem) {
-            if(listenerSelect.indexOf(elem) !== -1) {
-                console.log(document.querySelector(`.${elem}`))
-                document.querySelector(`.${elem}`).addEventListener('click', function () {
-                    console.log(1111111)
-                })
-            }
         }
 
         if (arrayQuotes) {
@@ -150,13 +141,27 @@ const ReaderBook = () => {
         if (selectText.length > 0) {
             generateSelectionText({selectText: selectText, textBooks: newTextBooks})
             setTextPage(newTextBooks)
-            addListenerOnSelect(listenerSelect.at(-1))
         }
+
+
     }
 
     useEffect(() => {
         getTextselection({arrayQuotes: arrayQuotes, textBooks: textPage})
     }, [])
+
+    useEffect(()=> {
+        setTimeout(()=>{
+            if(listenerSelect.length > 0) {
+                for(let i = 0; listenerSelect.length > i; i++) {
+                    document.querySelector(`.${listenerSelect[i]}`).addEventListener('click',  function ()  {
+                        this.dataset.index = i
+                        console.log(this.dataset.index)
+                    })
+                }
+            }
+        },0)
+    },[listenerSelect])
 
     return (
         <div
@@ -168,6 +173,7 @@ const ReaderBook = () => {
                 {[styles.wrapperSecond]: Number(brightness) === 1},
                 {[styles.wrapperFirst]: Number(brightness) === 0},
             )}
+
         >
             <div className={styles.containerHeader}>
                 <div className={styles.logoWrap}>
@@ -358,8 +364,9 @@ const ReaderBook = () => {
                         }
                     </ul>
                     <div className={styles.selectColor}>
-                        {dataColor.map(({color}) => (
+                        {dataColor.map(({color}, index) => (
                             <button
+                                key={index + color}
                                 id={color}
                                 onClick={() => {
                                     {

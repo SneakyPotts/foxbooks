@@ -29,9 +29,28 @@
   color: $color-third;
 }
 .stars {
-  & span:not(:last-of-type) {
-    margin-right: 5px;
+  // & span:not(:last-of-type) {
+  //   margin-right: 5px;
+  // }
+  display: flex;
+  span {
+    max-width: 18px;
+    max-height: 18px;
   }
+  > div > div {
+    display: flex;
+    gap: 2px;
+  }
+  &Block {
+    display: flex;
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  // svg {
+  //   width: 15px;
+  // }
 }
 .starOrder {
   margin: 0;
@@ -202,6 +221,17 @@
 }
 .reviewLike {
   margin-right: 26px;
+}
+.selectionDateViews {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Ubuntu, sans-serif;
+  color: $color-third;
+
+  > span {
+    margin-right: 5px;
+  }
 }
 
 @media (max-width: 1200px) {

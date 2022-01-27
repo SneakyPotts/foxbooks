@@ -40,12 +40,12 @@ const AudioBooks = () => {
         slidesPerView={
           (innerWidthWindow <= 798 && 3) ||
           (innerWidthWindow >= 798 && 4) ||
-          (innerWidthWindow >= 1200 && 5)
+          (innerWidthWindow >= 1200 && 6)
         }
       >
         {testData.map((r, i) => {
           return (
-            <SwiperSlide key={i}>
+            <SwiperSlide className={css.slideAudio} key={i}>
               <Book audio={true} />
             </SwiperSlide>
           );

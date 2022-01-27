@@ -1,5 +1,8 @@
 @import 'styles/variables.scss';
 
+.container {
+  padding-bottom: 63px;
+}
 .reviewsTitle {
   font-family: Merriweather;
   font-weight: bold;
@@ -210,61 +213,6 @@
   font-size: 16px;
   line-height: 1.125;
   margin-top: 20px;
+  padding-bottom: 19px;
   color: $text-hover;
 }
-// .reviewInfo {
-//   font-size: 12px;
-//   line-height: 1.167;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin-bottom: 13px;
-//   color: $color-third;
-// }
-// .reviewView {
-//   display: flex;
-//   align-items: center;
-// }
-// .reviewViewCount {
-//   margin-right: 10px;
-// }
-// .reviewTitle {
-//   font-weight: 500;
-//   font-size: 16px;
-//   line-height: 1.125;
-//   color: $color-main;
-//   margin-bottom: 8px;
-// }
-
-// .nonComment {
-//   border-bottom: none;
-// }
-
-// .reviewText {
-//   margin-bottom: 10px;
-
-//   &Hide {
-//     display: -webkit-box;
-//     -webkit-box-orient: vertical;
-//     -webkit-line-clamp: 10;
-//     overflow: hidden;
-//   }
-// }
-
-// .dropDownArrow {
-//   margin-left: 10px;
-//   transform: rotate(180deg);
-// }
-// .up {
-//   transform: rotate(0deg);
-// }
-
-// .controllBtnsLeaveReview {
-//   margin: 0;
-//   margin-top: 40px;
-// }
-
-// .pagination {
-//   margin-top: 43px;
-//   margin-bottom: 63px;
-// }

@@ -1,17 +1,19 @@
 .clearAll {
   cursor: pointer;
   font-size: 14px;
-  line-height: 1.4;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 14px;
   width: 138px;
   height: 32px;
   border: none;
-  border-radius: 64px;
+  border-radius: 47px;
+  background: #F1F1F1;
+  transition: .15s;
+  color: #0e263e;
 }
 .clearAll:hover {
-  color: #0e263e;
   background: #f1f7ff;
 }
 .clearAll:active {

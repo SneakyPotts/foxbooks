@@ -14,6 +14,7 @@
   font-size: 16px;
   line-height: 1.125;
   color: $color-main;
+  stroke: $color-third;
   display: flex;
   width: 100%;
   padding: 0;
@@ -21,7 +22,10 @@
   align-items: center;
   background-color: transparent;
   border: none;
-  stroke: $color-main;
+
+  &:hover {
+    stroke: $color-second;
+  }
 }
 
 .dropDownIcon {
@@ -31,9 +35,11 @@
   width: 24px;
   height: 24px;
   stroke-width: 2px;
+
   border-radius: 50%;
   background-color: $color-bg-icon;
   transform: rotate(180deg);
+  transition: 0.15s;
 }
 .up {
   transform: rotate(0deg);
@@ -72,7 +78,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 3px solid$color-categories-btn;
+
   background-color: transparent;
   box-shadow: 0 0 0 2px $color-third;
 }
@@ -81,6 +87,7 @@
 }
 .radioActive {
   background-color: $color-main;
+  border: 3px solid $color-categories-btn;
   box-shadow: 0 0 0 2px $color-main;
 }
 .dropText {

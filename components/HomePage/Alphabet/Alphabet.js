@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import alphabet from '../../data/alphabet.json';
 import css from './alphabet.module.css';
+
 const Alphabet = () => {
   return (
     <div className={css.filterContainer}>
@@ -31,4 +32,5 @@ const Alphabet = () => {
     </div>
   );
 };
+
 export default Alphabet;

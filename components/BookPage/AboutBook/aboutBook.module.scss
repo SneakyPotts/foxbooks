@@ -10,7 +10,6 @@
   position: relative;
   width: 270px;
   max-height: 406px;
-  // background-color: bisque;
 
   &Icon {
     position: absolute;
@@ -60,25 +59,72 @@
   color: $color-third;
 }
 .bookDate {
+  font-family: Ubuntu;
+  font-size: 14px;
+  line-height: 1.43;
+  color: $color-second;
   display: flex;
   margin-bottom: 23px;
+
+  &Age {
+    margin: 0 20px;
+  }
 }
 .audioInfo {
   margin-right: 20px;
 }
-.bookDateYear {
-  margin-right: 20px;
-}
-.bookRaiting {
+.selectionDateViews {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Ubuntu, sans-serif;
+  color: $color-third;
 
-  & span {
-    margin-left: 5px;
+  > span {
+    margin-right: 10px;
   }
 }
-.bookRaitingCount {
-  margin-right: 10px;
+.raiting {
+  font-size: 16px;
+  line-height: 1.125;
+  display: flex;
+  color: $color-main;
+
+  .bookRaiting {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+    &Count {
+      margin-left: 3px;
+    }
+    span {
+      height: 24px;
+    }
+  }
+
+  .starsBlock {
+    display: flex;
+    align-items: center;
+
+    & p {
+      margin-right: 20px;
+    }
+    span {
+      margin-right: 3px;
+      height: 24px;
+    }
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+  }
 }
+
 .buttons {
   display: flex;
   margin: 20px 0;
@@ -102,6 +148,8 @@
   height: 40px;
   border: 1px solid $color-star-border;
   border-radius: 5px;
+  cursor: pointer;
+  transition: .15s;
 }
 .dotsButton:hover {
   border-color: $text-hover;
@@ -116,7 +164,7 @@
 .menu {
   position: absolute;
   width: 237px;
-  height: 240px;
+  min-height: 240px;
   padding: 30px 20px;
   margin-top: 20px;
   border: 1px solid $color-bg-icon;
@@ -125,26 +173,27 @@
   transform: translateX(-50%);
   left: 50%;
 
-  & a {
+  &Item {
     font-size: 14px;
     line-height: 1.43;
     display: flex;
     align-items: center;
     color: $color-second;
     stroke: $text-hover;
+    transition: .15s;
 
     & span {
       margin-left: 15px;
     }
-  }
 
-  & a:hover {
-    cursor: pointer;
-    color: $text-hover;
-  }
+    &:hover {
+      cursor: pointer;
+      color: $text-hover;
+    }
 
-  & a:not(:last-child) {
-    margin-bottom: 20px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 }
 .menuOption {
@@ -152,7 +201,7 @@
 }
 //  POP-UP
 .popUp {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   text-align: center;
@@ -162,6 +211,7 @@
   color: $color-categories-btn;
   background: $color-main;
   transition: 5s;
+  z-index: 3;
 }
 .popUpLink {
   position: relative;
@@ -186,31 +236,22 @@
 
   & li {
     margin-right: 30px;
+    .number {
+      color: $color-third;
+    }
   }
 }
 .ditalInfo {
   margin-top: 20px;
-
   & p {
     margin-bottom: 10px;
-  }
 
-  & span {
-    color: $color-main;
-  }
-}
-.starsBlock {
-  font-size: 16px;
-  line-height: 1.125;
-  display: flex;
-  margin-top: 13px;
-  margin-bottom: 60px;
-  color: $color-second;
+    span {
+      color: $color-main;
+    }
 
-  & p {
-    margin-right: 20px;
-  }
-  & span {
-    margin-right: 5px;
+    &:hover span {
+      color: $text-hover;
+    }
   }
 }

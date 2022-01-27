@@ -1,18 +1,25 @@
 @import 'styles/variables';
 
+.container {
+  padding: 63px 0;
+}
+.quote {
+  // padding-top: ;
+  padding-bottom: 40px;
+}
 .quotesTitle {
   font-family: Merriweather;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
-  //   margin-bottom: 40px;
+  margin-bottom: 40px;
   color: $color-main;
 }
 .user {
   display: flex;
   align-items: center;
   margin-bottom: 13px;
-  margin-top: 40px;
+  // margin-top: 40px;
 }
 .userIcon {
   width: 35px;
@@ -57,8 +64,4 @@
 }
 .quoteLike {
   margin-right: 30px;
-}
-.pagination {
-  margin-top: 43px;
-  margin-bottom: 63px;
 }

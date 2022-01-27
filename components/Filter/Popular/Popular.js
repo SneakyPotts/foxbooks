@@ -3,10 +3,14 @@ import classnames from 'classnames';
 import ArrowAll from '../../../public/chevron-down.svg';
 import css from './popular.module.scss';
 import {useRouter} from "next/router";
+import classNames from "classnames";
 
 const Popular = ({
+	title,
+	defaultValue,
 	data,
 	queryName,
+	isAlphabet,
 	filterStateIdx,
 	elIdx,
 	setFilStateIdx
@@ -14,8 +18,8 @@ const Popular = ({
 	const router = useRouter();
 
 	const [menu, setMenu] = useState(false);
-	const [activeTitle, setActiveTitle] = useState(data?.find(i => i?.value === +router.query[queryName])?.title);
-	const [activeEl, setActiveEl] = useState(+router.query[queryName]);
+	const [activeTitle, setActiveTitle] = useState(data?.find(i => i?.value === +router.query[queryName])?.title || title);
+	const [activeEl, setActiveEl] = useState(+router.query[queryName] || defaultValue);
 
 	useEffect(() => {
 		const body = document.querySelector('body');
@@ -42,9 +46,16 @@ const Popular = ({
 	};
 
 	const handleOnClick = (value, title) => {
-		router.push({query: {...router.query, [queryName]: value}}, null, {scroll: false});
-		setActiveEl(value);
-		setActiveTitle(title)
+		router.push({
+			query: {
+				...router.query,
+				[queryName]: typeof value === 'string' ? encodeURI(value) : value
+			}},
+			null,
+			{scroll: false}
+			);
+		setActiveEl(typeof value === 'object' ? defaultValue : value);
+		title && setActiveTitle(title)
 	};
 
 	const closeMenu = () => {
@@ -69,25 +80,35 @@ const Popular = ({
 				/>
 			</button>
 			{menu || elIdx === filterStateIdx ? (
-				<ul className={css.dropContent} onClick={e => e.stopPropagation()}>
+				<ul
+					className={classNames(css.dropContent, {[css.dropWord]: isAlphabet})}
+					onClick={e => e.stopPropagation()}
+				>
 					{data?.map(i => (
 						<li
-							key={i?.id}
-							onClick={() => handleOnClick(i?.value, i?.title)}
-							className={css.dropLink}
+							key={i?.id || i}
+							onClick={() => handleOnClick(i?.value || i, i?.title)}
+							className={css.dropItem}
 						>
-							<span
-								className={classnames(css.radio, {
-									[css.radioActive]: activeEl === i?.value,
-								})}
-							/>
-							<span
-								className={classnames(css.dropText, {
-									[css.active]: activeEl === i?.value,
-								})}
-							>
-								{i?.title}
-							</span>
+							{isAlphabet ?
+								(
+									<span className={classNames({[css.activeWord]: i === activeEl})}>{i}</span>
+								) :
+								<>
+									<span
+										className={classnames(css.radio, {
+											[css.radioActive]: activeEl === i?.value,
+										})}
+									/>
+									<span
+										className={classnames(css.dropText, {
+											[css.active]: activeEl === i?.value,
+										})}
+									>
+										{i?.title}
+									</span>
+								</>
+							}
 						</li>
 					))}
 				</ul>
