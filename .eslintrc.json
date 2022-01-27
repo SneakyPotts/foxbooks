@@ -1,6 +1,0 @@
-{
-  "extends": "next",
-  "rules": {
-//    "indent": [2, "tab"]
-  }
-}
