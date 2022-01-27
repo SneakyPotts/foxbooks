@@ -33,7 +33,7 @@ const Navigation = ({ setModal }) => {
     <>
       <nav className={css.navigation}>
         <div className={css.topMenu}>
-          <Link href="/books?sortBy=1">
+          <Link href="/books?type=books&sortBy=1">
             <a
               className={`${css.link} ${
                 router.pathname.includes('/books') ? css.active : css.link

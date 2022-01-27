@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/ecosystem.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BreadCrumps/BreadCrumps.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BreadCrumps/BreadCrumps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Categories/categories.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Categories/categories.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Categories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Categories/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/HomeService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/books/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/[id]/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/books/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/homeSlice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/shared/icons" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,6 +50,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\library-next\components\shared\icons" />
       <recent name="D:\library-next\store" />
       <recent name="D:\library-next\http" />
     </key>
@@ -105,6 +90,7 @@
       <workItem from="1642602830087" duration="33045000" />
       <workItem from="1642781235686" duration="16944000" />
       <workItem from="1643105993313" duration="11255000" />
+      <workItem from="1643191269639" duration="31170000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -190,7 +176,28 @@
       <option name="project" value="LOCAL" />
       <updated>1643043796487</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ome page filters">
+      <created>1643205988763</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1643205988763</updated>
+    </task>
+    <task id="LOCAL-00014" summary="change book status">
+      <created>1643213168174</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643213168174</updated>
+    </task>
+    <task id="LOCAL-00015" summary="audio player">
+      <created>1643291653821</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1643291653821</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +258,10 @@
     <MESSAGE value="pagination" />
     <MESSAGE value="push" />
     <MESSAGE value="avatar" />
-    <option name="LAST_COMMIT_MESSAGE" value="avatar" />
+    <MESSAGE value="ome page filters" />
+    <MESSAGE value="change book status" />
+    <MESSAGE value="audio player" />
+    <option name="LAST_COMMIT_MESSAGE" value="audio player" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

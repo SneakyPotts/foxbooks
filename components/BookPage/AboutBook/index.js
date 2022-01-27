@@ -14,8 +14,8 @@ import Basket from '../../../public/trash.svg';
 import Eye from '../../shared/icons/eye';
 
 import st from './aboutBook.module.scss';
-import { setBookRating } from '../../../store/bookSlice';
-import { useRouter } from 'next/router';
+import {setBookRating, setBookStatus} from "../../../store/bookSlice";
+import {useRouter} from "next/router";
 
 const AboutBook = ({ book, audio }) => {
   const dataBook = [
@@ -38,65 +38,55 @@ const AboutBook = ({ book, audio }) => {
     },
   ];
 
-  const dataOptions = [
-    { id: '0', svg: <BookMark />, option: 'Хочу прочитать', link: '#' },
-    { id: '1', svg: <OpenBook />, option: 'Читаю', link: '#' },
-    { id: '2', svg: <Flag />, option: 'Прочитано', link: '#' },
-    { id: '3', svg: <Add />, option: 'В мои подборки', link: '/mybooks' },
-    {
-      id: '4',
-      svg: <Basket />,
-      option: 'Удалить из моих книг',
-      link: '#',
-    },
-  ];
+	const dataOptions = [
+		{ id: '0', svg: <BookMark />, option: 'Хочу прочитать', value: 1 },
+		{ id: '1', svg: <OpenBook />, option: 'Читаю', value: 2 },
+		{ id: '2', svg: <Flag />, option: 'Прочитано', value: 3 },
+		{ id: '3', svg: <Add />, option: 'В мои подборки' },
+		{ id: '4', svg: <Basket />, option: 'Удалить из моих книг' },
+	];
 
-  const dispatch = useDispatch();
-  const router = useRouter();
+	const dispatch = useDispatch()
+	const router = useRouter()
 
-  const { audioFlag } = useSelector(state => state.book);
+	const { audioFlag } = useSelector(state => state.book);
 
-  const [openMenu, setOpenMenu] = useState(false);
-  const [showPopUp, setShowPopUp] = useState(false);
-  const [optionIndex, setOptioIndex] = useState(null);
+	const [openMenu, setOpenMenu] = useState(false);
+	const [showPopUp, setShowPopUp] = useState(false);
 
-  const handleDotsClick = () => {
-    setOpenMenu(!openMenu);
-  };
+	const showPopup = res => {
+		if (res.meta.requestStatus === "fulfilled") {
+			setShowPopUp(true);
+			setTimeout(() => setShowPopUp(false), 5000);
+		}
+	}
 
-  const setTimeOut = () => {
-    setTimeout(() => setShowPopUp(false), 5000);
-  };
-
-  const handleClick = index => {
-    if (index === 0) {
-      setShowPopUp(true);
-      setTimeOut();
-    }
-    setOptioIndex(index);
-  };
+	const changeBookStatus = value => {
+		setOpenMenu(false)
+		dispatch(setBookStatus({id: router.query?.id, value})).then(res => showPopup(res))
+	}
 
   const setRating = value => {
     dispatch(setBookRating({ id: router.query.id, value }));
   };
 
-  return (
-    <div>
-      <div key={book.id} className={st.bookInfo}>
-        <div className={st.bookMainInfo}>
-          <div
-            className={classnames(st.bookCover, {
-              [st.bookCoverAudio]: audioFlag,
-            })}
-          >
-            <Image
-              src="/horizontalBookCovers/book.png"
-              height={audioFlag ? 270 : 406}
-              width={270}
-              layout="fill"
-              placeholder="blur"
-              blurDataURL="/images/blur.jpg"
-            />
+	return (
+		<div>
+			<div key={book.id} className={st.bookInfo}>
+				<div className={st.bookMainInfo}>
+					<div
+						className={classnames(st.bookCover, {
+							[st.bookCoverAudio]: audioFlag,
+						})}
+					>
+						<Image
+							src="/horizontalBookCovers/book.png"
+							height={audioFlag ? 270 : 406}
+							width={270}
+							layout="fill"
+							placeholder="blur"
+							blurDataURL="/images/blur.jpg"
+						/>
 
             {audioFlag && (
               <div className={st.bookCoverIcon}>
@@ -160,27 +150,24 @@ const AboutBook = ({ book, audio }) => {
                   className={classnames(st.dotsButton, {
                     [st.activBtn]: openMenu,
                   })}
-                  onClick={handleDotsClick}
+									onClick={() => setOpenMenu(!openMenu)}
                 >
                   <Dots />
                 </span>
-                {openMenu && (
-                  <ul className={st.menu}>
-                    {dataOptions.map((it, index) => (
-                      <Link href={it.link} key={it.id}>
-                        <a
-                          onClick={() => handleClick(index)}
-                          className={classnames({
-                            [st.menuOption]: optionIndex === index,
-                          })}
-                        >
-                          {it.svg}
-                          <span>{it.option}</span>
-                        </a>
-                      </Link>
-                    ))}
-                  </ul>
-                )}
+								{openMenu && (
+										<ul className={st.menu}>
+											{dataOptions.map((it, index) => (
+													<li
+															key={it?.id}
+															onClick={() => changeBookStatus(it?.value)}
+															className={st.menuItem}
+													>
+														{it?.svg}
+														<span>{it?.option}</span>
+													</li>
+											))}
+										</ul>
+								)}
               </div>
             </div>
 

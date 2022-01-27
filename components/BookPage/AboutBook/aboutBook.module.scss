@@ -148,6 +148,8 @@
   height: 40px;
   border: 1px solid $color-star-border;
   border-radius: 5px;
+  cursor: pointer;
+  transition: .15s;
 }
 .dotsButton:hover {
   border-color: $text-hover;
@@ -162,7 +164,7 @@
 .menu {
   position: absolute;
   width: 237px;
-  height: 240px;
+  min-height: 240px;
   padding: 30px 20px;
   margin-top: 20px;
   border: 1px solid $color-bg-icon;
@@ -171,26 +173,27 @@
   transform: translateX(-50%);
   left: 50%;
 
-  & a {
+  &Item {
     font-size: 14px;
     line-height: 1.43;
     display: flex;
     align-items: center;
     color: $color-second;
     stroke: $text-hover;
+    transition: .15s;
 
     & span {
       margin-left: 15px;
     }
-  }
 
-  & a:hover {
-    cursor: pointer;
-    color: $text-hover;
-  }
+    &:hover {
+      cursor: pointer;
+      color: $text-hover;
+    }
 
-  & a:not(:last-child) {
-    margin-bottom: 20px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 }
 .menuOption {
@@ -198,7 +201,7 @@
 }
 //  POP-UP
 .popUp {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   text-align: center;
@@ -208,6 +211,7 @@
   color: $color-categories-btn;
   background: $color-main;
   transition: 5s;
+  z-index: 3;
 }
 .popUpLink {
   position: relative;

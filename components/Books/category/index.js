@@ -12,15 +12,17 @@ import MyPagination from '../../shared/common/MyPagination';
 import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
 
 const data = [
-  {
-    options: [
-      { id: 1, title: 'Популярные', value: 3 },
-      { id: 2, title: 'Высокий рейтинг', value: 3 },
-      { id: 3, title: 'Много отзывов', value: 1 },
-      { id: 4, title: 'Сейчас читают', value: 2 },
-    ],
-    queryName: 'sortBy',
-  },
+	{
+		title: 'Популярные',
+		defaultValue: 3,
+		options: [
+			{id: 1, title: 'Популярные', value: 3},
+			{id: 2, title: 'Высокий рейтинг', value: 3},
+			{id: 3, title: 'Много отзывов', value: 1},
+			{id: 4, title: 'Сейчас читают', value: 2}
+		],
+		queryName: 'sortBy'
+	},
 ];
 
 const Category = () => {
@@ -55,12 +57,14 @@ const Category = () => {
         <h2 className={st.title}>{currentCategory}</h2>
         {data.map((it, index) => (
           <Popular
-            key={index}
-            data={it.options}
-            queryName={it.queryName}
-            filterStateIdx={stateIndex}
-            elIdx={index}
-            setFilStateIdx={setStateIndex}
+							key={index}
+							title={it?.title}
+							defaultValue={it?.defaultValue}
+							data={it?.options}
+							queryName={it?.queryName}
+							filterStateIdx={stateIndex}
+							elIdx={index}
+							setFilStateIdx={setStateIndex}
           />
         ))}
         <Switcher
@@ -75,40 +79,44 @@ const Category = () => {
         />
       </div>
 
-      <div className={st.mainBlock}>
-        <div>
-          <SideFilters />
-        </div>
-        <div className="booksWrapper">
-          {books?.data?.length ? (
-            <>
-              <div
-                className={classnames({
-                  [st.booksGrid]: !flagSwitcher,
-                  [st.booksColumn]: flagSwitcher,
-                })}
-              >
-                {books?.data?.map(book => (
-                  <Book key={book.id} flagSwitcher={flagSwitcher} book={book} />
-                ))}
-              </div>
-              <MyPagination lastPage={books?.last_page} />
-            </>
-          ) : (
-            <p className="empty">Книги не найдены</p>
-          )}
-        </div>
-        <div className={st.advertisingBlok} ref={BlokRef}>
-          <div className={st.bannerBlock}>
-            <img src="/banner.png" alt="" className={st.banner} />
-          </div>
-          <div className={st.bannerBlock}>
-            <img src="/banner.png" alt="" className={st.banner} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+			<div className={st.mainBlock}>
+				<div>
+					<SideFilters />
+				</div>
+				<div className="booksWrapper">
+					{books?.data?.length ?
+						<>
+							<div
+								className={classnames({
+									[st.booksGrid]: !flagSwitcher,
+									[st.booksColumn]: flagSwitcher,
+								})}
+							>
+								{books?.data?.map(book => (
+									<Book
+										key={book.id}
+										audio={router.query?.type === 'audioBooks'}
+										flagSwitcher={flagSwitcher}
+										book={book}
+									/>
+								))}
+							</div>
+							<MyPagination lastPage={books?.last_page} />
+						</> :
+						<p className="empty">Книги не найдены</p>
+					}					
+				</div>
+				<div className={st.advertisingBlok} ref={BlokRef}>
+					<div className={st.bannerBlock}>
+						<img src="/banner.png" alt="" className={st.banner} />
+					</div>
+					<div className={st.bannerBlock}>
+						<img src="/banner.png" alt="" className={st.banner} />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Category;
