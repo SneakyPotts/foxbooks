@@ -364,6 +364,7 @@ const ReaderBook = () => {
                         }
                     </ul>
                     <div className={styles.selectColor}>
+
                         {dataColor.map(({color}, index) => (
                             <button
                                 key={index + color}
