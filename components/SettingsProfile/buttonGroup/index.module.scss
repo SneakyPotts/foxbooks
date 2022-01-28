@@ -1,6 +1,8 @@
 .saveSettings {
+  font-family: Ubuntu;
   font-size: 14px;
-  color: #4f4f4f;
+  line-height: 1.43;
+  color: $color-second;
 
   > span {
     cursor: pointer;
@@ -15,5 +17,6 @@
     width: 201px;
     padding: 10px 27px;
     margin-left: 30px;
+    color: $color-categories-btn;
   }
 }

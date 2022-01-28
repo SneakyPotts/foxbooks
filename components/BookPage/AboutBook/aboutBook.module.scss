@@ -130,6 +130,9 @@
   margin: 20px 0;
 }
 .readButton {
+  font-family: Ubuntu;
+  font-size: 14px;
+  line-height: 1.43;
   width: 200px;
   height: 40px;
   margin-right: 20px;
@@ -149,7 +152,7 @@
   border: 1px solid $color-star-border;
   border-radius: 5px;
   cursor: pointer;
-  transition: .15s;
+  transition: 0.15s;
 }
 .dotsButton:hover {
   border-color: $text-hover;
@@ -180,7 +183,7 @@
     align-items: center;
     color: $color-second;
     stroke: $text-hover;
-    transition: .15s;
+    transition: 0.15s;
 
     & span {
       margin-left: 15px;
