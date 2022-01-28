@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { setBreakPoint } from '../../../Header/headerSlice';
+// import { setBreakPoint } from '../../../Header/commonSlice';
 import Link from 'next/link';
 import classnames from 'classnames';
 // import { AudioBook } from './bookSlice';
@@ -34,7 +34,7 @@ const Book = ({
   const [options, setOptions] = useState(false);
 
   const route = useRouter();
-  const { innerWidthWindow } = useSelector(state => state.headerSlice);
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   const bookLinkClick = () => {
     if (audio) {

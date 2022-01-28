@@ -28,10 +28,9 @@ const EditingProfile = () => {
 	});
 
 	const onSubmit = data => {
-		let {email, ...rest} = data
-		const newDate = email !== profile?.email ? data : rest
-
-		dispatch(updateProfile(generateFormData(newDate)))
+		// let {email, ...rest} = data
+		// const newDate = email !== profile?.email ? data : rest
+		dispatch(updateProfile(generateFormData(data)))
 	};
 
 	useEffect(() => {

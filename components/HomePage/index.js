@@ -17,7 +17,7 @@ import css from './home.module.scss';
 import {useRef} from "react";
 
 const HomeView = () => {
-  const { innerWidthWindow } = useSelector(state => state.headerSlice);
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   return (
     <div className={'container'}>

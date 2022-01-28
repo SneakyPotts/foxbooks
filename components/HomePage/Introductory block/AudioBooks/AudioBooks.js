@@ -11,7 +11,7 @@ import css from './audioBooks.module.scss';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
 
 const AudioBooks = () => {
-  const { innerWidthWindow } = useSelector(state => state.headerSlice);
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   const testData = [
     { id: '0' },
