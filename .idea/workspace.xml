@@ -2,12 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerPause.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerPlay.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/close.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerSpeed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerVolume.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AudioPlayer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/headerSlice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/InputRange/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/InputRange/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/shared/icons" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -55,8 +67,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\library-next\components\shared\icons" />
       <recent name="D:\library-next\store" />
+      <recent name="D:\library-next\components\shared\icons" />
       <recent name="D:\library-next\http" />
     </key>
   </component>
@@ -96,6 +108,8 @@
       <workItem from="1642781235686" duration="16944000" />
       <workItem from="1643105993313" duration="11255000" />
       <workItem from="1643191269639" duration="31170000" />
+      <workItem from="1643300912437" duration="1066000" />
+      <workItem from="1643355898139" duration="14371000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -202,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643291653821</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="audio player">
+      <created>1643299724798</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1643299724798</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

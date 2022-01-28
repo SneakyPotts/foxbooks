@@ -2,8 +2,21 @@ import React from 'react';
 import styles from "./index.module.scss";
 import classNames from "classnames";
 
-const InputRange = ({value, setValue, max = '100', min = '0', textLabel, step = '1',
-	brightness, dot = false, labelOne, labelSecond }) => {
+const InputRange = ({
+	value,
+	setValue,
+	min = '0',
+	max = '100',
+	step = '1',
+	barColor,
+	fillColor = '#FF781D',
+	textLabel,
+	labelOne,
+	labelSecond,
+	brightness,
+	dot = false,
+	externalClass
+}) => {
 
 	const dataDot = [
 		{x: 2, y: -1},
@@ -21,30 +34,37 @@ const InputRange = ({value, setValue, max = '100', min = '0', textLabel, step = 
 				{[styles.middleFourth] : Number(brightness) === 3},
 				{[styles.middleThird] : Number(brightness) === 2},
 				{[styles.middleSecond] : Number(brightness) === 1},
-				{[styles.middleFirst] : Number(brightness) === 0},
-			) }>
+				{[styles.middleFirst] : Number(brightness) === 0}
+			)}
+		>
 			{textLabel &&
-            <span className={styles.labelInput}>
-            	{textLabel}
-            </span>
+				<span className={styles.labelInput}>
+					{textLabel}
+				</span>
 			}
 			<div className={styles.sliderContainer}>
-				<span className={styles.bar}>
-					<span style={{width: `${(value / max) * 100}%`}} className={styles.fill}/>
+				<span className={styles.bar} style={{background: barColor}}>
+					<span
+						className={styles.fill}
+						style={{width: `${(value / max) * 100}%`, background: fillColor}}
+					/>
 				</span>
 				{dot && dataDot.map(({x, y}, i) => (
 					<span
 						key={x}
 						style={{transform: `translate(${x}px, ${y}px)`}}
-						className={classNames(styles.dot, {[styles.dotActive]: value >= i})}/>))}
+						className={classNames(styles.dot, {[styles.dotActive]: value >= i})}
+					/>
+				))}
 				<input
 					step={step}
 					onChange={(e) => setValue(e.target.value)}
 					value={value}
-					className={styles.slider}
+					className={classNames(styles.slider, externalClass)}
 					type="range"
 					min={min}
-					max={max}/>
+					max={max}
+				/>
 				{dot &&
 				<div className={styles.underTextInput}>
 					<span>{labelOne}</span>

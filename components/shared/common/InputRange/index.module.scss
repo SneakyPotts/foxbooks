@@ -76,18 +76,19 @@
     position: absolute;
     z-index: 1;
     left: 2px;
-    top: 7px;
+    top: 8px;
     width: 100%;
     height: 5px;
     border-radius: 5px;
     overflow: hidden;
+
     .fill {
       display: block;
       width: 0;
       height: 100%;
-      background-color: #FF781D;
     }
   }
+
   .slider{
     position: relative;
     z-index: 2;
@@ -96,18 +97,40 @@
     height: 10px;
     border-radius: 5px;
     outline: none;
-    background-color: transparent;
+    background: transparent;
+    cursor: pointer;
+
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 22px;
       height: 22px;
-      background-color: #FF781D;
+      background: #FF781D;
       border-radius: 50%;
       cursor: pointer;
       outline: none;
+      border: none;
+      transition: .15s;
     }
-    &:active::-webkit-slider-thumb {
-      background-color: #D55600;
+
+    &::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      background: #FF781D;
+      border-radius: 50%;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      transform: translateY(2px);
+      transition: .15s;
+    }
+
+    &:active {
+      &::-webkit-slider-thumb {
+        background: #D55600;
+      }
+      &::-moz-range-thumb {
+        background: #D55600;
+      }
     }
   }
   .underTextInput {
