@@ -291,6 +291,24 @@
     }
   }
 
+  .closeArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $text-hover;
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    transition: .15s;
+
+    &:hover {
+      background: $accent-hover;
+    }
+  }
+
   .preview {
     flex-direction: column;
 

@@ -15,6 +15,7 @@ import classNames from "classnames";
 import Close from "../shared/icons/close";
 import {useDispatch, useSelector} from "react-redux";
 import {togglePlayer} from "../../store/commonSlice";
+import ArrowBack from "../shared/icons/arrowBack";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -68,6 +69,14 @@ const AudioPlayer = () => {
       className={styles.wrapper}
       onClick={hideDrops}
     >
+      {innerWidthWindow < 1024 &&
+        <button
+          className={styles.closeArrow}
+          onClick={closePlayer}
+        >
+          <ArrowBack />
+        </button>
+      }
       <div className={styles.wrapperColumn}>
         <div className={styles.preview}>
           <Image
