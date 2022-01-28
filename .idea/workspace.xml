@@ -2,24 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/components/shared/icons/close.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerSpeed.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/icons/playerVolume.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AudioPlayer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/headerSlice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/InputRange/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/InputRange/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ProfileService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ProfileService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +98,7 @@
       <workItem from="1643105993313" duration="11255000" />
       <workItem from="1643191269639" duration="31170000" />
       <workItem from="1643300912437" duration="1066000" />
-      <workItem from="1643355898139" duration="14371000" />
+      <workItem from="1643355898139" duration="22459000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -223,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643299724798</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="player">
+      <created>1643370408709</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1643370408709</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +283,8 @@
     <MESSAGE value="ome page filters" />
     <MESSAGE value="change book status" />
     <MESSAGE value="audio player" />
-    <option name="LAST_COMMIT_MESSAGE" value="audio player" />
+    <MESSAGE value="player" />
+    <option name="LAST_COMMIT_MESSAGE" value="player" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -13,7 +13,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-
+  gap: 10px;
   color: #fff;
 
   &Column {
@@ -109,6 +109,8 @@
     align-items: flex-end;
     justify-content: space-between;
     width: 100%;
+    gap: 20px;
+    color: #D5D5D5;
 
     &Input {
       &::-webkit-slider-thumb {
@@ -261,5 +263,89 @@
   100% {
     opacity: 1;
     transform: translateY(-100%) scale(1);
+  }
+}
+
+@media screen and(max-width: 1023px) {
+  .wrapper {
+    top: 0;
+    min-height: 100vh;
+    border: none;
+    z-index: 5;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 140px 15px 36px;
+
+    &Column {
+      &:nth-of-type(2) {
+        width: 100%;
+        margin-top: 25px;
+      }
+
+      &:nth-of-type(3) {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: auto;
+      }
+    }
+  }
+
+  .preview {
+    flex-direction: column;
+
+    &Wrapper {
+      margin-left: 0;
+      margin-top: 62px;
+      text-align: center;
+    }
+
+    &Title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    &Text {
+      font-size: 14px;
+    }
+  }
+
+  .player {
+    flex-direction: column-reverse;
+
+    &Controls {
+      margin-top: 36px;
+      margin-bottom: 0;
+    }
+
+    &Range {
+      flex-wrap: wrap;
+      gap: 5px;
+      font-size: 12px;
+
+      & > div {
+        order: -1;
+      }
+    }
+
+    &Back,
+    &Next {
+      transform: scale(1.54);
+    }
+
+    &Play {
+      margin: 0 26px;
+      width: 60px;
+      height: 60px;
+
+      svg {
+        transform: scale(1.6);
+      }
+    }
+
+    &Page {
+      order: -1;
+      margin: 0;
+    }
   }
 }

@@ -13,7 +13,7 @@ import PlayerPage from "../shared/icons/playerPage";
 import PlayerVolume from "../shared/icons/playerVolume";
 import classNames from "classnames";
 import Close from "../shared/icons/close";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {togglePlayer} from "../../store/commonSlice";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
@@ -24,9 +24,11 @@ const AudioPlayer = () => {
 
   const [settings, setSettings] = useState({
     playing: false,
-    volume: 0.2,
+    volume: 0.5,
     playbackRate: 1,
   });
+
+  const { innerWidthWindow } = useSelector(state => state.common)
 
   const [progress, setProgress] = useState(0)
   const [speedDropIsVisible, setSpeedDropIsVisible] = useState(false)
@@ -56,6 +58,11 @@ const AudioPlayer = () => {
     setPageDropIsVisible(false)
   }
 
+  const closePlayer = () => {
+    setSettings({...settings, playing: false})
+    dispatch(togglePlayer(false))
+  }
+
   return (
     <div
       className={styles.wrapper}
@@ -65,8 +72,8 @@ const AudioPlayer = () => {
         <div className={styles.preview}>
           <Image
             src={'/mountains.png'}
-            width={56}
-            height={56}
+            width={innerWidthWindow < 1024 ? 280 : 56}
+            height={innerWidthWindow < 1024 ? 280 : 56}
             alt="Preview"
             className={styles.previewImg}
           />
@@ -168,19 +175,21 @@ const AudioPlayer = () => {
           </div>
           }
         </div>
-        <div className={classNames(styles.playerVolume, styles.playerControlItem)}>
-          <div onClick={() => setSettings({...settings, volume: 0})}>
-            <PlayerVolume />
+        {innerWidthWindow >= 1024 &&
+          <div className={classNames(styles.playerVolume, styles.playerControlItem)}>
+            <div onClick={() => setSettings({...settings, volume: 0})}>
+              <PlayerVolume/>
+            </div>
+            <InputRange
+              value={settings?.volume}
+              setValue={value => setSettings({...settings, volume: value})}
+              max={'1'}
+              step={'0.1'}
+              barColor={'rgba(255, 255, 255, 0.5)'}
+              externalClass={styles.playerVolumeInput}
+            />
           </div>
-          <InputRange
-            value={settings?.volume}
-            setValue={value => setSettings({...settings, volume: value})}
-            max={'1'}
-            step={'0.1'}
-            barColor={'rgba(255, 255, 255, 0.5)'}
-            externalClass={styles.playerVolumeInput}
-          />
-        </div>
+        }
       </div>
 
       <ReactPlayer
@@ -192,12 +201,14 @@ const AudioPlayer = () => {
         {...settings}
       />
 
-      <button
-        className={styles.close}
-        onClick={() => dispatch(togglePlayer(false))}
-      >
-        <Close />
-      </button>
+      {innerWidthWindow >= 1024 &&
+        <button
+          className={styles.close}
+          onClick={closePlayer}
+        >
+          <Close/>
+        </button>
+      }
     </div>
   );
 };

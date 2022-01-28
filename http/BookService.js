@@ -39,7 +39,7 @@ export default class BookService {
 	}
 
 	static async setBookStatus({id, value}) {
-		return api.put(`${API_URL}/books/save?book_id=${id}&status=${value}`)
+		return api.get(`${API_URL}/users/books?book_id=${id}&status=${value}`)
 	}
 
 	static async setBookRating({id, value}) {

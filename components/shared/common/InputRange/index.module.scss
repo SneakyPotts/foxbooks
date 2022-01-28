@@ -22,7 +22,7 @@
 
 .middle {
   width: 100%;
-  max-width: 500px;
+  //max-width: 500px;
 
   &Default {
     @include changeStyle($color-main, $color-star-border)
