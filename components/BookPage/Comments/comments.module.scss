@@ -42,7 +42,7 @@
   padding: 8px 20px;
 
   border: 1px solid $color-star-border;
-  background-color: transparent;
+  background-color: $color-categories-btn;
   border-radius: 59px;
   outline: none;
 
@@ -67,13 +67,13 @@
   align-items: center;
 }
 .controllBtn {
+  font-size: 14px;
+  line-height: 1.43;
   display: flex;
   align-items: center;
   margin-left: 41px;
 }
 .submitButton {
-  font-size: 14px;
-  line-height: 1.43;
   width: 200px;
   height: 40px;
   margin-right: 30px;
@@ -82,6 +82,9 @@
   background-color: $text-hover;
 }
 .cancelBtn {
+  font-family: Ubuntu;
+  font-size: 14px;
+  line-height: 1.43;
   cursor: pointer;
   color: $color-second;
 }
@@ -91,73 +94,9 @@
   padding: 20px 0;
   // border-bottom: 1px solid $color-star-border;
 }
-.sizes {
-  width: 484px;
-  margin: auto;
-  border-top: 1px solid $color-star-border;
-}
-.sizes:last-of-type {
-  border: none;
-}
-.reviewComment {
-  font-size: 14px;
-  line-height: 1.43;
-  padding: 20px 0;
-  border-top: 1px solid $color-star-border;
 
-  &:last-of-type {
-    border: none;
-  }
-}
-.reviewer {
-  display: flex;
-  align-items: center;
-  margin-bottom: 13px;
-}
-.reviewerIcon {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin-right: 10px;
-  overflow: hidden;
-}
-.commentator {
-  display: flex;
-  align-items: baseline;
-}
-.reviewerName {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.125;
-  margin-right: 10px;
-  color: $color-main;
-}
-.commentDate {
-  font-size: 12px;
-  line-height: 1.167;
-  color: $color-third;
-}
-.commentContainer {
-  padding-left: 45px;
-}
 // commentText
-.reviewStatistic {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  color: $color-third;
-  stroke: $color-third;
-}
-.reviewIcon {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
 
-  &:hover {
-    cursor: pointer;
-    stroke: $text-hover;
-  }
-}
 .showMoreLink {
   cursor: pointer;
   display: flex;
@@ -165,49 +104,7 @@
   color: $text-hover;
   stroke: $text-hover;
 }
-.reply {
-  cursor: pointer;
-  color: $color-main;
-}
-.replyDirection {
-  display: flex;
-  margin-top: 20px;
-}
-.replierIcon {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  margin-right: 16px;
-  overflow: hidden;
-}
-.replyArea {
-  width: 431px;
-  height: 100px;
-  margin-bottom: 40px;
-  border: 1px solid $color-star-border;
-  border-radius: 5px;
-  background-color: transparent;
-  resize: none;
-}
-.showReplysLink {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  margin-left: 45px;
-  color: $color-third;
-  stroke: $color-third;
-}
-.showReplysBtn {
-  margin-left: 10px;
-  transform: rotate(90deg);
-}
-.down {
-  transform: rotate(-90deg);
-}
-.reviewLike {
-  margin-right: 30px;
-}
+
 .showNextComments {
   font-weight: 500;
   font-size: 16px;

@@ -12,30 +12,29 @@ import GroupForms from './groupForms/GroupForms';
 import Setting from '../shared/icons/setting';
 import Exit from '../shared/icons/exit';
 import Close from '../../public/close.svg';
-import { ShowMenu, setBreakPoint } from './headerSlice';
 import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
+import {showMenu, setBreakPoint} from "../../store/commonSlice";
+
 const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { showMenu, innerWidthWindow } = useSelector(
-    state => state.headerSlice
-  );
+  const { showMenu, innerWidthWindow } = useSelector(state => state.common);
   const { isAuth } = useSelector(state => state.auth);
   const { profile } = useSelector(state => state.profile);
   const [modal, setModal] = useState(false);
   const [flagSettings, setFlagSettings] = useState(false);
 
   const onSearchInput = () => {
-    dispatch(ShowMenu(true));
+    dispatch(showMenu(true));
     const body = document.querySelector('body');
     body.classList.add('nonScroll');
   };
 
   const closeModal = () => {
-    dispatch(ShowMenu(false));
+    dispatch(showMenu(false));
     const body = document.querySelector('body');
     body.classList.remove('nonScroll');
   };

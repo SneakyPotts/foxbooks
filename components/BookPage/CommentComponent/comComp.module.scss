@@ -71,9 +71,14 @@
   color: $text-hover;
   stroke: $text-hover;
 }
+.black {
+  font-size: 14px;
+  line-height: 1.43;
+  color: $color-main;
+}
 .dropDownArrow {
   margin-left: 10px;
-    stroke-width: 2px;
+  stroke-width: 2px;
 
   transform: rotate(180deg);
 }
@@ -155,6 +160,9 @@
   align-items: center;
 }
 .controllBtn {
+  font-family: Ubuntu;
+  font-size: 14px;
+  line-height: 1.43;
   display: flex;
   align-items: center;
   margin-left: 41px;
@@ -164,8 +172,6 @@
   margin-top: 40px;
 }
 .submitButton {
-  font-size: 14px;
-  line-height: 1.43;
   width: 200px;
   height: 40px;
   margin-right: 30px;
