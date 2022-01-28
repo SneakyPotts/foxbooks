@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBreakPoint } from '../../../Header/headerSlice';
+// import { setBreakPoint } from '../../../Header/headerSlice';
 import Link from 'next/link';
 import classnames from 'classnames';
 // import { AudioBook } from './bookSlice';
@@ -15,6 +15,8 @@ import Comment from '../../icons/comment';
 import Basket from '../../../../public/trash.svg';
 import st from './book.module.scss';
 import Headphones from '../../icons/headphones';
+import Eye from '../../icons/eye';
+
 import { audioBook } from '../../../../store/bookSlice';
 
 const Book = ({
@@ -107,12 +109,23 @@ const Book = ({
           })}
         >
           <div className={st.stars}>
-            <Stars value={book?.rates_count} />
+            {similar ? (
+              <div className={st.starsBlock}>
+                <Stars count={1} value={book?.rates_count} />
+                <span>1{book?.rates_count}</span>
+              </div>
+            ) : (
+              <Stars value={book?.rates_count} />
+            )}
           </div>
-          <div className={classnames({ [st.raitingAmount]: flagSwitcher })}>
-            <span>{book?.rates_avg}</span>
-            {!similar && <span>({book?.book_likes_count})</span>}
+          <div className={st.selectionDateViews}>
+            <span>456</span>
+            <Eye />
           </div>
+          {/* <div className={classnames({ [st.raitingAmount]: flagSwitcher })}>
+            <span>1{book?.rates_avg}</span>
+            {!similar && <span>(2{book?.book_likes_count})</span>}
+          </div> */}
         </div>
         {noLinks ? (
           <h3

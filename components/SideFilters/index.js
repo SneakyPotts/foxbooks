@@ -6,14 +6,14 @@ import Categories from '../HomePage/Categories';
 import alphabet from '../data/alphabet.json';
 import st from './sideFilters.module.scss';
 
-import {useRouter} from "next/router";
-import debounce from "lodash.debounce";
-import classNames from "classnames";
+import { useRouter } from 'next/router';
+import debounce from 'lodash.debounce';
+import classNames from 'classnames';
 
 const SideFilters = () => {
-	const router = useRouter()
-	const [menu, setMenu] = useState(false);
-	const [optionIndex, setOptionIndex] = useState([]);
+  const router = useRouter();
+  const [menu, setMenu] = useState(false);
+  const [optionIndex, setOptionIndex] = useState([]);
 
 	const [filters, setFilters] = useState([
 		{
@@ -41,46 +41,50 @@ const SideFilters = () => {
 			alphabetQuery: 'alphabetTitleIndex'
 		},
 	]);
-
+/*
 	const options = [
 		{ id: '0', option: 'Бестселлеры' },
 		{ id: '1', option: 'Новинки' },
-	];
+	];*/
 
-	const toggle = e => {
-		e.stopPropagation();
-		setMenu(!menu);
-	};
+  const toggle = e => {
+    e.stopPropagation();
+    setMenu(!menu);
+  };
 
-	const filterShow = index => {
-		setFilters(prev => {
-			const filterMap = prev.map(({ flag, ...rest }, i) => {
-				return {
-					flag: index === i ? !flag : flag,
-					...rest,
-				};
-			});
-			return filterMap;
-		});
-	};
+  const filterShow = index => {
+    setFilters(prev => {
+      const filterMap = prev.map(({ flag, ...rest }, i) => {
+        return {
+          flag: index === i ? !flag : flag,
+          ...rest,
+        };
+      });
+      return filterMap;
+    });
+  };
 
-	const handleOnClick = index => {
-		if (optionIndex.includes(index)) {
-			setOptionIndex(optionIndex.filter(it => it !== index));
-		} else {
-			setOptionIndex([...optionIndex, index]);
-		}
-	};
+  const handleOnClick = index => {
+    if (optionIndex.includes(index)) {
+      setOptionIndex(optionIndex.filter(it => it !== index));
+    } else {
+      setOptionIndex([...optionIndex, index]);
+    }
+  };
 
-	const setQuery = (value, queryName) => {
-		router.push({query: {...router.query, [queryName]: encodeURI(value)}}, null, {scroll: false})
-	}
+  const setQuery = (value, queryName) => {
+    router.push(
+      { query: { ...router.query, [queryName]: encodeURI(value) } },
+      null,
+      { scroll: false }
+    );
+  };
 
-	const handleChange = debounce(setQuery, 300)
+  const handleChange = debounce(setQuery, 300);
 
 	return (
 		<div className={st.container}>
-			<div className={st.filterStatus}>
+			{/*<div className={st.filterStatus}>
 				<button className={st.btn} onClick={toggle}>
           Статус
 					<span className={classnames(st.dropDownIcon, { [st.up]: menu })}>
@@ -112,7 +116,7 @@ const SideFilters = () => {
 						</li>
 					))}
 				</ul>
-			</div>
+			</div>*/}
 			<div className={st.inputFilters}>
 				<ul className={st.filters}>
 					{filters?.map((it, index) => (

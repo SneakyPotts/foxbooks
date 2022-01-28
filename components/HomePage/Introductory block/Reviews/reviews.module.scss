@@ -1,7 +1,24 @@
-@import "/styles/variables.scss";
+@import '/styles/variables.scss';
 
 .reviewSwiper {
   margin-bottom: 63px;
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &Img {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &Name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    margin-left: 10px;
+  }
 }
 .containerReviews {
   display: flex;
@@ -74,9 +91,9 @@
 
   margin-bottom: 13px;
 }
-.btn {
-  top: 67px;
-}
+// .btn {
+//   top: 67px;
+// }
 .reviewStatistic {
   display: flex;
   font-size: 14px;
@@ -86,6 +103,7 @@
 .reviewIcon {
   display: block;
   margin-right: 10px;
+  stroke: $color-third;
 }
 .reviewLike {
   margin-right: 26px;

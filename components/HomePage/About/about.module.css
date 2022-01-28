@@ -48,10 +48,11 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-    stroke-width: 2px;
+  stroke-width: 2px;
 
   background-color: #f1f1f1;
   transform: rotate(180deg);
+  transition: 0.15s;
 }
 .active {
   border-bottom: 1px solid #ff781d;
@@ -60,5 +61,5 @@
   stroke: #fff;
   background-color: #ff781d;
 
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }

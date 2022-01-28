@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import List from '../shared/icons/list';
-import Grid from '../../public/grid.svg';
+import Grid from '../shared/icons/navMenu/grid';
 import st from './switcher.module.scss';
 import { useRouter } from 'next/router';
 

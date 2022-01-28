@@ -22,6 +22,10 @@
     color: $color-main;
   }
 
+  .inputMenu {
+    display: flex;
+  }
+
   .input {
     position: relative;
     align-items: center;
@@ -123,6 +127,7 @@
   .menu {
     display: flex;
     align-items: center;
+    margin-left: 51px;
 
     .avatarUser {
       position: relative;
@@ -190,6 +195,11 @@
 
   .userMenu:hover {
     color: $text-hover;
+
+    .iconUser {
+      stroke: $text-hover;
+      border: 2px solid $text-hover;
+    }
   }
 
   .iconUser {

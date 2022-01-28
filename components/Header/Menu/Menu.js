@@ -8,7 +8,7 @@ import Fire from '../../shared/icons/navMenu/fire';
 import MyBooks from '../../shared/icons/navMenu/myBooks';
 import Selections from '../../shared/icons/navMenu/selections';
 import Headphones from '../../shared/icons/headphones';
-import Grid from '../../../public/grid.svg';
+import Grid from '../../shared/icons/navMenu/grid';
 import LogoMobileWhite from '../../shared/icons/logoMobileWhite';
 import LogoMobileActive from '../../shared/icons/logoMobileActive';
 import User from '../../shared/icons/user';
@@ -33,7 +33,7 @@ const Navigation = ({ setModal }) => {
     <>
       <nav className={css.navigation}>
         <div className={css.topMenu}>
-          <Link href="/books?sortBy=1">
+          <Link href="/books?type=books&sortBy=1">
             <a
               className={`${css.link} ${
                 router.pathname.includes('/books') ? css.active : css.link

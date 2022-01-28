@@ -10,6 +10,14 @@ const initialState = {
 	isError: false
 };
 
+export const setBookStatus = createAsyncThunk(
+	'book/setBookStatus',
+	async data => {
+		const response = await BookService.setBookStatus(data)
+		return response.data
+	}
+)
+
 export const setBookRating = createAsyncThunk(
 	'book/setBookRating',
 	async data => {
@@ -36,6 +44,19 @@ export const bookSlice = createSlice({
 		},
 	},
 	extraReducers: {
+		[setBookStatus.pending]: state => {
+			state.isLoading = true
+		},
+		[setBookStatus.fulfilled]: state => {
+			state.isError = false
+			state.isLoading = false
+		},
+		[setBookStatus.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
 		[setBookRating.pending]: state => {
 			state.isLoading = true
 		},

@@ -136,10 +136,11 @@ ol[class] {
 }
 .booksWrapper {
   width: 100%;
-
-  .empty {
-    text-align: center;
-  }
+}
+.empty {
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 .visually-hidden {
   position: absolute;
