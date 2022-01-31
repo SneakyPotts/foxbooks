@@ -1,0 +1,56 @@
+@import "styles/variables";
+
+.container {
+  padding-top: 30px;
+  display: flex;
+}
+
+.block {
+  flex: 1;
+  margin-left: 24px;
+}
+
+.filters {
+  margin: 40px 0 20px;
+}
+
+.title {
+  font-family: Merriweather;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: $color-main;
+  margin-bottom: 17px;
+}
+
+.table {
+  display: block;
+  border-collapse: collapse;
+  border: 1px solid #D5D5D5;
+  border-radius: 9px;
+
+  tr {
+    display: block;
+
+    &:nth-of-type(2n + 1) {
+      background: #F1F1F1
+    }
+
+    td {
+      padding: 15px;
+
+      &:first-of-type {
+        width: 35%;
+      }
+
+      &:nth-of-type(2) {
+        width: 35%;
+      }
+
+      &:nth-of-type(3),
+      &:nth-of-type(4), {
+        width: 15%;
+      }
+    }
+  }
+}

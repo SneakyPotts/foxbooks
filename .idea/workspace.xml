@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/BooksListPage/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/BooksListPage/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/books-list/[letter].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +98,7 @@
       <workItem from="1643191269639" duration="31170000" />
       <workItem from="1643300912437" duration="1066000" />
       <workItem from="1643355898139" duration="22459000" />
+      <workItem from="1643615715897" duration="11408000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -213,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643370408709</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="import fix">
+      <created>1643382587566</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1643382587566</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +291,8 @@
     <MESSAGE value="change book status" />
     <MESSAGE value="audio player" />
     <MESSAGE value="player" />
-    <option name="LAST_COMMIT_MESSAGE" value="player" />
+    <MESSAGE value="import fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="import fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
