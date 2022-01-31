@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import LogoIcon from '../../public/Logo.svg';
+import LogoIcon from '../shared/icons/Logo';
 import st from './logo.module.scss';
 
 const Logo = () => {

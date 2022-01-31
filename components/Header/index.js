@@ -16,7 +16,7 @@ import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
-import {showMenu, setBreakPoint} from "../../store/commonSlice";
+import { showMenu, setBreakPoint } from '../../store/commonSlice';
 
 const Header = () => {
   const dispatch = useDispatch();

@@ -9,41 +9,23 @@ import categories from '../data/categories.json';
 import st from './audioBooks.module.scss';
 
 const AudioBooks = () => {
-	// const router = useRouter();
+  return (
+    <div className={classnames('container', st.abContainer)}>
+      {/* <Breadcrumbs data={breadcrumbsData} /> */}
 
-	//   const searchBreadcrumb =
-	//     router.query.comingFrom === 'home'
-	//       ? {}
-	//       : {
-	//           label: `${router.query.page}`,
-	//           path: `${router.pathname}`,
-	//         };
-
-	// const breadcrumbsData = [
-	//   // searchBreadcrumb,
-	//   {
-	//     label: `${router.query.page}`,
-	//     path: `${router.pathname}`,
-	//   },
-	// ];
-
-	return (
-		<div className={classnames('container', st.abContainer)}>
-			{/* <Breadcrumbs data={breadcrumbsData} /> */}
-
-			<h2 className={st.abTitle}>Аудиокниги</h2>
-			{categories.map(({ id, category }) => (
-				<button key={id} className={st.abCateg}>
-					<Link href={`/audiobooks/${id}`}>
-						<a className={st.abCategLink}>{category}</a>
-					</Link>
-				</button>
-			))}
-			<ShowAll url="#" text="Показать все" />
-			<BookFilters />
-			<BooksMainBlock audio={true} />
-		</div>
-	);
+      <h2 className={st.abTitle}>Аудиокниги</h2>
+      {categories.map(({ id, category }) => (
+        <button key={id} className={st.abCateg}>
+          <Link href={`/audiobooks/${id}`}>
+            <a className={st.abCategLink}>{category}</a>
+          </Link>
+        </button>
+      ))}
+      <ShowAll url="#" text="Показать все" />
+      <BookFilters />
+      <BooksMainBlock audio={true} />
+    </div>
+  );
 };
 
 export default AudioBooks;
