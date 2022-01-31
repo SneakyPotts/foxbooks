@@ -166,3 +166,7 @@ ol[class] {
 }
 @media (min-width: 768px) {
 }
+
+.main {
+  min-height: calc(100vh - 165px - 117px);
+}

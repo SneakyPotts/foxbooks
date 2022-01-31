@@ -1,7 +1,7 @@
 @import '/styles/variables.scss';
 
 .reviewSwiper {
-  margin-bottom: 63px;
+  margin-bottom: 43px;
 }
 .reviewer {
   display: flex;
@@ -74,9 +74,13 @@
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
+  margin-bottom: 13px;
   color: $color-third;
 }
 .reviewViews {
+  font-family: Ubuntu;
+  font-size: 14px;
+  line-height: 1.43;
   display: flex;
   align-items: top;
 }
@@ -88,12 +92,7 @@
   font-size: 12px;
   line-height: 1.167;
   margin: 0;
-
-  margin-bottom: 13px;
 }
-// .btn {
-//   top: 67px;
-// }
 .reviewStatistic {
   display: flex;
   font-size: 14px;
@@ -106,7 +105,7 @@
   stroke: $color-third;
 }
 .reviewLike {
-  margin-right: 26px;
+  margin-right: 34px;
 }
 .reviewTitle {
   font-weight: 500;

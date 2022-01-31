@@ -16,10 +16,14 @@
 
   .header {
     display: flex;
-    margin-bottom: 33px;
+    margin-bottom: 32px;
     align-items: center;
     justify-content: space-between;
     color: $color-main;
+  }
+
+  .logo {
+    height: 48px;
   }
 
   .inputMenu {
