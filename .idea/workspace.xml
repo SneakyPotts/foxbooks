@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/components/BooksListPage/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/BooksListPage/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/books-list/[letter].js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BooksListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BooksListPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BooksListPage/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BooksListPage/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Alphabet/alphabet.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Alphabet/alphabet.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="louie2" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

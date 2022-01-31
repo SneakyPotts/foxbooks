@@ -14,7 +14,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useDispatch} from "react-redux";
 import SocialNetwork from "../../shared/common/SocialNetwork/SocialNetwork";
-import {setAuth, signIn, signUp} from "../../../store/authSlice";
+import {forgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice";
 
 const GroupForms = ({modal,setModal}) => {
 	const [flagLogin, setFlagLogin] = useState(true)
@@ -58,8 +58,12 @@ const GroupForms = ({modal,setModal}) => {
 	}
 
 	const onSubmitForgetPassword = data => {
-		setFlagForgetPassword(false)
-		setFlagResetPassMessage(true)
+		dispatch(forgotPassword(data)).then(res => {
+			if (res.meta.requestStatus === "fulfilled") {
+				setFlagForgetPassword(false)
+				setFlagResetPassMessage(true)
+			}
+		})
 		// console.log(data, 'Форма забыл пороль');
 	}
 

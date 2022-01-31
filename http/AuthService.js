@@ -14,6 +14,10 @@ export default class AuthService {
 		return axios.post(`${API_URL}/verify_email`, { email, token })
 	}
 
+	static async forgotPassword(email) {
+		return axios.post(`${API_URL}/password_forgot`, {email})
+	}
+
 	static async signInWithSocial({ id, token }) {
 		return axios.post(`${API_URL}/auth`, { id, token })
 	}
