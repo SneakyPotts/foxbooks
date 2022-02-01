@@ -26,8 +26,10 @@ const Book = ({
   similar,
   noLinks = false,
   book,
+  count,
 }) => {
   const dispatch = useDispatch();
+
   // const { audioFlag } = useSelector(state => state.bookSlice);
 
   const [changeIcon, setChangeIcon] = useState(false);
@@ -115,7 +117,7 @@ const Book = ({
                 <span>1{book?.rates_count}</span>
               </div>
             ) : (
-              <Stars value={book?.rates_count} />
+              <Stars count={count} value={book?.rates_count} />
             )}
           </div>
           <div className={st.selectionDateViews}>

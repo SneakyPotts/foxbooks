@@ -46,7 +46,7 @@ const AudioBooks = () => {
         {testData.map((r, i) => {
           return (
             <SwiperSlide className={css.slideAudio} key={i}>
-              <Book audio={true} />
+              <Book count={innerWidthWindow <= 500 ? 1 : 5} audio={true} />
             </SwiperSlide>
           );
         })}

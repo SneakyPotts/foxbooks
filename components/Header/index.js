@@ -21,7 +21,10 @@ import { showMenu, setBreakPoint } from '../../store/commonSlice';
 const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { showMenu, innerWidthWindow } = useSelector(state => state.common);
+  const { innerWidthWindow, showMenu: showMenuFlag } = useSelector(
+    state => state.common
+  );
+
   const { isAuth } = useSelector(state => state.auth);
   const { profile } = useSelector(state => state.profile);
   const [modal, setModal] = useState(false);
@@ -124,11 +127,11 @@ const Header = () => {
                     />
                     <FiSearch
                       className={classNames({
-                        [st.iconSearch]: !showMenu,
-                        [st.active]: showMenu,
+                        [st.iconSearch]: !showMenuFlag,
+                        [st.active]: showMenuFlag,
                       })}
                     />
-                    {showMenu && (
+                    {showMenuFlag && (
                       <span className={st.closeIcon} onClick={closeModal}>
                         <Close />
                       </span>
@@ -201,7 +204,7 @@ const Header = () => {
               </header>
               <Menu setModal={() => setModal(!modal)} />
             </div>
-            {showMenu && (
+            {showMenuFlag && (
               <div className={st.overlay} onClick={closeModal}>
                 <div
                   className={classNames(st.dropDown)}

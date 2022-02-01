@@ -2,6 +2,7 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 import ArrowRight from '../../public/chevron-right.svg';
 import Categories from './Categories/index';
 import Alphabet from './Alphabet/Alphabet';
@@ -13,14 +14,18 @@ import About from './About';
 import books from '../data/books.json';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
+import MobileBlock from './MobileBlock';
 import css from './home.module.scss';
-import {useRef} from "react";
+// import {useRef} from "react";
 
 const HomeView = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
-
+  console.log(
+    innerWidthWindow <= 500 ? 1 : 5,
+    'innerWidthWindow <= 500 ? 1 : 5'
+  );
   return (
-    <div className={'container'}>
+    <div className={classNames('container', css.container)}>
       <div className={css.mainContainer}>
         <Categories />
         <div className={css.mainBlock}>
@@ -48,7 +53,7 @@ const HomeView = () => {
           >
             {books.map(book => (
               <SwiperSlide key={book.id} className={css.swiperSlide}>
-                <Book book={book} />
+                <Book count={innerWidthWindow <= 500 ? 1 : 5} book={book} />
               </SwiperSlide>
             ))}
             <button className="prevArrow">
@@ -60,6 +65,7 @@ const HomeView = () => {
           </Swiper>
         </div>
       </div>
+      {innerWidthWindow <= 768 && <MobileBlock />}
       <Hero />
       <div className={css.wrapper}>
         <BookUpdates />

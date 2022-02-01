@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import { Navigation } from 'swiper/core';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import Eye from '../../../shared/icons/eye';
 import ArrowRight from '../../../../public/chevron-right.svg';
 import Like from '../../../shared/icons/heart';
@@ -14,7 +14,7 @@ import ShowAll from '../../../shared/common/showAll/ShowAll';
 
 const Reviews = () => {
   return (
-    <>
+    <div className={st.container}>
       <ShowAll title="Рецензии" url="/reviews" text="Показать все" />
       <Swiper
         modules={[Navigation]}
@@ -29,7 +29,7 @@ const Reviews = () => {
         className={st.reviewSwiper}
       >
         {dataReview.map(review => (
-          <SwiperSlide key={review.id}>
+          <SwiperSlide className={st.test} key={review.id}>
             <div className={st.reviewer}>
               <Image
                 src={review.reiewer_img}
@@ -75,7 +75,7 @@ const Reviews = () => {
           <ArrowRight className="arrowNext" />
         </button>
       </Swiper>
-    </>
+    </div>
   );
 };
 export default Reviews;

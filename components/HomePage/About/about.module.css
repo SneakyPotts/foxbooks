@@ -1,4 +1,6 @@
 .container {
+  order: 7;
+
   margin-bottom: 60px;
 }
 

@@ -242,6 +242,14 @@
 }
 
 @media (max-width: 768px) {
+  //.stars {
+  //  > div > div {
+  //    span:not(:first-child) {
+  //      display: none!important;
+  //    }
+  //  }
+  //}
+
   .container {
     width: 108px;
   }
