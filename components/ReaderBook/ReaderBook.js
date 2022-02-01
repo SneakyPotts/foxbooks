@@ -8,13 +8,13 @@ import Letter from "../shared/icons/Letter";
 import FullScreen from "../shared/icons/FullScreen";
 import BookMark from "../shared/icons/BookMark";
 import InputRange from "../shared/common/InputRange/InputRange";
+import DrawerPopup from "../shared/common/DrawerPopup";
 import classnames from "classnames";
-
 
 const ReaderBook = () => {
     const [controlDrop, setControlDrop] = useState(false)
     const [flagRender, setFlagRender] = useState(false)
-    const [column, setСolumn] = useState(false)
+    const [column, setСolumn] = useState(true)
     const [alignment, setAlignment] = useState(false)
     const [fontSize, setFontSize] = useState(0)
     const [brightness, setBrightness] = useState(5)
@@ -191,57 +191,60 @@ const ReaderBook = () => {
                     <FullScreen className={styles.iconRight}/>
                     <BookMark className={styles.iconRight}/>
                     {controlDrop &&
-                    <div className={styles.control}>
-                        {controlData.map(({textLabel, labelOne, labelSecond, value, setValue, max, dot}, i) => {
-                            return i === 0 || i === 6 ?
-                                <div className={styles.controlBlock}>
-                                    <div className={styles.wrapSwitch}>
-                                        <span>{textLabel}</span>
-                                        <input className={styles.switch}
-                                               checked={value}
-                                               onChange={() => setValue(!value)}
-                                               type="checkbox"/>
-                                    </div>
-                                </div>
-                                : i === 3 ?
-                                    <div className={classnames(styles.controlBlock, styles.fontBlock)}>
-                                        <span>{textLabel}</span>
-                                        <div onClick={() => setDropFont(!dropFont)}
-                                             className={classnames(styles.changeFont, {[styles.changeFontActive]: dropFont})}>
-                                            <span>{value}</span>
-                                            <span className={styles.changeFontSvg}>
-                                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M1 1L7 7L13 1" stroke="#909190" strokeWidth="2"
-                                                          strokeLinecap="round" strokeLinejoin="round"/>
-                                                </svg>
-                                            </span>
-                                            <div
-                                                className={classnames(styles.fontDropDown, {[styles.fontDropDownActive]: dropFont})}>
-                                                {dataDropDownFonts.map(({text}) => (
-                                                    <button style={{color: font === text && '#ff781d'}}
-                                                            onClick={() => setFont(text)} type='button'>
-                                                        {text}
-                                                    </button>
-                                                ))}
-                                            </div>
+                        <DrawerPopup
+                            onClose={() => setControlDrop(false)}
+                            externalClass={styles.control}
+                        >
+                            {controlData.map(({textLabel, labelOne, labelSecond, value, setValue, max, dot}, i) => {
+                                return i === 0 || i === 6 ?
+                                    <div className={styles.controlBlock}>
+                                        <div className={styles.wrapSwitch}>
+                                            <span>{textLabel}</span>
+                                            <input className={styles.switch}
+                                                checked={value}
+                                                onChange={() => setValue(!value)}
+                                                type="checkbox"/>
                                         </div>
                                     </div>
-                                    :
-                                    <div className={styles.controlBlock}>
-                                        <InputRange
-                                            dot={dot}
-                                            brightness={brightness}
-                                            value={value}
-                                            setValue={setValue}
-                                            textLabel={textLabel}
-                                            labelOne={labelOne && labelOne}
-                                            labelSecond={labelSecond && labelSecond}
-                                            max={max}
-                                        />
-                                    </div>
-                        })}
-                    </div>
+                                    : i === 3 ?
+                                        <div className={classnames(styles.controlBlock, styles.fontBlock)}>
+                                            <span>{textLabel}</span>
+                                            <div onClick={() => setDropFont(!dropFont)}
+                                                className={classnames(styles.changeFont, {[styles.changeFontActive]: dropFont})}>
+                                                <span>{value}</span>
+                                                <span className={styles.changeFontSvg}>
+                                                    <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1 1L7 7L13 1" stroke="#909190" strokeWidth="2"
+                                                            strokeLinecap="round" strokeLinejoin="round"/>
+                                                    </svg>
+                                                </span>
+                                                <div
+                                                    className={classnames(styles.fontDropDown, {[styles.fontDropDownActive]: dropFont})}>
+                                                    {dataDropDownFonts.map(({text}) => (
+                                                        <button style={{color: font === text && '#ff781d'}}
+                                                                onClick={() => setFont(text)} type='button'>
+                                                            {text}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className={styles.controlBlock}>
+                                            <InputRange
+                                                dot={dot}
+                                                brightness={brightness}
+                                                value={value}
+                                                setValue={setValue}
+                                                textLabel={textLabel}
+                                                labelOne={labelOne && labelOne}
+                                                labelSecond={labelSecond && labelSecond}
+                                                max={max}
+                                            />
+                                        </div>
+                            })}
+                        </DrawerPopup>
                     }
                 </div>
             </div>
@@ -261,28 +264,80 @@ const ReaderBook = () => {
                 <h1>Гарри Поттер и философский камень</h1>
                 <span>Джоан Роулинг</span>
                 <h3>Глава 1. Мальчик, который выжил</h3>
-                <p
-                    className={styles.containerTextMain}
-                    style={{
-                        fontSize: `${Number(fontSize) + 16}px`,
-                        lineHeight: Number(line) === 2 ?
-                            '22px' : Number(line) === 1 ?
-                                '21px' : Number(line) === 0 ?
-                                    '18px' : Number(line) === 3 ?
-                                        '24px' : '26px',
-                        fontFamily: font
-                    }}
+                {column ? 
+                    <div className={styles.columnsWrapper}>
+                        <p
+                            className={styles.containerTextMain}
+                            style={{
+                                fontSize: `${Number(fontSize) + 16}px`,
+                                lineHeight: Number(line) === 2 ?
+                                    '22px' : Number(line) === 1 ?
+                                        '21px' : Number(line) === 0 ?
+                                            '18px' : Number(line) === 3 ?
+                                                '24px' : '26px',
+                                fontFamily: font,
+                                textAlign: alignment ? 'justify' : 'left'
+                            }}
 
-                    onMouseUp={(e) => {
-                        let selectText = window.getSelection().toString()
-                        if (selectText.length > 0) {
-                            setCurrentSelectionText(selectText)
-                            setAddQuotes(true)
-                        } else {
-                            setAddQuotes(false)
-                        }
-                    }} dangerouslySetInnerHTML={{__html: `${textPage}`}}
-                />
+                            onMouseUp={(e) => {
+                                let selectText = window.getSelection().toString()
+                                if (selectText.length > 0) {
+                                    setCurrentSelectionText(selectText)
+                                    setAddQuotes(true)
+                                } else {
+                                    setAddQuotes(false)
+                                }
+                            }} dangerouslySetInnerHTML={{__html: `${textPage?.slice(0, textPage?.length / 2)}`}}
+                        />
+                        <p
+                            className={styles.containerTextMain}
+                            style={{
+                                fontSize: `${Number(fontSize) + 16}px`,
+                                lineHeight: Number(line) === 2 ?
+                                    '22px' : Number(line) === 1 ?
+                                        '21px' : Number(line) === 0 ?
+                                            '18px' : Number(line) === 3 ?
+                                                '24px' : '26px',
+                                fontFamily: font,
+                                textAlign: alignment ? 'justify' : 'left'
+                            }}
+
+                            onMouseUp={(e) => {
+                                let selectText = window.getSelection().toString()
+                                if (selectText.length > 0) {
+                                    setCurrentSelectionText(selectText)
+                                    setAddQuotes(true)
+                                } else {
+                                    setAddQuotes(false)
+                                }
+                            }} dangerouslySetInnerHTML={{__html: `${textPage?.slice(textPage?.length / 2)}`}}
+                        />
+                    </div>
+                    :
+                    <p
+                        className={styles.containerTextMain}
+                        style={{
+                            fontSize: `${Number(fontSize) + 16}px`,
+                            lineHeight: Number(line) === 2 ?
+                                '22px' : Number(line) === 1 ?
+                                    '21px' : Number(line) === 0 ?
+                                        '18px' : Number(line) === 3 ?
+                                            '24px' : '26px',
+                            fontFamily: font,
+                            textAlign: alignment ? 'justify' : 'left'
+                        }}
+
+                        onMouseUp={(e) => {
+                            let selectText = window.getSelection().toString()
+                            if (selectText.length > 0) {
+                                setCurrentSelectionText(selectText)
+                                setAddQuotes(true)
+                            } else {
+                                setAddQuotes(false)
+                            }
+                        }} dangerouslySetInnerHTML={{__html: `${textPage}`}}
+                    />
+                }
 
                 {addQuotes &&
                 <div
