@@ -25,6 +25,14 @@ export const signIn = createAsyncThunk(
 	}
 )
 
+export const forgotPassword = createAsyncThunk(
+	'auth/forgotPassword',
+	async data => {
+		const response = await AuthService.forgotPassword(data)
+		return response.data
+	}
+)
+
 export const verifyEmail = createAsyncThunk(
 	'auth/verifyEmail',
 	async data => {
@@ -73,6 +81,19 @@ export const authSlice = createSlice({
 			state.isAuth = true
 		},
 		[signIn.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
+		[forgotPassword.pending]: state => {
+			state.isLoading = true
+		},
+		[forgotPassword.fulfilled]: state => {
+			state.isError = false
+			state.isLoading = false
+		},
+		[forgotPassword.rejected]: state => {
 			state.isError = true
 			state.isLoading = false
 		},

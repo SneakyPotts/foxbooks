@@ -6,6 +6,8 @@ import styles from './styles.module.scss';
 import BookFilters from "../shared/common/booksFilters/BookFilters";
 import {useSelector} from "react-redux";
 import Stars from "../shared/common/stars/Stars";
+import {useRouter} from "next/router";
+import {route} from "next/dist/server/router";
 
 const filters = [
   {id: 1, title: 'Книги', value: 'books'},
@@ -13,6 +15,7 @@ const filters = [
 ]
 
 const BooksListPage = () => {
+  const router = useRouter()
   const {books} = useSelector(state => state.book)
 
   return (
@@ -26,17 +29,19 @@ const BooksListPage = () => {
             queryName={'type'}
           />
         </div>
-        <h2 className={styles.title}>Названия книг, которые начинаются на букву А</h2>
-        <table className={styles.table}>
-          {books?.map(i =>
-            <tr key={i?.id}>
-              <td>{i?.title}</td>
-              <td>Саймон Стронг</td>
-              <td><Stars  /></td>
-              <td>8,1 (450)</td>
-            </tr>
-          )}
-        </table>
+        <h2 className={styles.title}>Названия книг, которые начинаются на букву {decodeURI(router.query?.letter)}</h2>
+        {books?.length ?
+          <table className={styles.table}>
+            {books?.map(i =>
+              <tr key={i?.id}>
+                <td>{i?.title}</td>
+                <td>Саймон Стронг</td>
+                <td><Stars /> 8,1 (450)</td>
+              </tr>
+            )}
+          </table> :
+          <p className="empty">Книг не найдено</p>
+        }
       </div>
     </div>
   );

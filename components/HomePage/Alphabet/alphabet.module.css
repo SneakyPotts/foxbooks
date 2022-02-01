@@ -25,7 +25,8 @@
   padding: 0;
   color: #0e263e;
 }
-.leter:hover {
+.leter:hover,
+.letter.active {
   color: #ff781d;
 }
 

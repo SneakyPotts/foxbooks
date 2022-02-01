@@ -1,0 +1,96 @@
+@media screen and (max-width: 768px) {
+  .wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(52, 52, 52, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    animation: blurIn .15s;
+    cursor: default;
+    
+    &.hide {
+      animation: blurOut .3s;
+      
+      .drawer {
+        animation: slideBottom .3s;
+      }
+    }
+  }
+
+  .drawer {
+    width: 100%;
+    top: initial;
+    bottom: 0;
+    transform: translateY(0);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 40px 30px 30px;
+    animation: slideTop .15s;
+    transition: none;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: transparent;
+    cursor: pointer;
+    
+    &::after {
+      content: '';
+      width: 56px;
+      height: 3px;
+      background: #D5D5D5;
+      border-radius: 5px;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@keyframes blurIn {
+  0% {
+    background: transparent;
+    backdrop-filter: blur(0);
+  }
+  100% {
+    background: rgba(52, 52, 52, 0.6);
+    backdrop-filter: blur(10px);
+  }
+}
+
+@keyframes blurOut {
+  0% {
+    background: rgba(52, 52, 52, 0.6);
+    backdrop-filter: blur(10px);
+  }
+  100% {
+    background: transparent;
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

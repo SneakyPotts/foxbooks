@@ -15,12 +15,35 @@
   padding: 20px;
   gap: 10px;
   color: #fff;
+  animation: slideTop .15s;
+  
+  &.hide {
+    animation: slideBottom .3s;
+  }
 
   &Column {
     &:nth-of-type(2) {
       width: 47%;
       margin: 0 auto;
     }
+  }
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
 
@@ -172,10 +195,6 @@
     }
   }
 
-  &Page {
-
-  }
-
   &Volume {
     width: 142px;
 
@@ -197,40 +216,23 @@
     }
 
   }
+}
 
-  &Drop {
-    position: absolute;
-    top: -20px;
-    right: 0;
-    padding: 30px;
-    background: #FFFFFF;
-    border: 1px solid #F1F1F1;
-    box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    transform: translateY(-100%);
-    min-width: 200px;
-    transition: .15s;
-    animation: dropUp .2s;
+.dropItem {
+  font-size: 16px;
+  line-height: 18px;
+  color: #4F4F4F;
+  margin-bottom: 20px;
+  transition: .15s;
+  cursor: pointer;
 
-    span {
-      font-size: 16px;
-      line-height: 18px;
-      color: #4F4F4F;
-      margin-bottom: 20px;
-      transition: .15s;
-      cursor: pointer;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-
-      &:hover,
-      &.active {
-        color: $text-hover;
-      }
-    }
+  &:hover,
+  &.active {
+    color: $text-hover;
   }
 }
 
@@ -252,17 +254,6 @@
   
   &:hover {
     background: #eee;
-  }
-}
-
-@keyframes dropUp {
-  0% {
-    opacity: 0;
-    transform: translateY(-100%) scale(.8);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(-100%) scale(1);
   }
 }
 

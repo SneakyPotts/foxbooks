@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player'
 import PlayerBack from "../shared/icons/playerBack";
@@ -16,6 +16,7 @@ import Close from "../shared/icons/close";
 import {useDispatch, useSelector} from "react-redux";
 import {togglePlayer} from "../../store/commonSlice";
 import ArrowBack from "../shared/icons/arrowBack";
+import DrawerPopup from '../shared/common/DrawerPopup';
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -34,6 +35,8 @@ const AudioPlayer = () => {
   const [progress, setProgress] = useState(0)
   const [speedDropIsVisible, setSpeedDropIsVisible] = useState(false)
   const [pageDropIsVisible, setPageDropIsVisible] = useState(false)
+
+  const [isClosed, setIsClosed] = useState(false)
 
   const duration = +player.current?.getDuration() || 0
 
@@ -61,12 +64,13 @@ const AudioPlayer = () => {
 
   const closePlayer = () => {
     setSettings({...settings, playing: false})
-    dispatch(togglePlayer(false))
+    setIsClosed(true)
+    setTimeout(() => dispatch(togglePlayer(false)), 300)    
   }
 
   return (
     <div
-      className={styles.wrapper}
+      className={classNames(styles.wrapper, {[styles.hide] : isClosed})}
       onClick={hideDrops}
     >
       {innerWidthWindow < 1024 &&
@@ -142,20 +146,20 @@ const AudioPlayer = () => {
         >
           <PlayerSpeed />
           {speedDropIsVisible &&
-            <div
-              className={styles.playerDrop}
-              onClick={ev => ev.stopPropagation()}
+            <DrawerPopup
+              direction='up'
+              onClose={() => setSpeedDropIsVisible(false)}
             >
               {speeds?.map(i =>
                 <span
                   key={i}
                   onClick={() => setSettings({...settings, playbackRate: i})}
-                  className={classNames({[styles.active]: i === settings?.playbackRate})}
+                  className={classNames(styles.dropItem, {[styles.active]: i === settings?.playbackRate})}
                 >
                   {i === 1 ? 'Обычная' : i}
                 </span>
               )}
-            </div>
+            </DrawerPopup>
           }
         </div>
         <div
@@ -168,20 +172,20 @@ const AudioPlayer = () => {
         >
           <PlayerPage />
           {pageDropIsVisible &&
-            <div
-              className={styles.playerDrop}
-              onClick={ev => ev.stopPropagation()}
+            <DrawerPopup
+              direction='up'
+              onClose={() => setPageDropIsVisible(false)}
             >
-            {speeds?.map(i =>
-              <span
-                key={i}
-                onClick={() => setSettings({...settings, playbackRate: i})}
-                className={classNames({[styles.active]: i === settings?.playbackRate})}
-              >
-                {i === 1 ? 'Обычная' : i}
-              </span>
-            )}
-          </div>
+              {speeds?.map(i =>
+                <span
+                  key={i}
+                  onClick={() => setSettings({...settings, playbackRate: i})}
+                  className={classNames({[styles.active]: i === settings?.playbackRate})}
+                >
+                  {i === 1 ? 'Обычная' : i}
+                </span>
+              )}
+            </DrawerPopup>
           }
         </div>
         {innerWidthWindow >= 1024 &&
