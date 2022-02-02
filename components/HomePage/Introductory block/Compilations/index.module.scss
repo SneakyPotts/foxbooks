@@ -1,7 +1,6 @@
 @import 'styles/variables.scss';
 
 .container {
-  order: 4;
   margin-top: 70px;
   margin-bottom: 60px;
 
@@ -46,7 +45,7 @@
       position: relative;
 
       &Count {
-        font-family: Ubuntu, sans-serif;
+        font-family: Fira Sans, sans-serif;
         font-size: 14px;
         line-height: 1.43;
         position: absolute;
@@ -69,7 +68,7 @@
     &Date {
       display: flex;
       justify-content: space-between;
-      font-family: Ubuntu, sans-serif;
+      font-family: Fira Sans, sans-serif;
       font-size: 12px;
       line-height: 14px;
       color: $color-third;
@@ -88,7 +87,7 @@
     }
 
     &Description {
-      font-family: Ubuntu, sans-serif;
+      font-family: Fira Sans, sans-serif;
       font-size: 14px;
       line-height: 1.43;
       color: $color-second;
@@ -111,5 +110,14 @@
 
   .positionButton {
     top: 67px !important;
+  }
+}
+
+// @media (max-width: 1200px) {
+
+// }
+@media (max-width: 768px) {
+  .container {
+    order: 4;
   }
 }

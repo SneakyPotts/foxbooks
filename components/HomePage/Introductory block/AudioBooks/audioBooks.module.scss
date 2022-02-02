@@ -1,7 +1,6 @@
 @import 'styles/variables.scss';
 
 .container {
-  order: 5;
   margin-bottom: 60px;
 }
 
@@ -47,4 +46,13 @@
 
 .slideAudio {
   max-width: 180px;
+}
+
+// @media (max-width: 1200px) {
+
+// }
+@media (max-width: 768px) {
+  .container {
+    order: 3;
+  }
 }

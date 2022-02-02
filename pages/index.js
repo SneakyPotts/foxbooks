@@ -16,7 +16,7 @@ export default function App(props) {
         {/* <link rel="preconnect" href="https://fonts.googleapis.com" >
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin > */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Ubuntu:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Fira Sans, sans-serif:wght@400;500&display=swap"
           rel="stylesheet"
         ></link>
         {/* beforeInteractive */}

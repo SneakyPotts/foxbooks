@@ -12,3 +12,13 @@
   margin-top: 60px;
   min-width: 0;
 }
+
+// @media (max-width: 1200px) {
+
+// }
+@media (max-width: 768px) {
+  .container {
+    order: 2;
+    margin-top: 60px;
+  }
+}

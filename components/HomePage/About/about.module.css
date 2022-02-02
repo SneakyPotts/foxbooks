@@ -1,6 +1,4 @@
 .container {
-  order: 7;
-
   margin-bottom: 60px;
 }
 
@@ -27,7 +25,7 @@
   background-color: #ff781d;
 }
 .dropDownTitle {
-  font-family: Ubuntu;
+  font-family: Fira Sans, sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 18px;
@@ -63,4 +61,12 @@
   background-color: #ff781d;
 
   transform: rotate(0deg);
+}
+
+/* @media (max-width: 1200px) {
+} */
+@media (max-width: 768px) {
+  .container {
+    order: 7;
+  }
 }

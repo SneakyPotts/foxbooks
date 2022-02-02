@@ -24,7 +24,7 @@
   }
 
   .logo {
-    height: 48px;
+    max-height: 48px;
   }
 
   .inputMenu {
@@ -167,7 +167,7 @@
         }
 
         li {
-          font-family: Ubuntu, sans-serif;
+          font-family: Fira Sans, sans-serif;
           font-size: 14px;
           color: $color-second;
           display: flex;
@@ -300,12 +300,16 @@
   .main {
     .header {
       flex-direction: column;
+      margin-bottom: 20px;
     }
     .input {
       margin-top: 20px;
     }
     .menu {
       display: none;
+    }
+    .logo {
+      max-height: 32px;
     }
   }
 }
@@ -324,6 +328,7 @@
 
 @media (max-width: 1200px) {
   .main {
+    max-height: initial;
     padding: 20px 15px;
   }
 }

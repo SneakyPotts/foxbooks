@@ -59,7 +59,7 @@
   color: $color-third;
 }
 .bookDate {
-  font-family: Ubuntu;
+  font-family: Fira Sans, sans-serif;
   font-size: 14px;
   line-height: 1.43;
   color: $color-second;
@@ -77,7 +77,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Ubuntu, sans-serif;
+  font-family: Fira Sans, sans-serif;
   color: $color-third;
 
   > span {
@@ -130,7 +130,7 @@
   margin: 20px 0;
 }
 .readButton {
-  font-family: Ubuntu;
+  font-family: Fira Sans, sans-serif;
   font-size: 14px;
   line-height: 1.43;
   width: 200px;

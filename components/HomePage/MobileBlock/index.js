@@ -12,7 +12,7 @@ import st from './mobile.module.scss';
 const MobileBlock = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
   return (
-    <div>
+    <div className={st.container}>
       <div className={st.mainBlock}>
         <ShowAll title="Романы" url="/new" />
 

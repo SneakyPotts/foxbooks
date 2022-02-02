@@ -1,8 +1,5 @@
 @import '/styles/variables.scss';
 
-.container {
-  order: 6;
-}
 .reviewSwiper {
   margin-bottom: 43px;
 }
@@ -81,7 +78,7 @@
   color: $color-third;
 }
 .reviewViews {
-  font-family: Ubuntu;
+  font-family: Fira Sans, sans-serif;
   font-size: 14px;
   line-height: 1.43;
   display: flex;
@@ -129,6 +126,11 @@
   color: $color-second;
 }
 
-// .test {
-//   max-width: ;
+// @media (max-width: 1200px) {
+
 // }
+@media (max-width: 768px) {
+  .container {
+    order: 6;
+  }
+}

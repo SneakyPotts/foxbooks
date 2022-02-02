@@ -36,7 +36,7 @@
   }
 }
 .userInput {
-  font-family: Ubuntu;
+  font-family: Fira Sans, sans-serif;
   width: 484px;
   height: 35px;
   padding: 8px 20px;
@@ -47,7 +47,7 @@
   outline: none;
 
   &::-webkit-input-placeholder {
-    font-family: Ubuntu;
+    font-family: Fira Sans, sans-serif;
     font-size: 14px;
     line-height: 1.43;
     color: $color-third;
@@ -82,7 +82,7 @@
   background-color: $text-hover;
 }
 .cancelBtn {
-  font-family: Ubuntu;
+  font-family: Fira Sans, sans-serif;
   font-size: 14px;
   line-height: 1.43;
   cursor: pointer;
