@@ -1,6 +1,5 @@
 // import Link from 'next/link';
 import { useSelector } from 'react-redux';
-
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';

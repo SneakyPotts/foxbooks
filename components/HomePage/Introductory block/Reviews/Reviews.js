@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import { Navigation } from 'swiper/core';
@@ -13,6 +14,8 @@ import st from './reviews.module.scss';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
 
 const Reviews = () => {
+  const { innerWidthWindow } = useSelector(state => state.common);
+
   return (
     <div className={st.container}>
       <ShowAll title="Рецензии" url="/reviews" text="Показать все" />
@@ -23,7 +26,11 @@ const Reviews = () => {
           nextEl: '.nextArrow',
         }}
         spaceBetween={24}
-        slidesPerView={3}
+        slidesPerView={
+          (innerWidthWindow <= 768 && 1) ||
+          (innerWidthWindow <= 1024 && 2) ||
+          (innerWidthWindow >= 1200 && 3)
+        }
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
         className={st.reviewSwiper}
@@ -41,7 +48,12 @@ const Reviews = () => {
               <h3 className={st.reviewerName}>{review.reviewer_name}</h3>
             </div>
             <div className={st.reviewsCover}>
-              <Image src={review.img} alt="" width="86" height="143" />
+              <Image
+                src={review.img}
+                alt=""
+                width={innerWidthWindow <= 500 ? 85 : 86}
+                height={innerWidthWindow <= 500 ? 144 : 143}
+              />
               <div className={st.bookMainInfo}>
                 <h3 className={st.bookTitle}>{review.book_title}</h3>
                 <p className={st.bookAuthor}>{review.book_author}</p>

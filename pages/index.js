@@ -15,10 +15,10 @@ export default function App(props) {
       <Head>
         {/* <link rel="preconnect" href="https://fonts.googleapis.com" >
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin > */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Fira Sans, sans-serif:wght@400;500&display=swap"
-          rel="stylesheet"
-        ></link>
+        {/*<link*/}
+        {/*  href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Fira Sans, sans-serif:wght@400;500&display=swap"*/}
+        {/*  rel="stylesheet"*/}
+        {/*/>*/}
         {/* beforeInteractive */}
         {/* <Script src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" /> */}
       </Head>

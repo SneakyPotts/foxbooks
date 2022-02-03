@@ -96,7 +96,7 @@ const ReaderBook = () => {
         {text: 'Times New Roman'},
         {text: 'Georgia'},
         {text: 'Arial'},
-        {text: 'Fira Sans, sans-serif'},
+        {text: 'Ubuntu, sans-serif'},
         {text: 'Verdana'},
     ]
 

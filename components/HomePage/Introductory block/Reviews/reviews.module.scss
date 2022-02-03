@@ -1,8 +1,11 @@
 @import '/styles/variables.scss';
 
-.reviewSwiper {
-  margin-bottom: 43px;
+.container {
+  margin-bottom: 40px;
 }
+// .reviewSwiper {
+
+// }
 .reviewer {
   display: flex;
   align-items: center;
@@ -132,5 +135,13 @@
 @media (max-width: 768px) {
   .container {
     order: 6;
+  }
+  .reviewsCover {
+    display: flex;
+    min-width: 345px;
+    min-height: 183px;
+    background-color: $color-bg-icon;
+    border-radius: 5px;
+    padding: 20px;
   }
 }
