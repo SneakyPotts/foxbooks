@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BooksListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BooksListPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BooksListPage/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BooksListPage/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Alphabet/alphabet.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Alphabet/alphabet.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/AuthService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBookCopy.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBookCopy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +98,7 @@
       <workItem from="1643300912437" duration="1066000" />
       <workItem from="1643355898139" duration="22459000" />
       <workItem from="1643615715897" duration="11408000" />
+      <workItem from="1643879707088" duration="20943000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

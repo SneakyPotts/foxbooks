@@ -143,7 +143,6 @@ const ReaderBook = () => {
             setTextPage(newTextBooks)
         }
 
-
     }
 
     useEffect(() => {

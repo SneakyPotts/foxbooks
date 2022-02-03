@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import parse from 'html-react-parser';
+import React, {useEffect, useState} from 'react'
+import parse, { domToReact } from 'html-react-parser';
 
 const ReaderBookCopy = () => {
 	const [initialText, setInitialText] = useState(`		Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать, чтобы они попали в какую-нибудь странную или загадочную ситуацию. Мистер и миссис Дурсль весьма неодобрительно относились к любым странностям, загадкам и прочей ерунде.
@@ -24,33 +24,75 @@ const ReaderBookCopy = () => {
 	const [firstColumn, setFirstColumn] = useState(initialText?.slice(0, initialText?.length / 2));
 	const [secondColumn, setSecondColumn] = useState(initialText?.slice(initialText?.length / 2));
 
-	const text1 = useRef()
-	const text2 = useRef()
+	const [selectedText, setSelectedText] = useState('')
 
-	const getSelection = () => {
-		const selectedText = window.getSelection().toString()
+	const [startContainer, setStartContainer] = useState(null)
+	const [endContainer, setEndContainer] = useState(null)
+
+	const [toolsIsVisible, setToolsIsVisible] = useState(false)
+
+	const mouseUpHandler = ev => {
+		const text = window.getSelection().toString()
+
+		if(text?.length && text !== ' ') {
+			setSelectedText(text)
+			setEndContainer(ev.target?.id)
+			setToolsIsVisible(true)
+		} else {
+			setToolsIsVisible(false)
+		}
+	}
+
+	const addQuot = () => {
 		const startIndex = window.getSelection().getRangeAt(0).startOffset
 		const endIndex = window.getSelection().getRangeAt(0).endOffset
 
-		if(!selectedText?.length || selectedText === ' ') return;
+		let firstPart = ''
+		let secondPart = ''
+		let lastPart = ''
 
-		if(startIndex < firstColumn?.length) {
-			setFirstColumn(parse(firstColumn.toString(), {
+		let html = ''
+
+		if(startContainer === '1' && endContainer === '1') {
+			firstPart = firstColumn.slice(0, startIndex)
+			secondPart = '<mark>' + firstColumn.slice(startIndex, endIndex) + '</mark>'
+			lastPart = firstColumn.slice(endIndex)
+
+			html = firstPart + secondPart + lastPart
+
+			html = parse(html, {
 				replace: domNode => {
-					return (
-						<mark id='11'>{firstColumn}</mark>
-					)
+					if(domNode?.type === 'tag' && domNode?.name === 'mark') {
+						return (
+							<mark onClick={() => alert('alert')}>{domToReact(domNode?.children)}</mark>
+						)
+					} else {
+						return <span>{domToReact(domNode)}</span>
+					}
 				}
-			}))
-		} else if(startIndex < secondColumn?.length) {
-			setSecondColumn(parse(secondColumn.toString(), {
-				replace: domNode => {
-					return (
-						<mark id='22'>{secondColumn}</mark>
-					)
-				}
-			}))
+			})
+
+			console.log(html)
+			setFirstColumn(html)
 		}
+
+		// if(startIndex < firstColumn?.length) {
+		// 	setFirstColumn(parse(firstColumn.toString(), {
+		// 		replace: domNode => {
+		// 			return (
+		// 				<mark id='11'>{firstColumn}</mark>
+		// 			)
+		// 		}
+		// 	}))
+		// } else if(startIndex < secondColumn?.length) {
+		// 	setSecondColumn(parse(secondColumn.toString(), {
+		// 		replace: domNode => {
+		// 			return (
+		// 				<mark id='22'>{secondColumn}</mark>
+		// 			)
+		// 		}
+		// 	}))
+		// }
 	}
 
 	return (
@@ -62,10 +104,35 @@ const ReaderBookCopy = () => {
 				display: 'flex',
 				gap: '50px'
 			}}
-			onMouseUp={getSelection}
+			// onMouseUp={getSelection}
 		>
-			<span id='1' ref={text1}>{firstColumn}</span>
-			<span id='2' ref={text2}>{secondColumn}</span>
+			<span
+				id='1'
+				onMouseDown={ev => setStartContainer(ev.target?.id)}
+				onMouseUp={ev => mouseUpHandler(ev)}
+				// dangerouslySetInnerHTML={{__html: firstColumn}}
+			>
+				{firstColumn}
+			</span>
+			<span
+				id='2'
+				onMouseDown={ev => setStartContainer(ev.target?.id)}
+				onMouseUp={ev => mouseUpHandler(ev)}
+			>
+				{secondColumn}
+			</span>
+
+			{toolsIsVisible &&
+				<div
+					style={{
+						position: 'absolute',
+						background: '#ccc',
+						padding: '30px'
+					}}
+				>
+					<button onClick={addQuot}>add quot</button>
+				</div>
+			}
 		</div>
 	)
 }

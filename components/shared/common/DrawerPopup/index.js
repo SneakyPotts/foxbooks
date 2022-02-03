@@ -17,13 +17,17 @@ const DrawerPopup = ({
   const [isClosed, setIsClosed] = useState(false)
 
   const moveHandler = ev => {
-    if(isFocus && yPos < ev.clientY - 20) {
-      setDrawerHeight(`calc(100vh - ${ev.clientY}px)`)
+    const y = ev?.clientY || ev?.changedTouches[0]?.clientY
+
+    if(isFocus && yPos < y - 20) {
+      setDrawerHeight(`calc(100vh - ${y}px)`)
     }
   }
 
   const mouseUpHandler = ev => {
-    if(isFocus && yPos < ev.clientY - 20) {
+    const y = ev?.clientY || ev?.changedTouches[0]?.clientY
+
+    if(isFocus && yPos < y - 20) {
       setIsFocus(false)
       setIsClosed(true)
       setTimeout(() => onClose(), 300)      
@@ -60,7 +64,7 @@ const DrawerPopup = ({
         <div
           className={styles.close}
           onMouseDown={() => setIsFocus(true)}  
-          onTouchStart={() => setIsFocus(true)}       
+          onTouchStart={() => setIsFocus(true)}
         />
         {children}
       </div>
