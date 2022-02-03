@@ -7,11 +7,13 @@
   padding-bottom: 60px;
   min-height: calc(100vh - 272px);
 
-  h1, h2 {
+  h1,
+  h2 {
     color: $color-main;
     font-family: Merriweather, sans-serif;
     font-size: 24px;
     line-height: 30px;
+    text-align: center;
   }
 
   ul > li {
@@ -33,9 +35,10 @@
           font-family: Fira Sans, sans-serif;
           font-size: 16px;
           line-height: 18px;
-          padding: 3px 12px 0px 3px;
+          width: 232px;
+          padding: 3px 0px 3px;
           color: $color-second;
-          margin-bottom: 15px;
+          margin-bottom: 18px;
           cursor: pointer;
 
           &.active {
@@ -54,19 +57,19 @@
           }
 
           > svg {
-            margin-right: 13px;
+            margin-right: 10px;
 
             path {
-              transition: .15s;
+              transition: 0.15s;
             }
           }
 
           > span {
-            padding-bottom: 16px;
+            padding-bottom: 15px;
             border-bottom: 1px solid $color-star-border;
             flex: 1;
 
-            transition: .15s;
+            transition: 0.15s;
           }
         }
 
@@ -80,6 +83,7 @@
       border: 1px solid $color-bg-icon;
       padding: 60px;
       border-radius: 5px;
+      background-color: $color-categories-btn;
     }
   }
 }

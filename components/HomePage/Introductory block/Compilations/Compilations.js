@@ -1,8 +1,8 @@
-import Link from 'next/link';
+// import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import styles from './index.module.scss';
 import ArrowRight from '../../../../public/chevron-right.svg';
 import Eye from '../../../shared/icons/eye';
-
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,6 +10,8 @@ import 'swiper/css/bundle';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
 
 const Compilations = () => {
+  const { innerWidthWindow } = useSelector(state => state.common);
+
   const dataTest = [
     { id: '0' },
     { id: '1' },
@@ -30,7 +32,11 @@ const Compilations = () => {
           nextEl: '.nextArrow',
         }}
         spaceBetween={24}
-        slidesPerView={3}
+        slidesPerView={
+          (innerWidthWindow <= 768 && 1) ||
+          (innerWidthWindow <= 1024 && 2) ||
+          (innerWidthWindow >= 1200 && 3)
+        }
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={swiper => console.log(swiper)}
       >

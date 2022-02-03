@@ -38,7 +38,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      max-width: 384px;
+      width: 384px;
     }
 
     &Img {
@@ -61,6 +61,7 @@
       }
 
       &img {
+        display: block;
         border-radius: 5px;
       }
     }
@@ -113,9 +114,36 @@
   }
 }
 
-// @media (max-width: 1200px) {
+@media (max-width: 1200px) {
+  .container {
+    .selection {
+      &Block {
+        // width: 100%;
+        width: 345px;
+      }
+      &Img {
+        width: 345px;
+        &Count {
+          bottom: 5px;
+          right: 5px;
+          font-size: 12px;
+          line-height: 14px;
+          width: 62px;
+          height: 26px;
+        }
+        img {
+          display: block;
+          object-fit: contain;
+          width: 345px;
+        }
+      }
 
-// }
+      &Date {
+        margin: 7px 0 12px;
+      }
+    }
+  }
+}
 @media (max-width: 768px) {
   .container {
     order: 4;

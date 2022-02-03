@@ -1,4 +1,12 @@
 @import 'variables';
+@import 'mixin';
+
+@include font("Fira Sans", sans-serif, FiraSans-Regular, 400, 'regular');
+@include font("Fira Sans", sans-serif, FiraSans-Medium, 500, 'medium');
+
+@include font("Merriweather", sans, Merriweather-Regular, 400, 'regular');
+@include font("Merriweather", sans, Merriweather-Bold, 700, 'bold');
+
 
 html,
 body {

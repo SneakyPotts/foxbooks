@@ -27,7 +27,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 39px;
-  color: #0e263e;
+  color: $color-main;
 }
 .title {
   font-family: Merriweather;
@@ -42,11 +42,11 @@
   line-height: 1.13;
   align-items: center;
   text-decoration: none;
-  stroke: #0e263e;
+  stroke: $color-main;
 }
 .newLink:hover {
-  color: #ff781d;
-  stroke: #ff781d;
+  color: $text-hover;
+  stroke: $text-hover;
 }
 .reviewsCover {
   display: flex;
@@ -76,8 +76,9 @@
 .reviewInfo {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
-  margin-bottom: 13px;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
   color: $color-third;
 }
 .reviewViews {
@@ -85,7 +86,7 @@
   font-size: 14px;
   line-height: 1.43;
   display: flex;
-  align-items: top;
+  align-items: center;
 }
 .sumReviews {
   margin-right: 10px;
@@ -129,19 +130,36 @@
   color: $color-second;
 }
 
-// @media (max-width: 1200px) {
-
-// }
+@media (max-width: 1200px) {
+  .reviewsCover {
+    min-width: 345px;
+    min-height: 164px;
+    padding: 10px;
+  }
+  .reviewInfo {
+    margin-top: 12px;
+  }
+}
 @media (max-width: 768px) {
   .container {
     order: 6;
   }
-  .reviewsCover {
-    display: flex;
-    min-width: 345px;
-    min-height: 183px;
-    background-color: $color-bg-icon;
-    border-radius: 5px;
-    padding: 20px;
+  .bookMainInfo {
+    margin-left: 10px;
+  }
+  .bookTitle {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .bookAuthor {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .reviewViews {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .reviewText {
+    margin-bottom: 22px;
   }
 }
