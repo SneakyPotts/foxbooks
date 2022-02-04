@@ -60,7 +60,7 @@
         font-size: 14px;
       }
 
-      &img {
+      img {
         display: block;
         border-radius: 5px;
       }
@@ -118,11 +118,11 @@
   .container {
     .selection {
       &Block {
-        // width: 100%;
-        width: 345px;
+        width: 100%;
+        // width: 345px;
       }
       &Img {
-        width: 345px;
+        width: 100%;
         &Count {
           bottom: 5px;
           right: 5px;
@@ -132,9 +132,8 @@
           height: 26px;
         }
         img {
-          display: block;
           object-fit: contain;
-          width: 345px;
+          width: 100%;
         }
       }
 

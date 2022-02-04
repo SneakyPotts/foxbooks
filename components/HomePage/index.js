@@ -20,10 +20,7 @@ import css from './home.module.scss';
 
 const HomeView = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
-  console.log(
-    innerWidthWindow <= 500 ? 1 : 5,
-    'innerWidthWindow <= 500 ? 1 : 5'
-  );
+
   return (
     <div className={classNames('container', css.container)}>
       <div className={css.mainContainer}>
@@ -53,7 +50,7 @@ const HomeView = () => {
           >
             {books.map(book => (
               <SwiperSlide key={book.id} className={css.swiperSlide}>
-                <Book count={innerWidthWindow <= 500 ? 1 : 5} book={book} />
+                <Book book={book} />
               </SwiperSlide>
             ))}
             <button className="prevArrow">

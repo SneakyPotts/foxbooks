@@ -187,6 +187,9 @@
     > .activeStroke::after {
       display: none;
     }
+    .active::after {
+      display: none;
+    }
     &Logo {
       font-size: 14px;
       line-height: 1.43;

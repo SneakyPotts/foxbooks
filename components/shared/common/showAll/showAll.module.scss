@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   margin: 0;
-  // margin-top: 8px;
+  white-space: nowrap;
   color: $color-main;
   stroke: $color-main;
 
@@ -50,5 +50,12 @@
   .showAllLink {
     font-size: 14px;
     line-height: 1.43;
+  }
+}
+@media (max-width: 500px) {
+  .showAll {
+    &Title {
+      max-width: 173px;
+    }
   }
 }

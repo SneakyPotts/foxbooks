@@ -9,11 +9,11 @@ const Stars = ({
   count = 5,
   onChange,
 }) => {
-  const { innerWidthWindow } = useSelector(state => state.common);
+  // const { innerWidthWindow } = useSelector(state => state.common);
 
   const secondExample = {
     size: 14,
-    count: 5,
+    count: count,
     value: value,
     color: color,
     activeColor: '#FEC420',

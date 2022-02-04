@@ -117,7 +117,10 @@ const Book = ({
                 <span>1{book?.rates_count}</span>
               </div>
             ) : (
-              <Stars count={count} value={book?.rates_count} />
+              <div className={st.starsBlock}>
+                <Stars count={count} value={book?.rates_count} />
+                {innerWidthWindow <= 768 && <span>{book?.rates_count}4</span>}
+              </div>
             )}
           </div>
           <div className={st.selectionDateViews}>

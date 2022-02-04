@@ -31,7 +31,7 @@ const MobileBlock = () => {
         >
           {books.map(book => (
             <SwiperSlide key={book.id} className={st.swiperSlide}>
-              <Book count={innerWidthWindow <= 500 ? 1 : 5} book={book} />
+              <Book book={book} />
             </SwiperSlide>
           ))}
           <button className="prevArrow">

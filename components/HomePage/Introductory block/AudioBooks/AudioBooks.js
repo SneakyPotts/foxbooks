@@ -35,17 +35,17 @@ const AudioBooks = () => {
         }}
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
-        spaceBetween={innerWidthWindow <= 798 ? 10 : 24}
+        spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
         slidesPerView={
-          (innerWidthWindow <= 798 && 3) ||
-          (innerWidthWindow >= 798 && 4) ||
-          (innerWidthWindow >= 1200 && 6)
+          (innerWidthWindow <= 500 && 3) ||
+          (innerWidthWindow <= 1024 && 4) ||
+          (innerWidthWindow >= 1200 && 5)
         }
       >
         {testData.map((r, i) => {
           return (
             <SwiperSlide className={css.slideAudio} key={i}>
-              <Book count={innerWidthWindow <= 500 ? 1 : 5} audio={true} />
+              <Book audio={true} />
             </SwiperSlide>
           );
         })}

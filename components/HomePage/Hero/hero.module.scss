@@ -1,0 +1,37 @@
+@import 'styles/variables.scss';
+
+.hero {
+  position: relative;
+  margin: 60px 0;
+
+  // :global(.swiper-pagination) {
+  //   display: none;
+  // }
+
+  :global(.custom_pagination) {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero {
+    :global(.custom_pagination) {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+
+      span:not(:last-child) {
+        margin-right: 9px;
+      }
+      :global(.swiper-pagination-bullet-active) {
+        background: $text-hover;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    order: 5;
+    margin: 0 0 60px;
+  }
+}

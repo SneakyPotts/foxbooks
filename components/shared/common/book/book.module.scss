@@ -29,13 +29,12 @@
   color: $color-third;
 }
 .stars {
-  // & span:not(:last-of-type) {
-  //   margin-right: 5px;
-  // }
   display: flex;
   span {
     max-width: 18px;
     max-height: 18px;
+    min-width: 18px;
+    min-height: 18px;
   }
   > div > div {
     display: flex;
@@ -43,14 +42,10 @@
   }
   &Block {
     display: flex;
-    span {
-      margin-left: 5px;
+    span:not(:first-child) {
+      margin-left: 2px;
     }
   }
-
-  // svg {
-  //   width: 15px;
-  // }
 }
 .starOrder {
   margin: 0;
@@ -242,13 +237,13 @@
 }
 
 @media (max-width: 768px) {
-  //.stars {
-  //  > div > div {
-  //    span:not(:first-child) {
-  //      display: none!important;
-  //    }
-  //  }
-  //}
+  .stars {
+    > div > div {
+      span:not(:first-child) {
+        display: none !important;
+      }
+    }
+  }
 
   .container {
     width: 108px;
