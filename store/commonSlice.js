@@ -5,7 +5,7 @@ const initialState = {
   innerWidthWindow: '',
   error: '',
   showMenu: false,
-  playerIsVisible: true,
+  playerIsVisible: false,
 };
 
 export const commonSlice = createSlice({

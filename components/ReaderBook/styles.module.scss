@@ -1,0 +1,10 @@
+@import '/styles/variables.scss';
+@import './variables.module.scss';
+
+.pageWrapper {
+  background: var(--bg-color);
+}
+
+.header {
+  color: var(--text-color);
+}
