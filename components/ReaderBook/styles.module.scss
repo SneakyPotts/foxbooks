@@ -3,8 +3,56 @@
 
 .pageWrapper {
   background: var(--bg-color);
+  padding-top: 23px;
+}
+.header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 5px;
+  stroke: var(--main-color);
+  transform: rotate(-180deg);
+
+  svg path {
+    transition: .15s;
+  }
+
+  &:hover {
+    stroke: $accent-hover;
+  }
 }
 
-.header {
-  color: var(--text-color);
+.controls {
+  display: flex;
+  align-items: center;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 30px;
+    cursor: pointer;
+
+    svg path {
+      transition: .15s;
+    }
+
+    &:hover {
+    }
+  }
 }

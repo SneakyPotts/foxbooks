@@ -7,9 +7,11 @@ import styles from './styles.module.scss'
 
 const ReaderBookCopy = () => {
 	return (
-		<div className={classNames('container', styles.pageWrapper)}>
-			<Header />
-			<TextWithQoutes />
+		<div className={classNames(styles.pageWrapper, styles.brightness0)}>
+			<div className={'container'}>
+				<Header />
+				<TextWithQoutes />
+			</div>
 		</div>
 	)
 }

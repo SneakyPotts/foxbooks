@@ -1,7 +1,14 @@
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 import ArrowIcon from './../../public/chevron-right.svg';
+import Logo from "../shared/icons/Logo";
+import ReaderGambgurger from "../shared/icons/ReadderGambgurger";
+import Quote from "../shared/icons/quote";
+import FullScreen from "../shared/icons/FullScreen";
+import Letter from "../shared/icons/Letter";
+import BookMark from "../shared/icons/BookMark";
+
 import styles from './styles.module.scss'
 
 const Header = () => {
@@ -18,9 +25,26 @@ const Header = () => {
         </span>
         <Link href="/">
           <a>
-            logo
+            <Logo />
           </a>
         </Link>
+      </div>
+      <div className={styles.controls}>
+        <div>
+          <ReaderGambgurger />
+        </div>
+        <div>
+          <Quote />
+        </div>
+        <div>
+          <Letter />
+        </div>
+        <div>
+          <FullScreen />
+        </div>
+        <div>
+          <BookMark />
+        </div>
       </div>
     </header>
   );
