@@ -80,17 +80,19 @@ const HoldersRight = () => {
 				</div>
 				<ButtonGroup ClassName={styles.buttons} text="Отправить"/>
 			</form>
-			<ModalWindow modal={modal} setModal={setModal}>
-				<div className={styles.modal}>
-					<h2>Отправлено</h2>
-					<p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
-					<Button
-						classNames={styles.modalClose}
-						text='Закрыть'
-						typeButton='button'
-					/>
-				</div>
-			</ModalWindow>
+			{ modal &&
+				<ModalWindow onClose={() => setModal(false)}>
+					<div className={styles.modal}>
+						<h2>Отправлено</h2>
+						<p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
+						<Button
+							classNames={styles.modalClose}
+							text='Закрыть'
+							typeButton='button'
+						/>
+					</div>
+				</ModalWindow>
+			}
 		</div>
 	);
 };

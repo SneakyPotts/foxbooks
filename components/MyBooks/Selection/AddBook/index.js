@@ -107,23 +107,23 @@ const AddBook = ({ setAddBookPage }) => {
           <span> книг</span>
         </p>
       </div>
-      {modal && (
-        <ModalWindow modal={modal} setModal={setModal}>
+      {modal &&
+        <ModalWindow onClose={() => setModal(false)}>
           <div className={st.modalContent}>
             <h1 className={st.modalContentTitle}>
               Добавить книгу в подборку “Дизайн”?
             </h1>
             <Button
-              text="Добавить"
-              typeButton="button"
-              click={handleClick}
-              classNames={st.modalContentBtn}
+                text="Добавить"
+                typeButton="button"
+                click={handleClick}
+                classNames={st.modalContentBtn}
             />
           </div>
         </ModalWindow>
-      )}
-      {confirm && (
-        <ModalWindow modal={confirm} setModal={setConfirm}>
+      }
+      {confirm &&
+        <ModalWindow onClose={() => setConfirm(false)}>
           <div className={st.modalContent}>
             <h1 className={st.modalContentTitle}>
               Книга добавлена в подборку “Дизайн”
@@ -136,7 +136,7 @@ const AddBook = ({ setAddBookPage }) => {
             />
           </div>
         </ModalWindow>
-      )}
+      }
     </div>
   );
 };

@@ -483,8 +483,8 @@ const MyBooks = () => {
             {tabValue === 'Цитаты' && <Quotes />}
             {tabValue === 'Авторы' && <Authors />}
           </div>
-          {deletePopap && (
-            <ModalWindow modal={deletePopap} setModal={setDeletePopap}>
+          {deletePopap &&
+            <ModalWindow onClose={() => setDeletePopap(false)}>
               <div className={st.modal}>
                 <h1 className={st.modalTitle}>Удалить книгу</h1>
                 <p className={st.modalText}>
@@ -492,28 +492,28 @@ const MyBooks = () => {
                   мечей”?
                 </p>
                 <ButtonGroup
-                  text="Удалить"
-                  typeButton="button"
-                  ClassName={st.modalBtns}
-                  click={deleteBook}
+                    text="Удалить"
+                    typeButton="button"
+                    ClassName={st.modalBtns}
+                    click={deleteBook}
                 />
               </div>
             </ModalWindow>
-          )}
-          {confirm && (
-            <ModalWindow modal={confirm} setModal={setConfirm}>
+          }
+          {confirm &&
+            <ModalWindow onClose={() => setConfirm(false)}>
               <div className={st.modal}>
                 <h1 className={st.modalTitle}>Книга удалена</h1>
 
                 <Button
-                  text="Закрыть"
-                  typeButton="button"
-                  click={confirmDeleteBook}
-                  classNames={st.modalBtn}
+                    text="Закрыть"
+                    typeButton="button"
+                    click={confirmDeleteBook}
+                    classNames={st.modalBtn}
                 />
               </div>
             </ModalWindow>
-          )}
+          }
         </>
       ) : (
         <Selection />

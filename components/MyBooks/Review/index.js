@@ -144,8 +144,8 @@ const Review = () => {
           </li>
         ))}
       </ul>
-      {edit && (
-        <ModalWindow modal={edit} setModal={setEdit}>
+      {edit &&
+        <ModalWindow onClose={() => setEdit(false)}>
           <form className={st.editReview}>
             <p className={st.leaveReviewInputLabel}>
               Выберите тип вашей рецензии
@@ -153,43 +153,43 @@ const Review = () => {
 
             <div className={st.dropdown}>
               <button
-                type="button"
-                className={`${st.dropBtn} ${menu && st.open}`}
-                onClick={togleMenu}
+                  type="button"
+                  className={`${st.dropBtn} ${menu && st.open}`}
+                  onClick={togleMenu}
               >
                 <span className={st.dropBtnText}>{activeOption}</span>
                 <ArrowAll
-                  className={classNames(st.down, {
-                    [st.up]: menu,
-                  })}
+                    className={classNames(st.down, {
+                      [st.up]: menu,
+                    })}
                 />
               </button>
               {menu ? (
-                <ul
-                  className={st.dropContent}
-                  onClick={e => e.stopPropagation()}
-                >
-                  {options.map((it, index) => (
-                    <li
-                      key={index + 1}
-                      onClick={() => handleOnClick(index)}
-                      className={st.dropLink}
-                    >
+                  <ul
+                      className={st.dropContent}
+                      onClick={e => e.stopPropagation()}
+                  >
+                    {options.map((it, index) => (
+                        <li
+                            key={index + 1}
+                            onClick={() => handleOnClick(index)}
+                            className={st.dropLink}
+                        >
                       <span
-                        className={classNames(st.radio, {
-                          [st.radioActive]: optionIndex === index,
-                        })}
+                          className={classNames(st.radio, {
+                            [st.radioActive]: optionIndex === index,
+                          })}
                       ></span>
-                      <span
-                        className={classNames(st.dropText, {
-                          [st.active]: optionIndex === index,
-                        })}
-                      >
+                          <span
+                              className={classNames(st.dropText, {
+                                [st.active]: optionIndex === index,
+                              })}
+                          >
                         {it}
                       </span>
-                    </li>
-                  ))}
-                </ul>
+                        </li>
+                    ))}
+                  </ul>
               ) : null}
             </div>
             <p className={st.leaveReviewInputLabel}>
@@ -197,20 +197,20 @@ const Review = () => {
               сказали?
             </p>
 
-            <input className={st.leaveReviewInput} />
+            <input className={st.leaveReviewInput}/>
 
             <p className={st.leaveReviewFieldLabel}>Ваша рецензия</p>
             <textarea
-              className={st.leaveReviewField}
-              onChange={handleChangeReviewField}
+                className={st.leaveReviewField}
+                onChange={handleChangeReviewField}
             ></textarea>
             <div
-              className={classNames(st.controllBtn, st.controllBtnsLeaveReview)}
+                className={classNames(st.controllBtn, st.controllBtnsLeaveReview)}
             >
               <Button
-                typeButton="submit"
-                text="Отправить"
-                classNames={st.submitButton}
+                  typeButton="submit"
+                  text="Отправить"
+                  classNames={st.submitButton}
               />
               <button className={st.cancelBtn} onClick={handleCancelBtn}>
                 Отменить
@@ -218,7 +218,7 @@ const Review = () => {
             </div>
           </form>
         </ModalWindow>
-      )}
+      }
     </div>
   );
 };

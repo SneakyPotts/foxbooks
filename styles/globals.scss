@@ -167,7 +167,7 @@ ol[class] {
   transform: translateY(100%);
   min-width: 200px;
   transition: .15s;
-  animation: dropUp .2s;
+  animation: dropDown .2s;
   
   &--up {
     bottom: initial;
@@ -184,6 +184,17 @@ ol[class] {
   100% {
     opacity: 1;
     transform: translateY(-100%) scale(1);
+  }
+}
+
+@keyframes dropDown {
+  0% {
+    opacity: 0;
+    transform: scale(.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

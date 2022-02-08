@@ -5,11 +5,17 @@
   background: var(--bg-color);
   padding-top: 23px;
 }
+.pageContainer {
+  position: relative;
+}
+
+// start HEADER ==================================
 .header {
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .logoWrapper {
   display: flex;
@@ -31,7 +37,13 @@
   }
 
   &:hover {
-    stroke: $accent-hover;
+    stroke: $text-hover;
+  }
+}
+
+.logo {
+  svg path {
+    //fill: var(--icons-color);
   }
 }
 
@@ -39,7 +51,7 @@
   display: flex;
   align-items: center;
 
-  > div {
+  &Btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,12 +59,170 @@
     height: 24px;
     margin-left: 30px;
     cursor: pointer;
+    fill: var(--icons-color);
+    position: relative;
+
+    &:first-of-type {
+      fill: none;
+      stroke: var(--icons-color);
+
+      &:hover {
+        stroke: $text-hover;
+      }
+    }
 
     svg path {
       transition: .15s;
     }
 
     &:hover {
+      fill: $text-hover;
+
+      .tooltip {
+        opacity: 1;
+      }
     }
+  }
+}
+
+.marksList {
+  position: absolute;
+  top: 61px;
+  right: 0;
+  display: flex;
+}
+
+.markItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+  fill: $text-hover;
+  position: relative;
+
+  &:hover {
+    fill: $accent-hover;
+
+    .tooltip {
+      opacity: 1;
+    }
+  }
+
+  svg {
+    height: 20px;
+
+    path {
+      transition: .15s;
+    }
+  }
+}
+
+.tooltip {
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--modal-border-color);
+  padding: 5px;
+  font-size: 10px;
+  line-height: 11px;
+  white-space: nowrap;
+  box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+  border-radius: 5px;
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: opacity .15s;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.markTooltip {
+  bottom: -10px;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 10px 10px 24px;
+  border-radius: 10px;
+
+  span {
+    display: flex;
+    color: var(--icons-color);
+    margin-bottom: 10px;
+  }
+}
+
+.popup {
+  padding: 40px 30px;
+  width: 592px;
+  height: 642px;
+  background: var(--modal-color);
+  border: 1px solid var(--modal-border-color);
+
+  &Title {
+    color: var(--main-color);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+  }
+}
+
+.editPopup {
+  background: var(--modal-color);
+  border: 1px solid var(--modal-border-color);
+  top: 61px;
+  right: 0;
+  bottom: initial;
+  transform: translateY(0);
+  width: 279px;
+}
+// end HEADER ==================================
+
+// start TEXT ==================================
+.book {
+  &Title {
+    color: var(--main-color);
+    font-family: Merriweather;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    margin: 53px 0 10px;
+  }
+  &Author {
+    color: var(--author-color);
+    font-size: 16px;
+    line-height: 140%;
+    text-indent: 20px;
+    display: block;
+    text-align: center;
+  }
+  &Subtitle {
+    color: var(--main-color);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    margin: 26px 0 30px;
+  }
+  &Text {
+    color: var(--text-color);
+    white-space: break-spaces;
+    width: 792px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 140%;
+    text-indent: 20px;
+  }
+}
+// end TEXT ==================================
+
+@media screen and (max-width: 768px) {
+  .editPopup {
+    top: initial;
+    right: initial;
+    bottom: 0;
   }
 }

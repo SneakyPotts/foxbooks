@@ -131,15 +131,17 @@ const SupportCom = () => {
 				/>
 			</form>
 
-			<ModalWindow modal={modal} setModal={setModal}>
-				<div className={styles.modal}>
-					<h1 className={styles.modalTitle}>Отправлено</h1>
-					<p>Спасибо за то, что помогаете делать наш сайт лучше.</p>
-					<br></br>
-					<p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
-				</div>
-				<Button text="Закрыть" click={() => setModal(false)} />
-			</ModalWindow>
+			{modal &&
+				<ModalWindow onClose={() => setModal(false)}>
+					<div className={styles.modal}>
+						<h1 className={styles.modalTitle}>Отправлено</h1>
+						<p>Спасибо за то, что помогаете делать наш сайт лучше.</p>
+						<br></br>
+						<p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
+					</div>
+					<Button text="Закрыть" click={() => setModal(false)}/>
+				</ModalWindow>
+			}
 		</div>
 	);
 };

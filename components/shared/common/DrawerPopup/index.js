@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import classNames from "classnames";
 
 import styles from './styles.module.scss';
@@ -27,8 +27,8 @@ const DrawerPopup = ({
   const mouseUpHandler = ev => {
     const y = ev?.clientY || ev?.changedTouches[0]?.clientY
 
+    setIsFocus(false)
     if(isFocus && yPos < y - 20) {
-      setIsFocus(false)
       setIsClosed(true)
       setTimeout(() => onClose(), 300)      
     }
@@ -47,8 +47,8 @@ const DrawerPopup = ({
       )}
       onClick={ev => ev.stopPropagation()}
       onMouseMove={moveHandler}
-      onMouseUp={mouseUpHandler}
       onTouchMove={moveHandler}
+      onMouseUp={mouseUpHandler}
       onTouchEnd={mouseUpHandler}
     >
       <div
@@ -59,7 +59,10 @@ const DrawerPopup = ({
           styles.drawer,
           externalClass
         )}
-        style={{height: drawerHeight}}
+        style={{
+          height: drawerHeight,
+          animation: `${direction === 'up' ? 'dropUp' : 'dropDown'} .2s`
+        }}
       >
         <div
           className={styles.close}

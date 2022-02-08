@@ -1,22 +1,31 @@
 import React from 'react';
-import classnames from 'classnames';
+
+import classNames from 'classnames';
 import styles from './index.module.scss';
 
-const ModalWindow = ({ children, modal, setModal, click }) => {
+const ModalWindow = ({
+	children,
+	onClose,
+	externalClass
+}) => {
 	return (
 		<div
-			className={classnames(styles.wrapper, { [styles.wrapperActive]: modal })}
+			className={classNames(styles.wrapper)}
+			onClick={() => onClose()}
 		>
-			<div onClick={e => e.stopPropagation()} className={styles.wrapperBlock}>
-				{children}
+			<div
+				className={classNames(styles.wrapperBlock, externalClass)}
+				onClick={e => e.stopPropagation()}
+			>
 				<div
-					onClick={() => setModal(!modal)}
-					//   onClick={click}
+					onClick={() => onClose()}
 					className={styles.wrapperBlockCross}
 				>
 					<span />
 					<span />
 				</div>
+
+				{children}
 			</div>
 		</div>
 	);

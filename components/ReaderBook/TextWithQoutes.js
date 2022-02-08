@@ -2,6 +2,8 @@ import React, {useEffect, useState, useMemo} from 'react'
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import { calcTotalOffset } from '../../utils'
 
+import styles from './styles.module.scss'
+
 const TextWithQoutes = () => {
 	const initialText = `		Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать, чтобы они попали в какую-нибудь странную или загадочную ситуацию. Мистер и миссис Дурсль весьма неодобрительно относились к любым странностям, загадкам и прочей ерунде.
 		Мистер Дурсль возглавлял фирму под названием «Граннингс», которая специализировалась на производстве дрелей. Это был полный мужчина с очень пышными усами и очень короткой шеей. Что же касается миссис Дурсль, она была тощей блондинкой с шеей почти вдвое длиннее, чем положено при ее росте. Однако этот недостаток пришелся ей весьма кстати, поскольку большую часть времени миссис Дурсль следила за соседями и подслушивала их разговоры. А с такой шеей, как у нее, было очень удобно заглядывать за чужие заборы. У мистера и миссис Дурсль был маленький сын по имени Дадли, и, по их мнению, он был самым чудесным ребенком на свете.
@@ -190,34 +192,34 @@ const TextWithQoutes = () => {
 	}, [quotes])
 
 	return (
-		<div
-			id='range-parent'
-			style={{
-				whiteSpace: 'break-spaces', 
-				width: '800px', 
-				margin: '50px auto',
-				display: 'flex',
-				gap: '50px'
-			}}
-			onMouseUp={ev => mouseUpHandler(ev)}
-		>
-			<span>{changedFirstColumn}</span>
-			<span>{changedSecondColumn}</span>
+		<>
+			<h1 className={styles.bookTitle}>Гарри Поттер и философский камень</h1>
+			<span className={styles.bookAuthor}>Джоан Роулинг</span>
+			<h2 className={styles.bookSubtitle}>Глава 1. Мальчик, который выжил</h2>
 
-			{toolsIsVisible &&
-				<div
-					style={{
-						position: 'absolute',
-						top: toolsCoords.y + 'px',
-						left: toolsCoords.x + 'px',
-						background: '#ccc',
-						padding: '30px'
-					}}
-				>
-					<button onClick={addQuot}>add quot</button>
-				</div>
-			}
-		</div>
+			<div
+				id='range-parent'
+				className={styles.bookText}
+				onMouseUp={ev => mouseUpHandler(ev)}
+			>
+				<span>{changedFirstColumn}</span>
+				<span>{changedSecondColumn}</span>
+
+				{toolsIsVisible &&
+					<div
+						style={{
+							position: 'absolute',
+							top: toolsCoords.y + 'px',
+							left: toolsCoords.x + 'px',
+							background: '#ccc',
+							padding: '30px'
+						}}
+					>
+						<button onClick={addQuot}>add quot</button>
+					</div>
+				}
+			</div>
+		</>
 	)
 }
 
