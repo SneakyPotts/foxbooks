@@ -9,7 +9,7 @@ import Image from 'next/image';
 import Stars from '../stars/Stars';
 import AddToBooks from '../../icons/add';
 import HorizontalDots from '../../../../public/horizontalDots.svg';
-import OpenBook from '../../../../public/book-open.svg';
+import OpenBook from '../../icons/bookOpen';
 import Like from '../../icons/heart';
 import Comment from '../../icons/comment';
 import Basket from '../../../../public/trash.svg';
