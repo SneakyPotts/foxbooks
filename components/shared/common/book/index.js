@@ -138,7 +138,7 @@ const Book = ({
               [st.bookNameSmaller]: similar,
             })}
           >
-            {book?.title}
+            T{book?.title}
           </h3>
         ) : (
           <Link href={`/book/${book?.id}`}>
@@ -147,19 +147,19 @@ const Book = ({
                 [st.bookNameSmaller]: similar,
               })}
             >
-              {book?.title}
+              T{book?.title}
             </a>
           </Link>
         )}
 
         {noLinks ? (
           <span className={st.bookAuthor}>
-            {book?.authors?.length ? book?.authors[0]?.author : ''}
+            A{book?.authors?.length ? book?.authors[0]?.author : ''}
           </span>
         ) : (
           <Link href="/author">
             <a className={st.bookAuthor}>
-              {book?.authors?.length ? book?.authors[0]?.author : ''}
+              A{book?.authors?.length ? book?.authors[0]?.author : ''}
             </a>
           </Link>
         )}

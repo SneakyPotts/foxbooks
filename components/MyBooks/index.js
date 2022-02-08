@@ -13,9 +13,9 @@ import ArrowRight from '../../public/chevron-right.svg';
 import Headphones from '../shared/icons/headphones';
 import ArrowAll from '../../public/chevron-down.svg';
 import All from '../shared/icons/all';
-import BookMark from '../../public/bookmark.svg';
-import OpenBook from '../../public/book-open.svg';
-import Flag from '../../public/flag.svg';
+import BookMark from '../shared/icons/myBookmark';
+import OpenBook from '../shared/icons/bookOpen';
+import Flag from '../shared/icons/flag';
 import Delete from '../../public/delete.svg';
 import Button from '../shared/common/Button/Button';
 import MySelections from './MySelections';
@@ -347,7 +347,7 @@ const MyBooks = () => {
                       >
                         {selections.map((opt, idx) => (
                           <li
-                              key={idx * 7}
+                            key={idx * 7}
                             className={st.dropdownPopularListItem}
                             onClick={() => handleSelectionClick(idx)}
                           >
@@ -408,7 +408,7 @@ const MyBooks = () => {
                         >
                           {popular.map((opt, idx) => (
                             <li
-                                key={opt.option + 2}
+                              key={opt.option + 2}
                               className={st.dropdownPopularListItem}
                               onClick={() => filterClick(idx)}
                             >

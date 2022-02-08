@@ -36,6 +36,13 @@
     align-items: center;
   }
 
+  .inputCastom::placeholder {
+    font-size: 14px;
+    color: $color-third;
+    // &Opened {
+    //   display: none;
+    // }
+  }
   .inputCastom {
     box-sizing: border-box;
     width: 636px;
@@ -45,47 +52,14 @@
     outline: none;
     border: 1px solid #d4d4d4;
 
-    &::-webkit-input-placeholder {
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-    &::-moz-placeholder {
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-    &:-moz-placeholder {
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-    &:-ms-input-placeholder {
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-    &:focus::-webkit-input-placeholder {
+    &Opened::placeholder {
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: 0.2s ease;
     }
-    &:focus::-moz-placeholder {
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    &:focus:-moz-placeholder {
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    &:focus:-ms-input-placeholder {
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    &:focus {
+    &Opened {
       padding-left: 64px;
+      // transition: 0.1s ease;
     }
-  }
-
-  .inputCastom::placeholder {
-    font-size: 14px;
-    color: $color-third;
   }
 
   .iconSearch {
@@ -241,10 +215,16 @@
   background-color: $color-categories-btn;
 
   &Content {
-    max-width: 994px;
+    max-width: 1032px;
     margin-left: auto;
-
     padding-bottom: 40px;
+
+    &User {
+      margin-right: 0;
+      padding-top: 30px;
+      padding-left: 38px;
+      border-bottom: 1px solid $color-star-border;
+    }
 
     &Title {
       font-family: Merriweather;
@@ -252,16 +232,19 @@
       font-size: 24px;
       line-height: 1.25;
       color: $color-main;
-
-      margin-top: 30px;
-
+      // margin-top: 30px;
       margin-bottom: 40px;
+    }
+
+    &Author {
+      max-width: 872px;
+      margin-left: 38px;
+      padding-top: 40px;
     }
 
     &Popular {
       display: flex;
       padding-bottom: 56px;
-      border-bottom: 1px solid $color-star-border;
 
       &Item {
         max-width: 124px;

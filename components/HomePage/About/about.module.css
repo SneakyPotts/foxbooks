@@ -3,13 +3,13 @@
 }
 
 .dropDown {
-  padding: 23px 0;
+  /* padding: 23px 0; */
   border-bottom: 1px solid #d4d4d4;
 }
 .dropDownBtn {
   display: flex;
   width: 100%;
-  padding: 0;
+  padding: 23px 0;
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
@@ -37,7 +37,7 @@
   color: #4f4f4f;
   padding: 0;
   margin: 0;
-  margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: 24px;
 }
 .dropDownIcon {

@@ -17,7 +17,9 @@ const Footer = () => {
           <div className={st.wrapper}>
             <div className={st.container}>
               <div>
-                <Logo />
+                <div className={st.logo}>
+                  <Logo />
+                </div>
                 <p className={st.slogan}>
                   Foxbooks.ag — мы лучшие в мире бесплатных онлайн книг
                 </p>

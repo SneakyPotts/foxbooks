@@ -36,8 +36,14 @@ const Hero = () => {
         // onSwiper={(swiper) => console.log(swiper)}
       >
         {data.map(id => (
-          <SwiperSlide key={id} className={st.swiperSlide}>
-            <Image src="/hero.png" width="1200" height="400" alt="" />
+          <SwiperSlide key={id} className={st.swiperTest}>
+            <img
+              src="/hero.png"
+              width="1200"
+              height="400"
+              alt=""
+              className={st.swiperImg}
+            />
           </SwiperSlide>
         ))}
         <button className={classnames('prevArrow', 'btnBefore')}>

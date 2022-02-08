@@ -144,6 +144,7 @@
       display: flex;
       align-content: center;
       stroke: $text-hover;
+      fill: $text-hover;
 
       & span {
         margin-left: 10px;
@@ -152,6 +153,7 @@
       &:hover {
         cursor: pointer;
         color: $text-hover;
+        fill: $text-hover;
       }
     }
 
@@ -163,7 +165,7 @@
 
 .down {
   margin-left: 10px;
-    stroke-width: 2px;
+  stroke-width: 2px;
 
   transform: rotate(180deg);
 }
@@ -177,6 +179,9 @@
 }
 .input {
   position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px;
   &Svg {
     width: 24px;
     height: 24px;
@@ -204,7 +209,7 @@
 
 .dropdownPopular {
   position: relative;
-  margin-left: 30px;
+  margin-left: 31px;
 
   &Btn {
     font-size: 14px;
@@ -212,6 +217,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 138px;
     padding: 6px 15px;
 
     height: 32px;

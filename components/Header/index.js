@@ -122,7 +122,9 @@ const Header = () => {
                           ? 'Искать книги, авторов, жанры, издательства'
                           : 'Искать книги'
                       }
-                      className={st.inputCastom}
+                      className={classNames(st.inputCastom, {
+                        [st.inputCastomOpened]: showMenuFlag,
+                      })}
                       onClick={onSearchInput}
                     />
                     <FiSearch
@@ -212,37 +214,41 @@ const Header = () => {
                 >
                   <div className={classNames('container', st.border)}>
                     <div className={st.dropDownContent}>
-                      <h2 className={st.dropDownContentTitle}>Часто ищут</h2>
-                      <ul className={st.dropDownContentPopular}>
-                        {popularBooks.map(it => (
-                          <li
-                            key={it.id}
-                            className={st.dropDownContentPopularItem}
-                          >
-                            <Image
-                              src={it?.img}
-                              width={124}
-                              height={187}
-                              // layout="fill"
-                              placeholder="blur"
-                              blurDataURL="/images/blur.jpg"
-                            />
-                            <h4 className={st.dropDownContentPopularItemName}>
-                              {it.name}
-                            </h4>
-                          </li>
-                        ))}
-                      </ul>
-                      <h2 className={st.dropDownContentTitle}>Авторы</h2>
-                      <ul className={st.authorsList}>
-                        {authors.map(({ id, author }) => (
-                          <Link href="#" key={id} className={st.author}>
-                            <a>
-                              <h4 className={st.authorName}>{author}</h4>
-                            </a>
-                          </Link>
-                        ))}
-                      </ul>
+                      <div className={st.dropDownContentUser}>
+                        <h2 className={st.dropDownContentTitle}>Часто ищут</h2>
+                        <ul className={st.dropDownContentPopular}>
+                          {popularBooks.map(it => (
+                            <li
+                              key={it.id}
+                              className={st.dropDownContentPopularItem}
+                            >
+                              <Image
+                                src={it?.img}
+                                width={124}
+                                height={187}
+                                // layout="fill"
+                                placeholder="blur"
+                                blurDataURL="/images/blur.jpg"
+                              />
+                              <h4 className={st.dropDownContentPopularItemName}>
+                                {it.name}
+                              </h4>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className={st.dropDownContentAuthor}>
+                        <h2 className={st.dropDownContentTitle}>Авторы</h2>
+                        <ul className={st.authorsList}>
+                          {authors.map(({ id, author }) => (
+                            <Link href="#" key={id} className={st.author}>
+                              <a>
+                                <h4 className={st.authorName}>{author}</h4>
+                              </a>
+                            </Link>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>

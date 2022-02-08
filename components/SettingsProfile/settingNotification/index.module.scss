@@ -12,15 +12,22 @@
       flex-direction: column;
       gap: 15px;
 
+      & > div:nth-child(3) {
+        > div {
+          border-bottom: none !important;
+        }
+      }
+
       .settingWrap {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-bottom: 15px;
-        border-bottom: 1px solid $color-star-border;
 
         .setting {
           display: flex;
+          width: 374px;
+          padding-bottom: 15px;
+          border-bottom: 1px solid $color-star-border;
 
           &Icon {
             margin-right: 10px;
@@ -44,19 +51,21 @@
               margin-bottom: 5px;
             }
 
-            >p {
+            > p {
               color: $color-third;
               font-size: 14px;
+              line-height: 20px;
             }
           }
         }
+
         .checkbox {
           margin-left: 40px;
         }
       }
     }
     .groupButton {
-      margin-top: 40px;
+      margin-top: 10px;
       margin-bottom: 0px;
     }
   }
