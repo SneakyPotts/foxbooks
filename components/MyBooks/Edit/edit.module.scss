@@ -44,11 +44,10 @@
 }
 .closeSvg {
   cursor: pointer;
-
   position: absolute;
   top: 60px;
   right: 60px;
-  stroke: #fff;
+  stroke: $color-categories-btn;
 }
 .changeInput {
   font-family: Merriweather;

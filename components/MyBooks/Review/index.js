@@ -6,8 +6,8 @@ import Like from '../../shared/icons/heart';
 import Eye from '../../shared/icons/eye';
 import Comment from '../../shared/icons/comment';
 import EditPensil from '../../shared/icons/editPencil';
-import Bin from '../../../public/trash.svg';
-import HorizontalDots from '../../../public/horizontalDots.svg';
+import Bin from '../../shared/icons/trash';
+import HorizontalDots from '../../shared/icons/horizontalDots';
 import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
 import ArrowAll from '../../../public/chevron-down.svg';
 import Button from '../../shared/common/Button/Button';
@@ -93,7 +93,7 @@ const Review = () => {
               </div>
             </div>
             <div className={st.reviewInfo}>
-              <p className={st.reviewData}>{review.review_data}</p>
+              <p>{review.review_data}</p>
               <div className={st.reviewViews}>
                 <span className={st.sumReviews}>{review.sum_reviews}</span>
                 <Eye />

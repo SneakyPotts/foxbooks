@@ -102,6 +102,11 @@ const MyBooks = () => {
     { option: 'По алфавиту' },
   ];
   const selections = ['Все', 'Мои', 'Fox подборки'];
+  const quotes = [
+    { option: 'Все' },
+    { option: 'По книгам' },
+    { option: 'По авторам' },
+  ];
 
   const [menu, setMenu] = useState(false);
   const [filter, setFilter] = useState(false);
@@ -116,6 +121,7 @@ const MyBooks = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [activeOption, setActiveOption] = useState('Все');
   const [activeSelections, setActiveSelections] = useState('Все');
+  const [activeQuotes, setActiveQuotes] = useState('Все');
   const [createSelection, setCreateSelection] = useState(false);
   const [confirm, setConfirm] = useState(false);
 
@@ -157,6 +163,11 @@ const MyBooks = () => {
     e.stopPropagation();
     setFilter(!filter);
   };
+
+  // const handleQoutesClick = e => {
+  //   e.stopPropagation();
+  //   setActiveQuotes(!activeQuotes);
+  // };
 
   const handleSelections = e => {
     e.stopPropagation();
@@ -386,7 +397,47 @@ const MyBooks = () => {
                       )}
                     </div>
                   )}
-                  {tabValue !== 'Рецензии' && tabValue !== 'Авторы' && (
+                  {tabValue !== 'Рецензии' &&
+                    tabValue !== 'Авторы' &&
+                    tabValue !== 'Цитаты' && (
+                      <div className={st.dropdownPopular}>
+                        <button
+                          className={classnames(st.dropdownPopularBtn, {
+                            [st.active]: filter,
+                          })}
+                          onClick={handleClick}
+                        >
+                          {activeFilter}
+                          <ArrowAll
+                            className={classnames(st.down, {
+                              [st.up]: filter,
+                            })}
+                          />
+                        </button>
+                        {filter && (
+                          <ul
+                            className={st.dropdownPopularList}
+                            onClick={e => e.stopPropagation()}
+                          >
+                            {popular.map((opt, idx) => (
+                              <li
+                                key={opt.option + 2}
+                                className={st.dropdownPopularListItem}
+                                onClick={() => filterClick(idx)}
+                              >
+                                <span
+                                  className={classnames(st.radio, {
+                                    [st.radioActive]: filterIdx === idx,
+                                  })}
+                                ></span>
+                                <span>{opt.option}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
+                  {tabValue === 'Цитаты' && (
                     <div className={st.dropdownPopular}>
                       <button
                         className={classnames(st.dropdownPopularBtn, {
@@ -394,7 +445,7 @@ const MyBooks = () => {
                         })}
                         onClick={handleClick}
                       >
-                        {activeFilter}
+                        {activeQuotes}
                         <ArrowAll
                           className={classnames(st.down, {
                             [st.up]: filter,
@@ -406,7 +457,7 @@ const MyBooks = () => {
                           className={st.dropdownPopularList}
                           onClick={e => e.stopPropagation()}
                         >
-                          {popular.map((opt, idx) => (
+                          {quotes.map((opt, idx) => (
                             <li
                               key={opt.option + 2}
                               className={st.dropdownPopularListItem}

@@ -34,12 +34,19 @@
 .reviewInfo {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
+  align-items: center;
+  margin-top: 5px;
   color: $color-third;
+  p {
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 .reviewViews {
+  font-size: 14px;
+  line-height: 20px;
   display: flex;
-  align-items: top;
+  // align-items: top;
 }
 .sumReviews {
   margin-right: 10px;
@@ -50,6 +57,7 @@
   line-height: 1.19;
   margin: 0;
   margin: 10px 0;
+  color: $color-main;
 }
 .reviewText {
   font-size: 14px;
@@ -169,7 +177,7 @@
   stroke: $color-categories-btn;
 }
 .down {
-    stroke-width: 2px;
+  stroke-width: 2px;
 
   transform: rotate(180deg);
 }

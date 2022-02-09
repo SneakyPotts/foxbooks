@@ -3,14 +3,14 @@ import classnames from 'classnames';
 import { FiSearch } from 'react-icons/fi';
 import Button from '../../shared/common/Button/Button';
 import Book from '../../shared/common/book';
-import Dots from '../../../public/horizontalDots.svg';
-import EditPensil from '../../../public/edit-pencil.svg';
-import Bin from '../../../public/trash.svg';
+import Dots from '../../shared/icons/horizontalDots';
+import EditPensil from '../../shared/icons/editPencilSelection';
+import Bin from '../../shared/icons/trash';
 import ArrowAll from '../../../public/chevron-down.svg';
 import All from '../../shared/icons/all';
-import BookMark from '../../../public/bookmark.svg';
-import OpenBook from '../../../public/book-open.svg';
-import Flag from '../../../public/flag.svg';
+import BookMark from '../../shared/icons/BookMark';
+import OpenBook from '../../shared/icons/bookOpen';
+import Flag from '../../shared/icons/flag';
 import AddBook from './AddBook';
 import Edit from '../Edit';
 import st from './selection.module.scss';
@@ -149,7 +149,7 @@ const Selection = () => {
                 <ul className={st.dropdownList}>
                   {options.map((opt, idx) => (
                     <li
-                        key={opt.option}
+                      key={opt.option}
                       className={st.dropdownListItem}
                       onClick={e => handleOptions(idx, e)}
                     >
@@ -193,7 +193,7 @@ const Selection = () => {
                 >
                   {popular.map((opt, idx) => (
                     <li
-                        key={opt.option + 1}
+                      key={opt.option + 1}
                       className={st.dropdownPopularListItem}
                       onClick={() => filterClick(idx)}
                     >

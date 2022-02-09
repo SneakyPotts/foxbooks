@@ -17,20 +17,27 @@
 
   &Img {
     position: relative;
+    display: inherit;
 
     &Count {
       font-family: Fira Sans, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
       position: absolute;
+      // display: flex;
+
       background: #fff;
       bottom: 10px;
       right: 10px;
+      height: 32px;
+      width: 69px;
       border-radius: 58px;
       color: $color-main;
       padding: 6px 10px;
-      font-size: 14px;
     }
 
     &img {
+      display: block;
       border-radius: 5px;
     }
   }
@@ -44,7 +51,7 @@
     > h3 {
       font-weight: 500;
       font-size: 16px;
-      margin-bottom: 10px;
+      margin-top: 10px;
       color: $color-main;
       line-height: 18px;
     }

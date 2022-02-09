@@ -3,9 +3,9 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import Stars from '../../shared/common/stars/Stars';
 import Like from '../../shared/icons/heart';
-import HorizontalDots from '../../../public/horizontalDots.svg';
+import HorizontalDots from '../../shared/icons/horizontalDots';
 import All from '../../shared/icons/all';
-import Bin from '../../../public/trash.svg';
+import Bin from '../../shared/icons/trash';
 
 import st from './quotes.module.scss';
 

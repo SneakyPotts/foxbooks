@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import classnames from 'classnames';
-import Img from '../../../public/img.svg';
+import Img from '../../shared/icons/img';
 import Button from '../../shared/common/Button/Button';
-import Close from '../../../public/close.svg';
+import Close from '../../shared/icons/cross';
 import st from './edit.module.scss';
 
 const Edit = ({ setEditPage, setAddBookPage }) => {
@@ -56,8 +56,15 @@ const Edit = ({ setEditPage, setAddBookPage }) => {
             }
           >
             <div className={st.wrapper}>
-              {!file64 && <Img className={st.imgSvg} />}
-              <Close className={st.closeSvg} onClick={e => closeEditPage(e)} />
+              {!file64 && (
+                <div className={st.imgSvg}>
+                  <Img />
+                </div>
+              )}
+              <div className={st.closeSvg} onClick={e => closeEditPage(e)}>
+                <Close />
+              </div>
+
               <input
                 placeholder="Название"
                 maxLength={100}

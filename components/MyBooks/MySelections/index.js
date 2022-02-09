@@ -22,8 +22,7 @@ const MySelections = () => {
                 <div className={st.selectionImg}>
                   <img src="/horizontalBookCovers/bookCover1.png" alt="" />
                   <div className={st.selectionImgCount}>
-                    <span>65 </span>
-                    <span>книг</span>
+                    <span>65 </span>книг
                   </div>
                 </div>
 
