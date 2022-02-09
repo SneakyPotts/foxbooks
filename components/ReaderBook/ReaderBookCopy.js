@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useSelector} from "react-redux";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import DrawerPopup from "../shared/common/DrawerPopup";
@@ -10,9 +10,11 @@ import EditPopup from "./EditPopup";
 
 import classNames from 'classnames'
 import styles from './styles.module.scss'
+import MyPagination from "../shared/common/MyPagination";
 
 const ReaderBookCopy = () => {
 	const { innerWidthWindow } = useSelector(state => state.common)
+	const { settings } = useSelector(state => state.reader)
 
 	const [contentPopupIsVisible, setContentPopupIsVisible] = useState(false)
 	const [quotesPopupIsVisible, setQuotesPopupIsVisible] = useState(false)
@@ -31,9 +33,15 @@ const ReaderBookCopy = () => {
 		setEditPopupIsVisible(!editPopupIsVisible)
 	}
 
+	useEffect(() => {
+		return () => {
+			console.log('settings', settings)
+		}
+	}, [])
+
 	return (
 		<div
-			className={classNames(styles.pageWrapper, styles.brightness0)}
+			className={classNames(styles.pageWrapper, styles[`brightness${settings?.screenBrightness}`])}
 			onClick={() => setEditPopupIsVisible(false)}
 		>
 			<div className={classNames('container', styles.pageContainer)}>
@@ -44,6 +52,13 @@ const ReaderBookCopy = () => {
 				/>
 
 				<TextWithQoutes />
+
+				<MyPagination
+					externalClass={styles.pagination}
+					lastPage={500}
+				/>
+
+				<div>progress</div>
 
 				{/* Попап с главами */}
 				{innerWidthWindow > 768 ?

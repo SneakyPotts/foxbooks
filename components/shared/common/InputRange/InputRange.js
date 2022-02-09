@@ -8,69 +8,55 @@ const InputRange = ({
 	min = '0',
 	max = '100',
 	step = '1',
-	barColor,
-	fillColor = '#FF781D',
-	textLabel,
-	labelOne,
-	labelSecond,
-	brightness,
-	dot = false,
-	externalClass
+	barColor = '#D4D4D4',
+	dotsColor = '#D4D4D4',
+	hasDots = false,
+	dotsCount = 5,
+	externalClass,
+	externalWrapperClass
 }) => {
 
-	const dataDot = [
-		{x: 2, y: -1},
-		{x: 55, y: -1},
-		{x: 109, y: -1},
-		{x: 163, y: -1},
-		{x: 217, y: -1}
-	]
+	const getDots = () => {
+		const arr = []
+		for (let i = 0; i < dotsCount; i++) {
+			arr.push(i)
+		}
+		return arr;
+	}
 
 	return (
-		<div
-			className={classNames(styles.middle,
-				{[styles.middleDefault] : Number(brightness) === 5},
-				{[styles.middleFifth] : Number(brightness) === 4},
-				{[styles.middleFourth] : Number(brightness) === 3},
-				{[styles.middleThird] : Number(brightness) === 2},
-				{[styles.middleSecond] : Number(brightness) === 1},
-				{[styles.middleFirst] : Number(brightness) === 0}
-			)}
-		>
-			{textLabel &&
-				<span className={styles.labelInput}>
-					{textLabel}
-				</span>
-			}
-			<div className={styles.sliderContainer}>
-				<span className={styles.bar} style={{background: barColor}}>
-					<span
-						className={styles.fill}
-						style={{width: `${(value / max) * 100}%`, background: fillColor}}
-					/>
-				</span>
-				{dot && dataDot.map(({x, y}, i) => (
-					<span
-						key={x}
-						style={{transform: `translate(${x}px, ${y}px)`}}
-						className={classNames(styles.dot, {[styles.dotActive]: value >= i})}
-					/>
-				))}
-				<input
-					step={step}
-					onChange={(e) => setValue(e.target.value)}
-					value={value}
-					className={classNames(styles.slider, externalClass)}
-					type="range"
-					min={min}
-					max={max}
+		<div className={classNames(styles.inputWrapper, externalWrapperClass)}>
+			<span
+				className={styles.inputBar}
+				style={{background: barColor}}
+			>
+				<span
+					className={styles.inputFill}
+					style={{width: `${(value / max) * 100}%`}}
 				/>
-				{dot &&
-				<div className={styles.underTextInput}>
-					<span>{labelOne}</span>
-					<span>{labelSecond}</span>
-				</div> }
-			</div>
+			</span>
+
+			{hasDots && dotsCount &&
+				<div className={styles.dotsWrapper}>
+					{getDots().map(i => (
+						<span
+							key={i}
+							className={classNames(styles.inputDot, {[styles.active]: value >= i})}
+							style={{background: dotsColor}}
+						/>
+					))}
+				</div>
+			}
+
+			<input
+				type="range"
+				min={min}
+				max={max}
+				step={step}
+				value={value}
+				onChange={(e) => setValue(e.target.value)}
+				className={classNames(styles.input, externalClass)}
+			/>
 		</div>
 	);
 };

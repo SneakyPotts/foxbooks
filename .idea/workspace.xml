@@ -2,30 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/components/ReaderBook/ContentPopup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ReaderBook/EditPopup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ReaderBook/QuotesPopup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/Switch/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/Switch/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/readerSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Holders/HoldersRight.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Holders/HoldersRight.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Review/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Review/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selection/AddBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Selection/AddBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/EditPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/EditPopup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBookCopy.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBookCopy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Support/Support.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/Support.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/modalWindow/ModalWindow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/modalWindow/ModalWindow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/icons/BookMark.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/BookMark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/icons/FullScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/FullScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/icons/Letter.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/Letter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/icons/ReadderGambgurger.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/ReadderGambgurger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/icons/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/variables.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/variables.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/InputRange/InputRange.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/InputRange/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/InputRange/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/Logo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/commonSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +108,7 @@
       <workItem from="1643300912437" duration="1066000" />
       <workItem from="1643355898139" duration="22459000" />
       <workItem from="1643615715897" duration="11408000" />
-      <workItem from="1643879707088" duration="46164000" />
+      <workItem from="1643879707088" duration="68731000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -259,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644248551424</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="reader">
+      <created>1644337799710</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1644337799710</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -8,6 +8,10 @@
 .pageContainer {
   position: relative;
 }
+.pagination {
+  margin: 60px auto 30px !important;
+  max-width: 700px;
+}
 
 // start HEADER ==================================
 .header {
@@ -43,7 +47,7 @@
 
 .logo {
   svg path {
-    //fill: var(--icons-color);
+    fill: var(--icons-color);
   }
 }
 
@@ -185,7 +189,7 @@
 .book {
   &Title {
     color: var(--main-color);
-    font-family: Merriweather;
+    font-family: Merriweather, serif;
     font-size: 28px;
     line-height: 35px;
     text-align: center;
@@ -215,9 +219,149 @@
     font-size: 16px;
     line-height: 140%;
     text-indent: 20px;
+
+    span {
+      flex: 1;
+    }
   }
 }
 // end TEXT ==================================
+
+// start EDIT ==================================
+.edit {
+  &Wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--controls-color);
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+  &Title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--modal-text-color);
+  }
+  &Subtitle {
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--icons-color);
+    display: inline-block;
+    margin-top: 10px;
+  }
+  &Switch {
+    border-color: var(--controls-color) !important;
+
+    span {
+      background: var(--controls-color) !important;
+    }
+  }
+  &DropdownWrapper {
+    display: flex;
+    align-items: center;
+    color: var(--modal-text-color);
+    font-size: 14px;
+    line-height: 140%;
+    cursor: pointer;
+    transition: .15s;
+    position: relative;
+
+    &:hover,
+    &.active {
+      color: $text-hover;
+
+      .editIcon {
+        stroke: $text-hover;
+      }
+    }
+
+    &.active {
+      .editIcon {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+  &Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    stroke: var(--icons-color);
+    transform: rotate(90deg);
+    margin-left: 30px;
+    transition: .15s;
+  }
+  &Dropdown {
+    position: absolute;
+    right: -21px;
+    bottom: -20px;
+    transform: translateY(100%);
+    box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+    border-radius: 10px;
+    background: var(--modal-color);
+    border: 1px solid var(--modal-border-color);
+    width: 279px;
+    z-index: 3;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .15s;
+
+    &.active {
+      max-height: 240px;
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+      line-height: 140%;
+      text-align: center;
+      color: var(--text-color);
+      margin-right: 30px;
+      margin-left: 30px;
+      margin-bottom: 20px;
+      transition: .15s;
+      cursor: pointer;
+
+      &:first-of-type {
+        margin-top: 30px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 30px;
+      }
+
+      &:hover {
+        color: $text-hover;
+      }
+    }
+  }
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputWrapper {
+  margin-top: 10px;
+
+  .inputBar {
+    background: red;
+  }
+}
+// end EDIT ==================================
 
 @media screen and (max-width: 768px) {
   .editPopup {

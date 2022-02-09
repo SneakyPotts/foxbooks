@@ -4,6 +4,7 @@ import authSlice from "./authSlice";
 import profileSlice from "./profileSlice";
 import bookSlice from "./bookSlice";
 import selectionSlice from "./selectionSlice";
+import readerSlice from "./readerSlice";
 
 export function makeStore() {
 	return configureStore({
@@ -13,6 +14,7 @@ export function makeStore() {
 			profile: profileSlice,
 			book: bookSlice,
 			selection: selectionSlice,
+			reader: readerSlice
 		},
 	});
 }

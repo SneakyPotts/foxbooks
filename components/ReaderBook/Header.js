@@ -11,6 +11,7 @@ import BookMark from "../shared/icons/BookMark";
 
 import classNames from "classnames";
 import styles from './styles.module.scss'
+import {useSelector} from "react-redux";
 
 const Header = ({
   showContentPopup,
@@ -18,6 +19,8 @@ const Header = ({
   toggleEditPopup
 }) => {
   const router = useRouter()
+
+  const { settings } = useSelector(state => state?.reader)
 
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [marks, setMarks] = useState([
@@ -30,7 +33,7 @@ const Header = ({
   ])
 
   const setFullScreen = () => {
-    const el = document.body
+    const el = document.documentElement
     if(isFullScreen) {
       if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -81,7 +84,7 @@ const Header = ({
   ]
 
   return (
-    <header className={styles.header}>
+    <div className={styles.header}>
       <div className={styles.logoWrapper}>
         <span
           className={styles.backBtn}
@@ -90,7 +93,7 @@ const Header = ({
           <ArrowIcon />
         </span>
         <Link href="/">
-          <a className={styles.logo}>
+          <a className={+settings?.screenBrightness <= 2 ? styles.logo : null}>
             <Logo />
           </a>
         </Link>
@@ -123,7 +126,7 @@ const Header = ({
         </div> :
         null
       }
-    </header>
+    </div>
   );
 };
 
