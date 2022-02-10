@@ -363,10 +363,146 @@
 }
 // end EDIT ==================================
 
+// start ADD QUOT ==================================
+.addQuot {
+  &Wrapper {
+    position: absolute;
+    background: var(--modal-color);
+    padding: 30px 20px;
+    box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+    border-radius: 10px;
+    border: 1px solid var(--modal-border-color);
+    display: flex;
+    flex-direction: column;
+    width: 291px;
+    font-family: Ubuntu;
+    font-size: 14px;
+    line-height: 140%;
+    color: var(--text-color);
+    text-indent: 0;
+  }
+
+  &Flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: .15s;
+
+    &:first-of-type {
+      justify-content: space-between;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    & > .addQuotFlex {
+      margin: 0;
+    }
+
+    &:hover {
+      color: $text-hover;
+    }
+  }
+
+  &Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+  }
+
+  &Color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+}
+// end ADD QUOT ==================================
+
 @media screen and (max-width: 768px) {
   .editPopup {
     top: initial;
     right: initial;
     bottom: 0;
+  }
+
+  .addQuot {
+    &Wrapper {
+      flex-direction: row;
+      width: 375px;
+      overflow: hidden;
+      background: #0E263E;
+      border-radius: 5px;
+      border: none;
+      color: #FFFFFF;
+      padding: 10px 15px;
+      justify-content: space-between;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+
+    &Flex {
+      flex-direction: column;
+      margin: 0;
+
+      &:first-of-type {
+        margin-left: 0;
+
+        svg path {
+          stroke: none;
+          fill: #FFFFFF;
+        }
+      }
+    }
+
+    &Icon {
+      margin: 0 0 5px;
+
+      svg path {
+        stroke: #FFFFFF;
+      }
+    }
+
+    &Color {
+      margin: 0;
+      width: 29px;
+      height: 29px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+
+    &ColorsWrapper {
+      position: relative;
+      width: 38px;
+      height: 100%;
+    }
+  }
+
+  .around {
+    justify-content: center;
+
+    & > div:nth-of-type(2) {
+      margin: 0 30px;
+    }
+  }
+
+  .showColors {
+    width: 335px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .addQuotColor {
+      position: initial;
+      transform: initial !important;
+      width: 45px;
+      height: 45px;
+    }
   }
 }

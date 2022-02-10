@@ -4,6 +4,7 @@ import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import { calcTotalOffset } from '../../utils'
 
 import styles from './styles.module.scss'
+import AddQout from "./AddQout";
 
 const TextWithQoutes = () => {
 	const { settings } = useSelector(state => state?.reader)
@@ -252,17 +253,12 @@ const TextWithQoutes = () => {
 				<span>{changedSecondColumn}</span>
 
 				{toolsIsVisible &&
-					<div
+					<AddQout
 						style={{
-							position: 'absolute',
 							top: toolsCoords.y + 'px',
 							left: toolsCoords.x + 'px',
-							background: '#ccc',
-							padding: '30px'
 						}}
-					>
-						<button onClick={addQuot}>add quot</button>
-					</div>
+					/>
 				}
 			</div>
 		</>
