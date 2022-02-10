@@ -4,10 +4,16 @@
   width: 384px;
 }
 
-
 .inputCurrent {
-  margin-top: 40px;
-  padding-bottom: 40px;
+}
+.input {
+  position: relative;
+  margin: 40px 0 15px;
+  &Icon {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+  }
 }
 
 .inputNew {
@@ -16,4 +22,7 @@
 
 .inputLast {
   padding-bottom: 0px;
+}
+.buttonDistance {
+  margin-bottom: 0px;
 }

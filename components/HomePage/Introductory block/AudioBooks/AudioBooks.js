@@ -29,18 +29,19 @@ const AudioBooks = () => {
 
       <Swiper
         modules={[Navigation]}
-        navigation={{
-          prevEl: '.prevArrow',
-          nextEl: '.nextArrow',
-        }}
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
         spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
         slidesPerView={
           (innerWidthWindow <= 500 && 3) ||
           (innerWidthWindow <= 1024 && 4) ||
           (innerWidthWindow >= 1200 && 5)
         }
+        navigation={{
+          prevEl: '.prevArrow',
+          nextEl: '.nextArrow',
+        }}
+
+        // onSlideChange={() => console.log('slide change')}
+        // onSwiper={(swiper) => console.log(swiper)}
       >
         {testData.map((r, i) => {
           return (

@@ -37,13 +37,7 @@ const Hero = () => {
       >
         {data.map(id => (
           <SwiperSlide key={id} className={st.swiperTest}>
-            <img
-              src="/hero.png"
-              width="1200"
-              height="400"
-              alt=""
-              className={st.swiperImg}
-            />
+            <img src="/hero.png" alt="" className={st.swiperImg} />
           </SwiperSlide>
         ))}
         <button className={classnames('prevArrow', 'btnBefore')}>

@@ -8,7 +8,6 @@
 }
 .abTitle {
   font-family: Merriweather;
-  font-style: normal;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
@@ -36,4 +35,17 @@
 }
 .abCategLink {
   padding: 8px 15px;
+}
+
+@media (max-width: 1200px) {
+}
+@media (max-width: 768px) {
+  .abTitle {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 500px) {
 }

@@ -25,3 +25,23 @@
 .banner:not(:last-child) {
   margin-bottom: 40px;
 }
+
+@media (max-width: 1200px) {
+  .advertisingBlok {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .booksGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 24px;
+    justify-content: space-around;
+  }
+}
+@media (max-width: 500px) {
+  .booksGrid {
+    gap: 30px 10px;
+    justify-content: space-around;
+  }
+}

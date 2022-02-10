@@ -8,7 +8,8 @@ import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../../store/profileSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './schema';
-import OpenEye from '../../shared/icons/openEye';
+import OpenEye from '../../shared/icons/eyeOpen';
+import CloseEye from '../../shared/icons/eyeOff';
 
 const SettingPassword = () => {
   const dispatch = useDispatch();
@@ -20,29 +21,51 @@ const SettingPassword = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const [type, setType] = useState('password');
 
-  const handleShowPassword = () => {
-    setType('text');
-  };
+  const [inputType, setInputType] = useState('password');
+  console.log(inputType, 'inputType');
 
   const onSubmit = data => {
     dispatch(resetPassword(data));
     reset();
   };
 
+  const handleShowPassword = e => {
+    e.stopPropagation();
+    setInputType('text');
+  };
+
+  const handleHeidPassword = e => {
+    e.stopPropagation();
+    setInputType('password');
+  };
+
   return (
     <form className={styles.settingPassword} onSubmit={handleSubmit(onSubmit)}>
-      <div onClick={handleShowPassword}>
+      <div className={styles.input}>
         <Input
           classNames={styles.inputCurrent}
           err={errors.old_password?.message}
           textLabel="Текущий пароль"
           name="old_password"
-          typeInput={type}
+          typeInput={inputType}
           register={register}
         />
-        {/* {(typeInput = 'password' && <OpenEye />)} */}
+        {inputType === 'password' ? (
+          <div
+            onClick={e => handleShowPassword(e)}
+            className={styles.inputIcon}
+          >
+            <CloseEye />
+          </div>
+        ) : (
+          <div
+            onClick={e => handleHeidPassword(e)}
+            className={styles.inputIcon}
+          >
+            <OpenEye />
+          </div>
+        )}
       </div>
       <Input
         classNames={styles.inputNew}
@@ -60,7 +83,7 @@ const SettingPassword = () => {
         typeInput="password"
         register={register}
       />
-      <ButtonGroup />
+      <ButtonGroup ClassName={styles.buttonDistance} />
     </form>
   );
 };

@@ -20,6 +20,7 @@ import css from './home.module.scss';
 
 const HomeView = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
+  // console.log(innerWidthWindow, 'innerWidthWindow');
 
   return (
     <div className={classNames('container', css.container)}>
