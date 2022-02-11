@@ -20,6 +20,9 @@
   stroke: $color-main;
   transition: 0.15s;
 
+  > div {
+    display: flex;
+  }
   & > span {
     white-space: nowrap;
     overflow: hidden;
@@ -32,11 +35,7 @@
   background: #f1f7ff;
   stroke: $color-main;
 }
-.open {
-  color: #fff;
-  background: $color-main;
-  stroke: #fff;
-}
+
 .close {
   color: $color-main;
   background-color: #f1f1f1;
@@ -114,7 +113,7 @@
   transition: 0.15s;
 }
 .up {
-    stroke-width: 2px;
+  stroke-width: 2px;
 
   transform: rotate(0deg);
 }
@@ -138,4 +137,26 @@
 }
 .active {
   color: $color-main;
+}
+
+@media (max-width: 768px) {
+  .dropBtn {
+    width: 100%;
+    background: transparent;
+    &:hover {
+      background: transparent;
+    }
+    & > span {
+      white-space: nowrap;
+      overflow: initial;
+      // text-overflow: ellipsis;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .open {
+    color: #fff;
+    background: $color-main;
+    stroke: #fff;
+  }
 }

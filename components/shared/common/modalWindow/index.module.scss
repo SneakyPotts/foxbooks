@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .wrapper {
   position: fixed;
@@ -16,7 +16,6 @@
   z-index: 50;
   transform: scale(0);
 
-
   &Active {
     transform: scale(1);
   }
@@ -26,7 +25,7 @@
     padding: 60px;
     background-color: #fff;
     box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
-    border: 1px solid #F1F1F1;
+    border: 1px solid #f1f1f1;
     border-radius: 5px;
 
     &Cross {
@@ -66,6 +65,17 @@
         background-color: #909190;
         transform: rotate(-45deg);
       }
+    }
+  }
+
+  &BlockFullScreen {
+    padding: 30px 15px;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    &Cross {
+      top: 30px;
+      right: 15px;
     }
   }
 }
