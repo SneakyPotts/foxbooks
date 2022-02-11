@@ -1,8 +1,8 @@
-import React, {useMemo, useState} from 'react';
-import {useSelector} from "react-redux";
+import React, {useMemo, useState} from 'react'
+import {useSelector} from "react-redux"
 
+import classNames from "classnames"
 import styles from './styles.module.scss'
-import classNames from "classnames";
 
 const colors = [
   '#A5D5FF',
@@ -12,28 +12,57 @@ const colors = [
 ]
 
 const AddPopup = ({
-  style
+  style,
+  markId,
+  currColor,
+  addQuot,
+  changeColor,
+  deleteQuot,
+  copyText
 }) => {
   const { innerWidthWindow } = useSelector(state => state.common)
 
-  const [isQuot, setIsQuot] = useState(true);
-  const [colorsIsVisible, setColorsIsVisible] = useState(true);
+  const [colorsIsVisible, setColorsIsVisible] = useState(false)
 
   const textCondition = useMemo(() => {
     if(innerWidthWindow <= 768) {
-      return !isQuot ? true : false
+      return !markId ? true : false
     } else {
       return true
     }
-  }, [innerWidthWindow, isQuot]);
+  }, [innerWidthWindow, markId])
 
   const colorsCondition = useMemo(() => {
     if(innerWidthWindow <= 768) {
-      return isQuot ? true : false
+      return markId ? true : false
     } else {
       return true
     }
-  }, [innerWidthWindow, isQuot]);
+  }, [innerWidthWindow, markId])
+
+  const handleColorClick = (ev, color) => {
+    if(innerWidthWindow <= 768 && !colorsIsVisible) {
+      return
+    }
+
+    ev.stopPropagation()
+
+    if (markId) {
+      changeColor(color)
+    } else {
+      addQuot(color)
+    }
+
+    if (innerWidthWindow <= 768) {
+      setColorsIsVisible(false)
+    }
+  }
+
+  const handleQuotClick = () => {
+    addQuot(colors[0])
+  }
+
+  console.log(currColor)
 
   return (
     <div
@@ -48,6 +77,7 @@ const AddPopup = ({
         {textCondition &&
           <div
             className={styles.addQuotFlex}
+            onClick={handleQuotClick}
           >
             <div className={styles.addQuotIcon}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,23 +99,34 @@ const AddPopup = ({
                 [styles.showColors]: colorsIsVisible
               }
             )}
+            onClick={() => setColorsIsVisible(true)}
           >
             {colors?.map((i, index) => (
               <div
                 key={i}
-                className={styles.addQuotColor}
+                className={classNames(
+                  styles.addQuotColor,
+                  {[styles.active]: currColor === i}
+                )}
                 style={{
                   background: i,
                   transform: innerWidthWindow <= 768 ? `translate(${index * 3}px, -50%)` : null,
-                  zIndex: colors?.length - index
+                  zIndex: colors?.length - index,
+                  transitionDelay: `${index}00ms`,
                 }}
-              />
+                onClick={ev => handleColorClick(ev, i)}
+              >
+                <span />
+              </div>
             ))}
           </div>
         }
       </div>
 
-      <div className={styles.addQuotFlex}>
+      <div
+        className={styles.addQuotFlex}
+        onClick={copyText}
+      >
         <div className={styles.addQuotIcon}>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.6667 7.5H9.16667C8.24619 7.5 7.5 8.24619 7.5 9.16667V16.6667C7.5 17.5871 8.24619 18.3333 9.16667 18.3333H16.6667C17.5871 18.3333 18.3333 17.5871 18.3333 16.6667V9.16667C18.3333 8.24619 17.5871 7.5 16.6667 7.5Z" stroke="#FF781D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -106,8 +147,11 @@ const AddPopup = ({
         Поделиться
       </div>
 
-      {isQuot &&
-        <div className={styles.addQuotFlex}>
+      {markId &&
+        <div
+          className={styles.addQuotFlex}
+          onClick={deleteQuot}
+        >
           <div className={styles.addQuotIcon}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.5 5H4.16669H17.5002" stroke="#FF781D" stroke-width="1.66669" stroke-linecap="round"
@@ -125,7 +169,7 @@ const AddPopup = ({
         </div>
       }
     </div>
-  );
-};
+  )
+}
 
-export default AddPopup;
+export default AddPopup

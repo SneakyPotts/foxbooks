@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Link from 'next/link';
+import {useSelector} from "react-redux";
 import { useRouter } from 'next/router';
 import ArrowIcon from './../../public/chevron-right.svg';
 import Logo from "../shared/icons/Logo";
@@ -11,7 +12,6 @@ import BookMark from "../shared/icons/BookMark";
 
 import classNames from "classnames";
 import styles from './styles.module.scss'
-import {useSelector} from "react-redux";
 
 const Header = ({
   showContentPopup,

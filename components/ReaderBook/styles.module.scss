@@ -429,6 +429,7 @@
     top: initial;
     right: initial;
     bottom: 0;
+    width: 100%;
   }
 
   .addQuot {
@@ -449,6 +450,7 @@
     &Flex {
       flex-direction: column;
       margin: 0;
+      transition: .4s, color .15s;
 
       &:first-of-type {
         margin-left: 0;
@@ -457,6 +459,23 @@
           stroke: none;
           fill: #FFFFFF;
         }
+
+        &:hover {
+          .addQuotIcon {
+            svg path {
+              stroke: none;
+              fill: $text-hover
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .addQuotIcon {
+          svg path {
+            stroke: $text-hover
+          }
+        }
       }
     }
 
@@ -464,6 +483,7 @@
       margin: 0 0 5px;
 
       svg path {
+        transition: .15s;
         stroke: #FFFFFF;
       }
     }
@@ -475,6 +495,7 @@
       position: absolute;
       top: 50%;
       left: 0;
+      transition: width .3s, height .3s;
     }
 
     &ColorsWrapper {
@@ -493,16 +514,31 @@
   }
 
   .showColors {
-    width: 335px;
+    width: 345px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-right: 15px !important;
 
     .addQuotColor {
       position: initial;
       transform: initial !important;
       width: 45px;
       height: 45px;
+
+      &.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & > span {
+          flex: initial;
+          width: 19px;
+          height: 19px;
+          background: #0E263E;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }

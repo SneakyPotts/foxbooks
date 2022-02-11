@@ -2,9 +2,9 @@ import React, {useEffect, useState, useMemo} from 'react'
 import {useSelector} from "react-redux";
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import { calcTotalOffset } from '../../utils'
+import AddQout from "./AddQout";
 
 import styles from './styles.module.scss'
-import AddQout from "./AddQout";
 
 const TextWithQoutes = () => {
 	const { settings } = useSelector(state => state?.reader)
@@ -37,38 +37,51 @@ const TextWithQoutes = () => {
 	const [toolsIsVisible, setToolsIsVisible] = useState(false)
 	const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 });
 
+	//========= ПЕРЕДЕЛАТЬ ПРОПС currColor !!!!!!!!!!!! =========================
 	const [quotes, setQuotes] = useState([
 		{
 			id: 0,
       startPosition: 100,
 			endPosition: 200,
+			text: 'и, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожида',
 			color: '#A5D5FF'
 		},
 		{
 			id: 1,
       startPosition: 600,
 			endPosition: 700,
+			text: 'ондинкой с шеей почти вдвое длиннее, чем положено при ее росте. Однако этот недостаток пришелся ей в',
 			color: '#FFE371'
 		},
 		{
 			id: 2,
 			startPosition: 1000,
 			endPosition: 1200,
+			text: '\t\tСемья Дурсль ей имела все, чего только можно пожелать. Но был у них и один секрет. Причем больше всего на свете они боялись, что кто-нибудь о нем узнает. Дурсли даже представить себе не могли, что ',
 			color: '#FED3CA'
 		},
 		{
 			id: 3,
 			startPosition: 2700,
 			endPosition: 3000,
+			text: 'ль, выходя из дома.\n' +
+					'\t\tОн сел в машину и выехал со двора.\n' +
+					'\t\tНа углу улицы мистер Дурсль заметил, что происходит что-то странное, — на тротуаре стояла кошка и внимательно изучала лежащую перед ней карту. В первую секунду мистер Дурсль даже не понял, что именно он увидел, но затем, уже миновав кошку, з',
 			color: '#B8DF70'
 		},
 		{
 			id: 4,
 			startPosition: 4000,
 			endPosition: 4100,
+			text: ' утреннюю автомобильную пробку и от нечего делать глядя по сторонам, мистер Дурсль заметил, что на у',
 			color: '#A5D5FF'
 		}		
 	]);
+
+	const [selectedText, setSelectedText] = useState('');
+	const [startPosition, setStartPosition] = useState(null);
+	const [endPosition, setEndPosition] = useState(null);
+	const [markId, setMarkId] = useState(null);
 
 	const generateQuotes = () => {
 		const sortedQuotes = quotes
@@ -131,7 +144,7 @@ const TextWithQoutes = () => {
 				if(domNode?.type === 'tag' && domNode?.name === 'mark') {
 					return (
 						<mark
-							onClick={() => deleteQuot(domNode?.attribs['data-id'])}
+							onClick={ev => handleMarkClick(ev, domNode?.attribs['data-id'])}
 							{...attributesToProps(domNode?.attribs)}
 						>
 							{domToReact(domNode?.children)}
@@ -149,21 +162,31 @@ const TextWithQoutes = () => {
 		const text = window.getSelection().toString()
 
 		if(text?.length && text !== ' ') {
-			const x = ev?.clientX || ev?.changedTouches[0]?.clientX
-			const y = ev?.clientY || ev?.changedTouches[0]?.clientY
+			setSelectedText(text)
+			const range = window.getSelection().getRangeAt(0)
+
+			setStartPosition(calcTotalOffset(range.startContainer, range.startOffset))
+			setEndPosition(calcTotalOffset(range.endContainer, range.endOffset))
+
+			const x = ev?.nativeEvent.layerX
+			const y = ev?.nativeEvent.layerY
 			setToolsCoords({x, y})
 			setToolsIsVisible(true)
 		} else {
+			setMarkId(null)
 			setToolsIsVisible(false)
 		}
 	}
 
-	const addQuot = () => {
-		const range = window.getSelection().getRangeAt(0)
+	const handleMarkClick = (ev, id) => {
+		setMarkId(id)
+		const x = ev?.pageX
+		const y = ev?.pageY
+		setToolsCoords({x, y})
+		setToolsIsVisible(true)
+	}
 
-		const startPosition = calcTotalOffset(range.startContainer, range.startOffset)
-		const endPosition = calcTotalOffset(range.endContainer, range.endOffset)
-
+	const addQuot = color => {
 		let isError = false
 
 		quotes?.forEach(i => {
@@ -173,22 +196,42 @@ const TextWithQoutes = () => {
 				(startPosition < i?.startPosition && endPosition > i?.endPosition)
 			) {
 				isError = true
-				return
+				setToolsIsVisible(false)
 			}
 		})
 
 		if(!isError) {
+			setMarkId(quotes?.length)
 			setQuotes(prev => [...prev, {
 				id: quotes?.length,
 				startPosition,
 				endPosition,
-				color: 'grey'
+				text: selectedText,
+				color: color
 			}])
 		}
 	}
+
+	const changeColor = color => {
+		setQuotes(prev => prev.map(i => {
+			return i?.id == markId ?
+				{
+					...i,
+					color
+				} :
+				i
+		}))
+	}
 	
-	const deleteQuot = id => {
-		setQuotes(prev => prev?.filter(i => i?.id !== +id))
+	const deleteQuot = () => {
+		setQuotes(prev => prev?.filter(i => i?.id !== +markId))
+		setMarkId(null)
+		setToolsIsVisible(false)
+	}
+
+	const copyText = () => {
+		const text = quotes?.find(i => i?.id == markId)?.text || selectedText
+		navigator.clipboard.writeText(text?.trim())
 	}
 
 	const width = useMemo(() => {
@@ -225,6 +268,10 @@ const TextWithQoutes = () => {
 		generateQuotes()
 	}, [quotes])
 
+	useEffect(() => {
+		setMarkId(null)
+	}, [selectedText])
+
 	return (
 		<>
 			<h1 className={styles.bookTitle}>Гарри Поттер и философский камень</h1>
@@ -258,6 +305,12 @@ const TextWithQoutes = () => {
 							top: toolsCoords.y + 'px',
 							left: toolsCoords.x + 'px',
 						}}
+						markId={markId}
+						currColor={quotes?.find(i => i?.id == markId)?.color}
+						addQuot={addQuot}
+						changeColor={changeColor}
+						deleteQuot={deleteQuot}
+						copyText={copyText}
 					/>
 				}
 			</div>

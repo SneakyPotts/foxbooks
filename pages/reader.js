@@ -1,14 +1,10 @@
 import React from 'react';
 import ReaderBook from "../components/ReaderBook/ReaderBook";
-import ReaderBookCopy from "../components/ReaderBook/ReaderBookCopy";
 
 const Reader = () => {
-    return (
-        <>
-            {/* <ReaderBook /> */}
-            <ReaderBookCopy />
-        </>
-    );
+  return (
+    <ReaderBook />
+  );
 };
 
 export default Reader;

@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/components/ReaderBook/AddQout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/AddQout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/AddQout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBookCopy.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/index.module.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/commonSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +104,7 @@
       <workItem from="1643300912437" duration="1066000" />
       <workItem from="1643355898139" duration="22459000" />
       <workItem from="1643615715897" duration="11408000" />
-      <workItem from="1643879707088" duration="81262000" />
+      <workItem from="1643879707088" duration="101132000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -253,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644421415208</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="reader">
+      <created>1644509772061</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1644509772061</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
