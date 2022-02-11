@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import classNames from "classnames";
 
 import styles from './styles.module.scss';
@@ -17,14 +17,18 @@ const DrawerPopup = ({
   const [isClosed, setIsClosed] = useState(false)
 
   const moveHandler = ev => {
-    if(isFocus && yPos < ev.clientY - 20) {
-      setDrawerHeight(`calc(100vh - ${ev.clientY}px)`)
+    const y = ev?.clientY || ev?.changedTouches[0]?.clientY
+
+    if(isFocus && yPos < y - 20) {
+      setDrawerHeight(`calc(100vh - ${y}px)`)
     }
   }
 
   const mouseUpHandler = ev => {
-    if(isFocus && yPos < ev.clientY - 20) {
-      setIsFocus(false)
+    const y = ev?.clientY || ev?.changedTouches[0]?.clientY
+
+    setIsFocus(false)
+    if(isFocus && yPos < y - 20) {
       setIsClosed(true)
       setTimeout(() => onClose(), 300)      
     }
@@ -43,8 +47,8 @@ const DrawerPopup = ({
       )}
       onClick={ev => ev.stopPropagation()}
       onMouseMove={moveHandler}
-      onMouseUp={mouseUpHandler}
       onTouchMove={moveHandler}
+      onMouseUp={mouseUpHandler}
       onTouchEnd={mouseUpHandler}
     >
       <div
@@ -55,12 +59,15 @@ const DrawerPopup = ({
           styles.drawer,
           externalClass
         )}
-        style={{height: drawerHeight}}
+        style={{
+          height: drawerHeight,
+          animation: `${direction === 'up' ? 'dropUp' : 'dropDown'} .2s`
+        }}
       >
         <div
           className={styles.close}
           onMouseDown={() => setIsFocus(true)}  
-          onTouchStart={() => setIsFocus(true)}       
+          onTouchStart={() => setIsFocus(true)}
         />
         {children}
       </div>

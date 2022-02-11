@@ -76,8 +76,8 @@ const GroupForms = ({modal,setModal}) => {
 		setFlagLogin(true)
 	},[modal])
 
-	return (
-		<ModalWindow modal={modal} setModal={e => setModal(e)}>
+	return modal && (
+		<ModalWindow onClose={() => setModal(false)}>
 			<div className={css.login}>
 				{flagLogin && <h1>Вход на FoxBooks</h1>}
 				{(flagRegistration || flagSendEmail) &&

@@ -1,43 +1,45 @@
 import React from 'react';
-import classnames from 'classnames';
+
+import classNames from 'classnames';
 import styles from './index.module.scss';
 
 const ModalWindow = ({
-  children,
-  modal,
-  setModal,
-  isFullScreen = false,
-  click,
+	children,
+	onClose,
+	click,
+	isFullScreen = false,
+	externalClass
 }) => {
-  return (
-    <div
-      className={classnames(styles.wrapper, { [styles.wrapperActive]: modal })}
-    >
-      <div
-        onClick={e => {
-          !isFullScreen && e.stopPropagation();
-          click && click();
-        }}
-        className={classnames(styles.wrapperBlock, {
-          [styles.wrapperBlockFullScreen]: isFullScreen,
-        })}
-      >
-        {children}
-        <div
-          onClick={e => {
-            e.stopPropagation();
-            setModal(!modal);
-          }}
-          className={classnames(styles.wrapperBlockCross, {
-            [styles.wrapperBlockFullScreenCross]: isFullScreen,
-          })}
-        >
-          <span />
-          <span />
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div
+			className={classNames(styles.wrapper)}
+			onClick={() => onClose()}
+		>
+			<div
+				className={classNames(
+					styles.wrapperBlock,
+					{[styles.wrapperBlockFullScreen]: isFullScreen},
+					externalClass
+				)}
+				onClick={e => {
+					!isFullScreen && e.stopPropagation();
+					click && click();
+				}}
+			>
+				<div
+					onClick={() => onClose()}
+					className={classNames(styles.wrapperBlockCross, {
+						[styles.wrapperBlockFullScreenCross]: isFullScreen,
+					})}
+				>
+					<span />
+					<span />
+				</div>
+
+				{children}
+			</div>
+		</div>
+	);
 };
 
 export default ModalWindow;

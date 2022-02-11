@@ -15,7 +15,7 @@
       animation: blurOut .3s;
       
       .drawer {
-        animation: slideBottom .3s;
+        animation: slideBottom .3s !important;
       }
     }
   }
@@ -28,7 +28,7 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     padding: 40px 30px 30px;
-    animation: slideTop .15s;
+    animation: slideTop .15s !important;
     transition: none;
   }
   

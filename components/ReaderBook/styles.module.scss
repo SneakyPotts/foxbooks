@@ -1,0 +1,544 @@
+@import '/styles/variables.scss';
+@import './variables.module.scss';
+
+.pageWrapper {
+  background: var(--bg-color);
+  padding-top: 23px;
+}
+.pageContainer {
+  position: relative;
+}
+.pagination {
+  margin: 60px auto 30px !important;
+  max-width: 700px;
+}
+
+// start HEADER ==================================
+.header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 5px;
+  stroke: var(--main-color);
+  transform: rotate(-180deg);
+
+  svg path {
+    transition: .15s;
+  }
+
+  &:hover {
+    stroke: $text-hover;
+  }
+}
+
+.logo {
+  svg path {
+    fill: var(--icons-color);
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+
+  &Btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 30px;
+    cursor: pointer;
+    fill: var(--icons-color);
+    position: relative;
+
+    &:first-of-type {
+      fill: none;
+      stroke: var(--icons-color);
+
+      &:hover {
+        stroke: $text-hover;
+      }
+    }
+
+    svg path {
+      transition: .15s;
+    }
+
+    &:hover {
+      fill: $text-hover;
+
+      .tooltip {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.marksList {
+  position: absolute;
+  top: 61px;
+  right: 0;
+  display: flex;
+}
+
+.markItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+  fill: $text-hover;
+  position: relative;
+
+  &:hover {
+    fill: $accent-hover;
+
+    .tooltip {
+      opacity: 1;
+    }
+  }
+
+  svg {
+    height: 20px;
+
+    path {
+      transition: .15s;
+    }
+  }
+}
+
+.tooltip {
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--modal-border-color);
+  padding: 5px;
+  font-size: 10px;
+  line-height: 11px;
+  white-space: nowrap;
+  box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+  border-radius: 5px;
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: opacity .15s;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.markTooltip {
+  bottom: -10px;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 10px 10px 24px;
+  border-radius: 10px;
+
+  span {
+    display: flex;
+    color: var(--icons-color);
+    margin-bottom: 10px;
+  }
+}
+
+.popup {
+  padding: 40px 30px;
+  width: 592px;
+  height: 642px;
+  background: var(--modal-color);
+  border: 1px solid var(--modal-border-color);
+
+  &Title {
+    color: var(--main-color);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+  }
+}
+
+.editPopup {
+  background: var(--modal-color);
+  border: 1px solid var(--modal-border-color);
+  top: 61px;
+  right: 0;
+  bottom: initial;
+  transform: translateY(0);
+  width: 279px;
+}
+// end HEADER ==================================
+
+// start TEXT ==================================
+.book {
+  &Title {
+    color: var(--main-color);
+    font-family: Merriweather, serif;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    margin: 53px 0 10px;
+  }
+  &Author {
+    color: var(--author-color);
+    font-size: 16px;
+    line-height: 140%;
+    text-indent: 20px;
+    display: block;
+    text-align: center;
+  }
+  &Subtitle {
+    color: var(--main-color);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    margin: 26px 0 30px;
+  }
+  &Text {
+    color: var(--text-color);
+    white-space: break-spaces;
+    width: 792px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 140%;
+    text-indent: 20px;
+
+    span {
+      flex: 1;
+    }
+  }
+}
+// end TEXT ==================================
+
+// start EDIT ==================================
+.edit {
+  &Wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--controls-color);
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+  &Title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--modal-text-color);
+  }
+  &Subtitle {
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--icons-color);
+    display: inline-block;
+    margin-top: 10px;
+  }
+  &Switch {
+    border-color: var(--controls-color) !important;
+
+    span {
+      background: var(--controls-color) !important;
+    }
+  }
+  &DropdownWrapper {
+    display: flex;
+    align-items: center;
+    color: var(--modal-text-color);
+    font-size: 14px;
+    line-height: 140%;
+    cursor: pointer;
+    transition: .15s;
+    position: relative;
+
+    &:hover,
+    &.active {
+      color: $text-hover;
+
+      .editIcon {
+        stroke: $text-hover;
+      }
+    }
+
+    &.active {
+      .editIcon {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+  &Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    stroke: var(--icons-color);
+    transform: rotate(90deg);
+    margin-left: 30px;
+    transition: .15s;
+  }
+  &Dropdown {
+    position: absolute;
+    right: -21px;
+    bottom: -20px;
+    transform: translateY(100%);
+    box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+    border-radius: 10px;
+    background: var(--modal-color);
+    border: 1px solid var(--modal-border-color);
+    width: 279px;
+    z-index: 3;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .15s;
+
+    &.active {
+      max-height: 240px;
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+      line-height: 140%;
+      text-align: center;
+      color: var(--text-color);
+      margin-right: 30px;
+      margin-left: 30px;
+      margin-bottom: 20px;
+      transition: .15s;
+      cursor: pointer;
+
+      &:first-of-type {
+        margin-top: 30px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 30px;
+      }
+
+      &:hover {
+        color: $text-hover;
+      }
+    }
+  }
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputWrapper {
+  margin-top: 10px;
+
+  .inputBar {
+    background: red;
+  }
+}
+// end EDIT ==================================
+
+// start ADD QUOT ==================================
+.addQuot {
+  &Wrapper {
+    position: absolute;
+    background: var(--modal-color);
+    padding: 30px 20px;
+    box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+    border-radius: 10px;
+    border: 1px solid var(--modal-border-color);
+    display: flex;
+    flex-direction: column;
+    width: 291px;
+    font-family: Ubuntu;
+    font-size: 14px;
+    line-height: 140%;
+    color: var(--text-color);
+    text-indent: 0;
+  }
+
+  &Flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: .15s;
+
+    &:first-of-type {
+      justify-content: space-between;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    & > .addQuotFlex {
+      margin: 0;
+    }
+
+    &:hover {
+      color: $text-hover;
+    }
+  }
+
+  &Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+  }
+
+  &Color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+}
+// end ADD QUOT ==================================
+
+@media screen and (max-width: 768px) {
+  .editPopup {
+    top: initial;
+    right: initial;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .addQuot {
+    &Wrapper {
+      flex-direction: row;
+      width: 375px;
+      overflow: hidden;
+      background: #0E263E;
+      border-radius: 5px;
+      border: none;
+      color: #FFFFFF;
+      padding: 10px 15px;
+      justify-content: space-between;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+
+    &Flex {
+      flex-direction: column;
+      margin: 0;
+      transition: .4s, color .15s;
+
+      &:first-of-type {
+        margin-left: 0;
+
+        svg path {
+          stroke: none;
+          fill: #FFFFFF;
+        }
+
+        &:hover {
+          .addQuotIcon {
+            svg path {
+              stroke: none;
+              fill: $text-hover
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .addQuotIcon {
+          svg path {
+            stroke: $text-hover
+          }
+        }
+      }
+    }
+
+    &Icon {
+      margin: 0 0 5px;
+
+      svg path {
+        transition: .15s;
+        stroke: #FFFFFF;
+      }
+    }
+
+    &Color {
+      margin: 0;
+      width: 29px;
+      height: 29px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transition: width .3s, height .3s;
+    }
+
+    &ColorsWrapper {
+      position: relative;
+      width: 38px;
+      height: 100%;
+    }
+  }
+
+  .around {
+    justify-content: center;
+
+    & > div:nth-of-type(2) {
+      margin: 0 30px;
+    }
+  }
+
+  .showColors {
+    width: 345px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 15px !important;
+
+    .addQuotColor {
+      position: initial;
+      transform: initial !important;
+      width: 45px;
+      height: 45px;
+
+      &.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & > span {
+          flex: initial;
+          width: 19px;
+          height: 19px;
+          background: #0E263E;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

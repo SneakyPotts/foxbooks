@@ -29,3 +29,19 @@ export const generateFormData = data => {
 
 	return formData
 }
+
+export const calcTotalOffset = (container, offset) => {
+	let curNode = container
+	let total = offset
+
+	while (curNode.id !== 'range-parent') {
+		if(curNode.previousSibling) {
+			total += curNode.previousSibling.textContent.length
+			curNode = curNode.previousSibling
+		} else {
+			curNode = curNode.parentElement
+		}
+	}
+
+	return total
+}
