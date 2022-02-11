@@ -95,53 +95,53 @@ const Category = () => {
                 <span>Фильтры</span>
                 <Filters />
               </div>
-              <ModalWindow
-                click={() => closeFilter()}
-                modal={showFilters}
-                setModal={setShowFilters}
-                isFullScreen={true}
-              >
-                <div className={st.mobalModalHead}>
-                  <p className={st.mobalModalTitle}>Фильтры</p>
-                  <span className={st.filterCount}>2</span>
-                  <p className={st.mobalModalFilters}>Очистить фильтры</p>
-                </div>
-                {data.map((it, index) => (
-                  <Popular
-                    key={index}
-                    title={it?.title}
-                    defaultValue={it?.defaultValue}
-                    data={it?.options}
-                    queryName={it?.queryName}
-                    filterStateIdx={stateIndex}
-                    elIdx={index}
-                    setFilStateIdx={setStateIndex}
-                  />
-                ))}
-                <ul className={st.filters}>
-                  {filters?.map(it => (
-                    <li key={it?.id} className={st.filterStatus}>
-                      <button className={st.btn}>{it?.option}</button>
-                      <div
-                        className={st.dates}
-                        onClick={e => e.stopPropagation()}
-                      >
-                        <input
-                          placeholder={it?.placeholder}
-                          className={st.input}
-                          onChange={ev =>
-                            handleChange(ev.target.value, it?.queryName)
-                          }
-                        />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  text="Посмотреть 262 предложения"
-                  classNames={st.filtersBtn}
-                />
-              </ModalWindow>
+                {showFilters &&
+                  <ModalWindow
+                    onClose={() => setShowFilters(false)}
+                    isFullScreen={true}
+                  >
+                    <div className={st.mobalModalHead}>
+                      <p className={st.mobalModalTitle}>Фильтры</p>
+                      <span className={st.filterCount}>2</span>
+                      <p className={st.mobalModalFilters}>Очистить фильтры</p>
+                    </div>
+                    {data.map((it, index) => (
+                      <Popular
+                        key={index}
+                        title={it?.title}
+                        defaultValue={it?.defaultValue}
+                        data={it?.options}
+                        queryName={it?.queryName}
+                        filterStateIdx={stateIndex}
+                        elIdx={index}
+                        setFilStateIdx={setStateIndex}
+                      />
+                    ))}
+                    <ul className={st.filters}>
+                      {filters?.map(it => (
+                        <li key={it?.id} className={st.filterStatus}>
+                          <button className={st.btn}>{it?.option}</button>
+                          <div
+                            className={st.dates}
+                            onClick={e => e.stopPropagation()}
+                          >
+                            <input
+                              placeholder={it?.placeholder}
+                              className={st.input}
+                              onChange={ev =>
+                                  handleChange(ev.target.value, it?.queryName)
+                              }
+                            />
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button
+                      text="Посмотреть 262 предложения"
+                      classNames={st.filtersBtn}
+                    />
+                </ModalWindow>
+              }
             </div>
           )}
           {innerWidthWindow >= 768 &&

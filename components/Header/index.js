@@ -11,7 +11,7 @@ import Logo from '../Logo';
 import GroupForms from './groupForms/GroupForms';
 import Setting from '../shared/icons/setting';
 import Exit from '../shared/icons/exit';
-import Close from '../../public/close.svg';
+import Close from '../shared/icons/close';
 import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';

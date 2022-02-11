@@ -23,12 +23,16 @@ const ModalWindow = ({
 				)}
 				onClick={e => {
 					!isFullScreen && e.stopPropagation();
-					click && click();
+					// click && click();
 				}}
 			>
 				<div
-					onClick={() => onClose()}
-					className={classNames(styles.wrapperBlockCross, {
+					onClick={ev => {
+						ev.stopPropagation()
+						onClose()
+					}}
+					className={classNames(
+						styles.wrapperBlockCross, {
 						[styles.wrapperBlockFullScreenCross]: isFullScreen,
 					})}
 				>

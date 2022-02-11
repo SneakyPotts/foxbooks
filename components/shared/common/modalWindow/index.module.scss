@@ -14,11 +14,6 @@
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   z-index: 50;
-  transform: scale(0);
-
-  &Active {
-    transform: scale(1);
-  }
 
   &Block {
     position: relative;
