@@ -1,32 +1,32 @@
 import React from 'react';
 import BooksComponent from '../../components/Books';
-import BookService from "../../http/BookService";
-import {useDispatch} from "react-redux";
-import {setBooks, setCategories} from "../../store/bookSlice";
+import BookService from '../../http/BookService';
+import { useDispatch } from 'react-redux';
+import { setBooks, setCategories } from '../../store/bookSlice';
 
-const Books = (props) => {
-	const dispatch = useDispatch()
+const Books = props => {
+  const dispatch = useDispatch();
 
-	dispatch(setCategories(props.categories));
-	dispatch(setBooks(props.books))
+  dispatch(setCategories(props.categories));
+  dispatch(setBooks(props.books));
 
-	return (
-		<div>
-			<BooksComponent />
-		</div>
-	);
+  return (
+    <div>
+      <BooksComponent />
+    </div>
+  );
 };
 
 export default Books;
 
-export async function getServerSideProps ({ query }) {
-	const categories = await BookService.getCategories()
-	const books = await BookService.getBooks(query)
+// export async function getServerSideProps({ query }) {
+//   const categories = await BookService.getCategories();
+//   const books = await BookService.getBooks(query);
 
-	return {
-		props: {
-			categories: categories?.data?.data,
-			books: books?.data?.data,
-		}
-	}
-}
+//   return {
+//     props: {
+//       categories: categories?.data?.data,
+//       books: books?.data?.data,
+//     },
+//   };
+// }

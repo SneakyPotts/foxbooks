@@ -1,9 +1,11 @@
 @import 'styles/variables.scss';
 
 .title {
+  font-family: Merriweather;
   font-weight: 700;
   font-size: 24px;
   line-height: 1.25;
+  margin-right: auto;
   color: $color-main;
   flex: 1;
 }
@@ -60,12 +62,34 @@
 .mobalModal {
   &FiltersMenu {
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
-    > span {
-      font-size: 14px;
-      line-height: 20px;
-      margin-right: 5px;
+    > button {
+      font-family: 'Fira Sans', sans-serif;
+      font-size: 16px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      width: 160px;
+      height: 40px;
+      padding: 8px 15px;
+      margin-top: 34px;
+      border-radius: 36px;
+      background-color: $color-main;
+      color: $color-categories-btn;
+      svg {
+        margin-left: 10px;
+      }
+    }
+
+    .filters {
+      display: flex;
+      align-items: center;
+      > span {
+        font-size: 14px;
+        line-height: 20px;
+        margin-right: 5px;
+      }
     }
   }
   .modal {
@@ -201,5 +225,10 @@
   .head {
     flex-direction: column;
     align-items: center;
+  }
+  .title {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 30px;
   }
 }

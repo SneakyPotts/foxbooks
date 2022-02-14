@@ -123,14 +123,19 @@ const Book = ({
               </div>
             )}
           </div>
-          <div className={st.selectionDateViews}>
-            <span>456</span>
-            <Eye />
-          </div>
-          {/* <div className={classnames({ [st.raitingAmount]: flagSwitcher })}>
-            <span>1{book?.rates_avg}</span>
-            {!similar && <span>(2{book?.book_likes_count})</span>}
-          </div> */}
+          {!flagSwitcher && (
+            <div className={st.selectionDateViews}>
+              <span>456</span>
+              <Eye />
+            </div>
+          )}
+
+          {flagSwitcher && (
+            <div className={st.raitingAmount}>
+              <span>1{book?.rates_avg}</span>
+              {!similar && <span>(2{book?.book_likes_count})</span>}
+            </div>
+          )}
         </div>
         {noLinks ? (
           <h3
@@ -168,18 +173,32 @@ const Book = ({
             <p className={st.bookYear}>
               <span>2021</span>
               <span className={st.bookGenre}>
+                Жанр
                 {book?.book_genres?.length ? book?.book_genres[0] : ''}
               </span>
             </p>
             <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
+              Я — Макеева Кира Александровна. И я окончательно запуталась. Жизнь
+              сложилась не так радужно, как хотелось бы. Мои родители трагически
+              погибли, когда я была еще совсем юной, и на обочине отчаяния меня
+              подобрал мой будущий муж.
               {book?.text}
             </p>
             {!audio && (
               <div className={st.reviewStatistic}>
-                <span className={st.reviewIcon}>
-                  <Like />
-                </span>
-                <span className={st.reviewLike}>3115</span>
+                {!flagSwitcher ? (
+                  <>
+                    <span className={st.reviewIcon}>
+                      <Like />
+                    </span>
+                    <span className={st.reviewLike}>3115</span>
+                  </>
+                ) : (
+                  <div className={st.selectionDateViews}>
+                    <span>456</span>
+                    <Eye />
+                  </div>
+                )}
                 <span className={st.reviewIcon}>
                   <Comment />
                 </span>
