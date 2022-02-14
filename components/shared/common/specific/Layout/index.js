@@ -11,6 +11,8 @@ import {
 import Cookies from 'js-cookie';
 import {getProfile} from "../../../../../store/profileSlice";
 import AudioPlayer from "../../../../AudioPlayer";
+import { setBreakPoint } from '../../../../../store/commonSlice';
+import debounce from 'lodash.debounce';
 
 const Layout = ({ children }) => {
 	const dispatch = useDispatch();
@@ -19,6 +21,11 @@ const Layout = ({ children }) => {
 	const {playerIsVisible} = useSelector(state => state.common)
 
 	useEffect(() => {
+		dispatch(setBreakPoint(window.innerWidth));
+    window.addEventListener('resize', debounce(() => {
+      dispatch(setBreakPoint(window.innerWidth));
+    }, 100));
+
 		const storageToken = Cookies.get('token');
 		const { email, token, id } = router.query;
 
@@ -31,7 +38,7 @@ const Layout = ({ children }) => {
 			dispatch(signInWithSocial({ id, token }));
 		}
 	}, []);
-
+ 
 	return (
 		<>
 			<Header />

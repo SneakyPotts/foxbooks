@@ -82,6 +82,7 @@ const TextWithQoutes = () => {
 	const [startPosition, setStartPosition] = useState(null);
 	const [endPosition, setEndPosition] = useState(null);
 	const [markId, setMarkId] = useState(null);
+	const [isError, setIsError] = useState(false);
 
 	const generateQuotes = () => {
 		const sortedQuotes = quotes
@@ -163,18 +164,30 @@ const TextWithQoutes = () => {
 
 		if(text?.length && text !== ' ') {
 			setSelectedText(text)
-			const range = window.getSelection().getRangeAt(0)
 
-			setStartPosition(calcTotalOffset(range.startContainer, range.startOffset))
-			setEndPosition(calcTotalOffset(range.endContainer, range.endOffset))
+			const range = window.getSelection().getRangeAt(0)
+			const startPos = calcTotalOffset(range.startContainer, range.startOffset)
+			const endPos = calcTotalOffset(range.endContainer, range.endOffset)
+
+			setStartPosition(startPos)
+			setEndPosition(endPos)
+
+			const err = quotes?.some(i => 
+				(startPos >= i?.startPosition && startPos <= i?.endPosition) ||
+				(endPos >= i?.startPosition && endPos <= i?.endPosition) ||
+				(startPos < i?.startPosition && endPos > i?.endPosition)
+			)
+
+			setIsError(err);
 
 			const x = ev?.nativeEvent.layerX
 			const y = ev?.nativeEvent.layerY
 			setToolsCoords({x, y})
 			setToolsIsVisible(true)
 		} else {
-			setMarkId(null)
 			setToolsIsVisible(false)
+			setMarkId(null)
+			setIsError(false)
 		}
 	}
 
@@ -187,29 +200,14 @@ const TextWithQoutes = () => {
 	}
 
 	const addQuot = color => {
-		let isError = false
-
-		quotes?.forEach(i => {
-			if(
-				(startPosition >= i?.startPosition && startPosition <= i?.endPosition) ||
-				(endPosition >= i?.startPosition && endPosition <= i?.endPosition) ||
-				(startPosition < i?.startPosition && endPosition > i?.endPosition)
-			) {
-				isError = true
-				setToolsIsVisible(false)
-			}
-		})
-
-		if(!isError) {
-			setMarkId(quotes?.length)
-			setQuotes(prev => [...prev, {
-				id: quotes?.length,
-				startPosition,
-				endPosition,
-				text: selectedText,
-				color: color
-			}])
-		}
+		setMarkId(quotes?.length)
+		setQuotes(prev => [...prev, {
+			id: quotes?.length,
+			startPosition,
+			endPosition,
+			text: selectedText,
+			color: color
+		}])
 	}
 
 	const changeColor = color => {
@@ -264,6 +262,15 @@ const TextWithQoutes = () => {
 		}
 	}, [settings?.rowHeight ])
 
+	// useEffect(() => {
+	// 	let range = new Range();
+
+  //   range.setStart(t, 2);
+  //   range.setEnd(t, 24);
+  //   document.getSelection().removeAllRanges();
+  //   document.getSelection().addRange(range);
+	// }, [])
+
 	useEffect(() => {
 		generateQuotes()
 	}, [quotes])
@@ -286,7 +293,7 @@ const TextWithQoutes = () => {
 					display: settings?.isTwoColumns ? 'flex' : 'block',
 					fontFamily: settings?.fontName,
 					fontSize: `${+settings?.fontSize + 16}px`,
-					width: settings?.isTwoColumns ? '100%' : width + 'px',
+					maxWidth: settings?.isTwoColumns ? '100%' : width + 'px',
 					lineHeight: lineHeight + 'px',
 					textAlign: settings?.isCenterAlignment ? 'justify' : 'left',
 					whiteSpace: settings?.isCenterAlignment ? 'normal' : 'break-spaces'
@@ -305,6 +312,7 @@ const TextWithQoutes = () => {
 							top: toolsCoords.y + 'px',
 							left: toolsCoords.x + 'px',
 						}}
+						isError={isError}
 						markId={markId}
 						currColor={quotes?.find(i => i?.id == markId)?.color}
 						addQuot={addQuot}

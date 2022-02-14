@@ -214,7 +214,7 @@
   &Text {
     color: var(--text-color);
     white-space: break-spaces;
-    width: 792px;
+    width: 100%;
     margin: 0 auto;
     font-size: 16px;
     line-height: 140%;
@@ -309,7 +309,6 @@
     box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
     border-radius: 10px;
     background: var(--modal-color);
-    border: 1px solid var(--modal-border-color);
     width: 279px;
     z-index: 3;
     overflow: hidden;
@@ -318,6 +317,7 @@
 
     &.active {
       max-height: 240px;
+      border: 1px solid var(--modal-border-color);
     }
 
     span {
@@ -375,11 +375,19 @@
     display: flex;
     flex-direction: column;
     width: 291px;
-    font-family: Ubuntu;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     line-height: 140%;
     color: var(--text-color);
     text-indent: 0;
+
+    &.error {
+      width: 200px;
+
+      & .addQuotFlex {
+        justify-content: flex-start;
+      }
+    }
   }
 
   &Flex {
@@ -425,11 +433,59 @@
 // end ADD QUOT ==================================
 
 @media screen and (max-width: 768px) {
-  .editPopup {
-    top: initial;
-    right: initial;
+  .pageWrapper {
+    padding-top: 30px;
+  }
+  .header {
+    position: fixed;
+    height: 164px;
     bottom: 0;
-    width: 100%;
+    right: 0;
+    left: 0;
+    background: var(--modal-color);
+    z-index: 5;
+  }
+  .logoWrapper {
+    display: none;
+  }
+  .marksList {
+    display: none;
+  }
+  .book {
+    &Title {
+      font-size: 20px;
+      line-height: 25px;
+      margin: 0 0 20px;
+    }
+
+    &Subtitle {
+      font-size: 14px;
+      line-height: 16px;
+      margin: 20px 0;
+    }
+  }
+  .edit {
+    &Popup {
+      top: initial;
+      right: initial;
+      bottom: 0;
+      width: 100%;
+      padding: 40px 15px 30px;
+    }
+
+    &Dropdown {
+      width: calc(100vw - 49px);
+      right: 0;
+    }
+
+    &Wrapper {
+      &:first-of-type {
+        display: none;
+      }
+      &:nth-of-type(2) {
+        padding-top: 0;
+      }
+    }
   }
 
   .addQuot {
@@ -445,6 +501,29 @@
       justify-content: space-between;
       left: 50% !important;
       transform: translateX(-50%) !important;
+
+      &.error {
+        width: 230px;
+        justify-content: space-between;
+
+        & > div:nth-of-type(2) {
+          margin: 0;
+        }
+
+        & .addQuotFlex:first-of-type {
+          svg path {
+            fill: none;
+            stroke: #fff;
+          }
+
+          &:hover {
+            svg path {
+              fill: none;
+              stroke: $text-hover;
+            }
+          }
+        }
+      }
     }
 
     &Flex {

@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Book from '../../shared/icons/navMenu/book';
 import Fire from '../../shared/icons/navMenu/fire';
 import MyBooks from '../../shared/icons/navMenu/myBooks';
@@ -12,22 +11,11 @@ import LogoMobileWhite from '../../shared/icons/logoMobileWhite';
 import LogoMobileActive from '../../shared/icons/logoMobileActive';
 import User from '../../shared/icons/user';
 import css from './menu.module.scss';
-import {setBreakPoint} from "../../../store/commonSlice";
 
 const Navigation = ({ setModal }) => {
   const router = useRouter();
-  const dispatch = useDispatch();
   const { isAuth } = useSelector(state => state.auth);
   const { innerWidthWindow } = useSelector(state => state.common);
-  // console.log(router);
-  // console.log('innerWidthWindow', innerWidthWindow);
-
-  useEffect(() => {
-    dispatch(setBreakPoint(window.innerWidth));
-    window.addEventListener('resize', function () {
-      dispatch(setBreakPoint(this.innerWidth));
-    });
-  }, []);
 
   return (
     <>
