@@ -61,7 +61,9 @@ const Book = ({
         [st.containerColumn]: flagSwitcher,
       })}
     >
-      <div className={st.wrapper}>
+      <div
+        className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher })}
+      >
         {!noLinks ? (
           <Link href={`/book/${book?.id}`}>
             <a onClick={bookLinkClick}>
@@ -177,13 +179,15 @@ const Book = ({
                 {book?.book_genres?.length ? book?.book_genres[0] : ''}
               </span>
             </p>
-            <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
-              Я — Макеева Кира Александровна. И я окончательно запуталась. Жизнь
-              сложилась не так радужно, как хотелось бы. Мои родители трагически
-              погибли, когда я была еще совсем юной, и на обочине отчаяния меня
-              подобрал мой будущий муж.
-              {book?.text}
-            </p>
+            {innerWidthWindow >= 768 && (
+              <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
+                Я — Макеева Кира Александровна. И я окончательно запуталась.
+                Жизнь сложилась не так радужно, как хотелось бы. Мои родители
+                трагически погибли, когда я была еще совсем юной, и на обочине
+                отчаяния меня подобрал мой будущий муж.
+                {book?.text}
+              </p>
+            )}
             {!audio && (
               <div className={st.reviewStatistic}>
                 {!flagSwitcher ? (

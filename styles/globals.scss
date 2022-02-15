@@ -141,9 +141,7 @@ ol[class] {
 .blur {
   filter: blur(10px);
 }
-.booksWrapper {
-  width: 100%;
-}
+
 .empty {
   display: block;
   width: 100%;
@@ -165,17 +163,17 @@ ol[class] {
   bottom: -20px;
   right: 0;
   padding: 30px 20px;
-  background: #FFFFFF;
-  border: 1px solid #F1F1F1;
+  background: #ffffff;
+  border: 1px solid #f1f1f1;
   box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   transform: translateY(100%);
   min-width: 200px;
-  transition: .15s;
-  animation: dropDown .2s;
-  
+  transition: 0.15s;
+  animation: dropDown 0.2s;
+
   &--up {
     bottom: initial;
     top: -20px;
@@ -186,7 +184,7 @@ ol[class] {
 @keyframes dropUp {
   0% {
     opacity: 0;
-    transform: translateY(-100%) scale(.8);
+    transform: translateY(-100%) scale(0.8);
   }
   100% {
     opacity: 1;
@@ -197,7 +195,7 @@ ol[class] {
 @keyframes dropDown {
   0% {
     opacity: 0;
-    transform: scale(.8);
+    transform: scale(0.8);
   }
   100% {
     opacity: 1;
@@ -217,7 +215,10 @@ ol[class] {
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
+  .booksWrapper {
+    width: 100%;
+  }
 }
 
 .main {

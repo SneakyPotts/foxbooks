@@ -9,7 +9,7 @@
 }
 .wrapper {
   position: relative;
-  width: 180px;
+  min-width: 180px;
   border-radius: 5px;
   overflow: hidden;
 
@@ -52,7 +52,7 @@
   order: 3;
 }
 .starOrderList {
-  position: absolute;
+  // position: absolute;
   bottom: 53px;
   margin-right: auto;
 }
@@ -114,6 +114,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin-left: 24px;
 }
 .extraInfo {
@@ -131,6 +132,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  // margin-bottom: 10px  ;
 }
 .lines {
   -webkit-line-clamp: 5;
@@ -207,6 +209,7 @@
   position: absolute;
   bottom: 0;
   display: flex;
+  align-items: center;
   font-size: 14px;
   line-height: 1.43;
   color: $color-third;
@@ -245,12 +248,14 @@
       }
     }
   }
-
   .container {
     width: 108px;
   }
   .wrapper {
-    width: 100%;
+    min-width: 100%;
+  }
+  .wrapperList {
+    min-width: 90px;
   }
   .bookCategorie {
     font-size: 10px;

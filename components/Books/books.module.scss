@@ -63,10 +63,31 @@
     .filters {
       display: flex;
       align-items: center;
-      > span {
-        font-size: 14px;
-        line-height: 20px;
-        margin-right: 5px;
+      justify-content: space-between;
+      font-size: 14px;
+      line-height: 20px;
+      margin-right: 5px;
+
+      a {
+        display: flex;
+        align-items: center;
+        stroke: $color-main;
+      }
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-left: 5px;
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      div {
+        display: flex;
+        align-items: center;
+        span {
+          margin-right: 5px;
+        }
       }
     }
   }

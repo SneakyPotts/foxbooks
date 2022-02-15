@@ -84,8 +84,6 @@ const Category = () => {
     }, 0);
   }, []);
 
-  // const closeFilter = () => {};
-
   return (
     <div className="container">
       <Breadcrumbs
@@ -175,7 +173,7 @@ const Category = () => {
             setFlagSwitcher={setFlagSwitcher}
             flagSwitcher={flagSwitcher}
           />
-          {innerWidthWindow >= 1200 && (
+          {innerWidthWindow >= 768 && (
             <div
               style={{
                 width:
@@ -188,7 +186,7 @@ const Category = () => {
       </div>
 
       <div className={st.mainBlock}>
-        {innerWidthWindow >= 768 && <SideFilters />}
+        {innerWidthWindow > 768 && <SideFilters />}
         <div className="booksWrapper">
           {
             // books?.data?.length

@@ -13,6 +13,8 @@ import ModalWindow from '../shared/common/modalWindow/ModalWindow';
 import Popular from '../Filter/Popular/Popular';
 import Button from '../shared/common/Button/Button';
 import CrossInCircle from '../shared/icons/crossInCircle';
+import Grid from '../shared/icons/navMenu/grid';
+
 import st from './books.module.scss';
 
 import categories from '../data/categories.json';
@@ -75,8 +77,18 @@ const Books = () => {
         <div onClick={() => setShowFilters(true)} className={st.mobalModal}>
           <div className={st.mobalModalFiltersMenu}>
             <div className={st.filters}>
-              <span>Фильтры</span>
-              <Filters />
+              <Link href="/categories">
+                <a>
+                  Категории
+                  <div className={st.icon}>
+                    <Grid />
+                  </div>
+                </a>
+              </Link>
+              <div>
+                <span>Фильтры</span>
+                <Filters />
+              </div>
             </div>
             <button>
               Популярные
