@@ -8,7 +8,7 @@ import ArrowRight from './../../../../public/chevron-right.svg';
 import styles from './styles.module.scss'
 import classNames from "classnames";
 
-const MyPagination = ({currentPage, lastPage, externalClass}) => {
+const MyPagination = ({lastPage, externalClass}) => {
 	const router = useRouter()
 
 	const handleChange = current => {
@@ -19,7 +19,7 @@ const MyPagination = ({currentPage, lastPage, externalClass}) => {
 		<Pagination
 			className={classNames(styles.pagination, externalClass)}
 			showQuickJumper={{ goButton: <Button classNames={styles.btn} text="Перейти" /> }}
-			// current={currentPage}
+			current={+router.query?.page}
 			defaultPageSize={1}
 			total={lastPage}
 			locale={locale}

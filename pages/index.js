@@ -27,24 +27,24 @@ export default function App(props) {
   );
 }
 
-// export async function getServerSideProps ({ req, query }) {
-// 	// const { cookies } = req
-// 	// const token = cookies.token
+export async function getServerSideProps ({ req, query }) {
+	// const { cookies } = req
+	// const token = cookies.token
 
-// 	const categories = await BookService.getCategories()
-// 	const books = await BookService.getBooks(query)
+	const categories = await BookService.getCategories()
+	const books = await BookService.getBooks(query)
 
-// 	// let profile = {}
-// 	//
-// 	// if (token) {
-// 	// 	profile = await ProfileService.getProfile(token)
-// 	// }
+	// let profile = {}
+	//
+	// if (token) {
+	// 	profile = await ProfileService.getProfile(token)
+	// }
 
-// 	return {
-// 		props: {
-// 			categories: categories?.data?.data,
-// 			books: books?.data?.data,
-// 			// profile: profile?.data?.data || {}
-// 		}
-// 	}
-// }
+	return {
+		props: {
+			categories: categories?.data?.data,
+			books: books?.data?.data,
+			// profile: profile?.data?.data || {}
+		}
+	}
+}

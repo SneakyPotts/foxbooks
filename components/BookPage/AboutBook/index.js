@@ -82,7 +82,7 @@ const AboutBook = ({ book, audio }) => {
             })}
           >
             <Image
-              src="/horizontalBookCovers/book.png"
+              src={book?.image?.link || "/horizontalBookCovers/book.png"}
               height={audioFlag ? 270 : 406}
               width={270}
               layout="fill"
@@ -145,7 +145,9 @@ const AboutBook = ({ book, audio }) => {
               {audioFlag ? (
                 <button className={st.readButton}>Начать слушать</button>
               ) : (
-                <button className={st.readButton}>Читать</button>
+                <Link href={`/reader?id=${book?.id}&page=1`}>
+                  <a className={st.readButton}>Читать</a>
+                </Link>
               )}
               <div className={st.dropdown}>
                 <span
