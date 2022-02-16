@@ -95,7 +95,7 @@ const Category = () => {
       <div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
         <h2 className={st.title}>{currentCategory}</h2>
         <div>
-          {innerWidthWindow < 768 && (
+          {innerWidthWindow <= 1024 && (
             <div onClick={() => setShowFilters(true)} className={st.mobalModal}>
               <div className={st.mobalModalFiltersMenu}>
                 <div className={st.filters}>
@@ -156,7 +156,7 @@ const Category = () => {
               )}
             </div>
           )}
-          {innerWidthWindow >= 768 &&
+          {innerWidthWindow >= 1024 &&
             data.map((it, index) => (
               <Popular
                 key={index}
@@ -186,7 +186,7 @@ const Category = () => {
       </div>
 
       <div className={st.mainBlock}>
-        {innerWidthWindow > 768 && <SideFilters />}
+        {innerWidthWindow >= 1024 && <SideFilters />}
         <div className="booksWrapper">
           {
             // books?.data?.length

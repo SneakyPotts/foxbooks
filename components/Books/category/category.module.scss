@@ -60,6 +60,7 @@
   }
 }
 .mobalModal {
+  margin-right: auto;
   &FiltersMenu {
     display: flex;
     flex-direction: column;
@@ -226,6 +227,11 @@
     gap: 40px 24px;
     justify-content: space-around;
   }
+  .booksColumn {
+    max-width: initial;
+  }
+}
+@media (max-width: 1024px) {
 }
 @media (max-width: 768px) {
   .head {
@@ -239,6 +245,9 @@
   }
   .booksColumn {
     max-width: 100%;
+  }
+  .advertisingBlok {
+    display: none;
   }
 }
 @media (max-width: 500px) {

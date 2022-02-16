@@ -11,18 +11,6 @@
 .relatedInfo {
   max-width: 588px;
 }
-.advertisingBlok {
-  display: block;
-  margin-left: 24px;
-  max-width: 294px;
-  min-height: 1104px;
-}
-.banner {
-  height: 1104px;
-}
-.banner:not(:last-child) {
-  margin-bottom: 40px;
-}
 
 .compilBlock {
   margin-bottom: 60px;
@@ -116,4 +104,22 @@
 }
 .userInput:hover {
   border-color: $color-third;
+}
+.advertisingBlok {
+  display: block;
+  margin-left: 24px;
+  max-width: 294px;
+  min-height: 1104px;
+}
+.banner {
+  width: 100%;
+  height: 1104px;
+}
+.banner:not(:last-child) {
+  margin-bottom: 40px;
+}
+@media (max-width: 1024px) {
+  .advertisingBlok {
+    display: none;
+  }
 }

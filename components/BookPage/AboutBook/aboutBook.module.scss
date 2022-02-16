@@ -5,11 +5,13 @@
 }
 .bookMainInfo {
   display: flex;
+  flex-direction: column;
 }
 .bookCover {
   position: relative;
   width: 270px;
   max-height: 406px;
+  height: 406px;
 
   &Icon {
     position: absolute;
@@ -34,7 +36,7 @@
   font-size: 14px;
   line-height: 1.43;
   max-width: 584px;
-  margin-left: 24px;
+  // margin-left: auto;
   color: $color-second;
 }
 .bookTitle {
@@ -78,6 +80,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: Fira Sans, sans-serif;
+  margin-left: 20px;
   color: $color-third;
 
   > span {
@@ -160,6 +163,7 @@
 .activBtn {
   border-color: $text-hover;
 }
+
 //DROP DOWN
 .dropdown {
   position: relative;
@@ -256,5 +260,50 @@
     &:hover span {
       color: $text-hover;
     }
+  }
+}
+
+.infoBlockBook {
+  display: flex;
+}
+
+.blockBookTitle {
+  min-width: 588px;
+  margin-left: 24px;
+}
+
+@media (max-width: 1024px) {
+  .blockBookTitle {
+    min-width: initial;
+  }
+}
+@media (max-width: 768px) {
+  .bookCover {
+    min-width: 108px;
+    height: 160px;
+    max-width: 108px;
+  }
+  .bookTitle {
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .wrapperBookTitle {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .blockBookTitle {
+    margin-left: 0;
+  }
+  .bookAuthorName {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .infoBlockBook {
+    flex-direction: column;
+    position: relative;
   }
 }

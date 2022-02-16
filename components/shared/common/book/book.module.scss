@@ -132,14 +132,14 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  // margin-bottom: 10px  ;
+  margin-top: 10px;
 }
 .lines {
   -webkit-line-clamp: 5;
 }
-.bookYear {
-  margin-bottom: 10px;
-}
+// .bookYear {
+//   margin-bottom: 10px;
+// }
 .bookGenre {
   margin-left: 20px;
 }
@@ -215,8 +215,13 @@
   color: $color-third;
 }
 .reviewIcon {
-  display: block;
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  stroke: $color-third;
+}
+.distance {
+  margin-left: 30px;
 }
 .reviewLike {
   margin-right: 26px;
@@ -248,15 +253,7 @@
       }
     }
   }
-  .container {
-    width: 108px;
-  }
-  .wrapper {
-    min-width: 100%;
-  }
-  .wrapperList {
-    min-width: 90px;
-  }
+
   .bookCategorie {
     font-size: 10px;
     line-height: 11px;
@@ -274,5 +271,25 @@
       width: 16px;
       height: 16px;
     }
+  }
+  .distance {
+    display: none;
+  }
+  .raitingAmount {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    width: 108px;
+  }
+  .wrapper {
+    min-width: 100%;
+  }
+  .wrapperList {
+    min-width: 90px;
+  }
+  .bookInfo {
+    margin-left: 10px;
   }
 }

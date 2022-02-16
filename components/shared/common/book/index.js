@@ -70,13 +70,13 @@ const Book = ({
               <Image
                 src="/horizontalBookCovers/book.png"
                 alt=""
-                width={innerWidthWindow >= 768 ? 180 : 108}
+                width={innerWidthWindow > 768 ? 180 : 108}
                 height={
                   audio
-                    ? innerWidthWindow >= 768
+                    ? innerWidthWindow > 768
                       ? 180
                       : 108
-                    : innerWidthWindow >= 768
+                    : innerWidthWindow > 768
                     ? 271
                     : 160
                 }
@@ -203,10 +203,13 @@ const Book = ({
                     <Eye />
                   </div>
                 )}
-                <span className={st.reviewIcon}>
-                  <Comment />
+                <span
+                  className={classnames(st.reviewIcon, {
+                    [st.distance]: flagSwitcher,
+                  })}
+                >
+                  <Comment /> 700
                 </span>
-                <span>700</span>
               </div>
             )}
           </div>
