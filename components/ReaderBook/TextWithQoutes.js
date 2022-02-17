@@ -10,11 +10,10 @@ import styles from './styles.module.scss'
 const TextWithQoutes = () => {
 	const { book, settings } = useSelector(state => state?.reader)
 
-	const initialText = useMemo(() => (
-		book?.pages[0]?.content
-			// .replaceAll(/<\/?(?!img(?:\s|>))[a-z][^>]*(>|$)/gi, "")
-			// .replaceAll('\n \n', ' ')
-	), [book])
+	const initialText = useMemo(() => {
+		const str = book?.pages[0]?.content
+		return str.slice(str?.indexOf('>') + 1, str?.length - 7)
+	}, [book])
 
 	const [changedText, setChangedText] = useState(initialText)
 
@@ -27,36 +26,16 @@ const TextWithQoutes = () => {
 		// 	text: 'и, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожида',
 		// 	color: '#A5D5FF'
 		// },
-		// {
-		// 	id: 1,
-    //   startPosition: 600,
-		// 	endPosition: 700,
-		// 	text: 'ондинкой с шеей почти вдвое длиннее, чем положено при ее росте. Однако этот недостаток пришелся ей в',
-		// 	color: '#FFE371'
-		// },
-		// {
-		// 	id: 2,
-		// 	startPosition: 1000,
-		// 	endPosition: 1200,
-		// 	text: '\t\tСемья Дурсль ей имела все, чего только можно пожелать. Но был у них и один секрет. Причем больше всего на свете они боялись, что кто-нибудь о нем узнает. Дурсли даже представить себе не могли, что ',
-		// 	color: '#FED3CA'
-		// },
-		// {
-		// 	id: 3,
-		// 	startPosition: 2700,
-		// 	endPosition: 3000,
-		// 	text: 'ль, выходя из дома.\n' +
-		// 			'\t\tОн сел в машину и выехал со двора.\n' +
-		// 			'\t\tНа углу улицы мистер Дурсль заметил, что происходит что-то странное, — на тротуаре стояла кошка и внимательно изучала лежащую перед ней карту. В первую секунду мистер Дурсль даже не понял, что именно он увидел, но затем, уже миновав кошку, з',
-		// 	color: '#B8DF70'
-		// },
-		// {
-		// 	id: 4,
-		// 	startPosition: 4000,
-		// 	endPosition: 4100,
-		// 	text: ' утреннюю автомобильную пробку и от нечего делать глядя по сторонам, мистер Дурсль заметил, что на у',
-		// 	color: '#A5D5FF'
-		// }		
+		{
+			// endContainer: "/p 7/i 1/text 1",
+			// endOffset: 12,
+			// startContainer: "/p 7/text 1",
+			// startOffset: 251
+			endContainer: "/p 5/i 1/text 1",
+endOffset: 18,
+startContainer: "/p 5/text 1",
+startOffset: 226
+		}
 	]);
 
 	const [toolsIsVisible, setToolsIsVisible] = useState(false)
@@ -70,26 +49,72 @@ const TextWithQoutes = () => {
 	const [isError, setIsError] = useState(false);
 
 	const generateQuotes = () => {
-		const sortedQuotes = quotes?.sort((a, b) => a?.startPosition - b?.startPosition)
+		// const sortedQuotes = quotes?.sort((a, b) => a?.startPosition - b?.startPosition)
 
-		let pos = 0	
-		const textWithQuotes = []
+		// let pos = 0	
+		// const textWithQuotes = []
 
-		sortedQuotes.forEach(i => {
-			textWithQuotes.push(
-				initialText.slice(pos, i?.startPosition),
-				`<mark data-id="${i?.id}" style="background: ${i?.color}">${
-					initialText.slice(i?.startPosition, i?.endPosition)
-				}</mark>`
-			)
-			pos = i?.endPosition
+		// sortedQuotes.forEach(i => {
+		// 	textWithQuotes.push(
+		// 		initialText.slice(pos, i?.startPosition),
+		// 		`<mark data-id="${i?.id}" style="background: ${i?.color}">${
+		// 			initialText.slice(i?.startPosition, i?.endPosition)
+		// 		}</mark>`
+		// 	)
+		// 	pos = i?.endPosition
+		// })
+
+		// textWithQuotes.push(initialText.slice(pos))
+
+		let arr = []
+		parse(initialText, {
+			replace: domNode => {
+				arr.push(domNode)
+			}
 		})
 
-		textWithQuotes.push(initialText.slice(pos))
+
+		const perebor = (arr, index, nodes) => {
+			const tag = arr[index].split(' ')[0]
+			const num = +arr[index].split(' ')[1]
+			let tagCount = 0
+			let str = ''
+
+			nodes.forEach(i => {
+				if((tag === 'text' && i?.type === 'text') || i?.name === tag) {
+					tagCount++
+					if(tagCount === num) {
+						if(index !== arr?.length - 1) {
+							perebor(arr, index + 1, i?.children)
+						} else {
+							str = i?.data
+						}
+					}
+				}
+			})
+		}
+		
+		quotes.forEach(i => {
+			const start = i?.startContainer?.split('/')?.slice(1)
+			const end = i?.endContainer?.split('/')?.slice(1)
+
+			// console.log('start', start);
+			// console.log('end', end);			
+			
+			const str1 = perebor(start, 0, arr)			
+			const str2 = perebor(end, 0, arr)
+			console.log(str1);	
+			console.log(str2);	
+		})
+
 
 		const options = {
 			replace: domNode => {
-				if(domNode?.type === 'tag' && domNode?.name === 'img') {
+				if(domNode?.name === 'a') {
+					return <>
+						{domToReact(domNode?.children, options)}
+					</>
+				} else if(domNode?.name === 'img') {
 					return (
 						<img
 							{...attributesToProps({
@@ -98,7 +123,7 @@ const TextWithQoutes = () => {
 							})}
 						/>
 					)
-				} else if(domNode?.type === 'tag' && domNode?.name === 'mark') {
+				} else if(domNode?.name === 'mark') {
 					return (
 						<mark
 							onClick={ev => handleMarkClick(ev, domNode?.attribs['data-id'])}
@@ -111,16 +136,17 @@ const TextWithQoutes = () => {
 			}
 		}
 
-		setChangedText(parse(textWithQuotes.join(''), options))
+		// setChangedText(parse(textWithQuotes.join(''), options))
+		setChangedText(parse(initialText, options))
 	}
 
 	const getXpathParameters = xpath => {
 		const startOffset = xpath.startOffset
 		const endOffset = xpath.endOffset
 		let startContainer = xpath.start
-		startContainer = startContainer.replace(/\(|\)/g, "")
+		startContainer = startContainer.replace(/\(|\)/g, "").replace(/\[/g, " ").replace(/\]/g, "")
 		let endContainer = xpath.end
-		endContainer = endContainer.replace(/\(|\)/g, "")
+		endContainer = endContainer.replace(/\(|\)/g, "").replace(/\[/g, " ").replace(/\]/g, "")
 		return { startOffset, endOffset, startContainer, endContainer }
 	}
 
@@ -131,7 +157,6 @@ const TextWithQoutes = () => {
 			setSelectedText(text)
 
 			const range = window.getSelection().getRangeAt(0)
-			console.log('range', range);
 			// const startPos = calcTotalOffset(range.startContainer, range.startOffset)
 			// const endPos = calcTotalOffset(range.endContainer, range.endOffset)
 			const xpath = fromRange(range, document.querySelector('#range-parent'))
