@@ -10,6 +10,11 @@
 }
 .relatedInfo {
   max-width: 588px;
+  &Banner {
+    display: block;
+    width: 588px;
+    height: 250px;
+  }
 }
 
 .compilBlock {
@@ -118,8 +123,25 @@
 .banner:not(:last-child) {
   margin-bottom: 40px;
 }
+
 @media (max-width: 1024px) {
   .advertisingBlok {
     display: none;
+  }
+}
+@media (max-width: 915px) {
+  .relatedInfo {
+    max-width: calc(100vw - 30px);
+    &Banner {
+      width: 100%;
+      height: 168px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .mainBlock {
+    align-items: initial;
   }
 }

@@ -1,15 +1,23 @@
 @import 'styles/variables.scss';
 
+.swiper {
+  margin-top: 50px;
+  margin-bottom: 60px;
+  &Title {
+    display: flex;
+    margin-bottom: 40px;
+  }
+}
 .title {
   font-family: Merriweather;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
-  margin-bottom: 40px;
+
   color: $color-main;
 }
-.swiper {
-  margin-bottom: 60px;
+.dicardDistance {
+  margin-bottom: 0;
 }
 .slide {
   max-width: 129px;
@@ -25,4 +33,27 @@
 }
 .btnAudio {
   top: 39px;
+}
+@media (max-width: 768px) {
+  .swiper {
+    &Title {
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+      .title {
+        font-size: 20px;
+        line-height: 25px;
+        width: 173px;
+      }
+    }
+  }
+  .slide {
+    max-width: 108px;
+    min-width: 108px;
+    > div:first-child {
+      max-width: 108px;
+      min-width: 108px;
+      max-height: 160px;
+    }
+  }
 }

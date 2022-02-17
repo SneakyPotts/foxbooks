@@ -6,25 +6,42 @@ import classnames from 'classnames';
 import books from '../../data/books.json';
 import Book from '../../shared/common/book';
 import ArrowRight from '../../../public/chevron-right.svg';
-
+import ShowAll from '../../shared/common/showAll/ShowAll';
 import st from './similarBooks.module.scss';
 
 const SimilarBooks = ({ audio }) => {
   const { audioFlag } = useSelector(state => state.book);
+  const { innerWidthWindow } = useSelector(state => state.common);
+
+  const changeSpaceBtwSwiper = () => {
+    if (innerWidthWindow > 768) return 24;
+    if (innerWidthWindow <= 768) return 10;
+  };
+  const changeSlidesPerView = () => {
+    if (innerWidthWindow <= 500) return 3;
+    if (innerWidthWindow > 500) return 4;
+  };
+
+  console.log(changeSpaceBtwSwiper());
 
   return (
     <div className={st.swiper}>
-      <h3 id="similar" className={st.title}>
-        Похожие книги
-      </h3>
+      <div className={st.swiperTitle}>
+        <h3 id="similar" className={st.title}>
+          Похожие книги
+        </h3>
+        {innerWidthWindow <= 768 && (
+          <ShowAll externalClass={st.dicardDistance} />
+        )}
+      </div>
       <Swiper
-        spaceBetween={24}
+        spaceBetween={changeSpaceBtwSwiper()}
         modules={[Navigation]}
         navigation={{
           prevEl: '.prevArrow',
           nextEl: '.nextArrow',
         }}
-        slidesPerView={4}
+        slidesPerView={changeSlidesPerView()}
       >
         {books.map(book => (
           <SwiperSlide key={book.id}>

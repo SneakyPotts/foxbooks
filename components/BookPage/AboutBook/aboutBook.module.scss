@@ -1,9 +1,9 @@
 @import 'styles/variables.scss';
 
+// .bookInfo {
+//   display: flex;
+// }
 .bookInfo {
-  display: flex;
-}
-.bookMainInfo {
   display: flex;
   flex-direction: column;
 }
@@ -97,24 +97,23 @@
     display: flex;
     align-items: center;
     margin-right: 30px;
-
     svg {
       height: 24px;
       width: 24px;
     }
     &Count {
       margin-left: 3px;
+      color: $color-second;
     }
     span {
       height: 24px;
     }
   }
-
   .starsBlock {
     display: flex;
     align-items: center;
 
-    & p {
+    p {
       margin-right: 20px;
     }
     span {
@@ -127,7 +126,6 @@
     }
   }
 }
-
 .buttons {
   display: flex;
   margin: 20px 0;
@@ -189,7 +187,7 @@
     stroke: $text-hover;
     transition: 0.15s;
 
-    & span {
+    span {
       margin-left: 15px;
     }
 
@@ -241,7 +239,7 @@
   display: flex;
   margin-bottom: 20px;
 
-  & li {
+  li {
     margin-right: 30px;
     .number {
       color: $color-third;
@@ -250,7 +248,7 @@
 }
 .ditalInfo {
   margin-top: 20px;
-  & p {
+  p {
     margin-bottom: 10px;
 
     span {
@@ -286,14 +284,13 @@
   .bookTitle {
     font-size: 18px;
     line-height: 25px;
+    margin-bottom: 10px;
   }
-
   .wrapperBookTitle {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 118px;
   }
-
   .blockBookTitle {
     margin-left: 0;
   }
@@ -301,9 +298,66 @@
     font-size: 14px;
     line-height: 20px;
   }
-
+  .bookAuthor {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+  .bookDate {
+    margin-bottom: 10px;
+  }
   .infoBlockBook {
     flex-direction: column;
     position: relative;
+  }
+  .raiting {
+    font-size: 16px;
+    line-height: 1.125;
+    display: flex;
+    color: $color-main;
+
+    .bookRaiting {
+      font-size: 14px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+
+      svg {
+        height: 18px;
+        width: 18px;
+      }
+      //   &Count {
+      //     margin-left: 3px;
+      //   }
+      //   span {
+      //     height: 24px;
+      //   }
+      // }
+    }
+  }
+  .readButton {
+    width: 285px;
+    height: 48px;
+  }
+  .dotsButton {
+    width: 48px;
+    height: 48px;
+  }
+  .navLinks {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .aboutBook {
+    p {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  .ditalInfo {
+    p {
+      font-size: 16px;
+      line-height: 18px;
+    }
   }
 }

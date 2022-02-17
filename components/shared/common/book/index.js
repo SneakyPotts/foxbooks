@@ -70,13 +70,13 @@ const Book = ({
               <Image
                 src="/horizontalBookCovers/book.png"
                 alt=""
-                width={innerWidthWindow > 768 ? 180 : 108}
+                width={innerWidthWindow >= 768 ? 180 : 108}
                 height={
                   audio
-                    ? innerWidthWindow > 768
+                    ? innerWidthWindow >= 768
                       ? 180
                       : 108
-                    : innerWidthWindow > 768
+                    : innerWidthWindow >= 768
                     ? 271
                     : 160
                 }

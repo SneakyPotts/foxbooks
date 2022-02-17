@@ -119,14 +119,6 @@
   border-radius: 50%;
   margin-right: 10px;
   overflow: hidden;
-
-  &UnderCom {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 10px;
-    overflow: hidden;
-  }
 }
 .userInput {
   font-family: Fira Sans, sans-serif;
@@ -201,5 +193,43 @@
     padding: 20px;
     border-radius: 5px;
     background-color: $color-bg-icon;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviewer {
+    margin-bottom: 12px;
+  }
+  .reviewerIcon {
+    width: 34px;
+    height: 34px;
+  }
+  .reviewInfo {
+    margin-bottom: 12px;
+  }
+  .reviewText {
+    &Hide {
+      -webkit-line-clamp: 8;
+    }
+  }
+  .userIcon {
+    width: 34px;
+    height: 34px;
+    margin-right: 9px;
+  }
+  .userInput {
+    width: calc(100% - 43px);
+
+    &::-webkit-input-placeholder {
+      font-size: 16px;
+      line-height: 18px;
+      color: $color-third;
+    }
+
+    &::-moz-placeholder {
+      font-size: 16px;
+      line-height: 18px;
+      color: $color-third;
+    }
   }
 }

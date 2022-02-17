@@ -30,6 +30,8 @@ const BookPage = () => {
   const { audioFlag } = useSelector(state => state.book);
   const { book } = useSelector(state => state.book);
 
+  const { innerWidthWindow } = useSelector(state => state.common);
+
   return (
     <div className={classnames('container', st.wrapper)}>
       <div className={st.mainBlock}>
@@ -41,7 +43,13 @@ const BookPage = () => {
           <SimilarBooks
           // audio={true}
           />
-          <Image src="/advertising.png" width={588} height={250} />
+          <img
+            src="/advertising.png"
+            alt=""
+            // width={588}
+            // height={250}
+            className={st.relatedInfoBanner}
+          />
           <Comments />
           <Reviews />
           {!audioFlag && <Quotes />}

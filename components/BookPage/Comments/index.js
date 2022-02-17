@@ -30,8 +30,8 @@ const Comments = () => {
 
   const handleCancelBtn = () => {
     setFirstInput(null);
-    setReplyIdx(null);
-    setUnderComIdx(null);
+    // setReplyIdx(null);
+    // setUnderComIdx(null);
   };
 
   return (
