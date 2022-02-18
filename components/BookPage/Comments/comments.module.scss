@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 .container {
-  padding-bottom: 63px;
+  padding-bottom: 60px;
 }
 .reviewsTitle {
   font-family: Merriweather;
@@ -112,6 +112,13 @@
   margin-top: 20px;
   padding-bottom: 19px;
   color: $text-hover;
+}
+
+.pagination {
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {

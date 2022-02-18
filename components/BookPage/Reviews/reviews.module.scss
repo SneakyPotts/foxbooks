@@ -95,7 +95,7 @@
   margin-left: 10px;
 }
 .down {
-    stroke-width: 2px;
+  stroke-width: 2px;
 
   transform: rotate(180deg);
 }
@@ -161,4 +161,24 @@
 }
 .active {
   color: $color-main;
+}
+.pagination {
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 30px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .reviewTitle {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 30px;
+  }
+  .submitButton {
+    font-size: 16px;
+    line-height: 18px;
+    width: 220px;
+    height: 48px;
+    margin-bottom: 30px;
+  }
 }

@@ -3,12 +3,12 @@
 .reviewComment {
   font-size: 14px;
   line-height: 1.43;
-  padding: 20px 0;
+  padding-top: 20px;
   border-top: 1px solid $color-star-border;
 
-  &:last-of-type {
-    border: none;
-  }
+  // &:last-of-type {
+  //   border: none;
+  // }
 }
 .reviewer {
   display: flex;
@@ -94,7 +94,8 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 12px;
+  margin-bottom: 20px;
   margin-left: 45px;
   color: $color-third;
   stroke: $color-third;
@@ -118,9 +119,9 @@
   margin: auto;
   border-top: 1px solid $color-star-border;
 }
-.sizes:last-of-type {
-  border: none;
-}
+// .sizes:last-of-type {
+//   border: none;
+// }
 .controllBtn {
   font-size: 14px;
   line-height: 1.43;
@@ -166,6 +167,12 @@
   .sizes {
     width: 100%;
     margin: 0;
-    margin-left: 44px;
+    padding-left: 44px;
+  }
+  .replyArea {
+    width: calc(100% - 35px);
+  }
+  .replierIcon {
+    margin-right: 10px;
   }
 }

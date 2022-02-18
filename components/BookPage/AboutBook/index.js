@@ -14,8 +14,7 @@ import Add from '../../../public/plus.svg';
 import Headphones from '../../shared/icons/headphones';
 import Basket from '../../shared/icons/trash';
 import Eye from '../../shared/icons/eye';
-
-import SimilarBooks from '../SimilarBooks';
+// import SimilarBooks from '../SimilarBooks';
 import st from './aboutBook.module.scss';
 
 const AboutBook = ({ book, audio }) => {
@@ -149,7 +148,22 @@ const AboutBook = ({ book, audio }) => {
                     {book?.rates_count} ({book?.rates_avg} оценок)
                   </p>
                 </div>
-                <div className={st.starsBlock}>
+                {innerWidthWindow >= 768 && (
+                  <div className={st.starsBlock}>
+                    <p>Оцените книгу</p>
+                    <Stars
+                      activeStart={true}
+                      value={0}
+                      color={'#4f4f4f'}
+                      onChange={value => setRating(value)}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={st.aboutBook}>
+              {innerWidthWindow < 768 && (
+                <div className={classnames(st.starsBlock, st.addDistance)}>
                   <p>Оцените книгу</p>
                   <Stars
                     activeStart={true}
@@ -158,9 +172,7 @@ const AboutBook = ({ book, audio }) => {
                     onChange={value => setRating(value)}
                   />
                 </div>
-              </div>
-            </div>
-            <div className={st.aboutBook}>
+              )}
               <div className={st.buttons}>
                 {audioFlag ? (
                   <button className={st.readButton}>Начать слушать</button>

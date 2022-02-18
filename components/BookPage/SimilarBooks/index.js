@@ -22,7 +22,7 @@ const SimilarBooks = ({ audio }) => {
     if (innerWidthWindow > 500) return 4;
   };
 
-  console.log(changeSpaceBtwSwiper());
+  // console.log(changeSpaceBtwSwiper());
 
   return (
     <div className={st.swiper}>

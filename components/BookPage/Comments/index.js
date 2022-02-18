@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import Link from 'next/link';
 import CommentComp from '../CommentComponent';
@@ -23,6 +24,7 @@ const Comments = () => {
     { id: '1', flagData: true },
     { id: '2', flagData: false },
   ];
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   const handleFirstInput = () => {
     setFirstInput(true);
@@ -100,7 +102,11 @@ const Comments = () => {
         </>
       ))}
 
-      <MyPagination />
+      {innerWidthWindow > 768 ? (
+        <MyPagination />
+      ) : (
+        <div className={st.pagination}>Показать еще</div>
+      )}
     </div>
   );
 };

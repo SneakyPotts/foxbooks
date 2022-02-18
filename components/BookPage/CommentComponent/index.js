@@ -10,7 +10,7 @@ import Comment from '../../shared/icons/comment';
 import Button from '../../shared/common/Button/Button';
 import st from './comComp.module.scss';
 
-const CommentComp = ({ idx, type }) => {
+const CommentComp = ({ idx, type, reviews = false }) => {
   const [showMore, setShowMore] = useState(false);
   const [mainCommentIdx, setMainCommenIdx] = useState(null);
   const [inputIdx, setInputIdx] = useState(null);
@@ -110,6 +110,7 @@ const CommentComp = ({ idx, type }) => {
               <DropDownArrow
                 className={classnames(st.dropDownArrow, {
                   [st.up]: showMore,
+                  [st.color]: reviews,
                 })}
               />
             )}

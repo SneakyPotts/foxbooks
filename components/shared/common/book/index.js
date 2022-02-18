@@ -24,6 +24,7 @@ const Book = ({
   flagSwitcher,
   classNames,
   similar,
+  mobalSimilar = false,
   noLinks = false,
   book,
   count,
@@ -126,7 +127,11 @@ const Book = ({
             )}
           </div>
           {!flagSwitcher && (
-            <div className={st.selectionDateViews}>
+            <div
+              className={classnames(st.selectionDateViews, {
+                [st.hide]: mobalSimilar,
+              })}
+            >
               <span>456</span>
               <Eye />
             </div>

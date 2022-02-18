@@ -23,3 +23,20 @@
 .btn {
   top: 39px;
 }
+@media (max-width: 768px) {
+  .blockTitle {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 30px;
+  }
+
+  .slide {
+    max-width: 108px;
+    min-width: 108px;
+    > div:first-child {
+      max-width: 108px;
+      min-width: 108px;
+      max-height: 160px;
+    }
+  }
+}

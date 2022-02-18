@@ -20,13 +20,21 @@
 .compilBlock {
   margin-bottom: 60px;
 }
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
 .compilTitle {
   font-family: Merriweather;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
-  margin-bottom: 40px;
   color: $color-main;
+}
+.dicardDistance {
+  margin-bottom: 0;
 }
 .compilBookCover {
   position: relative;
@@ -141,7 +149,21 @@
   }
 }
 @media (max-width: 768px) {
+  .wrapper {
+    display: inherit;
+  }
   .mainBlock {
     align-items: initial;
+  }
+  .compilTitle {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+@media (max-width: 500px) {
+  .compilBookCover {
+    img {
+      min-width: 100vw;
+    }
   }
 }
