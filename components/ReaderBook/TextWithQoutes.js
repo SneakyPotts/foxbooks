@@ -12,31 +12,13 @@ const TextWithQoutes = () => {
 
 	const initialText = useMemo(() => {
 		const str = book?.pages[0]?.content
-		return str.slice(str?.indexOf('>') + 1, str?.length - 7)
+		// return str.slice(str?.indexOf('>') + 1, str?.length - 7)
+		return str
 	}, [book])
 
 	const [changedText, setChangedText] = useState(initialText)
 
-	//========= ПЕРЕДЕЛАТЬ ПРОПС currColor !!!!!!!!!!!! =========================
-	const [quotes, setQuotes] = useState([
-		// {
-		// 	id: 0,
-    //   startPosition: 0,
-		// 	endPosition: 200,
-		// 	text: 'и, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожида',
-		// 	color: '#A5D5FF'
-		// },
-		{
-			// endContainer: "/p 7/i 1/text 1",
-			// endOffset: 12,
-			// startContainer: "/p 7/text 1",
-			// startOffset: 251
-			endContainer: "/p 5/i 1/text 1",
-endOffset: 18,
-startContainer: "/p 5/text 1",
-startOffset: 226
-		}
-	]);
+
 
 	const [toolsIsVisible, setToolsIsVisible] = useState(false)
 	const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 });
@@ -48,65 +30,137 @@ startOffset: 226
 
 	const [isError, setIsError] = useState(false);
 
+	//========= ПЕРЕДЕЛАТЬ ПРОПС currColor !!!!!!!!!!!! =========================
+	const [quotes, setQuotes] = useState([
+		{
+			id: 0,
+			color: '#A5D5FF',
+			endContainer: "/p 5/i 1/text 1",
+			endOffset: 16,
+			startContainer: "/p 5/text 1",
+			startOffset: 226
+		}
+	]);
+
 	const generateQuotes = () => {
-		// const sortedQuotes = quotes?.sort((a, b) => a?.startPosition - b?.startPosition)
+		const mark = (se, quot, el) => {
+			const parent = el?.parent?.name
 
-		// let pos = 0	
-		// const textWithQuotes = []
+			if(quot?.startContainer === quot?.endContainer) {
+				if (se === 'end') return
 
-		// sortedQuotes.forEach(i => {
-		// 	textWithQuotes.push(
-		// 		initialText.slice(pos, i?.startPosition),
-		// 		`<mark data-id="${i?.id}" style="background: ${i?.color}">${
-		// 			initialText.slice(i?.startPosition, i?.endPosition)
-		// 		}</mark>`
-		// 	)
-		// 	pos = i?.endPosition
-		// })
+				return `<${parent}>${
+					el?.data?.slice(0, quot?.startOffset)
+				}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
+					el?.data?.slice(quot?.startOffset, quot?.endOffset)
+				}</mark>${
+					el?.data?.slice(quot?.endOffset)
+				}</${parent}>`
 
-		// textWithQuotes.push(initialText.slice(pos))
+			} 
+			
+			if(se === 'start') {
 
-		let arr = []
-		parse(initialText, {
-			replace: domNode => {
-				arr.push(domNode)
+				return `<${parent}>${
+					el?.data?.slice(0, quot?.startOffset)
+				}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
+					el?.data?.slice(quot?.startOffset)
+				}</mark>`
+
+			} else if(se === 'end') {
+
+				return `<${parent}><mark data-id="${quot?.id}" style="background: ${quot?.color}">${
+					el?.data?.slice(0, quot?.endOffset)
+				}</mark>${
+					el?.data?.slice(quot?.endOffset)
+				}</${parent}>`
+
 			}
-		})
+		}
 
+		let html = initialText
+		let str = ''
 
-		const perebor = (arr, index, nodes) => {
+		const perebor = (se, quot, index, node) => {
+			const arr = quot?.[se === 'start' ? 'startContainer' : 'endContainer']?.split('/')?.slice(1)
 			const tag = arr[index].split(' ')[0]
 			const num = +arr[index].split(' ')[1]
 			let tagCount = 0
-			let str = ''
-
-			nodes.forEach(i => {
-				if((tag === 'text' && i?.type === 'text') || i?.name === tag) {
-					tagCount++
-					if(tagCount === num) {
-						if(index !== arr?.length - 1) {
-							perebor(arr, index + 1, i?.children)
+			
+			if(node?.children?.length) {
+				node?.children?.forEach(i => {
+					if((tag === 'text' && i?.type === 'text') || i?.name === tag) {
+						tagCount++
+						if(tagCount === num) {
+							if(index !== arr?.length - 1) {
+								perebor(se, quot, index + 1, i)
+							} else {
+								str += mark(se, quot, i)
+							}
 						} else {
-							str = i?.data
+							concat(i)
 						}
+					} else {
+						concat(i)
 					}
+				})
+			} else {
+				concat(node)
+			}
+		}
+
+		const concat = el => {
+			if(el?.children?.length) {
+				str += `<${el?.name}>`
+
+				el?.children?.forEach(i => {
+					concat(i)
+				})
+
+				str += `</${el?.name}>`
+			} else {
+				if(el?.name === 'img') {
+					let attr = ''
+
+					for (const [key, value] of Object.entries(el?.attribs)) {
+						attr += ` ${key}="${value}"`
+					}
+
+					str += `<${el?.name}${attr} />`
+				} else {
+					str += el?.data
 				}
-			})
+			}
 		}
 		
 		quotes.forEach(i => {
-			const start = i?.startContainer?.split('/')?.slice(1)
-			const end = i?.endContainer?.split('/')?.slice(1)
+			let index = 0
 
-			// console.log('start', start);
-			// console.log('end', end);			
-			
-			const str1 = perebor(start, 0, arr)			
-			const str2 = perebor(end, 0, arr)
-			console.log(str1);	
-			console.log(str2);	
+			parse(html, {
+				replace: domNode => {
+					if(index === 0) {
+						perebor('start', i, 0, domNode)
+						index++
+					}
+				}
+			})
+
+			html = `<div>${str}</div>`
+			str = ''
+			index = 0
+
+			parse(html, {
+				replace: domNode => {
+					if(index === 0) {
+						perebor('end', i, 0, domNode)
+						index++
+					}
+				}
+			})
+
+			html = `<div>${str}</div>`
+			str = ''
 		})
-
 
 		const options = {
 			replace: domNode => {
@@ -136,17 +190,22 @@ startOffset: 226
 			}
 		}
 
-		// setChangedText(parse(textWithQuotes.join(''), options))
-		setChangedText(parse(initialText, options))
+		setChangedText(parse(html.slice(5, -6), options))
 	}
 
 	const getXpathParameters = xpath => {
 		const startOffset = xpath.startOffset
 		const endOffset = xpath.endOffset
 		let startContainer = xpath.start
-		startContainer = startContainer.replace(/\(|\)/g, "").replace(/\[/g, " ").replace(/\]/g, "")
+		startContainer = startContainer
+			.replace(/\(|\)/g, "")
+			.replace(/\[/g, " ")
+			.replace(/\]/g, "")
 		let endContainer = xpath.end
-		endContainer = endContainer.replace(/\(|\)/g, "").replace(/\[/g, " ").replace(/\]/g, "")
+		endContainer = endContainer
+			.replace(/\(|\)/g, "")
+			.replace(/\[/g, " ")
+			.replace(/\]/g, "")
 		return { startOffset, endOffset, startContainer, endContainer }
 	}
 
@@ -163,7 +222,7 @@ startOffset: 226
 			const test = getXpathParameters(xpath)
 
 			console.log('test', test);
-			// setStartPosition(startPos)
+			setStartPosition(test)
 			// setEndPosition(endPos)
 
 			// const err = quotes?.some(i => 
@@ -197,8 +256,7 @@ startOffset: 226
 		setMarkId(quotes?.length + 1)
 		setQuotes(prev => [...prev, {
 			id: quotes?.length + 1,
-			startPosition,
-			endPosition,
+			...startPosition,
 			text: selectedText,
 			color: color
 		}])
