@@ -117,7 +117,7 @@ const Book = ({
             {similar ? (
               <div className={st.starsBlock}>
                 <Stars count={1} value={book?.rates_count} />
-                <span>1{book?.rates_count}</span>
+                <span>{book?.rates_count}</span>
               </div>
             ) : (
               <div className={st.starsBlock}>
@@ -139,7 +139,7 @@ const Book = ({
 
           {flagSwitcher && (
             <div className={st.raitingAmount}>
-              <span>1{book?.rates_avg}</span>
+              <span>{book?.rates_avg}</span>
               {!similar && <span>(2{book?.book_likes_count})</span>}
             </div>
           )}
@@ -150,7 +150,7 @@ const Book = ({
               [st.bookNameSmaller]: similar,
             })}
           >
-            T{book?.title}
+            {book?.title}
           </h3>
         ) : (
           <Link href={`/book/${book?.id}`}>
@@ -159,19 +159,19 @@ const Book = ({
                 [st.bookNameSmaller]: similar,
               })}
             >
-              T{book?.title}
+              {book?.title}
             </a>
           </Link>
         )}
 
         {noLinks ? (
           <span className={st.bookAuthor}>
-            A{book?.authors?.length ? book?.authors[0]?.author : ''}
+            {book?.authors?.length ? book?.authors[0]?.author : ''}
           </span>
         ) : (
           <Link href="/author">
             <a className={st.bookAuthor}>
-              A{book?.authors?.length ? book?.authors[0]?.author : ''}
+              {book?.authors?.length ? book?.authors[0]?.author : ''}
             </a>
           </Link>
         )}
@@ -186,10 +186,6 @@ const Book = ({
             </p>
             {innerWidthWindow >= 768 && (
               <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
-                Я — Макеева Кира Александровна. И я окончательно запуталась.
-                Жизнь сложилась не так радужно, как хотелось бы. Мои родители
-                трагически погибли, когда я была еще совсем юной, и на обочине
-                отчаяния меня подобрал мой будущий муж.
                 {book?.text}
               </p>
             )}

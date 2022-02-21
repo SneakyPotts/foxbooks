@@ -16,8 +16,6 @@ import Basket from '../../shared/icons/trash';
 import Eye from '../../shared/icons/eye';
 
 import st from './aboutBook.module.scss';
-import { setBookRating, setBookStatus } from '../../../store/bookSlice';
-import { useRouter } from 'next/router';
 
 const AboutBook = ({ book, audio }) => {
   const dataBook = [
