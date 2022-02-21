@@ -95,8 +95,8 @@ const Category = () => {
       <div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
         <h2 className={st.title}>{currentCategory}</h2>
         <div>
-          {innerWidthWindow <= 1024 && (
-            <div onClick={() => setShowFilters(true)} className={st.mobalModal}>
+          {innerWidthWindow < 1024 && (
+            <div className={st.mobal}>
               <div className={st.mobalModalFiltersMenu}>
                 <div className={st.filters}>
                   <span>Фильтры</span>

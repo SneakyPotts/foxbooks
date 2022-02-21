@@ -5,6 +5,7 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 1.25;
+  white-space: nowrap;
   margin-right: auto;
   color: $color-main;
   flex: 1;
@@ -59,7 +60,12 @@
     // width: calc(100% - 408px);
   }
 }
+.mobal {
+  margin-right: auto;
+}
 .mobalModal {
+  display: flex;
+  align-items: center;
   margin-right: auto;
   &FiltersMenu {
     display: flex;
@@ -231,13 +237,15 @@
     max-width: initial;
   }
 }
-@media (max-width: 1024px) {
-}
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
+  .title {
+    margin-bottom: 30px;
+  }
   .head {
     flex-direction: column;
-    align-items: center;
   }
+}
+@media (max-width: 768px) {
   .title {
     font-size: 20px;
     line-height: 25px;

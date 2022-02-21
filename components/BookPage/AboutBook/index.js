@@ -7,14 +7,14 @@ import Image from 'next/image';
 import { setBookRating, setBookStatus } from '../../../store/bookSlice';
 import Stars from '../../shared/common/stars/Stars';
 import Dots from '../../shared/icons/horizontalDots';
-import BookMark from '../../shared/icons/BookMark';
+import BookMark from '../../shared/icons/myBookmark';
 import OpenBook from '../../shared/icons/bookOpen';
 import Flag from '../../shared/icons/flag';
-import Add from '../../../public/plus.svg';
+import Add from '../../shared/icons/plus';
 import Headphones from '../../shared/icons/headphones';
 import Basket from '../../shared/icons/trash';
 import Eye from '../../shared/icons/eye';
-
+import DrawerPopup from '../../shared/common/DrawerPopup';
 import st from './aboutBook.module.scss';
 
 const AboutBook = ({ book, audio }) => {
@@ -191,18 +191,21 @@ const AboutBook = ({ book, audio }) => {
                     <Dots />
                   </span>
                   {openMenu && (
-                    <ul className={st.menu}>
+                    <DrawerPopup
+                      externalClass={st.menu}
+                      onClose={() => setOpenMenu(false)}
+                    >
                       {dataOptions.map((it, index) => (
-                        <li
+                        <p
                           key={it?.id}
                           onClick={() => changeBookStatus(it?.value)}
                           className={st.menuItem}
                         >
                           {it?.svg}
                           <span>{it?.option}</span>
-                        </li>
+                        </p>
                       ))}
-                    </ul>
+                    </DrawerPopup>
                   )}
                 </div>
               </div>

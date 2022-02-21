@@ -74,8 +74,11 @@ const Books = () => {
       />
       <h2 className={st.abTitle}>Книги</h2>
       {innerWidthWindow < 768 && (
-        <div onClick={() => setShowFilters(true)} className={st.mobalModal}>
-          <div className={st.mobalModalFiltersMenu}>
+        <div className={st.mobalModal}>
+          <div
+            className={st.mobalModalFiltersMenu}
+            onClick={e => e.stopPropagation()}
+          >
             <div className={st.filters}>
               <Link href="/categories">
                 <a>
@@ -85,7 +88,7 @@ const Books = () => {
                   </div>
                 </a>
               </Link>
-              <div>
+              <div onClick={() => setShowFilters(true)}>
                 <span>Фильтры</span>
                 <Filters />
               </div>

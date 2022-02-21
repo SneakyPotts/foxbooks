@@ -73,7 +73,7 @@ const Reviews = () => {
       )}
       {reviewTyping && (
         <form>
-          <p className={st.leaveReviewInputLabel}>
+          <p className={classnames(st.leaveReviewInputLabel, st.hide)}>
             Выберите тип вашей рецензии
           </p>
 
@@ -120,16 +120,21 @@ const Reviews = () => {
             сказали?
           </p>
 
-          <input className={st.leaveReviewInput} />
+          {innerWidthWindow < 768 ? (
+            <textarea
+              className={st.leaveReviewField}
+              onChange={handleChangeReviewField}
+            ></textarea>
+          ) : (
+            <input className={st.leaveReviewInput} />
+          )}
 
           <p className={st.leaveReviewFieldLabel}>Ваша рецензия</p>
           <textarea
             className={st.leaveReviewField}
             onChange={handleChangeReviewField}
           ></textarea>
-          <div
-            className={classnames(st.controllBtn, st.controllBtnsLeaveReview)}
-          >
+          <div className={st.controllBtn}>
             <Button
               typeButton="submit"
               text="Отправить"

@@ -37,6 +37,7 @@
   margin-bottom: 0;
 }
 .compilBookCover {
+  display: flex;
   position: relative;
   border-radius: 5px;
 
@@ -52,6 +53,12 @@
     color: $color-main;
     background-color: $color-categories-btn;
     border-radius: 58px;
+  }
+  img {
+    object-fit: fill;
+    max-height: 164px;
+    min-width: 100vw;
+    border-radius: 5px;
   }
 }
 .compilBookTitle {
@@ -159,11 +166,28 @@
     font-size: 20px;
     line-height: 25px;
   }
+  .compilBookCover {
+    img {
+      min-width: 100vw;
+      object-fit: fill;
+      max-height: 164px;
+    }
+  }
+  .recommendations {
+    font-size: 20px;
+    line-height: 25px;
+    &Label {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
 }
 @media (max-width: 500px) {
   .compilBookCover {
     img {
       min-width: 100vw;
+      object-fit: fill;
+      max-height: 164px;
     }
   }
 }

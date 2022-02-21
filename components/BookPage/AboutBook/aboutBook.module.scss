@@ -141,6 +141,9 @@
   font-family: Fira Sans, sans-serif;
   font-size: 14px;
   line-height: 1.43;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 200px;
   height: 40px;
   margin-right: 20px;
@@ -192,6 +195,7 @@
     align-items: center;
     color: $color-second;
     stroke: $text-hover;
+    fill: none;
     transition: 0.15s;
 
     span {
@@ -381,5 +385,9 @@
       width: 0;
       height: 0;
     }
+  }
+  .menu {
+    width: 100vw;
+    min-height: 293px;
   }
 }

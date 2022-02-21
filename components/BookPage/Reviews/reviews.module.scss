@@ -8,6 +8,7 @@
   margin-bottom: 20px;
   color: $color-main;
 }
+
 .submitButton {
   font-size: 14px;
   line-height: 1.43;
@@ -18,6 +19,11 @@
   border-radius: 5px;
   color: $color-categories-btn;
   background-color: $text-hover;
+}
+.cancelBtn {
+  font-family: Fira Sans, sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
 }
 .leaveReviewInput {
   font-family: Fira Sans, sans-serif;
@@ -34,7 +40,6 @@
   font-size: 14px;
   line-height: 1.143;
   margin-bottom: 10px;
-
   color: $color-third;
 }
 .leaveReviewField {
@@ -55,12 +60,13 @@
   &:hover {
     border: 1px solid $color-third;
   }
+  &Label {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: $color-third;
+  }
 }
-.leaveReviewFieldLabel {
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: $color-third;
-}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -78,8 +84,7 @@
   width: 294px;
   height: 40px;
   stroke: #0e263e;
-
-  background-color: $color-categories-btn;
+  background-color: $color-bg-icon;
   border: 1px solid $color-star-border;
   border-radius: 59px;
 }
@@ -168,6 +173,7 @@
   margin-top: 30px;
   text-align: center;
 }
+
 @media (max-width: 768px) {
   .reviewTitle {
     font-size: 20px;
@@ -180,5 +186,30 @@
     width: 220px;
     height: 48px;
     margin-bottom: 30px;
+  }
+  .hide {
+    display: none;
+  }
+  .dropdown {
+    margin-bottom: 30px;
+  }
+  .leaveReviewField {
+    font-size: 14px;
+    line-height: 20px;
+    min-height: 48px;
+    height: 48px;
+    padding: 15px;
+    margin-bottom: 30px;
+    &Label {
+      margin-top: 0;
+    }
+  }
+  .controllBtn {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  .submitButton {
+    width: 100%;
   }
 }
