@@ -2,7 +2,7 @@ import { FiSearch, FiBell } from 'react-icons/fi';
 import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Menu from './Menu/Menu';
@@ -16,7 +16,7 @@ import { setAuth } from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
-import { showMenu, setBreakPoint } from '../../store/commonSlice';
+import { showMenu } from '../../store/commonSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -95,13 +95,6 @@ const Header = () => {
     { id: '8', author: 'Джордж Оруэлл' },
     { id: '9', author: 'Антуан де Сент-Экзюпери' },
   ];
-
-  useEffect(() => {
-    dispatch(setBreakPoint(window.innerWidth));
-    window.addEventListener('resize', function () {
-      dispatch(setBreakPoint(this.innerWidth));
-    });
-  }, []);
 
   return (
     <>

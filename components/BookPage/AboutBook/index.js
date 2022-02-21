@@ -14,7 +14,10 @@ import Add from '../../../public/plus.svg';
 import Headphones from '../../shared/icons/headphones';
 import Basket from '../../shared/icons/trash';
 import Eye from '../../shared/icons/eye';
+
 import st from './aboutBook.module.scss';
+import { setBookRating, setBookStatus } from '../../../store/bookSlice';
+import { useRouter } from 'next/router';
 
 const AboutBook = ({ book, audio }) => {
   const dataBook = [
@@ -176,7 +179,9 @@ const AboutBook = ({ book, audio }) => {
                 {audioFlag ? (
                   <button className={st.readButton}>Начать слушать</button>
                 ) : (
-                  <button className={st.readButton}>Читать</button>
+                  <Link href={`/reader?id=${book?.id}&page=1`}>
+                    <a className={st.readButton}>Читать</a>
+                  </Link>
                 )}
                 <div className={st.dropdown}>
                   <span

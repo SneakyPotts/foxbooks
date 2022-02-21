@@ -16,10 +16,12 @@ import styles from './styles.module.scss'
 const Header = ({
   showContentPopup,
   showQuotesPopup,
-  toggleEditPopup
+  toggleEditPopup,
+  addMarkToggler
 }) => {
   const router = useRouter()
 
+  const { innerWidthWindow } = useSelector(state => state?.common)
   const { settings } = useSelector(state => state?.reader)
 
   const [isFullScreen, setIsFullScreen] = useState(false)
@@ -51,10 +53,6 @@ const Header = ({
     }
   }
 
-  const addMark = () => {
-
-  }
-
   const controls = [
     {
       icon: <ReaderGambgurger />,
@@ -79,12 +77,15 @@ const Header = ({
     {
       icon: <BookMark />,
       tooltip: 'Добавить закладку',
-      onClick: addMark
+      onClick: addMarkToggler
     }
   ]
 
   return (
-    <div className={styles.header}>
+    <div
+      className={styles.header}
+      onClick={ev => innerWidthWindow <= 768 && ev.stopPropagation()}
+    >
       <div className={styles.logoWrapper}>
         <span
           className={styles.backBtn}

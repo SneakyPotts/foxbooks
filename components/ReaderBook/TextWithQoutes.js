@@ -1,161 +1,212 @@
 import React, {useEffect, useState, useMemo} from 'react'
 import {useSelector} from "react-redux";
+import Link from 'next/link';
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import { calcTotalOffset } from '../../utils'
 import AddQout from "./AddQout";
-
+import { fromRange } from "xpath-range"
 import styles from './styles.module.scss'
 
 const TextWithQoutes = () => {
-	const { settings } = useSelector(state => state?.reader)
+	const { book, settings } = useSelector(state => state?.reader)
 
-	const initialText = `		Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать, чтобы они попали в какую-нибудь странную или загадочную ситуацию. Мистер и миссис Дурсль весьма неодобрительно относились к любым странностям, загадкам и прочей ерунде.
-		Мистер Дурсль возглавлял фирму под названием «Граннингс», которая специализировалась на производстве дрелей. Это был полный мужчина с очень пышными усами и очень короткой шеей. Что же касается миссис Дурсль, она была тощей блондинкой с шеей почти вдвое длиннее, чем положено при ее росте. Однако этот недостаток пришелся ей весьма кстати, поскольку большую часть времени миссис Дурсль следила за соседями и подслушивала их разговоры. А с такой шеей, как у нее, было очень удобно заглядывать за чужие заборы. У мистера и миссис Дурсль был маленький сын по имени Дадли, и, по их мнению, он был самым чудесным ребенком на свете.
-		Семья Дурсль ей имела все, чего только можно пожелать. Но был у них и один секрет. Причем больше всего на свете они боялись, что кто-нибудь о нем узнает. Дурсли даже представить себе не могли, что с ними будет, если выплывет правда о Поттерах. Миссис Поттер приходилась миссис Дурсль родной сестрой, но они не виделись вот уже несколько лет. Миссис Дурсль даже делала вид, что у нее вовсе нет никакой сестры, потому что сестра и ее никчемный муж были полной противоположностью Дурслям.
-		Дурсли содрогались при одной мысли о том, что скажут соседи, если на Тисовую улицу пожалуют Поттеры. Дурсли знали, что у Поттеров тоже есть маленький сын, но они никогда его не видели. И они категорически не хотели, чтобы их Дадли общался с ребенком таких родителей.
-		Когда во вторник мистер и миссис Дурсль проснулись скучным и серым утром — а именно с этого утра начинается наша история, — ничто, включая покрытое тучами небо, не предвещало, что вскоре по всей стране начнут происходить странные и загадочные вещи. Мистер Дурсль что-то напевал себе под нос, завязывая самый отвратительный из своих галстуков. А миссис Дурсль, с трудом усадив сопротивляющегося и орущего Дадли на высокий детский стульчик, со счастливой улыбкой пересказывала мужу последние сплетни.
-		Никто из них не заметил, как за окном пролетела большая сова-неясыть.
-		В половине девятого мистер Дурсль взял свой портфель, клюнул миссис Дурсль в щеку и попытался на прощанье поцеловать Дадли, но промахнулся, потому что Дадли впал в ярость, что с ним происходило довольно часто. Он раскачивался взад-вперед на стульчике, ловко выуживал из тарелки кашу и заляпывал ею стены.
-		— Ух, ты моя крошка, — со смехом выдавил из себя мистер Дурсль, выходя из дома.
-		Он сел в машину и выехал со двора.
-		На углу улицы мистер Дурсль заметил, что происходит что-то странное, — на тротуаре стояла кошка и внимательно изучала лежащую перед ней карту. В первую секунду мистер Дурсль даже не понял, что именно он увидел, но затем, уже миновав кошку, затормозил и резко оглянулся. На углу Тисовой улицы действительно стояла полосатая кошка, но никакой карты видно не было.
-		— И привидится же такое! — буркнул мистер Дурсль.
-		Наверное, во всем были виноваты мрачное утро и тусклый свет фонаря. На всякий случай мистер Дурсль закрыл глаза, потом открыл их и уставился на кошку. А кошка уставилась на него.
-		Мистер Дурсль отвернулся и поехал дальше, продолжая следить за кошкой в зеркало заднего вида. Он заметил, что кошка читает табличку, на которой написано «Тисовая улица». Нет, конечно же, не читает, поспешно поправил он самого себя, а просто смотрит на табличку. Ведь кошки не умеют читать — равно как и изучать карты.
-		Мистер Дурсль потряс головой и попытался выбросить из нее кошку. И пока его автомобиль ехал к Лондону из пригорода, мистер Дурсль думал о крупном заказе на дрели, который рассчитывал сегодня получить.
-		Но когда он подъехал к Лондону, заполнившие его голову дрели вылетели оттуда в мгновение ока, потому что, попав в обычную утреннюю автомобильную пробку и от нечего делать глядя по сторонам, мистер Дурсль заметил, что на улицах появилось множество очень странно одетых людей. Людей в мантиях. Мистер Дурсль не переносил людей в нелепой одежде, да взять хотя бы нынешнюю молодежь, которая расхаживает черт знает в чем! И вот теперь эти, нарядившиеся по какой-то дурацкой моде.
-		Мистер Дурсль забарабанил пальцами по рулю. Его взгляд упал на сгрудившихся неподалеку странных типов, оживленно шептавшихся друг с другом. Мистер Дурсль пришел в ярость, увидев, что некоторые из них совсем не молоды, — подумать только, один из мужчин выглядел даже старше него, а позволил себе облачиться в изумрудно-зеленую мантию! Ну и тип! Но тут мистера Дурсля осенила мысль, что эти непонятные личности наверняка всего лишь собирают пожертвования или что-нибудь в этом роде… Так оно и есть! Стоявшие в пробке машины наконец тронулись с места, и несколько минут спустя мистер Дурсль въехал на парковку фирмы «Граннингс». Его голова снова была забита дрелями.
-		Кабинет мистера Дурсля находился на девятом этаже, где он всегда сидел спиной к окну. Предпочитай он сидеть лицом к окну, ему, скорее всего, трудно было бы этим утром сосредоточиться на дрелях. Но он сидел к окну спиной и не видел пролетающих сов — подумать только, сов, летающих не ночью, когда им и положено, а средь бела дня! И это уже не говоря о том, что совы — лесные птицы, и в городах, тем более таких больших, как Лондон, не живут.
-		В отличие от мистера Дурсля, находившиеся на улице люди отлично видели этих сов, стремительно пролетающих мимо них одна за другой, и широко раскрывали рты от удивления и показывали на них пальцами. Большинство этих людей в жизни своей не видели ни единой совы, даже в ночное время.`
+	const initialText = useMemo(() => {
+		const str = book?.pages[0]?.content
+		// return str.slice(str?.indexOf('>') + 1, str?.length - 7)
+		return str
+	}, [book])
 
-	const firstColumn = useMemo(() => initialText?.slice(0, initialText?.length / 2), [initialText])
-	const secondColumn = useMemo(() => initialText?.slice(initialText?.length / 2), [initialText])
+	const [changedText, setChangedText] = useState(initialText)
 
-	const [changedFirstColumn, setChangedFirstColumn] = useState(firstColumn)
-	const [changedSecondColumn, setChangedSecondColumn] = useState(secondColumn)
+
 
 	const [toolsIsVisible, setToolsIsVisible] = useState(false)
 	const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 });
-
-	//========= ПЕРЕДЕЛАТЬ ПРОПС currColor !!!!!!!!!!!! =========================
-	const [quotes, setQuotes] = useState([
-		{
-			id: 0,
-      startPosition: 100,
-			endPosition: 200,
-			text: 'и, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожида',
-			color: '#A5D5FF'
-		},
-		{
-			id: 1,
-      startPosition: 600,
-			endPosition: 700,
-			text: 'ондинкой с шеей почти вдвое длиннее, чем положено при ее росте. Однако этот недостаток пришелся ей в',
-			color: '#FFE371'
-		},
-		{
-			id: 2,
-			startPosition: 1000,
-			endPosition: 1200,
-			text: '\t\tСемья Дурсль ей имела все, чего только можно пожелать. Но был у них и один секрет. Причем больше всего на свете они боялись, что кто-нибудь о нем узнает. Дурсли даже представить себе не могли, что ',
-			color: '#FED3CA'
-		},
-		{
-			id: 3,
-			startPosition: 2700,
-			endPosition: 3000,
-			text: 'ль, выходя из дома.\n' +
-					'\t\tОн сел в машину и выехал со двора.\n' +
-					'\t\tНа углу улицы мистер Дурсль заметил, что происходит что-то странное, — на тротуаре стояла кошка и внимательно изучала лежащую перед ней карту. В первую секунду мистер Дурсль даже не понял, что именно он увидел, но затем, уже миновав кошку, з',
-			color: '#B8DF70'
-		},
-		{
-			id: 4,
-			startPosition: 4000,
-			endPosition: 4100,
-			text: ' утреннюю автомобильную пробку и от нечего делать глядя по сторонам, мистер Дурсль заметил, что на у',
-			color: '#A5D5FF'
-		}		
-	]);
 
 	const [selectedText, setSelectedText] = useState('');
 	const [startPosition, setStartPosition] = useState(null);
 	const [endPosition, setEndPosition] = useState(null);
 	const [markId, setMarkId] = useState(null);
 
+	const [isError, setIsError] = useState(false);
+
+	//========= ПЕРЕДЕЛАТЬ ПРОПС currColor !!!!!!!!!!!! =========================
+	const [quotes, setQuotes] = useState([
+		{
+			id: 0,
+			color: '#A5D5FF',
+			endContainer: "/p 5/i 1/text 1",
+			endOffset: 16,
+			startContainer: "/p 5/text 1",
+			startOffset: 226
+		}
+	]);
+
 	const generateQuotes = () => {
-		const sortedQuotes = quotes
-			?.sort((a, b) => a?.startPosition - b?.startPosition)
-			?.map(i => {
-				if(i?.startPosition < firstColumn?.length && i?.endPosition > firstColumn?.length) {
-					return [
-						{
-							...i,
-							endPosition: firstColumn?.length
-						},
-						{
-							...i,
-							startPosition: 0
+		const mark = (se, quot, el) => {
+			const parent = el?.parent?.name
+
+			if(quot?.startContainer === quot?.endContainer) {
+				if (se === 'end') return
+
+				return `<${parent}>${
+					el?.data?.slice(0, quot?.startOffset)
+				}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
+					el?.data?.slice(quot?.startOffset, quot?.endOffset)
+				}</mark>${
+					el?.data?.slice(quot?.endOffset)
+				}</${parent}>`
+
+			} 
+			
+			if(se === 'start') {
+
+				return `<${parent}>${
+					el?.data?.slice(0, quot?.startOffset)
+				}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
+					el?.data?.slice(quot?.startOffset)
+				}</mark>`
+
+			} else if(se === 'end') {
+
+				return `<${parent}><mark data-id="${quot?.id}" style="background: ${quot?.color}">${
+					el?.data?.slice(0, quot?.endOffset)
+				}</mark>${
+					el?.data?.slice(quot?.endOffset)
+				}</${parent}>`
+
+			}
+		}
+
+		let html = initialText
+		let str = ''
+
+		const perebor = (se, quot, index, node) => {
+			const arr = quot?.[se === 'start' ? 'startContainer' : 'endContainer']?.split('/')?.slice(1)
+			const tag = arr[index].split(' ')[0]
+			const num = +arr[index].split(' ')[1]
+			let tagCount = 0
+			
+			if(node?.children?.length) {
+				node?.children?.forEach(i => {
+					if((tag === 'text' && i?.type === 'text') || i?.name === tag) {
+						tagCount++
+						if(tagCount === num) {
+							if(index !== arr?.length - 1) {
+								perebor(se, quot, index + 1, i)
+							} else {
+								str += mark(se, quot, i)
+							}
+						} else {
+							concat(i)
 						}
-					]
+					} else {
+						concat(i)
+					}
+				})
+			} else {
+				concat(node)
+			}
+		}
+
+		const concat = el => {
+			if(el?.children?.length) {
+				str += `<${el?.name}>`
+
+				el?.children?.forEach(i => {
+					concat(i)
+				})
+
+				str += `</${el?.name}>`
+			} else {
+				if(el?.name === 'img') {
+					let attr = ''
+
+					for (const [key, value] of Object.entries(el?.attribs)) {
+						attr += ` ${key}="${value}"`
+					}
+
+					str += `<${el?.name}${attr} />`
 				} else {
-					return i
+					str += el?.data
+				}
+			}
+		}
+		
+		quotes.forEach(i => {
+			let index = 0
+
+			parse(html, {
+				replace: domNode => {
+					if(index === 0) {
+						perebor('start', i, 0, domNode)
+						index++
+					}
 				}
 			})
-			?.flat()
 
-		let firstColumnQuotes = sortedQuotes?.filter(i => i?.startPosition < firstColumn?.length && i?.endPosition <= firstColumn?.length)
-		let secondColumnQuotes = sortedQuotes?.filter(i => i?.endPosition > firstColumn?.length)
+			html = `<div>${str}</div>`
+			str = ''
+			index = 0
 
-		let pos = 0
-		let firstColumnArr = []
-		let secondColumnArr = []		
+			parse(html, {
+				replace: domNode => {
+					if(index === 0) {
+						perebor('end', i, 0, domNode)
+						index++
+					}
+				}
+			})
 
-		firstColumnQuotes.forEach(i => {
-			firstColumnArr.push(
-				firstColumn.slice(pos, i?.startPosition),
-				`<mark data-id="${i?.id}" style="background: ${i?.color}">${
-					firstColumn.slice(i?.startPosition, i?.endPosition)
-				}</mark>`
-			)
-			pos = i?.endPosition
+			html = `<div>${str}</div>`
+			str = ''
 		})
-
-		firstColumnArr.push(firstColumn.slice(pos))
-		pos = 0
-
-		secondColumnQuotes.forEach(i => {
-			secondColumnArr.push(
-				secondColumn.slice(pos, i?.startPosition - firstColumn?.length),
-				`<mark data-id="${i?.id}" style="background: ${i?.color}">${
-					secondColumn.slice(
-						i?.startPosition - firstColumn?.length,
-						i?.endPosition - firstColumn?.length
-					)
-				}</mark>`
-			)
-			pos = i?.endPosition - firstColumn?.length
-		})
-
-		secondColumnArr.push(secondColumn.slice(pos))
 
 		const options = {
 			replace: domNode => {
-				if(domNode?.type === 'tag' && domNode?.name === 'mark') {
+				if(domNode?.name === 'a') {
+					return <>
+						{domToReact(domNode?.children, options)}
+					</>
+				} else if(domNode?.name === 'img') {
+					return (
+						<img
+							{...attributesToProps({
+								...domNode?.attribs,
+								src: `http://loveread.webnauts.pw/${domNode?.attribs?.src}`
+							})}
+						/>
+					)
+				} else if(domNode?.name === 'mark') {
 					return (
 						<mark
 							onClick={ev => handleMarkClick(ev, domNode?.attribs['data-id'])}
 							{...attributesToProps(domNode?.attribs)}
 						>
-							{domToReact(domNode?.children)}
+							{domToReact(domNode?.children, options)}
 						</mark>
 					)
-				}
+				} 
 			}
 		}
 
-		setChangedFirstColumn(parse(firstColumnArr.join(''), options))
-		setChangedSecondColumn(parse(secondColumnArr.join(''), options))
+		setChangedText(parse(html.slice(5, -6), options))
+	}
+
+	const getXpathParameters = xpath => {
+		const startOffset = xpath.startOffset
+		const endOffset = xpath.endOffset
+		let startContainer = xpath.start
+		startContainer = startContainer
+			.replace(/\(|\)/g, "")
+			.replace(/\[/g, " ")
+			.replace(/\]/g, "")
+		let endContainer = xpath.end
+		endContainer = endContainer
+			.replace(/\(|\)/g, "")
+			.replace(/\[/g, " ")
+			.replace(/\]/g, "")
+		return { startOffset, endOffset, startContainer, endContainer }
 	}
 
 	const mouseUpHandler = ev => {
@@ -163,18 +214,33 @@ const TextWithQoutes = () => {
 
 		if(text?.length && text !== ' ') {
 			setSelectedText(text)
-			const range = window.getSelection().getRangeAt(0)
 
-			setStartPosition(calcTotalOffset(range.startContainer, range.startOffset))
-			setEndPosition(calcTotalOffset(range.endContainer, range.endOffset))
+			const range = window.getSelection().getRangeAt(0)
+			// const startPos = calcTotalOffset(range.startContainer, range.startOffset)
+			// const endPos = calcTotalOffset(range.endContainer, range.endOffset)
+			const xpath = fromRange(range, document.querySelector('#range-parent'))
+			const test = getXpathParameters(xpath)
+
+			console.log('test', test);
+			setStartPosition(test)
+			// setEndPosition(endPos)
+
+			// const err = quotes?.some(i => 
+			// 	(startPos >= i?.startPosition && startPos <= i?.endPosition) ||
+			// 	(endPos >= i?.startPosition && endPos <= i?.endPosition) ||
+			// 	(startPos < i?.startPosition && endPos > i?.endPosition)
+			// )
+
+			// setIsError(err);
 
 			const x = ev?.nativeEvent.layerX
 			const y = ev?.nativeEvent.layerY
 			setToolsCoords({x, y})
 			setToolsIsVisible(true)
 		} else {
-			setMarkId(null)
 			setToolsIsVisible(false)
+			setMarkId(null)
+			setIsError(false)
 		}
 	}
 
@@ -187,29 +253,13 @@ const TextWithQoutes = () => {
 	}
 
 	const addQuot = color => {
-		let isError = false
-
-		quotes?.forEach(i => {
-			if(
-				(startPosition >= i?.startPosition && startPosition <= i?.endPosition) ||
-				(endPosition >= i?.startPosition && endPosition <= i?.endPosition) ||
-				(startPosition < i?.startPosition && endPosition > i?.endPosition)
-			) {
-				isError = true
-				setToolsIsVisible(false)
-			}
-		})
-
-		if(!isError) {
-			setMarkId(quotes?.length)
-			setQuotes(prev => [...prev, {
-				id: quotes?.length,
-				startPosition,
-				endPosition,
-				text: selectedText,
-				color: color
-			}])
-		}
+		setMarkId(quotes?.length + 1)
+		setQuotes(prev => [...prev, {
+			id: quotes?.length + 1,
+			...startPosition,
+			text: selectedText,
+			color: color
+		}])
 	}
 
 	const changeColor = color => {
@@ -264,9 +314,18 @@ const TextWithQoutes = () => {
 		}
 	}, [settings?.rowHeight ])
 
+	// useEffect(() => {
+	// 	let range = new Range();
+
+  //   range.setStart(t, 2);
+  //   range.setEnd(t, 24);
+  //   document.getSelection().removeAllRanges();
+  //   document.getSelection().addRange(range);
+	// }, [])
+
 	useEffect(() => {
 		generateQuotes()
-	}, [quotes])
+	}, [quotes, book])
 
 	useEffect(() => {
 		setMarkId(null)
@@ -274,30 +333,30 @@ const TextWithQoutes = () => {
 
 	return (
 		<>
-			<h1 className={styles.bookTitle}>Гарри Поттер и философский камень</h1>
-			<span className={styles.bookAuthor}>Джоан Роулинг</span>
+			<h1 className={styles.bookTitle}>{book?.title}</h1>
+
+			<Link href={`author?id=${book?.authors[0]?.id}`}>
+				<a className={styles.bookAuthor}>{book?.authors[0]?.author}</a>
+			</Link>
+
 			<h2 className={styles.bookSubtitle}>Глава 1. Мальчик, который выжил</h2>
 
-			<div
+			<article
 				id='range-parent'
 				className={styles.bookText}
 				onMouseUp={ev => mouseUpHandler(ev)}
+				onTouchEnd={ev => mouseUpHandler(ev)}
 				style={{
-					display: settings?.isTwoColumns ? 'flex' : 'block',
 					fontFamily: settings?.fontName,
 					fontSize: `${+settings?.fontSize + 16}px`,
-					width: settings?.isTwoColumns ? '100%' : width + 'px',
+					maxWidth: settings?.isTwoColumns ? '100%' : width + 'px',
 					lineHeight: lineHeight + 'px',
 					textAlign: settings?.isCenterAlignment ? 'justify' : 'left',
-					whiteSpace: settings?.isCenterAlignment ? 'normal' : 'break-spaces'
+					columnCount: settings?.isTwoColumns ? 2 : 1,
+					columnGap: settings?.isTwoColumns ? '104px' : 0
 				}}
 			>
-				<span
-					style={{marginRight: settings?.isTwoColumns ? '104px' : 0}}
-				>
-					{changedFirstColumn}
-				</span>
-				<span>{changedSecondColumn}</span>
+				{changedText}
 
 				{toolsIsVisible &&
 					<AddQout
@@ -305,6 +364,7 @@ const TextWithQoutes = () => {
 							top: toolsCoords.y + 'px',
 							left: toolsCoords.x + 'px',
 						}}
+						isError={isError}
 						markId={markId}
 						currColor={quotes?.find(i => i?.id == markId)?.color}
 						addQuot={addQuot}
@@ -313,7 +373,7 @@ const TextWithQoutes = () => {
 						copyText={copyText}
 					/>
 				}
-			</div>
+			</article>
 		</>
 	)
 }

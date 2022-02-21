@@ -13,7 +13,7 @@ const fontNames = [
   'Times New Roman',
   'Georgia',
   'Arial',
-  'Ubuntu',
+  'Fira Sans',
   'Verdana'
 ]
 
