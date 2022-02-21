@@ -19,14 +19,14 @@ const Books = props => {
 
 export default Books;
 
-// export async function getServerSideProps({ query }) {
-//   const categories = await BookService.getCategories();
-//   const books = await BookService.getBooks(query);
+export async function getServerSideProps({ query }) {
+  const categories = await BookService.getCategories();
+  const books = await BookService.getBooks(query);
 
-//   return {
-//     props: {
-//       categories: categories?.data?.data,
-//       books: books?.data?.data,
-//     },
-//   };
-// }
+  return {
+    props: {
+      categories: categories?.data?.data,
+      books: books?.data?.data,
+    },
+  };
+}

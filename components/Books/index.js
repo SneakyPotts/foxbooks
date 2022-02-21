@@ -17,7 +17,7 @@ import Grid from '../shared/icons/navMenu/grid';
 
 import st from './books.module.scss';
 
-import categories from '../data/categories.json';
+// import categories from '../data/categories.json';
 
 const data = [
   {
@@ -36,7 +36,7 @@ const data = [
 
 const Books = () => {
   const router = useRouter();
-  // const { categories } = useSelector(state => state.book);
+  const { categories } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
   const [showFilters, setShowFilters] = useState(false);
   const [stateIndex, setStateIndex] = useState(null);
@@ -150,8 +150,8 @@ const Books = () => {
             <button key={i?.id} className={st.abCateg}>
               <Link href={`/books/${i?.id}?type=books&showType=block&sortBy=3`}>
                 <a className={st.abCategLink}>
-                  {/* {i?.name} */}
-                  {i.category}
+                  {i?.name}
+                  {/* {i.category} */}
                 </a>
               </Link>
             </button>

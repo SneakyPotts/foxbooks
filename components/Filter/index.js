@@ -103,7 +103,8 @@ const data = [
 
 const Filters = () => {
   const [stateIndex, setStateIndex] = useState(null);
-  const { categories, books } = useSelector(state => state.book);
+  const { categories } = useSelector(state => state.book);
+  const { books } = useSelector(state => state.book);
 
   const categoryOptions = categories?.map((i, index) => ({
     id: index + 1,

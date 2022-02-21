@@ -14,7 +14,6 @@ import Add from '../../../public/plus.svg';
 import Headphones from '../../shared/icons/headphones';
 import Basket from '../../shared/icons/trash';
 import Eye from '../../shared/icons/eye';
-// import SimilarBooks from '../SimilarBooks';
 import st from './aboutBook.module.scss';
 
 const AboutBook = ({ book, audio }) => {
@@ -240,11 +239,12 @@ const AboutBook = ({ book, audio }) => {
                 </li>
               </ul>
               <p>
-                {book?.text}Книга, покорившая мир, эталон литературы для
+                {book?.text}
+                {/* Книга, покорившая мир, эталон литературы для
                 читателей всех возрастов, синоним успеха. Книга, сделавшая Джоан
                 Роулинг самым читаемым писателем современности. Книга, ставшая
                 культовой уже для нескольких поколений. "Гарри Поттер и
-                Философский камень" - история начинается.
+                Философский камень" - история начинается. */}
               </p>
               <div className={st.ditalInfo}>
                 {audioFlag ? (
@@ -271,9 +271,6 @@ const AboutBook = ({ book, audio }) => {
                 <p>Серия: {book.series}</p>
               </div>
             </div>
-            {/* <SimilarBooks
-            // audio={true}
-            /> */}
           </div>
         </div>
       </div>

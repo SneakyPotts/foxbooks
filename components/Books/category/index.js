@@ -67,8 +67,8 @@ const Category = () => {
     },
   ]);
 
-  // const { categories } = useSelector(state => state.book);
-  // const {books } = useSelector(state => state.book);
+  const { categories } = useSelector(state => state.book);
+  // const { books } = useSelector(state => state.book);
 
   const { innerWidthWindow } = useSelector(state => state.common);
 
