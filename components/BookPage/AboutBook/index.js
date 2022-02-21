@@ -84,7 +84,7 @@ const AboutBook = ({ book, audio }) => {
             })}
           >
             <Image
-              src="/horizontalBookCovers/book.png"
+              src={book?.image?.link || "/horizontalBookCovers/book.png"}
               bookTitle
               height={
                 audioFlag
@@ -257,7 +257,7 @@ const AboutBook = ({ book, audio }) => {
                 ) : (
                   <>
                     <p>
-                      Издательство: <span>Ddfghjdx{book.publishing}</span>
+                      Издательство: <span>{book.publishing}</span>
                     </p>
                     <p>
                       Переводчик: <span>{book.translater}</span>

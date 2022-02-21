@@ -69,7 +69,7 @@ const Book = ({
           <Link href={`/book/${book?.id}`}>
             <a onClick={bookLinkClick}>
               <Image
-                src={book?.image?.link}
+                src={book?.image?.link || '/images/blur.jpg'}
                 alt=""
                 width={innerWidthWindow >= 768 ? 180 : 108}
                 height={
@@ -89,7 +89,7 @@ const Book = ({
           </Link>
         ) : (
           <Image
-            src={book?.image?.link}
+            src={book?.image?.link || '/images/blur.jpg'}
             alt=""
             width={180}
             height={audio ? 180 : 271}

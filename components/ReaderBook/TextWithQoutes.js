@@ -18,8 +18,6 @@ const TextWithQoutes = () => {
 
 	const [changedText, setChangedText] = useState(initialText)
 
-
-
 	const [toolsIsVisible, setToolsIsVisible] = useState(false)
 	const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 });
 
@@ -35,10 +33,10 @@ const TextWithQoutes = () => {
 		{
 			id: 0,
 			color: '#A5D5FF',
-			endContainer: "/p 5/i 1/text 1",
-			endOffset: 16,
-			startContainer: "/p 5/text 1",
-			startOffset: 226
+			endContainer: "/div 1/p 9/text 1",
+			endOffset: 120,
+			startContainer: "/div 1/p 6/i 1/text 1",
+			startOffset: 218
 		}
 	]);
 
@@ -164,7 +162,7 @@ const TextWithQoutes = () => {
 
 		const options = {
 			replace: domNode => {
-				if(domNode?.name === 'a') {
+				if(domNode?.name === 'a' || domNode?.name === 'html' || domNode?.name === 'body') {
 					return <>
 						{domToReact(domNode?.children, options)}
 					</>
