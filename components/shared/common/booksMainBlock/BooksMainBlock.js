@@ -17,9 +17,6 @@ const BooksMainBlock = ({ audio }) => {
               {books?.data?.map(book => (
                 <Book key={book.id} audio={audio} book={book} />
               ))}
-              {/*{books.map(book => (*/}
-              {/*  <Book key={book.id} audio={audio} book={book} />*/}
-              {/*))}*/}
             </div>
             <MyPagination
               currentPage={books?.current_page}

@@ -2,10 +2,6 @@ import axios from "axios";
 import api, { API_URL } from ".";
 
 export default class BookService {
-	static async getCategories() {
-		return axios.get(`${API_URL}/genres`)
-	}
-
 	static async getBooks({
 		type = 'books',
 		page = 1,

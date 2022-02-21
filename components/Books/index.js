@@ -67,6 +67,8 @@ const Books = () => {
     },
   ]);
 
+  const cats = categories?.slice(0, 13) || []
+
   return (
     <div className={classnames('container', st.abContainer)}>
       <Breadcrumbs
@@ -146,7 +148,7 @@ const Books = () => {
       )}
       {innerWidthWindow >= 768 && (
         <>
-          {categories?.map(i => (
+          {cats?.map(i => (
             <button key={i?.id} className={st.abCateg}>
               <Link href={`/books/${i?.id}?type=books&showType=block&sortBy=3`}>
                 <a className={st.abCategLink}>
