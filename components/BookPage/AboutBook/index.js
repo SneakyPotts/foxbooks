@@ -84,7 +84,7 @@ const AboutBook = ({ book, audio }) => {
             })}
           >
             <Image
-              src={book?.image?.link || "/horizontalBookCovers/book.png"}
+              src={book?.image?.link || "/preview.jpg"}
               bookTitle
               height={
                 audioFlag
@@ -112,7 +112,7 @@ const AboutBook = ({ book, audio }) => {
             <div className={st.wrapperBookTitle}>
               <h1 className={st.bookTitle}>{book?.title}</h1>
               <p className={st.bookAuthor}>
-                <Link href="/author">
+                <Link href={`/author?id=${book?.authors[0]?.id}`}>
                   <a className={st.bookAuthorName}>
                     {book?.authors[0]?.author}
                   </a>

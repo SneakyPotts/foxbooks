@@ -12,7 +12,7 @@ import ModalWindow from "../../shared/common/modalWindow/ModalWindow";
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import SocialNetwork from "../../shared/common/SocialNetwork/SocialNetwork";
 import {forgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice";
 
@@ -22,6 +22,8 @@ const GroupForms = ({modal,setModal}) => {
 	const [flagSendEmail, setFlagSendEmail] = useState(false)
 	const [flagForgetPassword, setFlagForgetPassword] = useState(false)
 	const [flagResetPassMessage, setFlagResetPassMessage] = useState(false)
+
+	const { isError } = useSelector(state => state.auth)
 
 	const dispatch = useDispatch()
 
@@ -99,6 +101,7 @@ const GroupForms = ({modal,setModal}) => {
 						typeInput='password'
 						register={register}
 					/>
+					{isError && <p className={css.error}>Неверная почта или пароль</p>}
 					<Button
 						typeButton='submit'
 						text='Вход'
