@@ -220,6 +220,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  font-family: Fira Sans, sans-serif;
   text-align: center;
   width: 100%;
   height: 60px;
@@ -389,5 +390,23 @@
   .menu {
     width: 100vw;
     min-height: 293px;
+    padding: 30px;
+    padding-top: 43px;
+    border-radius: 10px 10px 0 0;
+    left: 0;
+    transform: inherit;
+  }
+  .popUp {
+    font-size: 14px;
+    line-height: 1.43;
+    padding: 15px 37px;
+    height: 70px;
+  }
+  .popUpLink {
+    display: initial;
+    border-bottom: 1px solid $color-categories-btn;
+    &::after {
+      display: none;
+    }
   }
 }

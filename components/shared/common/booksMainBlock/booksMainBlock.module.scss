@@ -33,6 +33,9 @@
   }
 }
 @media (max-width: 768px) {
+  .mainBlock {
+    margin-top: 30px;
+  }
   .booksGrid {
     display: flex;
     flex-wrap: wrap;

@@ -63,7 +63,7 @@ const AboutBook = ({ book, audio }) => {
     }
   };
 
-  const changeBookStatus = value => {
+  const changeBookStatus = (value, option) => {
     setOpenMenu(false);
     dispatch(setBookStatus({ id: router.query?.id, value })).then(res =>
       showPopup(res)
@@ -198,7 +198,9 @@ const AboutBook = ({ book, audio }) => {
                       {dataOptions.map((it, index) => (
                         <p
                           key={it?.id}
-                          onClick={() => changeBookStatus(it?.value)}
+                          onClick={() =>
+                            changeBookStatus(it?.value, it?.option)
+                          }
                           className={st.menuItem}
                         >
                           {it?.svg}

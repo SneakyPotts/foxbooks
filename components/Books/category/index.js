@@ -12,6 +12,7 @@ import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
 import Filters from '../../shared/icons/filters';
 import Button from '../../shared/common/Button/Button';
 import CrossInCircle from '../../shared/icons/crossInCircle';
+import MobalModal from '../../shared/common/mobalModal';
 import st from './category.module.scss';
 
 import books from '../../data/books.json';
@@ -95,67 +96,7 @@ const Category = () => {
       <div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
         <h2 className={st.title}>{currentCategory}</h2>
         <div>
-          {innerWidthWindow < 1024 && (
-            <div className={st.mobal}>
-              <div className={st.mobalModalFiltersMenu}>
-                <div className={st.filters}>
-                  <span>Фильтры</span>
-                  <Filters />
-                </div>
-                <button>
-                  Популярные
-                  <CrossInCircle />
-                </button>
-              </div>
-              {showFilters && (
-                <ModalWindow
-                  onClose={() => setShowFilters(false)}
-                  isFullScreen={true}
-                >
-                  <div className={st.mobalModalHead}>
-                    <p className={st.mobalModalTitle}>Фильтры</p>
-                    <span className={st.filterCount}>2</span>
-                    <p className={st.mobalModalFilters}>Очистить фильтры</p>
-                  </div>
-                  {data.map((it, index) => (
-                    <Popular
-                      key={index}
-                      title={it?.title}
-                      defaultValue={it?.defaultValue}
-                      data={it?.options}
-                      queryName={it?.queryName}
-                      filterStateIdx={stateIndex}
-                      elIdx={index}
-                      setFilStateIdx={setStateIndex}
-                    />
-                  ))}
-                  <ul className={st.filters}>
-                    {filters?.map(it => (
-                      <li key={it?.id} className={st.filterStatus}>
-                        <button className={st.btn}>{it?.option}</button>
-                        <div
-                          className={st.dates}
-                          onClick={e => e.stopPropagation()}
-                        >
-                          <input
-                            placeholder={it?.placeholder}
-                            className={st.input}
-                            onChange={ev =>
-                              handleChange(ev.target.value, it?.queryName)
-                            }
-                          />
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    text="Посмотреть 262 предложения"
-                    classNames={st.filtersBtn}
-                  />
-                </ModalWindow>
-              )}
-            </div>
-          )}
+          {innerWidthWindow < 1024 && <MobalModal />}
           {innerWidthWindow >= 1024 &&
             data.map((it, index) => (
               <Popular
