@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import Image from 'next/image';
-// import Eye from '../../shared/icons/eye';
 import DropDownArrow from '../../../public/chevron-down.svg';
 import Like from '../../shared/icons/heart';
 import Comment from '../../shared/icons/comment';
 import Button from '../../shared/common/Button/Button';
 import st from './comComp.module.scss';
 
-const CommentComp = ({ idx, type, reviews = false }) => {
+const CommentComp = ({ idx, type, reviews = false, content, time}) => {
+
   const [showMore, setShowMore] = useState(false);
   const [mainCommentIdx, setMainCommenIdx] = useState(null);
   const [inputIdx, setInputIdx] = useState(null);
@@ -38,6 +38,7 @@ const CommentComp = ({ idx, type, reviews = false }) => {
     setMainCommenIdx(null);
   };
 
+
   return (
     <div
       className={classnames(st.reviewColor, {
@@ -61,60 +62,37 @@ const CommentComp = ({ idx, type, reviews = false }) => {
           <h3 className={st.reviewerName}>Ник</h3>
         </div>
         <div className={st.reviewInfo}>
-          <span className={st.reviewDate}>20 октября 2021 в 14:05</span>
+          <span className={st.reviewDate}>{time && time}</span>
           {/* <span className={st.reviewView}>
             <span className={st.reviewViewCount}>456</span> <Eye />
           </span> */}
         </div>
-        <h3 className={st.reviewTitle}>
-          Гарри получает похвалы за то, что нарушает запреты
-        </h3>
+        {/*<h3 className={st.reviewTitle}>*/}
+        {/*  Гарри получает похвалы за то, что нарушает запреты*/}
+        {/*</h3>*/}
         <div>
           <p
             className={classnames(st.reviewText, {
               [st.reviewTextHide]: !showMore,
             })}
           >
-            Почему-то до этого момента у меня возникало к книге намного меньше
-            вопросов, хотя я перечитывала её всего пару лет назад. А сразу после
-            прочтения седьмой части и по сравнению с ней первая история о
-            Мальчике, Который Выжил выглядит сырой, недодуманной и слишком
-            детской - но да-да, эта книга изначально была для детей. И это
-            впечатление скорее говорит о том, насколько выросла история о Гарри
-            Поттере по прошествии лет, как оброс подробностями и жизнью
-            магический мир, захвативший так много читателей по всему миру.
-            Большинство знают историю о Гарри, частично или полностью, так что
-            спойлерить её весьма проблематично, и я тут порассуждаю над
-            некоторыми моментами, которые привлекли моё внимание или вызвали
-            недоумение в первой книге. О каких-то я уже слышала от других людей,
-            другие пришли мне Почему-то до этого момента у меня возникало к
-            книге намного меньше вопросов, хотя я перечитывала её всего пару лет
-            назад. А сразу после прочтения седьмой части и по сравнению с ней
-            первая история о Мальчике, Который Выжил выглядит сырой,
-            недодуманной и слишком детской - но да-да, эта книга изначально была
-            для детей. И это впечатление скорее говорит о том, насколько выросла
-            история о Гарри Поттере по прошествии лет, как оброс подробностями и
-            жизнью магический мир, захвативший так много читателей по всему
-            миру. Большинство знают историю о Гарри, частично или полностью, так
-            что спойлерить её весьма проблематично, и я тут порассуждаю над
-            некоторыми моментами, которые привлекли моё внимание или вызвали
-            недоумение в первой книге. О каких-то я уже слышала от других людей,
-            другие пришли мне
+            {content && content}
           </p>
-          <span
-            className={classnames(st.showMoreLink, { [st.black]: type })}
-            onClick={onShowMore}
+          {content?.length > 796 && !showMore ? <span
+              className={classnames(st.showMoreLink, { [st.black]: type })}
+              onClick={onShowMore}
           >
             Показать полностью
             {innerWidthWindow <= 768 && (
-              <DropDownArrow
-                className={classnames(st.dropDownArrow, {
-                  [st.up]: showMore,
-                  [st.color]: reviews,
-                })}
-              />
+                <DropDownArrow
+                    className={classnames(st.dropDownArrow, {
+                      [st.up]: showMore,
+                      [st.color]: reviews,
+                    })}
+                />
             )}
-          </span>
+          </span> : <></>}
+
           <div className={st.reviewStatistic}>
             <span className={st.reviewIcon}>
               <Like />

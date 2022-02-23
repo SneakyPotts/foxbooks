@@ -1,59 +1,64 @@
 import React from 'react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Image from 'next/image';
 import Link from 'next/link';
 import CommentComp from '../CommentComponent';
 import Button from '../../shared/common/Button/Button';
+import moment from "moment";
+import 'moment/locale/ru'
 import UnderCom from '../UnderCommentComp';
 import st from './comments.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
 import {useForm} from "react-hook-form";
 import CommentsService from "../../../http/CommentsService";
 import {useRouter} from "next/router";
+import {commentBook} from "../../../store/bookSlice";
 
 const Comments = ({ comments }) => {
+  moment.locale('ru')
   const router = useRouter()
-  const [showReplys, setShowReplys] = useState([
-    { id: '0', flag: false },
-    { id: '1', flag: false },
-    { id: '2', flag: false },
-  ]);
-  // const [showInput, setShowInput] = useState(false);
-
+  const dispatch = useDispatch()
   const [firstInput, setFirstInput] = useState(false);
-
-  const data = [
-    { id: '0', flagData: true },
-    { id: '1', flagData: true },
-    { id: '2', flagData: false },
-  ];
   const { innerWidthWindow } = useSelector(state => state.common);
+  const { book } = useSelector(state => state.book);
+  const {id: idUser} = useSelector(state => state.profile.profile);
 
-  const handleFirstInput = () => {
-    setFirstInput(true);
+  const handleFirstInput = (e) => {
+    console.log(idUser)
+    console.log(book)
+    if(e.target.value.length > 0) {
+      setFirstInput(true);
+    } else {
+      setFirstInput(false);
+    }
   };
 
   const handleCancelBtn = () => {
     setValue('comment', '')
     setFirstInput(false);
-    // setReplyIdx(null);
-    // setUnderComIdx(null);
   };
 
   const {register, handleSubmit, setValue, formState: {errors}} = useForm();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     console.log(data)
-    await CommentsService.addComments({
-      id: router.query?.id,
-      text: data?.comment,
-      type: 'book'
-    })
+    dispatch(commentBook({book_id: 28,
+      content: data?.comment,
+      created_at: moment().format(),
+      parent_comment_id: null,
+      user_id: idUser
+    }))
+
+    // await CommentsService.addComments({
+    //   id: router.query?.id,
+    //   text: data?.comment,
+    //   type: 'book',
+    //   parent_comment_id: null,
+    // })
     setValue('comment', '')
     setFirstInput(false)
   }
-
   return (
     <div className={st.container}>
       <h2 id="reviews" className={st.reviewsTitle}>
@@ -74,11 +79,13 @@ const Comments = ({ comments }) => {
               blurDataURL="/images/blur.jpg"
             />
           </div>
+          {/*<input {...register('id')} type="hidden" value={1}/>*/}
           <input
             {...register('comment')}
             placeholder="Написать комментарий"
             className={st.userInput}
-            onClick={handleFirstInput}
+            onChange={handleFirstInput}
+            autoComplete="off"
           />
         </div>
         <div className={st.userComment}>
@@ -96,30 +103,32 @@ const Comments = ({ comments }) => {
           )}
         </div>
       </form>
-      {comments.map(({ id, flagData }, idx) => (
+      {comments.map(({content, created_at, reviews_count }, idx) => (
         <>
-          <div key={id} className={st.reviewBlock}>
-            <CommentComp idx={idx} />
+          <div key={created_at} className={st.reviewBlock}>
+            <CommentComp
+                idx={idx}
+                content={content}
+                reviewsCount={reviews_count}
+                time={moment(created_at).format('Do MMMM YYYY в HH:mm')
+                    .replace('-го', '')}
+            />
           </div>
-
           <>
-            {flagData && (
-              <UnderCom
-                showReplys={showReplys}
-                setShowReplys={setShowReplys}
-                data={data}
-              />
-            )}
+              {/*<UnderCom*/}
+              {/*  showReplys={showReplys}*/}
+              {/*  setShowReplys={setShowReplys}*/}
+              {/*  data={data}*/}
+              {/*/>*/}
 
-            {flagData && (
-              <Link href="#">
-                <a>
-                  <h3 className={st.showNextComments}>
-                    Показать следующие комментарии
-                  </h3>
-                </a>
-              </Link>
-            )}
+              {/*<Link href="#">*/}
+              {/*  <a>*/}
+              {/*    <h3 className={st.showNextComments}>*/}
+              {/*      Показать следующие комментарии*/}
+              {/*    </h3>*/}
+              {/*  </a>*/}
+              {/*</Link>*/}
+
           </>
         </>
       ))}
