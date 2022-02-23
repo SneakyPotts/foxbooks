@@ -13,7 +13,7 @@ import { getProfile } from '../../../../../store/profileSlice';
 import AudioPlayer from '../../../../AudioPlayer';
 import { setBreakPoint } from '../../../../../store/commonSlice';
 import debounce from 'lodash.debounce';
-import ArrowUp from '../../../icons/arrowUp';
+// import ArrowUp from '../../../icons/arrowUp';
 import st from './layout.module.scss';
 
 const Layout = ({ children }) => {
@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
       {playerIsVisible && <AudioPlayer />}
       {innerWidthWindow <= 768 && position > 500 && (
         <div onClick={scrollUp} className={st.buttonUp}>
-          <ArrowUp />
+          {/*<ArrowUp />*/}
         </div>
       )}
       <Footer />

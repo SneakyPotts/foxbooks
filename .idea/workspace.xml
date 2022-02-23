@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/http/AuthorService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/CommentsService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/authorSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/author/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/author/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
