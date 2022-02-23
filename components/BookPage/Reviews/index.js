@@ -148,7 +148,7 @@ const Reviews = () => {
       )}
       {reviewsAmount.map((it, idx) => (
         <div key={it.id} className={st.review}>
-          <CommentComp idx={idx} type={it.type} reviews={true} />
+          <CommentComp content='Рицензии' idx={idx} type={it.type} reviews={true} />
         </div>
       ))}
       {innerWidthWindow > 768 ? (

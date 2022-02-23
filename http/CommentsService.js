@@ -7,6 +7,6 @@ export default class CommentsService {
 		text,
 		type
 	}) {
-		return api.put(`${API_URL}/comments?id=${id}&text=${text}&type=${type}`)
+		return api.post(`${API_URL}/comments`,{id:id, text:text, type:type})
 	}
 }

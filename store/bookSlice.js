@@ -50,6 +50,10 @@ export const bookSlice = createSlice({
 		audioBook: (state, action) => {
 			state.audioFlag = action.payload;
 		},
+		commentBook:(state, action) => {
+			console.log(action.payload)
+			state.book?.comments.unshift(action.payload);
+		}
 	},
 	extraReducers: {
 		[setBookStatus.pending]: state => {
@@ -85,7 +89,8 @@ export const {
 	setDailyHotUpdates,
 	setBooks,
 	setBook,
-	audioBook
+	audioBook,
+	commentBook
 } = bookSlice.actions;
 
 export default bookSlice.reducer;
