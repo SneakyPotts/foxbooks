@@ -50,12 +50,12 @@ const Comments = ({ comments }) => {
       user_id: idUser
     }))
 
-    // await CommentsService.addComments({
-    //   id: router.query?.id,
-    //   text: data?.comment,
-    //   type: 'book',
-    //   parent_comment_id: null,
-    // })
+    await CommentsService.addComments({
+      id: router.query?.id,
+      text: data?.comment,
+      type: 'book',
+      parent_comment_id: null,
+    })
     setValue('comment', '')
     setFirstInput(false)
   }
