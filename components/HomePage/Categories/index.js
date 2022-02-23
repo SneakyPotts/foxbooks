@@ -2,8 +2,10 @@ import Link from 'next/link';
 import ArrowAll from '../../../public/chevron-down.svg';
 import css from './categories.module.scss';
 import { useSelector } from 'react-redux';
+import {useRouter} from "next/router";
 
 const Categories = () => {
+	const router = useRouter()
 	const { categories } = useSelector(state => state.book)
 
 	const cats = categories?.slice(0, 12) || []
@@ -14,7 +16,7 @@ const Categories = () => {
 			<ul className={css.categList}>
 				{cats?.map(({ id, name }) => (
 					<li key={id} className={css.categ}>
-						<Link href={`/books/${id}?type=books&showType=block&sortBy=3`}>
+						<Link href={`/books/${id}?type=${router.query?.type || 'books'}&showType=block&sortBy=1`}>
 							{name}
 						</Link>
 					</li>

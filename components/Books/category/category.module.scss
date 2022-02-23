@@ -13,6 +13,7 @@
 .mainBlock {
   display: flex;
   margin-top: 40px;
+  margin-bottom: 60px;
 }
 .booksGrid {
   list-style: none;
@@ -32,21 +33,18 @@
   }
 }
 .advertisingBlok {
-  display: block;
   margin-left: 24px;
   min-width: 180px;
+  width: 180px;
   min-height: 1104px;
+  overflow: hidden;
 }
 .bannerBlock {
-  min-width: 180px;
-  display: block;
-  width: 100%;
-
   margin-bottom: 40px;
 }
 .banner {
   width: 100%;
-  height: 1104px;
+  height: auto;
 }
 .head {
   display: flex;

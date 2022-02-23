@@ -24,7 +24,7 @@ const Navigation = ({ setModal }) => {
           <Link href="/books?type=books&sortBy=1">
             <a
               className={`${css.link} ${
-                router.pathname.includes('/books') ? css.active : css.link
+                router.query?.type === 'books' ? css.active : css.link
               }`}
             >
               <div className={css.icon}>
@@ -33,10 +33,10 @@ const Navigation = ({ setModal }) => {
               Книги
             </a>
           </Link>
-          <Link href="/audiobooks">
+          <Link href="/books?type=audioBooks&sortBy=1">
             <a
               className={`${css.link} ${css.linkStroke} ${
-                router.pathname.includes('/audiobooks')
+                  router.query?.type === 'audioBooks'
                   ? css.activeStroke
                   : css.link
               }`}

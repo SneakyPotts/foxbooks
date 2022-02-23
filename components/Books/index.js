@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
@@ -11,10 +10,10 @@ import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import MobalModal from '../shared/common/mobalModal';
 import st from './books.module.scss';
 
-// import categories from '../data/categories.json';
-
 const Books = () => {
   const router = useRouter();
+  const type = router.query?.type
+
   const { categories } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
 
@@ -23,18 +22,20 @@ const Books = () => {
   return (
     <div className={classnames('container', st.abContainer)}>
       <Breadcrumbs
-        data={[{ path: '/books?type=books&sortBy=1', title: 'Книги' }]}
+        data={[{
+          path: `/books?type=${type}&sortBy=1`,
+          title: type === 'books' ? 'Книги' : 'Аудиокниги'
+        }]}
       />
-      <h2 className={st.abTitle}>Книги</h2>
+      <h2 className={st.abTitle}>{type === 'books' ? 'Книги' : 'Аудиокниги'}</h2>
       {innerWidthWindow < 768 && <MobalModal />}
       {innerWidthWindow >= 768 && (
         <>
           {cats?.map(i => (
             <button key={i?.id} className={st.abCateg}>
-              <Link href={`/books/${i?.id}?type=books&showType=block&sortBy=3`}>
+              <Link href={`/books/${i?.id}?type=${type}&showType=block&sortBy=1`}>
                 <a className={st.abCategLink}>
                   {i?.name}
-                  {/* {i.category} */}
                 </a>
               </Link>
             </button>

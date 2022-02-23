@@ -21,7 +21,15 @@ const Categories = props => {
 export default Categories;
 
 export async function getServerSideProps({ params, query }) {
-  const categories = await CategoriesService.getCategories();
+  const type = query?.type
+  let categories = []
+
+  if(type === 'books') {
+    categories = await CategoriesService.getCategories();
+  } else if(type === 'audioBooks') {
+    categories = await CategoriesService.getAudioCategories();
+  }
+
   const books = await BookService.getBooks({
     ...query,
     findByCategory: params?.id,

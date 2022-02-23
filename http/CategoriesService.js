@@ -6,6 +6,10 @@ export default class CategoriesService {
 		return axios.get(`${API_URL}/genres`)
 	}
 
+	static async getAudioCategories() {
+		return axios.get(`${API_URL}/audio-books/genres`)
+	}
+
 	static async getCategoriesWithCount() {
 		return axios.get(`${API_URL}/genres/books`)
 	}

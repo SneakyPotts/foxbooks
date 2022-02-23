@@ -7,7 +7,7 @@ export default class BookService {
 		page = 1,
 		findByCategory = '',
 		showType = 'block',
-		sortBy = 3,
+		sortBy = 1,
 		findByAuthor = '',
 		findByPublisher = '',
 		findByTitle = '',
@@ -15,8 +15,7 @@ export default class BookService {
 		alphabetPublisherIndex = '',
 		alphabetTitleIndex = ''
 	}) {
-		return axios.get(`${API_URL}/books?
-			${type && `type=${type}`}
+		return axios.get(`${API_URL}/books?${type && `type=${type}`}
 			${page && `&page=${page}`}
 			${findByCategory && `&findByCategory=${findByCategory}`}
 			${showType && `&showType=${showType}`}
