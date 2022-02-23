@@ -13,12 +13,10 @@ const TextWithQoutes = () => {
 	const initialText = useMemo(() => {
 		const str = book?.pages[0]?.content
 		// return str.slice(str?.indexOf('>') + 1, str?.length - 7)
-		return str
+		return str.replace(/<(\/*)(html|body)[^>]*>/g, '')
 	}, [book])
 
 	const [changedText, setChangedText] = useState(initialText)
-
-
 
 	const [toolsIsVisible, setToolsIsVisible] = useState(false)
 	const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 });
@@ -32,40 +30,44 @@ const TextWithQoutes = () => {
 
 	//========= ПЕРЕДЕЛАТЬ ПРОПС currColor !!!!!!!!!!!! =========================
 	const [quotes, setQuotes] = useState([
-		{
-			id: 0,
-			color: '#A5D5FF',
-			endContainer: "/p 5/i 1/text 1",
-			endOffset: 16,
-			startContainer: "/p 5/text 1",
-			startOffset: 226
-		}
+		// {
+		// 	id: 0,
+		// 	color: '#A5D5FF',
+		// 	endContainer: "/p 9/text 1",
+		// 	endOffset: 241,
+		// 	startContainer: "/p 6/i 1/text 1",
+		// 	startOffset: 231
+		// }
 	]);
 
 	const generateQuotes = () => {
 		const mark = (se, quot, el) => {
 			const parent = el?.parent?.name
 
+			console.log('quot', quot)
+			console.log('el', el)
+			console.log('parent', parent)
+
 			if(quot?.startContainer === quot?.endContainer) {
 				if (se === 'end') return
 
-				return `<${parent}>${
+				return `<${el?.parent?.parent?.name}><${parent}>${
 					el?.data?.slice(0, quot?.startOffset)
 				}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
 					el?.data?.slice(quot?.startOffset, quot?.endOffset)
 				}</mark>${
 					el?.data?.slice(quot?.endOffset)
-				}</${parent}>`
+				}</${parent}></${el?.parent?.parent?.name}>`
 
 			} 
 			
 			if(se === 'start') {
 
-				return `<${parent}>${
+				return `<${el?.parent?.parent?.name}><${parent}>${
 					el?.data?.slice(0, quot?.startOffset)
 				}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
 					el?.data?.slice(quot?.startOffset)
-				}</mark>`
+				}</mark></${parent}></${el?.parent?.parent?.name}>`
 
 			} else if(se === 'end') {
 
@@ -73,7 +75,7 @@ const TextWithQoutes = () => {
 					el?.data?.slice(0, quot?.endOffset)
 				}</mark>${
 					el?.data?.slice(quot?.endOffset)
-				}</${parent}>`
+				}</${parent}></${el?.parent?.parent?.name}>`
 
 			}
 		}
@@ -164,7 +166,7 @@ const TextWithQoutes = () => {
 
 		const options = {
 			replace: domNode => {
-				if(domNode?.name === 'a') {
+				if(domNode?.name === 'a' || domNode?.name === 'html' || domNode?.name === 'body') {
 					return <>
 						{domToReact(domNode?.children, options)}
 					</>
@@ -209,7 +211,93 @@ const TextWithQoutes = () => {
 		return { startOffset, endOffset, startContainer, endContainer }
 	}
 
+	function highlight() {
+		const sel = window.getSelection();
+		const range = sel.getRangeAt(0);
+		const {
+			commonAncestorContainer,
+			startContainer,
+			endContainer,
+			startOffset,
+			endOffset
+		} = range;
+
+		console.log('commonAncestorContainer', commonAncestorContainer)
+		console.log('startContainer', startContainer)
+		console.log('endContainer', endContainer)
+		console.log('startOffset', startOffset)
+		console.log('endOffset', endOffset)
+
+		const nodes = [];
+
+		if (startContainer === endContainer) {
+			const span = document.createElement("span");
+			span.className = "highlight";
+			range.surroundContents(span);
+			nodes.push(startContainer);
+			return;
+		}
+
+		// get all posibles selected nodes
+		function getNodes(childList) {
+			childList.forEach((node) => {
+				const nodeSel = sel.containsNode(node, true);
+
+				// if is not selected
+				if (!nodeSel) return;
+
+				const tempStr = node.nodeValue
+
+				if (node.nodeType === 3 && tempStr.replace(/^\s+|\s+$/gm, "") !== "") {
+					nodes.push(node);
+				}
+
+				if (node.nodeType === 1) {
+					if (node.childNodes) getNodes(node.childNodes);
+				}
+			});
+		}
+
+		getNodes(commonAncestorContainer.childNodes);
+
+		nodes.forEach((node, index, listObj) => {
+			const { nodeValue } = node;
+			let text, prevText, nextText;
+
+			if (index === 0) {
+				prevText = nodeValue.substring(0, startOffset);
+				text = nodeValue.substring(startOffset);
+			} else if (index === listObj.length - 1) {
+				text = nodeValue.substring(0, endOffset);
+				nextText = nodeValue.substring(endOffset);
+			} else {
+				text = nodeValue;
+			}
+
+			const span = document.createElement("mark");
+			span.className = "highlight";
+			span.append(document.createTextNode(text));
+			const { parentNode } = node;
+
+			parentNode.replaceChild(span, node);
+
+			if (prevText) {
+				const prevDOM = document.createTextNode(prevText);
+				parentNode.insertBefore(prevDOM, span);
+			}
+
+			if (nextText) {
+				const nextDOM = document.createTextNode(nextText);
+				parentNode.insertBefore(nextDOM, span.nextSibling);
+			}
+		});
+		console.log(nodes)
+
+		sel.removeRange(range);
+	}
+
 	const mouseUpHandler = ev => {
+		highlight()
 		const text = window.getSelection().toString()
 
 		if(text?.length && text !== ' ') {
@@ -221,7 +309,7 @@ const TextWithQoutes = () => {
 			const xpath = fromRange(range, document.querySelector('#range-parent'))
 			const test = getXpathParameters(xpath)
 
-			console.log('test', test);
+			// console.log('test', test);
 			setStartPosition(test)
 			// setEndPosition(endPos)
 

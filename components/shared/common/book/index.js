@@ -69,7 +69,7 @@ const Book = ({
           <Link href={`/book/${book?.id}`}>
             <a onClick={bookLinkClick}>
               <Image
-                src="/horizontalBookCovers/book.png"
+                src={book?.image?.link || '/preview.jpg'}
                 alt=""
                 width={innerWidthWindow >= 768 ? 180 : 108}
                 height={
@@ -89,10 +89,10 @@ const Book = ({
           </Link>
         ) : (
           <Image
-            src="/horizontalBookCovers/book.png"
+            src={book?.image?.link || '/preview.jpg'}
             alt=""
             width={180}
-            height={audio ? '180' : '271'}
+            height={audio ? 180 : 271}
             placeholder="blur"
             blurDataURL="/images/blur.jpg"
             layout="responsive"
@@ -166,12 +166,12 @@ const Book = ({
 
         {noLinks ? (
           <span className={st.bookAuthor}>
-            {book?.authors?.length ? book?.authors[0]?.author : ''}
+            {book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}
           </span>
         ) : (
-          <Link href="/author">
+          <Link href={book?.authors?.length ? `/author?id=${book?.authors[0]?.id}` : ''}>
             <a className={st.bookAuthor}>
-              {book?.authors?.length ? book?.authors[0]?.author : ''}
+              {book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}
             </a>
           </Link>
         )}

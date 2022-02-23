@@ -59,7 +59,9 @@ const BookPage = () => {
             // height={250}
             className={st.relatedInfoBanner}
           />
-          <Comments />
+          <Comments
+            comments={book?.comments}
+          />
           <Reviews />
           {!audioFlag && <Quotes />}
           <AuthorOtherBooks />

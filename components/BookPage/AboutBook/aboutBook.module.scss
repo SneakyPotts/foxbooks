@@ -56,9 +56,19 @@
   line-height: 1.125;
   color: $color-second;
   margin-right: 10px;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .bookAuthorLink {
   color: $color-third;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .bookDate {
   font-family: 'Fira Sans', sans-serif;

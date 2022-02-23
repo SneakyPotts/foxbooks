@@ -21,7 +21,7 @@ const MyPagination = ({ currentPage, lastPage, externalClass }) => {
       showQuickJumper={{
         goButton: <Button classNames={styles.btn} text="Перейти" />,
       }}
-			current={+router.query?.page}
+			current={+router.query?.page || 1}
       defaultPageSize={1}
       total={lastPage}
       locale={locale}
