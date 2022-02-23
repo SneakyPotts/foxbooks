@@ -17,26 +17,9 @@ import Eye from '../../shared/icons/eye';
 import DrawerPopup from '../../shared/common/DrawerPopup';
 import st from './aboutBook.module.scss';
 
-const AboutBook = ({ book, audio }) => {
-  const dataBook = [
-    {
-      id: '0',
-      img: '/horizontalBookCovers/book.png',
-      title: 'Гарри Поттер и философский камень',
-      author: 'Джоан Роулинг',
-      year: '1997',
-      age: '6+',
-      raiting: '5',
-      about_book:
-        'Книга, покорившая мир, эталон литературы для читателей всех возрастов, синоним успеха. Книга, сделавшая Джоан Роулинг самым читаемым писателем современности. Книга, ставшая культовой уже для нескольких поколений. "Гарри Поттер и Философский камень" - история начинается.',
-      reader: 'Дмитрий Быков',
-      publishing: 'Махаон',
-      translater: 'Мария Спивак',
-      ganre: 'Фэнтези, зарубежная литература, детские книги',
-      copyright_holder: 'Pottermore limited',
-      series: 'Гарри Поттер',
-    },
-  ];
+const AboutBook = ({ book, audioFlag }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const dataOptions = [
     { id: '0', svg: <BookMark />, option: 'Хочу прочитать', value: 1 },
@@ -45,11 +28,6 @@ const AboutBook = ({ book, audio }) => {
     { id: '3', svg: <Add />, option: 'В мои подборки' },
     { id: '4', svg: <Basket />, option: 'Удалить из моих книг' },
   ];
-
-  const dispatch = useDispatch();
-  const router = useRouter();
-
-  const { audioFlag } = useSelector(state => state.book);
 
   const [openMenu, setOpenMenu] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);

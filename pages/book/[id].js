@@ -18,8 +18,8 @@ const Book = ({book}) => {
 
 export default Book;
 
-export async function getServerSideProps ({params}) {
-	const book = await BookService.getBookById(params?.id)
+export async function getServerSideProps ({params, query}) {
+	const book = await BookService.getBookById(params?.id, query?.type)
 
 	return {
 		props: {

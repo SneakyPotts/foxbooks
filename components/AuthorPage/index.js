@@ -13,6 +13,7 @@ import DropDownArrow from '../../public/chevron-down.svg';
 import ShowAll from '../shared/common/showAll/ShowAll';
 
 import st from './author.module.scss';
+import {useSelector} from "react-redux";
 
 const AuthorPage = () => {
   const bookSeries = [
@@ -62,6 +63,9 @@ const AuthorPage = () => {
       count: '17',
     },
   ];
+
+  const { author } = useSelector(state => state.author)
+
   const [showMore, setShowMore] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
 
@@ -94,9 +98,9 @@ const AuthorPage = () => {
               </div>
             </div>
             <div className={st.authorInfo}>
-              <h1 className={st.authorInfoName}>Джоан Кэтлин Роулинг</h1>
+              <h1 className={st.authorInfoName}>{author?.author}</h1>
               <p className={st.authorInfoCount}>
-                <span>11</span>книг
+                <span>{author?.books_count}</span> книг
               </p>
               <button className={st.authorInfoBtn} onClick={handleClick}>
                 {showPopUp ? (

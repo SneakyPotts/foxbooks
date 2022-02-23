@@ -3,7 +3,7 @@ import { API_URL } from ".";
 
 export default class AuthorService {
 	static async getAuthor(id) {
-		return axios.get(`${API_URL}/authors/series?id=${id}`)
+		return axios.get(`${API_URL}/authors/page?id=${id}`)
 	}
 
 	static async getAuthorBooks(id) {

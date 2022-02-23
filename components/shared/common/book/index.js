@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { setBreakPoint } from '../../../Header/commonSlice';
 import Link from 'next/link';
 import classnames from 'classnames';
-// import { AudioBook } from './bookSlice';
 import Image from 'next/image';
 import Stars from '../stars/Stars';
 import AddToBooks from '../../icons/add';
@@ -36,7 +34,7 @@ const Book = ({
   const [changeIcon, setChangeIcon] = useState(false);
   const [options, setOptions] = useState(false);
 
-  const route = useRouter();
+  const router = useRouter();
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const bookLinkClick = () => {
@@ -66,7 +64,7 @@ const Book = ({
         className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher })}
       >
         {!noLinks ? (
-          <Link href={`/book/${book?.id}`}>
+          <Link href={`/book/${book?.id}?type=${router.query?.type}`}>
             <a onClick={bookLinkClick}>
               <Image
                 src={book?.image?.link || '/preview.jpg'}
@@ -99,7 +97,10 @@ const Book = ({
           />
         )}
 
-        {!flagSwitcher && <span className={st.bookCategorie}>Фентези</span>}
+        {!flagSwitcher && <span className={st.bookCategorie}>
+          {book?.book_genres?.length ? book?.book_genres[0]?.name : null}
+          {book?.genre?.name || null}
+        </span>}
         {audio && (
           <span className={st.audioIcon}>
             <Headphones />
@@ -153,7 +154,7 @@ const Book = ({
             {book?.title}
           </h3>
         ) : (
-          <Link href={`/book/${book?.id}`}>
+          <Link href={`/book/${book?.id}?type=${router.query?.type}`}>
             <a
               className={classnames(st.bookName, {
                 [st.bookNameSmaller]: similar,
@@ -169,19 +170,21 @@ const Book = ({
             {book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}
           </span>
         ) : (
-          <Link href={book?.authors?.length ? `/author?id=${book?.authors[0]?.id}` : ''}>
-            <a className={st.bookAuthor}>
-              {book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}
-            </a>
-          </Link>
+          book?.authors?.length ?
+            <Link href={book?.authors?.length ? `/author?id=${book?.authors[0]?.id}` : ''}>
+              <a className={st.bookAuthor}>
+                {book?.authors[0]?.author}
+              </a>
+            </Link> :
+            <span className={st.bookAuthor}>Нет автора</span>
         )}
         {flagSwitcher && (
           <div className={classnames(st.extraInfo, { [st.addInfo]: !audio })}>
             <p className={st.bookYear}>
-              <span>2021</span>
+              <span>{book?.year?.year}</span>
               <span className={st.bookGenre}>
-                Жанр
-                {book?.book_genres?.length ? book?.book_genres[0] : ''}
+                {book?.book_genres?.length ? book?.book_genres[0]?.name : null}
+                {book?.genre?.name || null}
               </span>
             </p>
             {innerWidthWindow >= 768 && (

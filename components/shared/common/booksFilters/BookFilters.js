@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 const initFilters = [
   { id: 1, title: 'Последние поступления', value: 1 },
   { id: 2, title: 'Популярные', value: 3 },
-  { id: 3, title: 'Бестселлеры', value: 4 },
+  { id: 3, title: 'Бестселлеры', value: 5 },
   { id: 4, title: 'Сейчас читают', value: 2 },
 ];
 

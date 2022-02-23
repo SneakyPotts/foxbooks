@@ -2,7 +2,7 @@ import api, { API_URL } from ".";
 
 export default class ProfileService {
 	static async getProfile() {
-		return api.get(`${API_URL}/users`)
+		return api.get(`${API_URL}/profile`)
 	}
 
 	static async updateProfile(data) {

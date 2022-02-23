@@ -15,8 +15,11 @@ import AuthorOtherAudioBooks from './AuthorOtherAudiobooks';
 import SimilarBooks from './SimilarBooks';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import st from './bookpage.module.scss';
+import {useRouter} from "next/router";
 
 const BookPage = () => {
+  const router = useRouter()
+
   const compilationsBook = [
     { id: '0', title: 'Что читает Дэниел Рэдклифф' },
     {
@@ -27,9 +30,10 @@ const BookPage = () => {
     { id: '2', title: 'Дружба в книгах' },
     { id: '3', title: 'Что читает Дэниел Рэдклифф' },
   ];
-  const { audioFlag } = useSelector(state => state.book);
-  const { book } = useSelector(state => state.book);
 
+  const audioFlag = router.query?.type === 'audioBooks';
+
+  const { book } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const changeSlidesPerView = () => {
@@ -37,6 +41,7 @@ const BookPage = () => {
     if (innerWidthWindow <= 768) return 2;
     if (innerWidthWindow > 768) return 3;
   };
+
   const changeImageSize = () => {
     if (innerWidthWindow < 500) return 100;
   };
@@ -46,11 +51,11 @@ const BookPage = () => {
       <div className={st.mainBlock}>
         <AboutBook
           book={book}
-          // audio={true}
+          audioFlag={audioFlag}
         />
         <div className={st.relatedInfo}>
           <SimilarBooks
-          // audio={true}
+            audio={audioFlag}
           />
           <img
             src="/advertising.png"
@@ -87,8 +92,8 @@ const BookPage = () => {
                 }}
                 slidesPerView={changeSlidesPerView()}
               >
-                {compilationsBook.map(book => (
-                  <SwiperSlide key={book.id}>
+                {compilationsBook.map(i => (
+                  <SwiperSlide key={i.id}>
                     <div>
                       <div className={st.compilBookCover}>
                         <Image
@@ -102,7 +107,7 @@ const BookPage = () => {
                           <span>книг</span>
                         </div>
                       </div>
-                      <h4 className={st.compilBookTitle}>{book.title}</h4>
+                      <h4 className={st.compilBookTitle}>{i.title}</h4>
                     </div>
                   </SwiperSlide>
                 ))}

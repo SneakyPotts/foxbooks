@@ -1,5 +1,12 @@
 @import 'styles/variables.scss';
 
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper {
+  width: 100%;
+}
 .title {
   font-family: Merriweather;
   font-weight: 700;
@@ -33,11 +40,17 @@
   }
 }
 .advertisingBlok {
+  margin-top: 71px;
   margin-left: 24px;
   min-width: 180px;
   width: 180px;
   min-height: 1104px;
   overflow: hidden;
+
+  &.list {
+    min-width: 384px;
+    width: 384px;
+  }
 }
 .bannerBlock {
   margin-bottom: 40px;
@@ -48,6 +61,7 @@
 }
 .head {
   display: flex;
+
   > div {
     display: flex;
     justify-content: space-between;

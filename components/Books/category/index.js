@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useMemo, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
@@ -31,9 +31,13 @@ const Category = () => {
   const type = router.query?.type
 
   const [stateIndex, setStateIndex] = useState(null);
-  const [flagSwitcher, setFlagSwitcher] = useState(
-    router.query['showType'] === 'list'
-  );
+  // const [flagSwitcher, setFlagSwitcher] = useState(
+  //   router.query['showType'] === 'list'
+  // );
+
+  const flagSwitcher = useMemo(() => {
+    return router.query['showType'] === 'list'
+  }, [router.query])
 
   const { categories, books } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -53,59 +57,69 @@ const Category = () => {
           { path: router.asPath, title: currentCategory },
         ]}
       />
-      <div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
-        <h2 className={st.title}>{currentCategory}</h2>
-        <div>
-          {innerWidthWindow < 1024 && <MobalModal />}
-          {innerWidthWindow >= 1024 &&
-            data.map((it, index) => (
-              <Popular
-                key={index}
-                title={it?.title}
-                defaultValue={it?.defaultValue}
-                data={it?.options}
-                queryName={it?.queryName}
-                filterStateIdx={stateIndex}
-                elIdx={index}
-                setFilStateIdx={setStateIndex}
-              />
-            ))}
-          <Switcher
-            setFlagSwitcher={setFlagSwitcher}
-            flagSwitcher={flagSwitcher}
-          />
-        </div>
-      </div>
 
-      <div className={st.mainBlock}>
-        {innerWidthWindow >= 1024 && <SideFilters />}
-        <div className="booksWrapper">
-          {
-            books?.data?.length ? (
-              <>
-                <div
-                  className={classnames({
-                    [st.booksGrid]: !flagSwitcher,
-                    [st.booksColumn]: flagSwitcher,
-                  })}
-                >
-                  {books.data.map(book => (
-                    <Book
-                      key={book.id}
-                      audio={router.query?.type === 'audioBooks'}
-                      flagSwitcher={flagSwitcher}
-                      book={book}
-                    />
-                  ))}
-                </div>
-                <MyPagination lastPage={books?.last_page} />
-              </>
-            ) : (
-              <p className="empty">Книги не найдены</p>
-            )
-          }
+      <div className={st.container}>
+        <div className={st.wrapper}>
+          <div className={st.head}>
+            <h2 className={st.title}>{currentCategory}</h2>
+            <div>
+              {innerWidthWindow < 1024 && <MobalModal />}
+              {innerWidthWindow >= 1024 &&
+                data.map((it, index) => (
+                  <Popular
+                    key={index}
+                    title={it?.title}
+                    defaultValue={it?.defaultValue}
+                    data={it?.options}
+                    queryName={it?.queryName}
+                    filterStateIdx={stateIndex}
+                    elIdx={index}
+                    setFilStateIdx={setStateIndex}
+                  />
+                ))}
+              <Switcher
+                // setFlagSwitcher={setFlagSwitcher}
+                flagSwitcher={flagSwitcher}
+              />
+            </div>
+          </div>
+          <div className={st.mainBlock}>
+            {innerWidthWindow >= 1024 && <SideFilters />}
+            <div className="booksWrapper">
+              {
+                books?.data?.length ? (
+                  <>
+                    <div
+                      className={classnames({
+                        [st.booksGrid]: !flagSwitcher,
+                        [st.booksColumn]: flagSwitcher,
+                      })}
+                    >
+                      {books.data.map(book => (
+                        <Book
+                          key={book.id}
+                          audio={router.query?.type === 'audioBooks'}
+                          flagSwitcher={flagSwitcher}
+                          book={book}
+                        />
+                      ))}
+                    </div>
+                    <MyPagination lastPage={books?.last_page} />
+                  </>
+                ) : (
+                  <p className="empty">Книги не найдены</p>
+                )
+              }
+            </div>
+          </div>
         </div>
-        <div className={st.advertisingBlok}>
+
+        <div
+          className={classnames(
+            st.advertisingBlok,
+            {[st.list]: flagSwitcher}
+          )}
+        >
           <div className={st.bannerBlock}>
             <img src="/banner.png" alt="" className={st.banner} />
           </div>
