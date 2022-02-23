@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import Link from 'next/link';
 import CommentComp from '../CommentComponent';
@@ -7,8 +8,12 @@ import Button from '../../shared/common/Button/Button';
 import UnderCom from '../UnderCommentComp';
 import st from './comments.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
+import {useForm} from "react-hook-form";
+import CommentsService from "../../../http/CommentsService";
+import {useRouter} from "next/router";
 
-const Comments = () => {
+const Comments = ({ comments }) => {
+  const router = useRouter()
   const [showReplys, setShowReplys] = useState([
     { id: '0', flag: false },
     { id: '1', flag: false },
@@ -23,23 +28,41 @@ const Comments = () => {
     { id: '1', flagData: true },
     { id: '2', flagData: false },
   ];
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   const handleFirstInput = () => {
     setFirstInput(true);
   };
 
   const handleCancelBtn = () => {
-    setFirstInput(null);
-    setReplyIdx(null);
-    setUnderComIdx(null);
+    setValue('comment', '')
+    setFirstInput(false);
+    // setReplyIdx(null);
+    // setUnderComIdx(null);
   };
+
+  const {register, handleSubmit, setValue, formState: {errors}} = useForm();
+
+  const onSubmit = async data => {
+    console.log(data)
+    await CommentsService.addComments({
+      id: router.query?.id,
+      text: data?.comment,
+      type: 'book'
+    })
+    setValue('comment', '')
+    setFirstInput(false)
+  }
 
   return (
     <div className={st.container}>
       <h2 id="reviews" className={st.reviewsTitle}>
         Оставьте свой комментарий
       </h2>
-      <form className={st.user}>
+      <form
+        className={st.user}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className={st.userFormHeader}>
           <div className={st.userIcon}>
             <Image
@@ -52,6 +75,7 @@ const Comments = () => {
             />
           </div>
           <input
+            {...register('comment')}
             placeholder="Написать комментарий"
             className={st.userInput}
             onClick={handleFirstInput}
@@ -72,7 +96,7 @@ const Comments = () => {
           )}
         </div>
       </form>
-      {data.map(({ id, flagData }, idx) => (
+      {comments.map(({ id, flagData }, idx) => (
         <>
           <div key={id} className={st.reviewBlock}>
             <CommentComp idx={idx} />
@@ -100,7 +124,11 @@ const Comments = () => {
         </>
       ))}
 
-      <MyPagination />
+      {innerWidthWindow > 768 ? (
+        <MyPagination />
+      ) : (
+        <div className={st.pagination}>Показать еще</div>
+      )}
     </div>
   );
 };

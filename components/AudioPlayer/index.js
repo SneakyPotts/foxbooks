@@ -15,8 +15,8 @@ import classNames from "classnames";
 import Close from "../shared/icons/close";
 import {useDispatch, useSelector} from "react-redux";
 import {togglePlayer} from "../../store/commonSlice";
-import ArrowBack from "../shared/icons/arrowBack";
 import DrawerPopup from '../shared/common/DrawerPopup';
+import BackBtn from '../shared/common/BackBtn';
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -73,14 +73,10 @@ const AudioPlayer = () => {
       className={classNames(styles.wrapper, {[styles.hide] : isClosed})}
       onClick={hideDrops}
     >
-      {innerWidthWindow < 1024 &&
-        <button
-          className={styles.closeArrow}
-          onClick={closePlayer}
-        >
-          <ArrowBack />
-        </button>
-      }
+      <BackBtn
+        onClick={closePlayer}
+        externalClass={styles.closeArrow}
+      />
       <div className={styles.wrapperColumn}>
         <div className={styles.preview}>
           <Image
@@ -188,21 +184,19 @@ const AudioPlayer = () => {
             </DrawerPopup>
           }
         </div>
-        {innerWidthWindow >= 1024 &&
-          <div className={classNames(styles.playerVolume, styles.playerControlItem)}>
-            <div onClick={() => setSettings({...settings, volume: 0})}>
-              <PlayerVolume/>
-            </div>
-            <InputRange
-              value={settings?.volume}
-              setValue={value => setSettings({...settings, volume: value})}
-              max={'1'}
-              step={'0.1'}
-              barColor={'rgba(255, 255, 255, 0.5)'}
-              externalClass={styles.playerVolumeInput}
-            />
+        <div className={classNames(styles.playerVolume, styles.playerControlItem)}>
+          <div onClick={() => setSettings({...settings, volume: 0})}>
+            <PlayerVolume/>
           </div>
-        }
+          <InputRange
+            value={settings?.volume}
+            setValue={value => setSettings({...settings, volume: value})}
+            max={'1'}
+            step={'0.1'}
+            barColor={'rgba(255, 255, 255, 0.5)'}
+            externalClass={styles.playerVolumeInput}
+          />
+        </div>
       </div>
 
       <ReactPlayer
@@ -214,14 +208,12 @@ const AudioPlayer = () => {
         {...settings}
       />
 
-      {innerWidthWindow >= 1024 &&
-        <button
-          className={styles.close}
-          onClick={closePlayer}
-        >
-          <Close/>
-        </button>
-      }
+      <button
+        className={styles.close}
+        onClick={closePlayer}
+      >
+        <Close/>
+      </button>
     </div>
   );
 };

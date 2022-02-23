@@ -11,7 +11,12 @@ import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
 import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
 import Filters from '../../shared/icons/filters';
 import Button from '../../shared/common/Button/Button';
+import CrossInCircle from '../../shared/icons/crossInCircle';
+import MobalModal from '../../shared/common/mobalModal';
 import st from './category.module.scss';
+
+import books from '../../data/books.json';
+import categories from '../../data/categories.json';
 
 const data = [
   {
@@ -63,7 +68,9 @@ const Category = () => {
     },
   ]);
 
-  const { categories, books } = useSelector(state => state.book);
+  const { categories } = useSelector(state => state.book);
+  // const { books } = useSelector(state => state.book);
+
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const currentCategory = categories?.find(
@@ -73,10 +80,10 @@ const Category = () => {
   const BlokRef = useRef();
 
   useEffect(() => {
-    setWidthBlock(BlokRef);
+    setTimeout(() => {
+      setWidthBlock(BlokRef);
+    }, 0);
   }, []);
-
-  const closeFilter = () => {};
 
   return (
     <div className="container">
@@ -89,62 +96,8 @@ const Category = () => {
       <div className={classnames(st.head, { [st.headActive]: flagSwitcher })}>
         <h2 className={st.title}>{currentCategory}</h2>
         <div>
-          {innerWidthWindow < 768 && (
-            <div onClick={() => setShowFilters(true)} className={st.mobalModal}>
-              <div className={st.mobalModalFiltersMenu}>
-                <span>Фильтры</span>
-                <Filters />
-              </div>
-                {showFilters &&
-                  <ModalWindow
-                    onClose={() => setShowFilters(false)}
-                    isFullScreen={true}
-                  >
-                    <div className={st.mobalModalHead}>
-                      <p className={st.mobalModalTitle}>Фильтры</p>
-                      <span className={st.filterCount}>2</span>
-                      <p className={st.mobalModalFilters}>Очистить фильтры</p>
-                    </div>
-                    {data.map((it, index) => (
-                      <Popular
-                        key={index}
-                        title={it?.title}
-                        defaultValue={it?.defaultValue}
-                        data={it?.options}
-                        queryName={it?.queryName}
-                        filterStateIdx={stateIndex}
-                        elIdx={index}
-                        setFilStateIdx={setStateIndex}
-                      />
-                    ))}
-                    <ul className={st.filters}>
-                      {filters?.map(it => (
-                        <li key={it?.id} className={st.filterStatus}>
-                          <button className={st.btn}>{it?.option}</button>
-                          <div
-                            className={st.dates}
-                            onClick={e => e.stopPropagation()}
-                          >
-                            <input
-                              placeholder={it?.placeholder}
-                              className={st.input}
-                              onChange={ev =>
-                                  handleChange(ev.target.value, it?.queryName)
-                              }
-                            />
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      text="Посмотреть 262 предложения"
-                      classNames={st.filtersBtn}
-                    />
-                </ModalWindow>
-              }
-            </div>
-          )}
-          {innerWidthWindow >= 768 &&
+          {innerWidthWindow < 1024 && <MobalModal />}
+          {innerWidthWindow >= 1024 &&
             data.map((it, index) => (
               <Popular
                 key={index}
@@ -161,41 +114,49 @@ const Category = () => {
             setFlagSwitcher={setFlagSwitcher}
             flagSwitcher={flagSwitcher}
           />
-          <div
-            style={{
-              width:
-                widthBlock?.current && `${widthBlock.current.clientWidth}px`,
-              marginLeft: '24px',
-            }}
-          />
+          {innerWidthWindow >= 768 && (
+            <div
+              style={{
+                width:
+                  widthBlock?.current && `${widthBlock.current.clientWidth}px`,
+                marginLeft: '24px',
+              }}
+            />
+          )}
         </div>
       </div>
 
       <div className={st.mainBlock}>
-        {innerWidthWindow >= 768 && <SideFilters />}
+        {innerWidthWindow >= 1024 && <SideFilters />}
         <div className="booksWrapper">
-          {books?.data?.length ? (
-            <>
-              <div
-                className={classnames({
-                  [st.booksGrid]: !flagSwitcher,
-                  [st.booksColumn]: flagSwitcher,
-                })}
-              >
-                {books?.data?.map(book => (
-                  <Book
-                    key={book.id}
-                    audio={router.query?.type === 'audioBooks'}
-                    flagSwitcher={flagSwitcher}
-                    book={book}
-                  />
-                ))}
-              </div>
-              <MyPagination lastPage={books?.last_page} />
-            </>
-          ) : (
-            <p className="empty">Книги не найдены</p>
-          )}
+          {
+            // books?.data?.length
+            books ? (
+              <>
+                <div
+                  className={classnames({
+                    [st.booksGrid]: !flagSwitcher,
+                    [st.booksColumn]: flagSwitcher,
+                  })}
+                >
+                  {
+                    // books?.data ?
+                    books.map(book => (
+                      <Book
+                        key={book.id}
+                        audio={router.query?.type === 'audioBooks'}
+                        flagSwitcher={flagSwitcher}
+                        book={book}
+                      />
+                    ))
+                  }
+                </div>
+                <MyPagination lastPage={books?.last_page} />
+              </>
+            ) : (
+              <p className="empty">Книги не найдены</p>
+            )
+          }
         </div>
         <div className={st.advertisingBlok} ref={BlokRef}>
           <div className={st.bannerBlock}>

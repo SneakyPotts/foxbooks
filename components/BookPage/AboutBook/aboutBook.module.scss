@@ -1,15 +1,17 @@
 @import 'styles/variables.scss';
 
+// .bookInfo {
+//   display: flex;
+// }
 .bookInfo {
   display: flex;
-}
-.bookMainInfo {
-  display: flex;
+  flex-direction: column;
 }
 .bookCover {
   position: relative;
   width: 270px;
   max-height: 406px;
+  height: 406px;
 
   &Icon {
     position: absolute;
@@ -34,7 +36,7 @@
   font-size: 14px;
   line-height: 1.43;
   max-width: 584px;
-  margin-left: 24px;
+  // margin-left: auto;
   color: $color-second;
 }
 .bookTitle {
@@ -54,9 +56,19 @@
   line-height: 1.125;
   color: $color-second;
   margin-right: 10px;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .bookAuthorLink {
   color: $color-third;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .bookDate {
   font-family: 'Fira Sans', sans-serif;
@@ -78,6 +90,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: Fira Sans, sans-serif;
+  margin-left: 20px;
   color: $color-third;
 
   > span {
@@ -94,37 +107,42 @@
     display: flex;
     align-items: center;
     margin-right: 30px;
-
     svg {
       height: 24px;
       width: 24px;
     }
     &Count {
       margin-left: 3px;
+      color: $color-second;
     }
     span {
       height: 24px;
-    }
-  }
-
-  .starsBlock {
-    display: flex;
-    align-items: center;
-
-    & p {
-      margin-right: 20px;
-    }
-    span {
-      margin-right: 3px;
-      height: 24px;
-    }
-    svg {
-      height: 24px;
-      width: 24px;
     }
   }
 }
+.starsBlock {
+  font-size: 16px;
+  line-height: 1.125;
+  display: flex;
+  align-items: center;
+  color: $color-main;
 
+  p {
+    margin-right: 20px;
+  }
+  span {
+    margin-right: 3px;
+    height: 24px;
+  }
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+}
+.addDistance {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 .buttons {
   display: flex;
   margin: 20px 0;
@@ -133,6 +151,9 @@
   font-family: Fira Sans, sans-serif;
   font-size: 14px;
   line-height: 1.43;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 200px;
   height: 40px;
   margin-right: 20px;
@@ -160,6 +181,7 @@
 .activBtn {
   border-color: $text-hover;
 }
+
 //DROP DOWN
 .dropdown {
   position: relative;
@@ -183,9 +205,10 @@
     align-items: center;
     color: $color-second;
     stroke: $text-hover;
+    fill: none;
     transition: 0.15s;
 
-    & span {
+    span {
       margin-left: 15px;
     }
 
@@ -207,6 +230,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  font-family: Fira Sans, sans-serif;
   text-align: center;
   width: 100%;
   height: 60px;
@@ -237,7 +261,7 @@
   display: flex;
   margin-bottom: 20px;
 
-  & li {
+  li {
     margin-right: 30px;
     .number {
       color: $color-third;
@@ -246,7 +270,7 @@
 }
 .ditalInfo {
   margin-top: 20px;
-  & p {
+  p {
     margin-bottom: 10px;
 
     span {
@@ -255,6 +279,144 @@
 
     &:hover span {
       color: $text-hover;
+    }
+  }
+}
+
+.infoBlockBook {
+  display: flex;
+}
+
+.blockBookTitle {
+  min-width: 588px;
+  margin-left: 24px;
+}
+
+@media (max-width: 1024px) {
+  .blockBookTitle {
+    min-width: initial;
+  }
+}
+@media (max-width: 768px) {
+  .bookCover {
+    min-width: 108px;
+    height: 160px;
+    max-width: 108px;
+  }
+  .bookTitle {
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 10px;
+  }
+  .wrapperBookTitle {
+    position: absolute;
+    top: 0;
+    left: 118px;
+  }
+  .blockBookTitle {
+    margin-left: 0;
+  }
+  .bookAuthorName {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .bookAuthor {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+  .bookDate {
+    margin-bottom: 10px;
+  }
+  .infoBlockBook {
+    flex-direction: column;
+    position: relative;
+  }
+  .raiting {
+    font-size: 16px;
+    line-height: 1.125;
+    display: flex;
+    color: $color-main;
+
+    .bookRaiting {
+      font-size: 14px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+
+      svg {
+        height: 18px;
+        width: 18px;
+      }
+      //   &Count {
+      //     margin-left: 3px;
+      //   }
+      //   span {
+      //     height: 24px;
+      //   }
+      // }
+    }
+  }
+  .readButton {
+    width: 285px;
+    height: 48px;
+  }
+  .dotsButton {
+    width: 48px;
+    height: 48px;
+  }
+
+  .aboutBook {
+    max-width: 100%;
+    p {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  .ditalInfo {
+    p {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+  .navLinks {
+    font-size: 16px;
+    line-height: 18px;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100vw;
+    padding: 10px 0;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    &::-moz-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+  .menu {
+    width: 100vw;
+    min-height: 293px;
+    padding: 30px;
+    padding-top: 43px;
+    border-radius: 10px 10px 0 0;
+    left: 0;
+    transform: inherit;
+  }
+  .popUp {
+    font-size: 14px;
+    line-height: 1.43;
+    padding: 15px 37px;
+    height: 70px;
+  }
+  .popUpLink {
+    display: initial;
+    border-bottom: 1px solid $color-categories-btn;
+    &::after {
+      display: none;
     }
   }
 }

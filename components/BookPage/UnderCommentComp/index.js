@@ -141,7 +141,7 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
               {data.map(({ id }, idx) => (
                 <div key={id} className={classnames(st.reviewBlock, st.sizes)}>
                   <div className={st.reviewer}>
-                    <div className={st.reviewerIcon}>
+                    <div className={st.reviewerUnderCom}>
                       <Image
                         src="/horizontalBookCovers/bookCover1.png"
                         alt=""

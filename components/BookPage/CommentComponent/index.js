@@ -1,18 +1,21 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import Image from 'next/image';
-import Eye from '../../shared/icons/eye';
+// import Eye from '../../shared/icons/eye';
 import DropDownArrow from '../../../public/chevron-down.svg';
 import Like from '../../shared/icons/heart';
 import Comment from '../../shared/icons/comment';
 import Button from '../../shared/common/Button/Button';
 import st from './comComp.module.scss';
 
-const CommentComp = ({ idx, type }) => {
+const CommentComp = ({ idx, type, reviews = false }) => {
   const [showMore, setShowMore] = useState(false);
   const [mainCommentIdx, setMainCommenIdx] = useState(null);
   const [inputIdx, setInputIdx] = useState(null);
+
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   const onShowMore = () => {
     setShowMore(!showMore);
@@ -103,11 +106,14 @@ const CommentComp = ({ idx, type }) => {
             onClick={onShowMore}
           >
             Показать полностью
-            {/* <DropDownArrow
-							className={classnames(st.dropDownArrow, {
-								[st.up]: showMore,
-							})}
-						/> */}
+            {innerWidthWindow <= 768 && (
+              <DropDownArrow
+                className={classnames(st.dropDownArrow, {
+                  [st.up]: showMore,
+                  [st.color]: reviews,
+                })}
+              />
+            )}
           </span>
           <div className={st.reviewStatistic}>
             <span className={st.reviewIcon}>

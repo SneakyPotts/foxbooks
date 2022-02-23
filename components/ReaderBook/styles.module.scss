@@ -4,6 +4,7 @@
 .pageWrapper {
   background: var(--bg-color);
   padding-top: 23px;
+  padding-bottom: 60px;
 }
 .pageContainer {
   position: relative;
@@ -11,6 +12,100 @@
 .pagination {
   margin: 60px auto 30px !important;
   max-width: 700px;
+  
+  :global(.rc-pagination-item) {
+    color: var(--modal-text-color) !important;
+
+    &:hover {
+      color: $text-hover !important;
+    }
+  }
+
+  :global(.rc-pagination-item-link) {
+    &::before {
+      color: var(--modal-text-color) !important;
+    }
+  }
+
+  :global(.rc-pagination-item-active) {
+    color: $text-hover !important;
+  }
+
+  :global(.rc-pagination-options-quick-jumper) {
+    font-size: 0 !important;
+
+    input {
+      background: var(--bg-color) !important;
+      border-color: var(--controls-color) !important;
+      color: var(--modal-text-color) !important;
+    }
+
+    button {
+      background: var(--controls-color) !important;
+
+      &:hover {
+        background: $text-hover !important;
+      }
+    }
+  }
+}
+
+.progress {
+  &Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--modal-text-color);
+    margin-bottom: 4px;
+  }
+
+  &Input {
+    &::-webkit-slider-thumb {
+      width: 16px !important;
+      height: 16px !important;
+    }
+
+    &::-moz-range-thumb {
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+}
+
+.mobileFooter {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 10px;
+  color: var(--modal-text-color);
+  background: var(--bg-color);
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  left: 15px;
+
+  &Mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    fill: var(--icons-color);
+
+    &.active {
+      fill: $text-hover;
+    }
+
+    svg path {
+      transition: .15s;
+    }
+  }
+
+  span {
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 
 // start HEADER ==================================
@@ -183,6 +278,11 @@
   transform: translateY(0);
   width: 279px;
 }
+
+.drawer {
+  background: var(--modal-color);
+  border: 1px solid var(--modal-border-color)
+}
 // end HEADER ==================================
 
 // start TEXT ==================================
@@ -199,9 +299,15 @@
     color: var(--author-color);
     font-size: 16px;
     line-height: 140%;
-    text-indent: 20px;
-    display: block;
-    text-align: center;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover;
+    }
   }
   &Subtitle {
     color: var(--main-color);
@@ -213,11 +319,9 @@
   }
   &Text {
     color: var(--text-color);
-    white-space: break-spaces;
-    width: 792px;
+    // white-space: pre-wrap;
+    width: 100%;
     margin: 0 auto;
-    font-size: 16px;
-    line-height: 140%;
     text-indent: 20px;
 
     span {
@@ -309,7 +413,6 @@
     box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
     border-radius: 10px;
     background: var(--modal-color);
-    border: 1px solid var(--modal-border-color);
     width: 279px;
     z-index: 3;
     overflow: hidden;
@@ -318,6 +421,7 @@
 
     &.active {
       max-height: 240px;
+      border: 1px solid var(--modal-border-color);
     }
 
     span {
@@ -375,11 +479,19 @@
     display: flex;
     flex-direction: column;
     width: 291px;
-    font-family: Ubuntu;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     line-height: 140%;
     color: var(--text-color);
     text-indent: 0;
+
+    &.error {
+      width: 200px;
+
+      & .addQuotFlex {
+        justify-content: flex-start;
+      }
+    }
   }
 
   &Flex {
@@ -424,12 +536,128 @@
 }
 // end ADD QUOT ==================================
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .editPopup {
-    top: initial;
-    right: initial;
+    right: 15px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .pageWrapper {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
+  .mobileBack {
+    position: fixed;
+    top: 70px;
+  }
+  .header {
+    position: fixed;
+    height: 164px;
+    padding: 30px 15px;
+    align-items: flex-end;
     bottom: 0;
+    right: 0;
+    left: 0;
+    background: var(--modal-color);
+    border: 1px solid var(--modal-border-color);
+    border-radius: 20px 20px 0 0;
+    z-index: 5;
+  }
+  .logoWrapper {
+    display: none;
+  }
+  .marksList {
+    display: none;
+  }
+  .pagination {
+    display: none !important;
+  }
+  .progress {
+    position: fixed;
+    bottom: 90px;
+    right: 15px;
+    left: 15px;
+    z-index: 5;
+
+    &Wrapper {
+      justify-content: center;
+      font-size: 14px;
+      line-height: 140%;
+
+      span {
+        &:first-of-type {
+          display: none;
+        }
+      }
+    }
+
+    &Input {
+      &::-webkit-slider-thumb {
+        width: 12px !important;
+        height: 12px !important;
+      }
+
+      &::-moz-range-thumb {
+        width: 12px !important;
+        height: 12px !important;
+      }
+    }
+  }
+  .mobileFooter {
+    display: flex;
+  }
+  .book {
+    &Title {
+      font-size: 20px;
+      line-height: 25px;
+      margin: 0 0 20px;
+    }
+
+    &Subtitle {
+      font-size: 14px;
+      line-height: 16px;
+      margin: 20px 0;
+    }
+  }
+  .edit {
+    &Popup {
+      top: initial;
+      right: initial;
+      bottom: 0;
+      width: 100%;
+      padding: 40px 15px 30px;
+    }
+
+    &Dropdown {
+      width: calc(100vw - 49px);
+      right: 0;
+    }
+
+    &Wrapper {
+      &:first-of-type {
+        display: none;
+      }
+      &:nth-of-type(2) {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .tooltip {
+    display: none;
+  }
+
+  .controls {
     width: 100%;
+    justify-content: space-between;
+
+    &Btn {
+      margin: 0;
+
+      &:nth-of-type(4) {
+        display: none;
+      }
+    }
   }
 
   .addQuot {
@@ -445,6 +673,29 @@
       justify-content: space-between;
       left: 50% !important;
       transform: translateX(-50%) !important;
+
+      &.error {
+        width: 230px;
+        justify-content: space-between;
+
+        & > div:nth-of-type(2) {
+          margin: 0;
+        }
+
+        & .addQuotFlex:first-of-type {
+          svg path {
+            fill: none;
+            stroke: #fff;
+          }
+
+          &:hover {
+            svg path {
+              fill: none;
+              stroke: $text-hover;
+            }
+          }
+        }
+      }
     }
 
     &Flex {

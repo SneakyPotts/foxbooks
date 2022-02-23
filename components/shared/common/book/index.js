@@ -24,6 +24,7 @@ const Book = ({
   flagSwitcher,
   classNames,
   similar,
+  mobalSimilar = false,
   noLinks = false,
   book,
   count,
@@ -61,12 +62,14 @@ const Book = ({
         [st.containerColumn]: flagSwitcher,
       })}
     >
-      <div className={st.wrapper}>
+      <div
+        className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher })}
+      >
         {!noLinks ? (
           <Link href={`/book/${book?.id}`}>
             <a onClick={bookLinkClick}>
               <Image
-                src="/horizontalBookCovers/book.png"
+                src={book?.image?.link || '/preview.jpg'}
                 alt=""
                 width={innerWidthWindow >= 768 ? 180 : 108}
                 height={
@@ -86,10 +89,10 @@ const Book = ({
           </Link>
         ) : (
           <Image
-            src="/horizontalBookCovers/book.png"
+            src={book?.image?.link || '/preview.jpg'}
             alt=""
             width={180}
-            height={audio ? '180' : '271'}
+            height={audio ? 180 : 271}
             placeholder="blur"
             blurDataURL="/images/blur.jpg"
             layout="responsive"
@@ -114,23 +117,32 @@ const Book = ({
             {similar ? (
               <div className={st.starsBlock}>
                 <Stars count={1} value={book?.rates_count} />
-                <span>1{book?.rates_count}</span>
+                <span>{book?.rates_count}</span>
               </div>
             ) : (
               <div className={st.starsBlock}>
                 <Stars count={count} value={book?.rates_count} />
-                {innerWidthWindow <= 768 && <span>{book?.rates_count}4</span>}
+                {innerWidthWindow <= 768 && <span>{book?.rates_count}</span>}
               </div>
             )}
           </div>
-          <div className={st.selectionDateViews}>
-            <span>456</span>
-            <Eye />
-          </div>
-          {/* <div className={classnames({ [st.raitingAmount]: flagSwitcher })}>
-            <span>1{book?.rates_avg}</span>
-            {!similar && <span>(2{book?.book_likes_count})</span>}
-          </div> */}
+          {!flagSwitcher && (
+            <div
+              className={classnames(st.selectionDateViews, {
+                [st.hide]: mobalSimilar,
+              })}
+            >
+              <span>456</span>
+              <Eye />
+            </div>
+          )}
+
+          {flagSwitcher && (
+            <div className={st.raitingAmount}>
+              <span>{book?.rates_avg}</span>
+              {!similar && <span>(2{book?.book_likes_count})</span>}
+            </div>
+          )}
         </div>
         {noLinks ? (
           <h3
@@ -138,7 +150,7 @@ const Book = ({
               [st.bookNameSmaller]: similar,
             })}
           >
-            T{book?.title}
+            {book?.title}
           </h3>
         ) : (
           <Link href={`/book/${book?.id}`}>
@@ -147,19 +159,19 @@ const Book = ({
                 [st.bookNameSmaller]: similar,
               })}
             >
-              T{book?.title}
+              {book?.title}
             </a>
           </Link>
         )}
 
         {noLinks ? (
           <span className={st.bookAuthor}>
-            A{book?.authors?.length ? book?.authors[0]?.author : ''}
+            {book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}
           </span>
         ) : (
-          <Link href="/author">
+          <Link href={book?.authors?.length ? `/author?id=${book?.authors[0]?.id}` : ''}>
             <a className={st.bookAuthor}>
-              A{book?.authors?.length ? book?.authors[0]?.author : ''}
+              {book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}
             </a>
           </Link>
         )}
@@ -168,22 +180,37 @@ const Book = ({
             <p className={st.bookYear}>
               <span>2021</span>
               <span className={st.bookGenre}>
+                Жанр
                 {book?.book_genres?.length ? book?.book_genres[0] : ''}
               </span>
             </p>
-            <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
-              {book?.text}
-            </p>
+            {innerWidthWindow >= 768 && (
+              <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
+                {book?.text}
+              </p>
+            )}
             {!audio && (
               <div className={st.reviewStatistic}>
-                <span className={st.reviewIcon}>
-                  <Like />
+                {!flagSwitcher ? (
+                  <>
+                    <span className={st.reviewIcon}>
+                      <Like />
+                    </span>
+                    <span className={st.reviewLike}>3115</span>
+                  </>
+                ) : (
+                  <div className={st.selectionDateViews}>
+                    <span>456</span>
+                    <Eye />
+                  </div>
+                )}
+                <span
+                  className={classnames(st.reviewIcon, {
+                    [st.distance]: flagSwitcher,
+                  })}
+                >
+                  <Comment /> 700
                 </span>
-                <span className={st.reviewLike}>3115</span>
-                <span className={st.reviewIcon}>
-                  <Comment />
-                </span>
-                <span>700</span>
               </div>
             )}
           </div>

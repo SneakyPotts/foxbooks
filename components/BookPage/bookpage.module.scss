@@ -10,32 +10,34 @@
 }
 .relatedInfo {
   max-width: 588px;
-}
-.advertisingBlok {
-  display: block;
-  margin-left: 24px;
-  max-width: 294px;
-  min-height: 1104px;
-}
-.banner {
-  height: 1104px;
-}
-.banner:not(:last-child) {
-  margin-bottom: 40px;
+  &Banner {
+    display: block;
+    width: 588px;
+    height: 250px;
+  }
 }
 
 .compilBlock {
   margin-bottom: 60px;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
 }
 .compilTitle {
   font-family: Merriweather;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
-  margin-bottom: 40px;
   color: $color-main;
 }
+.dicardDistance {
+  margin-bottom: 0;
+}
 .compilBookCover {
+  display: flex;
   position: relative;
   border-radius: 5px;
 
@@ -51,6 +53,12 @@
     color: $color-main;
     background-color: $color-categories-btn;
     border-radius: 58px;
+  }
+  img {
+    object-fit: fill;
+    max-height: 164px;
+    min-width: 100vw;
+    border-radius: 5px;
   }
 }
 .compilBookTitle {
@@ -116,4 +124,70 @@
 }
 .userInput:hover {
   border-color: $color-third;
+}
+.advertisingBlok {
+  display: block;
+  margin-left: 24px;
+  max-width: 294px;
+  min-height: 1104px;
+}
+.banner {
+  width: 100%;
+  height: 1104px;
+}
+.banner:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .advertisingBlok {
+    display: none;
+  }
+}
+@media (max-width: 915px) {
+  .relatedInfo {
+    max-width: calc(100vw - 30px);
+    &Banner {
+      width: 100%;
+      height: 168px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .wrapper {
+    display: inherit;
+  }
+  .mainBlock {
+    align-items: initial;
+  }
+  .compilTitle {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .compilBookCover {
+    img {
+      min-width: 100vw;
+      object-fit: fill;
+      max-height: 164px;
+    }
+  }
+  .recommendations {
+    font-size: 20px;
+    line-height: 25px;
+    &Label {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .compilBookCover {
+    img {
+      min-width: 100vw;
+      object-fit: fill;
+      max-height: 164px;
+    }
+  }
 }

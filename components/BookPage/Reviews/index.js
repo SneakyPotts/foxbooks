@@ -1,11 +1,11 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import Button from '../../shared/common/Button/Button';
 import ArrowAll from '../../../public/chevron-down.svg';
 import CommentComp from '../CommentComponent';
 import st from './reviews.module.scss';
-import MyPagination from "../../shared/common/MyPagination";
+import MyPagination from '../../shared/common/MyPagination';
 
 const Reviews = () => {
   const options = ['Положительная', 'Отрицательная', 'Нейтральная'];
@@ -22,6 +22,7 @@ const Reviews = () => {
 
   const [activeOption, setActiveOption] = useState('Тип рецензии');
   // const [mainCommentIdx, setMainCommenIdx] = useState(null);
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -72,7 +73,7 @@ const Reviews = () => {
       )}
       {reviewTyping && (
         <form>
-          <p className={st.leaveReviewInputLabel}>
+          <p className={classnames(st.leaveReviewInputLabel, st.hide)}>
             Выберите тип вашей рецензии
           </p>
 
@@ -119,16 +120,21 @@ const Reviews = () => {
             сказали?
           </p>
 
-          <input className={st.leaveReviewInput} />
+          {innerWidthWindow < 768 ? (
+            <textarea
+              className={st.leaveReviewField}
+              onChange={handleChangeReviewField}
+            ></textarea>
+          ) : (
+            <input className={st.leaveReviewInput} />
+          )}
 
           <p className={st.leaveReviewFieldLabel}>Ваша рецензия</p>
           <textarea
             className={st.leaveReviewField}
             onChange={handleChangeReviewField}
           ></textarea>
-          <div
-            className={classnames(st.controllBtn, st.controllBtnsLeaveReview)}
-          >
+          <div className={st.controllBtn}>
             <Button
               typeButton="submit"
               text="Отправить"
@@ -136,18 +142,22 @@ const Reviews = () => {
             />
             <button className={st.cancelBtn} onClick={handleCancelBtn}>
               Отменить
-						</button>
-					</div>
-				</form>
-			)}
-			{reviewsAmount.map((it, idx) => (
-				<div key={it.id} className={st.review}>
-					<CommentComp idx={idx} type={it.type} />
-				</div>
-			))}
-			<MyPagination />
-		</div>
-	);
+            </button>
+          </div>
+        </form>
+      )}
+      {reviewsAmount.map((it, idx) => (
+        <div key={it.id} className={st.review}>
+          <CommentComp idx={idx} type={it.type} reviews={true} />
+        </div>
+      ))}
+      {innerWidthWindow > 768 ? (
+        <MyPagination />
+      ) : (
+        <div className={st.pagination}>Показать еще</div>
+      )}
+    </div>
+  );
 };
 
 export default Reviews;

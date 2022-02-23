@@ -3,17 +3,24 @@
 .reviewComment {
   font-size: 14px;
   line-height: 1.43;
-  padding: 20px 0;
+  padding-top: 20px;
   border-top: 1px solid $color-star-border;
 
-  &:last-of-type {
-    border: none;
-  }
+  // &:last-of-type {
+  //   border: none;
+  // }
 }
 .reviewer {
   display: flex;
   align-items: center;
   margin-bottom: 13px;
+  &UnderCom {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    overflow: hidden;
+  }
 }
 .reviewerIcon {
   width: 35px;
@@ -87,7 +94,8 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 12px;
+  margin-bottom: 20px;
   margin-left: 45px;
   color: $color-third;
   stroke: $color-third;
@@ -111,9 +119,9 @@
   margin: auto;
   border-top: 1px solid $color-star-border;
 }
-.sizes:last-of-type {
-  border: none;
-}
+// .sizes:last-of-type {
+//   border: none;
+// }
 .controllBtn {
   font-size: 14px;
   line-height: 1.43;
@@ -142,5 +150,29 @@
   border-radius: 50%;
   margin-right: 16px;
   overflow: hidden;
-  background: red!important;
+  background: red !important;
+}
+
+@media (max-width: 768px) {
+  .reviewerIcon {
+    width: 34px;
+    height: 34px;
+  }
+  .reviewer {
+    &UnderCom {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .sizes {
+    width: 100%;
+    margin: 0;
+    padding-left: 44px;
+  }
+  .replyArea {
+    width: calc(100% - 35px);
+  }
+  .replierIcon {
+    margin-right: 10px;
+  }
 }

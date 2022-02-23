@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import Eye from '../../shared/icons/eye';
 import Like from '../../shared/icons/heart';
+import MyPagination from '../../shared/common/MyPagination';
 import st from './quotes.module.scss';
 
 const Quotes = () => {
@@ -27,6 +29,8 @@ const Quotes = () => {
       flag: false,
     },
   ];
+
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   return (
     <div className={st.container}>
@@ -63,7 +67,11 @@ const Quotes = () => {
           </div>
         </div>
       ))}
-      <p>1 2 3 4 </p>
+      {innerWidthWindow > 768 ? (
+        <MyPagination />
+      ) : (
+        <div className={st.pagination}>Показать еще</div>
+      )}
     </div>
   );
 };

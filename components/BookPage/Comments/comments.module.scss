@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 .container {
-  padding-bottom: 63px;
+  padding-bottom: 60px;
 }
 .reviewsTitle {
   font-family: Merriweather;
@@ -112,4 +112,44 @@
   margin-top: 20px;
   padding-bottom: 19px;
   color: $text-hover;
+}
+
+.pagination {
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .reviewsTitle {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 30px;
+  }
+  .userIcon {
+    width: 34px;
+    height: 34px;
+    margin-right: 9px;
+  }
+  .userInput {
+    width: calc(100% - 43px);
+
+    &::-webkit-input-placeholder {
+      font-size: 16px;
+      line-height: 18px;
+      color: $color-third;
+    }
+
+    &::-moz-placeholder {
+      font-size: 16px;
+      line-height: 18px;
+      color: $color-third;
+    }
+  }
+  .userForm {
+    &Header {
+      margin-bottom: 18px;
+    }
+  }
 }
