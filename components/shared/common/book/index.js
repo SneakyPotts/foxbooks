@@ -26,6 +26,7 @@ const Book = ({
   noLinks = false,
   book,
   count,
+  type
 }) => {
   const dispatch = useDispatch();
 
@@ -64,7 +65,7 @@ const Book = ({
         className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher })}
       >
         {!noLinks ? (
-          <Link href={`/book/${book?.id}?type=${router.query?.type}`}>
+          <Link href={`/book/${book?.id}?type=${router.query?.type || type}`}>
             <a onClick={bookLinkClick}>
               <Image
                 src={book?.image?.link || '/preview.jpg'}
@@ -154,7 +155,7 @@ const Book = ({
             {book?.title}
           </h3>
         ) : (
-          <Link href={`/book/${book?.id}?type=${router.query?.type}`}>
+          <Link href={`/book/${book?.id}?type=${router.query?.type || type}`}>
             <a
               className={classnames(st.bookName, {
                 [st.bookNameSmaller]: similar,
