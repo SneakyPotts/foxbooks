@@ -8,7 +8,7 @@ const initialState = {
 	settings: {
 		isTwoColumns: false,
 		fontSize: 0,
-		screenBrightness: '5',
+		screenBrightness: '2',
 		fontName: 'Times New Roman',
 		fieldSize: '2',
 		rowHeight: '2',

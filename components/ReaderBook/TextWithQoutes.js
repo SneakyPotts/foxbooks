@@ -2,9 +2,7 @@ import React, {useEffect, useState, useMemo, useLayoutEffect, useRef} from 'reac
 import {useSelector} from "react-redux";
 import Link from 'next/link';
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
-import { calcTotalOffset } from '../../utils'
 import AddQout from "./AddQout";
-import { fromRange } from "xpath-range"
 import styles from './styles.module.scss'
 
 const options = {
@@ -37,30 +35,6 @@ const options = {
 }
 
 const TextWithQoutes = () => {
-	const { book, settings } = useSelector(state => state?.reader)
-
-	const text = useMemo(() => {
-		const str = book?.pages[0]?.content
-			.replace(/<(\/*)(html|body)[^>]*>/g, '')
-			.replace('<div class="MsoNormal" style="margin:15px; text-align:left; width:800px; color:#333333;">', '')
-			.slice(0, -7)
-
-		return parse(str, options)
-	}, [book])
-
-	const article = useRef()
-
-	const [toolsIsVisible, setToolsIsVisible] = useState(false)
-	const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 })
-
-	const [selectedText, setSelectedText] = useState('')
-	const [rangeObj, setRangeObj] = useState(null)
-	const [startPosition, setStartPosition] = useState(null);
-	const [endPosition, setEndPosition] = useState(null)
-	const [markId, setMarkId] = useState(null)
-
-	const [isError, setIsError] = useState(false)
-
 	//========= ПЕРЕДЕЛАТЬ ПРОПС currColor !!!!!!!!!!!! =========================
 	const [quotes, setQuotes] = useState([
 		// {
@@ -80,181 +54,42 @@ const TextWithQoutes = () => {
 			startKey: '12',
 			startOffset: 221,
 			startTextIndex: 0
-		}
+		},
+		{
+			id: 1,
+			color: '#A5D5FF',
+			startKey:"8",
+			startTextIndex:0,
+			endKey:"8",
+			endTextIndex:0,
+			startOffset:146,
+			endOffset:274
+		},
 	]);
 
-	// const generateQuotes = () => {
-	// 	const mark = (se, quot, el) => {
-	// 		const parent = el?.parent?.name
+	const { book, settings } = useSelector(state => state?.reader)
 
-	// 		console.log('quot', quot)
-	// 		console.log('el', el)
-	// 		console.log('parent', parent)
+	const text = useMemo(() => {
+		const str = book?.pages[0]?.content
+			.replace(/<(\/*)(html|body)[^>]*>/g, '')
+			.replace('<div class="MsoNormal" style="margin:15px; text-align:left; width:800px; color:#333333;">', '')
+			.slice(0, -7)
 
-	// 		if(quot?.startContainer === quot?.endContainer) {
-	// 			if (se === 'end') return
+		return parse(str, options)
+	}, [book])
 
-	// 			return `<${el?.parent?.parent?.name}><${parent}>${
-	// 				el?.data?.slice(0, quot?.startOffset)
-	// 			}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
-	// 				el?.data?.slice(quot?.startOffset, quot?.endOffset)
-	// 			}</mark>${
-	// 				el?.data?.slice(quot?.endOffset)
-	// 			}</${parent}></${el?.parent?.parent?.name}>`
+	const article = useRef()
 
-	// 		} 
-			
-	// 		if(se === 'start') {
+	const [toolsIsVisible, setToolsIsVisible] = useState(false)
+	const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 })
 
-	// 			return `<${el?.parent?.parent?.name}><${parent}>${
-	// 				el?.data?.slice(0, quot?.startOffset)
-	// 			}<mark data-id="${quot?.id}" style="background: ${quot?.color}">${
-	// 				el?.data?.slice(quot?.startOffset)
-	// 			}</mark></${parent}></${el?.parent?.parent?.name}>`
+	const [selectedText, setSelectedText] = useState('')
+	const [rangeObj, setRangeObj] = useState(null)
+	const [markId, setMarkId] = useState(null)
 
-	// 		} else if(se === 'end') {
+	const [isError, setIsError] = useState(false)
 
-	// 			return `<${parent}><mark data-id="${quot?.id}" style="background: ${quot?.color}">${
-	// 				el?.data?.slice(0, quot?.endOffset)
-	// 			}</mark>${
-	// 				el?.data?.slice(quot?.endOffset)
-	// 			}</${parent}></${el?.parent?.parent?.name}>`
-
-	// 		}
-	// 	}
-
-	// 	let html = initialText
-	// 	let str = ''
-
-	// 	const perebor = (se, quot, index, node) => {
-	// 		const arr = quot?.[se === 'start' ? 'startContainer' : 'endContainer']?.split('/')?.slice(1)
-	// 		const tag = arr[index].split(' ')[0]
-	// 		const num = +arr[index].split(' ')[1]
-	// 		let tagCount = 0
-			
-	// 		if(node?.children?.length) {
-	// 			node?.children?.forEach(i => {
-	// 				if((tag === 'text' && i?.type === 'text') || i?.name === tag) {
-	// 					tagCount++
-	// 					if(tagCount === num) {
-	// 						if(index !== arr?.length - 1) {
-	// 							perebor(se, quot, index + 1, i)
-	// 						} else {
-	// 							str += mark(se, quot, i)
-	// 						}
-	// 					} else {
-	// 						concat(i)
-	// 					}
-	// 				} else {
-	// 					concat(i)
-	// 				}
-	// 			})
-	// 		} else {
-	// 			concat(node)
-	// 		}
-	// 	}
-
-	// 	const concat = el => {
-	// 		if(el?.children?.length) {
-	// 			str += `<${el?.name}>`
-
-	// 			el?.children?.forEach(i => {
-	// 				concat(i)
-	// 			})
-
-	// 			str += `</${el?.name}>`
-	// 		} else {
-	// 			if(el?.name === 'img') {
-	// 				let attr = ''
-
-	// 				for (const [key, value] of Object.entries(el?.attribs)) {
-	// 					attr += ` ${key}="${value}"`
-	// 				}
-
-	// 				str += `<${el?.name}${attr} />`
-	// 			} else {
-	// 				str += el?.data
-	// 			}
-	// 		}
-	// 	}
-		
-	// 	quotes.forEach(i => {
-	// 		let index = 0
-
-	// 		parse(html, {
-	// 			replace: domNode => {
-	// 				if(index === 0) {
-	// 					perebor('start', i, 0, domNode)
-	// 					index++
-	// 				}
-	// 			}
-	// 		})
-
-	// 		html = `<div>${str}</div>`
-	// 		str = ''
-	// 		index = 0
-
-	// 		parse(html, {
-	// 			replace: domNode => {
-	// 				if(index === 0) {
-	// 					perebor('end', i, 0, domNode)
-	// 					index++
-	// 				}
-	// 			}
-	// 		})
-
-	// 		html = `<div>${str}</div>`
-	// 		str = ''
-	// 	})
-
-	// 	const options = {
-	// 		replace: domNode => {
-	// 			if(domNode?.name === 'a' || domNode?.name === 'html' || domNode?.name === 'body') {
-	// 				return <>
-	// 					{domToReact(domNode?.children, options)}
-	// 				</>
-	// 			} else if(domNode?.name === 'img') {
-	// 				return (
-	// 					<img
-	// 						{...attributesToProps({
-	// 							...domNode?.attribs,
-	// 							src: `http://loveread.webnauts.pw/${domNode?.attribs?.src}`
-	// 						})}
-	// 					/>
-	// 				)
-	// 			} else if(domNode?.name === 'mark') {
-	// 				return (
-	// 					<mark
-	// 						onClick={ev => handleMarkClick(ev, domNode?.attribs['data-id'])}
-	// 						{...attributesToProps(domNode?.attribs)}
-	// 					>
-	// 						{domToReact(domNode?.children, options)}
-	// 					</mark>
-	// 				)
-	// 			} 
-	// 		}
-	// 	}
-
-	// 	setChangedText(parse(html.slice(5, -6), options))
-	// }
-
-	// const getXpathParameters = xpath => {
-	// 	const startOffset = xpath.startOffset
-	// 	const endOffset = xpath.endOffset
-	// 	let startContainer = xpath.start
-	// 	startContainer = startContainer
-	// 		.replace(/\(|\)/g, "")
-	// 		.replace(/\[/g, " ")
-	// 		.replace(/\]/g, "")
-	// 	let endContainer = xpath.end
-	// 	endContainer = endContainer
-	// 		.replace(/\(|\)/g, "")
-	// 		.replace(/\[/g, " ")
-	// 		.replace(/\]/g, "")
-	// 	return { startOffset, endOffset, startContainer, endContainer }
-	// }
-
-	function highlight(id, color) {
+	function highlight(id, color, func) {
 		const sel = window.getSelection();
 		const range = sel.getRangeAt(0);
 		const {
@@ -268,8 +103,9 @@ const TextWithQoutes = () => {
 		const nodes = [];
 
 		if (startContainer === endContainer) {
-			const span = document.createElement("span");
+			const span = document.createElement("mark");
 			span.style.backgroundColor = color;
+			// span.addEventListener('click', func)
 			range.surroundContents(span);
 			nodes.push(startContainer);
 			return;
@@ -313,6 +149,8 @@ const TextWithQoutes = () => {
 
 			const span = document.createElement("mark");
 			span.style.backgroundColor = color;
+			// span.addEventListener('click', func)
+
 			span.append(document.createTextNode(text));
 			const { parentNode } = node;
 
@@ -334,20 +172,11 @@ const TextWithQoutes = () => {
 
 	const mouseUpHandler = ev => {
 		const text = window.getSelection().toString()
-
+		
 		if(text?.length && text !== ' ') {
 			const range = window.getSelection().getRangeAt(0)
 			setRangeObj(rangeToObj(range))
 			setSelectedText(text)
-			
-			// const startPos = calcTotalOffset(range.startContainer, range.startOffset)
-			// const endPos = calcTotalOffset(range.endContainer, range.endOffset)
-			// const xpath = fromRange(range, document.querySelector('#range-parent'))
-			// const test = getXpathParameters(xpath)
-
-			// console.log('test', test);
-			// setStartPosition(test)
-			// setEndPosition(endPos)
 
 			// const err = quotes?.some(i => 
 			// 	(startPos >= i?.startPosition && startPos <= i?.endPosition) ||
@@ -357,8 +186,8 @@ const TextWithQoutes = () => {
 
 			// setIsError(err);
 
-			const x = ev?.nativeEvent.layerX
-			const y = ev?.nativeEvent.layerY
+			const x = ev?.pageX || ev?.changedTouches[0]?.pageX 
+			const y = ev?.pageY || ev?.changedTouches[0]?.pageY
 			setToolsCoords({x, y})
 			setToolsIsVisible(true)
 		} else {
@@ -370,14 +199,19 @@ const TextWithQoutes = () => {
 	
 	const objToRange = quot => {
 		const range = document.createRange()
-		range.setStart(
-			document.querySelector(`[data-key="${quot.startKey}"]`).childNodes[quot.startTextIndex], 
-			quot.startOffset
-		)
-		range.setEnd(
-			document.querySelector(`[data-key="${quot.endKey}"]`).childNodes[quot.endTextIndex], 
-			quot.endOffset
-		)
+		
+		try {
+			range.setStart(
+				document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[quot.startTextIndex], 
+				quot.startOffset
+			)
+			range.setEnd(
+				document.querySelector(`[data-key="${quot.endKey}"]`).childNodes[quot.endTextIndex], 
+				quot.endOffset
+			)
+		} catch {
+			console.log('error');
+		}
 		return range
 	}
 
@@ -393,12 +227,13 @@ const TextWithQoutes = () => {
 	}
 
 	const test = () => {
+		console.log('test');
 		const sel = window.getSelection()
     sel.removeAllRanges()
 
 		quotes?.forEach(i => {
 			sel.addRange(objToRange(i))
-			highlight(i.id, i.color)
+			highlight(i.id, i.color, handleMarkClick)
 		})
 	}
 
@@ -411,11 +246,17 @@ const TextWithQoutes = () => {
 	}
 
 	const addQuot = color => {
-		setMarkId(quotes?.length + 1)
+		setMarkId(quotes?.length)
+
+		// const sel = window.getSelection()
+    // sel.removeAllRanges()
+
+		// sel.addRange(objToRange(rangeObj))
+		// highlight(quotes?.length, color, handleMarkClick)
 
 		setQuotes(prev => [...prev, {
 			...rangeObj,
-			id: quotes?.length + 1,
+			id: quotes?.length,
 			text: selectedText,
 			color: color
 		}])
@@ -475,18 +316,8 @@ const TextWithQoutes = () => {
 		}
 	}, [settings?.rowHeight ])
 
-	// useEffect(() => {
-	// 	let range = new Range();
-
-  //   range.setStart(t, 2);
-  //   range.setEnd(t, 24);
-  //   document.getSelection().removeAllRanges();
-  //   document.getSelection().addRange(range);
-	// }, [])
-
-	useLayoutEffect(() => {
+	useEffect(() => {
 		let key = 0
-
 		const addKey = el => {
 			if (el?.children?.length > 0) {
 				Array.from(el.children).forEach(i => {
@@ -497,11 +328,8 @@ const TextWithQoutes = () => {
 		}	
 		
 		addKey(article.current)
-	}, [])
-
-	useLayoutEffect(() => {
 		test()
-	}, [quotes, book])
+	}, [text])
 
 	useEffect(() => {
 		setMarkId(null)
