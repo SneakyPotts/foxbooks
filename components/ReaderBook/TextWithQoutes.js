@@ -7,6 +7,7 @@ import { highlight, rangeToObj, objToRange, addKey } from './../../utils'
 import styles from './styles.module.scss'
 import { addQuotes, deleteQuotes, editQuotes } from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const options = {
 	replace: domNode => {
@@ -29,6 +30,7 @@ const options = {
 
 const TextWithQoutes = () => {
 	const dispatch = useDispatch()
+	const router = useRouter()
 	const article = useRef()
 
 	const { book, settings, quotes } = useSelector(state => state?.reader)
@@ -130,14 +132,18 @@ const TextWithQoutes = () => {
 		navigator.clipboard.writeText(text?.trim())
 	}
 
-	const generateQuotes = () => {
-		const sel = window.getSelection()
-    sel.removeAllRanges()
+	const shareQuot = () => {
+		let query = quotes?.find(i => i.id === markId) || rangeObj
 
-		quotes?.forEach(i => {
-			sel.addRange(objToRange(i))
-			highlight(i.id, i.color, handleMarkClick)
-		})
+		let str = `http://localhost:3000${router.asPath}
+			&startKey=${query.startKey}
+			&startTextIndex=${query.startTextIndex}
+			&startOffset=${query.startOffset}
+			&endKey=${query.endKey}
+			&endTextIndex=${query.endTextIndex}
+			&endOffset=${query.endOffset}`
+
+		navigator.clipboard.writeText(str)
 	}
 
 	const width = useMemo(() => {
@@ -173,8 +179,26 @@ const TextWithQoutes = () => {
 	useEffect(() => {
 		addKey(article.current)
 
+		const sel = window.getSelection()
+    sel.removeAllRanges()
+
 		if(quotes?.length) {
-			generateQuotes()
+			quotes?.forEach(i => {
+				sel.addRange(objToRange(i))
+				highlight(i.id, i.color, handleMarkClick)
+			})
+		}
+
+		const query = router.query
+
+		if(query.hasOwnProperty('startKey')) {
+			sel.addRange(objToRange(query))
+
+			setTimeout(() => {
+				document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
+			}, 300)
+
+			router.replace(`http://localhost:3000/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
 	}, [])
 
@@ -218,6 +242,7 @@ const TextWithQoutes = () => {
 						changeColor={changeColor}
 						deleteQuot={deleteQuot}
 						copyText={copyText}
+						shareQuot={shareQuot}
 					/>
 				}
 			</article>
