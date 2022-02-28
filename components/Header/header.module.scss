@@ -278,7 +278,30 @@
   line-height: 1.143;
   color: $color-main;
 }
-
+@media (max-width: 1200px) {
+  .main {
+    max-height: initial;
+    padding: 20px 15px;
+  }
+}
+@media (max-width: 1024px) {
+  .main {
+    .menu{
+      margin-left: 30px;
+    }
+  }
+}
+@media (max-width: 970px) {
+  .main {
+    .inputCastom {
+      width: 345px;
+    }
+    .inputCastom::placeholder {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+}
 @media (max-width: 768px) {
   .main {
     .header {
@@ -298,21 +321,6 @@
   }
 }
 
-@media (max-width: 970px) {
-  .main {
-    .inputCastom {
-      width: 345px;
-    }
-    .inputCastom::placeholder {
-      font-size: 16px;
-      line-height: 18px;
-    }
-  }
-}
 
-@media (max-width: 1200px) {
-  .main {
-    max-height: initial;
-    padding: 20px 15px;
-  }
-}
+
+

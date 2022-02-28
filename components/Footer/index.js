@@ -6,15 +6,25 @@ import Vk from '../../public/vkontakte.svg';
 import st from './footer.module.scss';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
+import {useSelector} from "react-redux";
 
 const Footer = () => {
   const router = useRouter();
+  const { innerWidthWindow } = useSelector(state => state.common);
+
+  const isShown = () => {
+    if (router.pathname.includes('reader')) {
+      return false
+    } else if (router.pathname.includes('/404')) {
+      return false
+    } else if ( innerWidthWindow < 768 && router.pathname.includes('/categories')) {
+      return false
+    } else return true
+  }
 
   return (
     <>
-      {!router.pathname.includes('reader') &&
-        !router.pathname.includes('/404') && (
-          <div className={st.wrapper}>
+      { isShown() && <div className={st.wrapper}>
             <div className={st.container}>
               <div>
                 <div className={st.logo}>
@@ -52,7 +62,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        )}
+        }
     </>
   );
 };

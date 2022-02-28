@@ -101,10 +101,11 @@
   margin-right: 0;
 }
 
-//@media (max-width: 1400px) {
-//
-//}
-//
+@media (max-width: 1024px) {
+  .dovnMenu {
+    display: contents;
+  }
+}
 
 @media (min-width: 768px) {
   .dovnMenu {
