@@ -74,6 +74,7 @@ const AddPopup = ({
       )}
       style={style}
       onMouseUp={ev => ev.stopPropagation()}
+      onTouchEnd={ev => ev.stopPropagation()}
     >
       {!isError &&
         <div className={styles.addQuotFlex}>          
