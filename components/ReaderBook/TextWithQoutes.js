@@ -97,7 +97,7 @@ const TextWithQoutes = () => {
 		setMarkId(id)
 
 		const sel = window.getSelection()
-    sel.removeAllRanges()
+    	sel.removeAllRanges()
 
 		sel.addRange(objToRange(rangeObj))
 		highlight(id, color, handleMarkClick)
