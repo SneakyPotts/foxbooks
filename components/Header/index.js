@@ -142,7 +142,7 @@ const Header = () => {
                         <div>
                           {profile?.avatar ? (
                             <Image
-                              src={profile?.avatar}
+                              src={`https://loveread.webnauts.pw${profile?.avatar}`}
                               alt="Avatar"
                               width="40"
                               height="40"

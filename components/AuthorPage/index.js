@@ -1,85 +1,44 @@
-import React from 'react';
-import { useState } from 'react';
-import classnames from 'classnames';
-import { Navigation } from 'swiper/core';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useState }  from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import 'swiper/css/bundle';
 import Image from 'next/image';
 import Link from 'next/link';
-import ArrowRight from '../../public/chevron-right.svg';
 import Categories from '../HomePage/Categories';
 import Book from '../shared/common/book';
 import DropDownArrow from '../../public/chevron-down.svg';
 import ShowAll from '../shared/common/showAll/ShowAll';
+import { addAuthorToFavorite, deleteAuthorFromFavorite } from './../../store/authorSlice'
 
+import classnames from 'classnames';
 import st from './author.module.scss';
-import {useSelector} from "react-redux";
 
 const AuthorPage = () => {
-  const bookSeries = [
-    { id: '0' },
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' },
-    { id: '6' },
-  ];
-  const compilationsBook = [
-    { id: '0', title: 'Что читает Дэниел Рэдклифф' },
-    {
-      id: '1',
-      title:
-        'Ход королевы: книги, в которых фигурируют Ход королевы: книги, в которых фигурируют',
-    },
-    { id: '2', title: 'Дружба в книгах' },
-    // { id: '3', title: 'Что читает Дэниел Рэдклифф' },
-  ];
-  const outOfSeries = [{ id: '0' }, { id: '1' }, { id: '2' }];
+  const dispatch = useDispatch()
 
-  const authors = [
-    {
-      id: '0',
-      img: '/reviewsBookCovers/author.png',
-      name: 'Дэн Браун',
-      count: '17',
-    },
-    {
-      id: '1',
-      img: '/reviewsBookCovers/author.png',
-      name: 'Джордж Мартин',
-      count: '28',
-    },
-    {
-      id: '2',
-      img: '/reviewsBookCovers/author.png',
-      name: 'Нил Гейман',
-      count: '23',
-    },
-    {
-      id: '3',
-      img: '/reviewsBookCovers/author.png',
-      name: 'Дмитрий Глуховницкий',
-      count: '17',
-    },
-  ];
-
-  const { author } = useSelector(state => state.author)
+  const { author, isFavorite } = useSelector(state => state.author)
 
   const [showMore, setShowMore] = useState(false);
-  const [showPopUp, setShowPopUp] = useState(false);
+  const [popupIsVisible, setPopupIsVisible] = useState(false);
 
   const onShowMore = () => {
     setShowMore(!showMore);
   };
 
-  const setTimeOut = () => {
-    setTimeout(() => setShowPopUp(false), 5000);
-  };
+  const showPopup = res => {
+    if (res.meta.requestStatus === 'fulfilled') {
+      setPopupIsVisible(true)
+      setTimeout(() => setPopupIsVisible(false), 5000)
+    }
+  }
 
   const handleClick = () => {
-    setShowPopUp(true);
-    setTimeOut();
+    if(isFavorite) {
+      dispatch(deleteAuthorFromFavorite(author?.id))
+    } else {
+      dispatch(addAuthorToFavorite(author?.id)).then(res =>
+        showPopup(res)
+      )
+    }
   };
 
   return (
@@ -102,8 +61,11 @@ const AuthorPage = () => {
               <p className={st.authorInfoCount}>
                 <span>{author?.books_count}</span> книг
               </p>
-              <button className={st.authorInfoBtn} onClick={handleClick}>
-                {showPopUp ? (
+              <button
+                className={st.authorInfoBtn}
+                onClick={handleClick}
+              >
+                {isFavorite ? (
                   <span>В моих книгах</span>
                 ) : (
                   <span>Добавить в избранное</span>
@@ -290,7 +252,8 @@ const AuthorPage = () => {
           <img src="/banner.png" alt="" className={st.banner} />
         </div>
       </div>
-      {showPopUp && (
+      
+      {popupIsVisible && (
         <div className={st.popUp}>
           <p>
             Вы можете найти автора в разделе{' '}

@@ -40,7 +40,11 @@ export default class BookService {
 	}
 
 	static async setBookStatus({id, value}) {
-		return api.get(`${API_URL}/users/books?book_id=${id}&status=${value}`)
+		return api.put(`${API_URL}/profile/lists/books`, { book_id: id, status: value })
+	}
+
+	static async deleteBookFromFavorite(id) {
+		return api.delete(`${API_URL}/profile/lists/books`, { book_id: id })
 	}
 
 	static async setBookRating({id, value}) {

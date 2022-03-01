@@ -3,6 +3,7 @@ module.exports = {
   images: {
     domains: [
       'loveread.ec',
+      'loveread.webnauts.pw',
       's1.knigavuhe.org',
       's2.knigavuhe.org',
       's3.knigavuhe.org',

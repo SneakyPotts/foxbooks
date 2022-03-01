@@ -1,19 +1,28 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import ReaderService from '../http/ReaderService';
+import AuthorService from '../http/AuthorService';
 
 const initialState = {
 	author: [],
+	isFavorite: false
 	// isLoading: false,
 	// isError: false
 };
 
-// export const getBookMarks = createAsyncThunk(
-// 	'reader/getBookMarks',
-// 	async id => {
-// 		const response = await ReaderService.getBookMarks(id)
-// 		return response.data
-// 	}
-// )
+export const addAuthorToFavorite = createAsyncThunk(
+	'author/addAuthorToFavorite',
+	async id => {
+		const response = await AuthorService.addAuthorToFavorite(id)
+		return response.data
+	}
+)
+
+export const deleteAuthorFromFavorite = createAsyncThunk(
+	'author/deleteAuthorFromFavorite',
+	async id => {
+		const response = await AuthorService.deleteAuthorFromFavorite(id)
+		return response.data
+	}
+)
 
 export const authorSlice = createSlice({
 	name: 'author',
@@ -23,20 +32,34 @@ export const authorSlice = createSlice({
 			state.author = action.payload
 		},
 	},
-	// extraReducers: {
-	// 	[getBookMarks.pending]: state => {
-	// 		state.isLoading = true
-	// 	},
-	// 	[getBookMarks.fulfilled]: (state, action) => {
-	// 		state.bookMarks = action.payload
-	// 		state.isError = false
-	// 		state.isLoading = false
-	// 	},
-	// 	[getBookMarks.rejected]: state => {
-	// 		state.isError = true
-	// 		state.isLoading = false
-	// 	}
-	// }
+	extraReducers: {
+		[addAuthorToFavorite.pending]: state => {
+			// state.isLoading = true
+		},
+		[addAuthorToFavorite.fulfilled]: (state, action) => {
+			state.isFavorite = true
+			// state.isError = false
+			// state.isLoading = false
+		},
+		[addAuthorToFavorite.rejected]: state => {
+			// state.isError = true
+			// state.isLoading = false
+		},
+
+
+		[deleteAuthorFromFavorite.pending]: state => {
+			// state.isLoading = true
+		},
+		[deleteAuthorFromFavorite.fulfilled]: (state, action) => {
+			state.isFavorite = false
+			// state.isError = false
+			// state.isLoading = false
+		},
+		[deleteAuthorFromFavorite.rejected]: state => {
+			// state.isError = true
+			// state.isLoading = false
+		}
+	}
 });
 
 export const {

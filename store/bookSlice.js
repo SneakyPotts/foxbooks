@@ -20,6 +20,14 @@ export const setBookStatus = createAsyncThunk(
 	}
 )
 
+export const deleteBookFromFavorite = createAsyncThunk(
+	'book/deleteBookFromFavorite',
+	async id => {
+		const response = await BookService.deleteBookFromFavorite(id)
+		return response.data
+	}
+)
+
 export const setBookRating = createAsyncThunk(
 	'book/setBookRating',
 	async data => {
@@ -52,30 +60,43 @@ export const bookSlice = createSlice({
 		},
 	},
 	extraReducers: {
-		[setBookStatus.pending]: state => {
-			state.isLoading = true
-		},
-		[setBookStatus.fulfilled]: state => {
-			state.isError = false
-			state.isLoading = false
-		},
-		[setBookStatus.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
-		},
+		// [setBookStatus.pending]: state => {
+		// 	state.isLoading = true
+		// },
+		// [setBookStatus.fulfilled]: state => {
+		// 	state.isError = false
+		// 	state.isLoading = false
+		// },
+		// [setBookStatus.rejected]: state => {
+		// 	state.isError = true
+		// 	state.isLoading = false
+		// },
 
 
-		[setBookRating.pending]: state => {
-			state.isLoading = true
-		},
-		[setBookRating.fulfilled]: state => {
-			state.isError = false
-			state.isLoading = false
-		},
-		[setBookRating.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
-		},
+		// [deleteBookFromFavorite.pending]: state => {
+		// 	state.isLoading = true
+		// },
+		// [deleteBookFromFavorite.fulfilled]: state => {
+		// 	state.isError = false
+		// 	state.isLoading = false
+		// },
+		// [deleteBookFromFavorite.rejected]: state => {
+		// 	state.isError = true
+		// 	state.isLoading = false
+		// },
+
+
+		// [setBookRating.pending]: state => {
+		// 	state.isLoading = true
+		// },
+		// [setBookRating.fulfilled]: state => {
+		// 	state.isError = false
+		// 	state.isLoading = false
+		// },
+		// [setBookRating.rejected]: state => {
+		// 	state.isError = true
+		// 	state.isLoading = false
+		// },
 	}
 });
 
