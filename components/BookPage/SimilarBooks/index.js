@@ -27,7 +27,7 @@ const SimilarBooks = ({ audio }) => {
   return (
     <div className={st.swiper}>
       <div className={st.swiperTitle}>
-        <h3 id="similar" className={st.title}>
+        <h3 className={st.title}>
           Похожие книги
         </h3>
         {innerWidthWindow <= 768 && (

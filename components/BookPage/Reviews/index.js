@@ -61,7 +61,7 @@ const Reviews = () => {
   };
 
   return (
-    <div>
+    <div id="reviews">
       <h2 className={st.reviewTitle}>Рецензии</h2>
       {!reviewTyping && (
         <Button
@@ -102,7 +102,7 @@ const Reviews = () => {
                       className={classnames(st.radio, {
                         [st.radioActive]: optionIndex === index,
                       })}
-                    ></span>
+                    />
                     <span
                       className={classnames(st.dropText, {
                         [st.active]: optionIndex === index,

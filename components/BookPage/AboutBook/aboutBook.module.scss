@@ -81,6 +81,10 @@
   &Age {
     margin: 0 20px;
   }
+
+  &Year {
+    margin-right: 20px;
+  }
 }
 .audioInfo {
   margin-right: 20px;
@@ -90,7 +94,6 @@
   justify-content: space-between;
   align-items: center;
   font-family: Fira Sans, sans-serif;
-  margin-left: 20px;
   color: $color-third;
 
   > span {
@@ -206,6 +209,7 @@
     color: $color-second;
     stroke: $text-hover;
     fill: none;
+    white-space: nowrap;
     transition: 0.15s;
 
     span {
@@ -263,8 +267,17 @@
 
   li {
     margin-right: 30px;
+
     .number {
       color: $color-third;
+    }
+
+    a {
+      transition: .15s;
+
+      &:hover {
+        color: $text-hover
+      }
     }
   }
 }
@@ -277,9 +290,9 @@
       color: $color-main;
     }
 
-    &:hover span {
-      color: $text-hover;
-    }
+    //&:hover span {
+    //  color: $text-hover;
+    //}
   }
 }
 

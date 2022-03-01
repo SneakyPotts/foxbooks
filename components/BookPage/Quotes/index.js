@@ -33,7 +33,10 @@ const Quotes = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   return (
-    <div className={st.container}>
+    <div
+      id="quotes"
+      className={st.container}
+    >
       <h2 className={st.quotesTitle}>Цитаты</h2>
       {data.map(it => (
         <div key={it.id} className={st.quote}>

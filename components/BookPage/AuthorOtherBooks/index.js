@@ -25,7 +25,7 @@ const AuthorOtherBooks = () => {
   return (
     <div className={st.container}>
       <div className={st.blockTitle}>
-        <h2 id="quotes" className={st.title}>
+        <h2 className={st.title}>
           Другие книги автора
         </h2>
         {innerWidthWindow <= 768 && (

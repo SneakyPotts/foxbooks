@@ -61,7 +61,7 @@ const Comments = ({ comments }) => {
   }
   return (
     <div className={st.container}>
-      <h2 id="reviews" className={st.reviewsTitle}>
+      <h2 className={st.reviewsTitle}>
         Оставьте свой комментарий
       </h2>
       <form

@@ -9,11 +9,7 @@ const Book = ({book}) => {
 
 	dispatch(setBook(book))
 
-	return (
-		<div>
-			<BookPage />
-		</div>
-	);
+	return <BookPage />
 };
 
 export default Book;

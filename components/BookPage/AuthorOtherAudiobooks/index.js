@@ -23,7 +23,7 @@ const AuthorOtherAudioBooks = () => {
 
   return (
     <div className={st.container}>
-      <h2 id="quotes" className={st.blockTitle}>
+      <h2 className={st.blockTitle}>
         Другие аудиокниги автора
       </h2>
       <Swiper

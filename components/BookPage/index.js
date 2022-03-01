@@ -16,20 +16,10 @@ import SimilarBooks from './SimilarBooks';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import st from './bookpage.module.scss';
 import {useRouter} from "next/router";
+import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 
 const BookPage = () => {
   const router = useRouter()
-
-  const compilationsBook = [
-    { id: '0', title: 'Что читает Дэниел Рэдклифф' },
-    {
-      id: '1',
-      title:
-        'Ход королевы: книги, в которых фигурируют Ход королевы: книги, в которых фигурируют',
-    },
-    { id: '2', title: 'Дружба в книгах' },
-    { id: '3', title: 'Что читает Дэниел Рэдклифф' },
-  ];
 
   const audioFlag = router.query?.type === 'audioBooks';
 
@@ -47,97 +37,110 @@ const BookPage = () => {
   };
 
   return (
-    <div className={classnames('container', st.wrapper)}>
-      <div className={st.mainBlock}>
-        <AboutBook
-          book={book}
-          audioFlag={audioFlag}
-        />
-        <div className={st.relatedInfo}>
-          <SimilarBooks
-            audio={audioFlag}
+    <div className={'container'}>
+      <Breadcrumbs />
+      <div className={st.wrapper}>
+        <div className={st.mainBlock}>
+          <AboutBook
+            book={book}
+            audioFlag={audioFlag}
           />
-          <img
-            src="/advertising.png"
-            alt=""
-            // width={588}
-            // height={250}
-            className={st.relatedInfoBanner}
-          />
-          <Comments
-            comments={book?.comments}
-          />
-          <Reviews />
-          {!audioFlag && <Quotes />}
-          <AuthorOtherBooks />
-          <AuthorOtherAudioBooks />
-          {!audioFlag && (
-            <div className={st.compilBlock}>
-              <div className={st.title}>
-                {innerWidthWindow > 768 ? (
-                  <h3 className={st.compilTitle}>Подборки с этой книгой</h3>
-                ) : (
-                  <h3 className={st.compilTitle}>Подборки</h3>
-                )}
-                {innerWidthWindow <= 768 && (
-                  <ShowAll externalClass={st.dicardDistance} />
-                )}
-              </div>
-              <Swiper
-                spaceBetween={24}
-                modules={[Navigation]}
-                navigation={{
-                  prevEl: '.prevArrow',
-                  nextEl: '.nextArrow',
-                }}
-                slidesPerView={changeSlidesPerView()}
-              >
-                {compilationsBook.map(i => (
-                  <SwiperSlide key={i.id}>
-                    <div>
-                      <div className={st.compilBookCover}>
-                        <Image
-                          src="/horizontalBookCovers/bookCover2.png"
-                          width={180}
-                          height={108}
-                          alt=""
-                        />
-                        <div className={st.compilBookCoverStat}>
-                          <span>15</span>
-                          <span>книг</span>
-                        </div>
-                      </div>
-                      <h4 className={st.compilBookTitle}>{i.title}</h4>
-                    </div>
-                  </SwiperSlide>
-                ))}
-                <button className={classnames('prevArrow', st.btnCompil)}>
-                  <ArrowRight className="arrowNext" />
-                </button>
-                <button className={classnames('nextArrow', st.btnCompil)}>
-                  <ArrowRight className="arrowNext" />
-                </button>
-              </Swiper>
-            </div>
-          )}
-          <p className={st.recommendations}>
-            Порекомендуйте книги, похожие на “Гарри Поттер и философский камень”
-          </p>
-          <p className={st.recommendationsLabel}>
-            по жанру, сюжету, авторам и т.д.
-          </p>
-          <input placeholder="Поделитесь книгой" className={st.recomInput} />
-          <p className={st.recomInputLabel}>
-            Убедительная просьба найти соответствующую книгу на сайте FoxBook и
-            вставить на нее ссылку, за отсутствием книги на нашем сайте, укажите
-            автора или название книги
-          </p>
-        </div>
-      </div>
+          <div
+            id="similar"
+            className={st.relatedInfo}
+          >
+            <SimilarBooks
+              audio={audioFlag}
+            />
 
-      <div className={st.advertisingBlok}>
-        <img src="/banner.png" alt="" className={st.banner} />
-        <img src="/banner.png" alt="" className={st.banner} />
+            <img
+              src="/advertising.png"
+              alt=""
+              // width={588}
+              // height={250}
+              className={st.relatedInfoBanner}
+            />
+
+            <Comments
+              comments={book?.comments}
+            />
+
+            <Reviews />
+
+            {!audioFlag && <Quotes />}
+
+            <AuthorOtherBooks />
+            <AuthorOtherAudioBooks />
+
+            {!audioFlag && (
+              <div className={st.compilBlock}>
+                <div className={st.title}>
+                  {innerWidthWindow > 768 ? (
+                    <h3 className={st.compilTitle}>Подборки с этой книгой</h3>
+                  ) : (
+                    <h3 className={st.compilTitle}>Подборки</h3>
+                  )}
+                  {innerWidthWindow <= 768 && (
+                    <ShowAll externalClass={st.dicardDistance} />
+                  )}
+                </div>
+                {/*<Swiper*/}
+                {/*  spaceBetween={24}*/}
+                {/*  modules={[Navigation]}*/}
+                {/*  navigation={{*/}
+                {/*    prevEl: '.prevArrow',*/}
+                {/*    nextEl: '.nextArrow',*/}
+                {/*  }}*/}
+                {/*  slidesPerView={changeSlidesPerView()}*/}
+                {/*>*/}
+                {/*  {compilationsBook.map(i => (*/}
+                {/*    <SwiperSlide key={i.id}>*/}
+                {/*      <div>*/}
+                {/*        <div className={st.compilBookCover}>*/}
+                {/*          <Image*/}
+                {/*            src="/horizontalBookCovers/bookCover2.png"*/}
+                {/*            width={180}*/}
+                {/*            height={108}*/}
+                {/*            alt=""*/}
+                {/*          />*/}
+                {/*          <div className={st.compilBookCoverStat}>*/}
+                {/*            <span>15</span>*/}
+                {/*            <span>книг</span>*/}
+                {/*          </div>*/}
+                {/*        </div>*/}
+                {/*        <h4 className={st.compilBookTitle}>{i.title}</h4>*/}
+                {/*      </div>*/}
+                {/*    </SwiperSlide>*/}
+                {/*  ))}*/}
+                {/*  <button className={classnames('prevArrow', st.btnCompil)}>*/}
+                {/*    <ArrowRight className="arrowNext" />*/}
+                {/*  </button>*/}
+                {/*  <button className={classnames('nextArrow', st.btnCompil)}>*/}
+                {/*    <ArrowRight className="arrowNext" />*/}
+                {/*  </button>*/}
+                {/*</Swiper>*/}
+              </div>
+            )}
+
+            <p className={st.recommendations}>
+              Порекомендуйте книги, похожие на “{book?.title}”
+            </p>
+            <p className={st.recommendationsLabel}>
+              по жанру, сюжету, авторам и т.д.
+            </p>
+            <input placeholder="Поделитесь книгой" className={st.recomInput} />
+            <p className={st.recomInputLabel}>
+              Убедительная просьба найти соответствующую книгу на сайте FoxBook и
+              вставить на нее ссылку, за отсутствием книги на нашем сайте, укажите
+              автора или название книги
+            </p>
+          </div>
+        </div>
+
+        <div className={st.advertisingBlok}>
+          <img src="/banner.png" alt="" className={st.banner} />
+          <img src="/banner.png" alt="" className={st.banner} />
+        </div>
       </div>
     </div>
   );

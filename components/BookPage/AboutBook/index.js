@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
 import Image from 'next/image';
-import { setBookRating, setBookStatus } from '../../../store/bookSlice';
+import {deleteBookFromFavorite, setBookRating, setBookStatus} from '../../../store/bookSlice';
 import Stars from '../../shared/common/stars/Stars';
 import Dots from '../../shared/icons/horizontalDots';
 import BookMark from '../../shared/icons/myBookmark';
@@ -17,35 +17,66 @@ import Eye from '../../shared/icons/eye';
 import DrawerPopup from '../../shared/common/DrawerPopup';
 import st from './aboutBook.module.scss';
 
+const dataOptions = [
+  {
+    icon: <BookMark />,
+    title: 'Хочу прочитать',
+    value: 1,
+    withPopup: true,
+    isEdit: true
+  },
+  {
+    icon: <OpenBook />,
+    title: 'Читаю',
+    value: 2,
+    isEdit: true
+  },
+  {
+    icon: <Flag />,
+    title: 'Прочитано',
+    value: 3,
+    isEdit: true
+  },
+  {
+    icon: <Add />,
+    title: 'В мои подборки'
+  },
+  {
+    icon: <Basket />,
+    title: 'Удалить из моих книг',
+    isDelete: true
+  }
+]
+
 const AboutBook = ({ book, audioFlag }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const dataOptions = [
-    { id: '0', svg: <BookMark />, option: 'Хочу прочитать', value: 1 },
-    { id: '1', svg: <OpenBook />, option: 'Читаю', value: 2 },
-    { id: '2', svg: <Flag />, option: 'Прочитано', value: 3 },
-    { id: '3', svg: <Add />, option: 'В мои подборки' },
-    { id: '4', svg: <Basket />, option: 'Удалить из моих книг' },
-  ];
 
   const [openMenu, setOpenMenu] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
 
   const { innerWidthWindow } = useSelector(state => state.common);
 
-  const showPopup = res => {
-    if (res.meta.requestStatus === 'fulfilled') {
+  const showPopup = (res, condition) => {
+    if (condition && res.meta.requestStatus === 'fulfilled') {
       setShowPopUp(true);
       setTimeout(() => setShowPopUp(false), 5000);
     }
   };
 
-  const changeBookStatus = (value, option) => {
-    setOpenMenu(false);
-    dispatch(setBookStatus({ id: router.query?.id, value })).then(res =>
-      showPopup(res)
-    );
+  const handleClick = el => {
+    if(el?.isEdit) {
+      dispatch(setBookStatus({
+        id: router.query?.id,
+        value: el?.value
+      })).then(res => showPopup(res, el?.withPopup))
+    } else if(el?.isDelete) {
+      dispatch(deleteBookFromFavorite(router.query?.id))
+    } else {
+
+    }
+
+    setOpenMenu(false)
   };
 
   const setRating = value => {
@@ -53,7 +84,7 @@ const AboutBook = ({ book, audioFlag }) => {
   };
 
   return (
-    <div>
+    <>
       <div key={book.id} className={st.bookInfo}>
         <div className={st.infoBlockBook}>
           <div
@@ -90,16 +121,19 @@ const AboutBook = ({ book, audioFlag }) => {
             <div className={st.wrapperBookTitle}>
               <h1 className={st.bookTitle}>{book?.title}</h1>
               <p className={st.bookAuthor}>
-                <Link href={`/author?id=${book?.authors[0]?.id}`}>
-                  <a className={st.bookAuthorName}>
-                    {book?.authors[0]?.author}
-                  </a>
-                </Link>
-                {innerWidthWindow >= 768 && (
-                  <Link href="#">
+                {book?.authors?.length ?
+                  <Link href={`/author?id=${book?.authors[0]?.id}`}>
+                    <a className={st.bookAuthorName}>
+                      {book?.authors[0]?.author}
+                    </a>
+                  </Link> :
+                  <span className={st.bookAuthorName}>Нет автора</span>
+                }
+                {innerWidthWindow >= 768 && book?.authors?.length ?
+                  <Link href={`/author?id=${book?.authors[0]?.id}`}>
                     <a className={st.bookAuthorLink}>(все книги автора)</a>
-                  </Link>
-                )}
+                  </Link> : null
+                }
               </p>
               <div className={st.bookDate}>
                 {audioFlag && (
@@ -112,18 +146,27 @@ const AboutBook = ({ book, audioFlag }) => {
                     </span>
                   </div>
                 )}
-                <span className={st.bookDateYear}>{book?.year}2020 год</span>
+                {book?.year && <span className={st.bookDateYear}>{book?.year}</span>}
                 {/* <span className={st.bookDateAge}>{book.age}8</span> */}
-                <div className={st.selectionDateViews}>
-                  <span>456</span>
-                  <Eye />
-                </div>
+                {audioFlag ?
+                  book?.listeners_count ?
+                    <div className={st.selectionDateViews}>
+                      <span>{book?.listeners_count}</span>
+                      <Eye />
+                    </div> : null
+                  :
+                  book?.views_count ?
+                    <div className={st.selectionDateViews}>
+                      <span>{book?.views_count}</span>
+                      <Eye />
+                    </div> : null
+                }
               </div>
               <div className={st.raiting}>
                 <div className={st.bookRaiting}>
                   <Stars count={1} />
                   <p className={st.bookRaitingCount}>
-                    {book?.rates_count} ({book?.rates_avg} оценок)
+                    {book?.rates_avg} ({book?.rates_count} оценок)
                   </p>
                 </div>
                 {innerWidthWindow >= 768 && (
@@ -170,19 +213,17 @@ const AboutBook = ({ book, audioFlag }) => {
                   </span>
                   {openMenu && (
                     <DrawerPopup
-                      externalClass={st.menu}
+                      // externalClass={st.menu}
                       onClose={() => setOpenMenu(false)}
                     >
-                      {dataOptions.map((it, index) => (
+                      {dataOptions.map(i => (
                         <p
-                          key={it?.id}
-                          onClick={() =>
-                            changeBookStatus(it?.value, it?.option)
-                          }
+                          key={i?.title}
                           className={st.menuItem}
+                          onClick={() => handleClick(i)}
                         >
-                          {it?.svg}
-                          <span>{it?.option}</span>
+                          {i?.icon}
+                          <span>{i?.title}</span>
                         </p>
                       ))}
                     </DrawerPopup>
@@ -192,85 +233,77 @@ const AboutBook = ({ book, audioFlag }) => {
 
               <ul className={st.navLinks}>
                 <li>
-                  <Link href="#">
-                    <a>О книге</a>
-                  </Link>
+                  О книге
                 </li>
-                <li>
-                  <Link href="#reviews">
-                    <a>
-                      Рецензии <span className={st.number}>37</span>
+                {book?.reviews_count ?
+                  <li>
+                    <a href="#reviews">
+                      Рецензии <span className={st.number}>{book?.reviews_count}</span>
                     </a>
-                  </Link>
-                </li>
-                <li>
-                  {audioFlag ? (
-                    <Link href="#quotes">
-                      <a>
-                        Слушают <span className={st.number}>129</span>
+                  </li> : null
+                }
+                {audioFlag ?
+                  book?.listeners_count ?
+                    <li>
+                      <a href="#quotes">
+                        Слушают <span className={st.number}>{book?.listeners_count}</span>
                       </a>
-                    </Link>
-                  ) : (
-                    <Link href="#quotes">
-                      <a>
-                        Цитаты <span className={st.number}>15</span>
+                    </li> : null
+                :
+                  book?.quotes_count ?
+                    <li>
+                      <a href="#quotes">
+                        Цитаты <span className={st.number}>{book?.quotes_count}</span>
                       </a>
-                    </Link>
-                  )}
-                </li>
+                    </li> : null
+                }
                 <li>
-                  <Link href="#similar">
-                    <a>Похожие книги</a>
-                  </Link>
+                  <a href="#similar">Похожие книги</a>
                 </li>
               </ul>
               <p>
-                {book?.text}
-                {/* Книга, покорившая мир, эталон литературы для
-                читателей всех возрастов, синоним успеха. Книга, сделавшая Джоан
-                Роулинг самым читаемым писателем современности. Книга, ставшая
-                культовой уже для нескольких поколений. "Гарри Поттер и
-                Философский камень" - история начинается. */}
+                {book?.text || 'Нет описания'}
               </p>
               <div className={st.ditalInfo}>
                 {audioFlag ? (
                   <p>
-                    Чтец: <span>{book.reader}</span>
+                    Чтец: <span>{book.reader || '-'}</span>
                   </p>
                 ) : (
                   <>
                     <p>
-                      Издательство: <span>{book.publishing}</span>
+                      Издательство: <span>{book?.publishers[0]?.title || '-'}</span>
                     </p>
                     <p>
-                      Переводчик: <span>{book.translater}</span>
+                      Переводчик: <span>{book.translater || '-'}</span>
                     </p>
                   </>
                 )}
 
                 <p>
-                  Жанр: <span>{book.ganre}</span>
+                  Жанр: <span>{book?.genres || '-'}</span>
                 </p>
                 <p>
-                  Правообладатель: <span>{book.copyright_holder}</span>
+                  Правообладатель: <span>{book.copyright_holder || '-'}</span>
                 </p>
-                <p>Серия: {book.series}</p>
+                <p>Серия: {book.series || '-'}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       {showPopUp && (
         <div className={st.popUp}>
           <p>
-            Книга “Гарри Поттер и философский камень” добавлена{' '}
-            <Link href="#">
+            Книга “{book?.title}” добавлена{' '}
+            <Link href="/mybooks">
               <a className={st.popUpLink}>в вашу библиотеку</a>
             </Link>
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
