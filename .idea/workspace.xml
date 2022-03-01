@@ -3,7 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/HomeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/HomeService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AuthorPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/category/category.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/category.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksFilters/BookFilters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/switcher/Switcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/switcher/Switcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/AuthorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/AuthorService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ProfileService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ProfileService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/author/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/author/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/book/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645603682353</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="books">
+      <created>1645615473721</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1645615473721</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

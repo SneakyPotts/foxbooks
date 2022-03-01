@@ -26,7 +26,7 @@ const SideFilters = () => {
       option: 'Книга',
       placeholder: 'Найти книгу',
       queryName: 'findByTitle',
-      alphabetQuery: 'alphabetPublisherIndex',
+      alphabetQuery: 'alphabetTitleIndex',
     },
     {
       id: '2',
@@ -34,7 +34,7 @@ const SideFilters = () => {
       option: 'Издательство',
       placeholder: 'Найти издательство',
       queryName: 'findByPublisher',
-      alphabetQuery: 'alphabetTitleIndex',
+      alphabetQuery: 'alphabetPublisherIndex',
     },
   ]);
 

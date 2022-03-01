@@ -30,15 +30,21 @@ export default class BookService {
 	}
 
 	static async getBooksByLetter(letter) {
-		return axios.get(`${API_URL}/books/letter/${letter}`)
+		return axios.get(`${API_URL}/books/letter/${encodeURI(letter)}`)
 	}
 
-	static async getBookById(id) {
-		return axios.get(`${API_URL}/books/${id}`)
+	static async getBookById(id, type) {
+		return type === 'books' ?
+			axios.get(`${API_URL}/books/${id}`) :
+			axios.get(`${API_URL}/audio-books/${id}`)
 	}
 
 	static async setBookStatus({id, value}) {
-		return api.get(`${API_URL}/users/books?book_id=${id}&status=${value}`)
+		return api.put(`${API_URL}/profile/lists/books`, { book_id: id, status: value })
+	}
+
+	static async deleteBookFromFavorite(id) {
+		return api.delete(`${API_URL}/profile/lists/books`, { book_id: id })
 	}
 
 	static async setBookRating({id, value}) {

@@ -94,6 +94,8 @@
   }
 }
 .series {
+  margin-bottom: 60px;
+  
   &List {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -176,6 +178,8 @@
   margin-bottom: 56px;
 }
 .compil {
+  margin-top: 60px;
+
   &Block {
     display: flex;
     justify-content: space-between;
@@ -213,6 +217,10 @@
 }
 .btnCompil {
   top: 29px;
+}
+
+.quotes {
+  margin-bottom: 60px;
 }
 
 .reviewBlock {

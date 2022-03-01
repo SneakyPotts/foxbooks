@@ -11,7 +11,8 @@ const Switcher = ({ flagSwitcher, setFlagSwitcher }) => {
     router.push({ query: { ...router.query, ['showType']: value } }, null, {
       scroll: false,
     });
-    setFlagSwitcher(value === 'list' ? true : false);
+    // const flag = value === 'list' ? true : false
+    // setFlagSwitcher(flag)
   };
 
   return (

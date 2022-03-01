@@ -19,82 +19,82 @@ import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import {showMenu} from '../../store/commonSlice';
 
 const Header = () => {
-    const dispatch = useDispatch();
-    const router = useRouter();
-    const {innerWidthWindow, showMenu: showMenuFlag} = useSelector(
-        state => state.common
-    );
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const {innerWidthWindow, showMenu: showMenuFlag} = useSelector(
+      state => state.common
+  );
 
-    const {isAuth} = useSelector(state => state.auth);
-    const {profile} = useSelector(state => state.profile);
-    const [modal, setModal] = useState(false);
-    const [flagSettings, setFlagSettings] = useState(false);
+  const { isAuth } = useSelector(state => state.auth);
+  const { profile } = useSelector(state => state.profile);
+  const [modal, setModal] = useState(false);
+  const [flagSettings, setFlagSettings] = useState(false);
 
-    const onSearchInput = () => {
-        dispatch(showMenu(true));
-        const body = document.querySelector('body');
-        body.classList.add('nonScroll');
-    };
+  const onSearchInput = () => {
+    dispatch(showMenu(true));
+    const body = document.querySelector('body');
+    body.classList.add('nonScroll');
+  };
 
-    const closeModal = () => {
-        dispatch(showMenu(false));
-        const body = document.querySelector('body');
-        body.classList.remove('nonScroll');
-    };
+  const closeModal = () => {
+    dispatch(showMenu(false));
+    const body = document.querySelector('body');
+    body.classList.remove('nonScroll');
+  };
 
-    const logOut = () => {
-        if (router.pathname.includes('settings')) {
-            router.push('/');
-        }
-        dispatch(setAuth(false));
-        Cookies.remove('token');
-        localStorage.removeItem('avatarColor');
-    };
+  const logOut = () => {
+    if (router.pathname.includes('settings')) {
+      router.push('/');
+    }
+    dispatch(setAuth(false));
+    Cookies.remove('token');
+    localStorage.removeItem('avatarColor');
+  };
 
-    const popularBooks = [
-        {
-            id: '0',
-            img: '/reviewsBookCovers/cover1.png',
-            name: 'Пост 2. Спастись и сохранить',
-        },
-        {
-            id: '1',
-            img: '/reviewsBookCovers/cover2.png',
-            name: 'Девочка в нулевой степени',
-        },
-        {
-            id: '2',
-            img: '/reviewsBookCovers/cover3.png',
-            name: 'Предружба. Второй шанс',
-        },
-        {
-            id: '3',
-            img: '/reviewsBookCovers/cover1.png',
-            name: 'Четыре ветра',
-        },
-        {
-            id: '4',
-            img: '/reviewsBookCovers/cover2.png',
-            name: 'Последний ход',
-        },
-        {
-            id: '5',
-            img: '/reviewsBookCovers/cover3.png',
-            name: 'Лето в пионерском галстуке',
-        },
-    ];
-    const authors = [
-        {id: '0', author: 'Михаил Булгаков'},
-        {id: '1', author: 'Стивен Кинг'},
-        {id: '2', author: 'Эрих Мария Ремарк'},
-        {id: '3', author: 'Фёдор Достоевский'},
-        {id: '4', author: 'Оскар Уайльд'},
-        {id: '5', author: 'Рэй Брэдбери'},
-        {id: '6', author: 'Джоан Роулинг'},
-        {id: '7', author: 'Дэниел Киз'},
-        {id: '8', author: 'Джордж Оруэлл'},
-        {id: '9', author: 'Антуан де Сент-Экзюпери'},
-    ];
+  const popularBooks = [
+    {
+      id: '0',
+      img: '/reviewsBookCovers/cover1.png',
+      name: 'Пост 2. Спастись и сохранить',
+    },
+    {
+      id: '1',
+      img: '/reviewsBookCovers/cover2.png',
+      name: 'Девочка в нулевой степени',
+    },
+    {
+      id: '2',
+      img: '/reviewsBookCovers/cover3.png',
+      name: 'Предружба. Второй шанс',
+    },
+    {
+      id: '3',
+      img: '/reviewsBookCovers/cover1.png',
+      name: 'Четыре ветра',
+    },
+    {
+      id: '4',
+      img: '/reviewsBookCovers/cover2.png',
+      name: 'Последний ход',
+    },
+    {
+      id: '5',
+      img: '/reviewsBookCovers/cover3.png',
+      name: 'Лето в пионерском галстуке',
+    },
+  ];
+  const authors = [
+    { id: '0', author: 'Михаил Булгаков' },
+    { id: '1', author: 'Стивен Кинг' },
+    { id: '2', author: 'Эрих Мария Ремарк' },
+    { id: '3', author: 'Фёдор Достоевский' },
+    { id: '4', author: 'Оскар Уайльд' },
+    { id: '5', author: 'Рэй Брэдбери' },
+    { id: '6', author: 'Джоан Роулинг' },
+    { id: '7', author: 'Дэниел Киз' },
+    { id: '8', author: 'Джордж Оруэлл' },
+    { id: '9', author: 'Антуан де Сент-Экзюпери' },
+  ];
 
     const isShown = () => {
         if (router.pathname.includes('reader')) {

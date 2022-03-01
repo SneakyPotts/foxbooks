@@ -14,7 +14,7 @@ const Alphabet = () => {
         <ul className={css.alphabet}>
           {alphabet.map(({ id, name }) => (
             <li key={id} className={classNames(css.letter, {[css.active]: decodeURI(router.query?.letter) === name})}>
-              <Link href={`/books-list/${encodeURI(name)}?type=books`}>
+              <Link href={`/authors-list/${name}?type=books`}>
                 <a>{name}</a>
               </Link>
             </li>
@@ -26,7 +26,7 @@ const Alphabet = () => {
         <ul className={css.alphabet}>
           {alphabet.map(({ id, name }) => (
             <li key={id} className={classNames(css.letter, {[css.active]: decodeURI(router.query?.letter) === name})}>
-              <Link href={`/authors-list/${encodeURI(name)}?type=books`}>
+              <Link href={`/books-list/${name}?type=books`}>
                 <a>{name}</a>
               </Link>
             </li>

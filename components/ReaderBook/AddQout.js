@@ -19,7 +19,8 @@ const AddPopup = ({
   addQuot,
   changeColor,
   deleteQuot,
-  copyText
+  copyText,
+  shareQuot
 }) => {
   const { innerWidthWindow } = useSelector(state => state.common)
 
@@ -74,6 +75,7 @@ const AddPopup = ({
       )}
       style={style}
       onMouseUp={ev => ev.stopPropagation()}
+      onTouchEnd={ev => ev.stopPropagation()}
     >
       {!isError &&
         <div className={styles.addQuotFlex}>          
@@ -140,7 +142,10 @@ const AddPopup = ({
         Скопировать
       </div>
 
-      <div className={styles.addQuotFlex}>
+      <div
+        className={styles.addQuotFlex}
+        onClick={shareQuot}
+      >
         <div className={styles.addQuotIcon}>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.33398 10V16.6667C3.33398 17.1087 3.50958 17.5326 3.82214 17.8452C4.1347 18.1577 4.55862 18.3333 5.00065 18.3333H15.0007C15.4427 18.3333 15.8666 18.1577 16.1792 17.8452C16.4917 17.5326 16.6673 17.1087 16.6673 16.6667V10" stroke="#FF781D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
