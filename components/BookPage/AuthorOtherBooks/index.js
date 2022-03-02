@@ -3,13 +3,12 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import classNames from 'classnames';
-import books from '../../data/books.json';
 import Book from '../../shared/common/book';
 import ArrowRight from '../../../public/chevron-right.svg';
 import ShowAll from '../../shared/common/showAll/ShowAll';
 import st from './otherBooks.module.scss';
 
-const AuthorOtherBooks = () => {
+const AuthorOtherBooks = ({ data }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const changeSpaceBtwSwiper = () => {
@@ -41,9 +40,13 @@ const AuthorOtherBooks = () => {
         }}
         slidesPerView={changeSlidesPerView()}
       >
-        {books.map(book => (
-          <SwiperSlide key={book.id}>
-            <Book classNames={st.slide} book={book} similar={true} />
+        {data.map(i => (
+          <SwiperSlide key={i?.id}>
+            <Book
+              classNames={st.slide}
+              book={i}
+              similar={true}
+            />
           </SwiperSlide>
         ))}
         <button className={classNames('prevArrow', st.btn)}>

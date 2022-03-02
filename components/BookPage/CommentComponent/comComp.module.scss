@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 .reviewsTitle {
-  font-family: Merriweather;
+  font-family: 'Merriweather', serif;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
@@ -124,7 +124,7 @@
   overflow: hidden;
 }
 .userInput {
-  font-family: Fira Sans, sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   width: 484px;
   height: 35px;
   padding: 8px 20px;
@@ -135,7 +135,7 @@
   outline: none;
 
   &::-webkit-input-placeholder {
-    font-family: Fira Sans, sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     line-height: 1.43;
     color: $color-third;
@@ -155,7 +155,7 @@
   align-items: center;
 }
 .controllBtn {
-  font-family: Fira Sans, sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   font-size: 14px;
   line-height: 1.43;
   display: flex;

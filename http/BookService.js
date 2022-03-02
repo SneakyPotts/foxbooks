@@ -39,12 +39,22 @@ export default class BookService {
 			axios.get(`${API_URL}/audio-books/${id}`)
 	}
 
-	static async setBookStatus({id, value}) {
-		return api.put(`${API_URL}/profile/lists/books`, { book_id: id, status: value })
+	static async getBooksByAuthor(id) {
+		return axios.get(`${API_URL}/authors/${id}/books`)
 	}
 
-	static async deleteBookFromFavorite(id) {
-		return api.delete(`${API_URL}/profile/lists/books?book_id=${id}`, { book_id: id })
+	static async getAudioBooksByAuthor(id) {
+		return axios.get(`${API_URL}/authors/${id}/audio-books`)
+	}
+
+	static async setBookStatus({id, value, type}) {
+		const idKey = type === 'books' ? 'book_id' : 'audio_book_id'
+		return api.put(`${API_URL}/profile/lists/${type}`, { [idKey]: id, status: value })
+	}
+
+	static async deleteBookFromFavorite({id, type}) {
+		const idKey = type === 'books' ? 'book_id' : 'audio_book_id'
+		return api.delete(`${API_URL}/profile/lists/${type}?book_id=${id}`, { [idKey]: id })
 	}
 
 	static async setBookRating({id, value}) {

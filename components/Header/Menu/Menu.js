@@ -18,123 +18,121 @@ const Navigation = ({ setModal }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   return (
-    <>
-      <nav className={css.navigation}>
-        <div className={css.topMenu}>
-          <Link href="/books?type=books&sortBy=1">
-            <a
-              className={`${css.link} ${
-                router.query?.type === 'books' ? css.active : css.link
-              }`}
-            >
-              <div className={css.icon}>
-                <Book />
-              </div>
-              Книги
-            </a>
-          </Link>
-          <Link href="/books?type=audioBooks&sortBy=1">
-            <a
-              className={`${css.link} ${css.linkStroke} ${
-                  router.query?.type === 'audioBooks'
-                  ? css.activeStroke
-                  : css.link
-              }`}
-            >
-              <div className={css.icon}>
-                <Headphones />
-              </div>
-
-              <span>Аудиокниги</span>
-            </a>
-          </Link>
-          <Link href="/selections">
-            <a
-              className={`${css.link} ${css.linkStroke} ${
-                router.pathname.includes('/selections')
-                  ? css.activeStroke
-                  : css.link
-              }`}
-            >
-              <div className={css.icon}>
-                <Selections />
-              </div>
-              Подборки
-            </a>
-          </Link>
-          <Link href="/new">
-            <a
-              className={`${css.link} ${
-                router.pathname.includes('/new') ? css.active : css.link
-              } ${innerWidthWindow <= 768 && css.noSpace}`}
-            >
-              <div className={css.icon}>
-                <Fire />
-              </div>
-              Новинки
-            </a>
-          </Link>
-        </div>
-
-        <div className={css.dovnMenu}>
-          <Link href="/">
-            <a
-              className={`${css.dovnMenuLogo} ${
-                router.pathname !== '/' ? css.dovnMenuLogo : css.active
-              }`}
-            >
-              {router.pathname === '/' ? (
-                <LogoMobileActive />
-              ) : (
-                <LogoMobileWhite />
-              )}
-              <span className={css.dovnMenuLogoText}>Главная</span>
-            </a>
-          </Link>
-          <Link href="/categories">
-            <a
-              className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
-                router.pathname == '/categories' ? css.activeStroke : css.link
-              }`}
-            >
-              <div className={css.icon}>
-                <Grid />
-              </div>
-              Категории
-            </a>
-          </Link>
-
-          <Link href="/mybooks">
-            <a
-              onClick={e => {
-                if (!isAuth) {
-                  e.preventDefault();
-                  setModal();
-                }
-              }}
-              className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
-                router.pathname == '/mybooks' ? css.activeStroke : css.link
-              }`}
-            >
-              <div className={css.icon}>
-                <MyBooks />
-              </div>
-              Мои книги
-            </a>
-          </Link>
-
-          <div
-            onClick={() => setModal()}
-            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.dovnMenuLink}`}
+    <nav className={css.navigation}>
+      <div className={css.topMenu}>
+        <Link href="/books?type=books&sortBy=1">
+          <a
+            className={`${css.link} ${
+              router.pathname.includes('books') ? css.active : css.link
+            }`}
           >
             <div className={css.icon}>
-              <User />
+              <Book />
             </div>
-            Профиль
+            Книги
+          </a>
+        </Link>
+        <Link href="/books?type=audioBooks&sortBy=1">
+          <a
+            className={`${css.link} ${css.linkStroke} ${
+                router.pathname.includes('audioBooks')
+                ? css.activeStroke
+                : css.link
+            }`}
+          >
+            <div className={css.icon}>
+              <Headphones />
+            </div>
+
+            <span>Аудиокниги</span>
+          </a>
+        </Link>
+        <Link href="/selections">
+          <a
+            className={`${css.link} ${css.linkStroke} ${
+              router.pathname.includes('/selections')
+                ? css.activeStroke
+                : css.link
+            }`}
+          >
+            <div className={css.icon}>
+              <Selections />
+            </div>
+            Подборки
+          </a>
+        </Link>
+        <Link href={`/new?sortBy=1&type=all`}>
+          <a
+            className={`${css.link} ${
+              router.pathname.includes('/new') ? css.active : css.link
+            } ${innerWidthWindow <= 768 && css.noSpace}`}
+          >
+            <div className={css.icon}>
+              <Fire />
+            </div>
+            Новинки
+          </a>
+        </Link>
+      </div>
+
+      <div className={css.dovnMenu}>
+        <Link href="/">
+          <a
+            className={`${css.dovnMenuLogo} ${
+              router.pathname !== '/' ? css.dovnMenuLogo : css.active
+            }`}
+          >
+            {router.pathname === '/' ? (
+              <LogoMobileActive />
+            ) : (
+              <LogoMobileWhite />
+            )}
+            <span className={css.dovnMenuLogoText}>Главная</span>
+          </a>
+        </Link>
+        <Link href="/categories">
+          <a
+            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
+              router.pathname.includes('/categories') ? css.activeStroke : css.link
+            }`}
+          >
+            <div className={css.icon}>
+              <Grid />
+            </div>
+            Категории
+          </a>
+        </Link>
+
+        <Link href="/mybooks">
+          <a
+            onClick={e => {
+              if (!isAuth) {
+                e.preventDefault();
+                setModal();
+              }
+            }}
+            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
+              router.pathname.includes('/mybooks') ? css.activeStroke : css.link
+            }`}
+          >
+            <div className={css.icon}>
+              <MyBooks />
+            </div>
+            Мои книги
+          </a>
+        </Link>
+
+        <div
+          onClick={() => setModal()}
+          className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.dovnMenuLink}`}
+        >
+          <div className={css.icon}>
+            <User />
           </div>
+          Профиль
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 export default Navigation;

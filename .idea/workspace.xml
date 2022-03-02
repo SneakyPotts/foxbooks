@@ -1,21 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="fixes">
+    <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/http/NoveltiesService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/ReviewService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/noveltiesSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/reviewSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioBooks/audioBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioBooks/audioBooks.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AuthorPage/author.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorPage/author.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AuthorPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorPage/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/AuthorOtherAudiobooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AuthorOtherAudiobooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AuthorOtherAudiobooks/otherAudioBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AuthorOtherAudiobooks/otherAudioBooks.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/AuthorOtherBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AuthorOtherBooks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/Quotes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Quotes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AuthorOtherBooks/otherBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AuthorOtherBooks/otherBooks.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentComponent/comComp.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentComponent/comComp.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/comments.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/comments.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Quotes/quotes.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Quotes/quotes.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/reviews.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/reviews.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/similarBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/similarBooks.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/underCom.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/underCom.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/bookpage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/bookpage.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/books.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/books.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Books/category/category.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/category/category.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BooksListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BooksListPage/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CategoriesPage/categories.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/CategoriesPage/categories.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Error/error.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Error/error.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Holders/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Holders/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/About/about.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/About/about.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Alphabet/Alphabet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/audioBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/audioBooks.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Reviews/reviews.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Reviews/reviews.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/date.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/date.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/home.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/home.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Edit/edit.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Edit/edit.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelections/mySelections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelections/mySelections.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Review/review.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Review/review.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selection/AddBook/addBook.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Selection/AddBook/addBook.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selection/selection.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Selection/selection.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/myBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/myBooks.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NewPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewPage/review.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewPage/review.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/selections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selections.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/selectionsList/selectionsList.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selectionsList/selectionsList.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SeriesPage/series.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SeriesPage/series.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideFilters/sideFilters.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideFilters/sideFilters.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Support/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/Button/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Button/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/SocialNetwork/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/SocialNetwork/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/booksFilters/bookFilters.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/booksFilters/bookFilters.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/mobalModal/mobalModal.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/mobalModal/mobalModal.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/showAll/showAll.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/showAll/showAll.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ProfileService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ProfileService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ReaderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ReaderService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/book/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/books-list/[letter].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/letterlist/[letter].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/new/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/new/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/authorSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authorSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/readerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/readerSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/selectionSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/selectionSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/FiraSans-Medium.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/FiraSans-Medium.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/FiraSans-Medium.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/FiraSans-Medium.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/FiraSans-Regular.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/FiraSans-Regular.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/FiraSans-Regular.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/FiraSans-Regular.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/Merriweather-Bold.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Merriweather-Bold.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/Merriweather-Bold.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Merriweather-Bold.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/Merriweather-Regular.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Merriweather-Regular.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/fonts/Merriweather-Regular.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Merriweather-Regular.woff2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/mixin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/mixin.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,21 +134,26 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/http" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\store" />
+      <recent name="E:\Frontend\projects\library-next\http" />
       <recent name="D:\library-next\http" />
       <recent name="D:\library-next\store" />
       <recent name="D:\library-next\components\shared\icons" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -110,6 +198,7 @@
       <workItem from="1643879707088" duration="101132000" />
       <workItem from="1645429324942" duration="1129000" />
       <workItem from="1645439437064" duration="7972000" />
+      <workItem from="1646208019841" duration="23008000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -307,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646133889863</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="one book">
+      <created>1646153765282</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1646153765282</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +472,8 @@
     <MESSAGE value="merge" />
     <MESSAGE value="books" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="one book" />
+    <option name="LAST_COMMIT_MESSAGE" value="one book" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

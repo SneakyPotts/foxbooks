@@ -1,5 +1,4 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import BookService from "../http/BookService";
 
 const initialState = {
 	selections: [],

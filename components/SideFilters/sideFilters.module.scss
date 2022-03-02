@@ -10,7 +10,7 @@
 }
 .btn {
   font-weight: 500;
-  font-family: Fira Sans, sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   font-size: 16px;
   line-height: 1.125;
   color: $color-main;
@@ -102,7 +102,7 @@
   margin: 0;
 }
 .input {
-  font-family: Fira Sans, sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   width: 180px;
   height: 32px;
   padding: 6px 15px;
@@ -115,7 +115,7 @@
   background-color: transparent;
 
   &::-webkit-input-placeholder {
-    font-family: Fira Sans, sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     color: $color-third;
   }
 

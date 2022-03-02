@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import Image from 'next/image';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -17,13 +17,17 @@ import ShowAll from '../shared/common/showAll/ShowAll';
 import st from './bookpage.module.scss';
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
+import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
 
 const BookPage = () => {
+  const dispatch = useDispatch()
   const router = useRouter()
+  const type = router.query?.type
 
   const audioFlag = router.query?.type === 'audioBooks';
 
-  const { book } = useSelector(state => state.book);
+  const { book, booksByAuthor, audioBooksByAuthor } = useSelector(state => state.book);
+  const { reviews } = useSelector(state => state.review);
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const changeSlidesPerView = () => {
@@ -36,28 +40,51 @@ const BookPage = () => {
     if (innerWidthWindow < 500) return 100;
   };
 
+  useEffect(() => {
+    const authorId = book?.authors[0]?.id
+
+    if(authorId) {
+      dispatch(getBooksByAuthor(authorId))
+      dispatch(getAudioBooksByAuthor(authorId))
+    }
+  }, [])
+
   return (
     <div className={'container'}>
-      <Breadcrumbs />
+      <Breadcrumbs
+        data={[
+          {
+            path: `/books?type=${type}&sortBy=1`,
+            title: type === 'books' ? 'Книги' : 'Аудиокниги'
+          },
+          {
+            path: router.asPath,
+            title: book?.title
+          },
+        ]}
+      />
+
       <div className={st.wrapper}>
         <div className={st.mainBlock}>
           <AboutBook
             book={book}
             audioFlag={audioFlag}
           />
+
           <div
-            id="similar"
             className={st.relatedInfo}
           >
-            <SimilarBooks
-              audio={audioFlag}
-            />
+            {book?.similar?.length ?
+              <SimilarBooks
+                data={book?.similar}
+              /> : null
+            }
 
             <img
               src="/advertising.png"
               alt=""
-              // width={588}
-              // height={250}
+              width={588}
+              height={250}
               className={st.relatedInfoBanner}
             />
 
@@ -69,10 +96,19 @@ const BookPage = () => {
 
             {!audioFlag && <Quotes />}
 
-            <AuthorOtherBooks />
-            <AuthorOtherAudioBooks />
+            {booksByAuthor?.length ?
+              <AuthorOtherBooks
+                data={booksByAuthor}
+              /> : null
+            }
 
-            {!audioFlag && (
+            {audioBooksByAuthor?.length ?
+              <AuthorOtherAudioBooks
+                data={audioBooksByAuthor}
+              /> : null
+            }
+
+            {!audioFlag && book?.compilations?.length ?
               <div className={st.compilBlock}>
                 <div className={st.title}>
                   {innerWidthWindow > 768 ? (
@@ -84,43 +120,43 @@ const BookPage = () => {
                     <ShowAll externalClass={st.dicardDistance} />
                   )}
                 </div>
-                {/*<Swiper*/}
-                {/*  spaceBetween={24}*/}
-                {/*  modules={[Navigation]}*/}
-                {/*  navigation={{*/}
-                {/*    prevEl: '.prevArrow',*/}
-                {/*    nextEl: '.nextArrow',*/}
-                {/*  }}*/}
-                {/*  slidesPerView={changeSlidesPerView()}*/}
-                {/*>*/}
-                {/*  {compilationsBook.map(i => (*/}
-                {/*    <SwiperSlide key={i.id}>*/}
-                {/*      <div>*/}
-                {/*        <div className={st.compilBookCover}>*/}
-                {/*          <Image*/}
-                {/*            src="/horizontalBookCovers/bookCover2.png"*/}
-                {/*            width={180}*/}
-                {/*            height={108}*/}
-                {/*            alt=""*/}
-                {/*          />*/}
-                {/*          <div className={st.compilBookCoverStat}>*/}
-                {/*            <span>15</span>*/}
-                {/*            <span>книг</span>*/}
-                {/*          </div>*/}
-                {/*        </div>*/}
-                {/*        <h4 className={st.compilBookTitle}>{i.title}</h4>*/}
-                {/*      </div>*/}
-                {/*    </SwiperSlide>*/}
-                {/*  ))}*/}
-                {/*  <button className={classnames('prevArrow', st.btnCompil)}>*/}
-                {/*    <ArrowRight className="arrowNext" />*/}
-                {/*  </button>*/}
-                {/*  <button className={classnames('nextArrow', st.btnCompil)}>*/}
-                {/*    <ArrowRight className="arrowNext" />*/}
-                {/*  </button>*/}
-                {/*</Swiper>*/}
-              </div>
-            )}
+                <Swiper
+                  spaceBetween={24}
+                  modules={[Navigation]}
+                  navigation={{
+                    prevEl: '.prevArrow',
+                    nextEl: '.nextArrow',
+                  }}
+                  slidesPerView={changeSlidesPerView()}
+                >
+                  {book?.compilations?.map(i => (
+                    <SwiperSlide key={i?.id}>
+                      <div>
+                        <div className={st.compilBookCover}>
+                          <Image
+                            src="/horizontalBookCovers/bookCover2.png"
+                            width={180}
+                            height={108}
+                            alt=""
+                          />
+                          <div className={st.compilBookCoverStat}>
+                            <span>15</span>
+                            <span>книг</span>
+                          </div>
+                        </div>
+                        <h4 className={st.compilBookTitle}>{i?.title}</h4>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                  <button className={classnames('prevArrow', st.btnCompil)}>
+                    <ArrowRight className="arrowNext" />
+                  </button>
+                  <button className={classnames('nextArrow', st.btnCompil)}>
+                    <ArrowRight className="arrowNext" />
+                  </button>
+                </Swiper>
+              </div> : null
+            }
 
             <p className={st.recommendations}>
               Порекомендуйте книги, похожие на “{book?.title}”

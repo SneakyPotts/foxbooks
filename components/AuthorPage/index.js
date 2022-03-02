@@ -11,9 +11,12 @@ import { addAuthorToFavorite, deleteAuthorFromFavorite } from './../../store/aut
 
 import classnames from 'classnames';
 import st from './author.module.scss';
+import Breadcrumbs from "../BreadCrumps/BreadCrumps";
+import {useRouter} from "next/router";
 
 const AuthorPage = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const { author, isFavorite } = useSelector(state => state.author)
 
@@ -43,6 +46,13 @@ const AuthorPage = () => {
 
   return (
     <div className="container">
+      <Breadcrumbs
+        data={[{
+          title: `Автор “${author?.author}”`,
+          path: router.asPath
+        }]}
+      />
+
       <div className={st.wrapper}>
         <div className={st.centralBlock}>
           <div className={st.wrapper}>

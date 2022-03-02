@@ -23,7 +23,7 @@
   margin: 0 24px;
 
   &Name {
-    font-family: Merriweather;
+    font-family: 'Merriweather', serif;
     font-size: 28px;
     line-height: 1.25;
     margin-bottom: 10px;
@@ -38,7 +38,7 @@
   }
 
   &Btn {
-    font-family: Fira Sans, sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     line-height: 1.43;
     width: 200px;
@@ -82,7 +82,7 @@
   transform: rotate(0deg);
 }
 .seriesTitle {
-  font-family: Merriweather;
+  font-family: 'Merriweather', serif;
   font-weight: bold;
   font-size: 24px;
   line-height: 1.25;
@@ -124,7 +124,7 @@
   margin-top: 60px;
 
   &Title {
-    font-family: Merriweather;
+    font-family: 'Merriweather', serif;
     font-weight: bold;
     font-size: 24px;
     line-height: 1.25;

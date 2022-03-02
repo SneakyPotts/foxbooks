@@ -20,7 +20,7 @@
     display: inherit;
 
     &Count {
-      font-family: Fira Sans, sans-serif;
+      font-family: 'Fira Sans', sans-serif;
       font-size: 14px;
       line-height: 20px;
       position: absolute;
@@ -43,7 +43,7 @@
   }
 
   &Description {
-    font-family: Fira Sans, sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     line-height: 1.43;
     color: $color-second;

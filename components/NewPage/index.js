@@ -1,102 +1,70 @@
-import { useState } from 'react';
+import React from 'react';
 import Book from '../shared/common/book';
 import Image from 'next/image';
-import classNames from 'classnames';
 import st from './newPage.module.scss';
+import {useSelector} from "react-redux";
+import MyPagination from "../shared/common/MyPagination";
+import Breadcrumbs from "../BreadCrumps/BreadCrumps";
+import {useRouter} from "next/router";
+import BookFilters from "../shared/common/booksFilters/BookFilters";
+
+const sortFilters = [
+	{ id: 1, title: 'Последние поступления', value: 1 },
+	{ id: 2, title: 'Популярные', value: 5 },
+];
+
+const typeFilters = [
+	{ id: 1, title: 'Все', value: 'all' },
+	{ id: 2, title: 'Книги', value: 'books' },
+	{ id: 3, title: 'Аудиокниги', value: 'audioBooks' }
+];
 
 const NewPage = () => {
-	const popularSelections = [
-		{ id: '0', option: 'Последние поступления' },
-		{ id: '1', option: 'Популярные' },
-	];
+	const router = useRouter()
 
-	const booksSelections = [
-		{ id: '0', option: 'Все' },
-		{ id: '1', option: 'Книги' },
-		{ id: '2', option: 'Аудиокниги' },
-	];
-
-	const newBooks = [
-		{ id: '0' },
-		{ id: '1' },
-		{ id: '2' },
-		{ id: '3' },
-		{ id: '4' },
-		{ id: '5' },
-		{ id: '6' },
-		{ id: '7' },
-		{ id: '8' },
-		{ id: '9' },
-		{ id: '10' },
-		{ id: '11' },
-		{ id: '12' },
-		{ id: '13' },
-		{ id: '14' },
-		{ id: '15' },
-		{ id: '16' },
-		{ id: '17' },
-		{ id: '18' },
-		{ id: '19' },
-		{ id: '20' },
-		{ id: '21' },
-		{ id: '22' },
-		{ id: '23' },
-		{ id: '24' },
-		{ id: '25' },
-		{ id: '26' },
-		{ id: '27' },
-		{ id: '28' },
-		{ id: '29' },
-		{ id: '30' },
-		{ id: '31' },
-		{ id: '32' },
-		{ id: '33' },
-	];
-
-	const [activePopSel, setActivPopSel] = useState(0);
-	const [activeBookSel, setActiveBookSel] = useState(0);
+	const { novelties } = useSelector(state => state.novelties)
 
 	return (
 		<div className="container">
+			<Breadcrumbs
+				data={[{
+					title: 'Новинки',
+					path: router.asPath
+				}]}
+			/>
+
 			<h2 className={st.newsTitle}>Новинки</h2>
+
 			<div className={st.filtersBtns}>
-				<div className={st.popularSelections}>
-					{popularSelections.map((select, index) => (
-						<button
-							key={select.id}
-							className={classNames(st.selectFilters, {
-								[st.selectFiltersActive]: index === activePopSel,
-							})}
-							onClick={() => setActivPopSel(index)}
-						>
-							{select.option}
-						</button>
-					))}
-				</div>
-				<div className={st.booksSelections}>
-					{booksSelections.map((select, index) => (
-						<button
-							key={select.id}
-							className={classNames(st.selectFilters, {
-								[st.selectFiltersActive]: index === activeBookSel,
-							})}
-							onClick={() => {
-								setActiveBookSel(index);
-							}}
-						>
-							{select.option}
-						</button>
-					))}
-				</div>
+				<BookFilters
+					filters={sortFilters}
+					queryName={'sortBy'}
+				/>
+				<BookFilters
+					filters={typeFilters}
+					queryName={'type'}
+				/>
 			</div>
+
 			<div className={st.mainBlock}>
-				<div className={st.booksGrid}>
-					{newBooks.map(it => (
-						<div key={it.id}>
-							<Book />
+				{novelties?.data?.length ?
+					<div>
+						<div className={st.booksGrid}>
+							{novelties?.data?.map(i => (
+								<div key={i?.id}>
+									<Book
+										book={i}
+										audio={i?.type}
+									/>
+								</div>
+							))}
 						</div>
-					))}
-				</div>
+						<MyPagination
+							lastPage={novelties?.last_page}
+						/>
+					</div> :
+					<p className="empty">Книги не найдены</p>
+				}
 
 				<div className={st.advertisingBlok}>
 					<div className={st.bannerBlock}>
@@ -107,7 +75,7 @@ const NewPage = () => {
 					</div>
 				</div>
 			</div>
-			<p className={st.pagination}>1 2 3 4</p>
+
 			<div className={st.mountains}>
 				<Image src="/mountains.png" width={1200} height={400} alt="" />
 			</div>

@@ -16,11 +16,9 @@ import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import MobileBlock from './MobileBlock';
 import css from './home.module.scss';
-// import {useRef} from "react";
 
 const HomeView = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
-  // console.log(innerWidthWindow, 'innerWidthWindow');
 
   return (
     <div className={classNames('container', css.container)}>
@@ -30,7 +28,7 @@ const HomeView = () => {
           <Alphabet />
           <ShowAll
             title={innerWidthWindow >= 768 ? 'Новинки книг' : 'Новинки'}
-            url="/new"
+            url={`/new?sortBy=1&type=all`}
           />
 
           <Swiper

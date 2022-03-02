@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Link from 'next/link';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useRouter } from 'next/router';
 import ArrowIcon from './../../public/chevron-right.svg';
 import Logo from "../shared/icons/Logo";

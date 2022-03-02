@@ -7,10 +7,28 @@ const initialState = {
 	dailyHotUpdates: [],
 	books: [],
 	book: [],
+	booksByAuthor: [],
+	audioBooksByAuthor: [],
 	audioFlag: false,
 	isLoading: false,
 	isError: false
 };
+
+export const getBooksByAuthor = createAsyncThunk(
+	'book/getBooksByAuthor',
+	async id => {
+		const response = await BookService.getBooksByAuthor(id)
+		return response.data
+	}
+)
+
+export const getAudioBooksByAuthor = createAsyncThunk(
+	'book/getAudioBooksByAuthor',
+	async id => {
+		const response = await BookService.getAudioBooksByAuthor(id)
+		return response.data
+	}
+)
 
 export const setBookStatus = createAsyncThunk(
 	'book/setBookStatus',
@@ -22,8 +40,8 @@ export const setBookStatus = createAsyncThunk(
 
 export const deleteBookFromFavorite = createAsyncThunk(
 	'book/deleteBookFromFavorite',
-	async id => {
-		const response = await BookService.deleteBookFromFavorite(id)
+	async data => {
+		const response = await BookService.deleteBookFromFavorite(data)
 		return response.data
 	}
 )
@@ -64,43 +82,32 @@ export const bookSlice = createSlice({
 		}
 	},
 	extraReducers: {
-		// [setBookStatus.pending]: state => {
-		// 	state.isLoading = true
-		// },
-		// [setBookStatus.fulfilled]: state => {
-		// 	state.isError = false
-		// 	state.isLoading = false
-		// },
-		// [setBookStatus.rejected]: state => {
-		// 	state.isError = true
-		// 	state.isLoading = false
-		// },
+		[getBooksByAuthor.pending]: state => {
+			state.isLoading = true
+		},
+		[getBooksByAuthor.fulfilled]: (state, action) => {
+			state.booksByAuthor = action.payload?.data?.books
+			state.isError = false
+			state.isLoading = false
+		},
+		[getBooksByAuthor.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
 
 
-		// [deleteBookFromFavorite.pending]: state => {
-		// 	state.isLoading = true
-		// },
-		// [deleteBookFromFavorite.fulfilled]: state => {
-		// 	state.isError = false
-		// 	state.isLoading = false
-		// },
-		// [deleteBookFromFavorite.rejected]: state => {
-		// 	state.isError = true
-		// 	state.isLoading = false
-		// },
-
-
-		// [setBookRating.pending]: state => {
-		// 	state.isLoading = true
-		// },
-		// [setBookRating.fulfilled]: state => {
-		// 	state.isError = false
-		// 	state.isLoading = false
-		// },
-		// [setBookRating.rejected]: state => {
-		// 	state.isError = true
-		// 	state.isLoading = false
-		// },
+		[getAudioBooksByAuthor.pending]: state => {
+			state.isLoading = true
+		},
+		[getAudioBooksByAuthor.fulfilled]: (state, action) => {
+			state.audioBooksByAuthor = action.payload?.data?.audio_books
+			state.isError = false
+			state.isLoading = false
+		},
+		[getAudioBooksByAuthor.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		}
 	}
 });
 

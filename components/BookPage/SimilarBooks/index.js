@@ -3,13 +3,12 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 import classnames from 'classnames';
-import books from '../../data/books.json';
 import Book from '../../shared/common/book';
 import ArrowRight from '../../../public/chevron-right.svg';
 import ShowAll from '../../shared/common/showAll/ShowAll';
 import st from './similarBooks.module.scss';
 
-const SimilarBooks = ({ audio }) => {
+const SimilarBooks = ({ data }) => {
   const { audioFlag } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
 
@@ -17,15 +16,17 @@ const SimilarBooks = ({ audio }) => {
     if (innerWidthWindow > 768) return 24;
     if (innerWidthWindow <= 768) return 10;
   };
+
   const changeSlidesPerView = () => {
     if (innerWidthWindow <= 500) return 3;
     if (innerWidthWindow > 500) return 4;
   };
 
-  // console.log(changeSpaceBtwSwiper());
-
   return (
-    <div className={st.swiper}>
+    <div
+      id="similar"
+      className={st.swiper}
+    >
       <div className={st.swiperTitle}>
         <h3 className={st.title}>
           Похожие книги
@@ -43,11 +44,11 @@ const SimilarBooks = ({ audio }) => {
         }}
         slidesPerView={changeSlidesPerView()}
       >
-        {books.map(book => (
-          <SwiperSlide key={book.id}>
+        {data.map(i => (
+          <SwiperSlide key={i?.id}>
             <Book
               classNames={st.slide}
-              book={book}
+              book={i}
               similar={true}
               audio={audioFlag}
             />

@@ -7,15 +7,16 @@ import BookFilters from "../shared/common/booksFilters/BookFilters";
 import {useSelector} from "react-redux";
 import Stars from "../shared/common/stars/Stars";
 import {useRouter} from "next/router";
-import {route} from "next/dist/server/router";
 
 const filters = [
   {id: 1, title: 'Книги', value: 'books'},
   {id: 2, title: 'Аудиокниги', value: 'audioBooks'}
 ]
 
-const BooksListPage = () => {
+const LetterListPage = () => {
   const router = useRouter()
+  const isBook = router.query?.type === 'books' || router.query?.type === 'audioBooks'
+
   const {books} = useSelector(state => state.book)
 
   return (
@@ -23,13 +24,20 @@ const BooksListPage = () => {
       <Categories />
       <div className={styles.block}>
         <Alphabet />
-        <div className={styles.filters}>
-          <BookFilters
-            filters={filters}
-            queryName={'type'}
-          />
-        </div>
-        <h2 className={styles.title}>Названия книг, которые начинаются на букву {decodeURI(router.query?.letter)}</h2>
+
+        {isBook &&
+          <div className={styles.filters}>
+            <BookFilters
+              filters={filters}
+              queryName={'type'}
+            />
+          </div>
+        }
+
+        <h2 className={styles.title}>
+          {isBook ? 'Названия книг' : 'Имена авторов'}, которые начинаются на букву {decodeURI(router.query?.letter)}
+        </h2>
+
         {books?.length ?
           <table className={styles.table}>
             {books?.map(i =>
@@ -40,11 +48,11 @@ const BooksListPage = () => {
               </tr>
             )}
           </table> :
-          <p className="empty">Книг не найдено</p>
+          <p className="empty">{isBook ? 'Книг не найдено' : 'Автора не найдены'}</p>
         }
       </div>
     </div>
   );
 };
 
-export default BooksListPage;
+export default LetterListPage;

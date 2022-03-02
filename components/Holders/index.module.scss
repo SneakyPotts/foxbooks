@@ -6,7 +6,7 @@
 
   .holderTitle {
     >h2 {
-      font-family: Merriweather, sans-serif;
+      font-family: 'Merriweather', serif;
       font-size: 24px;
       line-height: 30px;
       color: $color-main;
@@ -14,7 +14,7 @@
     }
 
     >p {
-      font-family: Fira Sans, sans-serif;
+      font-family: 'Fira Sans', sans-serif;
       font-size: 14px;
       color: $color-second;
     }
@@ -34,7 +34,7 @@
         align-items: center;
         >p {
           color: $color-second;
-          font-family: Fira Sans, sans-serif;
+          font-family: 'Fira Sans', sans-serif;
           font-size: 16px;
           line-height: 18px;
           margin-left: 20px;
@@ -66,14 +66,14 @@
 
     >h2 {
       color: $color-main;
-      font-family: Merriweather, sans-serif;
+      font-family: 'Merriweather', serif;
       font-size: 28px;
       line-height: 35px;
       margin-bottom: 10px;
     }
 
     >p {
-      font-family: Fira Sans, sans-serif;
+      font-family: 'Fira Sans', sans-serif;
       font-size: 14px;
       color: $color-second;
     }

@@ -25,28 +25,6 @@ const initialState = {
 		// 	text:"рат, ибо любил он братьев своих и отца своего и не хотел раздор вносить. Ответил сыновьям своим царь: «Вижу, мудры вы стали, ибо разные вы, как ветер небе",
 		// 	id:1,
 		// 	color:"#FED3CA",
-		// },
-		// {
-		// 	startKey:"12",
-		// 	startTextIndex:0,
-		// 	endKey:"16",
-		// 	endTextIndex:0,
-		// 	startOffset:222,
-		// 	endOffset:123,
-		// 	text:"ный дракон, и нет страшнее его на всем белом свете!» Молчит старший брат, молчит средний брат, и лишь младший говорит царю: «Не ради трона, отец, но сражу я дракона!» Глава 1 — Я сражу дракона, отец! — Я знал, что ты, сын мой любимый, согласишься… Ну да, попробуй не согласись, когда твой отец — чародей-некромант, величайший из колдунов современности, сто тридцать ле",
-		// 	id:2,
-		// 	color:"#B8DF70",
-		// },
-		// {
-		// 	startKey:"8",
-		// 	startTextIndex:0,
-		// 	endKey:"10",
-		// 	endTextIndex:0,
-		// 	startOffset:546,
-		// 	endOffset:28,
-		// 	text:"ликана!» И сказал тогда старший сын: «Я найду великана, отец, и сражу его, и не будет он больше зло причинять!» И продолжил царь: «Втора",
-		// 	id:3,
-		// 	color:"#FED3CA",
 		// }
 	],
 	isLoading: false,
@@ -57,6 +35,15 @@ export const getBookMarks = createAsyncThunk(
 	'reader/getBookMarks',
 	async id => {
 		const response = await ReaderService.getBookMarks(id)
+		return response.data
+	}
+)
+
+export const addBookMark = createAsyncThunk(
+	'reader/getBookMarks',
+	async data => {
+		const response = await ReaderService.addBookMark(data)
+		console.log('response', response.data)
 		return response.data
 	}
 )

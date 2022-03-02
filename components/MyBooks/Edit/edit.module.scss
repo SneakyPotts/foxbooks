@@ -50,7 +50,7 @@
   stroke: $color-categories-btn;
 }
 .changeInput {
-  font-family: Merriweather;
+  font-family: 'Merriweather', serif;
   font-size: 28px;
   line-height: 35px;
   color: $color-categories-btn;
@@ -63,13 +63,13 @@
   border: none;
 
   &::-webkit-input-placeholder {
-    font-family: Merriweather;
+    font-family: 'Merriweather', serif;
     font-size: 28px;
     line-height: 35px;
     color: $color-categories-btn;
   }
   &::-moz-placeholder {
-    font-family: Merriweather;
+    font-family: 'Merriweather', serif;
     font-size: 28px;
     line-height: 35px;
     color: $color-categories-btn;

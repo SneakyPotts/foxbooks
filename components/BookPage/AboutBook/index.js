@@ -17,40 +17,42 @@ import Eye from '../../shared/icons/eye';
 import DrawerPopup from '../../shared/common/DrawerPopup';
 import st from './aboutBook.module.scss';
 
-const dataOptions = [
-  {
-    icon: <BookMark />,
-    title: 'Хочу прочитать',
-    value: 1,
-    withPopup: true,
-    isEdit: true
-  },
-  {
-    icon: <OpenBook />,
-    title: 'Читаю',
-    value: 2,
-    isEdit: true
-  },
-  {
-    icon: <Flag />,
-    title: 'Прочитано',
-    value: 3,
-    isEdit: true
-  },
-  {
-    icon: <Add />,
-    title: 'В мои подборки'
-  },
-  {
-    icon: <Basket />,
-    title: 'Удалить из моих книг',
-    isDelete: true
-  }
-]
 
 const AboutBook = ({ book, audioFlag }) => {
+  const dataOptions = [
+    {
+      icon: <BookMark />,
+      title: audioFlag ? 'Хочу прослушать' : 'Хочу прочитать',
+      value: 1,
+      withPopup: true,
+      isEdit: true
+    },
+    {
+      icon: <OpenBook />,
+      title: audioFlag ? 'Слушаю' :'Читаю',
+      value: 2,
+      isEdit: true
+    },
+    {
+      icon: <Flag />,
+      title: audioFlag ? 'Прослушал' : 'Прочитано',
+      value: 3,
+      isEdit: true
+    },
+    {
+      icon: <Add />,
+      title: 'В мои подборки'
+    },
+    {
+      icon: <Basket />,
+      title: 'Удалить из моих книг',
+      isDelete: true
+    }
+  ]
+
   const router = useRouter();
   const dispatch = useDispatch();
+  const type = audioFlag ? 'audio-books' : 'books'
 
   const [openMenu, setOpenMenu] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
@@ -68,10 +70,14 @@ const AboutBook = ({ book, audioFlag }) => {
     if(el?.isEdit) {
       dispatch(setBookStatus({
         id: router.query?.id,
-        value: el?.value
+        value: el?.value,
+        type
       })).then(res => showPopup(res, el?.withPopup))
     } else if(el?.isDelete) {
-      dispatch(deleteBookFromFavorite(router.query?.id))
+      dispatch(deleteBookFromFavorite({
+        id: router.query?.id,
+        type
+      }))
     } else {
 
     }
@@ -257,9 +263,11 @@ const AboutBook = ({ book, audioFlag }) => {
                       </a>
                     </li> : null
                 }
-                <li>
-                  <a href="#similar">Похожие книги</a>
-                </li>
+                {book?.similar?.length ?
+                  <li>
+                    <a href="#similar">Похожие книги</a>
+                  </li> : null
+                }
               </ul>
               <p>
                 {book?.text || 'Нет описания'}
@@ -272,7 +280,7 @@ const AboutBook = ({ book, audioFlag }) => {
                 ) : (
                   <>
                     <p>
-                      Издательство: <span>{book?.publishers[0]?.title || '-'}</span>
+                      Издательство: <span>{book?.publishers?.length ? book.publishers[0].publisher : '-'}</span>
                     </p>
                     <p>
                       Переводчик: <span>{book.translater || '-'}</span>
@@ -281,7 +289,7 @@ const AboutBook = ({ book, audioFlag }) => {
                 )}
 
                 <p>
-                  Жанр: <span>{book?.genres || '-'}</span>
+                  Жанр: <span>{book?.genres?.length ? book.genres[0].name : '-'}</span>
                 </p>
                 <p>
                   Правообладатель: <span>{book.copyright_holder || '-'}</span>

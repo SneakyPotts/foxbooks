@@ -8,7 +8,7 @@ import Book from '../../shared/common/book';
 import ArrowRight from '../../../public/chevron-right.svg';
 import st from './otherAudioBooks.module.scss';
 
-const AuthorOtherAudioBooks = () => {
+const AuthorOtherAudioBooks = ({ data }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const changeSpaceBtwSwiper = () => {
@@ -35,11 +35,11 @@ const AuthorOtherAudioBooks = () => {
         }}
         slidesPerView={changeSlidesPerView()}
       >
-        {books.map(book => (
-          <SwiperSlide key={book.id}>
+        {data.map(i => (
+          <SwiperSlide key={i?.id}>
             <Book
               classNames={st.slide}
-              book={book}
+              book={i}
               similar={true}
               mobalSimilar={true}
               audio={true}

@@ -1,17 +1,17 @@
 @import 'variables';
 @import 'mixin';
 
-@include font('Fira Sans', sans-serif, FiraSans-Regular, 400, 'regular');
-@include font('Fira Sans', sans-serif, FiraSans-Medium, 500, 'medium');
-
-@include font('Merriweather', sans, Merriweather-Regular, 400, 'regular');
-@include font('Merriweather', sans, Merriweather-Bold, 700, 'bold');
+//@include font('Fira Sans', sans-serif, FiraSans-Regular, 400, 'regular');
+//@include font('Fira Sans', sans-serif, FiraSans-Medium, 500, 'medium');
+//
+//@include font('Merriweather', serif, 'Merriweather-Regular, 400, 'regular');
+//@include font('Merriweather', serif, 'Merriweather-Bold, 700, 'bold');
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Fira Sans', sans-serif, 'Merriweather', serif;
+  font-family: 'Fira Sans', sans-serif;
   background-color: #fafafa;
   scroll-behavior: smooth;
 }

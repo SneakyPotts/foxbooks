@@ -20,7 +20,7 @@ const options = {
 				<img
 					{...attributesToProps({
 						...domNode?.attribs,
-						src: `http://loveread.webnauts.pw/${domNode?.attribs?.src}`
+						src: `https://loveread.webnauts.pro${domNode?.attribs?.src}`
 					})}
 				/>
 			)

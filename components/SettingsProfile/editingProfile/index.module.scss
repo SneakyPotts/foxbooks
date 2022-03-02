@@ -50,7 +50,7 @@
   }
 
   .social {
-    font-family: Fira Sans, sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     padding-bottom: 40px;
     border-bottom: 1px solid $color-star-border;
@@ -89,13 +89,13 @@
 .wrapDel {
   >h2 {
     color: $color-main;
-    font-family: Merriweather, sans-serif;
+    font-family: 'Merriweather', serif;
     font-size: 28px;
     line-height: 35px;
   }
   >p{
     margin-top: 10px;
-    font-family: Fira Sans, sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     color: $color-second;
     font-size: 14px;
   }

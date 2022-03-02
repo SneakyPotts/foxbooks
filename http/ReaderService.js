@@ -14,6 +14,10 @@ export default class ReaderService {
 		return api.get(`${API_URL}/books/${id}/bookmarks`)
 	}
 
+	static async addBookMark({book_id, page_id}) {
+		return api.post(`${API_URL}/bookmarks`, {book_id, page_id})
+	}
+
 	static async getBookQuotes({id, my, search}) {
 		return api.get(`${API_URL}/quotes?bookId=${id}
 			${my && `&myQuotes=${my}`}

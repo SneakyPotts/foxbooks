@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import classnames from 'classnames';
 import Button from '../../shared/common/Button/Button';
 import ArrowAll from '../../../public/chevron-down.svg';
 import CommentComp from '../CommentComponent';
 import st from './reviews.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
+import {getReviewTypes} from "../../../store/reviewSlice";
 
 const Reviews = () => {
+  const dispatch = useDispatch()
   const options = ['Положительная', 'Отрицательная', 'Нейтральная'];
 
   const reviewsAmount = [
@@ -16,6 +18,8 @@ const Reviews = () => {
     { id: '2', type: 'neutral' },
   ];
 
+  const { reviewTypes, reviews } = useSelector(state => state.review)
+
   const [menu, setMenu] = useState(false);
   const [reviewTyping, setReviewTyping] = useState(false);
   const [optionIndex, setOptionIndex] = useState(null);
@@ -23,15 +27,6 @@ const Reviews = () => {
   const [activeOption, setActiveOption] = useState('Тип рецензии');
   // const [mainCommentIdx, setMainCommenIdx] = useState(null);
   const { innerWidthWindow } = useSelector(state => state.common);
-
-  useEffect(() => {
-    const body = document.querySelector('body');
-    body.addEventListener('click', closeMenu);
-
-    return () => {
-      body.removeEventListener('click', closeMenu);
-    };
-  }, []);
 
   const togleMenu = e => {
     e.stopPropagation();
@@ -60,17 +55,30 @@ const Reviews = () => {
     setReviewTyping(false);
   };
 
+  useEffect(() => {
+    dispatch(getReviewTypes())
+
+    const body = document.querySelector('body');
+    body.addEventListener('click', closeMenu);
+
+    return () => {
+      body.removeEventListener('click', closeMenu);
+    };
+  }, []);
+
   return (
     <div id="reviews">
       <h2 className={st.reviewTitle}>Рецензии</h2>
+
       {!reviewTyping && (
         <Button
           typeButton="button"
           text="Написать рецензию"
           classNames={st.submitButton}
-          click={() => handleLeaveReviewInput()}
+          click={handleLeaveReviewInput}
         />
       )}
+
       {reviewTyping && (
         <form>
           <p className={classnames(st.leaveReviewInputLabel, st.hide)}>
@@ -146,11 +154,13 @@ const Reviews = () => {
           </div>
         </form>
       )}
+
       {reviewsAmount.map((it, idx) => (
         <div key={it.id} className={st.review}>
           <CommentComp content='Рицензии' idx={idx} type={it.type} reviews={true} />
         </div>
       ))}
+
       {innerWidthWindow > 768 ? (
         <MyPagination />
       ) : (

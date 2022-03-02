@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import DrawerPopup from "../shared/common/DrawerPopup";
 import Header from './Header'
@@ -15,9 +15,11 @@ import styles from './styles.module.scss'
 import BackBtn from '../shared/common/BackBtn';
 import { useRouter } from 'next/router';
 import InputRange from '../shared/common/InputRange/InputRange';
+import {addBookMark} from "../../store/readerSlice";
 
 const ReaderBook = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const { innerWidthWindow } = useSelector(state => state.common)
   const { book, settings } = useSelector(state => state.reader)
@@ -51,6 +53,10 @@ const ReaderBook = () => {
 
   const addMark = ev => {
     ev && ev.stopPropagation()
+    dispatch(addBookMark({
+      book_id: book?.id,
+      page_id: router.query?.page
+    }))
     console.log('add mark');
   }
 

@@ -3,7 +3,7 @@ import AuthorService from '../http/AuthorService';
 
 const initialState = {
 	author: [],
-	isFavorite: false
+	isFavorite: false,
 	// isLoading: false,
 	// isError: false
 };
@@ -30,7 +30,7 @@ export const authorSlice = createSlice({
 	reducers: {
 		setAuthor: (state, action) => {
 			state.author = action.payload
-		},
+		}
 	},
 	extraReducers: {
 		[addAuthorToFavorite.pending]: state => {
@@ -63,7 +63,9 @@ export const authorSlice = createSlice({
 });
 
 export const {
-	setAuthor
+	setAuthor,
+	setBooksByAuthor,
+	setAudioBooksByAuthor
 } = authorSlice.actions;
 
 export default authorSlice.reducer;

@@ -37,7 +37,7 @@
   border-radius: 15px;
 
   &Letters {
-    font-family: Merriweather;
+    font-family: 'Merriweather', serif;
     font-weight: 300;
     font-size: 71px;
     line-height: 99px;
@@ -45,7 +45,7 @@
     // text-transform: uppercase;
   }
   &Number {
-    font-family: Merriweather;
+    font-family: 'Merriweather', serif;
     font-weight: 300;
     font-size: 71px;
     line-height: 89px;
@@ -56,7 +56,7 @@
   }
 }
 .errorTitle {
-  font-family: Merriweather;
+  font-family: 'Merriweather', serif;
   font-weight: bold;
   font-size: 24px;
   line-height: 30px;

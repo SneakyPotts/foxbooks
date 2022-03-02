@@ -10,7 +10,7 @@ export default class ProfileService {
 	}
 
 	static async resetPassword(data) {
-		return api.post(`${API_URL}/password_reset`, data)
+		return api.post(`${API_URL}/profile/password_change`, data)
 	}
 
 	static async setNotificationSettings(data) {
@@ -18,6 +18,6 @@ export default class ProfileService {
 	}
 
 	static async deleteUser() {
-		return api.delete(`${API_URL}/users`)
+		return api.delete(`${API_URL}/profile`)
 	}
 }
