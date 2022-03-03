@@ -1,8 +1,9 @@
+import MyBooks from '../../components/MyBooksOld';
 import MyBooksLayout from "../../components/shared/common/specific/MyBooksLayout";
-import Books from "../../components/MyBooks/Books";
+import Reviews from "../../components/MyBooks/Reviews";
 
 const MyBooksPage = () => {
-  return <Books />
+  return <Reviews />
 };
 
 MyBooksPage.getLayout = function getLayout(page) {

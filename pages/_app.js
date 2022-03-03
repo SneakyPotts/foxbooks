@@ -6,6 +6,8 @@ import store from '../store/store';
 import Layout from '../components/shared/common/specific/Layout';
 
 function MyApp({ Component, pageProps }) {
+  const getLayout = Component.getLayout || ((page) => page)
+
   return (
     <Provider store={store}>
       <Script
@@ -15,7 +17,9 @@ function MyApp({ Component, pageProps }) {
       />
       <Layout>
         <main className="main">
-          <Component {...pageProps} />
+          {getLayout(
+            <Component {...pageProps} />
+          )}
         </main>
       </Layout>
     </Provider>

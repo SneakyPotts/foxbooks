@@ -277,6 +277,18 @@
   bottom: initial;
   transform: translateY(0);
   width: 279px;
+  animation: dropDown2 0.2s !important;
+}
+
+@keyframes dropDown2 {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .drawer {

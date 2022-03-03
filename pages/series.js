@@ -2,11 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import SeriesPage from '../components/SeriesPage';
 import AuthorService from '../http/AuthorService';
+import {setSeries} from "../store/authorSlice";
 
-const series = (props) => {
+const series = ({ series }) => {
 	const dispatch = useDispatch()
 
-	console.log(props.series);
+	dispatch(setSeries(series))
 
 	return <SeriesPage />;
 };

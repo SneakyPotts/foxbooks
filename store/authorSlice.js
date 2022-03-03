@@ -4,6 +4,7 @@ import AuthorService from '../http/AuthorService';
 const initialState = {
 	author: [],
 	isFavorite: false,
+	series: {},
 	// isLoading: false,
 	// isError: false
 };
@@ -30,6 +31,9 @@ export const authorSlice = createSlice({
 	reducers: {
 		setAuthor: (state, action) => {
 			state.author = action.payload
+		},
+		setSeries: (state, action) => {
+			state.series = action.payload
 		}
 	},
 	extraReducers: {
@@ -64,8 +68,7 @@ export const authorSlice = createSlice({
 
 export const {
 	setAuthor,
-	setBooksByAuthor,
-	setAudioBooksByAuthor
+	setSeries
 } = authorSlice.actions;
 
 export default authorSlice.reducer;

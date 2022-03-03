@@ -142,7 +142,7 @@ const Book = ({
           {flagSwitcher && (
             <div className={st.raitingAmount}>
               <span>{book?.rates_avg}</span>
-              {!similar && <span>(2{book?.book_likes_count})</span>}
+              {!similar && <span>({book?.book_likes_count})</span>}
             </div>
           )}
         </div>
@@ -159,6 +159,7 @@ const Book = ({
             <a
               className={classnames(st.bookName, {
                 [st.bookNameSmaller]: similar,
+                [st.bookNameMargin]: flagSwitcher,
               })}
             >
               {book?.title}
@@ -213,7 +214,7 @@ const Book = ({
                     [st.distance]: flagSwitcher,
                   })}
                 >
-                  <Comment /> 700
+                  <Comment /> {book?.comments_count}
                 </span>
               </div>
             )}

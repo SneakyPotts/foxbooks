@@ -1,0 +1,99 @@
+@import 'styles/variables';
+
+.title {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 42px;
+  color: $color-main;
+}
+
+.slide {
+  width: 129px;
+  height: 100%;
+
+  &Link {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+  }
+
+  &Progress {
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-third;
+    text-align: center;
+    margin-bottom: 7px;
+  }
+
+  &Icon {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $color-main;
+    stroke: #fff;
+  }
+}
+
+.audioSlide {
+  width: 195px;
+}
+
+.sliderBtn {
+  top: initial;
+  bottom: 72px;
+}
+
+.nav {
+  margin: 60px 0;
+  padding: 20px 0;
+  border-top: 1px solid #D5D5D5;
+  border-bottom: 1px solid #D5D5D5;
+
+  &List {
+    display: flex;
+    justify-content: center;
+  }
+
+  &Item {
+    margin-right: 30px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &Img {
+      border-radius: 5px;
+    }
+  }
+
+  &Link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-third;
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover;
+    }
+
+    &Count {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 5px;
+    }
+  }
+}

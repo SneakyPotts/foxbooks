@@ -23,7 +23,7 @@ const Navigation = ({ setModal }) => {
         <Link href="/books?type=books&sortBy=1">
           <a
             className={`${css.link} ${
-              router.pathname.includes('books') ? css.active : css.link
+              router.pathname === 'books' ? css.active : css.link
             }`}
           >
             <div className={css.icon}>
@@ -35,7 +35,7 @@ const Navigation = ({ setModal }) => {
         <Link href="/books?type=audioBooks&sortBy=1">
           <a
             className={`${css.link} ${css.linkStroke} ${
-                router.pathname.includes('audioBooks')
+                router.asPath.includes('/books?type=audioBooks')
                 ? css.activeStroke
                 : css.link
             }`}
@@ -50,7 +50,7 @@ const Navigation = ({ setModal }) => {
         <Link href="/selections">
           <a
             className={`${css.link} ${css.linkStroke} ${
-              router.pathname.includes('/selections')
+              router.pathname === '/selections'
                 ? css.activeStroke
                 : css.link
             }`}
@@ -64,7 +64,7 @@ const Navigation = ({ setModal }) => {
         <Link href={`/new?sortBy=1&type=all`}>
           <a
             className={`${css.link} ${
-              router.pathname.includes('/new') ? css.active : css.link
+              router.pathname === '/new' ? css.active : css.link
             } ${innerWidthWindow <= 768 && css.noSpace}`}
           >
             <div className={css.icon}>
@@ -93,7 +93,7 @@ const Navigation = ({ setModal }) => {
         <Link href="/categories">
           <a
             className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
-              router.pathname.includes('/categories') ? css.activeStroke : css.link
+              router.pathname === '/categories' ? css.activeStroke : css.link
             }`}
           >
             <div className={css.icon}>
