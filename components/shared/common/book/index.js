@@ -15,7 +15,7 @@ import st from './book.module.scss';
 import Headphones from '../../icons/headphones';
 import Eye from '../../icons/eye';
 
-import { audioBook } from '../../../../store/bookSlice';
+import {audioBook, deleteBookFromFavorite, setBookStatus} from '../../../../store/bookSlice';
 
 const Book = ({
   audio,
@@ -28,15 +28,13 @@ const Book = ({
   count,
   type
 }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
 
-  // const { audioFlag } = useSelector(state => state.bookSlice);
+  const { innerWidthWindow } = useSelector(state => state.common);
 
   const [changeIcon, setChangeIcon] = useState(false);
   const [options, setOptions] = useState(false);
-
-  const router = useRouter();
-  const { innerWidthWindow } = useSelector(state => state.common);
 
   const bookLinkClick = () => {
     if (audio) {
@@ -46,9 +44,31 @@ const Book = ({
     }
   };
 
-  const onChangeIcon = () => {
-    setChangeIcon(true);
-  };
+  const handleWantReadClick = () => {
+    dispatch(setBookStatus({
+      id: book?.id,
+      value: 1,
+      type
+    })).then(res => setChangeIcon(true))
+  }
+
+  const handleReadClick = () => {
+    dispatch(setBookStatus({
+      id: book?.id,
+      value: 2,
+      type
+    }))
+    setOptions(false)
+  }
+
+  const deleteFromFavorite = () => {
+    dispatch(deleteBookFromFavorite({
+      id: book?.id,
+      type
+    }))
+    setOptions(false)
+    setChangeIcon(false)
+  }
 
   const checkOptions = () => {
     setOptions(!options);
@@ -118,12 +138,12 @@ const Book = ({
           <div className={st.stars}>
             {similar ? (
               <div className={st.starsBlock}>
-                <Stars count={1} value={book?.rates_count} />
+                <Stars count={1} value={book?.rates_avg} />
                 <span>{book?.rates_count}</span>
               </div>
             ) : (
               <div className={st.starsBlock}>
-                <Stars count={count} value={book?.rates_count} />
+                <Stars count={count} value={book?.rates_avg} />
                 {innerWidthWindow <= 768 && <span>{book?.rates_count}</span>}
               </div>
             )}
@@ -134,7 +154,7 @@ const Book = ({
                 [st.hide]: mobalSimilar,
               })}
             >
-              <span>456</span>
+              <span>{book?.views_count}</span>
               <Eye />
             </div>
           )}
@@ -142,7 +162,7 @@ const Book = ({
           {flagSwitcher && (
             <div className={st.raitingAmount}>
               <span>{book?.rates_avg}</span>
-              {!similar && <span>({book?.book_likes_count})</span>}
+              {!similar && <span>({book?.rates_count})</span>}
             </div>
           )}
         </div>
@@ -205,7 +225,7 @@ const Book = ({
                   </>
                 ) : (
                   <div className={st.selectionDateViews}>
-                    <span>456</span>
+                    <span>{book?.views_count}</span>
                     <Eye />
                   </div>
                 )}
@@ -220,28 +240,40 @@ const Book = ({
             )}
           </div>
         )}
+
         {flagSwitcher && (
           <div>
             <span
               className={classnames(st.addIcon, { [st.hide]: changeIcon })}
-              onClick={onChangeIcon}
+              onClick={handleWantReadClick}
             >
               <AddToBooks />
             </span>
+
             {changeIcon && (
-              <span className={classnames(st.dotsIcon)} onClick={checkOptions}>
+              <span
+                className={classnames(st.dotsIcon)}
+                onClick={checkOptions}
+              >
                 <HorizontalDots />
               </span>
             )}
+
             {options && (
               <div className={st.optionWindow}>
-                <p className={st.optionRead}>
+                <p
+                  className={st.optionRead}
+                  onClick={handleReadClick}
+                >
                   <span className={st.optionIcon}>
                     <OpenBook />
                   </span>
-                  Читаю
+                  {type === 'books' ? 'Читаю' : 'Слушаю'}
                 </p>
-                <p className={st.optionDelete}>
+                <p
+                  className={st.optionDelete}
+                  onClick={deleteFromFavorite}
+                >
                   <span className={st.optionIcon}>
                     <Basket />
                   </span>
@@ -251,6 +283,7 @@ const Book = ({
             )}
           </div>
         )}
+
       </div>
     </div>
   );

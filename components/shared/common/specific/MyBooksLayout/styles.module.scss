@@ -84,8 +84,9 @@
     color: $color-third;
     transition: .15s;
 
+    &.active,
     &:hover {
-      color: $text-hover;
+      color: $color-main;
     }
 
     &Count {

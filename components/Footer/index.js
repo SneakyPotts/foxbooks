@@ -25,44 +25,48 @@ const Footer = () => {
   return (
     <>
       { isShown() && <div className={st.wrapper}>
-            <div className={st.container}>
-              <div>
-                <div className={st.logo}>
-                  <Logo />
-                </div>
-                <p className={st.slogan}>
-                  Foxbooks.ag — мы лучшие в мире бесплатных онлайн книг
-                </p>
-              </div>
-              <div className={st.footerInfo}>
-                <div className={st.socialmedia}>
-                  <Twitter className={st.socialmediaLink} />
-                  <Telegram
-                    className={classNames(st.socialmediaLink, st.mobile)}
-                  />
-                  <Vk className={st.socialmediaLink} />
-                </div>
-                <ul className={st.pagesList}>
-                  <Link href="#">
-                    <a className={st.page}>Книги</a>
-                  </Link>
-                  <Link href="#">
-                    <a className={st.page}>Аудиокниги</a>
-                  </Link>
-                  <Link href="/holders">
-                    <a className={st.page}>Правообладателям</a>
-                  </Link>
-                  <Link href="/support">
-                    <a className={st.page}>Поддержка</a>
-                  </Link>
-                </ul>
-                <div className={st.txt}>
-                  <p className={st.label}>© 2021 Foxbooks</p>
-                </div>
-              </div>
+        <div className={st.container}>
+          <div>
+            <div className={st.logo}>
+              <Logo />
+            </div>
+            <p className={st.slogan}>
+              Foxbooks.ag — мы лучшие в мире бесплатных онлайн книг
+            </p>
+          </div>
+          <div className={st.footerInfo}>
+            <div className={st.socialmedia}>
+              <a href="" className={st.socialmediaLink}>
+                <Twitter />
+              </a>
+              <a href="" className={classNames(st.socialmediaLink, st.mobile)}>
+                <Telegram />
+              </a>
+              <a href="" className={st.socialmediaLink}>
+                <Vk />
+              </a>
+            </div>
+            <nav className={st.pagesList}>
+              <Link href="/books?type=books&sortBy=1">
+                <a className={st.page}>Книги</a>
+              </Link>
+              <Link href="/books?type=audioBooks&sortBy=1">
+                <a className={st.page}>Аудиокниги</a>
+              </Link>
+              <Link href="/holders">
+                <a className={st.page}>Правообладателям</a>
+              </Link>
+              <Link href="/support">
+                <a className={st.page}>Поддержка</a>
+              </Link>
+            </nav>
+            <div className={st.txt}>
+              <p className={st.label}>© 2021 Foxbooks</p>
             </div>
           </div>
-        }
+        </div>
+      </div>
+      }
     </>
   );
 };

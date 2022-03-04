@@ -29,8 +29,8 @@ export default class BookService {
 		`)
 	}
 
-	static async getBooksByLetter(letter) {
-		return axios.get(`${API_URL}/books/letter/${encodeURI(letter)}`)
+	static async getBooksByLetter({letter, page = 1}) {
+		return axios.get(`${API_URL}/books/letter/${encodeURI(letter)}?page=${page}`)
 	}
 
 	static async getBookById(id, type) {

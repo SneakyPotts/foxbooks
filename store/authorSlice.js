@@ -3,11 +3,18 @@ import AuthorService from '../http/AuthorService';
 
 const initialState = {
 	author: [],
+	authorsByLetter: {},
 	isFavorite: false,
 	series: {},
-	// isLoading: false,
-	// isError: false
 };
+
+export const getAuthorsByLetter = createAsyncThunk(
+	'author/getAuthorsByLetter',
+	async data => {
+		const response = await AuthorService.getAuthorsByLetter(data)
+		return response.data
+	}
+)
 
 export const addAuthorToFavorite = createAsyncThunk(
 	'author/addAuthorToFavorite',
@@ -37,6 +44,24 @@ export const authorSlice = createSlice({
 		}
 	},
 	extraReducers: {
+		[getAuthorsByLetter.pending]: state => {
+			// state.isLoading = true
+		},
+		[getAuthorsByLetter.fulfilled]: (state, action) => {
+			if(!Object.keys(state.authorsByLetter)?.length) {
+				state.authorsByLetter = action.payload.data
+			} else {
+				state.authorsByLetter.data = [...state.authorsByLetter.data, ...action.payload.data.data]
+			}
+			// state.isError = false
+			// state.isLoading = false
+		},
+		[getAuthorsByLetter.rejected]: state => {
+			// state.isError = true
+			// state.isLoading = false
+		},
+
+
 		[addAuthorToFavorite.pending]: state => {
 			// state.isLoading = true
 		},

@@ -69,7 +69,20 @@
     padding: 0;
     width: 24px;
     height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: $text-hover;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.active {
+      right: initial;
+      left: 20px;
+    }
   }
 
   .closeIcon {
@@ -81,16 +94,19 @@
     width: 24px;
     height: 24px;
     stroke: $color-main;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  .active {
-    position: absolute;
-    top: 8px;
-    left: 20px;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    color: $text-hover;
+    &:hover {
+      svg path {
+        stroke: $text-hover;
+      }
+    }
+
+    svg path {
+      transition: .15s;
+    }
   }
 
   .iconBell {

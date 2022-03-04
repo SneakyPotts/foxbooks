@@ -151,6 +151,11 @@
   top: 3px;
   right: 5px;
   stroke: $color-main;
+  cursor: pointer;
+
+  svg path {
+    transition: .15s;
+  }
 }
 .addIcon:hover {
   stroke: $text-hover;
@@ -167,6 +172,8 @@
   height: 20px;
   border-radius: 4.16667px;
   border: 1px solid $color-star-border;
+  cursor: pointer;
+  transition: .15s;
 }
 .dotsIcon:hover {
   border-color: $text-hover;

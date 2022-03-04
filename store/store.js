@@ -8,6 +8,7 @@ import readerSlice from "./readerSlice";
 import authorSlice from "./authorSlice";
 import noveltiesSlice from "./noveltiesSlice";
 import reviewSlice from "./reviewSlice";
+import searchSlice from "./searchSlice";
 
 export function makeStore() {
 	return configureStore({
@@ -21,6 +22,7 @@ export function makeStore() {
 			author: authorSlice,
 			novelties: noveltiesSlice,
 			review: reviewSlice,
+			search: searchSlice,
 		},
 	});
 }

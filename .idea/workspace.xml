@@ -2,52 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/AudioBooks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/Authors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/Books.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/Quotes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/Reviews.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/Selections.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooksOld/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/mybooks/audio.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/mybooks/authors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/mybooks/quotes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/mybooks/reviews.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/mybooks/selections.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/SearchService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/searchSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Authors/authors.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Authors/authors.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Authors/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Authors/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Edit/edit.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Edit/edit.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Edit/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Edit/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/MySelections/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelections/mySelections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/MySelections/mySelections.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Quotes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Quotes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Quotes/quotes.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Quotes/quotes.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Review/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Review/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Review/review.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Review/review.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selection/AddBook/addBook.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Selection/AddBook/addBook.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selection/AddBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Selection/AddBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Selection/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selection/selection.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/Selection/selection.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/myBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooksOld/myBooks.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Footer/footer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/footer.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LetterListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LetterListPage/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/SeriesPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SeriesPage/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mybooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/series.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/series.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/AuthorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/AuthorService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/letterlist/[letter].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/letterlist/[letter].js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/authorSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authorSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/commonSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,21 +59,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/mybooks" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Frontend\projects\library-next\pages\mybooks" />
       <recent name="E:\Frontend\projects\library-next\store" />
       <recent name="E:\Frontend\projects\library-next\http" />
+      <recent name="E:\Frontend\projects\library-next\pages\mybooks" />
       <recent name="D:\library-next\http" />
       <recent name="D:\library-next\store" />
     </key>
@@ -148,7 +124,8 @@
       <workItem from="1645429324942" duration="1129000" />
       <workItem from="1645439437064" duration="7972000" />
       <workItem from="1646208019841" duration="23008000" />
-      <workItem from="1646296459610" duration="20862000" />
+      <workItem from="1646296459610" duration="21035000" />
+      <workItem from="1646384778163" duration="24683000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -353,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646153765282</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="push">
+      <created>1646331038196</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1646331038196</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,9 +405,9 @@
     <MESSAGE value="reader" />
     <MESSAGE value="merge" />
     <MESSAGE value="books" />
-    <MESSAGE value="push" />
     <MESSAGE value="one book" />
-    <option name="LAST_COMMIT_MESSAGE" value="one book" />
+    <MESSAGE value="push" />
+    <option name="LAST_COMMIT_MESSAGE" value="push" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -6,18 +6,25 @@ const initialState = {
 	audioCategories: [],
 	dailyHotUpdates: [],
 	books: [],
+	booksByLetter: {},
 	book: [],
 	booksByAuthor: [],
 	audioBooksByAuthor: [],
 	audioFlag: false,
-	isLoading: false,
-	isError: false
 };
 
 export const getBooksByAuthor = createAsyncThunk(
 	'book/getBooksByAuthor',
 	async id => {
 		const response = await BookService.getBooksByAuthor(id)
+		return response.data
+	}
+)
+
+export const getBooksByLetter = createAsyncThunk(
+	'book/getBooksByLetter',
+	async data => {
+		const response = await BookService.getBooksByLetter(data)
 		return response.data
 	}
 )
@@ -83,30 +90,48 @@ export const bookSlice = createSlice({
 	},
 	extraReducers: {
 		[getBooksByAuthor.pending]: state => {
-			state.isLoading = true
+			// state.isLoading = true
 		},
 		[getBooksByAuthor.fulfilled]: (state, action) => {
 			state.booksByAuthor = action.payload?.data?.books
-			state.isError = false
-			state.isLoading = false
+			// state.isError = false
+			// state.isLoading = false
 		},
 		[getBooksByAuthor.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
+			// state.isError = true
+			// state.isLoading = false
+		},
+
+
+		[getBooksByLetter.pending]: state => {
+			// state.isLoading = true
+		},
+		[getBooksByLetter.fulfilled]: (state, action) => {
+			if(!Object.keys(state.booksByLetter)?.length) {
+				state.booksByLetter = action.payload.data
+			} else {
+				state.booksByLetter.data = [...state.booksByLetter.data, ...action.payload.data.data]
+			}
+			// state.isError = false
+			// state.isLoading = false
+		},
+		[getBooksByLetter.rejected]: state => {
+			// state.isError = true
+			// state.isLoading = false
 		},
 
 
 		[getAudioBooksByAuthor.pending]: state => {
-			state.isLoading = true
+			// state.isLoading = true
 		},
 		[getAudioBooksByAuthor.fulfilled]: (state, action) => {
 			state.audioBooksByAuthor = action.payload?.data?.audio_books
-			state.isError = false
-			state.isLoading = false
+			// state.isError = false
+			// state.isLoading = false
 		},
 		[getAudioBooksByAuthor.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
+			// state.isError = true
+			// state.isLoading = false
 		}
 	}
 });
@@ -116,6 +141,7 @@ export const {
 	setAudioCategories,
 	setDailyHotUpdates,
 	setBooks,
+	setBooksByLetter,
 	setBook,
 	audioBook,
 	commentBook

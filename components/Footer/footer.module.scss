@@ -46,6 +46,14 @@
   margin: 0;
   border-right: 1px solid $color-third;
   color: $color-third;
+
+  .page {
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover;
+    }
+  }
 }
 .page:not(:last-child) {
   margin-right: 30px;

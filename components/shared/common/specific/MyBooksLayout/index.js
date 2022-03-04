@@ -184,7 +184,12 @@ const MyBooksLayout = ({ children }) => {
             className={styles.navItem}
           >
             <Link href={i?.path}>
-              <a className={styles.navLink}>
+              <a
+                className={classNames(
+                  styles.navLink,
+                  {[styles.active]: router.pathname === i?.path}
+                )}
+              >
                 <span className={styles.navLinkCount}>{i?.count}</span>
                 {i?.title}
               </a>
