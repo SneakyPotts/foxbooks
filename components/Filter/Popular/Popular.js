@@ -14,6 +14,7 @@ const Popular = ({
   filterStateIdx,
   elIdx,
   setFilStateIdx,
+  isRight
 }) => {
   const router = useRouter();
 
@@ -91,6 +92,7 @@ const Popular = ({
         <ul
           className={classNames(css.dropContent, {
             [css.dropWord]: isAlphabet,
+            [css.dropRight]: isRight
           })}
           onClick={e => e.stopPropagation()}
         >
@@ -98,7 +100,7 @@ const Popular = ({
             <li
               key={i?.id || i}
               onClick={() => handleOnClick(i?.value || i, i?.title)}
-              className={css.dropItem}
+              className={classNames(css.dropItem, {[css.withIcon]: i?.icon})}
             >
               {isAlphabet ? (
                 <span
@@ -108,14 +110,17 @@ const Popular = ({
                 </span>
               ) : (
                 <>
-                  <span
-                    className={classnames(css.radio, {
-                      [css.radioActive]: activeEl === i?.value,
-                    })}
-                  />
+                  {i?.icon ?
+                    i?.icon :
+                    <span
+                      className={classnames(css.radio, {
+                        [css.radioActive]: activeEl === i?.value,
+                      })}
+                    />
+                  }
                   <span
                     className={classnames(css.dropText, {
-                      [css.active]: activeEl === i?.value,
+                      [css.active]: activeEl === i?.value
                     })}
                   >
                     {i?.title}

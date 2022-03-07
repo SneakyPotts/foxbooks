@@ -23,9 +23,12 @@ export const getBooksByAuthor = createAsyncThunk(
 
 export const getBooksByLetter = createAsyncThunk(
 	'book/getBooksByLetter',
-	async data => {
-		const response = await BookService.getBooksByLetter(data)
-		return response.data
+	async ({query, letter, page}) => {
+		const response = await BookService.getBooksByLetter({letter, page})
+		return {
+			...response.data.data,
+			query
+		}
 	}
 )
 
@@ -107,10 +110,10 @@ export const bookSlice = createSlice({
 			// state.isLoading = true
 		},
 		[getBooksByLetter.fulfilled]: (state, action) => {
-			if(!Object.keys(state.booksByLetter)?.length) {
-				state.booksByLetter = action.payload.data
+			if(!state.booksByLetter?.query || state.booksByLetter?.query !== action.payload.query) {
+				state.booksByLetter = action.payload
 			} else {
-				state.booksByLetter.data = [...state.booksByLetter.data, ...action.payload.data.data]
+				state.booksByLetter.data = [...state.booksByLetter.data, ...action.payload.data]
 			}
 			// state.isError = false
 			// state.isLoading = false

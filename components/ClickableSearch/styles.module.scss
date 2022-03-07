@@ -1,0 +1,46 @@
+@import './styles/variables';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  height: 32px;
+  transition: .15s;
+
+  &.active {
+    background: #F1F1F1;
+    border-radius: 36px;
+    padding: 0 15px;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  background: transparent;
+  width: 0;
+  outline: none;
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-third;
+  transition: .15s;
+
+  &::placeholder {
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-third;
+  }
+
+  &.active {
+    width: 142px;
+    padding: 0 10px;
+  }
+}

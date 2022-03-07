@@ -39,35 +39,37 @@ const LetterListPage = () => {
     return isBook ? booksByLetter?.last_page : authorsByLetter?.last_page
   }, [isBook, booksByLetter, authorsByLetter])
 
-  const dynamicLoad = inView => {
-    if(inView && page < lastPage) {
-      setIsLoading(true)
-      setPage(page + 1)
+  const fetch = page => {
+    const data = {
+      query: router.asPath,
+      letter: router.query?.letter,
+      page
     }
-  }
 
-  useEffect(() => {
     if(isBook) {
-      dispatch(getBooksByLetter({
-        letter: router.query?.letter,
-        page
-      })).then(() => {
+      dispatch(getBooksByLetter(data)).then(() => {
         setIsFirstLoading(false)
         setIsLoading(false)
       })
     } else {
-      dispatch(getAuthorsByLetter({
-        letter: router.query?.letter,
-        page
-      })).then(() => {
+      dispatch(getAuthorsByLetter(data)).then(() => {
         setIsFirstLoading(false)
         setIsLoading(false)
       })
     }
-  }, [page])
+  }
+
+  const dynamicLoad = inView => {
+    if(inView && page < lastPage) {
+      setIsLoading(true)
+      setPage(page + 1)
+      fetch(page + 1)
+    }
+  }
 
   useEffect(() => {
     setPage(1)
+    fetch(1)
   }, [router])
 
   return (
@@ -92,30 +94,33 @@ const LetterListPage = () => {
         {isFirstLoading ?
           <p className="empty"><Loader /></p> :
           data?.length ?
-            <table className={styles.table}>
-              {data?.map(i =>
-                <tr key={i?.id}>
-                  <td>
-                    <Link
-                      href={
-                        isBook ?
-                          `/book/${i?.id}?type=${i?.type}` :
-                          `/author?id=${i?.id}`
-                      }
-                    >
-                      <a className={styles.tableLink}>{isBook? i?.title : i?.author}</a>
-                    </Link>
-                  </td>
-                  <td>Саймон Стронг</td>
-                  <td><Stars /> 8,1 (450)</td>
-                </tr>
-              )}
-              <InView
-                as={'tr'}
-                skip={isLoading}
-                onChange={inView => dynamicLoad(inView)}
-              />
-            </table> :
+            <div className={styles.tableWrapper}>
+              <table className={styles.table}>
+                {data?.map(i =>
+                  <tr key={i?.id}>
+                    <td>
+                      <Link
+                        href={
+                          isBook ?
+                            `/book/${i?.id}?type=${i?.type}` :
+                            `/author?id=${i?.id}`
+                        }
+                      >
+                        <a className={styles.tableLink}>{isBook? i?.title : i?.author}</a>
+                      </Link>
+                    </td>
+                    <td>Саймон Стронг</td>
+                    <td><Stars /> 8,1 (450)</td>
+                  </tr>
+                )}
+                <InView
+                  as={'tr'}
+                  skip={isLoading}
+                  onChange={inView => dynamicLoad(inView)}
+                />
+              </table>
+              {isLoading && <p className="empty"><Loader/></p>}
+            </div> :
             <p className="empty">{isBook ? 'Книг не найдено' : 'Авторы не найдены'}</p>
         }
       </div>

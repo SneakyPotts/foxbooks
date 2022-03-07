@@ -10,9 +10,12 @@ const initialState = {
 
 export const getAuthorsByLetter = createAsyncThunk(
 	'author/getAuthorsByLetter',
-	async data => {
-		const response = await AuthorService.getAuthorsByLetter(data)
-		return response.data
+	async ({query, letter, page}) => {
+		const response = await AuthorService.getAuthorsByLetter({letter, page})
+		return {
+			...response.data.data,
+			query
+		}
 	}
 )
 
@@ -48,10 +51,10 @@ export const authorSlice = createSlice({
 			// state.isLoading = true
 		},
 		[getAuthorsByLetter.fulfilled]: (state, action) => {
-			if(!Object.keys(state.authorsByLetter)?.length) {
-				state.authorsByLetter = action.payload.data
+			if(!state.authorsByLetter?.query || state.authorsByLetter?.query !== action.payload.query) {
+				state.authorsByLetter = action.payload
 			} else {
-				state.authorsByLetter.data = [...state.authorsByLetter.data, ...action.payload.data.data]
+				state.authorsByLetter.data = [...state.authorsByLetter.data, ...action.payload.data]
 			}
 			// state.isError = false
 			// state.isLoading = false

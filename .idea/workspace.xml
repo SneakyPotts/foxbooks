@@ -2,28 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/http/SearchService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/searchSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ClickableSearch/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ClickableSearch/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Footer/footer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/footer.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/LetterListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/LetterListPage/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SeriesPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SeriesPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/AuthorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/AuthorService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/letterlist/[letter].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/letterlist/[letter].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Books.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Books.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/bookOpen.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/bookOpen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/authorSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authorSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +59,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -126,6 +119,10 @@
       <workItem from="1646208019841" duration="23008000" />
       <workItem from="1646296459610" duration="21035000" />
       <workItem from="1646384778163" duration="24683000" />
+      <workItem from="1646645850519" duration="6364000" />
+      <workItem from="1646652771940" duration="426000" />
+      <workItem from="1646653234020" duration="46000" />
+      <workItem from="1646653300402" duration="9179000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
