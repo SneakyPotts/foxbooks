@@ -1,4 +1,4 @@
-import {FiSearch, FiBell} from 'react-icons/fi';
+import {FiBell} from 'react-icons/fi';
 import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
@@ -11,14 +11,13 @@ import Logo from '../Logo';
 import GroupForms from './groupForms/GroupForms';
 import Setting from '../shared/icons/setting';
 import Exit from '../shared/icons/exit';
-import Close from '../shared/icons/close';
 import {setAuth} from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import {showMenu} from '../../store/commonSlice';
-import {useForm} from "react-hook-form";
 import {search} from "../../store/searchSlice";
+import SearchInput from "../SearchInput";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -26,7 +25,8 @@ const Header = () => {
 
   const {
     innerWidthWindow,
-    showMenu: showMenuFlag
+    headerIsVisible,
+    showMenuFlag
   } = useSelector(state => state.common);
 
   const {isAuth} = useSelector(state => state.auth);
@@ -34,17 +34,14 @@ const Header = () => {
   const [modal, setModal] = useState(false);
   const [flagSettings, setFlagSettings] = useState(false);
 
-  const onSearchInput = () => {
+  const openModal = () => {
     dispatch(showMenu(true));
-    const body = document.querySelector('body');
-    body.classList.add('nonScroll');
+    document.body.classList.add('nonScroll');
   };
 
   const closeModal = () => {
     dispatch(showMenu(false));
-    setValue('search', '')
-    const body = document.querySelector('body');
-    body.classList.remove('nonScroll');
+    document.body.classList.remove('nonScroll');
   };
 
   const logOut = () => {
@@ -104,29 +101,29 @@ const Header = () => {
   const isShown = useMemo(() => {
     if (router.pathname.includes('reader')) {
       return false
-    } else if (router.pathname.includes('/404')) {
+    } else if (router.pathname.includes('404')) {
       return false
-    } else if (router.pathname.includes('/categories') && innerWidthWindow < 768) {
+    } else if (router.pathname.includes('categories') && innerWidthWindow <= 768) {
       return false
     } else {
       return true
     }
   }, [router.pathname, innerWidthWindow])
 
-  const { register, handleSubmit, setValue } = useForm()
-
-  const onSubmit = data => {
-    if(data?.search) {
-      dispatch(search({
-        str: data.search,
-        type: 'short'
-      }))
+  const showOnlyMenu = useMemo(() => {
+    if(innerWidthWindow <= 768 && router.pathname.includes('mybooks')) {
+      return !headerIsVisible
+    } else {
+      return false
     }
-    setValue('search', '')
+  }, [router.pathname, innerWidthWindow, headerIsVisible])
+
+  const onChange = str => {
+    dispatch(search({ str, type: 'short' }))
   }
 
   return isShown &&
-    <div className={classNames(st.main)}>
+    <div className={classNames(st.main, {[st.hidden]: showOnlyMenu})}>
       <div className={st.container}>
         <header className={st.header}>
           <div className={st.logo}>
@@ -134,42 +131,18 @@ const Header = () => {
           </div>
 
           <div className={st.inputMenu}>
-            <form
-              className={st.input}
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <input
-                type="text"
-                {...register("search")}
-                placeholder={
-                  innerWidthWindow >= 970
-                    ? 'Искать книги, авторов, жанры, издательства'
-                    : 'Искать книги'
-                }
-                className={classNames(st.inputCastom, {
-                  [st.inputCastomOpened]: showMenuFlag,
-                })}
-                onClick={onSearchInput}
-              />
-
-              <button
-                type={showMenuFlag ? 'submit' : 'button'}
-                className={classNames(st.iconSearch, {
-                  [st.active]: showMenuFlag,
-                })}
-              >
-                <FiSearch />
-              </button>
-
-              {showMenuFlag && (
-                <span
-                  className={st.closeIcon}
-                  onClick={closeModal}
-                >
-                  <Close/>
-                </span>
-              )}
-            </form>
+            <SearchInput
+              withModal
+              showMenuFlag={showMenuFlag}
+              onClick={openModal}
+              onChange={onChange}
+              onClose={closeModal}
+              placeholder={
+                innerWidthWindow >= 970
+                  ? 'Искать книги, авторов, жанры, издательства'
+                  : 'Искать книги'
+              }
+            />
 
             <div className={st.menu}>
               <FiBell className={st.iconBell}/>
@@ -237,7 +210,10 @@ const Header = () => {
           </div>
         </header>
 
-        <Menu setModal={() => setModal(!modal)}/>
+        <Menu
+          setModal={() => setModal(!modal)}
+          bottomOnly={showOnlyMenu}
+        />
       </div>
 
       {showMenuFlag && (

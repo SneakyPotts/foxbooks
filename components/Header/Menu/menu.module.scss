@@ -2,6 +2,10 @@
 
 .topMenu {
   display: flex;
+
+  &.hidden {
+    display: none;
+  }
 }
 .navigation {
   display: flex;

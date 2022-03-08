@@ -54,11 +54,11 @@ const TextWithQoutes = () => {
 	const [isError, setIsError] = useState(false)
 
 	const mouseUpHandler = ev => {
-		ev.preventDefault()
 		setMarkId(null)
 		const text = window.getSelection().toString()
-		
+
 		if(text?.length && text !== ' ') {
+			ev.preventDefault()
 			setSelectedText(text)
 
 			const range = window.getSelection().getRangeAt(0)

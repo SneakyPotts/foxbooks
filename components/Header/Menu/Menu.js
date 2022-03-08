@@ -11,15 +11,16 @@ import LogoMobileWhite from '../../shared/icons/logoMobileWhite';
 import LogoMobileActive from '../../shared/icons/logoMobileActive';
 import User from '../../shared/icons/user';
 import css from './menu.module.scss';
+import classNames from "classnames";
 
-const Navigation = ({ setModal }) => {
+const Navigation = ({ setModal, bottomOnly }) => {
   const router = useRouter();
   const { isAuth } = useSelector(state => state.auth);
   const { innerWidthWindow } = useSelector(state => state.common);
 
   return (
     <nav className={css.navigation}>
-      <div className={css.topMenu}>
+      <div className={classNames(css.topMenu, {[css.hidden]: bottomOnly})}>
         <Link href="/books?type=books&sortBy=1">
           <a
             className={`${css.link} ${

@@ -1,5 +1,29 @@
 @import 'styles/variables';
 
+.book {
+  position: relative;
+
+  &:hover {
+    .deleteBtn {
+      opacity: 1;
+    }
+  }
+}
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  transition: .15s;
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 .container {
   width: 180px;
 }

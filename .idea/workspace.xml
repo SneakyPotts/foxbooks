@@ -2,21 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/ClickableSearch/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ClickableSearch/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/icons/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/SearchInput/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/SearchInput/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/authors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/icons/smile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/Popular.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LetterListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LetterListPage/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/LetterListPage/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ClickableSearch/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ClickableSearch/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MyBooks/Books.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Books.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/icons/bookOpen.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/bookOpen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/authorSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authorSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/commonSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +126,8 @@
       <workItem from="1646645850519" duration="6364000" />
       <workItem from="1646652771940" duration="426000" />
       <workItem from="1646653234020" duration="46000" />
-      <workItem from="1646653300402" duration="9179000" />
+      <workItem from="1646653300402" duration="9290000" />
+      <workItem from="1646730744784" duration="21010000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -334,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646331038196</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="push">
+      <created>1646672323701</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1646672323701</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

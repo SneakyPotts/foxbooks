@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import Header from '../../../../Header';
 import Footer from '../../../../Footer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,11 +53,11 @@ const Layout = ({ children }) => {
 
   const scrollUp = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }
 
   return (
     <div className={st.wrapper}>
-      <Header />
+      <Header/>
       {children}
       {playerIsVisible && <AudioPlayer />}
       {innerWidthWindow <= 768 && position > 500 && (

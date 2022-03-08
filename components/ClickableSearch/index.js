@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { FiSearch } from 'react-icons/fi';
 import styles from './styles.module.scss'
 import classNames from "classnames";
@@ -15,6 +15,10 @@ const ClickableSearch = ({ queryName }) => {
     input.current.focus()
   }
 
+  const handleClose = () => {
+    setIsActive(false)
+  }
+
   const setQuery = value => {
     router.push(
       { query: { ...router.query, [queryName]: encodeURI(value) } },
@@ -25,8 +29,19 @@ const ClickableSearch = ({ queryName }) => {
 
   const handleChange = debounce(setQuery, 300);
 
+  useEffect(() => {
+    document.body.addEventListener('click', handleClose)
+
+    return () => {
+      document.body.removeEventListener('click', handleClose)
+    }
+  }, [])
+
   return (
-    <div className={classNames(styles.wrapper, {[styles.active]: isActive})}>
+    <div
+      className={classNames(styles.wrapper, {[styles.active]: isActive})}
+      onClick={ev => ev.stopPropagation()}
+    >
       <span
         className={styles.icon}
         onClick={handleClick}

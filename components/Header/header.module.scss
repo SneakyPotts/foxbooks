@@ -9,6 +9,14 @@
   background-color: $color-categories-btn;
   padding: 30px 0;
 
+  &.hidden {
+    padding: 0;
+
+    .header {
+      display: none;
+    }
+  }
+
   .container {
     position: relative;
     margin: auto;
@@ -29,84 +37,6 @@
 
   .inputMenu {
     display: flex;
-  }
-
-  .input {
-    position: relative;
-    align-items: center;
-  }
-
-  .inputCastom::placeholder {
-    font-size: 14px;
-    color: $color-third;
-    // &Opened {
-    //   display: none;
-    // }
-  }
-  .inputCastom {
-    box-sizing: border-box;
-    width: 636px;
-    height: 40px;
-    padding: 10px 20px;
-    border-radius: 45px;
-    outline: none;
-    border: 1px solid #d4d4d4;
-
-    &Opened::placeholder {
-      opacity: 0;
-      transition: 0.2s ease;
-    }
-    &Opened {
-      padding-left: 64px;
-      // transition: 0.1s ease;
-    }
-  }
-
-  .iconSearch {
-    position: absolute;
-    top: 8px;
-    right: 20px;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $text-hover;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    &.active {
-      right: initial;
-      left: 20px;
-    }
-  }
-
-  .closeIcon {
-    cursor: pointer;
-    position: absolute;
-    top: 8px;
-    right: 20px;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    stroke: $color-main;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      svg path {
-        stroke: $text-hover;
-      }
-    }
-
-    svg path {
-      transition: .15s;
-    }
   }
 
   .iconBell {
@@ -307,26 +237,12 @@
     }
   }
 }
-@media (max-width: 970px) {
-  .main {
-    .inputCastom {
-      width: 345px;
-    }
-    .inputCastom::placeholder {
-      font-size: 16px;
-      line-height: 18px;
-    }
-  }
-}
 @media (max-width: 768px) {
   .main {
     .header {
       flex-direction: column;
       align-items: center;
       margin-bottom: 20px;
-    }
-    .input {
-      margin-top: 20px;
     }
     .menu {
       display: none;

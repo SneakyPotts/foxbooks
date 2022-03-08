@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -16,6 +16,7 @@ import Headphones from '../../icons/headphones';
 import Eye from '../../icons/eye';
 
 import {audioBook, deleteBookFromFavorite, setBookStatus} from '../../../../store/bookSlice';
+import Delete from "../../../../public/delete.svg";
 
 const Book = ({
   audio,
@@ -26,7 +27,9 @@ const Book = ({
   noLinks = false,
   book,
   count,
-  type
+  type,
+  withDelete,
+  onDelete
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -76,7 +79,7 @@ const Book = ({
 
   return (
     <div
-      className={classnames(classNames, {
+      className={classnames(classNames, st.book, {
         [st.container]: !flagSwitcher,
         [st.containerColumn]: flagSwitcher,
       })}
@@ -285,6 +288,15 @@ const Book = ({
         )}
 
       </div>
+
+      {withDelete &&
+        <span
+          className={st.deleteBtn}
+          onClick={onDelete}
+        >
+          <Delete />
+        </span>
+      }
     </div>
   );
 };

@@ -6,6 +6,12 @@ import OpenBook from '../shared/icons/bookOpen';
 import Flag from '../shared/icons/flag';
 import PageIcon from '../shared/icons/page';
 import ClickableSearch from "../ClickableSearch";
+import Book from "../shared/common/book";
+import st from "../MyBooksOld/myBooks.module.scss";
+import Delete from "../../public/delete.svg";
+import ModalWindow from "../shared/common/modalWindow/ModalWindow";
+import ButtonGroup from "../SettingsProfile/buttonGroup";
+import Button from "../shared/common/Button/Button";
 
 const filter1 = [
   {
@@ -36,6 +42,13 @@ const filter2 = [
 
 const Books = () => {
   const [stateIndex, setStateIndex] = useState(null)
+  const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
+  const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
+  const [bookTitle, setBookTitle] = useState('')
+
+  const handleIconClick = id => {
+    setDeletePopupIsVisible(true)
+  }
 
   return <>
     <div className={styles.filters}>
@@ -71,6 +84,103 @@ const Books = () => {
         ))}
       </div>
     </div>
+
+    <div className={styles.grid}>
+      <div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div><div className={styles.gridItem}>
+        <Book
+          withDelete
+          onDelete={() => handleIconClick()}
+        />
+      </div>
+    </div>
+
+    {deletePopupIsVisible &&
+      <ModalWindow
+        onClose={() => setDeletePopupIsVisible(false)}
+      >
+        <div className={styles.modal}>
+          <h3 className={styles.modalTitle}>Удалить книгу</h3>
+          <p className={styles.modalText}>
+            Вы действительно хотите удалить книгу “Колдовской мир. Тройка
+            мечей”?
+          </p>
+          <ButtonGroup
+            text="Удалить"
+            typeButton="button"
+            ClassName={styles.modalBtns}
+            click={() => setConfirmPopupIsVisible(true)}
+            cancelClick={() => setDeletePopupIsVisible(false)}
+          />
+        </div>
+      </ModalWindow>
+    }
+
+    {confirmPopupIsVisible &&
+      <ModalWindow
+        onClose={() => setConfirmPopupIsVisible(false)}
+      >
+        <div className={styles.modal}>
+          <h3 className={styles.modalTitle}>Книга удалена</h3>
+
+          <Button
+            text="Закрыть"
+            typeButton="button"
+            click={() => setConfirmPopupIsVisible(false)}
+            classNames={styles.modalBtn}
+          />
+        </div>
+      </ModalWindow>
+    }
   </>
 };
 
