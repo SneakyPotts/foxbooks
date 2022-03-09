@@ -107,3 +107,20 @@
     width: 119px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+
+    :global(.rc-pagination-prev) {
+      margin-left: auto;
+    }
+    :global(.rc-pagination-next) {
+      margin-right: auto;
+    }
+    :global(.rc-pagination-options) {
+      margin-right: auto;
+      margin-top: 20px;
+    }
+  }
+}

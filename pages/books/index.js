@@ -25,9 +25,9 @@ export async function getServerSideProps({ query }) {
   let categories = []
 
   if(type === 'books') {
-    categories = await CategoriesService.getCategories();
+    categories = await CategoriesService.getCategoriesWithCount();
   } else if(type === 'audioBooks') {
-    categories = await CategoriesService.getAudioCategories();
+    categories = await CategoriesService.getAudioCategoriesWithCount();
   }
 
   const books = await BookService.getBooks(query);

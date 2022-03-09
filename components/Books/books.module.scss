@@ -18,7 +18,6 @@
 .abCateg {
   font-family: 'Fira Sans', sans-serif;
   font-size: 14px;
-  line-height: 1.43;
   cursor: pointer;
   box-sizing: border-box;
   height: 36px;
@@ -29,12 +28,15 @@
   color: $color-main;
   border: 1px solid $color-star-border;
   background-color: $color-categories-btn;
+  display: inline-flex;
+  align-items: center;
+  transition: .15s;
 }
 .abCateg:hover {
   color: $text-hover;
 }
 .abCategLink {
-  padding: 8px 15px;
+  padding: 0 15px;
 }
 @media (max-width: 768px) {
   .abTitle {
@@ -42,7 +44,54 @@
     font-size: 20px;
     line-height: 25px;
     margin-bottom: 30px;
+
+    &.modalTitle {
+      margin: 0 0 30px;
+    }
   }
-}
-@media (max-width: 500px) {
+  .mobWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mobCateg {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-main;
+    stroke: $color-main;
+    cursor: pointer;
+
+    span {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 5px;
+    }
+
+    &List {
+      margin-bottom: 30px;
+
+      &Item {
+        border-bottom: 1px solid #D5D5D5;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+    }
+
+    &Link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      line-height: 140%;
+      color: #4F4F4F;
+      padding: 15px 0;
+    }
+  }
 }

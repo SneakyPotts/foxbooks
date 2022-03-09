@@ -22,7 +22,7 @@ const ModalWindow = ({
 					externalClass
 				)}
 				onClick={e => {
-					!isFullScreen && e.stopPropagation();
+					e.stopPropagation()
 					// click && click();
 				}}
 			>

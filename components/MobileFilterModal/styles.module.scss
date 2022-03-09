@@ -1,0 +1,43 @@
+@import "styles/variables";
+
+.control {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-main;
+  stroke: $color-main;
+  cursor: pointer;
+
+  span {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+  }
+}
+
+.topLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 37px;
+  margin-bottom: 32px;
+
+  &Title {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 700;
+    color: $color-main;
+  }
+
+  span {
+    font-size: 14px;
+    line-height: 140%;
+    color: $text-hover;
+    cursor: pointer;
+  }
+}

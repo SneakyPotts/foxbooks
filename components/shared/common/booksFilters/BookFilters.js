@@ -12,7 +12,11 @@ const initFilters = [
   { id: 4, title: 'Сейчас читают', value: 2 },
 ];
 
-const BookFilters = ({ filters = initFilters, queryName = 'sortBy' }) => {
+const BookFilters = ({
+  filters = initFilters,
+  queryName = 'sortBy',
+  onModal
+}) => {
   const router = useRouter();
   const [currentIdx, setCurrentIdx] = useState(router.query[queryName]);
 
@@ -24,17 +28,18 @@ const BookFilters = ({ filters = initFilters, queryName = 'sortBy' }) => {
   };
 
   return (
-    <div>
+    <div className={onModal && st.wrapper}>
       {filters?.map(i => (
-        <button
+        <span
           key={i?.id}
           className={classnames(st.abFilter, {
             [st.active]: currentIdx == i?.value,
+            [st.onModal]: onModal
           })}
           onClick={() => handleOnClick(i?.value)}
         >
           {i?.title}
-        </button>
+        </span>
       ))}
     </div>
   );

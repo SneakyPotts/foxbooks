@@ -233,3 +233,22 @@ ol[class] {
 .main {
   min-height: calc(100vh - 165px - 117px);
 }
+
+.modalMobileWrapper {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
+  padding: 30px 15px;
+  display: flex;
+}
+.modalMobileBtn {
+  max-width: 345px;
+  width: 100% !important;
+  padding: 15px !important;
+  margin: 0 auto;
+  font-size: 16px !important;
+  line-height: 18px !important;
+  height: auto !important;
+}

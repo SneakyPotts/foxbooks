@@ -8,7 +8,6 @@ import SideFilters from '../../SideFilters';
 import Popular from '../../Filter/Popular/Popular';
 import MyPagination from '../../shared/common/MyPagination';
 import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
-import MobalModal from '../../shared/common/mobalModal';
 import st from './category.module.scss';
 
 const data = [
@@ -63,7 +62,6 @@ const Category = () => {
           <div className={st.head}>
             <h2 className={st.title}>{currentCategory}</h2>
             <div>
-              {innerWidthWindow < 1024 && <MobalModal />}
               {innerWidthWindow >= 1024 &&
                 data.map((it, index) => (
                   <Popular
