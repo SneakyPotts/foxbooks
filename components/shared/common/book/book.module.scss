@@ -315,6 +315,14 @@
   .raitingAmount {
     display: none;
   }
+
+  .deleteBtn {
+    opacity: 1;
+    width: 16px;
+    height: 16px;
+    top: 5px;
+    right: 5px;
+  }
 }
 @media (max-width: 767px) {
   .container {

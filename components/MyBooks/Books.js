@@ -7,11 +7,15 @@ import Flag from '../shared/icons/flag';
 import PageIcon from '../shared/icons/page';
 import ClickableSearch from "../ClickableSearch";
 import Book from "../shared/common/book";
-import st from "../MyBooksOld/myBooks.module.scss";
-import Delete from "../../public/delete.svg";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import ButtonGroup from "../SettingsProfile/buttonGroup";
 import Button from "../shared/common/Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import BackBtn from "../shared/common/BackBtn";
+import SearchInput from "../SearchInput";
+import {setHeaderVisibility} from "../../store/commonSlice";
+import classNames from "classnames";
+import MobileFilterModal from "../MobileFilterModal";
 
 const filter1 = [
   {
@@ -41,6 +45,9 @@ const filter2 = [
 ];
 
 const Books = () => {
+  const dispatch = useDispatch()
+  const { innerWidthWindow } = useSelector(state => state.common)
+
   const [stateIndex, setStateIndex] = useState(null)
   const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
   const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
@@ -51,92 +58,92 @@ const Books = () => {
   }
 
   return <>
-    <div className={styles.filters}>
-      <div>
-        <span className={styles.filtersText}>Статус</span>
-        {filter1?.map((i, index) => (
-          <Popular
-            key={index + 1}
-            title={i?.title}
-            defaultValue={i?.defaultValue}
-            data={i?.options}
-            queryName={i?.queryName}
-            filterStateIdx={stateIndex}
-            elIdx={1}
-            setFilStateIdx={setStateIndex}
-          />
-        ))}
+    {innerWidthWindow > 768 &&
+      <div className={styles.filters}>
+        <div>
+          <span className={styles.filtersText}>Статус</span>
+          {filter1?.map((i, index) => (
+            <Popular
+              key={index + 1}
+              title={i?.title}
+              defaultValue={i?.defaultValue}
+              data={i?.options}
+              queryName={i?.queryName}
+              filterStateIdx={stateIndex}
+              elIdx={1}
+              setFilStateIdx={setStateIndex}
+            />
+          ))}
+        </div>
+        <div>
+          <ClickableSearch queryName={'search'}/>
+          {filter2?.map((i, index) => (
+            <Popular
+              key={index + 2}
+              title={i?.title}
+              defaultValue={i?.defaultValue}
+              data={i?.options}
+              queryName={i?.queryName}
+              filterStateIdx={stateIndex}
+              elIdx={2}
+              setFilStateIdx={setStateIndex}
+              isRight
+            />
+          ))}
+        </div>
       </div>
-      <div>
-        <ClickableSearch queryName={'search'} />
-        {filter2?.map((i, index) => (
-          <Popular
-            key={index + 2}
-            title={i?.title}
-            defaultValue={i?.defaultValue}
-            data={i?.options}
-            queryName={i?.queryName}
-            filterStateIdx={stateIndex}
-            elIdx={2}
-            setFilStateIdx={setStateIndex}
-            isRight
+    }
+
+    {innerWidthWindow <= 768 &&
+      <div className={styles.mobFilters}>
+        <div className={styles.flex}>
+          <BackBtn
+            externalClass={styles.backBtn}
+            onClick={() => dispatch(setHeaderVisibility(true))}
           />
-        ))}
+          <SearchInput
+            placeholder={'Искать книгу'}
+            externalClass={styles.mobSearch}
+            // onChange={}
+          />
+        </div>
+
+        <h2 className={classNames("title", styles.title)}>Мои книги</h2>
+
+        <MobileFilterModal>
+          <span className={styles.mobFiltersTitle}>Статус</span>
+          {filter1?.map((i, index) => (
+            <Popular
+              key={index + 1}
+              title={i?.title}
+              defaultValue={i?.defaultValue}
+              data={i?.options}
+              queryName={i?.queryName}
+              filterStateIdx={stateIndex}
+              elIdx={1}
+              setFilStateIdx={setStateIndex}
+            />
+          ))}
+          <span className={styles.line}/>
+          <span className={styles.mobFiltersTitle}>Сортировать</span>
+          {filter2?.map((i, index) => (
+            <Popular
+              key={index + 2}
+              title={i?.title}
+              defaultValue={i?.defaultValue}
+              data={i?.options}
+              queryName={i?.queryName}
+              filterStateIdx={stateIndex}
+              elIdx={2}
+              setFilStateIdx={setStateIndex}
+            />
+          ))}
+        </MobileFilterModal>
       </div>
-    </div>
+    }
 
     <div className={styles.grid}>
       <div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div><div className={styles.gridItem}>
         <Book
           withDelete
           onDelete={() => handleIconClick()}

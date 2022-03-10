@@ -1,0 +1,176 @@
+@import "styles/variables";
+
+@import 'styles/variables';
+
+.reviewCover {
+  display: flex;
+  background-color: $color-bg-icon;
+  border-radius: 5px;
+  padding: 20px;
+}
+.bookWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.bookTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 10px;
+  color: $color-main;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
+}
+.bookAuthor {
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-third;
+}
+.reviewInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  color: $color-third;
+}
+.reviewDate {
+  font-size: 12px;
+  line-height: 14px;
+}
+.reviewViews {
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+}
+.sumReviews {
+  margin-right: 10px;
+}
+.reviewTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  margin: 10px 0;
+  color: $color-main;
+  min-height: 38px;
+}
+.reviewText {
+  font-size: 14px;
+  line-height: 140%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+  margin: 0 0 20px;
+  color: $color-second;
+}
+.reviewBottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-third;
+
+  &Statistic {
+    display: flex;
+    align-items: center;
+    stroke: $color-third;
+  }
+}
+.reviewIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.reviewLike {
+  margin-right: 36px;
+}
+.controls  {
+  &Icon {
+    cursor: pointer;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 4.16667px;
+    border: 1px solid $color-star-border;
+    transition: .15s;
+
+    &:hover {
+      border-color: $text-hover;
+    }
+
+    &.active {
+      border-color: $text-hover;
+    }
+  }
+
+  &Item {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    grid-column-gap: 15px;
+    align-items: center;
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-second;
+    stroke: $color-third;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover;
+      stroke: $text-hover;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .review {
+    &Cover {
+      padding: 10px;
+    }
+    &Info {
+      margin-top: 10px;
+    }
+    &Views {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    &Title {
+      font-size: 14px;
+      line-height: 140%;
+      margin: 8px 0 10px;
+    }
+    &Bottom {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  .book {
+    &Title {
+      font-size: 14px;
+      line-height: 16px;
+    }
+    &Author {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  .controls {
+    &Item {
+      margin-bottom: 30px;
+      stroke: $text-hover;
+    }
+  }
+}

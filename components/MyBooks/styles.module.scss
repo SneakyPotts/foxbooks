@@ -27,7 +27,15 @@
 
   &Item {
     margin-bottom: 40px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
+}
+
+.reviewGrid {
+  grid-template-columns: repeat(auto-fill, minmax(384px, 1fr));
 }
 
 .modal {
@@ -61,5 +69,74 @@
   &Btn {
     width: 298px;
     margin-top: 40px;
+  }
+}
+
+.mlAuto {
+  margin-left: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .mobFilters {
+    margin-bottom: 34px;
+
+    &Title {
+      display: block;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      color: $color-main;
+      margin-bottom: 14px;
+    }
+
+  }
+
+  .line {
+    background: #D5D5D5;
+    margin: 30px 0;
+    height: 1px;
+    display: block;
+  }
+  .flex {
+    position: relative;
+    padding: 30px 15px;
+    margin: 0 -15px 30px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobSearch {
+    margin-top: 0;
+
+    input {
+      max-width: 290px;
+    }
+  }
+
+  .backBtn {
+    position: initial;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+    grid-column-gap: 10px;
+  }
+
+  .reviewGrid {
+    grid-template-columns: 1fr;
+
+    .gridItem {
+      margin-bottom: 30px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .title {
+    margin-bottom: 30px;
   }
 }

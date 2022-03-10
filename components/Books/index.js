@@ -65,9 +65,7 @@ const Books = () => {
               </span>
             </div>
 
-            <MobileFilterModal
-              // onClear={}
-            >
+            <MobileFilterModal>
               <BookFilters onModal />
             </MobileFilterModal>
           </>

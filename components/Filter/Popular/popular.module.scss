@@ -155,14 +155,20 @@
   .dropBtn {
     width: 100%;
     background: transparent;
+    padding: 0;
+
     &:hover {
       background: transparent;
     }
+
     & > span {
       white-space: nowrap;
       overflow: initial;
       // text-overflow: ellipsis;
     }
+  }
+  .dropContent {
+    margin-top: 10px;
   }
 }
 @media (min-width: 768px) {

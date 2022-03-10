@@ -11,7 +11,8 @@ const SearchInput = ({
   onClick,
   onChange,
   onClose,
-  placeholder
+  placeholder,
+  externalClass
 }) => {
   const input = useRef()
 
@@ -30,7 +31,7 @@ const SearchInput = ({
 
   return (
     <div
-      className={styles.input}
+      className={classNames(styles.input, externalClass)}
       onClick={wrapperClick}
     >
       <input

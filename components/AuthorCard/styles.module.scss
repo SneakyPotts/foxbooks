@@ -1,0 +1,25 @@
+@import 'styles/variables';
+
+.img {
+  border-radius: 3px;
+}
+
+.name {
+  display: block;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: $color-main;
+  margin: 10px 0;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
+}
+
+.booksCount {
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-third;
+}

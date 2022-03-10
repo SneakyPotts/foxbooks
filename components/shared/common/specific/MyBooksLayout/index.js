@@ -143,7 +143,7 @@ const MyBooksLayout = ({ children }) => {
           ]}
         />
 
-        <h1 className={styles.title}>Мои книги</h1>
+        <h1 className={classNames('title', styles.title)}>Мои книги</h1>
 
         {dataBooks?.length ?
           <Swiper
@@ -207,7 +207,7 @@ const MyBooksLayout = ({ children }) => {
               key={i?.title}
               className={styles.navItem}
             >
-              <Link href={i?.path}>
+              <Link href={i?.path} scroll={false}>
                 <a
                   className={classNames(
                     styles.navLink,

@@ -1,16 +1,11 @@
 @import 'styles/variables';
 
 .title {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 30px;
   margin-bottom: 42px;
-  color: $color-main;
 }
 
 .slide {
-  width: 129px;
+  width: 129px !important;
   height: 100%;
 
   &Link {
@@ -44,7 +39,7 @@
 }
 
 .audioSlide {
-  width: 195px;
+  width: 195px !important;
 }
 
 .sliderBtn {
@@ -129,17 +124,15 @@
 
 @media screen and (max-width: 768px) {
   .title {
-    font-size: 20px;
-    line-height: 25px;
     margin-bottom: 30px;
   }
 
   .slide {
-    width: 108px;
+    width: 108px !important;
   }
 
   .audioSlide {
-    width: 160px;
+    width: 160px !important;
   }
 
   .nav {

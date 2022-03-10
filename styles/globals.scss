@@ -224,12 +224,6 @@ ol[class] {
   }
 }
 
-@media (max-width: 768px) {
-  .booksWrapper {
-    width: 100%;
-  }
-}
-
 .main {
   min-height: calc(100vh - 165px - 117px);
 }
@@ -251,4 +245,23 @@ ol[class] {
   font-size: 16px !important;
   line-height: 18px !important;
   height: auto !important;
+}
+
+.title {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: $color-main;
+}
+
+@media (max-width: 768px) {
+  .booksWrapper {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 25px;
+  }
 }
