@@ -12,11 +12,13 @@
     color: $color-third;
   }
 
-  > input {
+  > input,
+  > textarea {
     padding: 11px 20px;
     border: 1px solid $color-star-border;
     border-radius: 5px;
     outline: none;
+    resize: none;
 
     &:hover {
       border-color: $color-third;

@@ -1,0 +1,131 @@
+@import 'styles/variables';
+
+.label {
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-third;
+  margin-bottom: 10px;
+}
+
+.dropdown {
+  position: relative;
+  width: 294px;
+
+  &Btn {
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-main;
+    stroke: $color-main;
+    stroke-width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #F1F1F1;
+    border: 1px solid #D5D5D5;
+    border-radius: 59px;
+    transition: .15s;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-third;
+    }
+
+    &.active {
+      background: $color-main;
+      border: 1px solid #D5D5D5;
+      color: #fff;
+      stroke: #fff;
+    }
+  }
+
+  &List {
+    background: #FFFFFF;
+    border: 1px solid #F1F1F1;
+    box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+    border-radius: 5px;
+    padding: 30px 20px;
+    position: absolute;
+    bottom: -20px;
+    transform: translateY(100%);
+    width: 100%;
+    z-index: 2;
+  }
+
+  &Item {
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-second;
+    padding-left: 34px;
+    margin-bottom: 15px;
+    transition: .15s;
+    cursor: pointer;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      border: 2px solid $color-third;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      transition: .15s;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &.active,
+    &:hover {
+      color: $color-main;
+
+      &::before {
+        border-color: $color-main;
+      }
+    }
+
+    &.active {
+      &::after {
+        content: '';
+        width: 14px;
+        height: 14px;
+        background: $color-main;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  transform: rotate(180deg);
+  transition: .15s;
+
+  &.active {
+    transform: rotate(0);
+  }
+}
+
+.btns {
+  flex-direction: row-reverse;
+
+  span {
+    margin-left: 30px;
+  }
+
+  button {
+    margin-left: 0 !important;
+  }
+}

@@ -2,27 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/AuthorCard/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/AuthorCard/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ReviewLogicItem/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ReviewLogicItem/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/Popular/popular.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MobileFilterModal/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MobileFilterModal/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MobileFilterModal/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MobileFilterModal/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/AudioBooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/AudioBooks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Authors.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Authors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Books.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Books.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Quotes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Quotes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Reviews.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Selections.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Selections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SearchInput/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SearchInput/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/Input/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/Input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +79,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -132,6 +118,7 @@
       <workItem from="1646730744784" duration="21191000" />
       <workItem from="1646817884125" duration="16643000" />
       <workItem from="1646906030510" duration="19379000" />
+      <workItem from="1646993523797" duration="12980000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
