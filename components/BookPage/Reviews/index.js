@@ -23,11 +23,6 @@ const Reviews = () => {
     setReviewTyping(true);
   };
 
-  const handleChangeReviewField = e => {
-    e.target.style.height = 'auto';
-    e.target.style.height = e.target.scrollHeight + 'px';
-  };
-
   useEffect(() => {
     dispatch(getReviewTypes())
   }, []);

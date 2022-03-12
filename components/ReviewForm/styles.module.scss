@@ -120,6 +120,7 @@
 
 .btns {
   flex-direction: row-reverse;
+  margin-top: 15px !important;
 
   span {
     margin-left: 30px;
@@ -127,5 +128,15 @@
 
   button {
     margin-left: 0 !important;
+  }
+}
+
+.textarea {
+  margin: 40px 0 15px;
+
+  & > textarea {
+    padding: 10px 15px;
+    border-radius: 59px;
+    height: 40px;
   }
 }

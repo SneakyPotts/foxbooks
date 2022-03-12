@@ -58,7 +58,6 @@ const TextWithQoutes = () => {
 		const text = window.getSelection().toString()
 
 		if(text?.length && text !== ' ') {
-			ev.preventDefault()
 			setSelectedText(text)
 
 			const range = window.getSelection().getRangeAt(0)

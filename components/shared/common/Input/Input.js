@@ -12,6 +12,11 @@ const Input = ({
 	isTextarea,
 	rows
 }) => {
+	const autoHeightHandler = e => {
+		e.target.style.height = 'auto';
+		e.target.style.height = e.target.scrollHeight + 'px';
+	};
+
 	return (
 		<div
 			className={classnames(styles.wrapper, classNames, {[styles.wrapperErr]: err})}
@@ -23,6 +28,7 @@ const Input = ({
 					id={name}
 					{...register(name)}
 					rows={rows}
+					onChange={autoHeightHandler}
 				/> :
 				<input
 					id={name}

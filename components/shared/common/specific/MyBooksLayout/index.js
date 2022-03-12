@@ -8,6 +8,7 @@ import Headphones from "../../../icons/headphones";
 import Breadcrumbs from "../../../../BreadCrumps/BreadCrumps";
 import ArrowRight from "../../../../../public/chevron-right.svg";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { Navigation } from 'swiper/core';
 
 import classNames from "classnames";

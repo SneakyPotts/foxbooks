@@ -14,11 +14,12 @@
 
   > input,
   > textarea {
+    font-family: 'Fira Sans', sans-serif;
     padding: 11px 20px;
     border: 1px solid $color-star-border;
     border-radius: 5px;
     outline: none;
-    resize: none;
+    transition: .15s;
 
     &:hover {
       border-color: $color-third;
@@ -27,6 +28,14 @@
     &:focus {
       border: 1px solid $text-hover;
     }
+  }
+
+  > textarea {
+    font-size: 14px;
+    line-height: 140%;
+    padding: 20px 15px 30px;
+    resize: none;
+    overflow: hidden;
   }
 
   &Error {

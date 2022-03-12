@@ -13,12 +13,20 @@ const options = [
 ];
 
 const ReviewForm = ({
+  title,
+  text,
   onCancel
 }) => {
   const [optionsIsVisible, setOptionsIsVisible] = useState(false);
   const [currentOption, setCurrentOption] = useState(null);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      title,
+      text
+    }
+  });
+
   const onSubmit = data => console.log(data);
 
   const openDropdown = ev => {
@@ -97,6 +105,15 @@ const ReviewForm = ({
         textLabel={'Если бы ваша рецензия ограничивалась одной фразой, что бы вы сказали?'}
         isTextarea
         rows={1}
+        classNames={styles.textarea}
+      />
+
+      <Input
+        register={register}
+        name={'text'}
+        textLabel={'Ваша рецензия'}
+        isTextarea
+        rows={4}
       />
 
       <ButtonGroup

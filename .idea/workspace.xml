@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewLogicItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewLogicItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/Input/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/Input.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +123,8 @@
       <workItem from="1646730744784" duration="21191000" />
       <workItem from="1646817884125" duration="16643000" />
       <workItem from="1646906030510" duration="19379000" />
-      <workItem from="1646993523797" duration="12980000" />
+      <workItem from="1646993523797" duration="13033000" />
+      <workItem from="1647090830023" duration="6930000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -351,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646846920472</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="push">
+      <created>1647016364579</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1647016364579</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

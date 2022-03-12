@@ -10,6 +10,9 @@ import HorizontalDots from "../shared/icons/horizontalDots";
 import EditPensil from "../shared/icons/editPencil";
 import Bin from "../shared/icons/trash";
 import DrawerPopup from "../shared/common/DrawerPopup";
+import ModalWindow from "../shared/common/modalWindow/ModalWindow";
+import ReviewForm from "../ReviewForm";
+import {useSelector} from "react-redux";
 
 const ReviewLogicItem = ({
   type,
@@ -17,7 +20,10 @@ const ReviewLogicItem = ({
   withControls,
   onDelete
 }) => {
+  const { innerWidthWindow } = useSelector(state => state.common)
+
   const [controlsIsVisible, setControlsIsVisible] = useState(false);
+  const [editFormIsVisible, setEditFormIsVisible] = useState(false)
 
   return (
     <div className={styles.review}>
@@ -83,7 +89,7 @@ const ReviewLogicItem = ({
               >
                 <div
                   className={styles.controlsItem}
-                  // onClick={e => handleEditPageClick(e)}
+                  onClick={() => setEditFormIsVisible(true)}
                 >
                   <EditPensil />
                   Редактировать
@@ -101,6 +107,19 @@ const ReviewLogicItem = ({
           </div>
         }
       </div>
+
+      {editFormIsVisible &&
+        <ModalWindow
+          isFullScreen={innerWidthWindow <= 768}
+          onClose={() => setEditFormIsVisible(false)}
+        >
+          <ReviewForm
+            title={data.review_title}
+            text={data.review_text}
+            onCancel={() => setEditFormIsVisible(false)}
+          />
+        </ModalWindow>
+      }
     </div>
   );
 };
