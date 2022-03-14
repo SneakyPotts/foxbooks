@@ -9,6 +9,7 @@ import BackBtn from "../shared/common/BackBtn";
 import SearchInput from "../SearchInput";
 import {setHeaderVisibility} from "../../store/commonSlice";
 import classNames from "classnames";
+import QuoteItem from "./QuoteItem";
 
 const filter = [
   {
@@ -87,9 +88,26 @@ const Quotes = () => {
       </div>
     }
 
-    <div className={styles.grid}>
+    <div className={classNames(styles.grid, styles.quotesGrid)}>
       <div className={styles.gridItem}>
-        authors
+        <QuoteItem
+          onDelete={handleIconClick}
+        />
+      </div>
+      <div className={styles.gridItem}>
+        <QuoteItem
+          onDelete={handleIconClick}
+        />
+      </div>
+      <div className={styles.gridItem}>
+        <QuoteItem
+          onDelete={handleIconClick}
+        />
+      </div>
+      <div className={styles.gridItem}>
+        <QuoteItem
+          onDelete={handleIconClick}
+        />
       </div>
     </div>
 
@@ -98,10 +116,9 @@ const Quotes = () => {
         onClose={() => setDeletePopupIsVisible(false)}
       >
         <div className={styles.modal}>
-          <h3 className={styles.modalTitle}>Удалить книгу</h3>
+          <h3 className={styles.modalTitle}>Удалить цитату</h3>
           <p className={styles.modalText}>
-            Вы действительно хотите удалить книгу “Колдовской мир. Тройка
-            мечей”?
+            Вы действительно хотите удалить цитату?
           </p>
           <ButtonGroup
             text="Удалить"
@@ -119,7 +136,7 @@ const Quotes = () => {
         onClose={() => setConfirmPopupIsVisible(false)}
       >
         <div className={styles.modal}>
-          <h3 className={styles.modalTitle}>Книга удалена</h3>
+          <h3 className={styles.modalTitle}>Цитата удалена</h3>
 
           <Button
             text="Закрыть"

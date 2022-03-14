@@ -16,4 +16,8 @@ export default class SelectionService {
 	static async getSelectionsById({id}) {
 		return axios.get(`${API_URL}/public/compilations/${id}`)
 	}
+
+	static async createCompilation(data) {
+		return api.post(`${API_URL}/compilations`, data)
+	}
 }

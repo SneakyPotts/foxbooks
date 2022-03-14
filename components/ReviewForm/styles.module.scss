@@ -140,3 +140,36 @@
     height: 40px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .textarea {
+    margin: 30px 0 5px;
+
+    & > textarea {
+      padding: 15px;
+      border-radius: 5px;
+      height: 48px;
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .dropdown {
+    width: 100%;
+  }
+
+  .btns {
+    margin-top: 5px !important;
+    flex-direction: column-reverse;
+
+    span {
+      width: 100%;
+      margin: 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+      width: 100% !important;
+    }
+  }
+}

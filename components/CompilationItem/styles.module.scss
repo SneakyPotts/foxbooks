@@ -1,0 +1,88 @@
+@import "styles/variables";
+
+.selection {
+  &Link {
+    position: relative;
+    display: block;
+    margin-bottom: 13px;
+  }
+
+  &Img {
+    border-radius: 5px;
+  }
+
+  &Count {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-main;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fff;
+    border-radius: 58px;
+    padding: 6px 10px;
+  }
+
+  &Date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-third;
+
+    &Views {
+      font-size: 14px;
+      line-height: 140%;
+      display: flex;
+      align-items: center;
+
+      > span {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &Title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: $color-main;
+    display: block;
+    margin-top: 13px;
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover
+    }
+  }
+
+  &Text {
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-second;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    margin-top: 13px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .selection {
+    &Link {
+      margin-bottom: 7px;
+    }
+    &Count {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    &Title {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}

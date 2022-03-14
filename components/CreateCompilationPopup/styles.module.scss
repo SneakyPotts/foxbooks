@@ -1,0 +1,153 @@
+@import "styles/variables";
+
+.wrapper {
+  padding: 0;
+  border: none;
+
+  & > div:first-of-type {
+    top: 60px;
+    right: 60px;
+    
+    span {
+      background: #fff;
+      transition: .15s;
+    }
+  }
+}
+
+.form {
+  width: 100%;
+  height: 100%;
+}
+
+.preview {
+  &Wrapper {
+    height: 58%;
+    background: $color-second;
+    position: relative;
+
+    &.withOverlay {
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+    }
+  }
+
+  &Img {
+    object-fit: cover;
+  }
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  &Text {
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-third;
+  }
+}
+
+.title {
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 35px;
+  color: #FFFFFF;
+  border: none;
+  background: transparent;
+  outline: none;
+  margin: 50px 0 30px;
+  width: 80vw;
+  text-align: center;
+
+  &::placeholder {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+}
+
+.error {
+  font-size: 12px;
+  line-height: 14px;
+  color: #E92A20;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+
+.container {
+  padding: 54px 15px 60px;
+}
+
+.btn {
+  margin: 15px 0 10px;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-third;
+}
+
+@media screen and (max-width: 480px){
+  .wrapper {
+    & > div:first-of-type {
+      top: 30px;
+      right: 15px;
+    }
+  }
+
+  .preview {
+    &Wrapper {
+      height: 300px;
+    }
+  }
+
+
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    margin: 20px 0;
+
+    &::placeholder {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
+
+  .controls {
+    &Text {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+
+  .container {
+    padding: 30px 15px 60px;
+  }
+
+  .btn {
+    margin-top: 35px;
+    width: 100%;
+  }
+}

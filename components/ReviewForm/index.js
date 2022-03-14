@@ -5,6 +5,7 @@ import ArrowAll from "../../public/chevron-down.svg";
 import ButtonGroup from "../SettingsProfile/buttonGroup";
 import Input from "../shared/common/Input/Input";
 import { useForm } from "react-hook-form";
+import {useSelector} from "react-redux";
 
 const options = [
   { id: 1, title: 'Популярные', value: 3 },
@@ -17,6 +18,8 @@ const ReviewForm = ({
   text,
   onCancel
 }) => {
+  const { innerWidthWindow } = useSelector(state => state.common)
+
   const [optionsIsVisible, setOptionsIsVisible] = useState(false);
   const [currentOption, setCurrentOption] = useState(null);
 
@@ -113,7 +116,7 @@ const ReviewForm = ({
         name={'text'}
         textLabel={'Ваша рецензия'}
         isTextarea
-        rows={4}
+        rows={innerWidthWindow > 768 ? 4 : 1}
       />
 
       <ButtonGroup

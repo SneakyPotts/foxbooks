@@ -38,6 +38,10 @@
   grid-template-columns: repeat(auto-fill, minmax(384px, 1fr));
 }
 
+.compilationsGrid {
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+}
+
 .modal {
   max-width: 318px;
 
@@ -74,6 +78,137 @@
 
 .mlAuto {
   margin-left: auto;
+}
+
+.quotesGrid {
+  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+}
+
+.quoteBlock {
+  width: 100%;
+  max-width: 588px;
+  padding: 30px 13px 30px 20px;
+  background: $color-categories-btn;
+  border: 1px solid $color-bg-icon;
+  border-radius: 5px;
+
+  &Header {
+    display: flex;
+
+    &Info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+    }
+  }
+
+  &Img {
+    border-radius: 3px;
+  }
+
+  &Title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: $color-main;
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover;
+    }
+  }
+
+  &Text {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 20px 0;
+    color: $color-second;
+  }
+
+  &Stars {
+    display: flex;
+
+    &Raiting {
+      font-size: 14px;
+      line-height: 1.43;
+      margin-left: 26px;
+      color: $color-third;
+    }
+  }
+
+  &Author {
+    font-size: 14px;
+    line-height: 1.43;
+    margin: 3px 0;
+    color: $color-second;
+  }
+}
+
+.reviewIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+.reviewLike {
+  margin-right: 26px;
+}
+.dotsIcon {
+  cursor: pointer;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 4.16667px;
+  border: 1px solid $color-star-border;
+  transition: .15s;
+
+  &.active,
+  &:hover {
+    border-color: $text-hover;
+  }
+}
+
+.reviewBottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  font-size: 14px;
+  line-height: 1.43;
+  color: $color-third;
+
+  &Statistic {
+    display: flex;
+    max-height: 20px;
+    stroke: $color-third;
+  }
+}
+.controls  {
+  &Item {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    grid-column-gap: 15px;
+    align-items: center;
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-second;
+    stroke: $text-hover;
+    fill: $text-hover;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -136,7 +271,70 @@
     }
   }
 
+  .quotesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .compilationsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .title {
     margin-bottom: 30px;
+  }
+
+  .modal {
+    margin: 0 -30px;
+
+    &Title {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    &Btns {
+      margin-top: 30px;
+      flex-direction: column-reverse;
+
+      span {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0 0;
+      }
+
+      button {
+        width: 100% !important;
+        margin: 0 !important;
+      }
+    }
+  }
+
+  .quote {
+    &Block {
+      padding: 0;
+      border: none;
+
+      &Title {
+        font-size: 14px;
+        line-height: 16px;
+      }
+      &Author {
+        margin: 10px 0;
+      }
+      &Text {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .createBtn {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .compilationsGrid {
+    grid-template-columns: 1fr;
   }
 }

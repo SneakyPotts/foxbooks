@@ -7,6 +7,11 @@
   background-color: $color-bg-icon;
   border-radius: 5px;
   padding: 20px;
+
+  a {
+    border-radius: 3px;
+    overflow: hidden;
+  }
 }
 .bookWrapper {
   display: flex;
