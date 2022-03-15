@@ -4,10 +4,10 @@ import Eye from "../shared/icons/eye";
 import Image from 'next/image'
 import Link from 'next/link'
 
-const CompilationItem = ({ isFull }) => {
+const CompilationItem = ({ isFull, path }) => {
   return (
     <div>
-      <Link href={'/'}>
+      <Link href={path}>
         <a className={styles.selectionLink}>
           <Image
             src="/horizontalBookCovers/bookCover1.png"
@@ -16,6 +16,8 @@ const CompilationItem = ({ isFull }) => {
             height={183}
             layout={'responsive'}
             className={styles.selectionImg}
+            placeholder="blur"
+            blurDataURL="/blur.webp"
           />
           <span className={styles.selectionCount}>65 книг</span>
         </a>
@@ -31,7 +33,7 @@ const CompilationItem = ({ isFull }) => {
         </div>
       }
 
-      <Link href={'/'}>
+      <Link href={path}>
         <a className={styles.selectionTitle}>Романтическое фэнтези</a>
       </Link>
 

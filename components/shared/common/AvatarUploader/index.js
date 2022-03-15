@@ -48,7 +48,7 @@ const AvatarUploader = ({ name, setValue }) => {
 						width="102"
 						height="102"
 						placeholder="blur"
-						blurDataURL="/images/blur.jpg"
+						blurDataURL="/blur.webp"
 						layout="responsive"
 					/> :
 					<AvatarWithLetter

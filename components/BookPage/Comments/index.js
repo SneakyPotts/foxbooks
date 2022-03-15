@@ -76,7 +76,7 @@ const Comments = ({ comments }) => {
               width="35"
               height="35"
               // placeholder="blur"
-              blurDataURL="/images/blur.jpg"
+              blurDataURL="/blur.webp"
             />
           </div>
           {/*<input {...register('id')} type="hidden" value={1}/>*/}

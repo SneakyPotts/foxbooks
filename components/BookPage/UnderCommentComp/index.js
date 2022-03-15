@@ -62,7 +62,7 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
                   width="35"
                   height="35"
                   // placeholder="blur"
-                  blurDataURL="/images/blur.jpg"
+                  blurDataURL="/blur.webp"
                 />
               </div>
               <div className={st.commentator}>
@@ -102,7 +102,7 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
                         width="25"
                         height="25"
                         // placeholder="blur"
-                        blurDataURL="/images/blur.jpg"
+                        blurDataURL="/blur.webp"
                       />
                     </div>
                     <textarea className={st.replyArea}></textarea>
@@ -148,7 +148,7 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
                         width="35"
                         height="35"
                         // placeholder="blur"
-                        blurDataURL="/images/blur.jpg"
+                        blurDataURL="/blur.webp"
                       />
                     </div>
                     <div className={st.commentator}>
@@ -185,7 +185,7 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
                             width="25"
                             height="25"
                             // placeholder="blur"
-                            blurDataURL="/images/blur.jpg"
+                            blurDataURL="/blur.webp"
                           />
                         </div>
                         <textarea className={st.replyArea}></textarea>

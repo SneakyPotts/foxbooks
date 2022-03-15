@@ -9,6 +9,7 @@ import All from "../shared/icons/all";
 import Bin from "../shared/icons/trash";
 import DrawerPopup from "../shared/common/DrawerPopup";
 import styles from './styles.module.scss'
+import DotsDropdown from "../DotsDropdown";
 
 const QuoteItem = ({
   onDelete
@@ -61,37 +62,23 @@ const QuoteItem = ({
         </div>
 
         <div>
-          <span
-            className={classNames(styles.dotsIcon, {
-              [styles.active]: controlsIsVisible,
-            })}
-            onClick={() => setControlsIsVisible(prev => !prev)}
-          >
-            <HorizontalDots/>
-          </span>
-
-          {controlsIsVisible &&
-            <DrawerPopup
-              onClose={() => setControlsIsVisible(false)}
+          <DotsDropdown isSmall>
+            <div
+              className={styles.controlsItem}
+              // onClick={() => setEditFormIsVisible(true)}
             >
-              <div
-                className={styles.controlsItem}
-                // onClick={() => setEditFormIsVisible(true)}
-              >
-                <All />
-                Показать в книге
-              </div>
+              <All />
+              Показать в книге
+            </div>
 
-              <div
-                className={styles.controlsItem}
-                onClick={onDelete}
-              >
-                <Bin />
-                Удалить
-              </div>
-            </DrawerPopup>
-          }
-
+            <div
+              className={styles.controlsItem}
+              onClick={onDelete}
+            >
+              <Bin />
+              Удалить
+            </div>
+          </DotsDropdown>
         </div>
       </div>
     </div>

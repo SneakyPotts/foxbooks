@@ -43,6 +43,8 @@
     width: 24px;
     height: 24px;
     margin-right: 30px;
+    cursor: pointer;
+    transition: .15s;
   }
 
   .iconBell:hover {
@@ -80,7 +82,7 @@
         width: 237px;
         right: 0;
         transform: scale(0);
-        z-index: 1;
+        z-index: 2;
 
         li:first-of-type {
           margin-bottom: 20px;

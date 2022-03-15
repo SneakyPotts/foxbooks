@@ -1,0 +1,34 @@
+@import 'styles/variables';
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 18px;
+  color: $color-main;
+  cursor: pointer;
+  transition: .15s;
+
+  svg path {
+    transition: .15s;
+  }
+
+  &:hover {
+    color: $text-hover;
+
+    svg path {
+      stroke: $text-hover;
+    }
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  stroke: $color-main;
+  margin-right: 3px;
+  transform: rotate(180deg);
+}

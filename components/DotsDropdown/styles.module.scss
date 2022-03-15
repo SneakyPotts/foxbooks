@@ -1,0 +1,34 @@
+@import "styles/variables";
+
+.dropdown {
+  position: relative;
+}
+
+.dotsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid $color-star-border;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.15s;
+
+  &.active,
+  &:hover {
+    border-color: $text-hover;
+  }
+
+  &.small {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .dotsButton {
+    width: 48px;
+    height: 48px;
+  }
+}

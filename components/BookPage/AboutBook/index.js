@@ -16,6 +16,7 @@ import Headphones from '../../shared/icons/headphones';
 import Eye from '../../shared/icons/eye';
 import DrawerPopup from '../../shared/common/DrawerPopup';
 import st from './aboutBook.module.scss';
+import DotsDropdown from "../../DotsDropdown";
 
 
 const AboutBook = ({ book, audioFlag }) => {
@@ -54,7 +55,6 @@ const AboutBook = ({ book, audioFlag }) => {
   const dispatch = useDispatch();
   const type = audioFlag ? 'audio-books' : 'books'
 
-  const [openMenu, setOpenMenu] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
 
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -81,8 +81,6 @@ const AboutBook = ({ book, audioFlag }) => {
     } else {
 
     }
-
-    setOpenMenu(false)
   };
 
   const setRating = value => {
@@ -113,7 +111,7 @@ const AboutBook = ({ book, audioFlag }) => {
               width={innerWidthWindow > 768 ? 270 : 108}
               layout="fill"
               placeholder="blur"
-              blurDataURL="/images/blur.jpg"
+              blurDataURL="/blur.webp"
             />
 
             {audioFlag && (
@@ -208,33 +206,18 @@ const AboutBook = ({ book, audioFlag }) => {
                     <a className={st.readButton}>Читать</a>
                   </Link>
                 )}
-                <div className={st.dropdown}>
-                  <span
-                    className={classnames(st.dotsButton, {
-                      [st.activBtn]: openMenu,
-                    })}
-                    onClick={() => setOpenMenu(!openMenu)}
-                  >
-                    <Dots />
-                  </span>
-                  {openMenu && (
-                    <DrawerPopup
-                      // externalClass={st.menu}
-                      onClose={() => setOpenMenu(false)}
+                <DotsDropdown>
+                  {dataOptions.map(i => (
+                    <p
+                      key={i?.title}
+                      className={st.menuItem}
+                      onClick={() => handleClick(i)}
                     >
-                      {dataOptions.map(i => (
-                        <p
-                          key={i?.title}
-                          className={st.menuItem}
-                          onClick={() => handleClick(i)}
-                        >
-                          {i?.icon}
-                          <span>{i?.title}</span>
-                        </p>
-                      ))}
-                    </DrawerPopup>
-                  )}
-                </div>
+                      {i?.icon}
+                      <span>{i?.title}</span>
+                    </p>
+                  ))}
+                </DotsDropdown>
               </div>
 
               <ul className={st.navLinks}>

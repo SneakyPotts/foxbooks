@@ -22,7 +22,7 @@
 
 .preview {
   &Wrapper {
-    height: 58%;
+    height: 581px;
     background: $color-second;
     position: relative;
 
@@ -95,6 +95,7 @@
 
 .container {
   padding: 54px 15px 60px;
+  max-width: 792px;
 }
 
 .btn {

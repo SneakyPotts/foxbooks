@@ -104,7 +104,7 @@ const Book = ({
                     : 160
                 }
                 placeholder="blur"
-                blurDataURL="/images/blur.jpg"
+                blurDataURL="/blur.webp"
                 layout="responsive"
               />
             </a>
@@ -116,7 +116,7 @@ const Book = ({
             width={180}
             height={audio ? 180 : 271}
             placeholder="blur"
-            blurDataURL="/images/blur.jpg"
+            blurDataURL="/blur.webp"
             layout="responsive"
           />
         )}

@@ -163,11 +163,11 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100vw;
     height: 69px;
     padding: 10px 15px;
     background-color: $color-main;

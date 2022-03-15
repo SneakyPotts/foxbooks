@@ -2,27 +2,54 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/CompilationItem/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CompilationItem/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CreateCompilationPopup/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CreateCompilationPopup/schema.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CreateCompilationPopup/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/common/PreviewUploader/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/shared/common/PreviewUploader/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MyBooks/ChooseBookPopup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MyBooks/MySelection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/BackText/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/BackText/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/mybooks/selection/[id].js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/Compilations.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/Compilations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Quotes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Quotes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AuthorCard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorCard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentComponent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentComponent/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Quotes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Quotes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CompilationItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CreateCompilationPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreateCompilationPopup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CreateCompilationPopup/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreateCompilationPopup/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MyBooks/Selections.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Selections.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReviewForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReviewLogicItem/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewLogicItem/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/SelectionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/SelectionService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewLogicItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewLogicItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SearchInput/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SearchInput/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Support/Support.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/Support.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Support/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/audio.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/audio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/authors.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/authors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/quotes.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/quotes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/reviews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/selections.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/selections.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/support.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/support.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/FiraSans-Medium.woff" beforeDir="false" afterPath="$PROJECT_DIR$/components/DotsDropdown/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/FiraSans-Medium.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/components/DotsDropdown/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/FiraSans-Regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/FiraSans-Regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Merriweather-Bold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Merriweather-Bold.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Merriweather-Regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Merriweather-Regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/commonSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +163,7 @@
       <workItem from="1646993523797" duration="13033000" />
       <workItem from="1647090830023" duration="7154000" />
       <workItem from="1647255327117" duration="22147000" />
+      <workItem from="1647338339319" duration="22731000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

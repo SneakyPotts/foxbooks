@@ -58,6 +58,7 @@ const TextWithQoutes = () => {
 		const text = window.getSelection().toString()
 
 		if(text?.length && text !== ' ') {
+			ev.preventDefault()
 			setSelectedText(text)
 
 			const range = window.getSelection().getRangeAt(0)
@@ -78,6 +79,7 @@ const TextWithQoutes = () => {
 	}
 
 	const handleMarkClick = (ev, id) => {
+		ev.stopPropagation()
 		setMarkId(id)
 		const x = ev?.pageX || ev?.changedTouches[0]?.pageX 
 		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
@@ -97,13 +99,14 @@ const TextWithQoutes = () => {
 		setMarkId(id)
 
 		const sel = window.getSelection()
-    	sel.removeAllRanges()
+		sel.removeAllRanges()
 
 		sel.addRange(objToRange(rangeObj))
 		highlight(id, color, handleMarkClick)
 
 		dispatch(addQuotes(quot))
 
+		sel.removeAllRanges()
 		setToolsIsVisible(false)
 	}
 

@@ -60,8 +60,8 @@
   }
 
   &Btns {
-    margin-bottom: 0;
-    margin-top: 40px;
+    margin-bottom: 0 !important;
+    margin-top: 40px !important;
     flex-direction: row-reverse;
 
     > button:nth-child(2) {
@@ -211,6 +211,112 @@
   }
 }
 
+.compilation {
+  &Wrapper {
+    height: 581px;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+
+  &Img {
+    object-fit: cover;
+  }
+
+  &Title {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    color: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  &Controls {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  &Btn {
+    margin-right: 20px;
+
+    &Mob {
+      display: none;
+    }
+  }
+
+  &BookCount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-main;
+    margin: 60px 0;
+
+    &.empty {
+      color: $color-third;
+    }
+
+    span {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 5px;
+    }
+  }
+}
+.chooseBook {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fafafa;
+  z-index: 2;
+  overflow: auto;
+
+  &Container {
+    padding: 15px 15px 56px;
+    max-width: 792px;
+    margin: 0 auto;
+  }
+
+  &Input {
+    margin: 40px 0 30px;
+  }
+
+  &Title {
+    margin: 40px 0;
+  }
+
+  &Grid {
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  }
+}
+
 @media screen and (max-width: 768px) {
   .mobFilters {
     margin-bottom: 34px;
@@ -244,10 +350,7 @@
 
   .mobSearch {
     margin-top: 0;
-
-    input {
-      max-width: 290px;
-    }
+    max-width: 290px;
   }
 
   .backBtn {
@@ -292,7 +395,7 @@
     }
 
     &Btns {
-      margin-top: 30px;
+      margin-top: 30px !important;
       flex-direction: column-reverse;
 
       span {
@@ -325,11 +428,100 @@
       }
     }
   }
-}
 
-@media screen and (max-width: 768px){
   .createBtn {
     margin-top: 30px;
+  }
+
+  .compilation {
+    &Wrapper {
+      height: 200px;
+      margin-bottom: 30px;
+    }
+    &Back {
+      z-index: 2;
+    }
+    &Controls {
+      position: initial;
+      transform: none;
+    }
+    &Btn {
+      display: none;
+
+      &Mob {
+        display: block;
+        margin: 30px 0 60px;
+        width: 100%;
+        height: 48px;
+      }
+    }
+    &Dropdown {
+      position: absolute !important;
+      top: 30px;
+      right: 15px;
+      z-index: 2;
+
+      > span {
+        background: $text-hover;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        border-color: $text-hover;
+        transform: rotate(90deg);
+
+        svg path {
+          stroke: #fff;
+        }
+
+        &:hover {
+          background: $accent-hover;
+          border-color: $accent-hover;
+        }
+      }
+    }
+    &Title {
+      font-size: 20px;
+      line-height: 25px;
+    }
+    &BookCount {
+      margin: 0;
+      position: absolute;
+      top: 123px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      flex-direction: row;
+      font-size: 12px;
+      line-height: 14px;
+      color: #F1F1F1;
+
+      span {
+        font-family: 'Fira Sans', sans-serif;
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 400;
+        margin: 0 5px 0 0;
+      }
+
+      &.empty {
+        color: #F1F1F1;
+      }
+    }
+  }
+
+  .chooseBook {
+    &Container {
+      padding-top: 0;
+    }
+    &Input {
+      margin: 0;
+    }
+    &BackText {
+      display: none;
+    }
+    &Title {
+      margin: 30px 0;
+    }
   }
 }
 

@@ -48,7 +48,7 @@ const Quotes = () => {
                 width="35"
                 height="35"
                 placeholder="blur"
-                blurDataURL="/images/blur.jpg"
+                blurDataURL="/blur.webp"
               />
             </div>
             <h3 className={st.userName}>{it.name}</h3>

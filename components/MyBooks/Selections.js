@@ -150,16 +150,16 @@ const Selections = () => {
 
     <div className={classNames(styles.grid, styles.compilationsGrid)}>
       <div className={styles.gridItem}>
-        <CompilationItem />
+        <CompilationItem path={'/mybooks/selection/1'} />
       </div>
       <div className={styles.gridItem}>
-        <CompilationItem />
+        <CompilationItem path={'/mybooks/selection/1'} />
       </div>
       <div className={styles.gridItem}>
-        <CompilationItem />
+        <CompilationItem path={'/mybooks/selection/1'} />
       </div>
       <div className={styles.gridItem}>
-        <CompilationItem />
+        <CompilationItem path={'/mybooks/selection/1'} />
       </div>
     </div>
 

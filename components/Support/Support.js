@@ -56,7 +56,7 @@ const SupportCom = () => {
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={'container'}>
 			<div className={styles.helpTitle}>
 				<h1>Нужна помощь? </h1>
 				<p>
@@ -90,7 +90,7 @@ const SupportCom = () => {
 					<textarea
 						{...register('textarea')}
 						className={styles.textArea}
-					></textarea>
+					/>
 					<div onClick={HandleClick} className={styles.filesBlock}>
 						<div className={styles.textAreaClip}>
 							<Clip />

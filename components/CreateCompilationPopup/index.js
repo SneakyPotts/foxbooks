@@ -14,20 +14,33 @@ import {generateFormData} from "../../utils";
 import SelectionService from "../../http/SelectionService";
 
 const CreateCompilationPopup = ({
-  onClose
+  image,
+  title,
+  description,
+  onClose,
+  isEdit
 }) => {
   const { innerWidthWindow } = useSelector(state => state.common)
 
-  const [imgSrc, setImgSrc] = useState('')
+  const [imgSrc, setImgSrc] = useState(image || '')
 
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    defaultValues: {
+      image,
+      title,
+      description
+    }
   });
 
   const onSubmit = async data => {
-    const d = generateFormData(data)
-    const resp = await SelectionService.createCompilation(d)
-    console.log(resp)
+    if(isEdit) {
+
+    } else {
+      const d = generateFormData(data)
+      const resp = await SelectionService.createCompilation(d)
+    }
+    onClose()
   };
 
   useEffect(() => {
@@ -63,7 +76,7 @@ const CreateCompilationPopup = ({
 
           <div className={styles.controls}>
             <PreviewUploader
-              name={'iamge'}
+              name={'image'}
               setValue={setValue}
               setImgSrc={setImgSrc}
             />
@@ -89,7 +102,7 @@ const CreateCompilationPopup = ({
           />
           <Button
             typeButton={'submit'}
-            text={'Создать подборку'}
+            text={isEdit ? 'Редактировать подборку' : 'Создать подборку'}
             classNames={styles.btn}
           />
           <p className={styles.text}>и перейти к добавлению книг</p>

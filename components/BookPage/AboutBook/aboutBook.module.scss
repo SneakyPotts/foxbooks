@@ -167,40 +167,8 @@
 .readButton:hover {
   background-color: $accent-hover;
 }
-.dotsButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid $color-star-border;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.15s;
-}
-.dotsButton:hover {
-  border-color: $text-hover;
-}
-.activBtn {
-  border-color: $text-hover;
-}
 
-//DROP DOWN
-.dropdown {
-  position: relative;
-}
 .menu {
-  position: absolute;
-  width: 237px;
-  min-height: 240px;
-  padding: 30px 20px;
-  margin-top: 20px;
-  border: 1px solid $color-bg-icon;
-  border-radius: 10px;
-  background-color: $color-categories-btn;
-  transform: translateX(-50%);
-  left: 50%;
-
   &Item {
     font-size: 14px;
     line-height: 1.43;

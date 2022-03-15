@@ -15,6 +15,8 @@ const AuthorCard = ({
             alt={data?.name}
             width={180}
             height={272}
+            placeholder="blur"
+            blurDataURL="/blur.webp"
           />
         </a>
       </Link>

@@ -13,6 +13,7 @@ import DrawerPopup from "../shared/common/DrawerPopup";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import ReviewForm from "../ReviewForm";
 import {useSelector} from "react-redux";
+import DotsDropdown from "../DotsDropdown";
 
 const ReviewLogicItem = ({
   type,
@@ -73,37 +74,26 @@ const ReviewLogicItem = ({
 
         {withControls &&
           <div>
-            <span
-              className={classNames(styles.controlsIcon, {
-                [styles.active]: controlsIsVisible,
-              })}
-              onClick={() => setControlsIsVisible(prev => !prev)}
+            <DotsDropdown
+              isSmall
+              direction={'up'}
             >
-              <HorizontalDots/>
-            </span>
-
-            {controlsIsVisible &&
-              <DrawerPopup
-                direction={'up'}
-                onClose={() => setControlsIsVisible(false)}
+              <div
+                className={styles.controlsItem}
+                onClick={() => setEditFormIsVisible(true)}
               >
-                <div
-                  className={styles.controlsItem}
-                  onClick={() => setEditFormIsVisible(true)}
-                >
-                  <EditPensil />
-                  Редактировать
-                </div>
+                <EditPensil />
+                Редактировать
+              </div>
 
-                <div
-                  className={styles.controlsItem}
-                  onClick={onDelete}
-                >
-                  <Bin />
-                  Удалить
-                </div>
-              </DrawerPopup>
-            }
+              <div
+                className={styles.controlsItem}
+                onClick={onDelete}
+              >
+                <Bin />
+                Удалить
+              </div>
+            </DotsDropdown>
           </div>
         }
       </div>

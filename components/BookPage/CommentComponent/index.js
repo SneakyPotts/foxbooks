@@ -56,7 +56,7 @@ const CommentComp = ({ idx, type, reviews = false, content, time}) => {
               width="35"
               height="35"
               // placeholder="blur"
-              blurDataURL="/images/blur.jpg"
+              blurDataURL="/blur.webp"
             />
           </div>
           <h3 className={st.reviewerName}>Ник</h3>
@@ -115,7 +115,7 @@ const CommentComp = ({ idx, type, reviews = false, content, time}) => {
                 width="35"
                 height="35"
                 // placeholder="blur"
-                blurDataURL="/images/blur.jpg"
+                blurDataURL="/blur.webp"
               />
             </div>
             <input

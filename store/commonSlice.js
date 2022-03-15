@@ -22,7 +22,7 @@ export const commonSlice = createSlice({
     },
     setHeaderVisibility: (state, action) => {
       state.headerIsVisible = action.payload;
-    },
+    }
   },
 });
 

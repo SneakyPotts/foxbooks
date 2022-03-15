@@ -31,6 +31,7 @@ const Header = () => {
 
   const {isAuth} = useSelector(state => state.auth);
   const {profile} = useSelector(state => state.profile);
+
   const [modal, setModal] = useState(false);
   const [flagSettings, setFlagSettings] = useState(false);
 
@@ -45,7 +46,7 @@ const Header = () => {
   };
 
   const logOut = () => {
-    if (router.pathname.includes('settings')) {
+    if (router.pathname.includes('settings') || router.pathname.includes('mybooks')) {
       router.push('/');
     }
     dispatch(setAuth(false));
@@ -159,7 +160,7 @@ const Header = () => {
                         width="40"
                         height="40"
                         placeholder="blur"
-                        blurDataURL="/images/blur.jpg"
+                        blurDataURL="/blur.webp"
                       />
                     ) : (
                       <AvatarWithLetter
@@ -181,9 +182,11 @@ const Header = () => {
                   >
                     <ul>
                       <li>
-                        <Setting/>
                         <Link href="/settings">
-                          <a>Настройки профиля</a>
+                          <a>
+                            <Setting/>
+                            Настройки профиля
+                          </a>
                         </Link>
                       </li>
                       <li onClick={logOut}>
@@ -238,7 +241,7 @@ const Header = () => {
                           height={187}
                           // layout="fill"
                           placeholder="blur"
-                          blurDataURL="/images/blur.jpg"
+                          blurDataURL="/blur.webp"
                         />
                         <h4 className={st.dropDownContentPopularItemName}>
                           {it.name}
