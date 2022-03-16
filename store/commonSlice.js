@@ -4,7 +4,8 @@ const initialState = {
   innerWidthWindow: '',
   showMenuFlag: false,
   playerIsVisible: false,
-  headerIsVisible: true
+  headerIsVisible: true,
+  authPopupIsVisible: false
 };
 
 export const commonSlice = createSlice({
@@ -22,6 +23,9 @@ export const commonSlice = createSlice({
     },
     setHeaderVisibility: (state, action) => {
       state.headerIsVisible = action.payload;
+    },
+    setAuthPopupVisibility: (state, action) => {
+      state.authPopupIsVisible = action.payload;
     }
   },
 });
@@ -30,7 +34,8 @@ export const {
   showMenu,
   setBreakPoint,
   togglePlayer,
-  setHeaderVisibility
+  setHeaderVisibility,
+  setAuthPopupVisibility
 } = commonSlice.actions;
 
 export default commonSlice.reducer;

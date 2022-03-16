@@ -15,7 +15,7 @@ import {setAuth} from '../../store/authSlice';
 import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
-import {showMenu} from '../../store/commonSlice';
+import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
 import {search} from "../../store/searchSlice";
 import SearchInput from "../SearchInput";
 
@@ -26,14 +26,22 @@ const Header = () => {
   const {
     innerWidthWindow,
     headerIsVisible,
-    showMenuFlag
+    showMenuFlag,
+    authPopupIsVisible
   } = useSelector(state => state.common);
 
   const {isAuth} = useSelector(state => state.auth);
   const {profile} = useSelector(state => state.profile);
 
-  const [modal, setModal] = useState(false);
   const [flagSettings, setFlagSettings] = useState(false);
+
+  const showAuthPopup = () => {
+    dispatch(setAuthPopupVisibility(true))
+  }
+
+  const hideAuthPopup = () => {
+    dispatch(setAuthPopupVisibility(false))
+  }
 
   const openModal = () => {
     dispatch(showMenu(true));
@@ -198,7 +206,7 @@ const Header = () => {
                 </div>
               ) : (
                 <div
-                  onClick={() => setModal(!modal)}
+                  onClick={showAuthPopup}
                   className={st.userMenu}
                 >
                   <div className={st.iconUser}>
@@ -214,7 +222,7 @@ const Header = () => {
         </header>
 
         <Menu
-          setModal={() => setModal(!modal)}
+          setModal={showAuthPopup}
           bottomOnly={showOnlyMenu}
         />
       </div>
@@ -268,7 +276,10 @@ const Header = () => {
         </div>
       )}
 
-      <GroupForms setModal={setModal} modal={modal}/>
+      <GroupForms
+        setModal={hideAuthPopup}
+        modal={authPopupIsVisible}
+      />
     </div>
 };
 

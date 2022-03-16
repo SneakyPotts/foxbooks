@@ -18,6 +18,7 @@ import st from './bookpage.module.scss';
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
+import CommentForm from "../CommentForm";
 
 const BookPage = () => {
   const dispatch = useDispatch()
@@ -34,10 +35,6 @@ const BookPage = () => {
     if (innerWidthWindow < 500) return 1;
     if (innerWidthWindow <= 768) return 2;
     if (innerWidthWindow > 768) return 3;
-  };
-
-  const changeImageSize = () => {
-    if (innerWidthWindow < 500) return 100;
   };
 
   useEffect(() => {
@@ -88,9 +85,7 @@ const BookPage = () => {
               className={st.relatedInfoBanner}
             />
 
-            <Comments
-              comments={book?.comments}
-            />
+            <Comments />
 
             <Reviews />
 

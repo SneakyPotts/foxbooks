@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../../shared/common/Button/Button';
-import CommentComp from '../CommentComponent';
+import CommentComp from '../CommentItem';
 import st from './reviews.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
 import {getReviewTypes} from "../../../store/reviewSlice";

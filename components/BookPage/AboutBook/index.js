@@ -150,7 +150,7 @@ const AboutBook = ({ book, audioFlag }) => {
                     </span>
                   </div>
                 )}
-                {book?.year && <span className={st.bookDateYear}>{book?.year}</span>}
+                {book?.year?.year && <span className={st.bookDateYear}>{book?.year?.year}</span>}
                 {/* <span className={st.bookDateAge}>{book.age}8</span> */}
                 {audioFlag ?
                   book?.listeners_count ?

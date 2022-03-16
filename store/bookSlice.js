@@ -7,7 +7,7 @@ const initialState = {
 	dailyHotUpdates: [],
 	books: [],
 	booksByLetter: {},
-	book: [],
+	book: {},
 	booksByAuthor: [],
 	audioBooksByAuthor: [],
 	audioFlag: false,
@@ -60,7 +60,7 @@ export const setBookRating = createAsyncThunk(
 	'book/setBookRating',
 	async data => {
 		const response = await BookService.setBookRating(data)
-		return response.data
+		return response.data.data[0]
 	}
 )
 
@@ -85,56 +85,31 @@ export const bookSlice = createSlice({
 		},
 		audioBook: (state, action) => {
 			state.audioFlag = action.payload;
-		},
-		commentBook:(state, action) => {
-			console.log(action.payload)
-			state.book?.comments.unshift(action.payload);
 		}
 	},
 	extraReducers: {
-		[getBooksByAuthor.pending]: state => {
-			// state.isLoading = true
-		},
 		[getBooksByAuthor.fulfilled]: (state, action) => {
 			state.booksByAuthor = action.payload?.data?.books
-			// state.isError = false
-			// state.isLoading = false
-		},
-		[getBooksByAuthor.rejected]: state => {
-			// state.isError = true
-			// state.isLoading = false
 		},
 
 
-		[getBooksByLetter.pending]: state => {
-			// state.isLoading = true
-		},
 		[getBooksByLetter.fulfilled]: (state, action) => {
 			if(!state.booksByLetter?.query || state.booksByLetter?.query !== action.payload.query) {
 				state.booksByLetter = action.payload
 			} else {
 				state.booksByLetter.data = [...state.booksByLetter.data, ...action.payload.data]
 			}
-			// state.isError = false
-			// state.isLoading = false
-		},
-		[getBooksByLetter.rejected]: state => {
-			// state.isError = true
-			// state.isLoading = false
 		},
 
 
-		[getAudioBooksByAuthor.pending]: state => {
-			// state.isLoading = true
-		},
 		[getAudioBooksByAuthor.fulfilled]: (state, action) => {
 			state.audioBooksByAuthor = action.payload?.data?.audio_books
-			// state.isError = false
-			// state.isLoading = false
 		},
-		[getAudioBooksByAuthor.rejected]: state => {
-			// state.isError = true
-			// state.isLoading = false
+
+
+		[setBookRating.fulfilled]: (state, action) => {
+			state.book.rates_avg = action.payload?.rate_avg
+			state.book.rates_count = action.payload?.rates_count
 		}
 	}
 });
@@ -144,10 +119,8 @@ export const {
 	setAudioCategories,
 	setDailyHotUpdates,
 	setBooks,
-	setBooksByLetter,
 	setBook,
-	audioBook,
-	commentBook
+	audioBook
 } = bookSlice.actions;
 
 export default bookSlice.reducer;

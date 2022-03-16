@@ -12,47 +12,47 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
   const [replyIdx, setReplyIdx] = useState(null);
   const [underComIdx, setUnderComIdx] = useState(null);
 
-  const replyToComment = index => {
-    setReplyIdx(prev => {
-      if (prev === index) {
-        return null;
-      } else {
-        return index;
-      }
-    });
-  };
-
-  const addUnderComment = idx => {
-    setUnderComIdx(prev => {
-      if (prev === idx) {
-        return null;
-      } else {
-        return idx;
-      }
-    });
-  };
-
-  const handleOnShowReplys = index => {
-    setShowReplys(prev => {
-      const showReplaysMap = prev.map(({ flag, ...rest }, i) => {
-        return {
-          flag: index === i ? !flag : flag,
-          ...rest,
-        };
-      });
-      return showReplaysMap;
-    });
-  };
-
-  const handleCancelBtn = () => {
-    setReplyIdx(null);
-    setUnderComIdx(null);
-  };
+  // const replyToComment = index => {
+  //   setReplyIdx(prev => {
+  //     if (prev === index) {
+  //       return null;
+  //     } else {
+  //       return index;
+  //     }
+  //   });
+  // };
+  //
+  // const addUnderComment = idx => {
+  //   setUnderComIdx(prev => {
+  //     if (prev === idx) {
+  //       return null;
+  //     } else {
+  //       return idx;
+  //     }
+  //   });
+  // };
+  //
+  // const handleOnShowReplys = index => {
+  //   setShowReplys(prev => {
+  //     const showReplaysMap = prev.map(({ flag, ...rest }, i) => {
+  //       return {
+  //         flag: index === i ? !flag : flag,
+  //         ...rest,
+  //       };
+  //     });
+  //     return showReplaysMap;
+  //   });
+  // };
+  //
+  // const handleCancelBtn = () => {
+  //   setReplyIdx(null);
+  //   setUnderComIdx(null);
+  // };
 
   return (
     <div>
-      {showReplys.map(({ id, flag }, index) => (
-        <div key={id} className={classnames(st.reviewComment)}>
+      {/*{showReplys.map(({ id, flag }, index) => (*/}
+        <div className={classnames(st.reviewComment)}>
           <div>
             <div className={st.reviewer}>
               <div className={st.reviewerIcon}>
@@ -85,7 +85,7 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
                   <span className={st.reviewLike}>10</span>
                   <button
                     className={st.reply}
-                    onClick={() => replyToComment(index)}
+                    // onClick={() => replyToComment(index)}
                   >
                     Ответить
                   </button>
@@ -121,7 +121,7 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
               )}
             </div>
             <span
-              onClick={() => handleOnShowReplys(index)}
+              // onClick={() => handleOnShowReplys(index)}
               className={st.showReplysLink}
             >
               {!flag ? (
@@ -136,79 +136,79 @@ const UnderCom = ({ showReplys, setShowReplys, data }) => {
               />
             </span>
           </div>
-          {flag && (
-            <div>
-              {data.map(({ id }, idx) => (
-                <div key={id} className={classnames(st.reviewBlock, st.sizes)}>
-                  <div className={st.reviewer}>
-                    <div className={st.reviewerUnderCom}>
-                      <Image
-                        src="/horizontalBookCovers/bookCover1.png"
-                        alt=""
-                        width="35"
-                        height="35"
-                        // placeholder="blur"
-                        blurDataURL="/blur.webp"
-                      />
-                    </div>
-                    <div className={st.commentator}>
-                      <h3 className={st.reviewerName}>Светлана Смирнова</h3>
-                      <span className={st.commentDate}>3 часа назад</span>
-                    </div>
-                  </div>
-                  <div className={st.commentContainer}>
-                    <p className={st.commentText}>
-                      Марина, постоянный количественный рост и сфера нашей
-                      активности требует от нас анализа анализа существующих
-                      паттернов поведения.
-                    </p>
-                    <div className={st.reviewStatistic}>
-                      <span className={st.reviewIcon}>
-                        <Like />
-                      </span>
-                      <span className={st.reviewLike}>10</span>
-                      <span
-                        className={st.reply}
-                        onClick={() => addUnderComment(idx)}
-                      >
-                        Ответить
-                      </span>
-                    </div>
-                  </div>
-                  {underComIdx === idx && (
-                    <div>
-                      <div className={st.replyDirection}>
-                        <div className={st.replierIcon}>
-                          <Image
-                            src="/horizontalBookCovers/book.png"
-                            alt=""
-                            width="25"
-                            height="25"
-                            // placeholder="blur"
-                            blurDataURL="/blur.webp"
-                          />
-                        </div>
-                        <textarea className={st.replyArea}></textarea>
-                      </div>
-                      <div className={st.controllBtn}>
-                        <Button
-                          typeButton="submit"
-                          text="Отправить"
-                          classNames={st.submitButton}
-                        />
-                        <button
-                          className={st.cancelBtn}
-                          onClick={handleCancelBtn}
-                        >
-                          Отменить
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+          {/*{flag && (*/}
+          {/*  <div>*/}
+          {/*    {data.map(({ id }, idx) => (*/}
+          {/*      <div key={id} className={classnames(st.reviewBlock, st.sizes)}>*/}
+          {/*        <div className={st.reviewer}>*/}
+          {/*          <div className={st.reviewerUnderCom}>*/}
+          {/*            <Image*/}
+          {/*              src="/horizontalBookCovers/bookCover1.png"*/}
+          {/*              alt=""*/}
+          {/*              width="35"*/}
+          {/*              height="35"*/}
+          {/*              // placeholder="blur"*/}
+          {/*              blurDataURL="/blur.webp"*/}
+          {/*            />*/}
+          {/*          </div>*/}
+          {/*          <div className={st.commentator}>*/}
+          {/*            <h3 className={st.reviewerName}>Светлана Смирнова</h3>*/}
+          {/*            <span className={st.commentDate}>3 часа назад</span>*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
+          {/*        <div className={st.commentContainer}>*/}
+          {/*          <p className={st.commentText}>*/}
+          {/*            Марина, постоянный количественный рост и сфера нашей*/}
+          {/*            активности требует от нас анализа анализа существующих*/}
+          {/*            паттернов поведения.*/}
+          {/*          </p>*/}
+          {/*          <div className={st.reviewStatistic}>*/}
+          {/*            <span className={st.reviewIcon}>*/}
+          {/*              <Like />*/}
+          {/*            </span>*/}
+          {/*            <span className={st.reviewLike}>10</span>*/}
+          {/*            <span*/}
+          {/*              className={st.reply}*/}
+          {/*              onClick={() => addUnderComment(idx)}*/}
+          {/*            >*/}
+          {/*              Ответить*/}
+          {/*            </span>*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
+          {/*        {underComIdx === idx && (*/}
+          {/*          <div>*/}
+          {/*            <div className={st.replyDirection}>*/}
+          {/*              <div className={st.replierIcon}>*/}
+          {/*                <Image*/}
+          {/*                  src="/horizontalBookCovers/book.png"*/}
+          {/*                  alt=""*/}
+          {/*                  width="25"*/}
+          {/*                  height="25"*/}
+          {/*                  // placeholder="blur"*/}
+          {/*                  blurDataURL="/blur.webp"*/}
+          {/*                />*/}
+          {/*              </div>*/}
+          {/*              <textarea className={st.replyArea}></textarea>*/}
+          {/*            </div>*/}
+          {/*            <div className={st.controllBtn}>*/}
+          {/*              <Button*/}
+          {/*                typeButton="submit"*/}
+          {/*                text="Отправить"*/}
+          {/*                classNames={st.submitButton}*/}
+          {/*              />*/}
+          {/*              <button*/}
+          {/*                className={st.cancelBtn}*/}
+          {/*                onClick={handleCancelBtn}*/}
+          {/*              >*/}
+          {/*                Отменить*/}
+          {/*              </button>*/}
+          {/*            </div>*/}
+          {/*          </div>*/}
+          {/*        )}*/}
+          {/*      </div>*/}
+          {/*    ))}*/}
+          {/*  </div>*/}
+          {/*)}*/}
         </div>
       ))}
     </div>

@@ -1,0 +1,55 @@
+@import "styles/variables";
+
+.wrapper {
+  display: flex;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.input {
+  flex: 1;
+  padding-bottom: 0;
+
+  & input {
+    height: 35px;
+    padding: 8px 20px;
+    border-radius: 59px;
+  }
+}
+
+.btns {
+  flex-direction: row-reverse;
+  margin: 20px 0 0 0 !important;
+
+  button {
+    margin: 0 30px 0 0 !important;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .avatar {
+    width: 34px;
+    height: 34px;
+    margin-right: 9px;
+  }
+
+  .input input {
+    height: 34px;
+    padding: 8px 20px 7px 20px;
+  }
+
+  .btns {
+    flex-direction: column-reverse;
+
+    button {
+      width: 100% !important;
+      margin: 0 0 20px 0 !important;
+    }
+  }
+}

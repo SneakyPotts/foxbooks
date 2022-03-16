@@ -6,11 +6,14 @@ const Input = ({
 	register,
 	name,
 	complete = 'off',
-	textLabel, err,
+	textLabel,
+	err,
 	classNames,
 	typeInput = 'text',
 	isTextarea,
-	rows
+	rows,
+	placeholder,
+	...props
 }) => {
 	const autoHeightHandler = e => {
 		e.target.style.height = 'auto';
@@ -29,12 +32,15 @@ const Input = ({
 					{...register(name)}
 					rows={rows}
 					onChange={autoHeightHandler}
+					{...props}
 				/> :
 				<input
 					id={name}
 					type={typeInput}
 					{...register(name)}
 					autoComplete={complete}
+					placeholder={placeholder}
+					{...props}
 				/>
 			}
 

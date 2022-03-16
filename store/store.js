@@ -9,6 +9,7 @@ import authorSlice from "./authorSlice";
 import noveltiesSlice from "./noveltiesSlice";
 import reviewSlice from "./reviewSlice";
 import searchSlice from "./searchSlice";
+import commentsSlice from "./commentsSlice";
 
 export function makeStore() {
 	return configureStore({
@@ -23,6 +24,7 @@ export function makeStore() {
 			novelties: noveltiesSlice,
 			review: reviewSlice,
 			search: searchSlice,
+			comments: commentsSlice,
 		},
 	});
 }
