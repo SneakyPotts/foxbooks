@@ -5,11 +5,22 @@ const initialState = {
 	bookComments: []
 };
 
+export const getComments = createAsyncThunk(
+	'comments/addComment',
+	async data => {
+		const response = await CommentsService.getComments(data)
+		return response.data.data
+	}
+)
+
 export const addComment = createAsyncThunk(
 	'comments/addComment',
 	async data => {
 		const response = await CommentsService.addComment(data)
-		return response.data.data
+		return {
+			parentId: data?.parent_comment_id,
+			data: response.data.data
+		}
 	}
 )
 
@@ -23,7 +34,11 @@ export const comments = createSlice({
 	},
 	extraReducers: {
 		[addComment.fulfilled]: (state, action) => {
-			state.bookComments.data.unshift(action.payload)
+			const {parentId, data} = action.payload
+
+			if(!parentId) {
+				state.bookComments.data.push(data)
+			}
 		},
 	}
 });

@@ -16,16 +16,22 @@
   flex: 1;
   padding-bottom: 0;
 
-  & input {
-    height: 35px;
-    padding: 8px 20px;
-    border-radius: 59px;
+  input,
+  textarea {
+    padding: 8px 20px 7px 20px;
+  }
+
+  &.inline {
+    & input {
+      height: 35px;
+      border-radius: 59px;
+    }
   }
 }
 
 .btns {
   flex-direction: row-reverse;
-  margin: 20px 0 0 0 !important;
+  margin: 20px 0 0 45px !important;
 
   button {
     margin: 0 30px 0 0 !important;
@@ -39,13 +45,22 @@
     margin-right: 9px;
   }
 
-  .input input {
-    height: 34px;
-    padding: 8px 20px 7px 20px;
+  .input {
+    input,
+    textarea {
+      padding: 8px 20px 7px 20px;
+    }
+
+    &.inline {
+      input {
+        height: 34px;
+      }
+    }
   }
 
   .btns {
     flex-direction: column-reverse;
+    margin: 20px 0 0 0 !important;
 
     button {
       width: 100% !important;

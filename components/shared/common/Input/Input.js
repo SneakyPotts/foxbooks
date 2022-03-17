@@ -32,6 +32,7 @@ const Input = ({
 					{...register(name)}
 					rows={rows}
 					onChange={autoHeightHandler}
+					placeholder={placeholder}
 					{...props}
 				/> :
 				<input

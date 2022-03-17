@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import st from './comments.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
 import {useRouter} from "next/router";
 import CommentForm from "../../CommentForm";
-import {addComment} from "../../../store/commentsSlice";
+import {addComment, setBookComments} from "../../../store/commentsSlice";
 import CommentItem from "../CommentItem";
+import CommentsService from "../../../http/CommentsService";
 
 const Comments = () => {
   const router = useRouter()
@@ -14,12 +15,14 @@ const Comments = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
   const { bookComments } = useSelector(state => state.comments);
 
-  const submitFunc = data => {
-    let t = type
+  const [page, setPage] = useState(1);
 
-    if(router.query?.type === 'books') {
+  const submitFunc = data => {
+    let t = router.query?.type
+
+    if(t === 'books') {
       t = 'book'
-    } else if(router.query?.type === 'audioBooks') {
+    } else if(t === 'audioBooks') {
       t = 'audio_books'
     }
 
@@ -32,6 +35,16 @@ const Comments = () => {
 
     dispatch(addComment(dataObj))
   }
+
+  useEffect(async () => {
+    const response = await CommentsService.getComments({
+      id: router.query?.id,
+      type: router.query?.type,
+      page
+    })
+
+    dispatch(setBookComments(response?.data?.data))
+  }, [page])
 
   return (
     <div className={st.container}>
@@ -50,15 +63,11 @@ const Comments = () => {
         ) : null
       }
 
-      {/*<UnderCom*/}
-      {/*  showReplys={showReplys}*/}
-      {/*  setShowReplys={setShowReplys}*/}
-      {/*  data={data}*/}
-      {/*/>*/}
-
       {bookComments?.last_page > 1 ?
         // innerWidthWindow > 768 ?
           <MyPagination
+            currentPage={page}
+            onClick={setPage}
             lastPage={bookComments?.last_page}
           />
           // :

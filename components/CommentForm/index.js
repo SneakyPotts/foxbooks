@@ -9,8 +9,14 @@ import AvatarWithLetter from "../shared/common/AvatarWithLetter";
 import {setAuthPopupVisibility} from "../../store/commonSlice";
 import schema from "./schema";
 import {yupResolver} from "@hookform/resolvers/yup";
+import classNames from "classnames";
 
-const CommentForm = ({ submitFunc }) => {
+const CommentForm = ({
+  submitFunc,
+  isTextarea,
+  rows,
+  onCancel
+}) => {
   const dispatch = useDispatch()
 
   const { isAuth } = useSelector(state => state.auth)
@@ -31,13 +37,16 @@ const CommentForm = ({ submitFunc }) => {
   }
 
   const handleCancelClick = () => {
-    setBtnsIsVisible(false)
+    onCancel
+      ? onCancel()
+      : setBtnsIsVisible(false)
+
     setValue('text', '')
   }
 
   const onSubmit = data => {
     submitFunc(data)
-    setValue('text', '')
+    handleCancelClick()
   }
 
   return (
@@ -72,12 +81,16 @@ const CommentForm = ({ submitFunc }) => {
         }
 
         <Input
-          classNames={styles.input}
+          classNames={classNames(styles.input, {
+            [styles.inline]: !isTextarea
+          })}
           register={register}
           name={'text'}
           placeholder={"Написать комментарий"}
           onClick={handleInputClick}
           err={errors?.text?.message}
+          isTextarea={isTextarea}
+          rows={rows}
         />
       </div>
 

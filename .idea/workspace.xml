@@ -2,26 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/CommentForm/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CommentForm/schema.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CommentForm/styles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/commentsSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/aboutBook.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentComponent/comComp.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentItem/comComp.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentComponent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentItem/comComp.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentItem/comComp.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/UnderCommentComp/underCom.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CommentForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CommentForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CommentForm/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/CommentForm/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/AddQout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/AddQout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/shared/common/Input/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/Input/Input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/MyPagination/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/MyPagination/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/checkbox/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/checkbox/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/stars/Stars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/Logo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/icons/logoMobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/icons/logoMobile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/CommentsService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/CommentsService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/book/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/bookSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/bookSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/commonSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/chevron-right.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/chevron-right.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/clip.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/clip.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/commentsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commentsSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +137,7 @@
       <workItem from="1647255327117" duration="22147000" />
       <workItem from="1647338339319" duration="23397000" />
       <workItem from="1647423372518" duration="19970000" />
+      <workItem from="1647510863242" duration="13270000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -460,7 +461,8 @@
     <MESSAGE value="books" />
     <MESSAGE value="one book" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="comments" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

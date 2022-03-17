@@ -9,7 +9,7 @@ const LogoMobile = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_4244_4841)">
+      <g clipPath="url(#clip0_4244_4841)">
         <path
           d="M34.7477 12.1399V27.035H32.3043V12.1399H34.7477ZM33.867 12.1399H40.4301V14.3785H33.867V12.1399ZM33.867 18.1094H40.2028V20.2906H33.867V18.1094Z"
           fill="#F97F00"
@@ -80,8 +80,8 @@ const LogoMobile = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#EB4C00" />
-          <stop offset="0.844" stop-color="#FAB32E" />
-          <stop offset="1" stop-color="#FBB931" />
+          <stop offset="0.844" stopColor="#FAB32E" />
+          <stop offset="1" stopColor="#FBB931" />
         </linearGradient>
         <clipPath id="clip0_4244_4841">
           <rect width="117" height="32" fill="white" />

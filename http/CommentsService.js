@@ -5,7 +5,7 @@ export default class CommentsService {
 	static async getComments({
 		id,
 		type,
-		perpage = 10,
+		page = 1
 	}) {
 		let t = type
 
@@ -15,7 +15,23 @@ export default class CommentsService {
 			t = 'audio_books'
 		}
 
-		return axios.get(`${API_URL}/comments/${t}/${id}?perpage=${perpage}`)
+		return axios.get(`${API_URL}/comments/${t}/${id}?perpage=3&page=${page}`)
+	}
+
+	static async getReplyComments({
+		id,
+		type,
+		page = 1
+	}) {
+		let t = type
+
+		if(type === 'books') {
+			t = 'book'
+		} else if(type === 'audioBooks') {
+			t = 'audio_books'
+		}
+
+		return axios.get(`${API_URL}/comments/${id}?type=${t}&perpage=3&page=${page}`)
 	}
 
 	static async addComment(data) {

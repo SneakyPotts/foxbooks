@@ -8,11 +8,18 @@ import ArrowRight from './../../../../public/chevron-right.svg';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
 
-const MyPagination = ({ currentPage, lastPage, externalClass }) => {
+const MyPagination = ({
+  currentPage,
+  lastPage,
+  onClick,
+  externalClass
+}) => {
   const router = useRouter();
 
   const handleChange = current => {
-    router.push({ query: { ...router.query, page: current } });
+    onClick
+      ? onClick(current)
+      : router.push({ query: { ...router.query, page: current } });
   };
 
   return (
@@ -21,7 +28,7 @@ const MyPagination = ({ currentPage, lastPage, externalClass }) => {
       showQuickJumper={{
         goButton: <Button classNames={styles.btn} text="Перейти" />,
       }}
-			current={+router.query?.page || 1}
+			current={+router.query?.page || currentPage || 1}
       defaultPageSize={1}
       total={lastPage}
       locale={locale}

@@ -25,10 +25,16 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.125;
-  margin-right: 10px;
   color: $color-main;
+  display: flex;
+  align-items: center;
+
+  & .reviewInfo {
+    margin: 0 0 0 10px;
+  }
 }
 .reviewInfo {
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.167;
   display: flex;
@@ -50,6 +56,9 @@
   line-height: 1.125;
   color: $color-main;
   margin-bottom: 8px;
+}
+.reviewWrapper {
+  margin-left: 45px;
 }
 .reviewText {
   margin-bottom: 10px;
@@ -107,6 +116,21 @@
 }
 .reviewLike {
   margin-right: 30px;
+}
+.reviewReply {
+  font-size: 14px;
+  line-height: 140%;
+  color: $color-main;
+  transition: .15s;
+  cursor: pointer;
+
+  &:hover {
+    color: $text-hover;
+  }
+
+  &Item {
+    border-top: 1px solid #D5D5D5;
+  }
 }
 .userForm {
   margin-top: 40px;
@@ -179,7 +203,8 @@
   color: $color-second;
 }
 .reviewColor {
-  margin-top: 40px;
+  margin-top: 20px;
+  padding-top: 20px;
   font-size: 14px;
   line-height: 140%;
 
