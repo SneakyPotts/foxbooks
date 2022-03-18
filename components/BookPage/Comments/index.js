@@ -23,7 +23,7 @@ const Comments = () => {
     if(t === 'books') {
       t = 'book'
     } else if(t === 'audioBooks') {
-      t = 'audio_books'
+      t = 'audio_book'
     }
 
     const dataObj = {

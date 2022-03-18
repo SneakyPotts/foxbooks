@@ -67,7 +67,7 @@ const CommentItem = ({
     if(router.query?.type === 'books') {
       t = 'book'
     } else if(router.query?.type === 'audioBooks') {
-      t = 'audio_books'
+      t = 'audio_book'
     }
 
     const dataObj = {

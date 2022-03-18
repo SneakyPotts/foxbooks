@@ -12,7 +12,7 @@ export default class CommentsService {
 		if(type === 'books') {
 			t = 'book'
 		} else if(type === 'audioBooks') {
-			t = 'audio_books'
+			t = 'audio_book'
 		}
 
 		return axios.get(`${API_URL}/comments/${t}/${id}?perpage=3&page=${page}`)
@@ -28,7 +28,7 @@ export default class CommentsService {
 		if(type === 'books') {
 			t = 'book'
 		} else if(type === 'audioBooks') {
-			t = 'audio_books'
+			t = 'audio_book'
 		}
 
 		return axios.get(`${API_URL}/comments/${id}?type=${t}&perpage=3&page=${page}`)
