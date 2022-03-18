@@ -8,6 +8,9 @@ import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import BookFilters from "../shared/common/booksFilters/BookFilters";
 import MobileFilterModal from "../MobileFilterModal";
 import MyPagination from "../shared/common/MyPagination";
+import CompilationItem from "../CompilationItem";
+import Link from 'next/link'
+import Button from "../shared/common/Button/Button";
 
 const popularSelections = [
 	{ id: '0', title: 'Все', value: 1 },
@@ -61,13 +64,14 @@ const SelectionsPage = () => {
 						{innerWidthWindow <= 768 &&
 							<div>
 								<MobileFilterModal>
-									yo
+									<span className={styles.filterTitle}>Категория</span>
 									<BookFilters
 										filters={popularSelections}
 										queryName={''}
 										onModal
 									/>
-									ye
+									<span className={styles.filterLine}/>
+									<span className={styles.filterTitle}>Тип</span>
 									<BookFilters
 										filters={booksSelections}
 										queryName={''}
@@ -80,7 +84,37 @@ const SelectionsPage = () => {
 						<Switcher flagSwitcher={flagSwitcher} />
 					</div>
 
-
+					{selections?.data?.length ?
+						flagSwitcher ?
+							selections?.data?.map(i =>
+								<div className={styles.mainListItem}>
+									<div className={styles.titleFlex}>
+										<Link href={`/selections/${i?.id}`}>
+											<a className="title">{i?.title}</a>
+										</Link>
+										<button
+											className={classNames(styles.btn)}
+										>
+											Добавить подборку
+										</button>
+									</div>
+								</div>
+							) :
+							<div className={styles.mainGrid}>
+								{selections?.data?.length ?
+									selections?.data?.map(i =>
+										<div className={styles.mainGridItem}>
+											<CompilationItem
+												key={i?.id}
+												data={i}
+												path={`/selections/${i?.id}`}
+											/>
+										</div>
+									) : null
+								}
+							</div>
+						: null
+					}
 
 					{selections?.last_page > 1 &&
 						<MyPagination
@@ -89,7 +123,9 @@ const SelectionsPage = () => {
 					}
 				</div>
 
-				<div className={styles.advertisingBlok}>
+				<div className={classNames(styles.advertisingBlock, {
+					[styles.mt]: !flagSwitcher
+				})}>
 					<div className={styles.bannerBlock}>
 						<img src="/banner.png" alt="" className={styles.banner} />
 					</div>

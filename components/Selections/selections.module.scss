@@ -16,12 +16,43 @@
   grid-template-columns: auto auto;
   grid-column-gap: 90px;
 }
-.advertisingBlok {
+.filter {
+  &Title {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: $color-main;
+    margin-bottom: 14px;
+  }
+  &Line {
+    background: #D5D5D5;
+    margin: 30px 0;
+    height: 1px;
+    display: block;
+  }
+}
+.main {
+  &Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    grid-column-gap: 24px;
+
+    &Item {
+      margin-bottom: 40px;
+    }
+  }
+}
+.advertisingBlock {
   display: block;
   margin-left: 24px;
   margin-top: 172px;
   min-width: 180px;
   min-height: 1104px;
+
+  &.mt {
+    margin-top: 112px;
+  }
 }
 .bannerBlock {
   display: block;

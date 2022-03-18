@@ -3,18 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Books/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Books/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/idex.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CompilationItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CompilationItem/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Selections/selections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selections.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/selectionsGrid/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/selectionsGrid/selectionsGrid.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/selectionsList/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/selectionsList/selectionsList.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/readerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/readerSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/searchSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/searchSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +123,7 @@
       <workItem from="1647338339319" duration="23397000" />
       <workItem from="1647423372518" duration="19970000" />
       <workItem from="1647510863242" duration="13324000" />
-      <workItem from="1647604089042" duration="15726000" />
+      <workItem from="1647604089042" duration="18286000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -406,7 +398,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647616081694</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="selections page">
+      <created>1647624469420</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1647624469420</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +476,8 @@
     <MESSAGE value="one book" />
     <MESSAGE value="push" />
     <MESSAGE value="comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="comments" />
+    <MESSAGE value="selections page" />
+    <option name="LAST_COMMIT_MESSAGE" value="selections page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
