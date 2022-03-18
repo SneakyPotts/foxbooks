@@ -4,7 +4,7 @@ import ReaderService from '../http/ReaderService';
 const initialState = {
 	book: [],
 	bookChapters: [],
-	marks: [],
+	bookMarks: [],
 	settings: {
 		isTwoColumns: false,
 		fontSize: 0,
@@ -35,7 +35,7 @@ export const getBookMarks = createAsyncThunk(
 	'reader/getBookMarks',
 	async id => {
 		const response = await ReaderService.getBookMarks(id)
-		return response.data
+		return response.data?.data
 	}
 )
 

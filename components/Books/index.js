@@ -34,7 +34,7 @@ const Books = () => {
         }]}
       />
 
-      <h2 className={st.abTitle}>{type === 'books' ? 'Книги' : 'Аудиокниги'}</h2>
+      <h1 className={st.abTitle}>{type === 'books' ? 'Книги' : 'Аудиокниги'}</h1>
 
       <div className={st.mobWrapper}>
         {innerWidthWindow > 768 &&

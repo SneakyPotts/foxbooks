@@ -1,66 +1,25 @@
 @import 'styles/variables.scss';
-
-.title {
-  font-family: 'Merriweather', serif;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 1.25;
-  color: $color-main;
+.wrapper {
+  display: flex;
+}
+.main {
+  flex: 1;
 }
 .filters {
   display: flex;
-  width: calc(100% - 180px);
-  max-width: 996px;
+  align-items: center;
   justify-content: space-between;
   margin: 40px 0;
-
-  &Btns {
-    display: flex;
-  }
-
-  &BtnsActive {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
 }
-.popularSelections {
-  margin-right: 101px;
-}
-.selectFilters {
-  height: 32px;
-  padding: 8px 15px;
-  border-radius: 60px;
-  background: $color-bg-icon;
-  color: $color-main;
-
-  &:hover {
-    background: $color-main;
-    color: $color-categories-btn;
-  }
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-
-  &Active {
-    background: $color-main;
-    color: $color-categories-btn;
-  }
-}
-.selectTitle {
-  font-family: 'Merriweather', serif;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 1.25;
-  color: $color-main;
-}
-.mainBlock {
-  display: flex;
+.descFilters {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 90px;
 }
 .advertisingBlok {
   display: block;
   margin-left: 24px;
+  margin-top: 172px;
   min-width: 180px;
   min-height: 1104px;
 }
@@ -72,8 +31,4 @@
 .banner {
   width: 180px;
   height: 1104px;
-}
-.pagination {
-  margin-top: 40px;
-  margin-bottom: 60px;
 }

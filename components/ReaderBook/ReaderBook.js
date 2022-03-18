@@ -55,9 +55,8 @@ const ReaderBook = () => {
     ev && ev.stopPropagation()
     dispatch(addBookMark({
       book_id: book?.id,
-      page_id: router.query?.page
+      page_id: book?.pages[0]?.id
     }))
-    console.log('add mark');
   }
 
   const addMarkToggler = () => {

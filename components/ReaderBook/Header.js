@@ -22,17 +22,9 @@ const Header = ({
   const router = useRouter()
 
   const { innerWidthWindow } = useSelector(state => state?.common)
-  const { settings } = useSelector(state => state?.reader)
+  const { settings, bookMarks } = useSelector(state => state?.reader)
 
   const [isFullScreen, setIsFullScreen] = useState(false)
-  const [marks, setMarks] = useState([
-    {
-      title: 'Мальчик, который выжил'
-    },
-    {
-      title: 'Мальчик, который не выжил'
-    },
-  ])
 
   const setFullScreen = () => {
     const el = document.documentElement
@@ -81,6 +73,10 @@ const Header = ({
     }
   ]
 
+  const handleMarkClick = page => {
+    router.push({ query: { ...router.query, page } });
+  }
+
   return (
     <div
       className={styles.header}
@@ -113,14 +109,17 @@ const Header = ({
         ))}
       </div>
 
-      {marks?.length ?
+      {bookMarks?.length ?
         <div className={styles.marksList}>
-          {marks?.map((i, index) => (
-            <div className={styles.markItem}>
+          {bookMarks?.map((i, index) => (
+            <div
+              className={styles.markItem}
+              onClick={() => handleMarkClick(i?.page?.page_number)}
+            >
               <BookMark />
               <span className={classNames(styles.tooltip, styles.markTooltip)}>
                 <span>Закладка (глава {index + 1} из 17):</span>
-                {index + 1}. {i?.title}
+                {index + 1}. {i?.chapter}
               </span>
             </div>
           ))}

@@ -38,6 +38,6 @@ export const searchSlice = createSlice({
 	}
 });
 
-export const { setSelections } = searchSlice.actions;
+export const {  } = searchSlice.actions;
 
 export default searchSlice.reducer;
