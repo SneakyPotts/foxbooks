@@ -132,6 +132,31 @@
     border-top: 1px solid #D5D5D5;
   }
 }
+.reviewShowMore {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: $text-hover;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: .15s;
+
+  &:hover {
+    color: $accent-hover;
+  }
+
+  &.isReply {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: $color-third;
+    margin-left: 45px;
+
+    &:hover {
+      color: $text-hover;
+    }
+  }
+}
 .userForm {
   margin-top: 40px;
 

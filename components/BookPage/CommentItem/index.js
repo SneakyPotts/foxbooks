@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import classnames from 'classnames';
@@ -33,8 +33,14 @@ const CommentItem = ({
   const [formIsVisible, setFormIsVisible] = useState(false)
 
   const [replies, setReplies] = useState({});
+  const [page, setPage] = useState(1);
+  const [isShowMore, setIsShowMore] = useState(false);
 
   const { innerWidthWindow } = useSelector(state => state.common)
+
+  const sortedReplies = useMemo(() => {
+    return [...new Set(replies?.data)].sort((a, b) => moment(a?.updated_at).diff(moment(b?.updated_at)))
+  }, [replies])
 
   const toggleMoreText = () => {
     setIsFullText(prev => !prev);
@@ -42,6 +48,17 @@ const CommentItem = ({
 
   const toggleFormVisibility = () => {
     setFormIsVisible(prev => !prev);
+  }
+
+  const showMore = () => {
+    if(isReply) {
+      if(isShowMore && page < replies?.last_page) {
+        setPage(page + 1)
+      }
+      setIsShowMore(true)
+    } else {
+      setPage(page + 1)
+    }
   }
 
   const submitFunc = formData => {
@@ -73,13 +90,13 @@ const CommentItem = ({
       const response = await CommentsService.getReplyComments({
         id: data?.id,
         type: router.query?.type,
-        page: 1
+        page
       })
 
       if(replies?.data?.length) {
         setReplies({
           ...replies,
-          data: [...replies?.data, response?.data?.data]
+          data: [...replies?.data, ...response?.data?.data?.data]
         })
       } else {
         setReplies(response?.data?.data)
@@ -88,10 +105,8 @@ const CommentItem = ({
   }
 
   useEffect(() => {
-    if(!isReply) {
-      fetchReplies()
-    }
-  }, []);
+    fetchReplies()
+  }, [page]);
 
   return (
     <div
@@ -197,14 +212,25 @@ const CommentItem = ({
         </div>
       }
 
-      {replies?.data?.length ?
-        replies?.data.map(i =>
+      {sortedReplies?.length && (!isReply || (isReply && isShowMore)) ?
+        sortedReplies.map(i =>
           <CommentItem
             key={i?.id}
             data={i}
             isReply
           />
         ) : null
+      }
+
+      {(!isReply && page < replies?.last_page) || ((isReply && sortedReplies?.length) && (!isShowMore || page < replies?.last_page)) ?
+        <p
+          className={classnames(styles.reviewShowMore, {
+            [styles.isReply]: isReply
+          })}
+          onClick={showMore}
+        >
+          {isReply ? 'Показать ещё ответы' : 'Показать следующие комментарии'}
+        </p> : null
       }
     </div>
   );
