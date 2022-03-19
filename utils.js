@@ -19,7 +19,7 @@ export const generateFormData = data => {
 		if (value !== undefined) {
 			if (Array.isArray(value) && value.length) {
 				value.forEach(i => {
-					formData.append(key, i)
+					formData.append([`${key}[]`], i)
 				})
 			} else {
 				formData.append(key, value)

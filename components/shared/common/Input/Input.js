@@ -16,8 +16,8 @@ const Input = ({
 	...props
 }) => {
 	const autoHeightHandler = e => {
-		e.target.style.height = 'auto';
-		e.target.style.height = e.target.scrollHeight + 'px';
+		e.target.style.minHeight = 'auto';
+		e.target.style.minHeight = e.target.scrollHeight + 'px';
 	};
 
 	return (

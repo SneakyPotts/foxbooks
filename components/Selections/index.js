@@ -10,6 +10,9 @@ import MobileFilterModal from "../MobileFilterModal";
 import MyPagination from "../shared/common/MyPagination";
 import CompilationItem from "../CompilationItem";
 import Link from 'next/link'
+import { Navigation } from 'swiper/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import ArrowRight from '../../public/chevron-right.svg';
 import Button from "../shared/common/Button/Button";
 
 const popularSelections = [
@@ -90,7 +93,7 @@ const SelectionsPage = () => {
 								<div className={styles.mainListItem}>
 									<div className={styles.titleFlex}>
 										<Link href={`/selections/${i?.id}`}>
-											<a className="title">{i?.title}</a>
+											<a className={classNames("title", styles.title)}>{i?.title}</a>
 										</Link>
 										<button
 											className={classNames(styles.btn)}
@@ -98,6 +101,40 @@ const SelectionsPage = () => {
 											Добавить подборку
 										</button>
 									</div>
+									<Swiper
+										spaceBetween={24}
+										modules={[Navigation]}
+										navigation={{
+											prevEl: '.prevArrow',
+											nextEl: '.nextArrow',
+										}}
+										slidesPerView={5}
+									>
+										{i?.books?.map(j => (
+											<SwiperSlide key={j?.id}>
+												<Book
+													book={j}
+													audio={audioFlag}
+												/>
+											</SwiperSlide>
+										))}
+										<button
+											className={classNames('prevArrow', {
+												// [st.btn]: !audioFlag,
+												// [st.btnAudio]: audioFlag,
+											})}
+										>
+											<ArrowRight className="arrowNext" />
+										</button>
+										<button
+											className={classNames('nextArrow', {
+												// [st.btn]: !audioFlag,
+												// [st.btnAudio]: audioFlag,
+											})}
+										>
+											<ArrowRight className="arrowNext" />
+										</button>
+									</Swiper>
 								</div>
 							) :
 							<div className={styles.mainGrid}>

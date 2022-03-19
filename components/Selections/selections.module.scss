@@ -33,6 +33,9 @@
   }
 }
 .main {
+  &ListItem {
+    margin-bottom: 60px;    
+  }
   &Grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
@@ -41,6 +44,31 @@
     &Item {
       margin-bottom: 40px;
     }
+  }
+}
+.titleFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
+}
+.btn {
+  font-size: 14px;
+  line-height: 140%;
+  color: #FFFFFF;
+  padding: 3px 15px;
+  border-radius: 5px;
+  background: $text-hover;
+  transition: .15s;
+
+  &:hover {
+    background: $accent-hover;
   }
 }
 .advertisingBlock {

@@ -7,46 +7,75 @@ import ModalWindow from '../shared/common/modalWindow/ModalWindow';
 import Clip from '../../public/clip.svg';
 import Button from '../shared/common/Button/Button';
 import styles from './index.module.scss';
+import CommonService from '../../http/CommonService';
+import { generateFormData, isFileImage } from '../../utils';
+import Compressor from 'compressorjs';
+import classNames from 'classnames';
 
 const SupportCom = () => {
-	const inputFile = useRef();
-	const [file64, setFile64] = useState([]);
+	const [sources, setSources] = useState([]);
+	const [files, setFiles] = useState([]);
 
 	const [modal, setModal] = useState(false);
 
 	const {
 		register,
 		handleSubmit,
-		unregister,
 		formState: { errors },
 		reset,
 	} = useForm();
 
 	const HandleSubmit = data => {
-		setModal(true);
-		console.log(data);
+		const dataObj = {
+			...data,
+			attachments: files
+		}
+
+		CommonService.sendSupport(generateFormData(dataObj)).then(() => {
+			setModal(true);
+			setSources([])
+			setFiles([])
+			reset()
+		})
 	};
 
-	const HandleClick = () => {
-		inputFile.current.click();
+	const onCancel = () => {
+		setSources([])
+		setFiles([])
+		reset()
 	};
 
 	const generateBase64img = data => {
-		let promisesAll = [];
-		for (let i = 0; i < data.length; i++) {
-			let item = data[i];
-			const onloadPhoto = new Promise(resolver => {
-				const reader = new FileReader();
-				reader.readAsDataURL(item);
-				reader.onload = function (e) {
-					resolver({ image: e.target.result });
-				};
-			});
-			promisesAll[i] = onloadPhoto;
-		}
+		let allPromises = [];
 
-		Promise.all(promisesAll).then(values => {
-			setFile64([...file64, ...values]);
+		data.forEach(file => {
+			if (isFileImage(file?.name)) {
+				const onloadPhoto = new Promise(resolver => {
+					new Compressor(file, {
+						quality: 1,
+						resize: 'cover',
+						width: 86,
+						height: 86,
+						convertSize: 1,
+						success(result) {
+							let reader = new FileReader()
+							reader.readAsDataURL(result)
+							reader.onloadend = function () {
+								resolver({reader, result})								
+							}
+						}
+					})
+				});
+				
+				allPromises.push(onloadPhoto)
+			}
+		})
+
+		Promise.all(allPromises).then(values => {
+			values?.forEach(({reader, result}) => {
+				setSources(prev => [...prev, reader.result])
+				setFiles(prev => [...prev, result])
+			})
 		});
 	};
 
@@ -58,7 +87,7 @@ const SupportCom = () => {
 	return (
 		<div className={'container'}>
 			<div className={styles.helpTitle}>
-				<h1>Нужна помощь? </h1>
+				<h1 className='title'>Нужна помощь? </h1>
 				<p>
           Если у вас появились вопросы или проблемы связанные с использованием
           сайта, напишите нашей службе поддержки, заполнив форму ниже. Ответ
@@ -70,7 +99,7 @@ const SupportCom = () => {
 					classNames={styles.inputWidth}
 					register={register}
 					textLabel={'Тема обращения'}
-					name="topic"
+					name="subject"
 				/>
 				<Input
 					classNames={styles.inputWidth}
@@ -85,58 +114,62 @@ const SupportCom = () => {
 					textLabel={'Электронная почта'}
 					name="email"
 				/>
-				<p className={styles.inputLabel}>Сообщение</p>
 				<div className={styles.inputArea}>
-					<textarea
-						{...register('textarea')}
-						className={styles.textArea}
+					<Input
+						classNames={classNames(styles.textArea, {
+							[styles.more]: sources?.length
+						})}
+						register={register}
+						textLabel={'Сообщение'}
+						name="message"
+						isTextarea
+						rows={6}
 					/>
-					<div onClick={HandleClick} className={styles.filesBlock}>
-						<div className={styles.textAreaClip}>
-							<Clip />
-							<p>Файл</p>
-							{file64.length > 0 && (
-								<div className={styles.imgsCount}>{file64.length}</div>
-							)}
-						</div>
-
-						<div className={styles.dropImgs}>
-							{file64?.map(r => {
-								return (
-									<div key={r.image} className={styles.dropBlock}>
-										<img
-											height="86px"
-											width="86px"
-											src={r.image}
-											className={styles.dropBlockImg}
-										/>
-									</div>
-								);
-							})}
-						</div>
+					<label className={styles.filesBlock}>
 						<input
+							type="file"
+							className='visually-hidden'
 							multiple
 							onChange={onChange}
-							ref={inputFile}
-							type="file"
-							hidden
 						/>
-					</div>
+
+						<span className={styles.textAreaClip}>
+							<Clip />
+							<span className={styles.fileText}>Файл</span>
+
+							{sources?.length > 0 && (
+								<span className={styles.imgsCount}>{sources?.length}</span>
+							)}
+						</span>
+
+						<span className={styles.dropImgs}>
+							{sources?.map(i => (
+								<span key={i} className={styles.dropBlock}>
+									<img
+										height="86px"
+										width="86px"
+										src={i}
+										className={styles.dropBlockImg}
+									/>
+								</span>
+							))}
+						</span>
+					</label>
 				</div>
 
 				<ButtonGroup
 					ClassName={styles.buttons}
 					text="Отправить"
-					cancelClick={() => reset()}
+					cancelClick={onCancel}
 				/>
 			</form>
 
 			{modal &&
 				<ModalWindow onClose={() => setModal(false)}>
 					<div className={styles.modal}>
-						<h1 className={styles.modalTitle}>Отправлено</h1>
+						<h3 className={styles.modalTitle}>Отправлено</h3>
 						<p>Спасибо за то, что помогаете делать наш сайт лучше.</p>
-						<br></br>
+						<br />
 						<p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
 					</div>
 					<Button text="Закрыть" click={() => setModal(false)}/>

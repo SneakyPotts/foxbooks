@@ -3,15 +3,10 @@
 
   .helpTitle {
     max-width: 588px;
-    > h1 {
-      font-family: 'Merriweather', serif;
-      font-size: 24px;
-      line-height: 30px;
-      margin-bottom: 20px;
-      color: $color-main;
-    }
-
+    margin-top: 30px;
     > p {
+      margin-top: 20px;
+      padding-bottom: 5px;
       font-family: 'Fira Sans', sans-serif;
       font-size: 14px;
       line-height: 1.43;
@@ -23,7 +18,7 @@
     max-width: 588px;
 
     .inputWidth {
-      margin-top: 40px;
+      margin-top: 35px;
       max-width: 298px;
       padding-bottom: 0;
 
@@ -44,39 +39,33 @@
     margin-right: 30px;
   }
 }
-.inputLabel {
-  font-size: 14px;
-  line-height: 1.43;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: $color-third;
-}
 .inputArea {
-  min-width: 298px;
-  max-width: 588px;
-  background: $color-categories-btn;
-  border: 1px solid $color-star-border;
-  border-radius: 5px;
+  position: relative;
 }
 .textArea {
-  font-size: 16px;
-  line-height: 18px;
-  color: $color-second;
-  resize: none;
   width: 100%;
-  outline: none;
-  border: none;
-  padding: 20px;
+  margin-top: 35px;
   padding-bottom: 0;
+
+  textarea {
+    padding-bottom: 60px;
+  }
+
+  &.more {
+    textarea {
+      padding-bottom: 170px;
+    }
+  }
 
   &Clip {
     position: relative;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 76px;
     height: 27px;
+    cursor: pointer;
 
-    > p {
+    .fileText {
       font-size: 14px;
       line-height: 1.43;
       margin-left: 5px;
@@ -85,8 +74,9 @@
   }
 }
 .filesBlock {
-  padding: 20px;
-  padding-top: 0;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 .imgsCount {
   position: absolute;
