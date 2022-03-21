@@ -16,7 +16,6 @@ const ButtonGroup = ({
 			<Button
 				classNames={styles.saveButton}
 				text={text}
-				// typeButton="submit"
 				typeButton={typeButton}
 				click={click}
 			/>

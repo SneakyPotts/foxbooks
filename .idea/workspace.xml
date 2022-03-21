@@ -2,7 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/components/Holders/schema.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Support/schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CommentForm/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/CommentForm/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Holders/HoldersRight.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Holders/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Holders/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Holders/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/buttonGroup/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Support/Support.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Support/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/AvatarUploader/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/AvatarUploader/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/SocialNetwork/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/SocialNetwork/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/checkbox/checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/checkbox/checkbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/modalWindow/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/CommonService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/CommonService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/holders.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/holders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/support.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/support.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/CommentForm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/Holders" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -50,11 +78,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\components\Holders" />
+      <recent name="E:\Frontend\projects\library-next\components\Support" />
       <recent name="E:\Frontend\projects\library-next\components\CommentForm" />
       <recent name="E:\Frontend\projects\library-next\store" />
       <recent name="E:\Frontend\projects\library-next\http" />
-      <recent name="E:\Frontend\projects\library-next\pages\mybooks" />
-      <recent name="D:\library-next\http" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Frontend\projects\library-next\public" />
@@ -121,6 +149,7 @@
       <workItem from="1647510863242" duration="13324000" />
       <workItem from="1647604089042" duration="18498000" />
       <workItem from="1647686365644" duration="1198000" />
+      <workItem from="1647854653066" duration="14324000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

@@ -164,7 +164,7 @@ const MySelection = () => {
           <div className={styles.gridItem}>
             <Book
               withDelete
-              onDelete={() => handleIconClick()}
+              onDelete={onDelete}
             />
           </div>
         </div>

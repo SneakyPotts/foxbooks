@@ -80,6 +80,10 @@
     text-align: center;
     cursor: pointer;
 
+    span {
+      transition: .15s;
+    }
+
     :hover {
       color: $text-hover;
     }
@@ -106,6 +110,32 @@
       margin-left: 0px;
       margin-right: 30px;
       width: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .formProfile {
+    width: auto;
+
+    .inputNik {
+      padding-bottom: 30px;
+    }
+
+    .social {
+      margin-bottom: 30px;
+    }
+
+    .delProfile {
+      margin-top: 30px;
+    }
+  }
+  .wrapDel {
+    margin: 0 -30px;
+    .Button {
+      >button {
+        width: 100%;
+      }
     }
   }
 }

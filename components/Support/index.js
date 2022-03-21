@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-// import Image from 'next/image';
 import Input from '../shared/common/Input/Input';
 import ButtonGroup from '../SettingsProfile/buttonGroup';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
@@ -11,8 +10,10 @@ import CommonService from '../../http/CommonService';
 import { generateFormData, isFileImage } from '../../utils';
 import Compressor from 'compressorjs';
 import classNames from 'classnames';
+import {yupResolver} from "@hookform/resolvers/yup";
+import schema from "./schema";
 
-const SupportCom = () => {
+const SupportPage = () => {
 	const [sources, setSources] = useState([]);
 	const [files, setFiles] = useState([]);
 
@@ -23,13 +24,15 @@ const SupportCom = () => {
 		handleSubmit,
 		formState: { errors },
 		reset,
-	} = useForm();
+	} = useForm({
+		resolver: yupResolver(schema)
+	});
 
-	const HandleSubmit = data => {
-		const dataObj = {
+	const onSubmit = data => {
+		const dataObj = files?.length ? {
 			...data,
 			attachments: files
-		}
+		} : data
 
 		CommonService.sendSupport(generateFormData(dataObj)).then(() => {
 			setModal(true);
@@ -94,18 +97,20 @@ const SupportCom = () => {
           технических специалистов может занимать до 24-х часов.
 				</p>
 			</div>
-			<form className={styles.form} onSubmit={handleSubmit(HandleSubmit)}>
+			<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 				<Input
 					classNames={styles.inputWidth}
 					register={register}
 					textLabel={'Тема обращения'}
 					name="subject"
+					err={errors?.subject?.message}
 				/>
 				<Input
 					classNames={styles.inputWidth}
 					register={register}
 					textLabel={'Ваше имя'}
 					name="name"
+					err={errors?.name?.message}
 				/>
 				<Input
 					classNames={styles.inputWidth}
@@ -113,6 +118,7 @@ const SupportCom = () => {
 					typeInput="email"
 					textLabel={'Электронная почта'}
 					name="email"
+					err={errors?.email?.message}
 				/>
 				<div className={styles.inputArea}>
 					<Input
@@ -122,6 +128,7 @@ const SupportCom = () => {
 						register={register}
 						textLabel={'Сообщение'}
 						name="message"
+						err={errors?.message?.message}
 						isTextarea
 						rows={6}
 					/>
@@ -149,6 +156,7 @@ const SupportCom = () => {
 										height="86px"
 										width="86px"
 										src={i}
+										alt={'Picture'}
 										className={styles.dropBlockImg}
 									/>
 								</span>
@@ -179,4 +187,4 @@ const SupportCom = () => {
 	);
 };
 
-export default SupportCom;
+export default SupportPage;

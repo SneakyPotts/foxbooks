@@ -191,7 +191,7 @@ const Header = () => {
                     <ul>
                       <li>
                         <Link href="/settings">
-                          <a>
+                          <a className={st.settingLink}>
                             <Setting/>
                             Настройки профиля
                           </a>

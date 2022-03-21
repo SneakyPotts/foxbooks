@@ -5,4 +5,8 @@ export default class CommonService {
 	static async sendSupport(data) {
 		return axios.post(`${API_URL}/support`, data)
 	}
+
+	static async sendClaim(data) {
+		return axios.post(`${API_URL}/claim`, data)
+	}
 }

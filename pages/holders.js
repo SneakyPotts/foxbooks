@@ -1,12 +1,8 @@
 import React from 'react';
-import HoldersRight from "../components/Holders/HoldersRight";
+import HoldersRight from "../components/Holders";
 
 const Holders = () => {
-	return (
-		<>
-			<HoldersRight/>
-		</>
-	);
+	return <HoldersRight />
 };
 
 export default Holders;

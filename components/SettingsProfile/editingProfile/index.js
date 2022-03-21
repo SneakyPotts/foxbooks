@@ -75,13 +75,13 @@ const EditingProfile = () => {
 			{modal &&
 				<ModalWindow onClose={() => setModal(false)}>
 					<div className={styles.wrapDel}>
-						<h2>Удалить профиль</h2>
+						<h3 className={'title'}>Удалить профиль</h3>
 						<p>Вы действительно хотите удалить профиль?</p>
 						<ButtonGroup
-								cancelClick={() => setModal(false)}
-								click={() => dispatch(deleteUser()).then(() => setModal(false))}
-								text="Удалить"
-								ClassName={styles.Button}
+							cancelClick={() => setModal(false)}
+							click={() => dispatch(deleteUser()).then(() => setModal(false))}
+							text="Удалить"
+							ClassName={styles.Button}
 						/>
 					</div>
 				</ModalWindow>

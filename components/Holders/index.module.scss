@@ -1,86 +1,97 @@
 @import "styles/variables";
 
 .container {
-  max-width: 1200px;
   margin: 30px auto 60px;
 
   .holderTitle {
-    >h2 {
-      font-family: 'Merriweather', serif;
-      font-size: 24px;
-      line-height: 30px;
-      color: $color-main;
-      margin-bottom: 20px;
-    }
-
-    >p {
-      font-family: 'Fira Sans', sans-serif;
+    > p {
       font-size: 14px;
       color: $color-second;
+      margin-top: 20px;
+    }
+  }
+}
+
+.form {
+  max-width: 588px;
+
+  &Input {
+    > div {
+      padding-bottom: 40px;
     }
   }
 
+  .checkboxContainer {
+    .checkWrap {
+      display: flex;
+      align-items: center;
+
+      > p {
+        color: $color-second;
+        font-size: 16px;
+        line-height: 18px;
+        margin-left: 20px;
+      }
+    }
+    > div {
+      margin-top: 20px;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .error {
+    font-size: 12px;
+    line-height: 14px;
+    color: #e92a20;
+    margin-top: 5px;
+  }
+
+  .buttons {
+    flex-direction: row-reverse;
+    margin-top: 40px;
+    margin-bottom: 0px;
+
+    > button{
+      margin-left: 0;
+      margin-right: 30px;
+    }
+  }
+
+
+  .firstInput {
+    margin-top: 40px;
+  }
+}
+
+.modal {
+  max-width: 243px;
+
+  > h3 {
+    color: $color-main;
+    font-family: 'Merriweather', serif;
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 10px;
+  }
+
+  >p {
+    font-size: 14px;
+    color: $color-second;
+  }
+
+  &Close{
+    width: 200px;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 480px){
   .form {
-    max-width: 588px;
-    &Input {
-      >div {
-        padding-bottom: 40px;
-      }
-    }
-
-    .checkboxContainer {
-      .checkWrap {
-        display: flex;
-        align-items: center;
-        >p {
-          color: $color-second;
-          font-family: 'Fira Sans', sans-serif;
-          font-size: 16px;
-          line-height: 18px;
-          margin-left: 20px;
-        }
-      }
-      >div {
-        margin-bottom: 20px;
-      }
-    }
-
     .buttons {
-      flex-direction: row-reverse;
-      margin-top: 40px;
-      margin-bottom: 0px;
-      >button{
-        margin-left: 0;
-        margin-right: 30px;
-      }
-    }
-
-
-    .firstInput {
-      margin-top: 40px;
-    }
-  }
-
-  .modal {
-    max-width: 243px;
-
-    >h2 {
-      color: $color-main;
-      font-family: 'Merriweather', serif;
-      font-size: 28px;
-      line-height: 35px;
-      margin-bottom: 10px;
-    }
-
-    >p {
-      font-family: 'Fira Sans', sans-serif;
-      font-size: 14px;
-      color: $color-second;
-    }
-
-    &Close{
-      width: 200px;
-      margin-top: 40px;
+      margin-top: 30px !important;
     }
   }
 }

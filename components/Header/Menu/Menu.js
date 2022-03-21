@@ -123,15 +123,24 @@ const Navigation = ({ setModal, bottomOnly }) => {
           </a>
         </Link>
 
-        <div
-          onClick={() => setModal()}
-          className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.dovnMenuLink}`}
-        >
-          <div className={css.icon}>
-            <User />
-          </div>
-          Профиль
-        </div>
+        <Link href="/settings">
+          <a
+            onClick={e => {
+              if (!isAuth) {
+                e.preventDefault();
+                setModal();
+              }
+            }}
+            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
+              router.pathname.includes('/settings') ? css.activeStroke : css.link
+            }`}
+          >
+            <div className={css.icon}>
+              <User />
+            </div>
+            Профиль
+          </a>
+        </Link>
       </div>
     </nav>
   );

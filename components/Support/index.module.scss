@@ -48,7 +48,7 @@
   padding-bottom: 0;
 
   textarea {
-    padding-bottom: 60px;
+    padding: 20px 20px 60px;
   }
 
   &.more {
@@ -77,6 +77,7 @@
   position: absolute;
   bottom: 20px;
   left: 20px;
+  background: #fff;
 }
 .imgsCount {
   position: absolute;
@@ -129,5 +130,16 @@
     font-size: 14px;
     line-height: 1.43;
     color: $color-second;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form {
+    padding-bottom: 60px;
+
+    .inputWidth {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 }

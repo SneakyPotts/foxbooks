@@ -397,17 +397,6 @@
     &Btns {
       margin-top: 30px !important;
       flex-direction: column-reverse;
-
-      span {
-        width: 100%;
-        text-align: center;
-        margin: 20px 0 0;
-      }
-
-      button {
-        width: 100% !important;
-        margin: 0 !important;
-      }
     }
   }
 
@@ -517,7 +506,7 @@
       margin: 0;
     }
     &BackText {
-      display: none;
+      display: none !important;
     }
     &Title {
       margin: 30px 0;

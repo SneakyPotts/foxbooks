@@ -6,89 +6,122 @@ import ButtonGroup from "../SettingsProfile/buttonGroup";
 import Checkbox from "../shared/common/checkbox/checkbox";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import Button from "../shared/common/Button/Button";
+import classNames from "classnames";
+import {yupResolver} from "@hookform/resolvers/yup";
+import schema from "./schema";
+import CommonService from "../../http/CommonService";
 
 const HoldersRight = () => {
-	const {register, handleSubmit, unregister, formState: {errors}, reset,} = useForm();
+	const {
+		register,
+		handleSubmit,
+		formState: {errors},
+		reset
+	} = useForm({
+		resolver: yupResolver(schema)
+	});
+
 	const [modal, setModal] = useState(false)
 
 	const checkboxData = [
-		{text: 'Я даю согласие на обработку и хранение персональных данных.', name: 'first'},
-		{text: 'Я являюсь правообладателем или представителем правообладателя спорного контента.', name: 'second'},
+		{text: 'Я даю согласие на обработку и хранение персональных данных.', name: 'agreement'},
+		{text: 'Я являюсь правообладателем или представителем правообладателя спорного контента.', name: 'copyright_holder'},
 		{
 			text: 'Я выражаю свое согласие с тем, что моя электронная почта может быть использована администрацией сайта для дальнейшего взаимодействия.',
-			name: 'therd'
+			name: 'interaction'
 		}
 	]
 
-	const HandleSubmit = data => {
-		setModal(true)
-		console.log(data)
+	const onSubmit = data => {
+		CommonService.sendClaim(data).then(() => {
+			setModal(true);
+			reset()
+		})
+	};
+
+	const onCancel = () => {
+		reset()
 	}
 
 	return (
-		<div className={styles.container}>
+		<div className={classNames("container", styles.container)}>
 			<div className={styles.holderTitle}>
-				<h2>
-                    Жалоба на материал
-				</h2>
-				<p>
-                    Информация о спорном контенте авторского права.
-				</p>
+				<h1 className="title">Жалоба на материал</h1>
+				<p>Информация о спорном контенте авторского права.</p>
 			</div>
-			<form className={styles.form} onSubmit={handleSubmit(HandleSubmit)}>
+
+			<form
+				className={styles.form}
+				onSubmit={handleSubmit(onSubmit)}
+			>
 				<div className={styles.formInput}>
 					<Input
 						classNames={styles.firstInput}
 						textLabel='Название объекта авторского права'
 						register={register}
-						name='test'
+						name='subject'
+						err={errors?.subject?.message}
 					/>
 					<Input
 						textLabel='Подтверждающие документы (ссылка на первоисточник публикации/ ссылка на сайт-продавец публикации)'
 						register={register}
-						name='test'
+						name='link_source'
+						err={errors?.link_source?.message}
 					/>
 					<Input
 						textLabel='Ссылка на спорный контент'
 						register={register}
-						name='test'
+						name='link_content'
+						err={errors?.link_content?.message}
 					/>
 					<Input
 						textLabel='ФИО'
 						register={register}
-						name='test'
+						name='name'
+						err={errors?.name?.message}
 					/>
 					<Input
 						textLabel='Электронная почта'
 						register={register}
-						name='test'
+						typeInput={'email'}
+						name='email'
+						err={errors?.email?.message}
 					/>
 				</div>
 				<div className={styles.checkboxContainer}>
-					{checkboxData.map(({text,name})=> (
-						<div key={text} className={styles.checkWrap}>
-							<Checkbox
-								register={register}
-								name={name}
-							/>
-							<p>
-								{text}
-							</p>
-						</div>
-					)
+					{checkboxData.map(i =>
+						<>
+							<div
+								key={i?.text}
+								className={styles.checkWrap}
+							>
+								<Checkbox
+									register={register}
+									name={i?.name}
+								/>
+								<p>{i?.text}</p>
+							</div>
+							<p className={styles.error}>{errors?.[i?.name]?.message}</p>
+						</>
 					)}
 				</div>
-				<ButtonGroup ClassName={styles.buttons} text="Отправить"/>
+				<ButtonGroup
+					text="Отправить"
+					ClassName={styles.buttons}
+					cancelClick={onCancel}
+				/>
 			</form>
+
 			{ modal &&
 				<ModalWindow onClose={() => setModal(false)}>
 					<div className={styles.modal}>
-						<h2>Отправлено</h2>
+						<h3>Отправлено</h3>
 						<p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
 						<Button
 							classNames={styles.modalClose}
 							text='Закрыть'
 							typeButton='button'
+							click={() => setModal(false)}
 						/>
 					</div>
 				</ModalWindow>

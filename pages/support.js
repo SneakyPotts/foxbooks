@@ -1,8 +1,8 @@
 import React from 'react';
-import SupportCom from "../components/Support/Support";
+import SupportPage from "../components/Support";
 
 const Support = () => {
-	return <SupportCom/>
+	return <SupportPage />
 };
 
 export default Support;
