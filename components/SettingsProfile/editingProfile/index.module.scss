@@ -46,6 +46,7 @@
   }
 
   .inputNik {
+    width: 180px;
     padding-bottom: 40px;
   }
 
@@ -90,6 +91,14 @@
   }
 }
 
+.form {
+  &Flex {
+    display: grid;
+    grid-template-columns: 180px 180px;
+    grid-column-gap: 24px;
+  }
+}
+
 .wrapDel {
   >h2 {
     color: $color-main;
@@ -119,6 +128,7 @@
     width: auto;
 
     .inputNik {
+      width: 100%;
       padding-bottom: 30px;
     }
 
@@ -128,6 +138,11 @@
 
     .delProfile {
       margin-top: 30px;
+    }
+  }
+  .form {
+    &Flex {
+      grid-template-columns: 1fr;
     }
   }
   .wrapDel {

@@ -113,6 +113,9 @@
 .noSpace {
   margin-right: 0;
 }
+.mobileOnly {
+  display: none;
+}
 
 @media (max-width: 1024px) {
   .dovnMenu {
@@ -212,5 +215,8 @@
       align-items: center;
       color: $color-categories-btn;
     }
+  }
+  .mobileOnly {
+    display: flex;
   }
 }

@@ -35,6 +35,8 @@ const EditingProfile = () => {
 
 	useEffect(() => {
 		setValue('name', profile?.name)
+		setValue('surname', profile?.surname)
+		setValue('nickname', profile?.nickname)
 		setValue('email', profile?.email)
 	}, [profile])
 
@@ -45,15 +47,30 @@ const EditingProfile = () => {
 				className={styles.formProfile}
 			>
 				<AvatarUploader name='avatar' setValue={setValue} />
+				<div className={styles.formFlex}>
+					{profile?.name ?
+						<>
+							<Input
+								textLabel="Имя"
+								name="name"
+								register={register}
+							/>
+							<Input
+								textLabel="Фамилия"
+								name="surname"
+								register={register}
+							/>
+						</> :
+						<Input
+							classNames={styles.inputNik}
+							textLabel="Ник"
+							name="nickname"
+							register={register}
+						/>
+					}
+				</div>
 				<Input
-					classNames={styles.inputNik}
-					err={errors.name?.message}
-					textLabel="Ник"
-					name="name"
-					register={register}
-				/>
-				<Input
-					err={errors.email?.message}
+					err={errors?.email?.message}
 					textLabel="Электронная почта"
 					name="email"
 					register={register}
@@ -72,6 +89,7 @@ const EditingProfile = () => {
 					<span>Вы можете удалить свой профиль</span>
 				</div>
 			</form>
+
 			{modal &&
 				<ModalWindow onClose={() => setModal(false)}>
 					<div className={styles.wrapDel}>

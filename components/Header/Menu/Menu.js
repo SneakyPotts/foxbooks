@@ -131,7 +131,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
                 setModal();
               }
             }}
-            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
+            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.mobileOnly} ${
               router.pathname.includes('/settings') ? css.activeStroke : css.link
             }`}
           >
