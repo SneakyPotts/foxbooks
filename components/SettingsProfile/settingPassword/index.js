@@ -23,7 +23,6 @@ const SettingPassword = () => {
   });
 
   const [inputType, setInputType] = useState('password');
-  console.log(inputType, 'inputType');
 
   const onSubmit = data => {
     dispatch(resetPassword(data));
@@ -83,7 +82,7 @@ const SettingPassword = () => {
         typeInput="password"
         register={register}
       />
-      <ButtonGroup ClassName={styles.buttonDistance} />
+      <ButtonGroup cancelClick={() => reset()} ClassName={styles.buttonDistance} />
     </form>
   );
 };

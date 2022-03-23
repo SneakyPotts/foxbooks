@@ -22,6 +22,7 @@ const EditingProfile = () => {
 		register,
 		handleSubmit,
 		setValue,
+		reset,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema)
@@ -33,11 +34,15 @@ const EditingProfile = () => {
 		dispatch(updateProfile(generateFormData(data)))
 	};
 
-	useEffect(() => {
+	const setDefaultValues = () => {
 		setValue('name', profile?.name)
 		setValue('surname', profile?.surname)
 		setValue('nickname', profile?.nickname)
 		setValue('email', profile?.email)
+	}
+
+	useEffect(() => {
+		setDefaultValues()
 	}, [profile])
 
 	return (
@@ -84,7 +89,7 @@ const EditingProfile = () => {
 						title={false}
 					/>
 				</div>
-				<ButtonGroup />
+				<ButtonGroup cancelClick={setDefaultValues} />
 				<div onClick={() => setModal(true)} className={styles.delProfile}>
 					<span>Вы можете удалить свой профиль</span>
 				</div>

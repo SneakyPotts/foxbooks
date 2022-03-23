@@ -40,7 +40,10 @@ const Header = () => {
   }
 
   const hideAuthPopup = () => {
-    dispatch(setAuthPopupVisibility(false))
+    router.push(router.pathname)
+    setTimeout(() => {
+      dispatch(setAuthPopupVisibility(false))
+    }, 0)
   }
 
   const openModal = () => {

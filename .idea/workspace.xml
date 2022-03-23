@@ -3,17 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/menu.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Holders/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Holders/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NewPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Support/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Support/schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +134,9 @@
       <workItem from="1647604089042" duration="18498000" />
       <workItem from="1647686365644" duration="1198000" />
       <workItem from="1647854653066" duration="19493000" />
+      <workItem from="1647940169621" duration="586000" />
+      <workItem from="1648031350227" duration="1149000" />
+      <workItem from="1648033020016" duration="14916000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

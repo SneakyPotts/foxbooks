@@ -19,16 +19,20 @@ const SettingNotification = () => {
 	const dispatch = useDispatch()
 	const { profile } = useSelector(state => state.profile)
 
-	const {register, handleSubmit, setValue, unregister,  formState: {errors}, reset} = useForm();
+	const {register, handleSubmit, setValue,  formState: {errors}, reset} = useForm();
 
 	const onSubmit = data => {
 		dispatch(setNotificationSettings(data))
 	}
 
-	useEffect(() => {
+	const setDefaultValues = () => {
 		setValue('likes', !!profile?.user_settings?.likes)
 		setValue('commented', !!profile?.user_settings?.commented)
 		setValue('commentedOthers', !!profile?.user_settings?.commentedOthers)
+	}
+
+	useEffect(() => {
+		setDefaultValues()
 	}, [profile?.user_settings])
 
 	return (
@@ -56,7 +60,7 @@ const SettingNotification = () => {
 							</div>
 						)
 					})}
-					<ButtonGroup ClassName={styles.groupButton}/>
+					<ButtonGroup cancelClick={setDefaultValues} ClassName={styles.groupButton}/>
 				</form>
 			</div>
 		</div>

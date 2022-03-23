@@ -11,7 +11,7 @@ import {
 import Cookies from 'js-cookie';
 import { getProfile } from '../../../../../store/profileSlice';
 import AudioPlayer from '../../../../AudioPlayer';
-import { setBreakPoint } from '../../../../../store/commonSlice';
+import {setAuthPopupVisibility, setBreakPoint} from '../../../../../store/commonSlice';
 import debounce from 'lodash.debounce';
 import ArrowUp from '../../../icons/arrowUp';
 import st from './layout.module.scss';
@@ -19,6 +19,11 @@ import st from './layout.module.scss';
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const { newPass } = router.query;
+  if (!!newPass) {
+    dispatch(setAuthPopupVisibility(true))
+  }
 
   const { playerIsVisible } = useSelector(state => state.common);
 
@@ -37,13 +42,14 @@ const Layout = ({ children }) => {
     const storageToken = Cookies.get('token');
     const { email, token, id } = router.query;
 
-    if (storageToken) {
-      dispatch(getProfile());
-      dispatch(setAuth(true));
-    } else if (email && token) {
+    if (email && token) {
       dispatch(verifyEmail({ email, token }));
     } else if (token && id) {
+      Cookies.remove('token')
       dispatch(signInWithSocial({ id, token }));
+    } else if (storageToken) {
+      dispatch(getProfile());
+      dispatch(setAuth(true));
     }
 
     window.addEventListener('scroll', function () {

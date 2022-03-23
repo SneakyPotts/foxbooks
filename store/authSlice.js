@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import AuthService from "../http/AuthService";
 import Cookies from 'js-cookie'
+import {getProfile} from "./profileSlice";
 
 const initialState = {
 	isAuth: false,
@@ -43,9 +44,10 @@ export const verifyEmail = createAsyncThunk(
 
 export const signInWithSocial = createAsyncThunk(
 	'auth/signInWithSocial',
-	async data => {
+	async ( data, thunkApi) => {
 		const response = await AuthService.signInWithSocial(data)
 		Cookies.set('token', response.data.accessToken, { expires: 7 })
+		thunkApi.dispatch(getProfile())
 		return response.data
 	}
 )

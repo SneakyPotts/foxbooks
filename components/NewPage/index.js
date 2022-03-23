@@ -35,16 +35,47 @@ const NewPage = () => {
 
 			<h2 className={st.newsTitle}>Новинки</h2>
 
-			<div className={st.filtersBtns}>
-				<BookFilters
-					filters={sortFilters}
-					queryName={'sortBy'}
-				/>
-				<BookFilters
-					filters={typeFilters}
-					queryName={'type'}
-				/>
-			</div>
+			{/*<div>*/}
+			{/*	<div>*/}
+					<div className={st.filtersBtns}>
+						<BookFilters
+							filters={sortFilters}
+							queryName={'sortBy'}
+						/>
+						<BookFilters
+							filters={typeFilters}
+							queryName={'type'}
+						/>
+					</div>
+			{/*		{novelties?.data?.length ?*/}
+			{/*			<>*/}
+			{/*				<div className={st.booksGrid}>*/}
+			{/*					{novelties?.data?.map(i => (*/}
+			{/*						<div key={i?.id}>*/}
+			{/*							<Book*/}
+			{/*								book={i}*/}
+			{/*								audio={i?.type}*/}
+			{/*							/>*/}
+			{/*						</div>*/}
+			{/*					))}*/}
+			{/*				</div>*/}
+			{/*				<MyPagination*/}
+			{/*					lastPage={novelties?.last_page}*/}
+			{/*				/>*/}
+			{/*			</> :*/}
+			{/*			<p className="empty">Книги не найдены</p>*/}
+			{/*		}*/}
+			{/*	</div>*/}
+
+			{/*	<div className={st.advertisingBlok}>*/}
+			{/*		<div className={st.bannerBlock}>*/}
+			{/*			<img src="/banner.png" alt="" className={st.banner} />*/}
+			{/*		</div>*/}
+			{/*		<div className={st.bannerBlock}>*/}
+			{/*			<img src="/banner.png" alt="" className={st.banner} />*/}
+			{/*		</div>*/}
+			{/*	</div>*/}
+			{/*</div>*/}
 
 			<div className={st.mainBlock}>
 				{novelties?.data?.length ?

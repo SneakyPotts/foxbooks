@@ -3,10 +3,6 @@ import css from "./index.module.scss";
 import classnames from "classnames";
 import Input from "../../shared/common/Input/Input";
 import Button from "../../shared/common/Button/Button";
-import Yandex from "../../shared/icons/yandex";
-import Google from "../../shared/icons/google";
-import VK from "../../shared/icons/VK";
-import OK from "../../shared/icons/OK";
 import ModalWindow from "../../shared/common/modalWindow/ModalWindow";
 
 import * as yup from "yup";
@@ -16,24 +12,35 @@ import {useDispatch, useSelector} from "react-redux";
 import SocialNetwork from "../../shared/common/SocialNetwork/SocialNetwork";
 import {forgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice";
 import {getProfile} from "../../../store/profileSlice";
+import {ref} from "yup";
+import {useRouter} from "next/router";
 
 const GroupForms = ({modal,setModal}) => {
+	const dispatch = useDispatch()
+	const router = useRouter()
+
 	const [flagLogin, setFlagLogin] = useState(true)
 	const [flagRegistration, setFlagRegistration] = useState(false)
 	const [flagSendEmail, setFlagSendEmail] = useState(false)
 	const [flagForgetPassword, setFlagForgetPassword] = useState(false)
 	const [flagResetPassMessage, setFlagResetPassMessage] = useState(false)
+	const [flagNewPass, setFlagNewPass] = useState(false)
+	const [flagNewPassMessage, setFlagNewPassMessage] = useState(false)
 
+	const { innerWidthWindow } = useSelector(state => state.common)
 	const { isError } = useSelector(state => state.auth)
 
-	const dispatch = useDispatch()
-
 	const schema = yup.object().shape({
-		email: yup.string().email('Неправильно введена электронная почта').required('Это поле не может быть пустым.'),
-		password: (flagRegistration || flagLogin) && yup.string().max(32)
+		email: !flagNewPass && yup.string().required('Это обязательное поле').email('Неправильно введена электронная почта'),
+		password: (flagRegistration || flagLogin || flagNewPass) && yup.string().max(32, 'Максимальная длина 32 символа')
+			.required('Это обязательное поле')
+			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+				'Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.'),
+		password_confirm: flagNewPass && yup.string().max(32, 'Максимальная длина 32 символа')
+			.required('Это обязательное поле')
 			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
 				'Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.')
-			.required('Это поле не может быть пустым.'),
+		  .oneOf([ref('password'), null], 'Пароли должны совпадать')
 	});
 
 	const {register, handleSubmit, unregister,  formState: {errors}, reset} = useForm({
@@ -69,23 +76,49 @@ const GroupForms = ({modal,setModal}) => {
 		})
 	}
 
-	useEffect(()=>{
+	const onSubmitNewPassword = data => {
+		// dispatch(forgotPassword(data)).then(res => {
+		// 	if (res.meta.requestStatus === "fulfilled") {
+				setFlagNewPass(false)
+				setFlagNewPassMessage(true)
+			// }
+		// })
+	}
+
+	useEffect(() => {
+		const {newPass} = router.query
+
 		setFlagSendEmail(false)
 		setFlagForgetPassword(false)
 		setFlagRegistration(false)
 		setFlagResetPassMessage(false)
+		setFlagNewPass(!!newPass)
+		setFlagNewPassMessage(false)
 		reset()
-		setFlagLogin(true)
+		setFlagLogin(!newPass)
 	},[modal])
 
 	return modal && (
-		<ModalWindow onClose={() => setModal(false)}>
+		<ModalWindow
+			onClose={() => setModal(false)}
+			isFullScreen={innerWidthWindow <= 480}
+		>
 			<div className={css.login}>
-				{flagLogin && <h1>Вход на FoxBooks</h1>}
+				{flagLogin &&
+					<h2>Вход на FoxBooks</h2>
+				}
 				{(flagRegistration || flagSendEmail) &&
-                <h1 className={classnames({[css.loginMin]: flagSendEmail})}>Регистрация</h1>}
-				{flagResetPassMessage && <h1 className={css.loginMin}>Восстановить пароль</h1>}
-				{flagForgetPassword && <h1 className={css.loginMin}>Забыли пароль?</h1>}
+					<h2 className={classnames({[css.loginMin]: flagSendEmail})}>Регистрация</h2>
+				}
+				{flagResetPassMessage &&
+					<h2 className={css.loginMin}>Восстановить пароль</h2>
+				}
+				{flagForgetPassword &&
+					<h2 className={css.loginMin}>Забыли пароль?</h2>
+				}
+				{(flagNewPass || flagNewPassMessage) &&
+					<h2 className={css.loginMin}>Сброс пароля</h2>
+				}
 
 				{flagLogin && <form onSubmit={handleSubmit(onSubmitLogin)}>
 					<Input
@@ -115,7 +148,7 @@ const GroupForms = ({modal,setModal}) => {
 								setFlagForgetPassword(true)
 								reset()
 							}}
-							type='button'><a>Не помню пароль</a></button>
+							type='button'>Не помню пароль</button>
 						<button
 							onClick={() => {
 								setFlagLogin(false)
@@ -149,15 +182,21 @@ const GroupForms = ({modal,setModal}) => {
 					/>
 				</form>}
 
-				{(flagSendEmail || flagResetPassMessage) &&
+				{(flagSendEmail || flagResetPassMessage || flagNewPassMessage ) &&
 					<div>
-						{flagSendEmail ?
+						{flagSendEmail &&
 							<p className={css.message}>
-											Письмо с подтверждением регистрации выслано на вашу электронную почту.
+								Письмо с подтверждением регистрации выслано на вашу электронную почту.
 							</p>
-							:
+						}
+						{flagResetPassMessage &&
 							<p className={css.message}>
-											Письмо со ссылкой для восстановления пароля выслано на вашу почту.
+								Письмо со ссылкой для восстановления пароля выслано на вашу почту.
+							</p>
+						}
+						{flagNewPassMessage &&
+							<p className={css.message}>
+								Ваш новый пароль вступил в силу.
 							</p>
 						}
 
@@ -165,14 +204,14 @@ const GroupForms = ({modal,setModal}) => {
 							click={()=>setModal(!modal)}
 							typeButton='button'
 							text='Закрыть'
+							classNames={css.loginButton}
 						/>
-					</div>}
+					</div>
+				}
 
 				{flagForgetPassword &&
 					<div>
-						<p className={css.message}>
-									Укажите электронную почту, указаную при регистрации
-						</p>
+						<p className={css.message}>Укажите электронную почту, указаную при регистрации</p>
 						<form onSubmit={handleSubmit(onSubmitForgetPassword)}>
 							<Input
 								err={errors.email?.message}
@@ -182,6 +221,34 @@ const GroupForms = ({modal,setModal}) => {
 							/>
 							<Button
 								text='Отправить'
+								classNames={css.loginButton}
+							/>
+						</form>
+					</div>
+				}
+
+				{flagNewPass &&
+					<div>
+						<p className={css.message}>Укажите новый пароль</p>
+						<form onSubmit={handleSubmit(onSubmitNewPassword)}>
+							<Input
+								typeInput={'password'}
+								err={errors.password?.message}
+								textLabel='Новый пароль'
+								name='password'
+								register={register}
+							/>
+							<Input
+								typeInput={'password'}
+								err={errors.password_confirm?.message}
+								textLabel='Повтор пароля'
+								name='password_confirm'
+								register={register}
+							/>
+							<p className={css.message}>Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.</p>
+							<Button
+								text='Изменить пароль'
+								classNames={css.loginButton}
 							/>
 						</form>
 					</div>
