@@ -14,6 +14,7 @@ import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ArrowRight from '../../public/chevron-right.svg';
 import Button from "../shared/common/Button/Button";
+import ShowAll from "../shared/common/showAll/ShowAll";
 
 const popularSelections = [
 	{ id: '0', title: 'Все', value: 1 },
@@ -36,6 +37,18 @@ const SelectionsPage = () => {
 	const flagSwitcher = useMemo(() => {
 		return router.query['showType'] === 'list'
 	}, [router.query])
+
+	const hasBooks = (() => {
+		if(selections?.data?.length) {
+			if(flagSwitcher) {
+				return selections?.data?.some(i => i?.books?.length)
+			} else {
+				return selections?.data?.some(i => i?.books_count)
+			}
+		} else {
+			return false
+		}
+	})()
 
 	return (
 		<div className="container">
@@ -87,7 +100,7 @@ const SelectionsPage = () => {
 						<Switcher flagSwitcher={flagSwitcher} />
 					</div>
 
-					{selections?.data?.length ?
+					{hasBooks ?
 						flagSwitcher ?
 							selections?.data?.map(i =>
 								<div className={styles.mainListItem}>
@@ -135,10 +148,12 @@ const SelectionsPage = () => {
 											<ArrowRight className="arrowNext" />
 										</button>
 									</Swiper>
+									<ShowAll text={'Смотреть все'} url={`/selections/${i?.id}`} />
 								</div>
+
 							) :
 							<div className={styles.mainGrid}>
-								{selections?.data?.length ?
+								{selections?.data?.length > 0 &&
 									selections?.data?.map(i =>
 										<div className={styles.mainGridItem}>
 											<CompilationItem
@@ -147,10 +162,11 @@ const SelectionsPage = () => {
 												path={`/selections/${i?.id}`}
 											/>
 										</div>
-									) : null
+									)
 								}
 							</div>
-						: null
+						:
+						<p className="empty">Не найдено подборок</p>
 					}
 
 					{selections?.last_page > 1 &&

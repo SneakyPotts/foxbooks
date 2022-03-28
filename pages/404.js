@@ -2,11 +2,7 @@ import React from 'react';
 import ErrorPage from '../components/Error';
 
 const Error = () => {
-  return (
-    <div>
-      <ErrorPage />
-    </div>
-  );
+  return <ErrorPage />
 };
 
 export default Error;

@@ -2,7 +2,7 @@ import SelectionPage from '../../../components/Selections/SelectionPage';
 import SelectionService from '../../../http/SelectionService';
 
 const Selection = props => {
-  // console.log('selectionsById', props.selectionsById)
+  console.log('selectionsById', props.selectionsById)
 
   return (
     <div>

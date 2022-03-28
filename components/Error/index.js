@@ -7,9 +7,10 @@ import st from './error.module.scss';
 const Error = () => {
   return (
     <div className={st.wrapper}>
-      <div className={st.lineV}></div>
-      <div className={st.lineH}></div>
-      <div className={st.centralBlok}>
+      <div className={st.lineV} />
+      <div className={st.lineH} />
+
+      <div className={st.main}>
         <Logo />
         <div className={st.book}>
           <div className={st.bookLetters}>B</div>
@@ -22,13 +23,11 @@ const Error = () => {
         </div>
         <h2 className={st.errorTitle}>Упс... страница не найдена</h2>
         <p className={st.errorText}>
-          К сожалению, запрашиваемая страница потерялась. Мы обязательно
-          разберемся с этим недоразумением.
+          К сожалению, запрашиваемая страница потерялась. <br/>
+          Мы обязательно разберемся с этим недоразумением.
         </p>
         <Link href="/">
-          <a>
-            <Button text="Вернуться на главную" />
-          </a>
+          <a className={st.btn}>Вернуться на главную</a>
         </Link>
       </div>
     </div>

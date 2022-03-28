@@ -91,3 +91,33 @@
   width: 180px;
   height: 1104px;
 }
+
+@media screen and (max-width: 992px) {
+  .advertisingBlock {
+    display: none;
+  }
+
+  .main {
+    &Grid {
+      grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .btn {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main {
+    &Grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
