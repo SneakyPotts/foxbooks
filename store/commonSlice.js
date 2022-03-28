@@ -18,7 +18,7 @@ export const commonSlice = createSlice({
     setBreakPoint: (state, action) => {
       state.innerWidthWindow = action.payload;
     },
-    togglePlayer: (state, action) => {
+    setPlayerVisibility: (state, action) => {
       state.playerIsVisible = action.payload;
     },
     setHeaderVisibility: (state, action) => {
@@ -33,7 +33,7 @@ export const commonSlice = createSlice({
 export const {
   showMenu,
   setBreakPoint,
-  togglePlayer,
+  setPlayerVisibility,
   setHeaderVisibility,
   setAuthPopupVisibility
 } = commonSlice.actions;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import DrawerPopup from "../shared/common/DrawerPopup";
@@ -15,14 +15,15 @@ import styles from './styles.module.scss'
 import BackBtn from '../shared/common/BackBtn';
 import { useRouter } from 'next/router';
 import InputRange from '../shared/common/InputRange/InputRange';
-import {addBookMark} from "../../store/readerSlice";
+import {addBookMark, deleteBookMark} from "../../store/readerSlice";
+import MarksPopup from "./MarksPopup";
 
 const ReaderBook = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
   const { innerWidthWindow } = useSelector(state => state.common)
-  const { book, settings } = useSelector(state => state.reader)
+  const { book, settings, bookMarks } = useSelector(state => state.reader)
 
   const [contentPopupIsVisible, setContentPopupIsVisible] = useState(false)
   const [quotesPopupIsVisible, setQuotesPopupIsVisible] = useState(false)
@@ -51,27 +52,31 @@ const ReaderBook = () => {
     }
   }
 
-  const addMark = ev => {
+  const addMarkHandler = ev => {
     ev && ev.stopPropagation()
-    dispatch(addBookMark({
-      book_id: book?.id,
-      page_id: book?.pages[0]?.id
-    }))
+    const id = bookMarks.find(i => i?.book_id === book?.id && i?.page_id === book?.pages[0]?.id)?.id
+
+    if(id) {
+      dispatch(deleteBookMark(id))
+    } else {
+      dispatch(addBookMark({
+        book_id: book?.id,
+        page_id: book?.pages[0]?.id
+      }))
+    }
   }
 
   const addMarkToggler = () => {
     if (innerWidthWindow <= 768) {
       setMarkPopupIsVisible(true)
     } else {
-      addMark()
+      addMarkHandler()
     }
   }
 
-  useEffect(() => {
-    return () => {
-      console.log('settings', settings)
-    }
-  }, [])
+  const handleMarkClick = page => {
+    router.push({ query: { ...router.query, page } })
+  }
 
   return (
     <div
@@ -93,6 +98,7 @@ const ReaderBook = () => {
             showQuotesPopup={showQuotesPopup}
             toggleEditPopup={toggleEditPopup}
             addMarkToggler={addMarkToggler}
+            handleMarkClick={handleMarkClick}
           />
         </>
         }
@@ -121,7 +127,7 @@ const ReaderBook = () => {
         <div className={styles.mobileFooter}>
           <div
             className={styles.mobileFooterMark}
-            onClick={addMark}
+            onClick={addMarkHandler}
           >
             <BookMark />
           </div>
@@ -180,7 +186,9 @@ const ReaderBook = () => {
           externalClass={styles.drawer}
           onClose={() => setMarkPopupIsVisible(false)}
         >
-          marks
+          <MarksPopup
+            handleMarkClick={handleMarkClick}
+          />
         </DrawerPopup>
         }
       </div>

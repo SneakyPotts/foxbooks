@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from 'next/router';
 import ArrowIcon from './../../public/chevron-right.svg';
 import Logo from "../shared/icons/Logo";
@@ -17,7 +17,8 @@ const Header = ({
   showContentPopup,
   showQuotesPopup,
   toggleEditPopup,
-  addMarkToggler
+  addMarkToggler,
+  handleMarkClick
 }) => {
   const router = useRouter()
 
@@ -73,10 +74,6 @@ const Header = ({
     }
   ]
 
-  const handleMarkClick = page => {
-    router.push({ query: { ...router.query, page } });
-  }
-
   return (
     <div
       className={styles.header}
@@ -109,10 +106,11 @@ const Header = ({
         ))}
       </div>
 
-      {bookMarks?.length ?
+      {bookMarks?.length > 0 &&
         <div className={styles.marksList}>
           {bookMarks?.map((i, index) => (
             <div
+              key={i?.page?.page_number}
               className={styles.markItem}
               onClick={() => handleMarkClick(i?.page?.page_number)}
             >
@@ -123,8 +121,7 @@ const Header = ({
               </span>
             </div>
           ))}
-        </div> :
-        null
+        </div>
       }
     </div>
   );

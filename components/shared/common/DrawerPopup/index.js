@@ -66,7 +66,7 @@ const DrawerPopup = ({
         )}
         style={{
           height: drawerHeight,
-          animation: `${direction === 'up' ? 'dropUp' : 'dropDown'} .2s`,
+          // animation: `${direction === 'up' ? 'dropUp' : 'dropDown'} .2s`,
         }}
         onClick={ev => ev.stopPropagation()}
       >

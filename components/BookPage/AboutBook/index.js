@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import Image from 'next/image';
 import {deleteBookFromFavorite, setBookRating, setBookStatus} from '../../../store/bookSlice';
 import Stars from '../../shared/common/stars/Stars';
-import Dots from '../../shared/icons/horizontalDots';
 import BookMark from '../../shared/icons/myBookmark';
 import OpenBook from '../../shared/icons/bookOpen';
 import Flag from '../../shared/icons/flag';
@@ -14,9 +13,9 @@ import Add from '../../shared/icons/plus';
 import Basket from '../../shared/icons/trash';
 import Headphones from '../../shared/icons/headphones';
 import Eye from '../../shared/icons/eye';
-import DrawerPopup from '../../shared/common/DrawerPopup';
 import st from './aboutBook.module.scss';
 import DotsDropdown from "../../DotsDropdown";
+import {setPlayerVisibility} from "../../../store/commonSlice";
 
 
 const AboutBook = ({ book, audioFlag }) => {
@@ -86,6 +85,10 @@ const AboutBook = ({ book, audioFlag }) => {
   const setRating = value => {
     dispatch(setBookRating({ id: router.query.id, value }));
   };
+
+  const onListen = () => {
+    dispatch(setPlayerVisibility(true))
+  }
 
   return (
     <>
@@ -200,7 +203,12 @@ const AboutBook = ({ book, audioFlag }) => {
               )}
               <div className={st.buttons}>
                 {audioFlag ? (
-                  <button className={st.readButton}>Начать слушать</button>
+                  <button
+                    className={st.readButton}
+                    onClick={onListen}
+                  >
+                    Начать слушать
+                  </button>
                 ) : (
                   <Link href={`/reader?id=${book?.id}&page=1`}>
                     <a className={st.readButton}>Читать</a>

@@ -7,6 +7,8 @@ import MyPagination from "../shared/common/MyPagination";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {useRouter} from "next/router";
 import BookFilters from "../shared/common/booksFilters/BookFilters";
+import styles from "../Selections/selections.module.scss";
+import MobileFilterModal from "../MobileFilterModal";
 
 const sortFilters = [
 	{ id: 1, title: 'Последние поступления', value: 1 },
@@ -22,6 +24,7 @@ const typeFilters = [
 const NewPage = () => {
 	const router = useRouter()
 
+	const { innerWidthWindow } = useSelector(state => state.common)
 	const { novelties } = useSelector(state => state.novelties)
 
 	return (
@@ -33,69 +36,62 @@ const NewPage = () => {
 				}]}
 			/>
 
-			<h2 className={st.newsTitle}>Новинки</h2>
+			<h1 className="title">Новинки</h1>
 
-			{/*<div>*/}
-			{/*	<div>*/}
-					<div className={st.filtersBtns}>
-						<BookFilters
-							filters={sortFilters}
-							queryName={'sortBy'}
-						/>
-						<BookFilters
-							filters={typeFilters}
-							queryName={'type'}
-						/>
-					</div>
-			{/*		{novelties?.data?.length ?*/}
-			{/*			<>*/}
-			{/*				<div className={st.booksGrid}>*/}
-			{/*					{novelties?.data?.map(i => (*/}
-			{/*						<div key={i?.id}>*/}
-			{/*							<Book*/}
-			{/*								book={i}*/}
-			{/*								audio={i?.type}*/}
-			{/*							/>*/}
-			{/*						</div>*/}
-			{/*					))}*/}
-			{/*				</div>*/}
-			{/*				<MyPagination*/}
-			{/*					lastPage={novelties?.last_page}*/}
-			{/*				/>*/}
-			{/*			</> :*/}
-			{/*			<p className="empty">Книги не найдены</p>*/}
-			{/*		}*/}
-			{/*	</div>*/}
-
-			{/*	<div className={st.advertisingBlok}>*/}
-			{/*		<div className={st.bannerBlock}>*/}
-			{/*			<img src="/banner.png" alt="" className={st.banner} />*/}
-			{/*		</div>*/}
-			{/*		<div className={st.bannerBlock}>*/}
-			{/*			<img src="/banner.png" alt="" className={st.banner} />*/}
-			{/*		</div>*/}
-			{/*	</div>*/}
-			{/*</div>*/}
-
-			<div className={st.mainBlock}>
-				{novelties?.data?.length ?
-					<div>
-						<div className={st.booksGrid}>
-							{novelties?.data?.map(i => (
-								<div key={i?.id}>
-									<Book
-										book={i}
-										audio={i?.type}
-									/>
-								</div>
-							))}
+			<div className={st.wrapper}>
+				<div className={st.main}>
+					{innerWidthWindow > 768 &&
+						<div className={st.filters}>
+							<BookFilters
+								filters={sortFilters}
+								queryName={'sortBy'}
+							/>
+							<BookFilters
+								filters={typeFilters}
+								queryName={'type'}
+							/>
 						</div>
-						<MyPagination
-							lastPage={novelties?.last_page}
-						/>
-					</div> :
-					<p className="empty">Книги не найдены</p>
-				}
+					}
+
+					{innerWidthWindow <= 768 &&
+						<div className={st.filters}>
+							<MobileFilterModal>
+								<span className={styles.filterTitle}>Категория</span>
+								<BookFilters
+									filters={sortFilters}
+									queryName={'sortBy'}
+									onModal
+								/>
+								<span className={styles.filterLine}/>
+								<span className={styles.filterTitle}>Тип</span>
+								<BookFilters
+									filters={typeFilters}
+									queryName={'type'}
+									onModal
+								/>
+							</MobileFilterModal>
+						</div>
+					}
+
+					{novelties?.data?.length ?
+						<>
+							<div className={st.grid}>
+								{novelties?.data?.map(i => (
+									<div key={i?.id}>
+										<Book
+											book={i}
+											audio={i?.type}
+										/>
+									</div>
+								))}
+							</div>
+							<MyPagination
+								lastPage={novelties?.last_page}
+							/>
+						</> :
+						<p className="empty">Книги не найдены</p>
+					}
+				</div>
 
 				<div className={st.advertisingBlok}>
 					<div className={st.bannerBlock}>

@@ -1,57 +1,41 @@
 @import 'styles/variables.scss';
 
-.newsTitle {
-  font-family: 'Merriweather', serif;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 1.25;
-  color: $color-main;
-}
-.filtersBtns {
+.wrapper {
   display: flex;
-  width: calc(100% - 408px);
+}
+.main {
+  flex: 1;
+}
+.filters {
+  display: flex;
   justify-content: space-between;
   margin: 40px 0;
 }
-.popularSelections {
-  margin-right: 101px;
-}
-.selectFilters {
-  font-family: 'Fira Sans', sans-serif;
-  font-size: 14px;
-  line-height: 1.43;
-  height: 36px;
-  padding: 8px 15px;
-  border-radius: 60px;
-  background: $color-bg-icon;
-  color: $color-main;
-
-  &:hover {
-    background: $color-main;
-    color: $color-categories-btn;
-  }
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-
-  &Active {
-    background: $color-main;
-    color: $color-categories-btn;
-  }
-}
-.mainBlock {
-  display: flex;
-  margin-top: 40px;
-}
-.booksGrid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px 24px;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  grid-column-gap: 24px;
+}
+.filter {
+  &Title {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: $color-main;
+    margin-bottom: 14px;
+  }
+  &Line {
+    background: #D5D5D5;
+    margin: 30px 0;
+    height: 1px;
+    display: block;
+  }
 }
 .advertisingBlok {
   max-width: 384px;
   margin-left: 24px;
+  margin-top: 100px;
 }
 .bannerBlock {
   width: 100%;
@@ -60,11 +44,34 @@
 .banner {
   border-radius: 5px;
 }
-.pagination {
-  margin-top: 40px;
-  margin-bottom: 60px;
-}
 .mountains {
   margin-top: 60px;
   margin-bottom: 60px;
+}
+
+@media screen and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(23%, 1fr));
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .advertisingBlok {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filters {
+    margin: 30px 0;
+  }
+  .grid {
+    grid-column-gap: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

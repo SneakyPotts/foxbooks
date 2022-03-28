@@ -8,6 +8,7 @@ import ArrowIcon from './../../public/chevron-right.svg';
 import classNames from "classnames";
 import styles from './styles.module.scss'
 import './variables.module.scss'
+import ReaderService from "../../http/ReaderService";
 
 const fontNames = [
   'Times New Roman',
@@ -24,10 +25,12 @@ const EditPopup = () => {
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false)
 
   const changeSettings = (value, name) => {
-    dispatch((setSettings({
+    const data = {
       ...settings,
-      [name]: value
-    })))
+      [name]: Number(value) || value
+    }
+    dispatch(setSettings(data))
+    ReaderService.updateSettings(data)
   }
 
   const toggleDropdown = ev => {

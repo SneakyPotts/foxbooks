@@ -8,10 +8,10 @@ const initialState = {
 	settings: {
 		isTwoColumns: false,
 		fontSize: 0,
-		screenBrightness: '2',
+		screenBrightness: 2,
 		fontName: 'Times New Roman',
-		fieldSize: '2',
-		rowHeight: '2',
+		fieldSize: 2,
+		rowHeight: 2,
 		isCenterAlignment: false
 	},
 	quotes: [
@@ -26,9 +26,7 @@ const initialState = {
 		// 	id:1,
 		// 	color:"#FED3CA",
 		// }
-	],
-	isLoading: false,
-	isError: false
+	]
 };
 
 export const getBookMarks = createAsyncThunk(
@@ -40,11 +38,26 @@ export const getBookMarks = createAsyncThunk(
 )
 
 export const addBookMark = createAsyncThunk(
-	'reader/getBookMarks',
+	'reader/addBookMark',
 	async data => {
 		const response = await ReaderService.addBookMark(data)
-		console.log('response', response.data)
-		return response.data
+		return response.data?.data
+	}
+)
+
+export const deleteBookMark = createAsyncThunk(
+	'reader/deleteBookMark',
+	async id => {
+		const response = await ReaderService.deleteBookMark(id)
+		return id
+	}
+)
+
+export const getSettings = createAsyncThunk(
+	'reader/getSettings',
+	async () => {
+		const response = await ReaderService.getSettings()
+		return response.data?.data
 	}
 )
 
@@ -81,18 +94,21 @@ export const readerSlice = createSlice({
 		}
 	},
 	extraReducers: {
-		[getBookMarks.pending]: state => {
-			state.isLoading = true
-		},
 		[getBookMarks.fulfilled]: (state, action) => {
 			state.bookMarks = action.payload
-			state.isError = false
-			state.isLoading = false
 		},
-		[getBookMarks.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
-		}
+
+		[addBookMark.fulfilled]: (state, action) => {
+			state.bookMarks.push(action.payload)
+		},
+
+		[deleteBookMark.fulfilled]: (state, action) => {
+			state.bookMarks = state.bookMarks.filter(i => i?.id !== action.payload)
+		},
+
+		[getSettings.fulfilled]: (state, action) => {
+			state.settings = action.payload
+		},
 	}
 });
 

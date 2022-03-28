@@ -14,7 +14,7 @@ import PlayerVolume from "../shared/icons/playerVolume";
 import classNames from "classnames";
 import Close from "../shared/icons/close";
 import {useDispatch, useSelector} from "react-redux";
-import {togglePlayer} from "../../store/commonSlice";
+import {setPlayerVisibility} from "../../store/commonSlice";
 import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
 
@@ -65,7 +65,7 @@ const AudioPlayer = () => {
   const closePlayer = () => {
     setSettings({...settings, playing: false})
     setIsClosed(true)
-    setTimeout(() => dispatch(togglePlayer(false)), 300)    
+    setTimeout(() => dispatch(setPlayerVisibility(false)), 300)
   }
 
   return (

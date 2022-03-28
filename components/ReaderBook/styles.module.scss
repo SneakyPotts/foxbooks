@@ -277,7 +277,7 @@
   bottom: initial;
   transform: translateY(0);
   width: 279px;
-  animation: dropDown2 0.2s !important;
+  animation: dropDown2 0.2s;
 }
 
 @keyframes dropDown2 {
@@ -547,6 +547,33 @@
   }
 }
 // end ADD QUOT ==================================
+
+.popup {
+  &List {
+    margin-top: 30px;
+
+    &Item {
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--controls-color);
+      color: var(--text-color);
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.markListItem {
+  font-size: 14px;
+  line-height: 140%;
+  cursor: pointer;
+}
+.empty {
+  color: var(--text-color);
+  text-align: center;
+  margin: 40px 0 20px;
+}
 
 @media screen and (max-width: 1200px) {
   .editPopup {

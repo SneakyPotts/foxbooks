@@ -2,18 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/components/ReaderBook/MarksPopup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioPlayer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/NewPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingNotification/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/EditPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/EditPopup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/DrawerPopup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ReaderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ReaderService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/commonSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commonSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/readerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/readerSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/Holders" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/ReaderBook" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,11 +68,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\components\ReaderBook" />
       <recent name="E:\Frontend\projects\library-next\components\Holders" />
       <recent name="E:\Frontend\projects\library-next\components\Support" />
       <recent name="E:\Frontend\projects\library-next\components\CommentForm" />
       <recent name="E:\Frontend\projects\library-next\store" />
-      <recent name="E:\Frontend\projects\library-next\http" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Frontend\projects\library-next\public" />
@@ -137,6 +143,9 @@
       <workItem from="1647940169621" duration="586000" />
       <workItem from="1648031350227" duration="1149000" />
       <workItem from="1648033020016" duration="14916000" />
+      <workItem from="1648464946527" duration="60000" />
+      <workItem from="1648465092846" duration="6432000" />
+      <workItem from="1648474362378" duration="15104000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
@@ -432,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647884568425</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="responsive">
+      <created>1648472169637</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1648472169637</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,7 +520,8 @@
     <MESSAGE value="comments" />
     <MESSAGE value="selections page" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="responsive" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

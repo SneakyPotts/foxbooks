@@ -33,6 +33,7 @@ const TextWithQoutes = () => {
 	const router = useRouter()
 	const article = useRef()
 
+	const { innerWidthWindow } = useSelector(state => state?.common)
 	const { book, settings, quotes } = useSelector(state => state?.reader)
 
 	const text = useMemo(() => {
@@ -151,30 +152,30 @@ const TextWithQoutes = () => {
 
 	const width = useMemo(() => {
 		switch (settings?.fieldSize ) {
-			case '0':
+			case 0:
 				return 672
-			case '1':
+			case 1:
 				return 732
-			case '2':
+			case 2:
 				return 792
-			case '3':
+			case 3:
 				return 852
-			case '4':
+			case 4:
 				return 912
 		}
 	}, [settings?.fieldSize])
 
 	const lineHeight = useMemo(() => {
 		switch (settings?.rowHeight  ) {
-			case '0':
+			case 0:
 				return 18
-			case '1':
+			case 1:
 				return 20
-			case '2':
+			case 2:
 				return 22
-			case '3':
+			case 3:
 				return 24
-			case '4':
+			case 4:
 				return 25
 		}
 	}, [settings?.rowHeight ])
@@ -183,7 +184,7 @@ const TextWithQoutes = () => {
 		addKey(article.current)
 
 		const sel = window.getSelection()
-    sel.removeAllRanges()
+    	sel.removeAllRanges()
 
 		if(quotes?.length) {
 			quotes?.forEach(i => {
@@ -226,7 +227,7 @@ const TextWithQoutes = () => {
 					maxWidth: settings?.isTwoColumns ? '100%' : width + 'px',
 					lineHeight: lineHeight + 'px',
 					textAlign: settings?.isCenterAlignment ? 'justify' : 'left',
-					columnCount: settings?.isTwoColumns ? 2 : 1,
+					columnCount: settings?.isTwoColumns && innerWidthWindow ? 2 : 1,
 					columnGap: settings?.isTwoColumns ? '104px' : 0
 				}}
 			>

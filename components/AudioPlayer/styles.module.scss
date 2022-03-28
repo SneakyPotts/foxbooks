@@ -351,3 +351,15 @@
     display: none;
   }
 }
+
+@media screen and (max-height: 800px) and (max-width: 1023px){
+  .wrapper {
+    padding-top: 100px;
+  }
+
+  .preview {
+     > span {
+       width: 200px !important;
+     }
+  }
+}

@@ -18,10 +18,22 @@ export default class ReaderService {
 		return api.post(`${API_URL}/bookmarks`, {book_id, page_id})
 	}
 
+	static async deleteBookMark(id) {
+		return api.delete(`${API_URL}/bookmarks/${id}`)
+	}
+
 	static async getBookQuotes({id, my, search}) {
 		return api.get(`${API_URL}/quotes?bookId=${id}
 			${my && `&myQuotes=${my}`}
 			${search && `&search=${search}`}
 		`)
+	}
+
+	static async getSettings() {
+		return api.get(`${API_URL}/reading_settings`)
+	}
+
+	static async updateSettings(data) {
+		return api.put(`${API_URL}/reading_settings`, data)
 	}
 }
