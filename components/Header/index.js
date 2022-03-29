@@ -40,7 +40,10 @@ const Header = () => {
   }
 
   const hideAuthPopup = () => {
-    router.push(router.pathname)
+    const { email, token } = router.query;
+
+    (email || token) && router.push(router.pathname, null, {scroll: false})
+
     setTimeout(() => {
       dispatch(setAuthPopupVisibility(false))
     }, 0)
@@ -125,6 +128,10 @@ const Header = () => {
   const showOnlyMenu = useMemo(() => {
     if(innerWidthWindow <= 768 && router.pathname.includes('mybooks')) {
       return !headerIsVisible
+    } else if (router.pathname.includes('selections') && router.query.id && innerWidthWindow <= 768) {
+      return true
+    } else if (router.pathname.includes('mybooks/selection') && router.query.id && innerWidthWindow <= 768) {
+      return true
     } else {
       return false
     }

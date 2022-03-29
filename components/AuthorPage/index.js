@@ -13,6 +13,8 @@ import classnames from 'classnames';
 import st from './author.module.scss';
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {useRouter} from "next/router";
+import Button from "../shared/common/Button/Button";
+import CompilationItem from "../CompilationItem";
 
 const AuthorPage = () => {
   const dispatch = useDispatch()
@@ -55,32 +57,27 @@ const AuthorPage = () => {
 
       <div className={st.wrapper}>
         <div className={st.centralBlock}>
-          <div className={st.wrapper}>
-            <div className={st.filters}>
-              <div className={st.authorImg}>
-                <Image
-                  src={author?.avatar || '/preview.jpg'}
-                  width={180}
-                  height={275}
-                  alt=""
-                />
-              </div>
+          <div className={st.authorWrapper}>
+            <div className={st.authorImg}>
+              <Image
+                src={author?.avatar || '/preview.jpg'}
+                width={180}
+                height={275}
+                alt=""
+              />
             </div>
             <div className={st.authorInfo}>
               <h1 className={st.authorInfoName}>{author?.author}</h1>
               <p className={st.authorInfoCount}>
                 <span>{author?.books_count}</span> книг
               </p>
-              <button
-                className={st.authorInfoBtn}
-                onClick={handleClick}
-              >
-                {isFavorite ? (
-                  <span>В моих книгах</span>
-                ) : (
-                  <span>Добавить в избранное</span>
-                )}
-              </button>
+            </div>
+            <div className={st.authorDescr}>
+              <Button
+                classNames={st.authorInfoBtn}
+                text={isFavorite ? 'В моих книгах' : 'Добавить в избранное'}
+                click={handleClick}
+              />
               <p
                 className={classnames(st.authorBiography, {
                   [st.authorBiographyHide]: !showMore,
@@ -103,6 +100,7 @@ const AuthorPage = () => {
               }
             </div>
           </div>
+
           <div className={st.wrapperMain}>
             <Categories />
 
@@ -114,8 +112,8 @@ const AuthorPage = () => {
                     className={st.series}
                   >
                     <Link href={`/series?id=${i?.id}`}>
-                      <a>
-                        <h2 className={st.seriesTitle}>Серия книг: {i?.series}</h2>
+                      <a className={classnames('title', st.seriesTitle)}>
+                        Серия книг: {i?.series}
                       </a>
                     </Link>
                     <ul className={st.seriesList}>
@@ -139,7 +137,7 @@ const AuthorPage = () => {
 
               {author?.books?.length ? 
                 <div className={st.selection}>
-                  <h2 className={st.selectionTitle}>Книги вне серий</h2>
+                  <h2 className={classnames('title', st.selectionTitle)}>Книги вне серий</h2>
                   <ul className={st.selectionList}>
                     {author?.books?.map(i => (
                       <li
@@ -160,7 +158,7 @@ const AuthorPage = () => {
 
               {author?.audio_books?.length ? 
                 <div className={st.selection}>
-                  <h2 className={st.selectionTitle}>Аудиокниги автора</h2>
+                  <h2 className={classnames('title', st.seriesTitle)}>Аудиокниги автора</h2>
                   <ul className={st.selectionList}>
                     {author?.audio_books?.map(i => (
                       <li
@@ -184,31 +182,39 @@ const AuthorPage = () => {
                 <div className={st.compil}>
                   <ShowAll title="Подборки" url="/selections" />
                   <div className={st.compilBlock}>
-                    {author?.compilation?.map(i => (
-                      <div key={i?.id}>
-                        <div className={st.compilBookCover}>
-                          <Image
-                            src="/horizontalBookCovers/bookCover2.png"
-                            width={180}
-                            height={108}
-                            alt=""
-                          />
-                          <div className={st.compilBookCoverStat}>
-                            <span>15</span>
-                            <span>книг</span>
-                          </div>
-                        </div>
-                        <h4 className={st.compilBookTitle}>{i?.title}</h4>
-                      </div>
-                    ))}
+                    {author?.compilation?.map(i =>
+                      <CompilationItem
+                        key={i?.id}
+                        data={i}
+                        path={`/selections/${i?.id}`}
+                        isMini
+                      />
+                    //   (
+                    //   <div key={i?.id}>
+                    //     <div className={st.compilBookCover}>
+                    //       <Image
+                    //         src="/horizontalBookCovers/bookCover2.png"
+                    //         width={180}
+                    //         height={108}
+                    //         alt=""
+                    //       />
+                    //       <div className={st.compilBookCoverStat}>
+                    //         <span>15</span>
+                    //         <span>книг</span>
+                    //       </div>
+                    //     </div>
+                    //     <h4 className={st.compilBookTitle}>{i?.title}</h4>
+                    //   </div>
+                    // )
+                    )}
                   </div>
                 </div> : null
               }
 
               <div className={st.selection}>
                 <Link href="/reviews">
-                  <a>
-                    <h2 className={st.seriesTitle}>Рецензии</h2>
+                  <a className={classnames('title', st.seriesTitle)}>
+                    Рецензии
                   </a>
                 </Link>
                 <div className={st.reviewBlock}>
@@ -219,8 +225,8 @@ const AuthorPage = () => {
 
               <div className={classnames(st.selection, st.quotes)}>
                 <Link href="/quotes">
-                  <a>
-                    <h2 className={st.seriesTitle}>Цитаты</h2>
+                  <a className={classnames('title', st.seriesTitle)}>
+                    Цитаты
                   </a>
                 </Link>
                 <div className={st.reviewBlock}>
@@ -257,6 +263,7 @@ const AuthorPage = () => {
             </div>
           </div>
         </div>
+
         <div className={st.advertisingBlok}>
           <img src="/banner.png" alt="" className={st.banner} />
           <img src="/banner.png" alt="" className={st.banner} />

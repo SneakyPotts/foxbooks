@@ -188,38 +188,24 @@
   display: none;
 }
 .dotsIcon {
-  position: absolute;
+  position: absolute !important;
   top: 2px;
   right: 2px;
-  display: flex;
-  width: 20px;
-  height: 20px;
-  border-radius: 4.16667px;
-  border: 1px solid $color-star-border;
-  cursor: pointer;
-  transition: .15s;
 }
 .dotsIcon:hover {
   border-color: $text-hover;
 }
 .optionWindow {
-  position: absolute;
-  top: 44px;
-  right: 0;
   font-size: 14px;
   line-height: 1.43;
-  width: 237px;
-  height: 120px;
-  padding: 30px 20px;
   color: $color-second;
-  background: $color-categories-btn;
-  box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
-  border-radius: 10px;
   stroke: $color-third;
 }
 .optionRead {
   display: flex;
   margin-bottom: 20px;
+  transition: .15s;
+  white-space: nowrap;
 }
 .optionRead:hover {
   cursor: pointer;
@@ -233,6 +219,8 @@
 }
 .optionDelete {
   display: flex;
+  transition: .15s;
+  white-space: nowrap;
 }
 .optionDelete:hover {
   cursor: pointer;

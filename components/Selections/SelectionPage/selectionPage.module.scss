@@ -1,86 +1,77 @@
 @import 'styles/variables.scss';
 
-.selectionCover {
-  min-width: 100%;
-  min-height: 581px;
-  padding: 60px 0;
-  margin-bottom: 60px;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  text-align: center;
-
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ),
-    url(../../../public/selectionCover.png);
-}
-
-.selectionTitle {
-  font-family: 'Merriweather', serif;
-  font-size: 28px;
-  line-height: 1.25;
-  margin-top: 213px;
-  color: $color-categories-btn;
-}
-.selectionBtn {
-  font-size: 14px;
-  line-height: 1.43;
-  width: 200px;
-  height: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 173px;
-  color: $color-categories-btn;
-  background: $text-hover;
-  border-radius: 5px;
-}
-.selectionBtnAdded {
-  background-color: $color-bg-icon;
+.added {
+  background: $color-bg-icon;
   color: $color-main;
+
+  &:hover {
+    background: $color-star-border;
+    color: $color-main;
+  }
 }
+
+.respBtn {
+  display: none;
+  margin: 0;
+}
+
 .selection {
-  color: $color-second;
-
-  &About {
+  &Container {
+    padding-bottom: 60px;
+  }
+  &Text {
     font-size: 16px;
-    line-height: 1.375;
+    line-height: 140%;
+    color: $color-second;
     max-width: 587px;
-    margin: 40px 0;
+    margin-bottom: 40px;
   }
-
-  &BooksAmount {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &BooksCount {
-    font-family: 'Merriweather', serif;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 1.25;
-    margin-bottom: 5px;
-  }
-
-  &BooksItems {
-    font-size: 14px;
-    line-height: 1.43;
-  }
-
-  &Books {
+  &Grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 180px);
     grid-column-gap: 24px;
     grid-row-gap: 40px;
-    max-width: 996px;
-    margin-bottom: 60px;
+  }
+}
 
-    &Item {
-      max-width: 180px;
+@media screen and (max-width: 1023px) {
+  .selection {
+    &Grid {
+      grid-template-columns: repeat(4, 180px);
     }
+  }
+}
+
+@media screen and (max-width: 823px) {
+  .selection {
+    &Grid {
+      grid-template-columns: repeat(3, 180px);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .respBtn {
+    display: block;
+    margin: 0;
+  }
+  .selection {
+    &Text {
+      font-size: 14px;
+      line-height: 140%;
+      max-width: 100%;
+      margin: 30px 0;
+    }
+    &Grid {
+      grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+      grid-column-gap: 10px;
+      grid-row-gap: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .respBtn {
+    width: 100%;
   }
 }

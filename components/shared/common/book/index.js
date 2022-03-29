@@ -17,6 +17,7 @@ import Eye from '../../icons/eye';
 
 import {audioBook, deleteBookFromFavorite, setBookStatus} from '../../../../store/bookSlice';
 import Delete from "../../../../public/delete.svg";
+import DotsDropdown from "../../../DotsDropdown";
 
 const Book = ({
   audio,
@@ -37,7 +38,6 @@ const Book = ({
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const [changeIcon, setChangeIcon] = useState(false);
-  const [options, setOptions] = useState(false);
 
   const bookLinkClick = () => {
     if (audio) {
@@ -61,7 +61,6 @@ const Book = ({
       value: 2,
       type
     }))
-    setOptions(false)
   }
 
   const deleteFromFavorite = () => {
@@ -69,13 +68,8 @@ const Book = ({
       id: book?.id,
       type
     }))
-    setOptions(false)
     setChangeIcon(false)
   }
-
-  const checkOptions = () => {
-    setOptions(!options);
-  };
 
   return (
     <div
@@ -253,37 +247,33 @@ const Book = ({
               <AddToBooks />
             </span>
 
-            {changeIcon && (
-              <span
-                className={classnames(st.dotsIcon)}
-                onClick={checkOptions}
+            {changeIcon &&
+              <DotsDropdown
+                isSmall
+                externalClass={st.dotsIcon}
               >
-                <HorizontalDots />
-              </span>
-            )}
-
-            {options && (
-              <div className={st.optionWindow}>
-                <p
-                  className={st.optionRead}
-                  onClick={handleReadClick}
-                >
-                  <span className={st.optionIcon}>
-                    <OpenBook />
-                  </span>
-                  {type === 'books' ? 'Читаю' : 'Слушаю'}
-                </p>
-                <p
-                  className={st.optionDelete}
-                  onClick={deleteFromFavorite}
-                >
-                  <span className={st.optionIcon}>
-                    <Basket />
-                  </span>
-                  Удалить из моих книг
-                </p>
-              </div>
-            )}
+                <div className={st.optionWindow}>
+                  <p
+                    className={st.optionRead}
+                    onClick={handleReadClick}
+                  >
+                    <span className={st.optionIcon}>
+                      <OpenBook />
+                    </span>
+                    {type === 'books' ? 'Читаю' : 'Слушаю'}
+                  </p>
+                  <p
+                    className={st.optionDelete}
+                    onClick={deleteFromFavorite}
+                  >
+                    <span className={st.optionIcon}>
+                      <Basket />
+                    </span>
+                    Удалить из моих книг
+                  </p>
+                </div>
+              </DotsDropdown>
+            }
           </div>
         )}
 

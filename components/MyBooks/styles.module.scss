@@ -245,6 +245,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    text-align: center;
+    width: 80%;
   }
 
   &Controls {
@@ -421,8 +423,10 @@
   .createBtn {
     margin-top: 30px;
   }
-
   .compilation {
+    &Container {
+      position: relative;
+    }
     &Wrapper {
       height: 200px;
       margin-bottom: 30px;
@@ -475,7 +479,7 @@
     &BookCount {
       margin: 0;
       position: absolute;
-      top: 123px;
+      top: -100px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;

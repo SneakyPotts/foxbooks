@@ -1,9 +1,15 @@
-import { useState } from 'react';
-import classnames from 'classnames';
+import React, { useState } from 'react';
 import Book from '../../shared/common/book';
+import styles from "../../MyBooks/styles.module.scss";
 import st from './selectionPage.module.scss';
+import Image from "next/image";
+import BackBtn from "../../shared/common/BackBtn";
+import Button from "../../shared/common/Button/Button";
+import classNames from "classnames";
+import {useRouter} from "next/router";
 
 const SelectionPage = () => {
+	const router = useRouter()
 	const data = [
 		{ id: '0' },
 		{ id: '1' },
@@ -26,48 +32,71 @@ const SelectionPage = () => {
 		{ id: '18' },
 		{ id: '19' },
 	];
-	const [add, setAdd] = useState(false);
-	const addSelect = () => {
-		setAdd(true);
-	};
+
+	const [isAdded, setIsAdded] = useState(false)
+
+	const toggleHandler = () => {
+		setIsAdded(prev => !prev)
+	}
 
 	return (
-		<div>
-			<div className={st.selectionCover}>
-				<h1 className={st.selectionTitle}>
-          Что читать на карантине? Лучшие книги о любви 2021
-				</h1>
-				<button
-					className={classnames(st.selectionBtn, {
-						[st.selectionBtnAdded]: add,
-					})}
-					onClick={addSelect}
-				>
-					{!add ? (
-						<span>Добавить подборку</span>
-					) : (
-						<span>Подборка добавлена</span>
-					)}
-				</button>
-			</div>
-			<div className={classnames(st.selection, 'container')}>
-				<div className={st.selectionBooksAmount}>
-					<span className={st.selectionBooksCount}>60</span>
-					<span className={st.selectionBooksItems}>Книг</span>
+		<>
+			<div className={styles.compilationWrapper}>
+				<Image
+					src={'/selectionCover.png'}
+					layout={'fill'}
+					placeholder="blur"
+					blurDataURL="/blur.webp"
+					className={styles.compilationImg}
+				/>
+
+				<BackBtn
+					onClick={() => router.back()}
+					externalClass={styles.compilationBack}
+				/>
+				<h2 className={styles.compilationTitle}>Что читать на карантине? Лучшие книги о любви 2021</h2>
+				<div className={styles.compilationControls}>
+					<Button
+						text={isAdded ? 'Подборка добавлена' : 'Добавить подборку'}
+						classNames={classNames(styles.compilationBtn, {
+							[st.added]: isAdded
+						})}
+						click={toggleHandler}
+					/>
 				</div>
-				<p className={st.selectionAbout}>
+			</div>
+			<div className={classNames("container", styles.compilationContainer, st.selectionContainer)}>
+        <span
+					className={classNames(styles.compilationBookCount, {
+						[styles.empty]: 1
+					})}
+				>
+          <span>0</span>
+          Книги
+        </span>
+
+				<Button
+					text={isAdded ? 'Подборка добавлена' : 'Добавить подборку'}
+					classNames={classNames(styles.compilationBtn, st.respBtn, {
+						[st.added]: isAdded
+					})}
+					click={toggleHandler}
+				/>
+
+				<p className={st.selectionText}>
           Young Adult без рамок и границ. Никаких неудобных вопросов и запретных
           тем. Только искренние эмоции.
 				</p>
-				<div className={st.selectionBooks}>
-					{data.map(it => (
-						<div key={it.id} className={st.selectionBooksItem}>
-							<Book />
-						</div>
-					))}
+
+				<div className={st.selectionGrid}>
+					{data.map(i =>
+						<Book
+							key={i?.id}
+						/>
+					)}
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

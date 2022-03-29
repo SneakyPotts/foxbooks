@@ -114,7 +114,7 @@ const MySelection = () => {
           </DotsDropdown>
         </div>
       </div>
-      <div className="container">
+      <div className={classNames("container", styles.compilationContainer)}>
         <span
           className={classNames(styles.compilationBookCount, {
             [styles.empty]: 1

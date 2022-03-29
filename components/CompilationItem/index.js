@@ -7,17 +7,18 @@ import Link from 'next/link'
 const CompilationItem = ({
   data,
   isFull,
-  path
+  path,
+  isMini
 }) => {
   return (
-    <div>
+    <div className={styles.mini}>
       <Link href={path}>
         <a className={styles.selectionLink}>
           <Image
             src={"/horizontalBookCovers/bookCover1.png"}
             alt=""
-            width={384}
-            height={183}
+            width={isMini ? 180 : 384}
+            height={isMini ? 108 : 183}
             layout={'responsive'}
             className={styles.selectionImg}
             placeholder="blur"

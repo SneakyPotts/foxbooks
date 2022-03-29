@@ -1,5 +1,23 @@
 @import "styles/variables";
 
+.mini {
+  .selection {
+    &Count {
+      font-size: 12px;
+      line-height: 14px;
+      padding: 5px 10px;
+    }
+    &Link {
+      margin-bottom: 10px;
+    }
+    &Title {
+      font-size: 14px;
+      line-height: 16px;
+      margin-top: 10px;
+    }
+  }
+}
+
 .selection {
   &Link {
     position: relative;
@@ -10,6 +28,7 @@
   &Img {
     border-radius: 5px;
     overflow: hidden;
+    object-fit: cover;
   }
 
   &Count {

@@ -21,7 +21,7 @@ const SeriesPage = () => {
 				]}
 			/>
 
-			<h2 className={st.title}>Серия “{series?.series}”</h2>
+			<h1 className="title">Серия “{series?.series}”</h1>
 			<p className={st.amount}>{series?.books_count} книг</p>
 
 			<div className={st.wrapper}>
