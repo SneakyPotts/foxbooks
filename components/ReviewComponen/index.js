@@ -12,7 +12,6 @@ const ReviewComponent = ({ it, idx }) => {
 	const [showMoreMap, setShowMoreMap] = useState(null);
 
 	const route = useRouter();
-	console.log(route.pathname === '/reviews' && '1111');
 
 	const onShowMore = idx => {
 		setShowMoreMap(prev => {

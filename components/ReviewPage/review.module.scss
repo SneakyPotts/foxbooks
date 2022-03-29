@@ -3,28 +3,19 @@
 .wrapper {
   display: flex;
 }
-.title {
-  font-family: 'Merriweather', serif;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 30px;
-  margin-bottom: 20px;
-  color: $color-main;
-}
 .amount {
   font-size: 16px;
   line-height: 18px;
   color: $color-third;
+  margin: 20px 0 40px;
 }
-.reviewsList {
-  margin-top: 40px;
-  margin-right: 24px;
-  max-width: 792px;
+.main {
+  flex: 1;
+  padding-bottom: 60px;
 }
-
 .advertisingBlok {
   display: block;
-  // margin-left: 24px;
+   margin-left: 24px;
   max-width: 384px;
   min-height: 1104px;
 }
@@ -33,4 +24,10 @@
 }
 .banner:not(:last-child) {
   margin-bottom: 40px;
+}
+
+@media screen and (max-width: 992px) {
+  .advertisingBlok {
+    display: none;
+  }
 }

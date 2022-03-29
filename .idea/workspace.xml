@@ -3,21 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AuthorPage/author.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorPage/author.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AuthorPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CompilationItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CompilationItem/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SeriesPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SeriesPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SeriesPage/series.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/SeriesPage/series.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/selections/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/[id]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewComponen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewComponen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewPage/review.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewPage/review.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/quotes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/quotes/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,6 +134,7 @@
       <workItem from="1648465092846" duration="6432000" />
       <workItem from="1648474362378" duration="15104000" />
       <workItem from="1648539566828" duration="20941000" />
+      <workItem from="1648566880061" duration="2403000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>
