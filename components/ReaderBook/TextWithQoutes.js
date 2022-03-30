@@ -139,15 +139,33 @@ const TextWithQoutes = () => {
 	const shareQuot = () => {
 		let query = quotes?.find(i => i.id === markId) || rangeObj
 
-		let str = `http://localhost:3000${router.asPath}
-			&startKey=${query.startKey}
-			&startTextIndex=${query.startTextIndex}
-			&startOffset=${query.startOffset}
-			&endKey=${query.endKey}
-			&endTextIndex=${query.endTextIndex}
-			&endOffset=${query.endOffset}`
+		let str = `http://localhost:3000${router.asPath}&startKey=${query.startKey}&startTextIndex=${query.startTextIndex}&startOffset=${query.startOffset}&endKey=${query.endKey}&endTextIndex=${query.endTextIndex}&endOffset=${query.endOffset}`
 
 		navigator.clipboard.writeText(str)
+	}
+
+	const changePage = ev => {
+		if(innerWidthWindow <= 768) {
+			const x = ev?.pageX || ev?.changedTouches[0]?.pageX
+			const w = innerWidthWindow / 3
+
+			const pages = book?.pages_count
+			const currentPage = Number(router.query.page)
+
+			if(x > 0 && x <= w) {
+				if(currentPage - 1 >= 1) {
+					console.log('prev')
+					router.push({ query: { ...router.query, page: currentPage - 1 } })
+					window.scrollTo({top: 0, behavior: 'smooth'})
+				}
+			} else if((innerWidthWindow - x) < w) {
+				if(currentPage + 1 <= pages) {
+					console.log('next')
+					router.push({ query: { ...router.query, page: currentPage + 1 } })
+					window.scrollTo({top: 0, behavior: 'smooth'})
+				}
+			}
+		}
 	}
 
 	const width = useMemo(() => {
@@ -230,6 +248,7 @@ const TextWithQoutes = () => {
 					columnCount: settings?.isTwoColumns && innerWidthWindow ? 2 : 1,
 					columnGap: settings?.isTwoColumns ? '104px' : 0
 				}}
+				onClick={changePage}
 			>
 				{text}
 
