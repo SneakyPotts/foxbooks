@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import ArrowAll from '../../../public/chevron-down.svg';
 import css from './categories.module.scss';
 import { useSelector } from 'react-redux';
 import {useRouter} from "next/router";
+import ShowAll from "../../shared/common/showAll/ShowAll";
+import React from "react";
 
 const Categories = () => {
 	const router = useRouter()
@@ -23,14 +24,10 @@ const Categories = () => {
 				))}
 			</ul>
 
-			<Link href="/categories">
-				<a className={css.all}>
-					<p className={css.textAll}>Все категории</p>
-					<span className={css.iconAll}>
-						<ArrowAll className={css.arrowAll} />
-					</span>
-				</a>
-			</Link>
+			<ShowAll
+				url={'/categories'}
+				arrowSecondary
+			/>
 		</div>
   );
 };

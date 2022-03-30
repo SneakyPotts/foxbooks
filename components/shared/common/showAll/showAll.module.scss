@@ -25,19 +25,37 @@
   white-space: nowrap;
   color: $color-main;
   stroke: $color-main;
+  transition: .15s;
 
   &:hover {
     cursor: pointer;
     color: $text-hover;
     stroke: $text-hover;
+
+    .iconAll {
+      stroke: $color-bg-icon;
+      background-color: $text-hover;
+    }
   }
 }
 .test {
   margin-left: 5px;
 }
-
-// @media (max-width: 1200px) {
-// }
+.iconAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: $color-bg-icon;
+  transition: .15s;
+  margin-left: 20px;
+}
+.arrowAll {
+  stroke-width: 2px;
+  transform: rotate(90deg);
+}
 @media (max-width: 768px) {
   .showAll {
     margin-bottom: 30px;

@@ -37,42 +37,9 @@
 .categ:not(:last-child) {
   margin-bottom: 10px;
 }
-.all {
-  font-size: 14px;
-  line-height: 1.43;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0;
-  margin-top: 22px;
-  text-decoration: none;
-  stroke: $color-main;
-}
-.all:hover .iconAll {
-  stroke: $color-bg-icon;
-  background-color: $text-hover;
-}
-.textAll {
-  color: $text-hover;
-}
-.iconAll {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: $color-bg-icon;
-}
-.arrowAll {
-  stroke-width: 2px;
-  transform: rotate(90deg);
-}
 
 @media (max-width: 1200px) {
   .categNav {
     display: none;
   }
-}
-@media (max-width: 768px) {
 }

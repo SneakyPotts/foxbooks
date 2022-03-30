@@ -1,0 +1,54 @@
+@import "styles/variables";
+
+.container {
+  margin: 60px auto 0;
+  padding-bottom: 60px;
+}
+
+.center {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.text {
+  &:first-of-type {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  span {
+    cursor: pointer;
+    color: $text-hover;
+    transition: .15s;
+
+    &:hover {
+      color: $accent-hover;
+    }
+  }
+}
+
+.grid {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  grid-column-gap: 24px;
+  grid-row-gap: 40px;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    margin: 30px auto 0;
+  }
+  .text {
+    font-size: 14px;
+    line-height: 140%;
+  }
+  .grid {
+    margin-top: 20px;
+    grid-column-gap: 10px;
+
+    & > div:nth-of-type(n + 4) {
+      display: none;
+    }
+  }
+}

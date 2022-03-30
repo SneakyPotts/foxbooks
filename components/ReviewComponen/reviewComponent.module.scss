@@ -4,32 +4,8 @@
   display: flex;
   margin-bottom: 40px;
 
-  &Book {
-    min-width: 129px;
-    margin-right: 24px;
-
-    &Raiting {
-      display: flex;
-      justify-content: space-between;
-
-      & span:not(:last-of-type) {
-        margin-right: 3px;
-      }
-    }
-
-    &Name {
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1.143;
-      margin: 10px 0;
-      color: $color-main;
-    }
-
-    &Autor {
-      font-size: 14px;
-      line-height: 1.43;
-      color: $color-second;
-    }
+  &Content {
+    margin-left: 24px;
   }
 
   &Date {
@@ -61,6 +37,13 @@
     overflow: hidden;
     margin-right: 10px;
   }
+
+  &Name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: $color-main;
+  }
 }
 .reviewRaiting {
   display: flex;
@@ -69,8 +52,9 @@
     margin-right: 10px;
   }
 
-  & span {
-    margin-right: 5px;
+  & > span {
+    margin-right: 10px;
+    color: $color-main;
   }
 }
 .reviewTitle {
@@ -109,4 +93,16 @@
 }
 .up {
   transform: rotate(0deg);
+}
+
+@media screen and (max-width: 768px) {
+  .review {
+    flex-direction: column;
+    margin-bottom: 60px;
+
+    &Content {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
 }

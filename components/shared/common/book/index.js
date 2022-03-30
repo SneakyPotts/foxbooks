@@ -30,7 +30,8 @@ const Book = ({
   count,
   type,
   withDelete,
-  onDelete
+  onDelete,
+  inReview
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const Book = ({
       className={classnames(classNames, st.book, {
         [st.container]: !flagSwitcher,
         [st.containerColumn]: flagSwitcher,
+        [st.inReview]: inReview
       })}
     >
       <div
@@ -115,7 +117,7 @@ const Book = ({
           />
         )}
 
-        {!flagSwitcher && <span className={st.bookCategorie}>
+        {!flagSwitcher && !inReview && <span className={st.bookCategorie}>
           {book?.book_genres?.length ? book?.book_genres[0]?.name : null}
           {book?.genre?.name || null}
         </span>}

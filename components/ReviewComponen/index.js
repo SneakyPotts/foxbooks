@@ -7,11 +7,19 @@ import Image from 'next/image';
 import Stars from '../shared/common/stars/Stars';
 import DropDownArrow from '../../public/chevron-down.svg';
 import st from './reviewComponent.module.scss';
+import styles from "../CommentForm/styles.module.scss";
+import AvatarWithLetter from "../shared/common/AvatarWithLetter";
+import moment from "moment";
+import Book from "../shared/common/book";
 
 const ReviewComponent = ({ it, idx }) => {
-	const [showMoreMap, setShowMoreMap] = useState(null);
-
 	const route = useRouter();
+
+	// const date = moment(data?.updated_at)
+	// 	.format('Do MMMM YYYY в HH:mm')
+	// 	.replace('-го', '')
+
+	const [showMoreMap, setShowMoreMap] = useState(null);
 
 	const onShowMore = idx => {
 		setShowMoreMap(prev => {
@@ -25,19 +33,11 @@ const ReviewComponent = ({ it, idx }) => {
 
 	return (
 		<div className={st.review}>
-			<div className={st.reviewBook}>
-				<Image src={it.img} width={129} height={195} />
-				<div className={st.reviewBookRaiting}>
-					<Stars value={it.raiting} />
-					<span>{it.raiting}</span>
-				</div>
-				<h4 className={st.reviewBookName}>Случайная вакансия</h4>
-				<Link href="/author">
-					<a>
-						<p className={st.reviewBookAuthor}>Джоан Роулинг</p>
-					</a>
-				</Link>
-			</div>
+			<Book
+				similar
+				inReview
+			/>
+
 			<div className={st.reviewContent}>
 				<div
 					className={classnames(st.reviewHead, {
@@ -46,27 +46,43 @@ const ReviewComponent = ({ it, idx }) => {
 				>
 					<div className={st.reviewer}>
 						<div className={st.reviewerImg}>
-							<Image
-								src="/horizontalBookCovers/bookCover1.png"
-								width={35}
-								height={35}
-								alt=""
-							/>
+							<div className={styles.avatar}>
+								{/*{profile?.avatar ? (*/}
+								{/*	<Image*/}
+								{/*		src={profile?.avatar}*/}
+								{/*		alt="Avatar"*/}
+								{/*		width="35"*/}
+								{/*		height="35"*/}
+								{/*		placeholder="blur"*/}
+								{/*		blurDataURL="/blur.webp"*/}
+								{/*	/>*/}
+								{/*) : (*/}
+									<AvatarWithLetter
+										letter={
+											// profile?.nickname?.slice(0, 1) ||
+											// profile?.name?.slice(0, 1) ||
+											'П'
+										}
+										width={35}
+										// id={profile?.id}
+										id={20}
+										isProfile
+									/>
+								{/*)}*/}
+							</div>
 						</div>
-						<h3 className={st.reviewerName}>Ник</h3>
+						<span className={st.reviewerName}>Ник</span>
 					</div>
 					<p className={st.reviewDate}>20 октября 2021 в 14:05</p>
 					{route.pathname === '/reviews' && (
 						<div className={st.reviewRaiting}>
-							<p>Оценил книгу</p> <Stars />
+							<span>Оценил книгу</span> <Stars />
 						</div>
 					)}
 				</div>
 				{route.pathname === '/reviews' ? (
 					<div>
-						<h3 className={st.reviewTitle}>
-              Гарри получает похвалы за то, что нарушает запреты
-						</h3>
+						<h3 className={st.reviewTitle}>Гарри получает похвалы за то, что нарушает запреты</h3>
 						<p
 							className={classnames(st.reviewText, {
 								[st.reviewTextHide]: showMoreMap !== idx,
