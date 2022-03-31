@@ -1,9 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-	selections: [],
-	isLoading: false,
-	isError: false
+	selections: []
 };
 
 export const selectionSlice = createSlice({

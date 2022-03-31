@@ -24,6 +24,28 @@ export const addComment = createAsyncThunk(
 	}
 )
 
+export const addLikeToComment = createAsyncThunk(
+	'comments/addLikeToComment',
+	async data => {
+		const response = await CommentsService.addLikeToComment(data)
+		return {
+			id: data?.id,
+			data: response.data.data
+		}
+	}
+)
+
+export const deleteLikeFromComment = createAsyncThunk(
+	'comments/deleteLikeFromComment',
+	async data => {
+		const response = await CommentsService.deleteLikeFromComment(data)
+		return {
+			id: data?.id,
+			data: response.data.data
+		}
+	}
+)
+
 export const comments = createSlice({
 	name: 'comments',
 	initialState,
@@ -39,6 +61,18 @@ export const comments = createSlice({
 			if(!parentId) {
 				state.bookComments.data.push(data)
 			}
+		},
+
+
+		[addLikeToComment.fulfilled]: (state, action) => {
+			const index = state.bookComments.data.findIndex(i => i?.id === action.payload.id)
+			state.bookComments.data[index].likes_count += 1
+		},
+
+
+		[deleteLikeFromComment.fulfilled]: (state, action) => {
+			const index = state.bookComments.data.findIndex(i => i?.id === action.payload.id)
+			state.bookComments.data[index].likes_count -= 1
 		},
 	}
 });

@@ -10,9 +10,10 @@ import 'moment/locale/ru'
 import moment from "moment";
 import CommentForm from "../../CommentForm";
 import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
-import {addComment} from "../../../store/commentsSlice";
+import {addComment, addLikeToComment, deleteLikeFromComment} from "../../../store/commentsSlice";
 import {useRouter} from "next/router";
 import CommentsService from "../../../http/CommentsService";
+import {setAuthPopupVisibility} from "../../../store/commonSlice";
 
 const CommentItem = ({
   data,
@@ -35,8 +36,10 @@ const CommentItem = ({
   const [replies, setReplies] = useState({});
   const [page, setPage] = useState(1);
   const [isShowMore, setIsShowMore] = useState(false);
+  const [isLiked, setIsLiked] = useState(false)
 
   const { innerWidthWindow } = useSelector(state => state.common)
+  const { isAuth } = useSelector(state => state.auth)
 
   const sortedReplies = useMemo(() => {
     return [...new Set(replies?.data)].sort((a, b) => moment(a?.updated_at).diff(moment(b?.updated_at)))
@@ -101,6 +104,29 @@ const CommentItem = ({
       } else {
         setReplies(response?.data?.data)
       }
+    }
+  }
+
+  const likeHandler = () => {
+    if(isAuth) {
+      const type = router.query?.type === 'books' ?
+        'book_comment' :
+        'audio_book_comment'
+
+      const obj = {
+        id: data?.id,
+        type
+      }
+
+      if(isLiked) {
+        dispatch(deleteLikeFromComment(obj))
+        setIsLiked(false)
+      } else {
+        dispatch(addLikeToComment(obj))
+        setIsLiked(true)
+      }
+    } else {
+      dispatch(setAuthPopupVisibility(true))
     }
   }
 
@@ -187,7 +213,12 @@ const CommentItem = ({
         }
 
         <div className={styles.reviewStatistic}>
-          <span className={styles.reviewIcon}>
+          <span
+            className={classnames(styles.reviewIcon, {
+              [styles.active]: isLiked
+            })}
+            onClick={likeHandler}
+          >
             <Like />
           </span>
           <span className={styles.reviewLike}>{data?.likes_count || 0}</span>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import Popular from "../Filter/Popular/Popular";
 import ClickableSearch from "../ClickableSearch";
@@ -12,28 +12,30 @@ import CompilationItem from "../CompilationItem";
 import {useRouter} from "next/router";
 import Button from "../shared/common/Button/Button";
 import CreateCompilationPopup from "../CreateCompilationPopup";
+import SelectionService from "../../http/SelectionService";
+import Loader from "../shared/common/Loader";
 
 const filter1 = [
   {
     title: 'Все',
-    defaultValue: 1,
+    defaultValue: 3,
     options: [
-      {id: 1, title: 'Все', value: 1},
-      {id: 2, title: 'Мои', value: 2},
-      {id: 3, title: 'Fox подборки', value: 3}
+      {id: 1, title: 'Все', value: 3},
+      {id: 2, title: 'Мои', value: 1},
+      {id: 3, title: 'Fox подборки', value: 2}
     ],
-    queryName: 'which',
+    queryName: 'compType',
   },
 ];
 
 const filter2 = [
   {
     title: 'Популярные',
-    defaultValue: 3,
+    defaultValue: 1,
     options: [
-      {id: 1, title: 'Популярные', value: 3},
-      {id: 2, title: 'По дате добавления', value: 2},
-      {id: 3, title: 'По алфавиту', value: 4}
+      {id: 1, title: 'Популярные', value: 1},
+      {id: 2, title: 'По дате добавления', value: 1},
+      {id: 3, title: 'По алфавиту', value: 2}
     ],
     queryName: 'sortBy',
   },
@@ -43,12 +45,30 @@ const Selections = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const isMy = router.query.which == 2
+  const isMy = router.query.compType == 1
 
   const {innerWidthWindow} = useSelector(state => state.common)
 
   const [stateIndex, setStateIndex] = useState(null)
   const [createPopupIsVisible, setCreatePopupIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
+  const [data, setData] = useState([])
+
+  const onChange = value => {
+    router.push(
+      { query: { ...router.query, ['letter']: encodeURI(value) } },
+      null,
+      { scroll: false }
+    );
+  }
+
+  useEffect(() => {
+    (async () => {
+      const response = await SelectionService.getUserCompilations(router.query)
+      setData(response.data.data.data)
+      setIsLoading(false)
+    })()
+  }, [router.query])
 
   return <>
     {innerWidthWindow > 768 &&
@@ -73,7 +93,7 @@ const Selections = () => {
             click={() => setCreatePopupIsVisible(true)}
           /> :
           <div>
-            <ClickableSearch queryName={'search'}/>
+            <ClickableSearch queryName={'letter'}/>
             {filter2?.map((i, index) => (
               <Popular
                 key={index + 2}
@@ -102,7 +122,7 @@ const Selections = () => {
           <SearchInput
             placeholder={'Искать книгу'}
             externalClass={styles.mobSearch}
-            // onChange={}
+            onChange={onChange}
           />
         </div>
 
@@ -148,20 +168,24 @@ const Selections = () => {
       </div>
     }
 
-    <div className={classNames(styles.grid, styles.compilationsGrid)}>
-      <div className={styles.gridItem}>
-        <CompilationItem path={'/mybooks/selection/1'} />
-      </div>
-      <div className={styles.gridItem}>
-        <CompilationItem path={'/mybooks/selection/1'} />
-      </div>
-      <div className={styles.gridItem}>
-        <CompilationItem path={'/mybooks/selection/1'} />
-      </div>
-      <div className={styles.gridItem}>
-        <CompilationItem path={'/mybooks/selection/1'} />
-      </div>
-    </div>
+    {isLoading ?
+      <p className={classNames("empty", styles.empty)}>
+        <Loader/>
+      </p> :
+      data?.length ?
+        <div className={classNames(styles.grid, styles.compilationsGrid)}>
+          {data.map(i =>
+            <div className={styles.gridItem}>
+              <CompilationItem
+                key={i?.id}
+                data={i}
+                path={`/mybooks/selection/${i?.id}`}
+              />
+            </div>
+          )}
+        </div> :
+        <p className={classNames("empty", styles.empty)}>Пусто</p>
+    }
 
     {createPopupIsVisible &&
       <CreateCompilationPopup

@@ -37,4 +37,12 @@ export default class CommentsService {
 	static async addComment(data) {
 		return api.post(`${API_URL}/comments`,data)
 	}
+
+	static async addLikeToComment(data) {
+		return api.post(`${API_URL}/likes`, data)
+	}
+
+	static async deleteLikeFromComment(data) {
+		return api.delete(`${API_URL}/likes`, data)
+	}
 }

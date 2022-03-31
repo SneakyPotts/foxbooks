@@ -108,9 +108,11 @@
   display: flex;
   align-items: center;
   margin-right: 10px;
+  cursor: pointer;
+  transition: .15s;
 
-  &:hover {
-    cursor: pointer;
+  &:hover,
+  &.active {
     stroke: $text-hover;
   }
 }

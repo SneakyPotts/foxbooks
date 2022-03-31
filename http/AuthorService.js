@@ -29,4 +29,8 @@ export default class AuthorService {
 	static async deleteAuthorFromFavorite(id) {
 		return api.delete(`${API_URL}/profile/lists/authors?author_id=${id}`, { author_id: id })
 	}
+
+	static async getUserAuthors({letter = ''}) {
+		return api.get(`${API_URL}/profile/lists/authors${letter && `?letter=${letter}`}`)
+	}
 }

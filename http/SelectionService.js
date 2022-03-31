@@ -20,4 +20,12 @@ export default class SelectionService {
 	static async createCompilation(data) {
 		return api.post(`${API_URL}/compilations`, data)
 	}
+
+	static async getUserCompilations({
+		sortBy = '1',
+		compType = '3',
+		letter = ''
+	}) {
+		return api.get(`${API_URL}/compilations/user?sortBy=${sortBy}&compType=${compType}${letter && `&letter=${letter}`}`)
+	}
 }
