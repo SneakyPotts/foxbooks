@@ -14,19 +14,7 @@ const initialState = {
 		rowHeight: 2,
 		isCenterAlignment: false
 	},
-	quotes: [
-		// {
-		// 	startKey:"4",
-		// 	startTextIndex:0,
-		// 	endKey:"6",
-		// 	endTextIndex:0,
-		// 	startOffset:529,
-		// 	endOffset:85,
-		// 	text:"рат, ибо любил он братьев своих и отца своего и не хотел раздор вносить. Ответил сыновьям своим царь: «Вижу, мудры вы стали, ибо разные вы, как ветер небе",
-		// 	id:1,
-		// 	color:"#FED3CA",
-		// }
-	]
+	quotes: []
 };
 
 export const getBookMarks = createAsyncThunk(
@@ -61,13 +49,18 @@ export const getSettings = createAsyncThunk(
 	}
 )
 
+export const addBookQuote = createAsyncThunk(
+	'reader/addBookQuote',
+	async data => {
+		const response = await ReaderService.addBookQuote(data)
+		return data
+	}
+)
+
 export const readerSlice = createSlice({
 	name: 'reader',
 	initialState,
 	reducers: {
-		addQuotes: (state, action) => {
-			state.quotes.push(action.payload)
-		},
 		editQuotes: (state, action) => {
 			const quotes = state.quotes.map(i => {
 				return i?.id == action.payload.id ?
@@ -109,11 +102,14 @@ export const readerSlice = createSlice({
 		[getSettings.fulfilled]: (state, action) => {
 			state.settings = action.payload
 		},
+
+		[addBookQuote.fulfilled]: (state, action) => {
+			state.quotes.push(action.payload)
+		},
 	}
 });
 
 export const {
-	addQuotes,
 	editQuotes,
 	deleteQuotes,
 	setReaderBook, 

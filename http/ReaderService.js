@@ -22,6 +22,23 @@ export default class ReaderService {
 		return api.delete(`${API_URL}/bookmarks/${id}`)
 	}
 
+	static async addBookQuote(data) {
+		console.log('data',data)
+		const obj = {
+			book_id: data?.book_id,
+			page_id: data?.page_id,
+			text: data?.text,
+			color: data?.color,
+			start_key: data?.startKey,
+			start_text_index: data?.startTextIndex,
+			start_offset: data?.startOffset,
+			end_key: data?.endKey,
+			end_text_index: data?.endTextIndex,
+			end_offset: data?.endOffset
+		}
+		return api.post(`${API_URL}/quotes`, obj)
+	}
+
 	static async getBookQuotes({id, my, search}) {
 		return api.get(`${API_URL}/quotes?bookId=${id}
 			${my && `&myQuotes=${my}`}

@@ -5,7 +5,7 @@ import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import AddQout from "./AddQout";
 import { highlight, rangeToObj, objToRange, addKey } from './../../utils'
 import styles from './styles.module.scss'
-import { addQuotes, deleteQuotes, editQuotes } from '../../store/readerSlice';
+import {addBookQuote, deleteQuotes, editQuotes} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -66,7 +66,7 @@ const TextWithQoutes = () => {
 			const obj = rangeToObj(range)
 			setRangeObj(obj)
 
-			const err = quotes?.some(() => !obj.startKey || !obj.endKey)
+			const err = quotes?.some(() => !obj.startKey || !obj.endKey) || text?.length > 300
 			setIsError(err);
 
 			const x = ev?.pageX || ev?.changedTouches[0]?.pageX 
@@ -92,6 +92,8 @@ const TextWithQoutes = () => {
 		const id = quotes?.length + 1
 		const quot = {
 			...rangeObj,
+			book_id: book?.pages[0]?.book_id,
+			page_id: book?.pages[0]?.id,
 			text: selectedText,
 			id,
 			color
@@ -105,7 +107,7 @@ const TextWithQoutes = () => {
 		sel.addRange(objToRange(rangeObj))
 		highlight(id, color, handleMarkClick)
 
-		dispatch(addQuotes(quot))
+		dispatch(addBookQuote(quot))
 
 		sel.removeAllRanges()
 		setToolsIsVisible(false)
