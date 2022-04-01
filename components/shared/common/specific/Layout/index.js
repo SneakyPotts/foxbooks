@@ -116,7 +116,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className={st.wrapper}>
-      <Header/>
+      <Header socket={socket} />
       {children}
       {playerIsVisible && <AudioPlayer />}
       {innerWidthWindow <= 768 && position > 500 && (

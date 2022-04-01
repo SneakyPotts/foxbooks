@@ -59,6 +59,9 @@ export const profileSlice = createSlice({
 		},
 		addNotification: (state, action) => {
 			state.notifications.push(action.payload)
+		},
+		clearNotification: state => {
+			state.notifications = []
 		}
 	},
 	extraReducers: {
@@ -82,7 +85,8 @@ export const profileSlice = createSlice({
 export const {
 	setProfile,
 	setNewNotification,
-	addNotification
+	addNotification,
+	clearNotification
 } = profileSlice.actions;
 
 export default profileSlice.reducer;

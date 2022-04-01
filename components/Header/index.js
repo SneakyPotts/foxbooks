@@ -19,8 +19,9 @@ import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
 import {search} from "../../store/searchSlice";
 import SearchInput from "../SearchInput";
 import Notification from "../Notification";
+import {clearNotification, setProfile} from "../../store/profileSlice";
 
-const Header = () => {
+const Header = ({ socket }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -67,6 +68,9 @@ const Header = () => {
     dispatch(setAuth(false));
     Cookies.remove('token');
     localStorage.removeItem('avatarColor');
+    dispatch(setProfile([]))
+    dispatch(clearNotification())
+    socket.disconnect()
   };
 
   const popularBooks = [
