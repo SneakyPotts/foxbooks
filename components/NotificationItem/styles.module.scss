@@ -1,0 +1,60 @@
+@import "styles/variables";
+
+.wrapper {
+  display: flex;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #D5D5D5;
+  margin-bottom: 15px;
+
+  &:last-of-type {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.content {
+  margin-left: 10px;
+}
+
+.sender {
+  &Avatar {
+    width: 35px;
+  }
+  &Name {
+    font-size: 12px;
+    line-height: 15px;
+    color: $color-main;
+  }
+}
+
+.text {
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-third;
+}
+
+.bookLink {
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-main;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
+}
+
+.time {
+  font-size: 12px;
+  line-height: 14px;
+  color: $color-third;
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+  }
+}

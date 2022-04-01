@@ -12,11 +12,15 @@ import LogoMobileActive from '../../shared/icons/logoMobileActive';
 import User from '../../shared/icons/user';
 import css from './menu.module.scss';
 import classNames from "classnames";
+import Image from "next/image";
+import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
+import React from "react";
 
 const Navigation = ({ setModal, bottomOnly }) => {
   const router = useRouter();
   const { isAuth } = useSelector(state => state.auth);
   const { innerWidthWindow } = useSelector(state => state.common);
+  const { profile, newNotification } = useSelector(state => state.profile);
 
   return (
     <nav className={css.navigation}>
@@ -27,9 +31,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
               router.pathname === 'books' ? css.active : css.link
             }`}
           >
-            <div className={css.icon}>
+            <span className={css.icon}>
               <Book />
-            </div>
+            </span>
             Книги
           </a>
         </Link>
@@ -41,9 +45,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
                 : css.link
             }`}
           >
-            <div className={css.icon}>
+            <span className={css.icon}>
               <Headphones />
-            </div>
+            </span>
 
             <span>Аудиокниги</span>
           </a>
@@ -56,9 +60,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
                 : css.link
             }`}
           >
-            <div className={css.icon}>
+            <span className={css.icon}>
               <Selections />
-            </div>
+            </span>
             Подборки
           </a>
         </Link>
@@ -68,9 +72,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
               router.pathname === '/new' ? css.active : css.link
             } ${innerWidthWindow <= 768 && css.noSpace}`}
           >
-            <div className={css.icon}>
+            <span className={css.icon}>
               <Fire />
-            </div>
+            </span>
             Новинки
           </a>
         </Link>
@@ -97,9 +101,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
               router.pathname === '/categories' ? css.activeStroke : css.link
             }`}
           >
-            <div className={css.icon}>
+            <span className={css.icon}>
               <Grid />
-            </div>
+            </span>
             Категории
           </a>
         </Link>
@@ -116,9 +120,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
               router.pathname.includes('/mybooks') ? css.activeStroke : css.link
             }`}
           >
-            <div className={css.icon}>
+            <span className={css.icon}>
               <MyBooks />
-            </div>
+            </span>
             Мои книги
           </a>
         </Link>
@@ -135,10 +139,36 @@ const Navigation = ({ setModal, bottomOnly }) => {
               router.pathname.includes('/settings') ? css.activeStroke : css.link
             }`}
           >
-            <div className={css.icon}>
-              <User />
-            </div>
+            <span className={classNames(css.icon, {
+              [css.rounded]: isAuth
+            })}>
+              {isAuth ?
+                profile?.avatar ? (
+                  <Image
+                    src={profile?.avatar}
+                    alt="Avatar"
+                    width="24"
+                    height="24"
+                    placeholder="blur"
+                    blurDataURL="/blur.webp"
+                  />
+                ) : (
+                  <AvatarWithLetter
+                    letter={
+                      profile?.nickname?.slice(0, 1) ||
+                      profile?.name?.slice(0, 1) ||
+                      'П'
+                    }
+                    width={24}
+                    id={profile?.id}
+                    isProfile
+                  />
+                ) :
+                <User />
+              }
+            </span>
             Профиль
+            {isAuth && newNotification && <span className={css.indicator}/>}
           </a>
         </Link>
       </div>

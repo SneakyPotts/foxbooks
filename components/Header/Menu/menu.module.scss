@@ -87,6 +87,25 @@
   width: 20px;
   height: 20px;
   margin-right: 5px;
+
+  &.rounded {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 0 4px !important;
+  }
+
+}
+.indicator {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #E92A20;
+  position: absolute;
+  top: -5px;
+  right: 10px;
 }
 .dovnMenu {
   display: flex;

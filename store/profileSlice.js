@@ -3,8 +3,8 @@ import ProfileService from "../http/ProfileService";
 
 const initialState = {
 	profile: [],
-	isLoading: false,
-	isError: false
+	notifications: [],
+	newNotification: false
 };
 
 export const getProfile = createAsyncThunk(
@@ -53,77 +53,36 @@ export const profileSlice = createSlice({
 	reducers: {
 		setProfile: (state, action) => {
 			state.profile = action.payload
+		},
+		setNewNotification: (state, action) => {
+			state.newNotification = action.payload
+		},
+		addNotification: (state, action) => {
+			state.notifications.push(action.payload)
 		}
 	},
 	extraReducers: {
-		[getProfile.pending]: state => {
-			state.isLoading = true
-		},
 		[getProfile.fulfilled]: (state, action) => {
 			state.profile = action.payload.data
-			state.isError = false
-			state.isLoading = false
-		},
-		[getProfile.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
 		},
 
 
-		[updateProfile.pending]: state => {
-			state.isLoading = true
-		},
 		[updateProfile.fulfilled]: (state, action) => {
 			state.profile = action.payload.data
-			state.isError = false
-			state.isLoading = false
-		},
-		[updateProfile.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
 		},
 
 
-		[resetPassword.pending]: state => {
-			state.isLoading = true
-		},
-		[resetPassword.fulfilled]: state => {
-			state.isError = false
-			state.isLoading = false
-		},
-		[resetPassword.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
-		},
-
-
-		[setNotificationSettings.pending]: state => {
-			state.isLoading = true
-		},
-		[setNotificationSettings.fulfilled]: state => {
-			state.isError = false
-			state.isLoading = false
-		},
-		[setNotificationSettings.rejected]: state => {
-			state.isError = true
-			state.isLoading = false
-		},
-
-
-		[deleteUser.pending]: state => {
-			state.isLoading = true
-		},
 		[deleteUser.fulfilled]: state => {
 			state.isError = false
-			state.isLoading = false
-		},
-		[deleteUser.rejected]: state => {
-			state.isError = true
 			state.isLoading = false
 		},
 	}
 });
 
-export const { setProfile } = profileSlice.actions;
+export const {
+	setProfile,
+	setNewNotification,
+	addNotification
+} = profileSlice.actions;
 
 export default profileSlice.reducer;

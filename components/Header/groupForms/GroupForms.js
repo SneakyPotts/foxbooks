@@ -27,6 +27,8 @@ const GroupForms = ({modal,setModal}) => {
 	const [flagNewPass, setFlagNewPass] = useState(false)
 	const [flagNewPassMessage, setFlagNewPassMessage] = useState(false)
 
+	//TODO modalType=registry
+
 	const { innerWidthWindow } = useSelector(state => state.common)
 	const { isError } = useSelector(state => state.auth)
 

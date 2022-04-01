@@ -1,0 +1,89 @@
+@import 'styles/variables';
+
+.wrapper {
+  position: relative;
+  margin-right: 30px;
+}
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+
+  &:hover {
+    svg path {
+      stroke: $text-hover;
+    }
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+
+    path {
+      transition: .15s;
+    }
+  }
+}
+
+.iconIndicator {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #E92A20;
+  border: 2px solid #fff;
+  position: absolute;
+  top: -7px;
+  right: -2px;
+}
+
+.dropdown {
+  padding: 30px;
+  background: #FFFFFF;
+  border: 1px solid #F1F1F1;
+  box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
+  border-radius: 10px;
+  position: absolute;
+  bottom: -28px;
+  right: -70px;
+  transform: translateY(100%);
+  z-index: 1;
+  max-width: 330px;
+  width: max-content;
+  max-height: 286px;
+  overflow: auto;
+  scrollbar-color: $color-third #fff;
+  scrollbar-width: thin;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-third;
+    border-radius: 33px;
+  }
+}
+
+.empty {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .dropdown {
+    display: none;
+  }
+
+}

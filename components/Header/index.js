@@ -18,6 +18,7 @@ import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
 import {search} from "../../store/searchSlice";
 import SearchInput from "../SearchInput";
+import Notification from "../Notification";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -132,6 +133,8 @@ const Header = () => {
       return true
     } else if (router.pathname.includes('mybooks/selection') && router.query.id && innerWidthWindow <= 768) {
       return true
+    } else if (innerWidthWindow <= 768 && !headerIsVisible && router.pathname.includes('settings')) {
+      return true
     } else {
       return false
     }
@@ -164,7 +167,7 @@ const Header = () => {
             />
 
             <div className={st.menu}>
-              <FiBell className={st.iconBell}/>
+              <Notification />
               {isAuth ? (
                 <div
                   onClick={() => setFlagSettings(!flagSettings)}

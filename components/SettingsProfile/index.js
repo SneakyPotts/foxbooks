@@ -9,7 +9,6 @@ import SettingNotification from "./settingNotification";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import Arrow from './../../public/chevron-right.svg'
-import {FiBell} from "react-icons/fi";
 import Setting from "../shared/icons/setting";
 import Image from "next/image";
 import AvatarWithLetter from "../shared/common/AvatarWithLetter";
@@ -17,6 +16,10 @@ import Exit from "../shared/icons/exit";
 import {setAuth} from "../../store/authSlice";
 import Cookies from "js-cookie";
 import {useRouter} from "next/router";
+import Notification from "../Notification";
+import {setHeaderVisibility} from "../../store/commonSlice";
+import BackBtn from "../shared/common/BackBtn";
+import NotificationItem from "../NotificationItem";
 
 const settingMenu = [
 	{text: 'Редактировать профиль', icon: <Pencil/>},
@@ -29,17 +32,28 @@ const SettingsProfile = () => {
 	const router = useRouter()
 
 	const { innerWidthWindow } = useSelector(state => state.common)
-	const {profile} = useSelector(state => state.profile);
+	const { profile, notifications } = useSelector(state => state.profile);
 
 	const [currentIndexMenu, setCurrentIndexMenu] = useState(0)
 	const [menuIsVisible, setMenuIsVisible] = useState(false);
 	const [settingsIsVisible, setSettingsIsVisible] = useState(false);
+	const [notificationsIsVisible, setNotificationsIsVisible] = useState(false);
 
 	const handleMenuItemClick = index => {
 		setCurrentIndexMenu(index)
-		if(innerWidthWindow <= 480) {
+		if(innerWidthWindow <= 768) {
 			setMenuIsVisible(false)
 		}
+	}
+
+	const handleNotificationClick = () => {
+		dispatch(setHeaderVisibility(false))
+		setNotificationsIsVisible(true)
+	}
+
+	const backHandler = () => {
+		dispatch(setHeaderVisibility(true))
+		setNotificationsIsVisible(false)
 	}
 
 	const logOut = () => {
@@ -53,14 +67,14 @@ const SettingsProfile = () => {
 
 	return (
 		<div className={classNames('container', styles.container)}>
-			{(innerWidthWindow <= 480 && !settingsIsVisible) &&
+			{(innerWidthWindow <= 768 && !settingsIsVisible && !notificationsIsVisible) &&
 				<>
 					<h1 className={'title'}>Профиль</h1>
 
 					<div className={styles.settingFlex}>
-						<span className={styles.settingBell}>
-							<FiBell/>
-						</span>
+						<Notification
+							callback={handleNotificationClick}
+						/>
 						<span
 							className={styles.settingControl}
 							onClick={() => setSettingsIsVisible(true)}
@@ -109,7 +123,7 @@ const SettingsProfile = () => {
 				</>
 			}
 
-			{(innerWidthWindow > 480 || settingsIsVisible) &&
+			{(innerWidthWindow > 768 || (settingsIsVisible && !notificationsIsVisible)) &&
 				<div className={styles.setting}>
 					<div className={styles.settingMenu}>
 						<h1 className={'title'}>Настройки профиля</h1>
@@ -129,7 +143,7 @@ const SettingsProfile = () => {
 									<Arrow/>
 								</span>
 							</div>
-							{(innerWidthWindow > 480 || menuIsVisible) &&
+							{(innerWidthWindow > 768 || menuIsVisible) &&
 							<ul>
 								{settingMenu.map((r, index) => {
 									return (
@@ -162,12 +176,33 @@ const SettingsProfile = () => {
 								<>
 									<h2 className={'title'}>Настройки пароля</h2>
 									<SettingPassword/>
-								</>}
+								</>
+						}
 					</div>
 				</div>
 			}
+
+			{(innerWidthWindow <= 768 && !settingsIsVisible && notificationsIsVisible) &&
+				<>
+					<BackBtn
+						onClick={backHandler}
+						externalClass={styles.backBtn}
+					/>
+					<h1 className={classNames("title", styles.notificationTitle)}>Уведомления</h1>
+
+					{notifications?.length ?
+						notifications.map(i =>
+							<NotificationItem
+								key={i?.createdAt}
+								data={i}
+							/>
+						) :
+						<p className={classNames("empty", styles.empty)}>Уведомлений нет</p>
+					}
+				</>
+			}
 		</div>
 	)
-}
+};
 
 export default SettingsProfile;
