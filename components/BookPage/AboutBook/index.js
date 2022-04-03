@@ -15,10 +15,10 @@ import Headphones from '../../shared/icons/headphones';
 import Eye from '../../shared/icons/eye';
 import st from './aboutBook.module.scss';
 import DotsDropdown from "../../DotsDropdown";
-import {setPlayerVisibility} from "../../../store/commonSlice";
+import {setAuthPopupVisibility, setPlayerVisibility} from "../../../store/commonSlice";
 
 
-const AboutBook = ({ book, audioFlag }) => {
+const AboutBook = ({ book, audioFlag, showMyComp }) => {
   const dataOptions = [
     {
       icon: <BookMark />,
@@ -57,6 +57,7 @@ const AboutBook = ({ book, audioFlag }) => {
   const [showPopUp, setShowPopUp] = useState(false);
 
   const { innerWidthWindow } = useSelector(state => state.common);
+  const { isAuth } = useSelector(state => state.auth);
 
   const showPopup = (res, condition) => {
     if (condition && res.meta.requestStatus === 'fulfilled') {
@@ -66,6 +67,11 @@ const AboutBook = ({ book, audioFlag }) => {
   };
 
   const handleClick = el => {
+    if(!isAuth) {
+      dispatch(setAuthPopupVisibility(true))
+      return
+    }
+
     if(el?.isEdit) {
       dispatch(setBookStatus({
         id: router.query?.id,
@@ -78,11 +84,15 @@ const AboutBook = ({ book, audioFlag }) => {
         type
       }))
     } else {
-
+      showMyComp()
     }
   };
 
   const setRating = value => {
+    if(!isAuth) {
+      dispatch(setAuthPopupVisibility(true))
+      return
+    }
     dispatch(setBookRating({ id: router.query.id, value }));
   };
 
@@ -210,9 +220,16 @@ const AboutBook = ({ book, audioFlag }) => {
                     Начать слушать
                   </button>
                 ) : (
-                  <Link href={`/reader?id=${book?.id}&page=1`}>
-                    <a className={st.readButton}>Читать</a>
-                  </Link>
+                  !isAuth ?
+                    <button
+                      className={st.readButton}
+                      onClick={() => dispatch(setAuthPopupVisibility(true))}
+                    >
+                      Читать
+                    </button> :
+                    <Link href={`/reader?id=${book?.id}&page=1`}>
+                      <a className={st.readButton}>Читать</a>
+                    </Link>
                 )}
                 <DotsDropdown>
                   {dataOptions.map(i => (

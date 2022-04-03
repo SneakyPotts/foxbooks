@@ -50,6 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 .title {
   transition: .15s;
@@ -57,6 +58,9 @@
   &:hover {
     color: $text-hover;
   }
+}
+.showMore {
+  display: none !important;
 }
 .btn {
   font-size: 14px;
@@ -71,10 +75,13 @@
     background: $accent-hover;
   }
 }
+.slider {
+  position: relative;
+}
 .advertisingBlock {
   display: block;
   margin-left: 24px;
-  margin-top: 172px;
+  margin-top: 181px;
   min-width: 180px;
   min-height: 1104px;
 
@@ -105,12 +112,19 @@
 }
 
 @media screen and (max-width: 768px) {
+  .titleFlex {
+    margin-bottom: 30px;
+  }
   .title {
     font-size: 20px;
     line-height: 25px;
   }
   .btn {
     display: none;
+  }
+  .showMore {
+    display: flex !important;
+    margin-top: 30px;
   }
 }
 

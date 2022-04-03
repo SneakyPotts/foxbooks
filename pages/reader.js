@@ -24,7 +24,19 @@ const Reader = (props) => {
 
 export default Reader;
 
-export async function getServerSideProps ({ query }) {
+export async function getServerSideProps ({ req, query }) {
+  const { cookies } = req
+  const token = cookies.token
+
+  if(!token) {
+    return {
+      redirect: {
+        destination: `/book/${query?.id}?type=books`,
+        parameter: false
+      }
+    }
+  }
+
 	const bookRead = await ReaderService.getBookRead(query?.id, query?.page)
 	const bookChapters = await ReaderService.getBookChapters(query?.id)
 

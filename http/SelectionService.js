@@ -28,4 +28,8 @@ export default class SelectionService {
 	}) {
 		return api.get(`${API_URL}/compilations/user?sortBy=${sortBy}&compType=${compType}${letter && `&letter=${letter}`}`)
 	}
+
+	static async addBookToCompilation(data) {
+		return api.post(`${API_URL}/compilations/books`, data)
+	}
 }

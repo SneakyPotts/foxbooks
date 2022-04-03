@@ -72,11 +72,6 @@
     color: $color-main;
     display: block;
     margin-top: 13px;
-    transition: .15s;
-
-    &:hover {
-      color: $text-hover
-    }
   }
 
   &Text {
@@ -88,6 +83,14 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
     margin-top: 13px;
+  }
+}
+
+a.selectionTitle {
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover
   }
 }
 

@@ -2,7 +2,7 @@ import SelectionPage from '../../../components/Selections/SelectionPage';
 import SelectionService from '../../../http/SelectionService';
 
 const Selection = props => {
-  // console.log('selectionsById', props.selectionsById)
+  console.log('selectionsById', props.selectionsById)
 
   return (
     <div>
@@ -14,11 +14,11 @@ const Selection = props => {
 export default Selection;
 
 export async function getServerSideProps({ query }) {
-  // const selectionsById = await SelectionService.getSelectionsById(query);
+  const selectionsById = await SelectionService.getSelectionsById(query);
 
   return {
     props: {
-      // selectionsById: selectionsById?.data?.data,
+      selectionsById: selectionsById?.data?.data,
     },
   };
 }

@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/components/BookPage/AddToMyCompilation/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/BookPage/AddToMyCompilation/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/Layout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/profileSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/profileSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CompilationItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CompilationItem/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/selections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selections.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/SelectionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/SelectionService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/selections/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/[id]/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +69,7 @@
       <recent name="E:\Frontend\projects\library-next\store" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\components\BookPage" />
       <recent name="E:\Frontend\projects\library-next\public" />
     </key>
   </component>
@@ -138,6 +147,7 @@
       <workItem from="1648714025440" duration="13425000" />
       <workItem from="1648800616041" duration="8642000" />
       <workItem from="1648815435351" duration="11420000" />
+      <workItem from="1648979829714" duration="11342000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

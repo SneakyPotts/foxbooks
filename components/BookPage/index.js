@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Image from 'next/image';
 import { Navigation } from 'swiper/core';
@@ -18,7 +18,7 @@ import st from './bookpage.module.scss';
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
-import CommentForm from "../CommentForm";
+import AddToMyCompilation from "./AddToMyCompilation";
 
 const BookPage = () => {
   const dispatch = useDispatch()
@@ -28,8 +28,9 @@ const BookPage = () => {
   const audioFlag = router.query?.type === 'audioBooks';
 
   const { book, booksByAuthor, audioBooksByAuthor } = useSelector(state => state.book);
-  const { reviews } = useSelector(state => state.review);
   const { innerWidthWindow } = useSelector(state => state.common);
+
+  const [myCopmIsVisible, setMyCopmIsVisible] = useState(false)
 
   const changeSlidesPerView = () => {
     if (innerWidthWindow < 500) return 1;
@@ -45,6 +46,14 @@ const BookPage = () => {
       dispatch(getAudioBooksByAuthor(authorId))
     }
   }, [])
+
+  if(myCopmIsVisible) {
+    return (
+      <AddToMyCompilation
+        onClose={() => setMyCopmIsVisible(false)}
+      />
+    )
+  }
 
   return (
     <div className={'container'}>
@@ -66,6 +75,7 @@ const BookPage = () => {
           <AboutBook
             book={book}
             audioFlag={audioFlag}
+            showMyComp={() => setMyCopmIsVisible(true)}
           />
 
           <div

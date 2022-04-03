@@ -12,8 +12,23 @@ const CompilationItem = ({
 }) => {
   return (
     <div className={styles.mini}>
-      <Link href={path}>
-        <a className={styles.selectionLink}>
+      {path ?
+        <Link href={path}>
+          <a className={styles.selectionLink}>
+            <Image
+              src={"/horizontalBookCovers/bookCover1.png"}
+              alt=""
+              width={isMini ? 180 : 384}
+              height={isMini ? 108 : 183}
+              layout={'responsive'}
+              className={styles.selectionImg}
+              placeholder="blur"
+              blurDataURL="/blur.webp"
+            />
+            <span className={styles.selectionCount}>{data?.books_count} книг</span>
+          </a>
+        </Link> :
+        <div className={styles.selectionLink}>
           <Image
             src={"/horizontalBookCovers/bookCover1.png"}
             alt=""
@@ -25,8 +40,8 @@ const CompilationItem = ({
             blurDataURL="/blur.webp"
           />
           <span className={styles.selectionCount}>{data?.books_count} книг</span>
-        </a>
-      </Link>
+        </div>
+      }
 
       {isFull &&
         <div className={styles.selectionDate}>
@@ -38,9 +53,12 @@ const CompilationItem = ({
         </div>
       }
 
-      <Link href={path}>
-        <a className={styles.selectionTitle}>{data?.title}</a>
-      </Link>
+      {path ?
+        <Link href={path}>
+          <a className={styles.selectionTitle}>{data?.title}</a>
+        </Link> :
+        <p className={styles.selectionTitle}>{data?.title}</p>
+      }
 
       {isFull &&
         <p className={styles.selectionText}>
