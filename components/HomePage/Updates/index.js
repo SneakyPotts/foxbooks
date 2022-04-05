@@ -1,5 +1,6 @@
 import Date from './Date/Date';
 import css from './updates.module.css';
+import classNames from "classnames";
 const data = [
   {
     date: 'Вчера',
@@ -32,7 +33,7 @@ const data = [
 const BookUpdates = () => {
   return (
     <div className={css.container}>
-      <h2 className={css.title}>Горячие обновления книг</h2>
+      <h2 className={classNames("title", css.title)}>Горячие обновления книг</h2>
       {data.map(({ date, books }) => (
         <Date key={date} date={date} books={books} className={css.date} />
       ))}

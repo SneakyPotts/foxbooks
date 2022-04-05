@@ -1,24 +1,24 @@
 import SelectionPage from '../../../components/Selections/SelectionPage';
 import SelectionService from '../../../http/SelectionService';
+import {useDispatch} from "react-redux";
+import {setSelectionById} from "../../../store/selectionSlice";
 
 const Selection = props => {
-  console.log('selectionsById', props.selectionsById)
+  const dispatch = useDispatch()
 
-  return (
-    <div>
-      <SelectionPage />
-    </div>
-  );
+  dispatch(setSelectionById(props.selectionById))
+
+  return <SelectionPage />
 };
 
 export default Selection;
 
 export async function getServerSideProps({ query }) {
-  const selectionsById = await SelectionService.getSelectionsById(query);
+  const selectionById = await SelectionService.getSelectionById(query);
 
   return {
     props: {
-      selectionsById: selectionsById?.data?.data,
+      selectionById: selectionById?.data?.data,
     },
   };
 }

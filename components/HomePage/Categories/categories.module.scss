@@ -16,7 +16,6 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.13;
-  margin: 0;
   margin-bottom: 20px;
   color: $color-main;
 }
@@ -24,7 +23,12 @@
   font-size: 14px;
   line-height: 1.43;
   cursor: pointer;
-  transition: 0.15s;
+  margin-bottom: 10px;
+  transition: .15s;
+
+  &:last-of-type {
+    margin-bottom: 22px;
+  }
 
   &:hover {
     color: $text-hover;
@@ -33,9 +37,6 @@
   a {
     display: block;
   }
-}
-.categ:not(:last-child) {
-  margin-bottom: 10px;
 }
 
 @media (max-width: 1200px) {

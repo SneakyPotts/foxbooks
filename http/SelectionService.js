@@ -13,8 +13,8 @@ export default class SelectionService {
 		`)
 	}
 
-	static async getSelectionsById({id}) {
-		return axios.get(`${API_URL}/public/compilations/${id}`)
+	static async getSelectionById({id}) {
+		return axios.get(`${API_URL}/compilations/${id}`)
 	}
 
 	static async createCompilation(data) {
@@ -31,5 +31,9 @@ export default class SelectionService {
 
 	static async addBookToCompilation(data) {
 		return api.post(`${API_URL}/compilations/books`, data)
+	}
+
+	static async deleteBookFromCompilation(data) {
+		return api.delete(`${API_URL}/compilations/books/delete`, data)
 	}
 }

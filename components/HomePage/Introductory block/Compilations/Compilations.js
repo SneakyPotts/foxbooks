@@ -10,15 +10,11 @@ import CompilationItem from "../../../CompilationItem";
 
 const Compilations = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
+  const { selections } = useSelector(state => state.selection);
 
-  const dataTest = [
-    { id: '0' },
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' },
-  ];
+  if(!selections?.length) {
+    return null
+  }
 
   return (
     <div className={styles.container}>
@@ -39,9 +35,12 @@ const Compilations = () => {
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={swiper => console.log(swiper)}
       >
-        {dataTest.map((r, i) =>
+        {selections.map((r, i) =>
           <SwiperSlide key={i}>
-            <CompilationItem isFull />
+            <CompilationItem
+              data={r}
+              isFull
+            />
           </SwiperSlide>
         )}
         <button className={classnames('prevArrow', styles.positionButton)}>

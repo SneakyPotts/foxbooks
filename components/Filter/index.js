@@ -14,8 +14,8 @@ const data = [
     defaultValue: 3,
     options: [
       { id: 1, title: 'Популярные', value: 3 },
-      { id: 2, title: 'Высокий рейтинг', value: 3 },
-      { id: 3, title: 'Много отзывов', value: 1 },
+      { id: 2, title: 'Высокий рейтинг', value: 5 },
+      { id: 3, title: 'Много отзывов', value: 4 },
       { id: 4, title: 'Сейчас читают', value: 2 },
     ],
     queryName: 'sortBy',

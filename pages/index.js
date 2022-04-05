@@ -1,19 +1,19 @@
 import Head from 'next/head';
 import Home from '../components/HomePage';
-import BookService from '../http/BookService';
 import { useDispatch } from 'react-redux';
 import {setBooks, setCategories, setDailyHotUpdates} from '../store/bookSlice';
-import CategoriesService from "../http/CategoriesService";
 import HomeService from "../http/HomeService";
+import {setSelections} from "../store/selectionSlice";
+import {setReviews} from "../store/reviewSlice";
 
 export default function App(props) {
   const dispatch = useDispatch();
 
-  console.log(props.data)
-
   dispatch(setCategories(props.categories));
   dispatch(setDailyHotUpdates(props.dailyHotUpdates));
-  // dispatch(setBooks(props.books));
+  dispatch(setBooks(props.books));
+  dispatch(setSelections(props.compilations));
+  dispatch(setReviews(props.reviews));
 
   return (
     <>
@@ -32,11 +32,11 @@ export default function App(props) {
   );
 }
 
-export async function getServerSideProps () {
+export async function getServerSideProps ({query}) {
 	// const { cookies } = req
 	// const token = cookies.token
 
-	const { data } = await HomeService.getHomeData()
+	const { data } = await HomeService.getHomeData(query)
 
 	// let profile = {}
 	//
@@ -46,9 +46,11 @@ export async function getServerSideProps () {
 
 	return {
 		props: {
-		  data: data?.data,
-			categories: data?.data?.genres?.original?.data,
-      dailyHotUpdates: data?.data?.dailyHotUpdates
+		  books: data?.data?.mainPageBookFilter,
+			categories: data?.data?.genres,
+      dailyHotUpdates: data?.data?.dailyHotUpdates,
+      compilations: data?.data?.compilations,
+      reviews: data?.data?.reviews,
 			// profile: profile?.data?.data || {}
 		}
 	}

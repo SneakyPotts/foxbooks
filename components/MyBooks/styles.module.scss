@@ -216,6 +216,9 @@
 }
 
 .compilation {
+  &Container {
+    margin-bottom: 60px;
+  }
   &Wrapper {
     height: 581px;
     position: relative;

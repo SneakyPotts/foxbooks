@@ -13,7 +13,7 @@ const ShowAll = ({
 }) => {
   return (
     <div className={classNames(st.showAll, externalClass)}>
-      {title && <h3 className={st.showAllTitle}>{title}</h3>}
+      {title && <h2 className={"title"}>{title}</h2>}
       <Link href={url}>
         <a className={st.showAllLink}>
           {text}

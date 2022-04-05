@@ -60,4 +60,8 @@ export default class BookService {
 	static async setBookRating({id, value}) {
 		return api.post(`${API_URL}/books/ratings`, {book_id: id, rating: value})
 	}
+
+	static async recommendBook(data) {
+		return api.post(`${API_URL}/users-recommend`, data)
+	}
 }

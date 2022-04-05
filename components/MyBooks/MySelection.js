@@ -21,6 +21,7 @@ import BackBtn from "../shared/common/BackBtn";
 import {useRouter} from "next/router";
 import CreateCompilationPopup from "../CreateCompilationPopup";
 import ChooseBookPopup from "./ChooseBookPopup";
+import SelectionService from "../../http/SelectionService";
 
 const filter1 = [
   {
@@ -55,14 +56,31 @@ const MySelection = () => {
 
   const [stateIndex, setStateIndex] = useState(null)
   const { innerWidthWindow } = useSelector(state => state.common)
+  const { selectionById } = useSelector(state => state.selection)
 
   const [choosePopupIsVisible, setChoosePopupIsVisible] = useState(false)
   const [createPopupIsVisible, setCreatePopupIsVisible] = useState(false)
   const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
   const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
+  const [bookId, setBookId] = useState(null)
+  const [bookType, setBookType] = useState(null)
+  const [bookTitle, setBookTitle] = useState(null)
 
-  const onDelete = id => {
+  const showDeletePopup = ({id, type, title}) => {
+    setBookId(id)
+    setBookType(type)
+    setBookTitle(title)
     setDeletePopupIsVisible(true)
+  }
+
+  const deleteHandler = () => {
+    SelectionService.deleteBookFromCompilation({
+      compilation_id: router.query?.id,
+      book_id: bookId,
+      book_type: bookType
+    }).then(() => {
+      setConfirmPopupIsVisible(true)
+    })
   }
 
   useLayoutEffect(() => {
@@ -75,6 +93,7 @@ const MySelection = () => {
     <>
       <div className={styles.compilationWrapper}>
         <Image
+          // src={selectionById?.compilation?.background}
           src={'/selectionCover.png'}
           layout={'fill'}
           placeholder="blur"
@@ -86,7 +105,7 @@ const MySelection = () => {
           onClick={() => router.push('/mybooks/selections')}
           externalClass={styles.compilationBack}
         />
-        <h2 className={styles.compilationTitle}>Дизайн</h2>
+        <h2 className={styles.compilationTitle}>{selectionById?.compilation?.title}</h2>
         <div className={styles.compilationControls}>
           <Button
             text={'Добавить книгу'}
@@ -106,7 +125,7 @@ const MySelection = () => {
 
             <div
               className={styles.controlsItem}
-              onClick={() => onDelete()}
+              onClick={() => showDeletePopup()}
             >
               <Bin />
               Удалить
@@ -120,7 +139,7 @@ const MySelection = () => {
             [styles.empty]: 1
           })}
         >
-          <span>0</span>
+          <span>{selectionById?.compilation?.generalBooksCount}</span>
           Книги
         </span>
 
@@ -160,14 +179,25 @@ const MySelection = () => {
           </div>
         }
 
-        <div className={styles.grid}>
-          <div className={styles.gridItem}>
-            <Book
-              withDelete
-              onDelete={onDelete}
-            />
-          </div>
-        </div>
+        {selectionById?.books?.data?.length ?
+          <div className={styles.grid}>
+            {selectionById?.books?.data?.map(i =>
+              <div
+                className={styles.gridItem}
+                key={i?.book_compilationable?.id}
+              >
+                <Book
+                  withDelete
+                  onDelete={() => showDeletePopup(i?.book_compilationable)}
+                  book={i?.book_compilationable}
+                  type={i?.book_compilationable?.type}
+                  audio={i?.book_compilationable?.type === 'audioBooks'}
+                />
+              </div>
+            )}
+          </div> :
+          <p className="empty">Пусто</p>
+        }
 
         <Button
           text={'Добавить книгу'}
@@ -184,9 +214,9 @@ const MySelection = () => {
 
       {createPopupIsVisible &&
         <CreateCompilationPopup
-          image={'/selectionCover.png'}
-          title={'Дизайн'}
-          description={'text'}
+          image={'/selectionCover.png' || selectionById?.compilation?.background}
+          title={selectionById?.compilation?.title}
+          description={selectionById?.compilation?.description}
           onClose={() => setCreatePopupIsVisible(false)}
           isEdit
         />
@@ -199,14 +229,13 @@ const MySelection = () => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Удалить книгу</h3>
             <p className={styles.modalText}>
-              Вы действительно хотите удалить книгу “Колдовской мир. Тройка
-              мечей”?
+              Вы действительно хотите удалить книгу “{bookTitle}”?
             </p>
             <ButtonGroup
               text="Удалить"
               typeButton="button"
               ClassName={styles.modalBtns}
-              click={() => setConfirmPopupIsVisible(true)}
+              click={deleteHandler}
               cancelClick={() => setDeletePopupIsVisible(false)}
             />
           </div>
@@ -231,6 +260,6 @@ const MySelection = () => {
       }
     </>
   )
-}
+};
 
 export default MySelection;

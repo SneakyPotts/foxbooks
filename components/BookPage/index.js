@@ -19,6 +19,7 @@ import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
 import AddToMyCompilation from "./AddToMyCompilation";
+import Form from "./Form";
 
 const BookPage = () => {
   const dispatch = useDispatch()
@@ -163,18 +164,7 @@ const BookPage = () => {
               </div> : null
             }
 
-            <p className={st.recommendations}>
-              Порекомендуйте книги, похожие на “{book?.title}”
-            </p>
-            <p className={st.recommendationsLabel}>
-              по жанру, сюжету, авторам и т.д.
-            </p>
-            <input placeholder="Поделитесь книгой" className={st.recomInput} />
-            <p className={st.recomInputLabel}>
-              Убедительная просьба найти соответствующую книгу на сайте FoxBook и
-              вставить на нее ссылку, за отсутствием книги на нашем сайте, укажите
-              автора или название книги
-            </p>
+            <Form title={book?.title} />
           </div>
         </div>
 

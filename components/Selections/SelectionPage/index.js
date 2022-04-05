@@ -7,31 +7,12 @@ import BackBtn from "../../shared/common/BackBtn";
 import Button from "../../shared/common/Button/Button";
 import classNames from "classnames";
 import {useRouter} from "next/router";
+import {useSelector} from "react-redux";
 
 const SelectionPage = () => {
 	const router = useRouter()
-	const data = [
-		{ id: '0' },
-		{ id: '1' },
-		{ id: '2' },
-		{ id: '3' },
-		{ id: '4' },
-		{ id: '5' },
-		{ id: '6' },
-		{ id: '7' },
-		{ id: '8' },
-		{ id: '9' },
-		{ id: '10' },
-		{ id: '11' },
-		{ id: '12' },
-		{ id: '13' },
-		{ id: '14' },
-		{ id: '15' },
-		{ id: '16' },
-		{ id: '17' },
-		{ id: '18' },
-		{ id: '19' },
-	];
+
+	const { selectionById } = useSelector(state => state.selection)
 
 	const [isAdded, setIsAdded] = useState(false)
 
@@ -43,6 +24,7 @@ const SelectionPage = () => {
 		<>
 			<div className={styles.compilationWrapper}>
 				<Image
+					// src={selectionById?.compilation?.background}
 					src={'/selectionCover.png'}
 					layout={'fill'}
 					placeholder="blur"
@@ -54,7 +36,7 @@ const SelectionPage = () => {
 					onClick={() => router.back()}
 					externalClass={styles.compilationBack}
 				/>
-				<h2 className={styles.compilationTitle}>Что читать на карантине? Лучшие книги о любви 2021</h2>
+				<h2 className={styles.compilationTitle}>{selectionById?.compilation?.title}</h2>
 				<div className={styles.compilationControls}>
 					<Button
 						text={isAdded ? 'Подборка добавлена' : 'Добавить подборку'}
@@ -71,7 +53,7 @@ const SelectionPage = () => {
 						[styles.empty]: 1
 					})}
 				>
-          <span>0</span>
+          <span>{selectionById?.compilation?.generalBooksCount}</span>
           Книги
         </span>
 
@@ -83,17 +65,19 @@ const SelectionPage = () => {
 					click={toggleHandler}
 				/>
 
-				<p className={st.selectionText}>
-          Young Adult без рамок и границ. Никаких неудобных вопросов и запретных
-          тем. Только искренние эмоции.
-				</p>
+				<p className={st.selectionText}>{selectionById?.compilation?.description}</p>
 
 				<div className={st.selectionGrid}>
-					{data.map(i =>
+					{selectionById?.books?.data?.length ? selectionById?.books?.data.map(i =>
 						<Book
 							key={i?.id}
+							book={i?.book_compilationable}
+							type={i?.book_compilationable?.type}
+							audio={i?.book_compilationable?.type === 'audioBooks'}
 						/>
-					)}
+					) :
+					<p className="empty">Книг не найдено</p>
+					}
 				</div>
 			</div>
 		</>
