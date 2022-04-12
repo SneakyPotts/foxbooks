@@ -51,6 +51,15 @@ export default class ReaderService {
 	}
 
 	static async updateSettings(data) {
-		return api.put(`${API_URL}/reading_settings`, data)
+		const obj = {
+			is_two_columns: data.isTwoColumns,
+			font_size: data.fontSize,
+			screen_brightness: data.screenBrightness,
+			font_name: data.fontName,
+			field_size: data.fieldSize,
+			row_height: data.rowHeight,
+			is_center_alignment: data.isCenterAlignment
+		}
+		return api.put(`${API_URL}/reading_settings`, obj)
 	}
 }

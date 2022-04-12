@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import Popular from "../Filter/Popular/Popular";
 import BookMark from '../shared/icons/myBookmark';
@@ -16,46 +16,88 @@ import SearchInput from "../SearchInput";
 import {setHeaderVisibility} from "../../store/commonSlice";
 import classNames from "classnames";
 import MobileFilterModal from "../MobileFilterModal";
+import BooksService from "./../../http/BookService"
+import {useRouter} from "next/router";
+import Loader from "../shared/common/Loader";
 
-const filter1 = [
-  {
-    title: 'Все',
-    defaultValue: 1,
-    options: [
-      { id: 1, title: 'Все', value: 1, icon: <PageIcon /> },
-      { id: 2, title: 'Хочу прочитать', value: 2, icon: <BookMark /> },
-      { id: 3, title: 'Читаю', value: 3, icon: <OpenBook stroke={'#FF781D'} /> },
-      { id: 3, title: 'Прочитано', value: 4, icon: <Flag /> }
-    ],
-    queryName: 'sortBy',
-  },
-];
+const Books = ({ isAudio }) => {
+  const filter1 = [
+    {
+      title: 'Все',
+      defaultValue: 0,
+      options: [
+        { id: 1, title: 'Все', value: 0, icon: <PageIcon /> },
+        { id: 2, title: isAudio ? 'Хочу прослушать' : 'Хочу прочитать', value: 1, icon: <BookMark /> },
+        { id: 3, title: isAudio ? 'Слушаю' : 'Читаю', value: 2, icon: <OpenBook stroke={'#FF781D'} /> },
+        { id: 3, title: isAudio ? 'Прослушал' : 'Прочитано', value: 3, icon: <Flag /> }
+      ],
+      queryName: 'status',
+    },
+  ];
 
-const filter2 = [
-  {
-    title: 'Популярные',
-    defaultValue: 3,
-    options: [
-      { id: 1, title: 'Популярные', value: 3 },
-      { id: 2, title: 'По дате добавления', value: 2 },
-      { id: 3, title: 'По алфавиту', value: 2 }
-    ],
-    queryName: 'sortBy',
-  },
-];
+  const filter2 = [
+    {
+      title: 'Популярные',
+      defaultValue: 5,
+      options: [
+        { id: 1, title: 'Популярные', value: 5 },
+        { id: 2, title: 'По дате добавления', value: 1 },
+        { id: 3, title: 'По алфавиту', value: 6 }
+      ],
+      queryName: 'sortBy',
+    },
+  ];
 
-const Books = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
+
   const { innerWidthWindow } = useSelector(state => state.common)
 
   const [stateIndex, setStateIndex] = useState(null)
   const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
   const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
-  const [bookTitle, setBookTitle] = useState('')
+  const [bookId, setBookId] = useState(null)
+  const [bookType, setBookType] = useState(null)
+  const [bookTitle, setBookTitle] = useState(null)
 
-  const handleIconClick = id => {
+  const [isLoading, setIsLoading] = useState(true)
+  const [data, setData] = useState([])
+
+  const onChange = value => {
+    router.push(
+      { query: { ...router.query, ['letter']: encodeURI(value) } },
+      null,
+      { scroll: false }
+    );
+  }
+
+  const showDeletePopup = ({id, type, title}) => {
+    setBookId(id)
+    setBookType(type)
+    setBookTitle(title)
     setDeletePopupIsVisible(true)
   }
+
+  const deleteHandler = () => {
+    BooksService.deleteBookFromFavorite({id: bookId, type: bookType}).then(() => {
+      setData(prev => prev.filter(i => i.id !== bookId))
+      setDeletePopupIsVisible(false)
+      setConfirmPopupIsVisible(true)
+    })
+  }
+
+  useEffect(() => {
+    (async () => {
+      let response = []
+      if(isAudio) {
+        response = await BooksService.getMyAudioBooks(router.query)
+      } else {
+        response = await BooksService.getMyBooks(router.query)
+      }
+      setData(response.data.data.data)
+      setIsLoading(false)
+    })()
+  }, [router.query])
 
   return <>
     {innerWidthWindow > 768 &&
@@ -104,7 +146,7 @@ const Books = () => {
           <SearchInput
             placeholder={'Искать книгу'}
             externalClass={styles.mobSearch}
-            // onChange={}
+            onChange={onChange}
           />
         </div>
 
@@ -142,14 +184,27 @@ const Books = () => {
       </div>
     }
 
-    <div className={styles.grid}>
-      <div className={styles.gridItem}>
-        <Book
-          withDelete
-          onDelete={() => handleIconClick()}
-        />
-      </div>
-    </div>
+    {isLoading ?
+      <p className={classNames("empty", styles.empty)}>
+        <Loader/>
+      </p> :
+      data?.length ?
+        <div className={styles.grid}>
+          {data.map(i =>
+            <div className={styles.gridItem}>
+              <Book
+                key={i?.id}
+                book={i}
+                withDelete
+                type={i?.type}
+                audio={isAudio}
+                onDelete={() => showDeletePopup(i)}
+              />
+            </div>
+          )}
+        </div> :
+        <p className={classNames("empty", styles.empty)}>Пусто</p>
+    }
 
     {deletePopupIsVisible &&
       <ModalWindow
@@ -158,14 +213,13 @@ const Books = () => {
         <div className={styles.modal}>
           <h3 className={styles.modalTitle}>Удалить книгу</h3>
           <p className={styles.modalText}>
-            Вы действительно хотите удалить книгу “Колдовской мир. Тройка
-            мечей”?
+            Вы действительно хотите удалить книгу “{bookTitle}”?
           </p>
           <ButtonGroup
             text="Удалить"
             typeButton="button"
             ClassName={styles.modalBtns}
-            click={() => setConfirmPopupIsVisible(true)}
+            click={deleteHandler}
             cancelClick={() => setDeletePopupIsVisible(false)}
           />
         </div>

@@ -53,7 +53,7 @@ const Authors = () => {
             onClick={() => dispatch(setHeaderVisibility(true))}
           />
           <SearchInput
-            placeholder={'Искать книгу'}
+            placeholder={'Искать автора'}
             externalClass={styles.mobSearch}
             onChange={onChange}
           />

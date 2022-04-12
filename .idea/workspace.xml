@@ -2,27 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/BookPage/Form/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Filter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Filter/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Categories/categories.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Categories/categories.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/Compilations.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Compilations/Compilations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/Reviews/Reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/Reviews/Reviews.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/home.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/home.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/AudioBooks.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Authors.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Authors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/Books.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Books.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/showAll/ShowAll.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/showAll/ShowAll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/showAll/showAll.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/showAll/showAll.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/HomeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/HomeService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/SelectionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/SelectionService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mybooks/selection/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/selection/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/selections/[id]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/[id]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ReaderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ReaderService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mybooks/audio.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mybooks/audio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/readerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/readerSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/selectionSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/selectionSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,6 +149,7 @@
       <workItem from="1649058594202" duration="68000" />
       <workItem from="1649060868286" duration="3754000" />
       <workItem from="1649148039836" duration="7887000" />
+      <workItem from="1649772049062" duration="4661000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

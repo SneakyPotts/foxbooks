@@ -100,7 +100,16 @@ export const readerSlice = createSlice({
 		},
 
 		[getSettings.fulfilled]: (state, action) => {
-			state.settings = action.payload
+			const obj = {
+				isTwoColumns: action.payload.is_two_columns,
+				fontSize: action.payload.font_size,
+				screenBrightness: action.payload.screen_brightness,
+				fontName: action.payload.font_name,
+				fieldSize: action.payload.field_size,
+				rowHeight: action.payload.row_height,
+				isCenterAlignment: action.payload.is_center_alignment
+			}
+			state.settings = obj
 		},
 
 		[addBookQuote.fulfilled]: (state, action) => {

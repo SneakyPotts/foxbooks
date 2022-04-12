@@ -22,6 +22,7 @@ import {useRouter} from "next/router";
 import CreateCompilationPopup from "../CreateCompilationPopup";
 import ChooseBookPopup from "./ChooseBookPopup";
 import SelectionService from "../../http/SelectionService";
+import {deleteBookFromSelection} from "../../store/selectionSlice";
 
 const filter1 = [
   {
@@ -79,6 +80,8 @@ const MySelection = () => {
       book_id: bookId,
       book_type: bookType
     }).then(() => {
+      dispatch(deleteBookFromSelection(bookId))
+      setDeletePopupIsVisible(false)
       setConfirmPopupIsVisible(true)
     })
   }

@@ -15,9 +15,19 @@ export const selectionSlice = createSlice({
 		setSelectionById: (state, action) => {
 			state.selectionById = action.payload
 		},
+		deleteBookFromSelection: (state, action) => {
+			state.selectionById.compilation.generalBooksCount -= 1
+			state.selectionById.books.data = state.selectionById.books.data.filter(i =>
+				i.compilationable_id !== action.payload
+			)
+		},
 	}
 });
 
-export const { setSelections, setSelectionById } = selectionSlice.actions;
+export const {
+	setSelections,
+	setSelectionById,
+	deleteBookFromSelection
+} = selectionSlice.actions;
 
 export default selectionSlice.reducer;
