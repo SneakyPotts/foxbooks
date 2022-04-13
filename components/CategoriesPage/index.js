@@ -5,6 +5,7 @@ import Link from 'next/link'
 import classnames from 'classnames';
 import Close from '../shared/icons/close'
 import st from './categories.module.scss';
+import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 
 const CategoriesPage = () => {
   const router = useRouter()
@@ -26,7 +27,7 @@ const CategoriesPage = () => {
   return (
     <div className={classnames('container', st.container)}>
       <div className={st.mobileHeder}>
-        <h2 className={st.mobileHederTitle}>Категории</h2>
+        <h1 className="title">Категории</h1>
         <div onClick={onClose}><Close/></div>
       </div>
       <div className={st.btns}>
@@ -39,6 +40,14 @@ const CategoriesPage = () => {
           Аудиокниги
         </button>
       </div>
+      <div className={st.breadcrumbs}>
+        <Breadcrumbs
+          data={[{
+            path: `/categories`,
+            title: 'Категории'
+          }]}
+        />
+      </div>
       <div className={st.mainBlock}>
         {
           (isShown === 'books' || innerWidthWindow > 767) &&
@@ -50,7 +59,7 @@ const CategoriesPage = () => {
                   <Link href={`/books/${cat.id}?type=books&showType=block&sortBy=1`}>
                     <a className={st.categoriesLink}>
                       {cat.name}
-                      <span>{cat.books_count}</span>
+                      <span>{cat.books_count || 0}</span>
                     </a>
                   </Link>
                 </li>
@@ -68,7 +77,7 @@ const CategoriesPage = () => {
                   <Link href={`/books/${cat.id}?type=audioBooks&showType=block&sortBy=1`}>
                     <a className={st.categoriesLink}>
                       {cat.name}
-                      <span>{cat.books_count}</span>
+                      <span>{cat.books_count || 0}</span>
                     </a>
                   </Link>
                 </li>
@@ -77,7 +86,7 @@ const CategoriesPage = () => {
           </div>
         }
       </div>
-      <button className={st.mobileBtn}>Посмотреть</button>
+      {/* <button className={st.mobileBtn}>Посмотреть</button> */}
     </div>
   );
 };

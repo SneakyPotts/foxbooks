@@ -8,7 +8,6 @@ import BookFilters from '../shared/common/booksFilters/BookFilters';
 import BooksMainBlock from '../shared/common/booksMainBlock/BooksMainBlock';
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import st from './books.module.scss';
-import c from '././../data/categories.json'
 import Grid from "../shared/icons/navMenu/grid";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import Button from "../shared/common/Button/Button";
@@ -23,7 +22,17 @@ const Books = () => {
   const { categories } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
 
-  const cats = c || categories?.slice(0, 13)
+  const cats = categories?.slice(0, 13)
+
+  const showCategories = () => {
+    setCatsIsVisible(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const hideCategories = () => {
+    setCatsIsVisible(false)
+    document.body.style.overflow = 'auto'
+  }
 
   return (
     <div className={classnames('container', st.abContainer)}>
@@ -57,7 +66,7 @@ const Books = () => {
           <>
             <div
               className={st.mobCateg}
-              onClick={() => setCatsIsVisible(true)}
+              onClick={showCategories}
             >
               Категории
               <span>
@@ -76,7 +85,7 @@ const Books = () => {
 
       {(innerWidthWindow <= 768 && catsIsVisible) &&
         <ModalWindow
-          onClose={() => setCatsIsVisible(false)}
+          onClose={hideCategories}
           isFullScreen
         >
           <h2 className={classnames(st.abTitle, st.modalTitle)}>Категории</h2>

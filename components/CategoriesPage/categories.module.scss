@@ -4,18 +4,23 @@
   display: flex;
   flex-direction: column;
 }
-.mobileTitle{
+
+.mobileHeder {
   display: none;
 }
-.mainBlock{
+
+.mainBlock {
   display: flex;
 }
-.btns{
+
+.btns {
   display: none;
 }
+
 .wrapper {
   margin-right: 228px;
 }
+
 .categories {
   &Title {
     font-family: 'Merriweather', serif;
@@ -34,7 +39,7 @@
       padding: 15px 0;
       border-bottom: 1px solid $color-star-border;
 
-      > span {
+      >span {
         font-size: 14px;
         line-height: 1.43;
         color: #909190;
@@ -59,7 +64,7 @@
       }
     }
 
-    > span {
+    >span {
       font-size: 14px;
       line-height: 1.43;
       color: #909190;
@@ -68,22 +73,24 @@
 }
 
 @media(max-width: 1024px) {
-  .mainBlock{
+  .mainBlock {
     justify-content: space-between;
   }
+
   .categories {
-    &List{
-      &Item{
+    &List {
+      &Item {
         width: 330px;
       }
     }
   }
+
   .wrapper {
     margin-right: 0;
   }
 }
 
-@media(max-width: 767px) {
+@media(max-width: 768px) {
   .categories {
     width: 100%;
 
@@ -91,13 +98,17 @@
       display: none;
     }
 
-    &List{
+    &List {
       margin-bottom: 30px;
 
-      &Item{
+      &Item {
         width: 100%;
       }
     }
+  }
+
+  .breadcrumbs {
+    display: none;
   }
 
   .mobileHeder {
@@ -115,11 +126,13 @@
       color: $color-main;
     }
   }
+
   .btns {
     display: block;
     margin-top: 30px;
     margin-bottom: 15px;
   }
+
   .btnTitle {
     padding: 8px 15px;
     margin-right: 10px;
@@ -127,11 +140,13 @@
     background-color: $color-bg-icon;
     color: $color-main;
   }
-  .active{
+
+  .active {
     background-color: $color-main;
     color: $color-categories-btn;
   }
-  .mobileBtn{
+
+  .mobileBtn {
     font-family: 'Fira Sans', sans-serif;
     font-size: 16px;
     line-height: 18px;

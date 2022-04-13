@@ -8,7 +8,9 @@ import SideFilters from '../../SideFilters';
 import Popular from '../../Filter/Popular/Popular';
 import MyPagination from '../../shared/common/MyPagination';
 import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
+import MobileFilterModal from './../../MobileFilterModal'
 import st from './category.module.scss';
+import debounce from 'lodash.debounce';
 
 const data = [
   {
@@ -25,14 +27,29 @@ const data = [
   },
 ];
 
+const mobileFilters = [
+  {
+    option: 'Автор',
+    placeholder: 'Найти автора',
+    queryName: 'findByAuthor'
+  },
+  {
+    option: 'Книга',
+    placeholder: 'Найти книгу',
+    queryName: 'findByTitle'
+  },
+  {
+    option: 'Издательство',
+    placeholder: 'Найти издательство',
+    queryName: 'findByPublisher'
+  },
+]
+
 const Category = () => {
   const router = useRouter();
   const type = router.query?.type
 
   const [stateIndex, setStateIndex] = useState(null);
-  // const [flagSwitcher, setFlagSwitcher] = useState(
-  //   router.query['showType'] === 'list'
-  // );
 
   const flagSwitcher = useMemo(() => {
     return router.query['showType'] === 'list'
@@ -44,6 +61,16 @@ const Category = () => {
   const currentCategory = categories?.find(
     i => i?.id == router?.query?.id
   )?.name;
+
+  const setQuery = (value, queryName) => {
+    router.push(
+      { query: { ...router.query, [queryName]: encodeURI(value) } },
+      null,
+      { scroll: false }
+    );
+  };
+
+  const handleChange = debounce(setQuery, 300);
 
   return (
     <div className="container">
@@ -74,9 +101,39 @@ const Category = () => {
                     elIdx={index}
                     setFilStateIdx={setStateIndex}
                   />
-                ))}
+                ))
+              }
+              {innerWidthWindow < 1024 &&
+                <MobileFilterModal>
+                  {data.map((it, index) => (
+                    <Popular
+                      key={index}
+                      title={it?.title}
+                      defaultValue={it?.defaultValue}
+                      data={it?.options}
+                      queryName={it?.queryName}
+                      filterStateIdx={stateIndex}
+                      elIdx={index}
+                      setFilStateIdx={setStateIndex}
+                    />
+                  ))}
+                  {mobileFilters.map((i, index) => 
+                    <div
+                      key={index}
+                      className={st.filterItem}
+                    >
+                      <span className={st.line}/>
+                      <span className={st.filterTitle}>{i.option}</span>
+                      <input
+                        placeholder={i?.placeholder}
+                        className={st.input}
+                        onChange={ev => handleChange(ev.target.value, i?.queryName)}
+                      />
+                    </div>  
+                  )}
+                </MobileFilterModal>
+              }
               <Switcher
-                // setFlagSwitcher={setFlagSwitcher}
                 flagSwitcher={flagSwitcher}
               />
             </div>
