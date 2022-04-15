@@ -5,32 +5,51 @@ import ArrowAll from "../../public/chevron-down.svg";
 import ButtonGroup from "../SettingsProfile/buttonGroup";
 import Input from "../shared/common/Input/Input";
 import { useForm } from "react-hook-form";
-import {useSelector} from "react-redux";
-
-const options = [
-  { id: 1, title: 'Популярные', value: 3 },
-  { id: 2, title: 'По дате добавления', value: 2 },
-  { id: 3, title: 'По алфавиту', value: 2 }
-];
+import {useDispatch, useSelector} from "react-redux";
+import {addReview, getReviewTypes} from "../../store/reviewSlice";
+import {setAuthPopupVisibility} from "../../store/commonSlice";
+import {yupResolver} from "@hookform/resolvers/yup";
+import schema from "./schema";
 
 const ReviewForm = ({
   title,
   text,
+  bookType,
   onCancel
 }) => {
+  const dispatch = useDispatch()
+
   const { innerWidthWindow } = useSelector(state => state.common)
+  const { isAuth } = useSelector(state => state.auth)
+  const { reviewTypes } = useSelector(state => state.review)
 
   const [optionsIsVisible, setOptionsIsVisible] = useState(false);
-  const [currentOption, setCurrentOption] = useState(null);
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, formState: {errors}, reset, setValue, getValues } = useForm({
     defaultValues: {
       title,
       text
-    }
+    },
+    resolver: yupResolver(schema)
   });
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    if(!isAuth) {
+      dispatch(setAuthPopupVisibility(true))
+    } else {
+      const obj = {
+        ...data,
+        type: bookType,
+        review_type: getValues('review_type')
+      }
+      dispatch(addReview(obj)).then(res => {
+        if(res.meta.requestStatus === "fulfilled") {
+          reset()
+          setValue('review_type', null)
+        }
+      })
+    }
+  };
 
   const openDropdown = ev => {
     ev.stopPropagation()
@@ -42,12 +61,14 @@ const ReviewForm = ({
   }
 
   const chooseOption = id => {
-    setCurrentOption(id)
+    setValue('review_type', id)
     closeDropdown()
   }
 
   useEffect(() => {
     document.body.addEventListener('click', closeDropdown)
+
+    dispatch(getReviewTypes())
 
     return () => {
       document.body.removeEventListener('click', closeDropdown)
@@ -74,7 +95,7 @@ const ReviewForm = ({
           onClick={() => setOptionsIsVisible(prev => !prev)}
         >
           <span className={styles.dropBtnText}>
-            {options.find(i => i?.id === currentOption)?.title || 'Тип рецензии'}
+            {reviewTypes.find(i => i?.id === getValues('review_type'))?.type || 'Тип рецензии'}
           </span>
           <span
             className={classNames(styles.arrow, {
@@ -87,19 +108,20 @@ const ReviewForm = ({
 
         {optionsIsVisible && (
           <ul className={styles.dropdownList}>
-            {options?.map(i => (
+            {reviewTypes?.map(i => (
               <li
                 key={i?.id}
                 onClick={() => chooseOption(i?.id)}
                 className={classNames(styles.dropdownItem, {
-                  [styles.active]: i?.id === currentOption
+                  [styles.active]: i?.id === getValues('review_type')
                 })}
               >
-                {i?.title}
+                {i?.type}
               </li>
             ))}
           </ul>
         )}
+        {errors?.review_type && <p className={styles.error}>{errors?.review_type?.message}</p>}
       </div>
 
       <Input
@@ -109,6 +131,7 @@ const ReviewForm = ({
         isTextarea
         rows={1}
         classNames={styles.textarea}
+        err={errors?.title?.message}
       />
 
       <Input
@@ -117,6 +140,7 @@ const ReviewForm = ({
         textLabel={'Ваша рецензия'}
         isTextarea
         rows={innerWidthWindow > 768 ? 4 : 1}
+        err={errors?.text?.message}
       />
 
       <ButtonGroup

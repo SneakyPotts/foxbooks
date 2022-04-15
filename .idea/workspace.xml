@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/components/ReviewForm/schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CommentForm/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CommentForm/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/ChooseBookPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/ChooseBookPopup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ReviewService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ReviewService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/reviewSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reviewSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/selectionSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/selectionSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/ReaderBook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/ReviewForm" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -51,11 +63,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\components\ReviewForm" />
       <recent name="E:\Frontend\projects\library-next\components\ReaderBook" />
       <recent name="E:\Frontend\projects\library-next\components\Holders" />
       <recent name="E:\Frontend\projects\library-next\components\Support" />
       <recent name="E:\Frontend\projects\library-next\components\CommentForm" />
-      <recent name="E:\Frontend\projects\library-next\store" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Frontend\projects\library-next\components\BookPage" />
@@ -142,6 +154,7 @@
       <workItem from="1649148039836" duration="7887000" />
       <workItem from="1649772049062" duration="5025000" />
       <workItem from="1649837163125" duration="1330000" />
+      <workItem from="1650024924585" duration="14435000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

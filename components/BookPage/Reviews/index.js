@@ -1,14 +1,12 @@
-import { useState, useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useState } from 'react';
+import {useSelector} from 'react-redux';
 import Button from '../../shared/common/Button/Button';
 import CommentComp from '../CommentItem';
 import st from './reviews.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
-import {getReviewTypes} from "../../../store/reviewSlice";
 import ReviewForm from "../../ReviewForm";
 
-const Reviews = () => {
-  const dispatch = useDispatch()
+const Reviews = ({type}) => {
   const reviewsAmount = [
     { id: '0', type: 'positive' },
     { id: '1', type: 'negative' },
@@ -22,10 +20,6 @@ const Reviews = () => {
   const handleLeaveReviewInput = () => {
     setReviewTyping(true);
   };
-
-  useEffect(() => {
-    dispatch(getReviewTypes())
-  }, []);
 
   return (
     <div id="reviews">
@@ -42,13 +36,14 @@ const Reviews = () => {
 
       {reviewTyping && (
         <ReviewForm
+          bookType={type}
           onCancel={() => setReviewTyping(false)}
         />
       )}
 
       {reviewsAmount.map((it, idx) => (
         <div key={it.id} className={st.review}>
-          <CommentComp content='Рицензии' idx={idx} type={it.type} reviews={true} />
+          <CommentComp idx={idx} type={it.type} reviews={true} />
         </div>
       ))}
 

@@ -21,13 +21,18 @@ export const selectionSlice = createSlice({
 				i.compilationable_id !== action.payload
 			)
 		},
+		addBookToSelection: (state, action) => {
+			state.selectionById.compilation.generalBooksCount += 1
+			state.selectionById.books.data.push(action.payload)
+		},
 	}
 });
 
 export const {
 	setSelections,
 	setSelectionById,
-	deleteBookFromSelection
+	deleteBookFromSelection,
+	addBookToSelection
 } = selectionSlice.actions;
 
 export default selectionSlice.reducer;

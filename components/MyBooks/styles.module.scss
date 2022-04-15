@@ -4,6 +4,10 @@
   padding-bottom: 40px;
 }
 
+.searchEmpty {
+  margin-top: 40px;
+}
+
 .filters {
   display: flex;
   align-items: center;
@@ -323,6 +327,13 @@
 
   &Grid {
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+
+    .gridItem {
+      cursor: pointer;
+      & > div {
+        pointer-events: none;
+      }
+    }
   }
 }
 

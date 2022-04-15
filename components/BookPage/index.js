@@ -98,7 +98,7 @@ const BookPage = () => {
 
             <Comments />
 
-            <Reviews />
+            <Reviews type={router.query?.type} />
 
             {!audioFlag && <Quotes />}
 

@@ -187,14 +187,14 @@ const MySelection = () => {
             {selectionById?.books?.data?.map(i =>
               <div
                 className={styles.gridItem}
-                key={i?.book_compilationable?.id}
+                key={i?.book_compilationable?.id || i?.id}
               >
                 <Book
                   withDelete
-                  onDelete={() => showDeletePopup(i?.book_compilationable)}
-                  book={i?.book_compilationable}
-                  type={i?.book_compilationable?.type}
-                  audio={i?.book_compilationable?.type === 'audioBooks'}
+                  onDelete={() => showDeletePopup(i?.book_compilationable || i)}
+                  book={i?.book_compilationable || i}
+                  type={i?.book_compilationable?.type || i?.type}
+                  audio={i?.book_compilationable?.type === 'audioBooks' || i?.type === 'audioBooks'}
                 />
               </div>
             )}
