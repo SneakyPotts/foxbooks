@@ -4,15 +4,13 @@ import st from './comments.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
 import {useRouter} from "next/router";
 import CommentForm from "../../CommentForm";
-import {addComment, setBookComments} from "../../../store/commentsSlice";
+import {addComment, getComments} from "../../../store/commentsSlice";
 import CommentItem from "../CommentItem";
-import CommentsService from "../../../http/CommentsService";
 
 const Comments = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const { innerWidthWindow } = useSelector(state => state.common);
   const { bookComments } = useSelector(state => state.comments);
 
   const [page, setPage] = useState(1);
@@ -36,14 +34,12 @@ const Comments = () => {
     dispatch(addComment(dataObj))
   }
 
-  useEffect(async () => {
-    const response = await CommentsService.getComments({
+  useEffect(() => {
+    dispatch(getComments({
       id: router.query?.id,
       type: router.query?.type,
       page
-    })
-
-    dispatch(setBookComments(response?.data?.data))
+    }))
   }, [page])
 
   return (

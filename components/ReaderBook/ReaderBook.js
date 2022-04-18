@@ -17,12 +17,15 @@ import { useRouter } from 'next/router';
 import InputRange from '../shared/common/InputRange/InputRange';
 import {addBookMark, deleteBookMark} from "../../store/readerSlice";
 import MarksPopup from "./MarksPopup";
+import {setAuthPopupVisibility} from "../../store/commonSlice";
+import GroupForms from "../Header/groupForms/GroupForms";
 
 const ReaderBook = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const { innerWidthWindow } = useSelector(state => state.common)
+  const { innerWidthWindow, authPopupIsVisible } = useSelector(state => state.common)
+  const { isAuth } = useSelector(state => state.auth)
   const { book, settings, bookMarks } = useSelector(state => state.reader)
 
   const [contentPopupIsVisible, setContentPopupIsVisible] = useState(false)
@@ -36,12 +39,20 @@ const ReaderBook = () => {
   }
 
   const showQuotesPopup = () => {
-    setQuotesPopupIsVisible(true)
+    if(!isAuth) {
+      dispatch(setAuthPopupVisibility(true))
+    } else {
+      setQuotesPopupIsVisible(true)
+    }
   }
 
   const toggleEditPopup = ev => {
     ev.stopPropagation()
-    setEditPopupIsVisible(!editPopupIsVisible)
+    if(!isAuth) {
+      dispatch(setAuthPopupVisibility(true))
+    } else {
+      setEditPopupIsVisible(!editPopupIsVisible)
+    }
   }
 
   const toggleMobileControls = () => {
@@ -54,15 +65,19 @@ const ReaderBook = () => {
 
   const addMarkHandler = ev => {
     ev && ev.stopPropagation()
-    const id = bookMarks.find(i => i?.book_id === book?.id && i?.page_id === book?.pages[0]?.id)?.id
-
-    if(id) {
-      dispatch(deleteBookMark(id))
+    if(!isAuth) {
+      dispatch(setAuthPopupVisibility(true))
     } else {
-      dispatch(addBookMark({
-        book_id: book?.id,
-        page_id: book?.pages[0]?.id
-      }))
+      const id = bookMarks.find(i => i?.book_id === book?.id && i?.page_id === book?.pages[0]?.id)?.id
+
+      if(id) {
+        dispatch(deleteBookMark(id))
+      } else {
+        dispatch(addBookMark({
+          book_id: book?.id,
+          page_id: book?.pages[0]?.id
+        }))
+      }
     }
   }
 
@@ -192,6 +207,11 @@ const ReaderBook = () => {
         </DrawerPopup>
         }
       </div>
+
+      <GroupForms
+        setModal={() => dispatch(setAuthPopupVisibility(false))}
+        modal={authPopupIsVisible}
+      />
     </div>
   )
 }

@@ -30,6 +30,8 @@ const CommentItem = ({
 
   const replyDate = moment(data?.updated_at).from(moment())
 
+  const [likesCount, setLikesCount] = useState(data?.likes_count || 0)
+
   const [isFullText, setIsFullText] = useState(false)
   const [formIsVisible, setFormIsVisible] = useState(false)
 
@@ -107,7 +109,7 @@ const CommentItem = ({
     }
   }
 
-  const likeHandler = () => {
+  const likeHandler = async () => {
     if(isAuth) {
       const type = router.query?.type === 'books' ?
         'book_comment' :
@@ -119,10 +121,12 @@ const CommentItem = ({
       }
 
       if(isLiked) {
-        dispatch(deleteLikeFromComment(obj))
+        await CommentsService.deleteLikeFromComment(obj)
+        setLikesCount(prev => prev - 1)
         setIsLiked(false)
       } else {
-        dispatch(addLikeToComment(obj))
+        await CommentsService.addLikeToComment(obj)
+        setLikesCount(prev => prev + 1)
         setIsLiked(true)
       }
     } else {
@@ -221,7 +225,7 @@ const CommentItem = ({
           >
             <Like />
           </span>
-          <span className={styles.reviewLike}>{data?.likes_count || 0}</span>
+          <span className={styles.reviewLike}>{likesCount}</span>
 
           <span
             className={styles.reviewReply}

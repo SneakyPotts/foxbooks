@@ -2,19 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/ReviewForm/schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CommentForm/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CommentForm/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Comments/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Comments/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MyBooks/ChooseBookPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/ChooseBookPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReviewForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/ReviewService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ReviewService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/reviewSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reviewSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/selectionSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/selectionSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/commentsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/commentsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/readerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/readerSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +153,7 @@
       <workItem from="1649772049062" duration="5025000" />
       <workItem from="1649837163125" duration="1330000" />
       <workItem from="1650024924585" duration="14435000" />
+      <workItem from="1650269819583" duration="4088000" />
     </task>
     <task id="LOCAL-00001" summary="fixes">
       <created>1642067931694</created>

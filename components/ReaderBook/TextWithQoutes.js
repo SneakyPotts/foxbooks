@@ -8,6 +8,7 @@ import styles from './styles.module.scss'
 import {addBookQuote, deleteQuotes, editQuotes} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import {setAuthPopupVisibility} from "../../store/commonSlice";
 
 const options = {
 	replace: domNode => {
@@ -34,6 +35,7 @@ const TextWithQoutes = () => {
 	const article = useRef()
 
 	const { innerWidthWindow } = useSelector(state => state?.common)
+	const { isAuth } = useSelector(state => state?.auth)
 	const { book, settings, quotes } = useSelector(state => state?.reader)
 
 	const text = useMemo(() => {
@@ -89,35 +91,43 @@ const TextWithQoutes = () => {
 	}
 
 	const addQuot = color => {
-		const id = quotes?.length + 1
-		const quot = {
-			...rangeObj,
-			book_id: book?.pages[0]?.book_id,
-			page_id: book?.pages[0]?.id,
-			text: selectedText,
-			id,
-			color
+		if(!isAuth) {
+			dispatch(setAuthPopupVisibility(true))
+		} else {
+			const id = quotes?.length + 1
+			const quot = {
+				...rangeObj,
+				book_id: book?.pages[0]?.book_id,
+				page_id: book?.pages[0]?.id,
+				text: selectedText,
+				id,
+				color
+			}
+
+			setMarkId(id)
+
+			const sel = window.getSelection()
+			sel.removeAllRanges()
+
+			sel.addRange(objToRange(rangeObj))
+			highlight(id, color, handleMarkClick)
+
+			dispatch(addBookQuote(quot))
+
+			sel.removeAllRanges()
+			setToolsIsVisible(false)
 		}
-
-		setMarkId(id)
-
-		const sel = window.getSelection()
-		sel.removeAllRanges()
-
-		sel.addRange(objToRange(rangeObj))
-		highlight(id, color, handleMarkClick)
-
-		dispatch(addBookQuote(quot))
-
-		sel.removeAllRanges()
-		setToolsIsVisible(false)
 	}
 
 	const changeColor = color => {
-		const marks = document.querySelectorAll(`[data-id="${markId}"]`)
-		marks.forEach(i => i.style.backgroundColor = color)
-		
-		dispatch(editQuotes({id: markId, color}))
+		if(!isAuth) {
+			dispatch(setAuthPopupVisibility(true))
+		} else {
+			const marks = document.querySelectorAll(`[data-id="${markId}"]`)
+			marks.forEach(i => i.style.backgroundColor = color)
+
+			dispatch(editQuotes({id: markId, color}))
+		}
 	}
 	
 	const deleteQuot = () => {
@@ -204,7 +214,7 @@ const TextWithQoutes = () => {
 		addKey(article.current)
 
 		const sel = window.getSelection()
-    	sel.removeAllRanges()
+		sel.removeAllRanges()
 
 		if(quotes?.length) {
 			quotes?.forEach(i => {

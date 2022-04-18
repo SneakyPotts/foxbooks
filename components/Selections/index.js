@@ -13,7 +13,6 @@ import Link from 'next/link'
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ArrowRight from '../../public/chevron-right.svg';
-import Button from "../shared/common/Button/Button";
 import ShowAll from "../shared/common/showAll/ShowAll";
 import Book from "../shared/common/book";
 

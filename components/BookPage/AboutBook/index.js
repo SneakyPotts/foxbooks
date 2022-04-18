@@ -220,16 +220,9 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     Начать слушать
                   </button>
                 ) : (
-                  !isAuth ?
-                    <button
-                      className={st.readButton}
-                      onClick={() => dispatch(setAuthPopupVisibility(true))}
-                    >
-                      Читать
-                    </button> :
-                    <Link href={`/reader?id=${book?.id}&page=1`}>
-                      <a className={st.readButton}>Читать</a>
-                    </Link>
+                  <Link href={`/reader?id=${book?.id}&page=1`}>
+                    <a className={st.readButton}>Читать</a>
+                  </Link>
                 )}
                 <DotsDropdown>
                   {dataOptions.map(i => (
