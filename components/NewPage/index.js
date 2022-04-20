@@ -78,9 +78,11 @@ const NewPage = () => {
 							<div className={st.grid}>
 								{novelties?.data?.map(i => (
 									<div key={i?.id}>
+										{console.log(i?.type)}
 										<Book
 											book={i}
-											audio={i?.type}
+											type={i?.type}
+											audio={i?.type === 'audioBooks'}
 										/>
 									</div>
 								))}

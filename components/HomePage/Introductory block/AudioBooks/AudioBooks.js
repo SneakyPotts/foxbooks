@@ -9,23 +9,12 @@ import Book from '../../../shared/common/book';
 import css from './audioBooks.module.scss';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
 
-const AudioBooks = () => {
+const AudioBooks = ({ audioBooks }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
-
-  const testData = [
-    { id: '0' },
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' },
-    { id: '6' },
-    { id: '7' },
-  ];
 
   return (
     <div className={css.container}>
-      <ShowAll title="Некогда читать - слушайте!" url="/audiobooks" />
+      <ShowAll title="Некогда читать - слушайте!" url="/books?type=audioBooks&sortBy=1" />
 
       <Swiper
         modules={[Navigation]}
@@ -43,13 +32,18 @@ const AudioBooks = () => {
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-        {testData.map((r, i) => {
-          return (
-            <SwiperSlide className={css.slideAudio} key={i}>
-              <Book audio={true} />
-            </SwiperSlide>
-          );
-        })}
+        {audioBooks.map(i =>
+          <SwiperSlide
+            key={i?.id}
+            className={css.slideAudio}
+          >
+            <Book
+              book={i}
+              audio={true}
+              type={i?.type}
+            />
+          </SwiperSlide>
+        )}
         <button className={classnames('prevArrow', css.positionButton)}>
           <ArrowRight className="arrowNext" />
         </button>

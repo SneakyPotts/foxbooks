@@ -27,7 +27,9 @@ export default function App(props) {
         {/* beforeInteractive */}
         {/* <Script src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" /> */}
       </Head>
-      <Home />
+      <Home
+        audioBooks={props.audioBooks}
+      />
     </>
   );
 }
@@ -51,6 +53,7 @@ export async function getServerSideProps ({query}) {
       dailyHotUpdates: data?.data?.dailyHotUpdates,
       compilations: data?.data?.compilations,
       reviews: data?.data?.reviews,
+      audioBooks: data?.data?.audioBooksList,
 			// profile: profile?.data?.data || {}
 		}
 	}

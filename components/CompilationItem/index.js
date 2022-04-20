@@ -16,8 +16,8 @@ const CompilationItem = ({
         <Link href={path}>
           <a className={styles.selectionLink}>
             <Image
-              src={"/horizontalBookCovers/bookCover1.png"}
-              alt=""
+              src={data?.background}
+              alt="Picture"
               width={isMini ? 180 : 384}
               height={isMini ? 108 : 183}
               layout={'responsive'}
@@ -30,8 +30,8 @@ const CompilationItem = ({
         </Link> :
         <div className={styles.selectionLink}>
           <Image
-            src={"/horizontalBookCovers/bookCover1.png"}
-            alt=""
+            src={data?.background}
+            alt="Picture"
             width={isMini ? 180 : 384}
             height={isMini ? 108 : 183}
             layout={'responsive'}

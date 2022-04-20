@@ -17,7 +17,7 @@ import ShowAll from '../shared/common/showAll/ShowAll';
 import MobileBlock from './MobileBlock';
 import css from './home.module.scss';
 
-const HomeView = () => {
+const HomeView = ({ audioBooks }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   return (
@@ -67,7 +67,7 @@ const HomeView = () => {
         <BookUpdates />
         <Filters />
       </div>
-      <Introductory />
+      <Introductory audioBooks={audioBooks} />
       <About />
     </div>
   );

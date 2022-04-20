@@ -4,7 +4,6 @@ import AuthorService from '../http/AuthorService';
 const initialState = {
 	author: [],
 	authorsByLetter: {},
-	isFavorite: false,
 	series: {},
 };
 
@@ -47,50 +46,23 @@ export const authorSlice = createSlice({
 		}
 	},
 	extraReducers: {
-		[getAuthorsByLetter.pending]: state => {
-			// state.isLoading = true
-		},
 		[getAuthorsByLetter.fulfilled]: (state, action) => {
 			if(!state.authorsByLetter?.query || state.authorsByLetter?.query !== action.payload.query) {
 				state.authorsByLetter = action.payload
 			} else {
 				state.authorsByLetter.data = [...state.authorsByLetter.data, ...action.payload.data]
 			}
-			// state.isError = false
-			// state.isLoading = false
-		},
-		[getAuthorsByLetter.rejected]: state => {
-			// state.isError = true
-			// state.isLoading = false
 		},
 
 
-		[addAuthorToFavorite.pending]: state => {
-			// state.isLoading = true
-		},
 		[addAuthorToFavorite.fulfilled]: (state, action) => {
-			state.isFavorite = true
-			// state.isError = false
-			// state.isLoading = false
-		},
-		[addAuthorToFavorite.rejected]: state => {
-			// state.isError = true
-			// state.isLoading = false
+			state.author.in_favorite = true
 		},
 
 
-		[deleteAuthorFromFavorite.pending]: state => {
-			// state.isLoading = true
-		},
 		[deleteAuthorFromFavorite.fulfilled]: (state, action) => {
-			state.isFavorite = false
-			// state.isError = false
-			// state.isLoading = false
+			state.author.in_favorite = false
 		},
-		[deleteAuthorFromFavorite.rejected]: state => {
-			// state.isError = true
-			// state.isLoading = false
-		}
 	}
 });
 

@@ -20,7 +20,7 @@ const AuthorPage = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const { author, isFavorite } = useSelector(state => state.author)
+  const { author } = useSelector(state => state.author)
 
   const [showMore, setShowMore] = useState(false);
   const [popupIsVisible, setPopupIsVisible] = useState(false);
@@ -37,7 +37,7 @@ const AuthorPage = () => {
   }
 
   const handleClick = () => {
-    if(isFavorite) {
+    if(author?.in_favorite) {
       dispatch(deleteAuthorFromFavorite(author?.id))
     } else {
       dispatch(addAuthorToFavorite(author?.id)).then(res =>
@@ -69,13 +69,13 @@ const AuthorPage = () => {
             <div className={st.authorInfo}>
               <h1 className={st.authorInfoName}>{author?.author}</h1>
               <p className={st.authorInfoCount}>
-                <span>{author?.books_count}</span> книг
+                <span>{author?.total_books}</span> книг
               </p>
             </div>
             <div className={st.authorDescr}>
               <Button
                 classNames={st.authorInfoBtn}
-                text={isFavorite ? 'В моих книгах' : 'Добавить в избранное'}
+                text={author?.in_favorite ? 'В моих книгах' : 'Добавить в избранное'}
                 click={handleClick}
               />
               <p
@@ -178,11 +178,11 @@ const AuthorPage = () => {
                 </div> : null
               }
 
-              {author?.compilation?.length ? 
+              {author?.non_author_compilation?.data?.length ?
                 <div className={st.compil}>
                   <ShowAll title="Подборки" url="/selections" />
                   <div className={st.compilBlock}>
-                    {author?.compilation?.map(i =>
+                    {author?.non_author_compilation?.data?.map(i =>
                       <CompilationItem
                         key={i?.id}
                         data={i}
@@ -274,7 +274,7 @@ const AuthorPage = () => {
         <div className={st.popUp}>
           <p>
             Вы можете найти автора в разделе{' '}
-            <Link href="#">
+            <Link href="/mybooks/authors">
               <a className={st.popUpLink}>Мои Книги</a>
             </Link>
           </p>

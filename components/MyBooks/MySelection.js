@@ -96,8 +96,7 @@ const MySelection = () => {
     <>
       <div className={styles.compilationWrapper}>
         <Image
-          // src={selectionById?.compilation?.background}
-          src={'/selectionCover.png'}
+          src={selectionById?.compilation?.background}
           layout={'fill'}
           placeholder="blur"
           blurDataURL="/blur.webp"
@@ -217,7 +216,7 @@ const MySelection = () => {
 
       {createPopupIsVisible &&
         <CreateCompilationPopup
-          image={'/selectionCover.png' || selectionById?.compilation?.background}
+          image={selectionById?.compilation?.background}
           title={selectionById?.compilation?.title}
           description={selectionById?.compilation?.description}
           onClose={() => setCreatePopupIsVisible(false)}
@@ -263,6 +262,6 @@ const MySelection = () => {
       }
     </>
   )
-};
+}
 
 export default MySelection;

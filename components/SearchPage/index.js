@@ -81,9 +81,9 @@ const SearchPage = () => {
             </div>
 
             <div className={s.grid}>
-              {mock?.length > 0 && mock.map(i =>
-                <Book />
-              )}
+              {/*{mock?.length > 0 && mock.map(i =>*/}
+              {/*  <Book />*/}
+              {/*)}*/}
             </div>
 
             <ShowAll
@@ -103,11 +103,11 @@ const SearchPage = () => {
             </div>
 
             <div className={s.grid}>
-              {mock?.length > 0 && mock.map(i =>
-                <Book
-                  audio
-                />
-              )}
+              {/*{mock?.length > 0 && mock.map(i =>*/}
+              {/*  <Book*/}
+              {/*    audio*/}
+              {/*  />*/}
+              {/*)}*/}
             </div>
 
             <ShowAll
@@ -151,12 +151,12 @@ const SearchPage = () => {
             </div>
 
             <div className={classNames(s.grid, s.gridFull)}>
-              {mock?.length > 0 && mock.map(i =>
-                <CompilationItem
-                  path={'/'}
-                  isMini
-                />
-              )}
+              {/*{mock?.length > 0 && mock.map(i =>*/}
+              {/*  <CompilationItem*/}
+              {/*    path={'/'}*/}
+              {/*    isMini*/}
+              {/*  />*/}
+              {/*)}*/}
             </div>
 
             <ShowAll

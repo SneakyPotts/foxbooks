@@ -43,6 +43,6 @@ export default class CommentsService {
 	}
 
 	static async deleteLikeFromComment(data) {
-		return api.delete(`${API_URL}/likes`, data)
+		return api.delete(`${API_URL}/likes?type=${data.type}&id=${data.id}`)
 	}
 }
