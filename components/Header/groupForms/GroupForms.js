@@ -36,8 +36,8 @@ const GroupForms = ({modal,setModal}) => {
 
 	const schema = yup.object().shape({
 		email: !flagNewPass && yup.string().required('Это обязательное поле').email('Неправильно введена электронная почта'),
-		password: rule,
-		password_confirm: rule.oneOf([ref('password'), null], 'Пароли должны совпадать'),
+		password: (flagRegistration || flagLogin || flagNewPass) && rule,
+		password_confirm: flagNewPass && rule.oneOf([ref('password'), null], 'Пароли должны совпадать'),
 	});
 
 	const {register, handleSubmit, unregister,  formState: {errors}, reset} = useForm({
