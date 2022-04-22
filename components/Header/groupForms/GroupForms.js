@@ -32,17 +32,12 @@ const GroupForms = ({modal,setModal}) => {
 	const { innerWidthWindow } = useSelector(state => state.common)
 	const { isError } = useSelector(state => state.auth)
 
+	const rule = yup.string().required('Это обязательное поле').min(6, 'Минимальная длина пароля 6 символов')
+
 	const schema = yup.object().shape({
 		email: !flagNewPass && yup.string().required('Это обязательное поле').email('Неправильно введена электронная почта'),
-		password: (flagRegistration || flagLogin || flagNewPass) && yup.string().max(32, 'Максимальная длина 32 символа')
-			.required('Это обязательное поле')
-			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-				'Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.'),
-		password_confirm: flagNewPass && yup.string().max(32, 'Максимальная длина 32 символа')
-			.required('Это обязательное поле')
-			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-				'Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.')
-		  .oneOf([ref('password'), null], 'Пароли должны совпадать')
+		password: rule,
+		password_confirm: rule.oneOf([ref('password'), null], 'Пароли должны совпадать'),
 	});
 
 	const {register, handleSubmit, unregister,  formState: {errors}, reset} = useForm({

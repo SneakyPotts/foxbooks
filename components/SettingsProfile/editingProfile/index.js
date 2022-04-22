@@ -11,6 +11,8 @@ import AvatarUploader from "../../shared/common/AvatarUploader";
 import {generateFormData} from "../../../utils";
 import {yupResolver} from "@hookform/resolvers/yup";
 import schema from "./schema";
+import {setAuth} from "../../../store/authSlice";
+import Cookies from "js-cookie";
 
 const EditingProfile = () => {
 	const dispatch = useDispatch()
@@ -39,6 +41,16 @@ const EditingProfile = () => {
 		setValue('surname', profile?.surname)
 		setValue('nickname', profile?.nickname)
 		setValue('email', profile?.email)
+	}
+
+	const deleteProfile = () => {
+		dispatch(deleteUser()).then(() => {
+			setModal(false)
+			router.push('/');
+			dispatch(setAuth(false));
+			Cookies.remove('token');
+			localStorage.removeItem('avatarColor');
+		})
 	}
 
 	useEffect(() => {
@@ -102,7 +114,7 @@ const EditingProfile = () => {
 						<p>Вы действительно хотите удалить профиль?</p>
 						<ButtonGroup
 							cancelClick={() => setModal(false)}
-							click={() => dispatch(deleteUser()).then(() => setModal(false))}
+							click={deleteProfile}
 							text="Удалить"
 							ClassName={styles.Button}
 						/>

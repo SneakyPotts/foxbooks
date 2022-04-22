@@ -2,28 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/Header/Search/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AuthorPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthorPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CompilationItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/index.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/AudioBooks/AudioBooks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Introductory block/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Introductory block/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/MySelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/MySelection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/NewPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Notification/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Notification/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SearchPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SearchPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/AuthorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/AuthorService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/CommentsService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/CommentsService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/authorSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/authorSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/searchSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/searchSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,14 +149,8 @@
       <workItem from="1650269819583" duration="4951000" />
       <workItem from="1650372127091" duration="1215000" />
       <workItem from="1650442552575" duration="10478000" />
-      <workItem from="1650457081383" duration="3423000" />
-    </task>
-    <task id="LOCAL-00001" summary="fixes">
-      <created>1642067931694</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1642067931694</updated>
+      <workItem from="1650457081383" duration="3668000" />
+      <workItem from="1650623075635" duration="1508000" />
     </task>
     <task id="LOCAL-00002" summary="fixes">
       <created>1642068612211</created>
@@ -512,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650277574724</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="push">
+      <created>1650461205453</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1650461205455</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,10 +1,9 @@
 import * as yup from "yup";
 import {ref} from "yup";
 
-const rule = yup.string().max(32)
-	.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-		'Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.')
-	.required('Это поле не может быть пустым.')
+const rule = yup.string().required('Это обязательное поле').min(6, 'Минимальная длина пароля 6 символов')
+	// .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+	// 	'Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.')
 
 const schema = yup.object().shape({
 	old_password: rule,
