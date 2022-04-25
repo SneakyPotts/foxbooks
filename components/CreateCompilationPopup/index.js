@@ -18,6 +18,7 @@ const CreateCompilationPopup = ({
   title,
   description,
   onClose,
+  callback,
   isEdit
 }) => {
   const { innerWidthWindow } = useSelector(state => state.common)

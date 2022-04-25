@@ -14,6 +14,7 @@ import {forgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice"
 import {getProfile} from "../../../store/profileSlice";
 import {ref} from "yup";
 import {useRouter} from "next/router";
+import PasswordField from "../../shared/common/PasswordField";
 
 const GroupForms = ({modal,setModal}) => {
 	const dispatch = useDispatch()
@@ -124,11 +125,10 @@ const GroupForms = ({modal,setModal}) => {
 						name='email'
 						register={register}
 					/>
-					<Input
+					<PasswordField
 						err={errors.password?.message}
 						textLabel='Пароль'
 						name='password'
-						typeInput='password'
 						register={register}
 					/>
 					{isError && <p className={css.error}>Неверная почта или пароль</p>}
@@ -165,11 +165,10 @@ const GroupForms = ({modal,setModal}) => {
 						name='email'
 						register={register}
 					/>
-					<Input
+					<PasswordField
 						err={errors.password?.message}
 						textLabel='Пароль'
 						name='password'
-						typeInput='password'
 						register={register}
 					/>
 					<Button
@@ -228,15 +227,13 @@ const GroupForms = ({modal,setModal}) => {
 					<div>
 						<p className={css.message}>Укажите новый пароль</p>
 						<form onSubmit={handleSubmit(onSubmitNewPassword)}>
-							<Input
-								typeInput={'password'}
+							<PasswordField
 								err={errors.password?.message}
 								textLabel='Новый пароль'
 								name='password'
 								register={register}
 							/>
-							<Input
-								typeInput={'password'}
+							<PasswordField
 								err={errors.password_confirm?.message}
 								textLabel='Повтор пароля'
 								name='password_confirm'

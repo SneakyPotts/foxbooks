@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/components/shared/common/PasswordField/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/common/PasswordField/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CreateCompilationPopup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreateCompilationPopup/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/editingProfile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPage/newPage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SettingsProfile/settingPassword/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,13 +154,7 @@
       <workItem from="1650442552575" duration="10478000" />
       <workItem from="1650457081383" duration="3668000" />
       <workItem from="1650623075635" duration="1508000" />
-    </task>
-    <task id="LOCAL-00002" summary="fixes">
-      <created>1642068612211</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1642068612211</updated>
+      <workItem from="1650876794539" duration="5761000" />
     </task>
     <task id="LOCAL-00003" summary="fixes">
       <created>1642068623843</created>
@@ -495,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650461205455</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="push">
+      <created>1650627731339</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1650627731339</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

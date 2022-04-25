@@ -1,0 +1,25 @@
+@import "styles/variables";
+
+.wrapper {
+  position: relative;
+}
+.iconWrapper {
+  position: absolute;
+  cursor: pointer;
+  right: 15px;
+  top: 37px;
+
+  &:hover {
+    svg path {
+      stroke: $text-hover;
+    }
+  }
+
+  svg {
+    transition: .15s;
+
+    path {
+      stroke: #909190;
+    }
+  }
+}
