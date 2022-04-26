@@ -16,7 +16,7 @@ export const generateFormData = data => {
 	const formData = new FormData()
 
 	for (const [key, value] of Object.entries(data)) {
-		if (value !== undefined) {
+		if (value !== undefined && value !== null) {
 			if (Array.isArray(value) && value.length) {
 				value.forEach(i => {
 					formData.append([`${key}[]`], i)
