@@ -119,6 +119,7 @@ const Book = ({
 
         {!flagSwitcher && !inReview && <span className={st.bookCategorie}>
           {book?.book_genres?.length ? book?.book_genres[0]?.name : null}
+          {book?.genres?.length ? book?.genres[0]?.name : null}
           {book?.genre?.name || null}
         </span>}
         {audio && (

@@ -35,11 +35,12 @@ const Compilations = () => {
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={swiper => console.log(swiper)}
       >
-        {selections.map((r, i) =>
-          <SwiperSlide key={i}>
+        {selections.map(i =>
+          <SwiperSlide key={i?.id}>
             <CompilationItem
-              data={r}
+              data={i}
               isFull
+              path={`/selections/${i?.id}`}
             />
           </SwiperSlide>
         )}

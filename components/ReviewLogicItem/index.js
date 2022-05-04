@@ -5,15 +5,14 @@ import Link from "next/link";
 import Eye from "../shared/icons/eye";
 import Like from "../shared/icons/heart";
 import Comment from "../shared/icons/comment";
-import classNames from "classnames";
-import HorizontalDots from "../shared/icons/horizontalDots";
 import EditPensil from "../shared/icons/editPencil";
 import Bin from "../shared/icons/trash";
-import DrawerPopup from "../shared/common/DrawerPopup";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import ReviewForm from "../ReviewForm";
 import {useSelector} from "react-redux";
 import DotsDropdown from "../DotsDropdown";
+import moment from "moment";
+import 'moment/locale/ru'
 
 const ReviewLogicItem = ({
   type,
@@ -23,53 +22,54 @@ const ReviewLogicItem = ({
 }) => {
   const { innerWidthWindow } = useSelector(state => state.common)
 
-  const [controlsIsVisible, setControlsIsVisible] = useState(false);
   const [editFormIsVisible, setEditFormIsVisible] = useState(false)
 
   return (
     <div className={styles.review}>
       <div className={styles.reviewCover}>
-        <Link href={'/'}>
+        <Link href={`/book/${data?.book?.id}?type=books`}>
           <a>
             <Image
-              src={data.img}
-              alt=""
+              src={data?.book?.image?.link || '/preview.jpg'}
+              alt="Picture"
               width="86"
               height="143"
+              placeholder="blur"
+              blurDataURL="/blur.webp"
             />
           </a>
         </Link>
         <div className={styles.bookWrapper}>
-          <Link href={'/'}>
-            <a className={styles.bookTitle}>{data.book_title}</a>
+          <Link href={`/book/${data?.book?.id}?type=books`}>
+            <a className={styles.bookTitle}>{data?.book?.title}</a>
           </Link>
-          <Link href={'/'}>
-            <a className={styles.bookAuthor}>{data.book_author}</a>
+          <Link href={`author?id=${data?.book?.authors[0].id}`}>
+            <a className={styles.bookAuthor}>{data?.book?.authors[0].author}</a>
           </Link>
         </div>
       </div>
 
       <div className={styles.reviewInfo}>
-        <span className={styles.reviewDate}>{data.review_data}</span>
+        <span className={styles.reviewDate}>{moment(data?.created_at).format('D MMMM YYYY в LT')}</span>
         <div className={styles.reviewViews}>
-          <span className={styles.sumReviews}>{data.sum_reviews}</span>
+          <span className={styles.sumReviews}>{data?.views_count}</span>
           <Eye/>
         </div>
       </div>
 
-      <p className={styles.reviewTitle}>{data.review_title}</p>
-      <p className={styles.reviewText}>{data.review_text}</p>
+      <p className={styles.reviewTitle}>{data?.title}</p>
+      <p className={styles.reviewText}>{data?.content}</p>
 
       <div className={styles.reviewBottom}>
         <div className={styles.reviewBottomStatistic}>
           <span className={styles.reviewIcon}>
             <Like/>
           </span>
-          <span className={styles.reviewLike}>{data.likes}</span>
+          <span className={styles.reviewLike}>{data?.likes_count}</span>
           <span className={styles.reviewIcon}>
             <Comment/>
           </span>
-          <span>{data.comments}</span>
+          <span>{data?.comments_count}</span>
         </div>
 
         {withControls &&
@@ -104,8 +104,8 @@ const ReviewLogicItem = ({
           onClose={() => setEditFormIsVisible(false)}
         >
           <ReviewForm
-            title={data.review_title}
-            text={data.review_text}
+            title={data?.title}
+            text={data?.content}
             onCancel={() => setEditFormIsVisible(false)}
           />
         </ModalWindow>

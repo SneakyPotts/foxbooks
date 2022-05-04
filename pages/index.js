@@ -16,22 +16,11 @@ export default function App(props) {
   dispatch(setReviews(props.reviews));
 
   return (
-    <>
-      <Head>
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" >
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin > */}
-        {/*<link*/}
-        {/*  href="https://fonts.googleapis.com/css2?family='Merriweather':wght@300;400;700&family='Fira Sans', sans-serif:wght@400;500&display=swap"*/}
-        {/*  rel="stylesheet"*/}
-        {/*/>*/}
-        {/* beforeInteractive */}
-        {/* <Script src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" /> */}
-      </Head>
-      <Home
-        audioBooks={props.audioBooks}
-      />
-    </>
-  );
+    <Home
+      audioBooks={props.audioBooks?.audio_books}
+      newBooks={props.newBooks?.books}
+    />
+  )
 }
 
 export async function getServerSideProps ({query}) {
@@ -54,6 +43,7 @@ export async function getServerSideProps ({query}) {
       compilations: data?.data?.compilations,
       reviews: data?.data?.reviews,
       audioBooks: data?.data?.audioBooksList,
+      newBooks: data?.data?.newBooksCompilations
 			// profile: profile?.data?.data || {}
 		}
 	}

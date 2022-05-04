@@ -17,8 +17,10 @@ import ShowAll from '../shared/common/showAll/ShowAll';
 import MobileBlock from './MobileBlock';
 import css from './home.module.scss';
 
-const HomeView = ({ audioBooks }) => {
+const HomeView = ({ audioBooks, newBooks }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
+
+  console.log(newBooks)
 
   return (
     <div className={classNames('container', css.container)}>
@@ -47,9 +49,12 @@ const HomeView = ({ audioBooks }) => {
             // onSlideChange={() => console.log('slide change')}
             // onSwiper={swiper => console.log(swiper)}
           >
-            {books.map(book => (
-              <SwiperSlide key={book.id} className={css.swiperSlide}>
-                <Book book={book} />
+            {newBooks.map(book => (
+              <SwiperSlide key={book?.id} className={css.swiperSlide}>
+                <Book
+                  book={book}
+                  type={book?.type}
+                />
               </SwiperSlide>
             ))}
             <button className="prevArrow">

@@ -9,7 +9,6 @@ body {
   margin: 0;
   font-family: 'Fira Sans', sans-serif;
   background-color: #fafafa;
-  scroll-behavior: smooth;
 }
 
 a {
@@ -64,6 +63,7 @@ ol[class] {
   max-width: 1200px;
   margin: auto;
 }
+
 .nextArrow {
   cursor: pointer;
   display: flex;
@@ -82,13 +82,16 @@ ol[class] {
   background: rgba(255, 255, 255, 0.5);
   transition: .15s;
 }
+
 .nextArrow:hover {
   border-color: #fff;
   background-color: #fff;
 }
+
 .nextArrow:hover .arrowNext {
   stroke: #ff781d;
 }
+
 .prevArrow {
   cursor: pointer;
   display: flex;
@@ -109,34 +112,42 @@ ol[class] {
   background: rgba(255, 255, 255, 0.5);
   transition: .15s;
 }
+
 .prevArrow:hover {
   border-color: #fff;
   background-color: #fff;
 }
+
 .prevArrow:hover .arrowNext {
   stroke: #ff781d;
 }
+
 .arrowNext {
   width: 24px;
   height: 24px;
   stroke: #0e263e;
 }
+
 .btnAfter {
   position: absolute;
   top: 50%;
   right: 0;
 }
+
 .btnBefore {
   position: absolute;
   top: 50%;
   left: 0;
 }
+
 .showAll {
   margin-left: 5px;
 }
+
 .nonScroll {
   overflow: hidden;
 }
+
 .blur {
   filter: blur(10px);
 }
@@ -146,6 +157,7 @@ ol[class] {
   width: 100%;
   text-align: center;
 }
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -190,6 +202,7 @@ ol[class] {
     opacity: 0;
     transform: translateY(-100%) scale(0.8);
   }
+
   100% {
     opacity: 1;
     transform: translateY(-100%) scale(1);
@@ -201,6 +214,7 @@ ol[class] {
     opacity: 0;
     transform: translateY(100%) scale(0.8);
   }
+
   100% {
     opacity: 1;
     transform: translateY(100%) scale(1);
@@ -211,9 +225,11 @@ ol[class] {
   .container {
     padding: 0 15px;
   }
+
   .nextArrow {
     display: none;
   }
+
   .prevArrow {
     display: none;
   }
@@ -232,6 +248,7 @@ ol[class] {
   padding: 30px 15px;
   display: flex;
 }
+
 .modalMobileBtn {
   max-width: 345px;
   width: 100% !important;

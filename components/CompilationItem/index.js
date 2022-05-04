@@ -3,6 +3,8 @@ import styles from "./styles.module.scss";
 import Eye from "../shared/icons/eye";
 import Image from 'next/image'
 import Link from 'next/link'
+import moment from "moment";
+import 'moment/locale/ru'
 
 const CompilationItem = ({
   data,
@@ -25,7 +27,7 @@ const CompilationItem = ({
               placeholder="blur"
               blurDataURL="/blur.webp"
             />
-            <span className={styles.selectionCount}>{data?.books_count} книг</span>
+            <span className={styles.selectionCount}>{data?.total_count} книг</span>
           </a>
         </Link> :
         <div className={styles.selectionLink}>
@@ -39,15 +41,15 @@ const CompilationItem = ({
             placeholder="blur"
             blurDataURL="/blur.webp"
           />
-          <span className={styles.selectionCount}>{data?.books_count} книг</span>
+          <span className={styles.selectionCount}>{data?.total_count} книг</span>
         </div>
       }
 
       {isFull &&
         <div className={styles.selectionDate}>
-          <span>20 октября 2021</span>
+          <span>{moment(data?.created_at).format('D MMMM YYYY в LT')}</span>
           <div className={styles.selectionDateViews}>
-            <span>456</span>
+            <span>{data?.views_count}</span>
             <Eye/>
           </div>
         </div>
@@ -61,13 +63,7 @@ const CompilationItem = ({
       }
 
       {isFull &&
-        <p className={styles.selectionText}>
-          А также действия представителей оппозиции представлены в
-          исключительно положительном свете. Прежде всего, курс на
-          социально-ориентированный национальный проект
-          способствует повышению. А также действия представителей
-          оппозиции представлены в исключительно
-        </p>
+        <p className={styles.selectionText}>{data?.description}</p>
       }
     </div>
   );
