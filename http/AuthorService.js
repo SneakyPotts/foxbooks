@@ -7,7 +7,7 @@ export default class AuthorService {
 	}
 
 	static async getAuthorsByLetter({letter, page}) {
-		return axios.get(`${API_URL}/authors/letter/${encodeURI(letter)}?page=${page}`)
+		return axios.get(`${API_URL}/authors/filter?letter=${encodeURI(letter)}&page=${page}`)
 	}
 
 	static async getAuthorBooks(id) {

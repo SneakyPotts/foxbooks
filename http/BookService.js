@@ -37,8 +37,8 @@ export default class BookService {
 		return api.get(`${API_URL}/profile/lists/audio-books?sortBy=${sortBy}&status=${status}`)
 	}
 
-	static async getBooksByLetter({letter, page = 1}) {
-		return axios.get(`${API_URL}/books/letter/${encodeURI(letter)}?page=${page}`)
+	static async getBooksByLetter({letter, type, page = 1}) {
+		return axios.get(`${API_URL}/books/filter?alphabetTitleIndex=${encodeURI(letter)}&type=${type}&page=${page}`)
 	}
 
 	static async getBookById(id, type) {

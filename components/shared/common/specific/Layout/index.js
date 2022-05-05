@@ -16,6 +16,8 @@ import debounce from 'lodash.debounce';
 import ArrowUp from '../../../icons/arrowUp';
 import st from './layout.module.scss';
 import { io } from "socket.io-client";
+import {setCategories} from "../../../../../store/bookSlice";
+import CategoriesService from "../../../../../http/CategoriesService";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
@@ -38,6 +40,11 @@ const Layout = ({ children }) => {
   }
 
   useEffect(() => {
+    // (async () => {
+    //   const data = await CategoriesService.getCategories()
+    //   dispatch(setCategories(data.data.data));
+    // })()
+
     dispatch(setBreakPoint(window.innerWidth));
     window.addEventListener(
       'resize',
@@ -59,9 +66,12 @@ const Layout = ({ children }) => {
       dispatch(setAuth(true));
     }
 
-    window.addEventListener('scroll', function () {
-      setPosition(this.scrollY);
-    });
+    window.addEventListener(
+      'scroll',
+      debounce(function() {
+        setPosition(this.scrollY);
+      }, 300)
+    )
   }, []);
 
   useEffect(() => {

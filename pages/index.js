@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Home from '../components/HomePage';
 import { useDispatch } from 'react-redux';
 import {setBooks, setCategories, setDailyHotUpdates} from '../store/bookSlice';

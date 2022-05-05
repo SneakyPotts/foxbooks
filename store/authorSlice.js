@@ -9,8 +9,8 @@ const initialState = {
 
 export const getAuthorsByLetter = createAsyncThunk(
 	'author/getAuthorsByLetter',
-	async ({query, letter, page}) => {
-		const response = await AuthorService.getAuthorsByLetter({letter, page})
+	async ({query, letter, type, page}) => {
+		const response = await AuthorService.getAuthorsByLetter({letter, type, page})
 		return {
 			...response.data.data,
 			query

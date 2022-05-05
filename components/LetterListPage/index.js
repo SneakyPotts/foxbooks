@@ -40,19 +40,22 @@ const LetterListPage = () => {
   }, [isBook, booksByLetter, authorsByLetter])
 
   const fetch = page => {
-    const data = {
-      query: router.asPath,
-      letter: router.query?.letter,
-      page
-    }
-
     if(isBook) {
-      dispatch(getBooksByLetter(data)).then(() => {
+      dispatch(getBooksByLetter({
+        query: router.asPath,
+        letter: router.query?.letter,
+        type: router.query?.type,
+        page
+      })).then(() => {
         setIsFirstLoading(false)
         setIsLoading(false)
       })
     } else {
-      dispatch(getAuthorsByLetter(data)).then(() => {
+      dispatch(getAuthorsByLetter({
+        query: router.asPath,
+        letter: router.query?.letter,
+        page
+      })).then(() => {
         setIsFirstLoading(false)
         setIsLoading(false)
       })
@@ -97,21 +100,35 @@ const LetterListPage = () => {
             <div className={styles.tableWrapper}>
               <table className={styles.table}>
                 {data?.map(i =>
-                  <tr key={i?.id}>
-                    <td>
-                      <Link
-                        href={
-                          isBook ?
-                            `/book/${i?.id}?type=${i?.type}` :
-                            `/author?id=${i?.id}`
-                        }
-                      >
-                        <a className={styles.tableLink}>{isBook? i?.title : i?.author}</a>
-                      </Link>
-                    </td>
-                    <td>Саймон Стронг</td>
-                    <td><Stars /> 8,1 (450)</td>
-                  </tr>
+                  isBook ? (
+                    <tr key={i?.id}>
+                      <td>
+                        <Link
+                          href={`/book/${i?.id}?type=${i?.type}`}
+                        >
+                          <a className={styles.tableLink}>{i?.title}</a>
+                        </Link>
+                      </td>
+                      <td>
+                        <Link
+                          href={`/author?id=${i?.authors[0]?.id}`}
+                        >
+                          <a className={styles.tableLink}>{i?.authors[0]?.author}</a>
+                        </Link>
+                      </td>
+                      <td><Stars value={i?.rates_avg} /> {i?.rates_avg} ({i?.rates_count})</td>
+                    </tr>
+                  ) : (
+                    <tr key={i?.id}>
+                      <td>
+                        <Link
+                          href={`/author?id=${i?.id}`}
+                        >
+                          <a className={styles.tableLink}>{i?.author}</a>
+                        </Link>
+                      </td>
+                    </tr>
+                  )
                 )}
                 <InView
                   as={'tr'}

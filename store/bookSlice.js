@@ -23,8 +23,8 @@ export const getBooksByAuthor = createAsyncThunk(
 
 export const getBooksByLetter = createAsyncThunk(
 	'book/getBooksByLetter',
-	async ({query, letter, page}) => {
-		const response = await BookService.getBooksByLetter({letter, page})
+	async ({query, letter, type, page}) => {
+		const response = await BookService.getBooksByLetter({letter, type, page})
 		return {
 			...response.data.data,
 			query
