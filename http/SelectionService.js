@@ -4,8 +4,8 @@ import api, { API_URL } from ".";
 export default class SelectionService {
 	static async getSelections({
 		showType = 'block',
-		selectionCategory = '',
-		bookType = ''
+		selectionCategory = 3,
+		bookType = 'all'
 	}) {
 		return axios.get(`${API_URL}/compilations?showType=${showType}
 			${selectionCategory && `&selectionCategory=${selectionCategory}`}

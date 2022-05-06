@@ -1,9 +1,7 @@
-// import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/bundle';
 import ArrowRight from '../../../../public/chevron-right.svg';
 import Book from '../../../shared/common/book';
 import css from './audioBooks.module.scss';

@@ -1,6 +1,5 @@
 // import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/bundle';
 import { Navigation, Pagination } from 'swiper/core';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';

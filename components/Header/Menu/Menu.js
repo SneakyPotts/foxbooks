@@ -52,7 +52,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
             <span>Аудиокниги</span>
           </a>
         </Link>
-        <Link href="/selections">
+        <Link href="/selections?selectionCategory=3&bookType=all&showType=list">
           <a
             className={`${css.link} ${css.linkStroke} ${
               router.pathname === '/selections'

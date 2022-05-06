@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import ReaderBook from "../components/ReaderBook/ReaderBook";
 import ReaderService from '../http/ReaderService';
-import {setReaderBook, setBookChapters, getBookMarks, getSettings} from '../store/readerSlice';
+import {setReaderBook, setBookChapters, getBookMarks, getSettings, getBookQuotes} from '../store/readerSlice';
 
 const Reader = (props) => {
   const router = useRouter()
@@ -18,8 +18,13 @@ const Reader = (props) => {
     if(isAuth) {
       dispatch(getSettings())
       dispatch(getBookMarks(router.query?.id))
+      dispatch(getBookQuotes({
+        id: router.query?.id,
+        my: 1,
+        search: ''
+      }))
     }
-  }, [])
+  }, [isAuth])
 
   return (
     <ReaderBook />

@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import Image from 'next/image';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/bundle';
 import classnames from 'classnames';
 import ArrowRight from '../../public/chevron-right.svg';
 import AboutBook from './AboutBook';

@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/bundle';
 import ShowAll from '../../shared/common/showAll/ShowAll';
 import Book from '../../shared/common/book';
 import books from '../../data/books.json';

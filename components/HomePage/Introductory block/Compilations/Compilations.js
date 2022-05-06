@@ -4,7 +4,6 @@ import ArrowRight from '../../../../public/chevron-right.svg';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/bundle';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
 import CompilationItem from "../../../CompilationItem";
 
@@ -18,7 +17,7 @@ const Compilations = () => {
 
   return (
     <div className={styles.container}>
-      <ShowAll title="Подборки" url="/selections" />
+      <ShowAll title="Подборки" url="/selections?selectionCategory=3&bookType=all&showType=list" />
 
       <Swiper
         modules={[Navigation]}

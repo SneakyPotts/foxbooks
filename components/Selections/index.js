@@ -1,4 +1,3 @@
-import React, {useMemo} from 'react';
 import Switcher from '../switcher/Switcher';
 import classNames from 'classnames';
 import styles from './selections.module.scss';
@@ -34,27 +33,11 @@ const SelectionsPage = () => {
 	const { selections } = useSelector(state => state.selection)
 	const { innerWidthWindow } = useSelector(state => state.common);
 
-	const typeList = useMemo(() => {
-		return router.query['showType'] === 'list'
-	}, [router.query])
-
-	const hasBooks = (() => {
-		if(selections?.data?.length) {
-			if(typeList) {
-				return selections?.data?.some(i => router.query?.bookType === 'books' ? i?.books?.length : i?.audio_books?.length)
-			} else {
-				return selections?.data?.some(i => i?.[router.query?.bookType === 'books' ? 'books_count' : 'audio_books_count'])
-			}
-		} else {
-			return false
-		}
-	})()
-
 	return (
 		<div className="container">
 			<Breadcrumbs
 				data={[{
-					path: `/selections`,
+					path: `/selections?selectionCategory=3&bookType=all&showType=list`,
 					title: 'Подборки'
 				}]}
 			/>
@@ -97,16 +80,13 @@ const SelectionsPage = () => {
 							</div>
 						}
 
-						<Switcher flagSwitcher={typeList} />
+						<Switcher flagSwitcher={router.query['showType'] === 'list'} />
 					</div>
 
-					{hasBooks ?
-						typeList ?
-							selections?.data?.map(i =>
-								(
-									(router.query?.bookType === 'books' && i?.books?.length) ||
-									(router.query?.bookType === 'audioBooks' && i?.audio_books?.length)
-								) &&
+					{selections?.data?.length ?
+						<>
+							{router.query['showType'] === 'list' &&
+								selections?.data?.map(i =>
 									<div className={styles.mainListItem}>
 										<div className={styles.titleFlex}>
 											<Link href={`/selections/${i?.id}`}>
@@ -118,56 +98,58 @@ const SelectionsPage = () => {
 												Добавить подборку
 											</button>
 										</div>
-										<Swiper
-											spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
-											modules={[Navigation]}
-											navigation={{
-												prevEl: '.prevArrow',
-												nextEl: '.nextArrow',
-											}}
-											slidesPerView={innerWidthWindow <= 768 ? 3 : 5}
-											className={styles.slider}
-										>
-											{i?.[router.query?.bookType === 'books' ? 'books' : 'audio_books']?.map(j => (
-												<SwiperSlide key={j?.id}>
-													<Book
-														book={j}
-														audio={j?.type === 'audioBooks'}
-														type={j?.type}
-													/>
-												</SwiperSlide>
-											))}
-											<button
-												className={classNames('prevArrow', {
-													// [st.btn]: !audioFlag,
-													// [st.btnAudio]: audioFlag,
-												})}
-											>
-												<ArrowRight className="arrowNext" />
-											</button>
-											<button
-												className={classNames('nextArrow', {
-													// [st.btn]: !audioFlag,
-													// [st.btnAudio]: audioFlag,
-												})}
-											>
-												<ArrowRight className="arrowNext" />
-											</button>
-										</Swiper>
+										{
+											(
+												(router.query?.bookType === 'all' && i?.books.concat(i?.audio_books)?.length) ||
+												(router.query?.bookType === 'books' && i?.books?.length) ||
+												(router.query?.bookType === 'audioBooks' && i?.audio_books?.length)
+											) && <>
+												<Swiper
+													spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
+													modules={[Navigation]}
+													navigation={{
+														prevEl: '.prevArrow',
+														nextEl: '.nextArrow',
+													}}
+													slidesPerView={innerWidthWindow <= 768 ? 3 : 5}
+													className={styles.slider}
+												>
+													{(
+														router.query?.bookType === 'books' ? i?.books :
+															router.query?.bookType === 'audioBooks' ? i?.audio_books :
+																i?.books.concat(i?.audio_books)
+													).map(j =>
+														<SwiperSlide key={j?.id}>
+															<Book
+																book={j}
+																audio={j?.type === 'audioBooks'}
+																type={j?.type}
+															/>
+														</SwiperSlide>
+														)
+													}
+													<button className='prevArrow'>
+														<ArrowRight className="arrowNext" />
+													</button>
+													<button className='nextArrow'>
+														<ArrowRight className="arrowNext" />
+													</button>
+												</Swiper>
 
-										<ShowAll
-											text={'Смотреть все'}
-											url={`/selections/${i?.id}`}
-											externalClass={styles.showMore}
-										/>
+												<ShowAll
+													text={'Смотреть все'}
+													url={`/selections/${i?.id}`}
+													externalClass={styles.showMore}
+												/>
+											</>
+										}
 									</div>
-							) :
-							<div className={styles.mainGrid}>
-								{selections?.data?.map(i =>
-									(
-										(router.query?.bookType === 'books' && i?.['books_count']) ||
-										(router.query?.bookType === 'audioBooks' && i?.['audio_books_count'])
-									) &&
+								)
+							}
+
+							{router.query['showType'] === 'block' &&
+								<div className={styles.mainGrid}>
+									{selections?.data?.map(i =>
 										<div className={styles.mainGridItem}>
 											<CompilationItem
 												key={i?.id}
@@ -175,9 +157,11 @@ const SelectionsPage = () => {
 												path={`/selections/${i?.id}`}
 											/>
 										</div>
-								)}
-							</div>
-						:
+									)}
+								</div>
+							}
+						</>
+					:
 						<p className="empty">Не найдено подборок</p>
 					}
 
@@ -189,7 +173,7 @@ const SelectionsPage = () => {
 				</div>
 
 				<div className={classNames(styles.advertisingBlock, {
-					[styles.mt]: !typeList
+					[styles.mt]: router.query['showType'] === 'block'
 				})}>
 					<div className={styles.bannerBlock}>
 						<img src="/banner.png" alt="" className={styles.banner} />

@@ -1,6 +1,5 @@
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/bundle';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import ArrowRight from '../../public/chevron-right.svg';
@@ -11,7 +10,6 @@ import BookUpdates from './Updates';
 import Filters from '../Filter';
 import Introductory from './Introductory block';
 import About from './About';
-import books from '../data/books.json';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import MobileBlock from './MobileBlock';

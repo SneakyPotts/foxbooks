@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/bundle';
 import { Navigation } from 'swiper/core';
 import ArrowRight from '../../../../public/chevron-right.svg';
 import st from './reviews.module.scss';

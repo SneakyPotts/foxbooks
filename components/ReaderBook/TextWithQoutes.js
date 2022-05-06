@@ -216,13 +216,6 @@ const TextWithQoutes = () => {
 		const sel = window.getSelection()
 		sel.removeAllRanges()
 
-		if(quotes?.length) {
-			quotes?.forEach(i => {
-				sel.addRange(objToRange(i))
-				highlight(i.id, i.color, handleMarkClick)
-			})
-		}
-
 		const query = router.query
 
 		if(query.hasOwnProperty('startKey')) {
@@ -235,6 +228,27 @@ const TextWithQoutes = () => {
 			router.replace(`http://localhost:3000/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
 	}, [])
+
+	useEffect(() => {
+		const sel = window.getSelection()
+		sel.removeAllRanges()
+
+		if(quotes?.length) {
+			quotes?.forEach(i => {
+				const quot = {
+					...i,
+					startKey: i.start_key,
+					startTextIndex: i.start_text_index,
+					startOffset: i.start_offset,
+					endKey: i.end_key,
+					endTextIndex: i.end_text_index,
+					endOffset: i.end_offset
+				}
+				sel.addRange(objToRange(quot))
+				highlight(i.id, i.color, handleMarkClick)
+			})
+		}
+	}, [quotes])
 
 	return (
 		<>

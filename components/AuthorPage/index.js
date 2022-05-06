@@ -1,6 +1,5 @@
 import React, { useState }  from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import 'swiper/css/bundle';
 import Image from 'next/image';
 import Link from 'next/link';
 import Categories from '../HomePage/Categories';
@@ -180,7 +179,7 @@ const AuthorPage = () => {
 
               {author?.non_author_compilation?.data?.length ?
                 <div className={st.compil}>
-                  <ShowAll title="Подборки" url="/selections" />
+                  <ShowAll title="Подборки" url="/selections?selectionCategory=3&bookType=all&showType=list" />
                   <div className={st.compilBlock}>
                     {author?.non_author_compilation?.data?.map(i =>
                       <CompilationItem

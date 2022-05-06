@@ -49,6 +49,14 @@ export const getSettings = createAsyncThunk(
 	}
 )
 
+export const getBookQuotes = createAsyncThunk(
+	'reader/getBookQuotes',
+	async data => {
+		const response = await ReaderService.getBookQuotes(data)
+		return response.data?.data
+	}
+)
+
 export const addBookQuote = createAsyncThunk(
 	'reader/addBookQuote',
 	async data => {
@@ -110,6 +118,10 @@ export const readerSlice = createSlice({
 				isCenterAlignment: action.payload.is_center_alignment
 			}
 			state.settings = obj
+		},
+
+		[getBookQuotes.fulfilled]: (state, action) => {
+			state.quotes = action.payload
 		},
 
 		[addBookQuote.fulfilled]: (state, action) => {
