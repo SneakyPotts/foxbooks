@@ -22,8 +22,14 @@ export default class ReaderService {
 		return api.delete(`${API_URL}/bookmarks/${id}`)
 	}
 
+	static async getBookQuotes({id, my, search}) {
+		return api.get(`${API_URL}/quotes?bookId=${id}
+			${my && `&myQuotes=${my}`}
+			${search && `&search=${search}`}
+		`)
+	}
+
 	static async addBookQuote(data) {
-		console.log('data',data)
 		const obj = {
 			book_id: data?.book_id,
 			page_id: data?.page_id,
@@ -39,11 +45,12 @@ export default class ReaderService {
 		return api.post(`${API_URL}/quotes`, obj)
 	}
 
-	static async getBookQuotes({id, my, search}) {
-		return api.get(`${API_URL}/quotes?bookId=${id}
-			${my && `&myQuotes=${my}`}
-			${search && `&search=${search}`}
-		`)
+	static async editBookQuote(data) {
+		return api.put(`${API_URL}/quotes`, data)
+	}
+
+	static async deleteBookQuote(id) {
+		return api.delete(`${API_URL}/quotes?quoteId=${id}`)
 	}
 
 	static async getSettings() {

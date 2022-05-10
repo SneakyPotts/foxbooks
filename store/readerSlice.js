@@ -14,7 +14,8 @@ const initialState = {
 		rowHeight: 2,
 		isCenterAlignment: false
 	},
-	quotes: []
+	quotes: [],
+	quotesIsLoading: true
 };
 
 export const getBookMarks = createAsyncThunk(
@@ -61,7 +62,23 @@ export const addBookQuote = createAsyncThunk(
 	'reader/addBookQuote',
 	async data => {
 		const response = await ReaderService.addBookQuote(data)
-		return data
+		return response.data?.data
+	}
+)
+
+export const editBookQuote = createAsyncThunk(
+	'reader/editBookQuote',
+	async data => {
+		const response = await ReaderService.editBookQuote(data)
+		return response.data?.data
+	}
+)
+
+export const deleteBookQuote = createAsyncThunk(
+	'reader/deleteBookQuote',
+	async id => {
+		const response = await ReaderService.deleteBookQuote(id)
+		return id
 	}
 )
 
@@ -69,21 +86,6 @@ export const readerSlice = createSlice({
 	name: 'reader',
 	initialState,
 	reducers: {
-		editQuotes: (state, action) => {
-			const quotes = state.quotes.map(i => {
-				return i?.id == action.payload.id ?
-					{
-						...i,
-						color: action.payload.color
-					} :
-					i
-			})
-
-			state.quotes = quotes
-		},
-		deleteQuotes: (state, action) => {
-			state.quotes = state.quotes.filter(i => i.id != action.payload)
-		},
 		setReaderBook: (state, action) => {
 			state.book = action.payload
 		},
@@ -122,17 +124,36 @@ export const readerSlice = createSlice({
 
 		[getBookQuotes.fulfilled]: (state, action) => {
 			state.quotes = action.payload
+			state.quotesIsLoading = false
+		},
+		[getBookQuotes.rejected]: (state, action) => {
+			state.quotesIsLoading = false
 		},
 
 		[addBookQuote.fulfilled]: (state, action) => {
 			state.quotes.push(action.payload)
 		},
+
+		[editBookQuote.fulfilled]: (state, action) => {
+			const quotes = state.quotes.map(i => {
+				return i?.id == action.payload.id ?
+					{
+						...i,
+						color: action.payload.color
+					} :
+					i
+			})
+
+			state.quotes = quotes
+		},
+
+		[deleteBookQuote.fulfilled]: (state, action) => {
+			state.quotes = state.quotes.filter(i => i.id != action.payload)
+		},
 	}
 });
 
 export const {
-	editQuotes,
-	deleteQuotes,
 	setReaderBook, 
 	setBookChapters,
 	setSettings 

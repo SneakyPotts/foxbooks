@@ -5,7 +5,7 @@ import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import AddQout from "./AddQout";
 import { highlight, rangeToObj, objToRange, addKey } from './../../utils'
 import styles from './styles.module.scss'
-import {addBookQuote, deleteQuotes, editQuotes} from '../../store/readerSlice';
+import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {setAuthPopupVisibility} from "../../store/commonSlice";
@@ -36,7 +36,7 @@ const TextWithQoutes = () => {
 
 	const { innerWidthWindow } = useSelector(state => state?.common)
 	const { isAuth } = useSelector(state => state?.auth)
-	const { book, settings, quotes } = useSelector(state => state?.reader)
+	const { book, settings, quotes, quotesIsLoading } = useSelector(state => state?.reader)
 
 	const text = useMemo(() => {
 		const str = book?.pages[0]?.content
@@ -90,19 +90,20 @@ const TextWithQoutes = () => {
 		setToolsIsVisible(true)
 	}
 
-	const addQuot = color => {
+	const addQuot = async color => {
 		if(!isAuth) {
 			dispatch(setAuthPopupVisibility(true))
 		} else {
-			const id = quotes?.length + 1
 			const quot = {
 				...rangeObj,
 				book_id: book?.pages[0]?.book_id,
 				page_id: book?.pages[0]?.id,
 				text: selectedText,
-				id,
 				color
 			}
+
+			const { payload } = await dispatch(addBookQuote(quot))
+			const id = payload?.id
 
 			setMarkId(id)
 
@@ -111,8 +112,6 @@ const TextWithQoutes = () => {
 
 			sel.addRange(objToRange(rangeObj))
 			highlight(id, color, handleMarkClick)
-
-			dispatch(addBookQuote(quot))
 
 			sel.removeAllRanges()
 			setToolsIsVisible(false)
@@ -126,34 +125,40 @@ const TextWithQoutes = () => {
 			const marks = document.querySelectorAll(`[data-id="${markId}"]`)
 			marks.forEach(i => i.style.backgroundColor = color)
 
-			dispatch(editQuotes({id: markId, color}))
+			dispatch(editBookQuote({id: markId, color}))
 		}
 	}
 	
 	const deleteQuot = () => {
-		const marks = document.querySelectorAll(`[data-id="${markId}"]`)
-		marks.forEach(i => {
-			const html = document.createTextNode(i.innerHTML)
-			i.parentNode.insertBefore(html, i)
-			i.remove()
-		})
+		if(!isAuth) {
+			dispatch(setAuthPopupVisibility(true))
+		} else {
+			const marks = document.querySelectorAll(`[data-id="${markId}"]`)
+			marks.forEach(i => {
+				const html = document.createTextNode(i.innerHTML)
+				i.parentNode.insertBefore(html, i)
+				i.remove()
+			})
 
-		dispatch(deleteQuotes(markId))
-		setMarkId(null)
-		setToolsIsVisible(false)
+			dispatch(deleteBookQuote(markId))
+			setMarkId(null)
+			setToolsIsVisible(false)
+		}
 	}
 
 	const copyText = () => {
 		const text = quotes?.find(i => i?.id == markId)?.text || selectedText
 		navigator.clipboard.writeText(text?.trim())
+		setToolsIsVisible(false)
 	}
 
 	const shareQuot = () => {
 		let query = quotes?.find(i => i.id === markId) || rangeObj
 
-		let str = `http://localhost:3000${router.asPath}&startKey=${query.startKey}&startTextIndex=${query.startTextIndex}&startOffset=${query.startOffset}&endKey=${query.endKey}&endTextIndex=${query.endTextIndex}&endOffset=${query.endOffset}`
+		let str = `${window.location.origin}${router.asPath}&startKey=${query.startKey}&startTextIndex=${query.startTextIndex}&startOffset=${query.startOffset}&endKey=${query.endKey}&endTextIndex=${query.endTextIndex}&endOffset=${query.endOffset}`
 
 		navigator.clipboard.writeText(str)
+		setToolsIsVisible(false)
 	}
 
 	const changePage = ev => {
@@ -208,47 +213,53 @@ const TextWithQoutes = () => {
 			case 4:
 				return 25
 		}
-	}, [settings?.rowHeight ])
+	}, [settings?.rowHeight])
+
+	const filterAndCreateQuotes = () => {
+		if(!quotes?.length) return
+
+		const filteredQuotes = quotes.filter(i => i?.page_id === book?.pages[0]?.id)
+
+		if(!filteredQuotes?.length) return
+
+		const sel = window.getSelection()
+		sel.removeAllRanges()
+
+		filteredQuotes?.forEach(i => {
+			const quot = {
+				...i,
+				startKey: i.start_key,
+				startTextIndex: i.start_text_index,
+				startOffset: i.start_offset,
+				endKey: i.end_key,
+				endTextIndex: i.end_text_index,
+				endOffset: i.end_offset
+			}
+			sel.addRange(objToRange(quot))
+			highlight(i.id, i.color, handleMarkClick)
+		})
+		sel.removeAllRanges()
+	}
 
 	useEffect(() => {
 		addKey(article.current)
-
-		const sel = window.getSelection()
-		sel.removeAllRanges()
-
-		const query = router.query
-
-		if(query.hasOwnProperty('startKey')) {
-			sel.addRange(objToRange(query))
-
-			setTimeout(() => {
-				document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
-			}, 300)
-
-			router.replace(`http://localhost:3000/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
-		}
 	}, [])
 
 	useEffect(() => {
-		const sel = window.getSelection()
-		sel.removeAllRanges()
+		if(quotesIsLoading) return
 
-		if(quotes?.length) {
-			quotes?.forEach(i => {
-				const quot = {
-					...i,
-					startKey: i.start_key,
-					startTextIndex: i.start_text_index,
-					startOffset: i.start_offset,
-					endKey: i.end_key,
-					endTextIndex: i.end_text_index,
-					endOffset: i.end_offset
-				}
-				sel.addRange(objToRange(quot))
-				highlight(i.id, i.color, handleMarkClick)
-			})
+		filterAndCreateQuotes()
+
+		const query = router.query
+		const sel = window.getSelection()
+
+		// select share quot
+		if(query.hasOwnProperty('startKey')) {
+			sel.addRange(objToRange(query))
+			document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
+			router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
-	}, [quotes])
+	}, [book?.pages[0]?.id, quotesIsLoading])
 
 	return (
 		<>
