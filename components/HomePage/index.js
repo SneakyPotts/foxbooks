@@ -32,18 +32,11 @@ const HomeView = ({ audioBooks, newBooks }) => {
           <Swiper
             modules={[Navigation]}
             spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
-            slidesPerView={
-              (innerWidthWindow <= 500 && 3) ||
-              (innerWidthWindow <= 1024 && 4) ||
-              (innerWidthWindow >= 1200 && 5)
-            }
+            slidesPerView={innerWidthWindow <= 480 ? 3 : 5 }
             navigation={{
               prevEl: '.prevArrow',
               nextEl: '.nextArrow',
             }}
-
-            // onSlideChange={() => console.log('slide change')}
-            // onSwiper={swiper => console.log(swiper)}
           >
             {newBooks.map(book => (
               <SwiperSlide key={book?.id} className={css.swiperSlide}>

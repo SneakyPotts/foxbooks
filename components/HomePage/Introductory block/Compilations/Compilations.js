@@ -25,14 +25,8 @@ const Compilations = () => {
           prevEl: '.prevArrow',
           nextEl: '.nextArrow',
         }}
-        spaceBetween={24}
-        slidesPerView={
-          (innerWidthWindow <= 768 && 1) ||
-          (innerWidthWindow <= 1024 && 2) ||
-          (innerWidthWindow >= 1200 && 3)
-        }
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={swiper => console.log(swiper)}
+        spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
+        slidesPerView={innerWidthWindow <= 600 ? 1 : 3}
       >
         {selections.map(i =>
           <SwiperSlide key={i?.id}>

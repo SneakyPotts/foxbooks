@@ -105,9 +105,14 @@ const Header = ({ socket }) => {
     }
   }, [router.pathname, innerWidthWindow, headerIsVisible])
 
-  const onChange = str => {
+  const onChange = async str => {
     setSearchValue(str)
-    dispatch(search({ str, type: 'full' }))
+    const response = await dispatch(search({ str, type: 'short' }))
+    const {books, authors} = response?.payload
+
+    if(books?.length || authors?.length) {
+      openModal()
+    }
   }
 
   useEffect(() => {
@@ -130,7 +135,7 @@ const Header = ({ socket }) => {
             <SearchInput
               withModal
               showMenuFlag={showMenuFlag}
-              onClick={openModal}
+              // onClick={openModal}
               onChange={onChange}
               onClose={closeModal}
               placeholder={

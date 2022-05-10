@@ -105,13 +105,13 @@ const SelectionsPage = () => {
 												(router.query?.bookType === 'audioBooks' && i?.audio_books?.length)
 											) && <>
 												<Swiper
-													spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
 													modules={[Navigation]}
 													navigation={{
 														prevEl: '.prevArrow',
 														nextEl: '.nextArrow',
 													}}
-													slidesPerView={innerWidthWindow <= 768 ? 3 : 5}
+													spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
+													slidesPerView={innerWidthWindow <= 768 ? 3.1 : 5}
 													className={styles.slider}
 												>
 													{(

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import classNames from "classnames";
 import {FiSearch} from "react-icons/fi";
 import Close from "../shared/icons/close";
@@ -28,6 +28,15 @@ const SearchInput = ({
   }
 
   const handleSearch = debounce(value => onChange(value), 300)
+
+  useEffect(() => {
+    document.body.addEventListener('keydown', ev => {
+      if(ev.code === 'Escape' && !!showMenuFlag) {
+        onClose && onClose()
+        input.current.value = ''
+      }
+    })
+  }, [])
 
   return (
     <div
