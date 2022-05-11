@@ -218,7 +218,9 @@ const TextWithQoutes = () => {
 	const filterAndCreateQuotes = () => {
 		if(!quotes?.length) return
 
-		const filteredQuotes = quotes.filter(i => i?.page_id === book?.pages[0]?.id)
+		const filteredQuotes = quotes
+			.filter(i => i?.page_id === book?.pages[0]?.id)
+			.sort((a, b) => a?.start_key - b?.start_key)
 
 		if(!filteredQuotes?.length) return
 
@@ -237,8 +239,8 @@ const TextWithQoutes = () => {
 			}
 			sel.addRange(objToRange(quot))
 			highlight(i.id, i.color, handleMarkClick)
+			sel.removeAllRanges()
 		})
-		sel.removeAllRanges()
 	}
 
 	useEffect(() => {
@@ -269,7 +271,7 @@ const TextWithQoutes = () => {
 				<a className={styles.bookAuthor}>{book?.authors[0]?.author}</a>
 			</Link>
 
-			<h2 className={styles.bookSubtitle}>Глава 1. Мальчик, который выжил</h2>
+			{/*<h2 className={styles.bookSubtitle}>Глава 1. Мальчик, который выжил</h2>*/}
 
 			<article
 				ref={article}

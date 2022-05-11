@@ -44,11 +44,11 @@ export const addKey = el => {
 export const objToRange = quot => {
 	const range = document.createRange()
 
-	range.setStart(
+	range?.setStart(
 		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[quot.startTextIndex], 
 		quot.startOffset
 	)
-	range.setEnd(
+	range?.setEnd(
 		document.querySelector(`[data-key="${quot.endKey}"]`).childNodes[quot.endTextIndex], 
 		quot.endOffset
 	)

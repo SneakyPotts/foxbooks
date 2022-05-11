@@ -17,13 +17,33 @@
 
   &Block {
     position: relative;
-    padding: 60px;
+    padding: 55px;
     background-color: #fff;
     box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
-    border: 1px solid #F1F1F1;
+    border: 5px solid transparent;
     border-radius: 5px;
     max-height: 90vh;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: $color-main #fff;
+    scrollbar-width: thin;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+      padding-right: 5px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-main;
+      border-radius: 37px;
+    }
 
     &Cross {
       cursor: pointer;

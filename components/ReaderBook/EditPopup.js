@@ -44,7 +44,10 @@ const EditPopup = () => {
   }
 
   return (
-    <div onClick={() => setDropdownIsVisible(false)}>
+    <div
+      className={styles.editPopupWrapper}
+      onClick={() => setDropdownIsVisible(false)}
+    >
       <div className={classNames(styles.editWrapper, styles.flex)}>
         <span className={styles.editTitle}>Текст в 2 колонки</span>
         <Switch

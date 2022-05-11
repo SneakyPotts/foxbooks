@@ -23,7 +23,7 @@ const Header = ({
   const router = useRouter()
 
   const { innerWidthWindow } = useSelector(state => state?.common)
-  const { settings, bookMarks } = useSelector(state => state?.reader)
+  const { settings, bookMarks, bookChapters } = useSelector(state => state?.reader)
 
   const [isFullScreen, setIsFullScreen] = useState(false)
 
@@ -108,7 +108,7 @@ const Header = ({
 
       {bookMarks?.length > 0 &&
         <div className={styles.marksList}>
-          {bookMarks?.map((i, index) => (
+          {bookMarks?.map(i => (
             <div
               key={i?.page?.page_number}
               className={styles.markItem}
@@ -116,8 +116,8 @@ const Header = ({
             >
               <BookMark />
               <span className={classNames(styles.tooltip, styles.markTooltip)}>
-                <span>Закладка (глава {index + 1} из 17):</span>
-                {index + 1}. {i?.chapter}
+                <span>Закладка (глава {bookChapters?.findIndex(j => j?.id === i?.chapter?.id) + 1} из {bookChapters?.length}):</span>
+                {i?.chapter?.title}
               </span>
             </div>
           ))}

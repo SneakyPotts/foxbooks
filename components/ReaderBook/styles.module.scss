@@ -254,11 +254,12 @@
 }
 
 .popup {
-  padding: 40px 30px;
+  padding: 40px 30px 0;
   width: 592px;
   height: 642px;
   background: var(--modal-color);
   border: 1px solid var(--modal-border-color);
+  overflow: hidden;
 
   &Title {
     color: var(--main-color);
@@ -316,6 +317,7 @@
     left: 50%;
     transform: translateX(-50%);
     transition: .15s;
+    margin-bottom: 26px;
 
     &:hover {
       color: $text-hover;
@@ -338,6 +340,17 @@
 
     span {
       flex: 1;
+    }
+
+    :global(.take_h1) {
+      color: var(--main-color);
+      font-weight: 700;
+      text-align: center;
+      margin: 26px 0 30px;
+
+      br {
+        display: none;
+      }
     }
   }
 }
@@ -551,6 +564,29 @@
 .popup {
   &List {
     margin-top: 30px;
+    margin-right: -25px;
+    padding-right: 19px;
+    border-bottom: 40px solid transparent;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: $color-main #fff;
+    scrollbar-width: thin;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-main;
+      border-radius: 37px;
+    }
 
     &Item {
       padding-bottom: 15px;
@@ -560,8 +596,32 @@
 
       &:last-of-type {
         margin-bottom: 0;
+        border-bottom: none;
       }
     }
+  }
+}
+.chapter {
+  &List {
+    max-height: calc(100% - 48px);
+  }
+  &Link {
+    display: block;
+    cursor: pointer;
+    transition: .15s;
+
+    &:hover {
+      color: $text-hover;
+    }
+  }
+}
+.quotes {
+  &Search {
+    width: 100%;
+    margin: 30px 0;
+  }
+  &List {
+
   }
 }
 .markListItem {
@@ -829,6 +889,42 @@
           border-radius: 50%;
         }
       }
+    }
+  }
+
+
+  .popup {
+    &List {
+      border-bottom: none;
+    }
+  }
+
+  .chapterList {
+    max-height: 80%;
+  }
+
+  .editPopupWrapper {
+    margin-right: -15px;
+    padding-right: 19px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: $color-main #fff;
+    scrollbar-width: thin;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-main;
+      border-radius: 37px;
     }
   }
 }
