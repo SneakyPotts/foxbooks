@@ -8,6 +8,7 @@ const initialState = {
 	books: [],
 	booksByLetter: {},
 	book: {},
+	bookQuotes: {},
 	booksByAuthor: [],
 	audioBooksByAuthor: [],
 	audioFlag: false,
@@ -83,6 +84,9 @@ export const bookSlice = createSlice({
 		setBook: (state, action) => {
 			state.book = action.payload
 		},
+		setBookQuotes: (state, action) => {
+			state.bookQuotes = action.payload
+		},
 		audioBook: (state, action) => {
 			state.audioFlag = action.payload;
 		}
@@ -120,6 +124,7 @@ export const {
 	setDailyHotUpdates,
 	setBooks,
 	setBook,
+	setBookQuotes,
 	audioBook
 } = bookSlice.actions;
 

@@ -4,33 +4,15 @@ import Eye from '../../shared/icons/eye';
 import Like from '../../shared/icons/heart';
 import MyPagination from '../../shared/common/MyPagination';
 import st from './quotes.module.scss';
+import 'moment/locale/ru'
+import moment from "moment";
+import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
+import React from "react";
 
 const Quotes = () => {
-  const data = [
-    {
-      id: '0',
-      name: 'Александр Смирнов',
-      quote:
-        'Для высокоорганизованного разума смерть - это очередное приключение.',
-      flag: false,
-    },
-    {
-      id: '1',
-      name: 'Ник',
-      quote:
-        'Нельзя цепляться за мечты и сны, забывая о настоящем, забывая о своей жизни.',
-      flag: false,
-    },
-    {
-      id: '2',
-      name: 'Екатерина Смирнова',
-      quote:
-        '-Я не Фред, я Джордж. О, женщина, как ты можешь называться нашей матерью, если не можешь различить собственных сыновей?',
-      flag: false,
-    },
-  ];
+  const { bookQuotes } = useSelector(state => state.book);
 
-  const { innerWidthWindow } = useSelector(state => state.common);
+  if(!bookQuotes?.data?.length) return null
 
   return (
     <div
@@ -38,43 +20,65 @@ const Quotes = () => {
       className={st.container}
     >
       <h2 className={st.quotesTitle}>Цитаты</h2>
-      {data.map(it => (
-        <div key={it.id} className={st.quote}>
+
+      {bookQuotes?.data.map(i =>
+        <div
+          key={i.id}
+          className={st.quote}
+        >
           <div className={st.user}>
             <div className={st.userIcon}>
-              <Image
-                src="/horizontalBookCovers/bookCover3.png"
-                alt=""
-                width="35"
-                height="35"
-                placeholder="blur"
-                blurDataURL="/blur.webp"
-              />
+              {i?.user?.avatar ? (
+                <Image
+                  src={i?.user?.avatar}
+                  alt="Avatar"
+                  width="35"
+                  height="35"
+                  placeholder="blur"
+                  blurDataURL="/blur.webp"
+                />
+              ) : (
+                <AvatarWithLetter
+                  letter={
+                    i?.user?.nickname?.slice(0, 1) ||
+                    i?.user?.name?.slice(0, 1) ||
+                    'П'
+                  }
+                  width={35}
+                  id={i?.user?.id}
+                  isProfile
+                />
+              )}
             </div>
-            <h3 className={st.userName}>{it.name}</h3>
+            <h3 className={st.userName}>{i?.user?.nickname || i?.user?.name || 'Пользователь'}</h3>
           </div>
+
           <div className={st.quoteInfo}>
-            <span>20 октября 2021 в 14:05</span>
+            <span>{moment(i?.updated_at).format('Do MMMM YYYY в HH:mm').replace('-го', '')}</span>
             <span className={st.quoteView}>
-              <span className={st.quoteViewCount}>456</span> <Eye />
+              <span className={st.quoteViewCount}>{i?.views_count}</span> <Eye />
             </span>
           </div>
+
           <div className={st.quoteContainer}>
-            <p className={st.commentText}>{it.quote}</p>
+            <p className={st.commentText}>{i?.text}</p>
             <div className={st.quoteStatistic}>
               <span className={st.quoteIcon}>
                 <Like />
               </span>
-              <span className={st.quoteLike}>10</span>
+              <span className={st.quoteLike}>{i?.likes_count}</span>
             </div>
           </div>
         </div>
-      ))}
-      {innerWidthWindow > 768 ? (
-        <MyPagination />
-      ) : (
-        <div className={st.pagination}>Показать еще</div>
       )}
+
+      {bookQuotes?.last_page > 1 ?
+        <MyPagination
+          currentPage={bookQuotes?.current_page}
+          lastPage={bookQuotes?.last_page}
+        />
+        : null
+      }
     </div>
   );
 };

@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import classNames from "classnames";
 
 const MarksPopup = ({ handleMarkClick }) => {
-  const { bookMarks } = useSelector(state => state.reader)
+  const { bookMarks, bookChapters } = useSelector(state => state.reader)
 
   return (
     <>
@@ -13,11 +13,11 @@ const MarksPopup = ({ handleMarkClick }) => {
         <ul className={styles.popupList}>
           {bookMarks?.map((i, index) => (
             <li
-              key={i?.page?.page_number}
+              key={i?.id}
               className={classNames(styles.popupListItem, styles.markListItem)}
               onClick={() => handleMarkClick(i?.page?.page_number)}
             >
-              Закладка (глава {index + 1} из 17): {i?.chapter} Когда во вторник мистер и миссис Дурсль
+              Закладка (глава {bookChapters?.findIndex(j => j?.id === i?.chapter?.id) + 1} из {bookChapters?.length}): {i?.chapter?.title} Когда во вторник мистер и миссис Дурсль
             </li>
           ))}
         </ul> :

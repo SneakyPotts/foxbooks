@@ -1,7 +1,7 @@
 @import 'styles/variables';
 
 .container {
-  padding: 63px 0;
+  padding: 63px 0 0;
 }
 .quote {
   // padding-top: ;
@@ -65,6 +65,7 @@
   display: flex;
   align-items: center;
   margin-right: 10px;
+  stroke: $color-third;
 }
 .quoteLike {
   margin-right: 30px;
