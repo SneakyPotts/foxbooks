@@ -1,26 +1,73 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from "./styles.module.scss";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import classNames from "classnames";
 import SearchInput from "../SearchInput";
 import Popular from "../Filter/Popular/Popular";
+import ReaderService from "../../http/ReaderService";
+import {useRouter} from "next/router";
+import All from "../shared/icons/all";
+import Share from "../shared/icons/share";
+import Bin from "../shared/icons/trash";
+import {deleteBookQuote} from "../../store/readerSlice";
 
-const filter1 = [
-  {
-    title: 'Все',
-    defaultValue: 0,
-    options: [
-      { id: 1, title: 'Все', value: 0 },
-      { id: 2, title: 'Хочу прочитать', value: 1},
-      { id: 3, title: 'Читаю', value: 2 },
-      { id: 3, title: 'Прочитано', value: 3 }
-    ],
-    queryName: 'status',
-  },
-];
+const filter = {
+  title: 'Мои цитаты',
+  defaultValue: '1',
+  options: [
+    { id: 1, title: 'Мои цитаты', value: '1' },
+    { id: 2, title: 'Общие', value: '0' },
+  ],
+}
 
-const QuotesPopup = () => {
+const QuotesPopup = ({onClose}) => {
+  const router = useRouter()
+  const dispatch = useDispatch()
   const { quotes } = useSelector(state => state.reader)
+
+  const [sortedQuotes, setSortedQuotes] = useState(quotes)
+  const [query, setQuery] = useState({
+    id: router.query?.id,
+    my: 1,
+    search: ''
+  })
+
+  const handleSearch = async value => {
+    const newQuery = { ...query, search: value }
+    setQuery(newQuery)
+    const response = await ReaderService.getBookQuotes(newQuery)
+    setSortedQuotes(response.data?.data)
+  }
+
+  const handleClick = async value => {
+    const newQuery = { ...query, my: value }
+    setQuery(newQuery)
+    const response = await ReaderService.getBookQuotes(newQuery)
+    setSortedQuotes(response.data?.data)
+  }
+
+  const handleShow = quot => {
+    // router.push(`${window.location.origin}/reader?id=${router.query?.id}&page=${quot?.page?.page_number}`)
+    onClose && onClose()
+    document.querySelector(`[data-key="${quot.start_key}"]`).scrollIntoView({behavior: 'smooth'})
+  }
+
+  const handleShare = quot => {
+    let str = `${window.location.origin}/reader?id=${router.query?.id}&page=${quot?.page?.page_number}&startKey=${quot.start_key}&startTextIndex=${quot.start_text_index}&startOffset=${quot.start_offset}&endKey=${quot.end_key}&endTextIndex=${quot.end_text_index}&endOffset=${quot.end_offset}`
+    navigator.clipboard.writeText(str)
+  }
+
+  const handleDelete = id => {
+    const marks = document.querySelectorAll(`[data-id="${id}"]`)
+    marks.forEach(i => {
+      const html = document.createTextNode(i.innerHTML)
+      i.parentNode.insertBefore(html, i)
+      i.remove()
+    })
+
+    dispatch(deleteBookQuote(id))
+    setSortedQuotes(prev => prev.filter(i => i?.id !== id))
+  }
 
   return (
     <>
@@ -28,28 +75,39 @@ const QuotesPopup = () => {
       <SearchInput
         placeholder={'Введите слово из цитаты'}
         externalClass={styles.quotesSearch}
-        onChange={() => {}}
+        onChange={handleSearch}
       />
-      {filter1?.map((i, index) => (
-        <Popular
-          key={index + 1}
-          title={i?.title}
-          defaultValue={i?.defaultValue}
-          data={i?.options}
-          queryName={i?.queryName}
-          filterStateIdx={stateIndex}
-          elIdx={1}
-          setFilStateIdx={setStateIndex}
-        />
-      ))}
-      {quotes?.length ?
+      <Popular
+        title={filter?.title}
+        defaultValue={filter?.defaultValue}
+        data={filter?.options}
+        onClick={handleClick}
+        externalClassName={classNames(styles.quotesFilter, query.my === '0' && styles.quotesFilterActive)}
+      />
+      {sortedQuotes?.length ?
         <ul className={classNames(styles.popupList, styles.quotesList)}>
-          {quotes?.map(i =>
+          {sortedQuotes?.map(i =>
             <li
               key={i?.id}
-              className={styles.popupListItem}
+              className={classNames(styles.popupListItem, styles.quotesListItem)}
             >
               {i?.text}
+              <div className={styles.quotesListWrapper}>
+                <div onClick={() => handleShow(i)}>
+                  <All />
+                  <span>Показать в книге</span>
+                </div>
+                <div onClick={() => handleShare(i)}>
+                  <Share />
+                  <span>Поделиться</span>
+                </div>
+                {!!parseInt(query?.my) &&
+                  <div onClick={() => handleDelete(i?.id)}>
+                    <Bin/>
+                    <span>Удалить</span>
+                  </div>
+                }
+              </div>
             </li>
           )}
         </ul> :

@@ -14,7 +14,9 @@ const Popular = ({
   filterStateIdx,
   elIdx,
   setFilStateIdx,
-  isRight
+  isRight,
+  onClick,
+  externalClassName
 }) => {
   const router = useRouter();
 
@@ -27,11 +29,10 @@ const Popular = ({
   );
 
   useEffect(() => {
-    const body = document.querySelector('body');
-    body.addEventListener('click', closeMenu);
+    document.body.addEventListener('click', closeMenu);
 
     return () => {
-      body.removeEventListener('click', closeMenu);
+      document.body.removeEventListener('click', closeMenu);
     };
   }, []);
 
@@ -51,31 +52,39 @@ const Popular = ({
   };
 
   const handleOnClick = (value, title) => {
-    router.push(
-      {
-        query: {
-          ...router.query,
-          [queryName]: typeof value === 'string' ? encodeURI(value) : value,
+    if(onClick) {
+      onClick(value)
+    } else {
+      router.push(
+        {
+          query: {
+            ...router.query,
+            [queryName]: typeof value === 'string' ? encodeURI(value) : value,
+          },
         },
-      },
-      null,
-      { scroll: false }
-    );
+        null,
+        { scroll: false }
+      )
+    }
     setActiveEl(typeof value === 'object' ? defaultValue : value);
     title && setActiveTitle(title);
   };
 
   const closeMenu = () => {
     setMenu(false);
-    setFilStateIdx(null);
+    setFilStateIdx && setFilStateIdx(null);
   };
 
   return (
-    <div className={css.dropdown}>
+    <div className={classNames(css.dropdown, externalClassName)}>
       <button
         type="button"
         className={`${css.dropBtn} ${
-          menu || elIdx === filterStateIdx ? css.open : css.close
+          menu || (
+            elIdx !== undefined && 
+            filterStateIdx !== undefined && 
+            elIdx === filterStateIdx
+          ) ? css.open : css.close
         }`}
         onClick={toggleMenu}
       >
@@ -83,12 +92,20 @@ const Popular = ({
         <div>
           <ArrowAll
             className={classnames(css.down, {
-              [css.up]: menu || elIdx === filterStateIdx,
+              [css.up]: menu || (
+                elIdx !== undefined &&
+                filterStateIdx !== undefined &&
+                elIdx === filterStateIdx
+              ),
             })}
           />
         </div>
       </button>
-      {menu || elIdx === filterStateIdx ? (
+      {menu || (
+        elIdx !== undefined &&
+        filterStateIdx !== undefined &&
+        elIdx === filterStateIdx
+      ) ? (
         <ul
           className={classNames(css.dropContent, {
             [css.dropWord]: isAlphabet,

@@ -248,7 +248,7 @@ const TextWithQoutes = () => {
 	}, [])
 
 	useEffect(() => {
-		if(quotesIsLoading) return
+		if(isAuth && quotesIsLoading) return
 
 		filterAndCreateQuotes()
 

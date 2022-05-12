@@ -293,6 +293,7 @@
 }
 
 .drawer {
+  display: block;
   background: var(--modal-color);
   border: 1px solid var(--modal-border-color)
 }
@@ -569,7 +570,7 @@
     border-bottom: 40px solid transparent;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-color: $color-main #fff;
+    scrollbar-color: var(--modal-text-color) var(--modal-color);
     scrollbar-width: thin;
 
     /* width */
@@ -579,12 +580,12 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-      background-color: #fff;
+      background-color: var(--modal-color);
     }
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background-color: $color-main;
+      background-color: var(--modal-text-color);
       border-radius: 37px;
     }
 
@@ -619,9 +620,116 @@
   &Search {
     width: 100%;
     margin: 30px 0;
+
+    input {
+      background: var(--modal-color);
+      color: var(--main-color);
+    }
+  }
+  &Filter {
+    button {
+      background: var(--filter-bg-color);
+      stroke: var(--main-color);
+
+      &:hover {
+        background: var(--filter-bg-color);
+        stroke: var(--main-color);
+      }
+
+      span {
+        color: var(--main-color);
+      }
+    }
+
+    ul {
+      background: var(--modal-color);
+      border-color: var(--modal-border-color);
+
+      li {
+        color: var(--text-color);
+
+        &:hover {
+          color: var(--text-color);
+          span:first-of-type {
+            border-color: var(--modal-color);
+            box-shadow: 0 0 0 2px var(--text-color);
+          }
+        }
+
+        span:first-of-type {
+          border-color: var(--modal-color);
+          box-shadow: 0 0 0 2px var(--text-color);
+        }
+
+        &:first-of-type span {
+          color: var(--main-color) !important;
+
+          &:first-of-type {
+            box-shadow: 0 0 0 2px var(--main-color) !important;
+            background-color: var(--main-color) !important;
+          }
+        }
+      }
+    }
+
+    &Active {
+      ul {
+        li {
+          &:first-of-type span {
+            color: var(--text-color) !important;
+
+            &:first-of-type {
+              box-shadow: 0 0 0 2px var(--text-color) !important;
+              background-color: var(--modal-color) !important;
+            }
+          }
+
+          &:last-of-type span {
+            color: var(--main-color) !important;
+
+            &:first-of-type {
+              box-shadow: 0 0 0 2px var(--main-color) !important;
+              background-color: var(--main-color) !important;
+            }
+          }
+        }
+      }
+    }
   }
   &List {
+    max-height: calc(100% - 186px);
 
+    &Item {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &Wrapper {
+      display: flex;
+      margin-top: 20px;
+
+      & > div {
+        display: flex;
+        align-items: center;
+        stroke: $text-hover;
+        cursor: pointer;
+        margin-right: 30px;
+
+        &:first-of-type {
+          fill: $text-hover;
+        }
+
+        & > span {
+          margin-left: 15px;
+          transition: .15s;
+        }
+
+        &:hover > span {
+          color: $text-hover;
+        }
+      }
+
+    }
   }
 }
 .markListItem {
@@ -899,16 +1007,12 @@
     }
   }
 
-  .chapterList {
-    max-height: 80%;
-  }
-
   .editPopupWrapper {
     margin-right: -15px;
     padding-right: 19px;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-color: $color-main #fff;
+    scrollbar-color: var(--modal-text-color) var(--modal-color);
     scrollbar-width: thin;
 
     /* width */
@@ -918,13 +1022,26 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-      background-color: #fff;
+      background-color: var(--modal-color);
     }
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background-color: $color-main;
+      background-color: var(--modal-text-color);
       border-radius: 37px;
+    }
+  }
+  .quotesList {
+    &Wrapper {
+      & > div > span {
+        display: none;
+      }
+    }
+  }
+
+  .quotesFilter {
+    button {
+      padding: 6px 15px;
     }
   }
 }
