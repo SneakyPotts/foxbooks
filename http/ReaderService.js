@@ -53,6 +53,10 @@ export default class ReaderService {
 		return api.delete(`${API_URL}/quotes?quoteId=${id}`)
 	}
 
+	static async getMyQuotes(sortBy = 1) {
+		return api.get(`${API_URL}/profile/lists/quotes?sortBy=${sortBy}`)
+	}
+
 	static async getSettings() {
 		return api.get(`${API_URL}/reading_settings`)
 	}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Image from 'next/image'
@@ -18,50 +18,54 @@ import {setHeaderVisibility} from "../../../../../store/commonSlice";
 import Quote from "../../../icons/quote";
 import Smile from "../../../icons/smile";
 import Authors from "../../../icons/authors";
-
-const tabs = [
-  {
-    title: 'Книги',
-    icon: <Book />,
-    path: '/mybooks',
-    count: 1
-  },
-  {
-    title: 'Аудиокниги',
-    icon: <Headphones />,
-    path: '/mybooks/audio',
-    count: 3
-  },
-  {
-    title: 'Подборки',
-    icon: <Selections />,
-    path: '/mybooks/selections',
-    count: 6
-  },
-  {
-    title: 'Рецензии',
-    icon: <Smile />,
-    path: '/mybooks/reviews',
-    count: 2
-  },
-  {
-    title: 'Цитаты',
-    icon: <Quote />,
-    path: '/mybooks/quotes',
-    count: 5
-  },
-  {
-    title: 'Авторы',
-    icon: <Authors />,
-    path: '/mybooks/authors',
-    count: 2
-  }
-]
+import CommonService from "../../../../../http/CommonService";
 
 const MyBooksLayout = ({ children }) => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const tabIndex = tabs.findIndex(i => router.pathname === i?.path)
+
+  const [counters, setCounters] = useState(null)
+
+  const tabs = useMemo(() => [
+    {
+      title: 'Книги',
+      icon: <Book />,
+      path: '/mybooks',
+      count: counters?.books_count || 0
+    },
+    {
+      title: 'Аудиокниги',
+      icon: <Headphones />,
+      path: '/mybooks/audio',
+      count: counters?.audio_books_count || 0
+    },
+    {
+      title: 'Подборки',
+      icon: <Selections />,
+      path: '/mybooks/selections',
+      count: counters?.compilations_count || 0
+    },
+    {
+      title: 'Рецензии',
+      icon: <Smile />,
+      path: '/mybooks/reviews',
+      count: counters?.total_reviews_count || 0
+    },
+    {
+      title: 'Цитаты',
+      icon: <Quote />,
+      path: '/mybooks/quotes?sortBy=1',
+      count: counters?.quotes_count || 0
+    },
+    {
+      title: 'Авторы',
+      icon: <Authors />,
+      path: '/mybooks/authors',
+      count: counters?.authors_count || 0
+    }
+  ], [counters])
+
+  const tabIndex = tabs.findIndex(i => router.pathname.includes(i?.path))
 
   const { innerWidthWindow, headerIsVisible } = useSelector(state => state.common)
 
@@ -127,6 +131,13 @@ const MyBooksLayout = ({ children }) => {
       dispatch(setHeaderVisibility(false))
     }
   }
+
+  useEffect(() => {
+    (async () => {
+      const response = await CommonService.getMyListCounters()
+      setCounters(response.data?.data)
+    })()
+  }, [])
   
   return <>
     {(innerWidthWindow > 768 || headerIsVisible) && <>
@@ -212,7 +223,7 @@ const MyBooksLayout = ({ children }) => {
                 <a
                   className={classNames(
                     styles.navLink,
-                    {[styles.active]: router.pathname === i?.path}
+                    {[styles.active]: router.pathname.includes(i?.path)}
                   )}
                   onClick={handleLinkClick}
                 >

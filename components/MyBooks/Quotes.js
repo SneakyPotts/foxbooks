@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import Popular from "../Filter/Popular/Popular";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
@@ -10,15 +10,18 @@ import SearchInput from "../SearchInput";
 import {setHeaderVisibility} from "../../store/commonSlice";
 import classNames from "classnames";
 import QuoteItem from "./QuoteItem";
+import Loader from "../shared/common/Loader";
+import ReaderService from "../../http/ReaderService";
+import {useRouter} from "next/router";
 
 const filter = [
   {
     title: 'Все',
-    defaultValue: 3,
+    defaultValue: 1,
     options: [
-      {id: 1, title: 'Все', value: 3},
+      {id: 1, title: 'Все', value: 1},
       {id: 2, title: 'По книгам', value: 2},
-      {id: 3, title: 'По авторам', value: 2}
+      {id: 3, title: 'По авторам', value: 3}
     ],
     queryName: 'sortBy',
   },
@@ -26,15 +29,37 @@ const filter = [
 
 const Quotes = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const {innerWidthWindow} = useSelector(state => state.common)
 
   const [stateIndex, setStateIndex] = useState(null)
   const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
   const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
 
-  const handleIconClick = id => {
+  const [isLoading, setIsLoading] = useState(true)
+  const [data, setData] = useState([])
+  const [quoteId, setQuoteId] = useState([])
+
+  const showDeletePopup = id => {
+    setQuoteId(id)
     setDeletePopupIsVisible(true)
   }
+
+  const deleteHandler = () => {
+    ReaderService.deleteBookQuote(quoteId).then(() => {
+      setData(prev => prev.filter(i => i.id !== quoteId))
+      setDeletePopupIsVisible(false)
+      setConfirmPopupIsVisible(true)
+    })
+  }
+
+  useEffect(() => {
+    (async () => {
+      const response = await ReaderService.getMyQuotes(router.query?.sortBy)
+      setData(response.data?.data)
+      setIsLoading(false)
+    })()
+  }, [router.query])
 
   return <>
     {innerWidthWindow > 768 &&
@@ -65,7 +90,7 @@ const Quotes = () => {
             onClick={() => dispatch(setHeaderVisibility(true))}
           />
           <SearchInput
-            placeholder={'Искать книгу'}
+            placeholder={'Искать цитату'}
             externalClass={styles.mobSearch}
             // onChange={}
           />
@@ -88,28 +113,23 @@ const Quotes = () => {
       </div>
     }
 
-    <div className={classNames(styles.grid, styles.quotesGrid)}>
-      <div className={styles.gridItem}>
-        <QuoteItem
-          onDelete={handleIconClick}
-        />
-      </div>
-      <div className={styles.gridItem}>
-        <QuoteItem
-          onDelete={handleIconClick}
-        />
-      </div>
-      <div className={styles.gridItem}>
-        <QuoteItem
-          onDelete={handleIconClick}
-        />
-      </div>
-      <div className={styles.gridItem}>
-        <QuoteItem
-          onDelete={handleIconClick}
-        />
-      </div>
-    </div>
+    {isLoading ?
+      <p className={classNames("empty", styles.empty)}>
+        <Loader/>
+      </p> :
+      data?.length ?
+        <div className={classNames(styles.grid, styles.quotesGrid)}>
+          {data.map(i =>
+            <div key={i?.id} className={styles.gridItem}>
+              <QuoteItem
+                data={i}
+                onDelete={() => showDeletePopup(i?.id)}
+              />
+            </div>
+          )}
+        </div> :
+        <p className={classNames("empty", styles.empty)}>Пусто</p>
+    }
 
     {deletePopupIsVisible &&
       <ModalWindow
@@ -124,7 +144,7 @@ const Quotes = () => {
             text="Удалить"
             typeButton="button"
             ClassName={styles.modalBtns}
-            click={() => setConfirmPopupIsVisible(true)}
+            click={deleteHandler}
             cancelClick={() => setDeletePopupIsVisible(false)}
           />
         </div>

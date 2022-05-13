@@ -1,64 +1,55 @@
-import React, {useState} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Stars from "../shared/common/stars/Stars";
 import Like from "../shared/icons/heart";
-import classNames from "classnames";
-import HorizontalDots from "../shared/icons/horizontalDots";
 import All from "../shared/icons/all";
 import Bin from "../shared/icons/trash";
-import DrawerPopup from "../shared/common/DrawerPopup";
 import styles from './styles.module.scss'
 import DotsDropdown from "../DotsDropdown";
 
 const QuoteItem = ({
+  data,
   onDelete
 }) => {
-  const [controlsIsVisible, setControlsIsVisible] = useState(false);
-
   return (
     <div className={styles.quoteBlock}>
       <div className={styles.quoteBlockHeader}>
-        <Link href="/">
+        <Link href={`/book/${data?.book?.id}?type=books`}>
           <a>
             <Image
-              src="/horizontalBookCovers/book.png"
-              alt=""
+              src={data?.book?.image?.link}
+              alt="Picture"
               width={41}
               height={64}
               className={styles.quoteBlockImg}
+              placeholder="blur"
+              blurDataURL="/blur.webp"
             />
           </a>
         </Link>
 
         <div className={styles.quoteBlockHeaderInfo}>
-          <Link  href="/">
-            <a className={styles.quoteBlockTitle}>Гарри Поттер и философский камень</a>
+          <Link href={`/book/${data?.book?.id}?type=books`}>
+            <a className={styles.quoteBlockTitle}>{data?.book?.title}</a>
           </Link>
-          <Link  href="/">
-            <a className={styles.quoteBlockAuthor}>Джоан Роулинг</a>
+          <Link href={`/author?id=${data?.book?.authors[0]?.id}`}>
+            <a className={styles.quoteBlockAuthor}>{data?.book?.authors[0]?.author}</a>
           </Link>
           <div className={styles.quoteBlockStars}>
-            <Stars/>
-            <div className={styles.quoteBlockStarsRaiting}>5,3 (450)</div>
+            <Stars value={data?.book?.rates_avg}/>
+            <div className={styles.quoteBlockStarsRaiting}>{data?.book?.rates_avg} ({data?.book?.rates_count})</div>
           </div>
         </div>
       </div>
 
-      <p className={styles.quoteBlockText}>
-        Семья Дурсль ей имела все, чего только можно пожелать. Но был у них
-        и один секрет. Причем больше всего на свете они боялись, что
-        кто-нибудь о нем узнает. Дурсли даже представить себе не могли, что
-        с ними будет, если выплывет правда о Поттерах. Миссис Поттер
-        приходилась миссис Дурсль
-      </p>
+      <p className={styles.quoteBlockText}>{data?.text}</p>
 
       <div className={styles.reviewBottom}>
         <div className={styles.reviewBottomStatistic}>
           <span className={styles.reviewIcon}>
             <Like/>
           </span>
-          <span className={styles.reviewLike}>3115</span>
+          <span className={styles.reviewLike}>{data?.likes_count}</span>
         </div>
 
         <div>
