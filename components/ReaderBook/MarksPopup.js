@@ -17,7 +17,7 @@ const MarksPopup = ({ handleMarkClick }) => {
               className={classNames(styles.popupListItem, styles.markListItem)}
               onClick={() => handleMarkClick(i?.page?.page_number)}
             >
-              Закладка (глава {bookChapters?.findIndex(j => j?.id === i?.chapter?.id) + 1} из {bookChapters?.length}): {i?.chapter?.title} Когда во вторник мистер и миссис Дурсль
+              Закладка (глава {bookChapters?.findIndex(j => j?.id === i?.chapter?.id) + 1} из {bookChapters?.length}): {i?.chapter?.title}
             </li>
           ))}
         </ul> :

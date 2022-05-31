@@ -24,9 +24,9 @@ const Books = ({ isAudio }) => {
   const filter1 = [
     {
       title: 'Все',
-      defaultValue: 0,
+      defaultValue: '0',
       options: [
-        { id: 1, title: 'Все', value: 0, icon: <PageIcon /> },
+        { id: 1, title: 'Все', value: '0', icon: <PageIcon /> },
         { id: 2, title: isAudio ? 'Хочу прослушать' : 'Хочу прочитать', value: 1, icon: <BookMark /> },
         { id: 3, title: isAudio ? 'Слушаю' : 'Читаю', value: 2, icon: <OpenBook stroke={'#FF781D'} /> },
         { id: 3, title: isAudio ? 'Прослушал' : 'Прочитано', value: 3, icon: <Flag /> }

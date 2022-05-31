@@ -94,6 +94,12 @@ export const readerSlice = createSlice({
 		},
 		setSettings: (state, action) => {
 			state.settings = action.payload
+		},
+		setBookMarks: (state, action) => {
+			state.bookMarks = action.payload
+		},
+		setQuotes: (state, action) => {
+			state.quotes = action.payload
 		}
 	},
 	extraReducers: {
@@ -156,7 +162,9 @@ export const readerSlice = createSlice({
 export const {
 	setReaderBook, 
 	setBookChapters,
-	setSettings 
+	setSettings,
+	setBookMarks,
+	setQuotes
 } = readerSlice.actions;
 
 export default readerSlice.reducer;

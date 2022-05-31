@@ -156,14 +156,14 @@ const ReaderBook = () => {
             externalClass={styles.popup}
             onClose={() => setContentPopupIsVisible(false)}
           >
-            <ContentPopup />
+            <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
           </ModalWindow> :
           contentPopupIsVisible &&
           <DrawerPopup
             externalClass={styles.drawer}
             onClose={() => setContentPopupIsVisible(false)}
           >
-            <ContentPopup />
+            <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
           </DrawerPopup>
         }
 

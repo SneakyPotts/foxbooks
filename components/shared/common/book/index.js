@@ -250,7 +250,7 @@ const Book = ({
               <AddToBooks />
             </span>
 
-            {changeIcon &&
+            {(changeIcon || book?.in_favorite) &&
               <DotsDropdown
                 isSmall
                 externalClass={st.dotsIcon}

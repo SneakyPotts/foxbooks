@@ -1,8 +1,8 @@
 import Script from 'next/script';
 import { Provider } from 'react-redux';
 
-import '../styles/globals.scss';
 import 'swiper/css/bundle';
+import '../styles/globals.scss';
 import store from '../store/store';
 import Layout from '../components/shared/common/specific/Layout';
 

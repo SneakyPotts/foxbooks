@@ -1,6 +1,7 @@
 import Switcher from '../switcher/Switcher';
 import classNames from 'classnames';
-import styles from './selections.module.scss';
+import { Navigation } from 'swiper/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
@@ -9,11 +10,10 @@ import MobileFilterModal from "../MobileFilterModal";
 import MyPagination from "../shared/common/MyPagination";
 import CompilationItem from "../CompilationItem";
 import Link from 'next/link'
-import { Navigation } from 'swiper/core';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import ArrowRight from '../../public/chevron-right.svg';
 import ShowAll from "../shared/common/showAll/ShowAll";
 import Book from "../shared/common/book";
+import styles from './selections.module.scss';
 
 const popularSelections = [
 	{ id: '0', title: 'Все', value: 3 },
@@ -110,16 +110,30 @@ const SelectionsPage = () => {
 														prevEl: '.prevArrow',
 														nextEl: '.nextArrow',
 													}}
-													spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
-													slidesPerView={innerWidthWindow <= 768 ? 3.1 : 5}
-													className={styles.slider}
+													breakpoints={{
+														0: {
+															slidesPerView: 3,
+															spaceBetween: 10
+														},
+														768: {
+															slidesPerView: 4,
+															spaceBetween: 10
+														},
+														1025: {
+															slidesPerView: 5,
+															spaceBetween: 24
+														}
+													}}
 												>
 													{(
 														router.query?.bookType === 'books' ? i?.books :
 															router.query?.bookType === 'audioBooks' ? i?.audio_books :
 																i?.books.concat(i?.audio_books)
 													).map(j =>
-														<SwiperSlide key={j?.id}>
+														<SwiperSlide
+															key={j?.id}
+															// className={styles.sliderSlide}
+														>
 															<Book
 																book={j}
 																audio={j?.type === 'audioBooks'}

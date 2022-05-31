@@ -47,9 +47,15 @@ const QuotesPopup = ({onClose}) => {
   }
 
   const handleShow = quot => {
-    // router.push(`${window.location.origin}/reader?id=${router.query?.id}&page=${quot?.page?.page_number}`)
     onClose && onClose()
-    document.querySelector(`[data-key="${quot.start_key}"]`).scrollIntoView({behavior: 'smooth'})
+    router.push({ query: { ...router.query, page: quot?.page?.page_number } }).then(() => {
+        const interval = setInterval(() => {
+            if(!!document?.querySelector(`[data-key="${quot?.start_key}"]`)) {
+                document.querySelector(`[data-key="${quot.start_key}"]`).scrollIntoView({behavior: 'smooth'})
+                clearInterval(interval)
+            }
+        }, 100)
+    })
   }
 
   const handleShare = quot => {

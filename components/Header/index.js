@@ -20,6 +20,7 @@ import SearchInput from "../SearchInput";
 import Notification from "../Notification";
 import {clearNotification, setProfile} from "../../store/profileSlice";
 import Search from "./Search";
+import {setBookMarks, setQuotes, setSettings} from "../../store/readerSlice";
 
 const Header = ({ socket }) => {
   const dispatch = useDispatch();
@@ -76,6 +77,17 @@ const Header = ({ socket }) => {
     localStorage.removeItem('avatarColor');
     dispatch(setProfile([]))
     dispatch(clearNotification())
+    dispatch(setBookMarks([]))
+    dispatch(setQuotes([]))
+    dispatch(setSettings({
+      isTwoColumns: false,
+      fontSize: 0,
+      screenBrightness: 5,
+      fontName: 'Times New Roman',
+      fieldSize: 2,
+      rowHeight: 2,
+      isCenterAlignment: false
+    }))
     socket.disconnect()
   };
 

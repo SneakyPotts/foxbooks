@@ -15,6 +15,7 @@ import {getProfile} from "../../../store/profileSlice";
 import {ref} from "yup";
 import {useRouter} from "next/router";
 import PasswordField from "../../shared/common/PasswordField";
+import {getBookMarks, getBookQuotes, getSettings} from "../../../store/readerSlice";
 
 const GroupForms = ({modal,setModal}) => {
 	const dispatch = useDispatch()
@@ -52,6 +53,15 @@ const GroupForms = ({modal,setModal}) => {
 					dispatch(setAuth(true))
 					setModal(!modal)
 				})
+				if(router.pathname.includes('reader')) {
+					dispatch(getSettings())
+					dispatch(getBookMarks(router.query?.id))
+					dispatch(getBookQuotes({
+						id: router.query?.id,
+						my: 1,
+						search: ''
+					}))
+				}
 			}
 		})
 	}

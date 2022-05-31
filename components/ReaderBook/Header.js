@@ -110,9 +110,9 @@ const Header = ({
         <div className={styles.marksList}>
           {bookMarks?.map(i => (
             <div
-              key={i?.page?.page_number}
+              key={i?.page?.page_number || i?.page[0]?.page_number}
               className={styles.markItem}
-              onClick={() => handleMarkClick(i?.page?.page_number)}
+              onClick={() => handleMarkClick(i?.page?.page_number || i?.page[0]?.page_number)}
             >
               <BookMark />
               <span className={classNames(styles.tooltip, styles.markTooltip)}>

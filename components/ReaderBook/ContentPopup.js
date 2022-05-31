@@ -1,11 +1,18 @@
 import React from 'react';
 import styles from './styles.module.scss'
 import {useSelector} from "react-redux";
-import Link from 'next/link'
 import classNames from "classnames";
+import {useRouter} from "next/router";
 
-const ContentPopup = () => {
+const ContentPopup = ({onClose}) => {
+  const router = useRouter()
   const { bookChapters } = useSelector(state => state.reader)
+
+  const handleClick = (pageNumber) => {
+      router.push({ query: { ...router.query, page: pageNumber } }).then(() => {
+        onClose && onClose()
+      })
+  }
 
   return (
       <>
@@ -17,9 +24,12 @@ const ContentPopup = () => {
                 key={i?.id}
                 className={styles.popupListItem}
               >
-                <Link href={''}>
-                  <a className={styles.chapterLink}>{i?.title}</a>
-                </Link>
+                <span
+                    className={styles.chapterLink}
+                    onClick={() => handleClick(i?.page?.page_number)}
+                >
+                    {i?.title}
+                </span>
               </li>
             )}
           </ul> :

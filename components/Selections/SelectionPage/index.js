@@ -24,7 +24,7 @@ const SelectionPage = () => {
 		<>
 			<div className={styles.compilationWrapper}>
 				<Image
-					src={selectionById?.compilation?.background}
+					src={selectionById?.compilation?.background || '/preview.jpg'}
 					layout={'fill'}
 					placeholder="blur"
 					blurDataURL="/blur.webp"
