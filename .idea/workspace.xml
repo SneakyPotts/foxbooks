@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/store/playerSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CompilationItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CompilationItem/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/groupForms/GroupForms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/Books.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/Books.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ContentPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ContentPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/MarksPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/MarksPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/QuotesPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/QuotesPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/selections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selections.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/readerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/readerSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioPlayer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/book/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +45,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/ReviewForm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,11 +58,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\store" />
       <recent name="E:\Frontend\projects\library-next\components\ReviewForm" />
       <recent name="E:\Frontend\projects\library-next\components\ReaderBook" />
       <recent name="E:\Frontend\projects\library-next\components\Holders" />
       <recent name="E:\Frontend\projects\library-next\components\Support" />
-      <recent name="E:\Frontend\projects\library-next\components\CommentForm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Frontend\projects\library-next\components\BookPage" />
@@ -176,14 +168,9 @@
       <workItem from="1653640409419" duration="3054000" />
       <workItem from="1653647243122" duration="611000" />
       <workItem from="1653982797148" duration="1992000" />
-      <workItem from="1653986186934" duration="14667000" />
-    </task>
-    <task id="LOCAL-00012" summary="avatar">
-      <created>1643043796487</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1643043796487</updated>
+      <workItem from="1653986186934" duration="14754000" />
+      <workItem from="1654068509112" duration="2589000" />
+      <workItem from="1654084517856" duration="5771000" />
     </task>
     <task id="LOCAL-00013" summary="ome page filters">
       <created>1643205988763</created>
@@ -521,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652445490381</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="push">
+      <created>1654003334942</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1654003334943</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

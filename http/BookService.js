@@ -76,4 +76,8 @@ export default class BookService {
 	static async recommendBook(data) {
 		return api.post(`${API_URL}/users-recommend`, data)
 	}
+
+	static async audioBookChapters(audiobook) {
+		return axios.get(`${API_URL}/audio-books/${audiobook}/chapters`)
+	}
 }

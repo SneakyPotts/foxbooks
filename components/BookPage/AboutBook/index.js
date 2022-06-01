@@ -16,6 +16,7 @@ import Eye from '../../shared/icons/eye';
 import st from './aboutBook.module.scss';
 import DotsDropdown from "../../DotsDropdown";
 import {setAuthPopupVisibility, setPlayerVisibility} from "../../../store/commonSlice";
+import {setPlayerData} from "../../../store/playerSlice";
 
 
 const AboutBook = ({ book, audioFlag, showMyComp }) => {
@@ -97,6 +98,11 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
   };
 
   const onListen = () => {
+    dispatch(setPlayerData({
+      title: book?.title,
+      image: book?.image?.link,
+      chapters: book?.chapters
+    }))
     dispatch(setPlayerVisibility(true))
   }
 
@@ -153,16 +159,16 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 }
               </p>
               <div className={st.bookDate}>
-                {audioFlag && (
-                  <div>
-                    <span className={st.audioInfo}>
-                      <span>40</span>мин.
-                    </span>
-                    <span className={st.audioInfo}>
-                      <span>42</span> Мбайт
-                    </span>
-                  </div>
-                )}
+                {/*{audioFlag && (*/}
+                {/*  <div>*/}
+                {/*    <span className={st.audioInfo}>*/}
+                {/*      <span>40</span>мин.*/}
+                {/*    </span>*/}
+                {/*    <span className={st.audioInfo}>*/}
+                {/*      <span>42</span> Мбайт*/}
+                {/*    </span>*/}
+                {/*  </div>*/}
+                {/*)}*/}
                 {book?.year?.year && <span className={st.bookDateYear}>{book?.year?.year}</span>}
                 {/* <span className={st.bookDateAge}>{book.age}8</span> */}
                 {audioFlag ?
@@ -276,7 +282,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               <div className={st.ditalInfo}>
                 {audioFlag ? (
                   <p>
-                    Чтец: <span>{book.reader || '-'}</span>
+                    Чтец: <span>{book?.actors?.length ? book?.actors[0]?.name : '-'}</span>
                   </p>
                 ) : (
                   <>
@@ -290,12 +296,18 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 )}
 
                 <p>
-                  Жанр: <span>{book?.genres?.length ? book.genres[0].name : '-'}</span>
+                  Жанр: <span>{book?.genres?.length ? book.genres[0].name : book.genre?.name || '-'}</span>
                 </p>
                 <p>
                   Правообладатель: <span>{book.copyright_holder || '-'}</span>
                 </p>
-                <p>Серия: {book.series || '-'}</p>
+                <p>Серия:{' '}
+                  <span>
+                    <Link href={`/series?id=${book?.series?.id}`}>
+                      <a>{book?.series?.name || '-'}</a>
+                    </Link>
+                  </span>
+                </p>
               </div>
             </div>
           </div>

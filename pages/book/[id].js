@@ -18,10 +18,11 @@ export default Book;
 export async function getServerSideProps ({params, query}) {
 	const book = await BookService.getBookById(params?.id, query?.type)
 	const bookQuotes = await BookService.getBookQuotes(params?.id)
+	const audioBookChapters = await BookService.audioBookChapters(params?.id)
 
 	return {
 		props: {
-			book: book?.data?.data,
+			book: {...book?.data?.data, chapters: audioBookChapters?.data?.data?.chapters},
 			bookQuotes: bookQuotes?.data?.data
 		}
 	}

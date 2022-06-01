@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setPlayerVisibility} from "../../store/commonSlice";
 import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
+import {resetPlayerData} from "../../store/playerSlice";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -25,16 +26,18 @@ const AudioPlayer = () => {
   const player = useRef()
 
   const [settings, setSettings] = useState({
-    playing: false,
+    playing: true,
     volume: 0.5,
     playbackRate: 1,
   });
 
   const { innerWidthWindow } = useSelector(state => state.common)
+  const playerData = useSelector(state => state.player)
 
   const [progress, setProgress] = useState(0)
   const [speedDropIsVisible, setSpeedDropIsVisible] = useState(false)
   const [pageDropIsVisible, setPageDropIsVisible] = useState(false)
+  const [currentChapter, setCurrentChapter] = useState(null)
 
   const [isClosed, setIsClosed] = useState(false)
 
@@ -65,7 +68,19 @@ const AudioPlayer = () => {
   const closePlayer = () => {
     setSettings({...settings, playing: false})
     setIsClosed(true)
-    setTimeout(() => dispatch(setPlayerVisibility(false)), 300)
+    setTimeout(() => {
+      dispatch(setPlayerVisibility(false))
+      dispatch(resetPlayerData())
+    }, 300)
+  }
+
+  const handleEnd = () => {
+    const currentChapterIndex = playerData?.chapters.findIndex(i => i?.id === currentChapter)
+    const nextChapterIndex = currentChapterIndex === -1 ? 1 : currentChapterIndex + 1
+
+    if(nextChapterIndex !== playerData?.chapters?.length) {
+      setCurrentChapter(playerData?.chapters[nextChapterIndex]?.id)
+    }
   }
 
   return (
@@ -80,15 +95,17 @@ const AudioPlayer = () => {
       <div className={styles.wrapperColumn}>
         <div className={styles.preview}>
           <Image
-            src={'/mountains.png'}
+            src={playerData?.image}
             width={innerWidthWindow < 1024 ? 280 : 56}
             height={innerWidthWindow < 1024 ? 280 : 56}
             alt="Preview"
             className={styles.previewImg}
           />
           <div className={styles.previewWrapper}>
-            <h4 className={styles.previewTitle}>Лекция “Про Гарри Поттера”</h4>
-            <span className={styles.previewText}>Глава 1</span>
+            <h4 className={styles.previewTitle}>{playerData?.title}</h4>
+            <span className={styles.previewText}>
+              {playerData?.chapters.find(i => i?.id === currentChapter)?.title || playerData?.chapters[0]?.title}
+            </span>
           </div>
         </div>
       </div>
@@ -172,15 +189,17 @@ const AudioPlayer = () => {
               direction='up'
               onClose={() => setPageDropIsVisible(false)}
             >
-              {speeds?.map(i =>
-                <span
-                  key={i}
-                  onClick={() => setSettings({...settings, playbackRate: i})}
-                  className={classNames({[styles.active]: i === settings?.playbackRate})}
-                >
-                  {i === 1 ? 'Обычная' : i}
-                </span>
-              )}
+              <div className={styles.playerPageDropdown}>
+                {playerData?.chapters?.map((i, index) =>
+                  <span
+                    key={i?.id}
+                    onClick={() => setCurrentChapter(i?.id)}
+                    className={classNames(styles.dropItem, {[styles.active]: currentChapter ? i?.id === currentChapter : index === 0})}
+                  >
+                    {i?.title}
+                  </span>
+                )}
+              </div>
             </DrawerPopup>
           }
         </div>
@@ -201,10 +220,11 @@ const AudioPlayer = () => {
 
       <ReactPlayer
         ref={player}
-        url='https://www.youtube.com/watch?v=70Pfl-466gU'
+        url={playerData?.chapters.find(i => i?.id === currentChapter)?.public_path || playerData?.chapters[0]?.public_path}
         width="0"
         height="0"
         onProgress={e => setProgress(parseInt(e.playedSeconds))}
+        onEnded={handleEnd}
         {...settings}
       />
 
