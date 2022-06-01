@@ -130,10 +130,7 @@ const SelectionsPage = () => {
 															router.query?.bookType === 'audioBooks' ? i?.audio_books :
 																i?.books.concat(i?.audio_books)
 													).map(j =>
-														<SwiperSlide
-															key={j?.id}
-															// className={styles.sliderSlide}
-														>
+														<SwiperSlide key={j?.id}>
 															<Book
 																book={j}
 																audio={j?.type === 'audioBooks'}

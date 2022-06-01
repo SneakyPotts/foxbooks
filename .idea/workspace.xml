@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/store/playerSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AudioPlayer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/AudioPlayer/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/book/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/selections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selections.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,14 +165,8 @@
       <workItem from="1653982797148" duration="1992000" />
       <workItem from="1653986186934" duration="14754000" />
       <workItem from="1654068509112" duration="2589000" />
-      <workItem from="1654084517856" duration="5771000" />
-    </task>
-    <task id="LOCAL-00013" summary="ome page filters">
-      <created>1643205988763</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1643205988763</updated>
+      <workItem from="1654084517856" duration="6802000" />
+      <workItem from="1654095195221" duration="677000" />
     </task>
     <task id="LOCAL-00014" summary="change book status">
       <created>1643213168174</created>
@@ -515,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654003334943</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="end player">
+      <created>1654090479733</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1654090479734</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +586,8 @@
     <MESSAGE value="my books" />
     <MESSAGE value="notifications" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="end player" />
+    <option name="LAST_COMMIT_MESSAGE" value="end player" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
