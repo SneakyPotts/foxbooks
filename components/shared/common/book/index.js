@@ -38,7 +38,7 @@ const Book = ({
 
   const { innerWidthWindow } = useSelector(state => state.common);
 
-  const [changeIcon, setChangeIcon] = useState(false);
+  const [changeIcon, setChangeIcon] = useState(book?.in_favorite);
 
   const bookLinkClick = () => {
     if (audio) {
@@ -244,13 +244,13 @@ const Book = ({
         {flagSwitcher && (
           <div>
             <span
-              className={classnames(st.addIcon, { [st.hide]: changeIcon })}
-              onClick={handleWantReadClick}
+                className={classnames(st.addIcon, {[st.hide]: changeIcon})}
+                onClick={handleWantReadClick}
             >
-              <AddToBooks />
+              <AddToBooks/>
             </span>
 
-            {(changeIcon || book?.in_favorite) &&
+            {changeIcon &&
               <DotsDropdown
                 isSmall
                 externalClass={st.dotsIcon}

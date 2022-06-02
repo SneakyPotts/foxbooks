@@ -30,7 +30,7 @@ const MyBooksLayout = ({ children }) => {
     {
       title: 'Книги',
       icon: <Book />,
-      path: '/mybooks',
+      path: '/mybooks?status=0&sortBy=5',
       count: counters?.books_count || 0
     },
     {

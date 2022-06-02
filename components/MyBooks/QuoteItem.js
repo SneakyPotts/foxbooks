@@ -6,11 +6,25 @@ import All from "../shared/icons/all";
 import Bin from "../shared/icons/trash";
 import styles from './styles.module.scss'
 import DotsDropdown from "../DotsDropdown";
+import {useRouter} from "next/router";
 
 const QuoteItem = ({
   data,
   onDelete
 }) => {
+  const router = useRouter()
+
+  const showInBookHandler = () => {
+    router.push(`/reader?id=${data?.book_id}&page=${data?.page?.page_number}`).then(() => {
+      const interval = setInterval(() => {
+        if(!!document?.querySelector(`[data-key="${data?.start_key}"]`)) {
+          document.querySelector(`[data-key="${data.start_key}"]`).scrollIntoView({behavior: 'smooth'})
+          clearInterval(interval)
+        }
+      }, 100)
+    })
+  }
+
   return (
     <div className={styles.quoteBlock}>
       <div className={styles.quoteBlockHeader}>
@@ -56,7 +70,7 @@ const QuoteItem = ({
           <DotsDropdown isSmall>
             <div
               className={styles.controlsItem}
-              // onClick={() => setEditFormIsVisible(true)}
+              onClick={showInBookHandler}
             >
               <All />
               Показать в книге

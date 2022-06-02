@@ -14,8 +14,11 @@ const series = ({ series }) => {
 
 export default series;
 
-export async function getServerSideProps ({ query }) {
-	const series = await AuthorService.getAuthorSeries(query?.id)
+export async function getServerSideProps ({ req, query }) {
+	const { cookies } = req
+	const token = cookies.token
+
+	const series = await AuthorService.getAuthorSeries({token, id: query?.id})
 
 	return {
 		props: {

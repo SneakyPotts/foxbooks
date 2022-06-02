@@ -1,9 +1,27 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import SelectionService from "../http/SelectionService";
+import {search} from "./searchSlice";
 
 const initialState = {
 	selections: {},
 	selectionById: {},
 };
+
+export const addCompilationToFavorite = createAsyncThunk(
+	'selection/addCompilationToFavorite',
+	async data => {
+		const response = await SelectionService.addCompilationToFavorite(data)
+		return data
+	}
+)
+
+export const deleteCompilationFromFavorite = createAsyncThunk(
+	'selection/deleteCompilationFromFavorite',
+	async data => {
+		const response = await SelectionService.deleteCompilationFromFavorite(data)
+		return data
+	}
+)
 
 export const selectionSlice = createSlice({
 	name: 'selection',
@@ -24,6 +42,28 @@ export const selectionSlice = createSlice({
 		addBookToSelection: (state, action) => {
 			state.selectionById.compilation.generalBooksCount += 1
 			state.selectionById.books.data.push(action.payload)
+		},
+	},
+	extraReducers: {
+		[addCompilationToFavorite.fulfilled]: (state, action) => {
+			state.selections.data = state.selections?.data?.map(i =>
+				i?.id === action.payload ?
+					{
+						...i,
+						in_favorite: true
+					} :
+					i
+			)
+		},
+		[deleteCompilationFromFavorite.fulfilled]: (state, action) => {
+			state.selections.data = state.selections?.data?.map(i =>
+				i?.id === action.payload ?
+					{
+						...i,
+						in_favorite: false
+					} :
+					i
+			)
 		},
 	}
 });

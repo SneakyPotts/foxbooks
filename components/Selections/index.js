@@ -2,7 +2,7 @@ import Switcher from '../switcher/Switcher';
 import classNames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import BookFilters from "../shared/common/booksFilters/BookFilters";
@@ -14,6 +14,8 @@ import ArrowRight from '../../public/chevron-right.svg';
 import ShowAll from "../shared/common/showAll/ShowAll";
 import Book from "../shared/common/book";
 import styles from './selections.module.scss';
+import {setAuthPopupVisibility} from "../../store/commonSlice";
+import {addCompilationToFavorite, deleteCompilationFromFavorite} from "../../store/selectionSlice";
 
 const popularSelections = [
 	{ id: '0', title: 'Все', value: 3 },
@@ -28,10 +30,24 @@ const booksSelections = [
 ];
 
 const SelectionsPage = () => {
+	const dispatch = useDispatch()
 	const router = useRouter()
 
 	const { selections } = useSelector(state => state.selection)
 	const { innerWidthWindow } = useSelector(state => state.common);
+	const { isAuth } = useSelector(state => state.auth);
+
+	const toggleToFavoriteHandler = (id, inFavorite) => {
+		if(!isAuth) {
+			dispatch(setAuthPopupVisibility(true))
+		} else {
+			if(inFavorite) {
+				dispatch(deleteCompilationFromFavorite(id))
+			} else {
+				dispatch(addCompilationToFavorite(id))
+			}
+		}
+	}
 
 	return (
 		<div className="container">
@@ -93,9 +109,12 @@ const SelectionsPage = () => {
 												<a className={classNames("title", styles.title)}>{i?.title}</a>
 											</Link>
 											<button
-												className={classNames(styles.btn)}
+												onClick={() => toggleToFavoriteHandler(i?.id, i?.in_favorite)}
+												className={classNames(styles.btn, {
+													[styles.added]: i?.in_favorite
+												})}
 											>
-												Добавить подборку
+												{i?.in_favorite ? 'Подборка добавлена' : 'Добавить подборку'}
 											</button>
 										</div>
 										{

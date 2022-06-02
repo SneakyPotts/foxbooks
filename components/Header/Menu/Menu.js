@@ -108,7 +108,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
           </a>
         </Link>
 
-        <Link href="/mybooks">
+        <Link href="/mybooks?status=0&sortBy=5">
           <a
             onClick={e => {
               if (!isAuth) {

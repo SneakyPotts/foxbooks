@@ -74,6 +74,16 @@
   &:hover {
     background: $accent-hover;
   }
+
+  &.added {
+    color: $color-main;
+    background: #f1f1f1;
+
+    &:hover {
+      color: $color-main;
+      background: #f1f1f1;
+    }
+  }
 }
 .advertisingBlock {
   display: block;

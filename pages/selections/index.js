@@ -13,8 +13,11 @@ const Selections = (props) => {
 
 export default Selections;
 
-export async function getServerSideProps ({ query }) {
-	const selections = await SelectionService.getSelections(query)
+export async function getServerSideProps ({ req, query }) {
+	const { cookies } = req
+	const token = cookies.token
+
+	const selections = await SelectionService.getSelections({token, ...query})
 
 	return {
 		props: {
