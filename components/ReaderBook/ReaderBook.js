@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import DrawerPopup from "../shared/common/DrawerPopup";
@@ -92,12 +92,6 @@ const ReaderBook = () => {
   const handleMarkClick = page => {
     router.push({ query: { ...router.query, page } })
   }
-
-  useEffect(()=> {
-    return () => {
-      alert('yo')
-    }
-  }, [])
 
   return (
     <div
