@@ -10,6 +10,7 @@ import {addReview, getReviewTypes} from "../../store/reviewSlice";
 import {setAuthPopupVisibility} from "../../store/commonSlice";
 import {yupResolver} from "@hookform/resolvers/yup";
 import schema from "./schema";
+import {useRouter} from "next/router";
 
 const ReviewForm = ({
   title,
@@ -18,6 +19,7 @@ const ReviewForm = ({
   onCancel
 }) => {
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const { innerWidthWindow } = useSelector(state => state.common)
   const { isAuth } = useSelector(state => state.auth)
@@ -39,7 +41,8 @@ const ReviewForm = ({
     } else {
       const obj = {
         ...data,
-        type: bookType,
+        id: router.query?.id,
+        type: bookType === 'books' ? 'book' : 'audioBook',
         review_type: getValues('review_type')
       }
       dispatch(addReview(obj)).then(res => {

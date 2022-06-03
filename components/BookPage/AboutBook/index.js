@@ -287,19 +287,24 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 ) : (
                   <>
                     <p>
-                      Издательство: <span>{book?.publishers?.length ? book.publishers[0].publisher : '-'}</span>
+                      Издательство: <span>{book?.publishers?.length ? book?.publishers[0]?.publisher : '-'}</span>
                     </p>
                     <p>
-                      Переводчик: <span>{book.translater || '-'}</span>
+                      Переводчик: <span>{book?.translator || '-'}</span>
                     </p>
                   </>
                 )}
 
                 <p>
-                  Жанр: <span>{book?.genres?.length ? book.genres[0].name : book.genre?.name || '-'}</span>
+                  Жанр:{' '}
+                  <span>
+                    {(book?.genres?.length ? book?.genres[0]?.name :
+                      book?.book_genres?.length ? book?.book_genres[0]?.name :
+                        book?.genre?.name) || '-'}
+                  </span>
                 </p>
                 <p>
-                  Правообладатель: <span>{book.copyright_holder || '-'}</span>
+                  Правообладатель: <span>{book?.copyright_holder || '-'}</span>
                 </p>
                 <p>Серия:{' '}
                   <span>

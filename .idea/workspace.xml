@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Menu/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/selections.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/selections.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/specific/MyBooksLayout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/AuthorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/AuthorService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/SelectionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/SelectionService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/selections/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/selections/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/series.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/series.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/selectionSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/selectionSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReviewForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,14 +168,8 @@
       <workItem from="1654084517856" duration="6802000" />
       <workItem from="1654095195221" duration="1719000" />
       <workItem from="1654155773305" duration="5516000" />
-      <workItem from="1654167762360" duration="2855000" />
-    </task>
-    <task id="LOCAL-00015" summary="audio player">
-      <created>1643291653821</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1643291653821</updated>
+      <workItem from="1654167762360" duration="3621000" />
+      <workItem from="1654240248021" duration="3789000" />
     </task>
     <task id="LOCAL-00016" summary="audio player">
       <created>1643299724798</created>
@@ -524,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654096398724</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="push">
+      <created>1654170782479</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1654170782479</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,10 +588,10 @@
     <MESSAGE value="responsive" />
     <MESSAGE value="my books" />
     <MESSAGE value="notifications" />
-    <MESSAGE value="push" />
     <MESSAGE value="end player" />
     <MESSAGE value="fix selections page style" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix selections page style" />
+    <MESSAGE value="push" />
+    <option name="LAST_COMMIT_MESSAGE" value="push" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
