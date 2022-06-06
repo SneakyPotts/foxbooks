@@ -173,7 +173,7 @@ const CommentItem = ({
         </div>
 
         <span className={styles.reviewerName}>
-          {data?.users?.nickname || data?.users?.name || 'Пользователь'}
+          {data?.user?.nickname || data?.user?.name || 'Пользователь'}
 
           {isReply && <span className={styles.reviewInfo}>{replyDate}</span>}
         </span>
@@ -241,7 +241,7 @@ const CommentItem = ({
           <CommentForm
             submitFunc={submitFunc}
             onCancel={toggleFormVisibility}
-            isTextarea={isReply}
+            // isTextarea={isReply}
             rows={3}
           />
         </div>

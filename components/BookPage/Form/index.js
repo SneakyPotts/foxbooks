@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import st from "../bookpage.module.scss";
 import {useForm} from "react-hook-form";
 import BookService from "../../../http/BookService";
 import {useRouter} from "next/router";
+import ModalWindow from "../../shared/common/modalWindow/ModalWindow";
+import styles from "../../MyBooks/styles.module.scss";
+import Button from "../../shared/common/Button/Button";
 
 const Form = ({title}) => {
   const router = useRouter()
 
   const {register, handleSubmit, reset} = useForm();
+  const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
 
   const submitHandler = data => {
     BookService.recommendBook({
@@ -16,6 +20,7 @@ const Form = ({title}) => {
       content: data.content
     }).then(() => {
       reset()
+        setConfirmPopupIsVisible(true)
     })
   }
 
@@ -33,12 +38,34 @@ const Form = ({title}) => {
           placeholder="Поделитесь книгой"
           className={st.recomInput}
         />
+          <Button
+              text="Отправить"
+              typeButton="submit"
+              classNames={styles.modalBtn}
+          />
       </form>
       <p className={st.recomInputLabel}>
         Убедительная просьба найти соответствующую книгу на сайте FoxBook и
         вставить на нее ссылку, за отсутствием книги на нашем сайте, укажите
         автора или название книги
       </p>
+
+        {confirmPopupIsVisible &&
+            <ModalWindow
+                onClose={() => setConfirmPopupIsVisible(false)}
+            >
+                <div className={styles.modal}>
+                    <h3 className={styles.modalTitle}>Ваша рекомендация отправлена</h3>
+
+                    <Button
+                        text="Закрыть"
+                        typeButton="button"
+                        click={() => setConfirmPopupIsVisible(false)}
+                        classNames={styles.modalBtn}
+                    />
+                </div>
+            </ModalWindow>
+        }
     </>
   );
 };

@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/AboutBook/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReviewForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReviewForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Form/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Form/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="louie2" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,7 +46,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/ReviewForm" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,11 +59,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Frontend\projects\library-next\store" />
       <recent name="E:\Frontend\projects\library-next\components\ReviewForm" />
       <recent name="E:\Frontend\projects\library-next\components\ReaderBook" />
       <recent name="E:\Frontend\projects\library-next\components\Holders" />
       <recent name="E:\Frontend\projects\library-next\components\Support" />
+      <recent name="E:\Frontend\projects\library-next\components\CommentForm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Frontend\projects\library-next\components\BookPage" />
@@ -151,25 +157,77 @@
       <workItem from="1650457081383" duration="3668000" />
       <workItem from="1650623075635" duration="1508000" />
       <workItem from="1650876794539" duration="5761000" />
-      <workItem from="1651570498099" duration="1532000" />
-      <workItem from="1651654811500" duration="3474000" />
-      <workItem from="1651751688610" duration="5223000" />
-      <workItem from="1651826934360" duration="10637000" />
-      <workItem from="1652090904006" duration="14577000" />
-      <workItem from="1652176399993" duration="8142000" />
-      <workItem from="1652261028887" duration="14433000" />
-      <workItem from="1652346246007" duration="16337000" />
-      <workItem from="1652431884150" duration="8741000" />
-      <workItem from="1653640409419" duration="3054000" />
-      <workItem from="1653647243122" duration="611000" />
-      <workItem from="1653982797148" duration="1992000" />
-      <workItem from="1653986186934" duration="14754000" />
-      <workItem from="1654068509112" duration="2589000" />
-      <workItem from="1654084517856" duration="6802000" />
-      <workItem from="1654095195221" duration="1719000" />
-      <workItem from="1654155773305" duration="5516000" />
-      <workItem from="1654167762360" duration="3621000" />
-      <workItem from="1654240248021" duration="3789000" />
+      <workItem from="1654502380798" duration="4979000" />
+    </task>
+    <task id="LOCAL-00006" summary="push">
+      <created>1642519651042</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1642519651042</updated>
+    </task>
+    <task id="LOCAL-00007" summary="pagination">
+      <created>1642522129621</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1642522129621</updated>
+    </task>
+    <task id="LOCAL-00008" summary="pagination">
+      <created>1642589568943</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642589568943</updated>
+    </task>
+    <task id="LOCAL-00009" summary="push">
+      <created>1642608753834</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642608753834</updated>
+    </task>
+    <task id="LOCAL-00010" summary="push">
+      <created>1642694714731</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1642694714731</updated>
+    </task>
+    <task id="LOCAL-00011" summary="avatar">
+      <created>1642782172532</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642782172532</updated>
+    </task>
+    <task id="LOCAL-00012" summary="avatar">
+      <created>1643043796487</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1643043796487</updated>
+    </task>
+    <task id="LOCAL-00013" summary="ome page filters">
+      <created>1643205988763</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1643205988763</updated>
+    </task>
+    <task id="LOCAL-00014" summary="change book status">
+      <created>1643213168174</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643213168174</updated>
+    </task>
+    <task id="LOCAL-00015" summary="audio player">
+      <created>1643291653821</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1643291653821</updated>
     </task>
     <task id="LOCAL-00016" summary="audio player">
       <created>1643299724798</created>
@@ -424,97 +482,27 @@
       <updated>1650627731339</updated>
     </task>
     <task id="LOCAL-00052" summary="push">
-      <created>1651658883675</created>
+      <created>1654267505335</created>
       <option name="number" value="00052" />
       <option name="presentableId" value="LOCAL-00052" />
       <option name="project" value="LOCAL" />
-      <updated>1651658883675</updated>
+      <updated>1654267505336</updated>
     </task>
     <task id="LOCAL-00053" summary="push">
-      <created>1651764543597</created>
+      <created>1654267521900</created>
       <option name="number" value="00053" />
       <option name="presentableId" value="LOCAL-00053" />
       <option name="project" value="LOCAL" />
-      <updated>1651764543598</updated>
+      <updated>1654267521900</updated>
     </task>
     <task id="LOCAL-00054" summary="push">
-      <created>1651850016430</created>
+      <created>1654267539194</created>
       <option name="number" value="00054" />
       <option name="presentableId" value="LOCAL-00054" />
       <option name="project" value="LOCAL" />
-      <updated>1651850016431</updated>
+      <updated>1654267539194</updated>
     </task>
-    <task id="LOCAL-00055" summary="push">
-      <created>1652183782092</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1652183782093</updated>
-    </task>
-    <task id="LOCAL-00056" summary="push">
-      <created>1652192899485</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1652192899485</updated>
-    </task>
-    <task id="LOCAL-00057" summary="push">
-      <created>1652279525923</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1652279525923</updated>
-    </task>
-    <task id="LOCAL-00058" summary="push">
-      <created>1652364292522</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1652364292523</updated>
-    </task>
-    <task id="LOCAL-00059" summary="push">
-      <created>1652367203903</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1652367203903</updated>
-    </task>
-    <task id="LOCAL-00060" summary="push">
-      <created>1652445490380</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1652445490381</updated>
-    </task>
-    <task id="LOCAL-00061" summary="push">
-      <created>1654003334942</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1654003334943</updated>
-    </task>
-    <task id="LOCAL-00062" summary="end player">
-      <created>1654090479733</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1654090479734</updated>
-    </task>
-    <task id="LOCAL-00063" summary="fix selections page style">
-      <created>1654096398724</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1654096398724</updated>
-    </task>
-    <task id="LOCAL-00064" summary="push">
-      <created>1654170782479</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1654170782479</updated>
-    </task>
-    <option name="localTasksCounter" value="65" />
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,8 +576,6 @@
     <MESSAGE value="responsive" />
     <MESSAGE value="my books" />
     <MESSAGE value="notifications" />
-    <MESSAGE value="end player" />
-    <MESSAGE value="fix selections page style" />
     <MESSAGE value="push" />
     <option name="LAST_COMMIT_MESSAGE" value="push" />
   </component>

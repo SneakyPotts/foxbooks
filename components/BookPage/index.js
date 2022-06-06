@@ -88,7 +88,7 @@ const BookPage = () => {
             }
 
             <img
-              src="/advertising.png"
+              src="/horizontalBookCovers/bookCover1.png"
               alt=""
               width={588}
               height={250}

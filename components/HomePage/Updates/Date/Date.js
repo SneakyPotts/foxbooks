@@ -4,7 +4,7 @@ import DropDownArrow from '../../../../public/chevron-down.svg';
 import css from './date.module.scss';
 
 const Date = ({ date, books }) => {
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(true);
 
   const toggle = e => {
     e.stopPropagation();

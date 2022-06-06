@@ -10,6 +10,7 @@ import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {setAuthPopupVisibility} from "../../../store/commonSlice";
 import SelectionService from "../../../http/SelectionService";
+import {getNoun} from "../../../utils";
 
 const SelectionPage = () => {
     const router = useRouter()
@@ -63,11 +64,11 @@ const SelectionPage = () => {
             <div className={classNames("container", styles.compilationContainer, st.selectionContainer)}>
         <span
             className={classNames(styles.compilationBookCount, {
-                [styles.empty]: 1
+                [styles.empty]: !selectionById?.compilation?.generalBooksCount
             })}
         >
           <span>{selectionById?.compilation?.generalBooksCount}</span>
-          Книги
+            {getNoun(selectionById?.compilation?.generalBooksCount, 'Книга', 'Книги', 'Книг')}
         </span>
 
                 <Button
@@ -80,18 +81,19 @@ const SelectionPage = () => {
 
                 <p className={st.selectionText}>{selectionById?.compilation?.description}</p>
 
-                <div className={st.selectionGrid}>
-                    {selectionById?.books?.data?.length ? selectionById?.books?.data.map(i =>
+                {selectionById?.books?.data?.length ?
+                    <div className={st.selectionGrid}>
+                        {selectionById?.books?.data.map(i =>
                             <Book
                                 key={i?.id}
                                 book={i?.book_compilationable}
                                 type={i?.book_compilationable?.type}
                                 audio={i?.book_compilationable?.type === 'audioBooks'}
                             />
-                        ) :
-                        <p className="empty">Книг не найдено</p>
-                    }
-                </div>
+                        )}
+                    </div> :
+                    <p className={classNames("empty", st.empty)}>Книг не найдено</p>
+                }
             </div>
         </>
     );
