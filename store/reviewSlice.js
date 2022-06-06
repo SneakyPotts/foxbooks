@@ -6,6 +6,14 @@ const initialState = {
 	reviews: []
 };
 
+export const getCurrentReviews = createAsyncThunk(
+	'review/getCurrentReviews',
+	async (data) => {
+		const response = await ReviewService.getCurrentReviews(data)
+		return response.data.data
+	}
+)
+
 export const getReviewTypes = createAsyncThunk(
 	'review/getReviewTypes',
 	async () => {
@@ -38,6 +46,9 @@ export const review = createSlice({
 		[addReview.fulfilled]: (state, action) => {
 			state.reviews.push(action.payload)
 		},
+		[getCurrentReviews.fulfilled]: (state, action) => {
+			state.reviews = action.payload
+		}
 	}
 });
 
