@@ -8,19 +8,15 @@ import ReviewForm from "../../ReviewForm";
 import {getCurrentReviews} from "../../../store/reviewSlice";
 
 const Reviews = ({type}) => {
-  // const reviewsAmount = [
-  //   { id: '0', type: 'positive' },
-  //   { id: '1', type: 'negative' },
-  //   { id: '2', type: 'neutral' },
-  // ];
-
   const dispatch = useDispatch();
 
   const [reviewTyping, setReviewTyping] = useState(false);
+  const [page, setPage] = useState(1);
 
   const {innerWidthWindow} = useSelector(state => state.common);
   const {id} = useSelector(state => state.book?.book);
-  const reviewsList = useSelector(state => state.review?.reviews?.data)
+  const {reviews} = useSelector(state => state.review)
+  const reviewsList = reviews?.data;
 
   const reviewsType = {
     '1': 'positive',
@@ -33,12 +29,13 @@ const Reviews = ({type}) => {
   }
   const reviewRequestData = {
     type: requestType[type],
-    id: id
+    id: id,
+    page
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     dispatch(getCurrentReviews(reviewRequestData))
-  }, []);
+  }, [page]);
 
 
   const handleLeaveReviewInput = () => {
@@ -76,11 +73,15 @@ const Reviews = ({type}) => {
         </div>
       ))}
 
-      {innerWidthWindow > 768 ? (
-        <MyPagination/>
-      ) : (
-        <div className={st.pagination}>Показать еще</div>
-      )}
+      {reviews?.last_page > 1
+        ? innerWidthWindow > 768
+          ? (<MyPagination
+              currentPage={page}
+              onClick={setPage}
+              lastPage={reviews?.last_page}
+            />)
+          : (<div className={st.pagination}>Показать еще</div>)
+        : null}
     </div>
   );
 };

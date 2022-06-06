@@ -2,8 +2,8 @@ import axios from "axios";
 import api, { API_URL } from ".";
 
 export default class ReviewService {
-	static async getCurrentReviews(data) {
-		return axios.get(`${API_URL}/${data.type}/${data.id}/reviews`)
+	static async getCurrentReviews({type, id, page = 1}) {
+		return axios.get(`${API_URL}/${type}/${id}/reviews?page=${page}`)
 	}
 
 	static async getReviewTypes() {
