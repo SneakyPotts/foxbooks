@@ -24,8 +24,8 @@ const Reviews = ({type}) => {
 
   const reviewsType = {
     '1': 'positive',
-    '2': 'negative',
-    '3': 'neutral'
+    '2': 'neutral',
+    '3': 'negative'
   };
   const requestType = {
     'books': 'book',
