@@ -35,10 +35,12 @@ const Reviews = ({type}) => {
       )}
 
       {reviewTyping && (
-        <ReviewForm
-          bookType={type}
-          onCancel={() => setReviewTyping(false)}
-        />
+        <div style={{paddingRight: '20px'}}>
+          <ReviewForm
+            bookType={type}
+            onCancel={() => setReviewTyping(false)}
+          />
+        </div>
       )}
 
       {reviewsAmount.map((it, idx) => (

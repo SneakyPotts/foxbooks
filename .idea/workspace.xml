@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/components/BookPage/Form/schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/CommentItem/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/BookPage/Form/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Form/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Selections/SelectionPage/selectionPage.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/book.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/bookpage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/bookpage.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/ReviewForm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/BookPage/Form" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -59,11 +55,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Frontend\projects\library-next\components\BookPage\Form" />
       <recent name="E:\Frontend\projects\library-next\components\ReviewForm" />
       <recent name="E:\Frontend\projects\library-next\components\ReaderBook" />
       <recent name="E:\Frontend\projects\library-next\components\Holders" />
       <recent name="E:\Frontend\projects\library-next\components\Support" />
-      <recent name="E:\Frontend\projects\library-next\components\CommentForm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Frontend\projects\library-next\components\BookPage" />
