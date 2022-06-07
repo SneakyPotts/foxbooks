@@ -41,6 +41,7 @@ const AuthorOtherAudioBooks = ({ data }) => {
               similar={true}
               mobalSimilar={true}
               audio={true}
+              type={i?.type}
             />
           </SwiperSlide>
         ))}

@@ -35,7 +35,7 @@ const Reviews = ({type}) => {
 
   useEffect(() => {
     dispatch(getCurrentReviews(reviewRequestData))
-  }, [page]);
+  }, [page, id]);
 
 
   const handleLeaveReviewInput = () => {

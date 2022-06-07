@@ -152,10 +152,11 @@ const Category = () => {
                     >
                       {books.data.map(book => (
                         <Book
-                          key={book.id}
+                          key={book?.id}
                           audio={router.query?.type === 'audioBooks'}
                           flagSwitcher={flagSwitcher}
                           book={book}
+                          type={book?.type}
                         />
                       ))}
                     </div>

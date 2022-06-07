@@ -62,6 +62,7 @@ const TextWithQoutes = () => {
 
 		if(text?.length && text !== ' ') {
 			ev.preventDefault()
+			// ev.stopPropagation()
 			setSelectedText(text)
 
 			const range = window.getSelection().getRangeAt(0)
@@ -71,9 +72,14 @@ const TextWithQoutes = () => {
 			const err = quotes?.some(() => !obj.startKey || !obj.endKey) || text?.length > 300
 			setIsError(err);
 
-			const x = ev?.pageX || ev?.changedTouches[0]?.pageX 
+			const x = ev?.pageX || ev?.changedTouches[0]?.pageX
 			const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-			setToolsCoords({x, y})
+
+			const toolsWidth = 291
+			const windowWidth = window.innerWidth
+			const deltaX = windowWidth - x
+
+			setToolsCoords({x: toolsWidth >= deltaX ? x - toolsWidth : x, y})
 			setToolsIsVisible(true)
 		} else {
 			setToolsIsVisible(false)			
@@ -162,7 +168,8 @@ const TextWithQoutes = () => {
 	}
 
 	const changePage = ev => {
-		if(innerWidthWindow <= 768) {
+		// ev.stopPropagation()
+		if(innerWidthWindow <= 768 && !toolsIsVisible) {
 			const x = ev?.pageX || ev?.changedTouches[0]?.pageX
 			const w = innerWidthWindow / 3
 
@@ -245,6 +252,14 @@ const TextWithQoutes = () => {
 
 	useEffect(() => {
 		addKey(article.current)
+
+		const hideTools = () => setToolsIsVisible(false)
+
+		document.body.addEventListener('click', hideTools)
+
+		return () => {
+			document.body.removeEventListener('click', hideTools)
+		}
 	}, [])
 
 	useEffect(() => {
@@ -295,7 +310,7 @@ const TextWithQoutes = () => {
 					<AddQout
 						style={{
 							top: toolsCoords.y + 'px',
-							left: toolsCoords.x + 'px',
+							left: toolsCoords.x + 'px'
 						}}
 						isError={isError}
 						markId={markId}

@@ -40,7 +40,7 @@ const Comments = () => {
       type: router.query?.type,
       page
     }))
-  }, [page])
+  }, [page, router.query?.id])
 
   return (
     <div className={st.container}>

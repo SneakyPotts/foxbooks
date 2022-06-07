@@ -80,12 +80,9 @@ const Header = ({
       onClick={ev => innerWidthWindow <= 768 && ev.stopPropagation()}
     >
       <div className={styles.logoWrapper}>
-        <span
-          className={styles.backBtn}
-          onClick={() => router.back()}
-        >
-          <ArrowIcon />
-        </span>
+        <Link href={`/book/${router.query?.id}?type=books`}>
+          <a className={styles.backBtn}><ArrowIcon /></a>
+        </Link>
         <Link href="/">
           <a className={+settings?.screenBrightness <= 2 ? styles.logo : null}>
             <Logo />
