@@ -66,6 +66,12 @@
   align-items: center;
   margin-right: 10px;
   stroke: $color-third;
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    stroke: $text-hover;
+  }
 }
 .quoteLike {
   margin-right: 30px;

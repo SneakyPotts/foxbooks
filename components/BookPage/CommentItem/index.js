@@ -183,7 +183,7 @@ const CommentItem = ({
 
       {reviews &&
         <h3 className={styles.reviewTitle}>
-          Гарри получает похвалы за то, что нарушает запреты
+          {data.title}
         </h3>
       }
 
