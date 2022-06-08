@@ -14,8 +14,6 @@ export default function App(props) {
   dispatch(setSelections(props.compilations));
   dispatch(setReviews(props.reviews));
 
-  console.log(props)
-
   return (
     <Home
       audioBooks={props.audioBooks?.audio_books}

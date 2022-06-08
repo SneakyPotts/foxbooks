@@ -1,6 +1,6 @@
 .container {
-  min-width: 384px;
-  margin-right: 24px;
+  width: 343px;
+  margin-right: 65px;
   margin-bottom: 100px;
 }
 .title {

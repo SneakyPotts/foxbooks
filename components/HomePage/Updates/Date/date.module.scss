@@ -74,10 +74,32 @@
   border-radius: 50%;
   background-color: $color-third;
 }
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    color: $text-hover;
+  }
+}
 .author {
   font-size: 14px;
   line-height: 1.43;
   color: $color-third;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .active {
   color: $text-hover;

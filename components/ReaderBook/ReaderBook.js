@@ -218,12 +218,14 @@ const ReaderBook = () => {
 
         {/* Дропдаун с редактированием */}
         {editPopupIsVisible &&
-          <DrawerPopup
-            externalClass={styles.editPopup}
-            onClose={() => setEditPopupIsVisible(false)}
-          >
-            <EditPopup />
-          </DrawerPopup>
+            <div className={classNames('container', styles.editPopupWrapper)}>
+              <DrawerPopup
+                externalClass={styles.editPopup}
+                onClose={() => setEditPopupIsVisible(false)}
+              >
+                <EditPopup />
+              </DrawerPopup>
+            </div>
         }
 
         {/* Попап с закладками */}

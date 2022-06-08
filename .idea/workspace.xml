@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
-      <change afterPath="$PROJECT_DIR$/components/BookPage/Form/schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/Form/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Form/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/Reviews/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/bookpage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/bookpage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/date.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/date.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +157,7 @@
       <workItem from="1650623075635" duration="1508000" />
       <workItem from="1650876794539" duration="5761000" />
       <workItem from="1654502380798" duration="4979000" />
+      <workItem from="1654685724619" duration="4702000" />
     </task>
     <task id="LOCAL-00006" summary="push">
       <created>1642519651042</created>
