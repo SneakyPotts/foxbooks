@@ -25,7 +25,7 @@ const Quotes = () => {
       <h2 className={st.quotesTitle}>Цитаты</h2>
 
       {bookQuotes?.data.map(i =>
-        <QuoteItem data={i} />
+        <QuoteItem key={i.id} data={i} />
       )}
 
       {bookQuotes?.last_page > 1 ?
@@ -68,7 +68,6 @@ const QuoteItem = ({data}) => {
 
   return (
     <div
-      key={data.id}
       className={st.quote}
     >
       <div className={st.user}>

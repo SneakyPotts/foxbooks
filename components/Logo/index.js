@@ -8,7 +8,7 @@ const Logo = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
   return (
     <Link href="/">
-      <a classNames={st.logo}>
+      <a className={st.logo}>
         {innerWidthWindow <= 768 ? <LogoMobile /> : <LogoIcon />}
       </a>
     </Link>

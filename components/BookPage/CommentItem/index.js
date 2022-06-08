@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import classnames from 'classnames';
@@ -109,11 +109,26 @@ const CommentItem = ({
     }
   }
 
+  const setTypes = useCallback((routeType) => {
+      const host = reviews ? 'review' : 'comment'
+
+      // router.query?.type === 'books' ?
+      //   'book_comment' :
+      //   'audio_book_comment'
+
+      const typeMatching = {
+        'books': host === 'review' ? 'book_review' : 'book_comment',
+        'audioBooks': host === 'review' ? 'audio_book_review' : 'audio_book_comment'
+      }
+
+      return typeMatching[routeType]
+    },[reviews]);
+
+
   const likeHandler = async () => {
     if(isAuth) {
-      const type = router.query?.type === 'books' ?
-        'book_comment' :
-        'audio_book_comment'
+      const type = setTypes(router.query?.type);
+      console.log('setType',type)
 
       const obj = {
         id: data?.id,
@@ -149,9 +164,9 @@ const CommentItem = ({
     >
       <div className={styles.reviewer}>
         <div className={styles.reviewerIcon}>
-          {data?.users?.avatar ? (
+          {data?.user?.avatar ? (
             <Image
-              src={data?.users?.avatar}
+              src={data?.user?.avatar}
               alt="Avatar"
               width="35"
               height="35"
@@ -161,19 +176,19 @@ const CommentItem = ({
           ) : (
             <AvatarWithLetter
               letter={
-                data?.users?.nickname?.slice(0, 1) ||
-                data?.users?.name?.slice(0, 1) ||
+                data?.user?.nickname?.slice(0, 1) ||
+                data?.user?.name?.slice(0, 1) ||
                 'П'
               }
               width={35}
-              id={data?.users?.id}
+              id={data?.user?.id}
               isProfile
             />
           )}
         </div>
 
         <span className={styles.reviewerName}>
-          {data?.users?.nickname || data?.users?.name || 'Пользователь'}
+          {data?.user?.nickname || data?.user?.name || 'Пользователь'}
 
           {isReply && <span className={styles.reviewInfo}>{replyDate}</span>}
         </span>
@@ -253,6 +268,7 @@ const CommentItem = ({
             key={i?.id}
             data={i}
             isReply
+            reviews={reviews}
           />
         ) : null
       }
