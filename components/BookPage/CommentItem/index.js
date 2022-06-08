@@ -10,7 +10,7 @@ import 'moment/locale/ru'
 import moment from "moment";
 import CommentForm from "../../CommentForm";
 import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
-import {addComment, addLikeToComment, deleteLikeFromComment} from "../../../store/commentsSlice";
+import {addComment} from "../../../store/commentsSlice";
 import {useRouter} from "next/router";
 import CommentsService from "../../../http/CommentsService";
 import {setAuthPopupVisibility} from "../../../store/commonSlice";
@@ -110,15 +110,9 @@ const CommentItem = ({
   }
 
   const setTypes = useCallback((routeType) => {
-      const host = reviews ? 'review' : 'comment'
-
-      // router.query?.type === 'books' ?
-      //   'book_comment' :
-      //   'audio_book_comment'
-
       const typeMatching = {
-        'books': host === 'review' ? 'book_review' : 'book_comment',
-        'audioBooks': host === 'review' ? 'audio_book_review' : 'audio_book_comment'
+        'books': reviews ? 'book_review' : 'book_comment',
+        'audioBooks': reviews ? 'audio_book_review' : 'audio_book_comment'
       }
 
       return typeMatching[routeType]
@@ -128,7 +122,6 @@ const CommentItem = ({
   const likeHandler = async () => {
     if(isAuth) {
       const type = setTypes(router.query?.type);
-      console.log('setType',type)
 
       const obj = {
         id: data?.id,
