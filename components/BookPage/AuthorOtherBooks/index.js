@@ -45,6 +45,7 @@ const AuthorOtherBooks = ({ data }) => {
               classNames={st.slide}
               book={i}
               similar={true}
+              type={i?.type}
             />
           </SwiperSlide>
         ))}

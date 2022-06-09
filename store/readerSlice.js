@@ -7,12 +7,12 @@ const initialState = {
 	bookMarks: [],
 	settings: {
 		isTwoColumns: false,
-		fontSize: 0,
+		fontSize: 3,
 		screenBrightness: 5,
-		fontName: 'Times New Roman',
-		fieldSize: 2,
-		rowHeight: 2,
-		isCenterAlignment: false
+		fontName: 'Georgia',
+		fieldSize: 4,
+		rowHeight: 4,
+		isCenterAlignment: true
 	},
 	quotes: [],
 	quotesIsLoading: true

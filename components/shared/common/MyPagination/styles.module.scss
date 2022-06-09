@@ -3,6 +3,7 @@
 .pagination {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 40px;
 
   :global(.rc-pagination-prev),
@@ -75,7 +76,7 @@
   }
 
   :global(.rc-pagination-options) {
-    margin-left: auto;
+    margin-left: 10px;
   }
 
   :global(.rc-pagination-options-quick-jumper) {

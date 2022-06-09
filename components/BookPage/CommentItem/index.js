@@ -249,7 +249,7 @@ const CommentItem = ({
           <CommentForm
             submitFunc={submitFunc}
             onCancel={toggleFormVisibility}
-            isTextarea={isReply}
+            // isTextarea={isReply}
             rows={3}
           />
         </div>

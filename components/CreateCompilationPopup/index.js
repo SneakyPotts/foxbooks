@@ -9,9 +9,11 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import schema from "./schema";
 import Input from "../shared/common/Input/Input";
 import Button from "../shared/common/Button/Button";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {generateFormData} from "../../utils";
 import SelectionService from "../../http/SelectionService";
+import {useRouter} from "next/router";
+import {editCompilation} from "../../store/selectionSlice";
 
 const CreateCompilationPopup = ({
   image,
@@ -21,6 +23,9 @@ const CreateCompilationPopup = ({
   callback,
   isEdit
 }) => {
+  const router = useRouter()
+  const dispatch = useDispatch()
+
   const { innerWidthWindow } = useSelector(state => state.common)
 
   const [imgSrc, setImgSrc] = useState(image || '')
@@ -36,10 +41,15 @@ const CreateCompilationPopup = ({
 
   const onSubmit = async data => {
     if(isEdit) {
-
+      const d = generateFormData({
+        ...data,
+        id: router.query?.id
+      })
+      dispatch(editCompilation(d))
     } else {
       const d = generateFormData(data)
       const resp = await SelectionService.createCompilation(d)
+      callback && callback(resp.data?.data)
     }
     onClose()
   };

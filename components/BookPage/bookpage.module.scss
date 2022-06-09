@@ -125,6 +125,14 @@
 .userInput:hover {
   border-color: $color-third;
 }
+.error {
+  font-size: 12px;
+  line-height: 14px;
+  color: #e92a20;
+}
+.submitBtn {
+  margin: 10px 0 20px;
+}
 .advertisingBlok {
   display: block;
   margin-left: 24px;
@@ -189,5 +197,9 @@
       object-fit: fill;
       max-height: 164px;
     }
+  }
+
+  .submitBtn {
+    width: 100%;
   }
 }

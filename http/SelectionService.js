@@ -16,16 +16,28 @@ export default class SelectionService {
 				headers: {
 					'Authorization': `Bearer ${token}`
 				}
-			},
+			}
 		)
 	}
 
-	static async getSelectionById({id}) {
-		return axios.get(`${API_URL}/compilations/${id}`)
+	static async getSelectionById({token, id}) {
+		return axios.get(`${API_URL}/compilations/${id}`, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
 	}
 
 	static async createCompilation(data) {
 		return api.post(`${API_URL}/compilations`, data)
+	}
+
+	static async editCompilation(data) {
+		return api.post(`${API_URL}/compilations/edit`, data)
+	}
+
+	static async deleteCompilation(id) {
+		return api.delete(`${API_URL}/compilations?id=${id}`)
 	}
 
 	static async getUserCompilations({
@@ -40,8 +52,8 @@ export default class SelectionService {
 		return api.post(`${API_URL}/compilations/books`, data)
 	}
 
-	static async deleteBookFromCompilation(data) {
-		return api.delete(`${API_URL}/compilations/books/delete`, data)
+	static async deleteBookFromCompilation(compilation_id, book_id, book_type) {
+		return api.delete(`${API_URL}/compilations/books/delete?compilation_id=${compilation_id}&book_id=${book_id}&book_type=${book_type}`)
 	}
 
 	static async addCompilationToFavorite(id) {

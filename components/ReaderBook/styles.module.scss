@@ -6,9 +6,6 @@
   padding-top: 23px;
   padding-bottom: 60px;
 }
-.pageContainer {
-  position: relative;
-}
 .pagination {
   margin: 60px auto 30px !important;
   max-width: 700px;
@@ -279,6 +276,14 @@
   transform: translateY(0);
   width: 279px;
   animation: dropDown2 0.2s;
+
+  &Wrapper {
+    position: absolute;
+    top: 23px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 @keyframes dropDown2 {
@@ -611,6 +616,7 @@
     cursor: pointer;
     transition: .15s;
 
+    &.active,
     &:hover {
       color: $text-hover;
     }

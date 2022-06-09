@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import DrawerPopup from "../shared/common/DrawerPopup";
@@ -19,6 +19,7 @@ import {addBookMark, deleteBookMark} from "../../store/readerSlice";
 import MarksPopup from "./MarksPopup";
 import {setAuthPopupVisibility} from "../../store/commonSlice";
 import GroupForms from "../Header/groupForms/GroupForms";
+import debounce from 'lodash.debounce';
 
 const ReaderBook = () => {
   const router = useRouter()
@@ -33,6 +34,8 @@ const ReaderBook = () => {
   const [editPopupIsVisible, setEditPopupIsVisible] = useState(false)
   const [markPopupIsVisible, setMarkPopupIsVisible] = useState(false)
   const [mobileControlsIsVisible, setMobileControlsIsVisible] = useState(false)
+
+  const [currentPage, setCurrentPage] = useState(router.query?.page)
 
   const showContentPopup = () => {
     setContentPopupIsVisible(true)
@@ -93,6 +96,28 @@ const ReaderBook = () => {
     router.push({ query: { ...router.query, page } })
   }
 
+  const changePageHandler = useCallback(debounce((value) => {
+    router.push({ query: { ...router.query, page: value } })
+  }, 300), [])
+
+  useEffect(() => {
+    const closeHandler = ev => {
+      if(ev.key === "Escape") {
+        setEditPopupIsVisible(false)
+      }
+    }
+
+    document.body.addEventListener('keydown', closeHandler)
+
+    return () => {
+      document.body.removeEventListener('keydown', closeHandler)
+    }
+  }, [])
+
+  useEffect(() => {
+    setCurrentPage(router.query?.page)
+  }, [router.query?.page])
+
   return (
     <div
       className={classNames(
@@ -126,17 +151,23 @@ const ReaderBook = () => {
         />
 
         {(innerWidthWindow > 768 || mobileControlsIsVisible) &&
-        <div className={styles.progress}>
-          <div className={styles.progressWrapper}>
-            <span>Глава 1. Мальчик, который выжил</span>
-            <span>1%</span>
+          <div className={styles.progress}>
+            <div className={styles.progressWrapper}>
+              <span>{book?.chapters[0]?.title}</span>
+              <span>{book?.reading_progress}%</span>
+            </div>
+            <InputRange
+              min={1}
+              max={book?.pages_count}
+              value={currentPage}
+              setValue={value => {
+                setCurrentPage(value)
+                changePageHandler(value)
+              }}
+              barColor={'var(--controls-color)'}
+              externalClass={styles.progressInput}
+            />
           </div>
-          <InputRange
-            value={20}
-            barColor={'var(--controls-color)'}
-            externalClass={styles.progressInput}
-          />
-        </div>
         }
 
         <div className={styles.mobileFooter}>
@@ -152,59 +183,61 @@ const ReaderBook = () => {
         {/* Попап с главами */}
         {innerWidthWindow > 768 ?
           contentPopupIsVisible &&
-          <ModalWindow
-            externalClass={styles.popup}
-            onClose={() => setContentPopupIsVisible(false)}
-          >
-            <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
-          </ModalWindow> :
-          contentPopupIsVisible &&
-          <DrawerPopup
-            externalClass={styles.drawer}
-            onClose={() => setContentPopupIsVisible(false)}
-          >
-            <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
-          </DrawerPopup>
+            <ModalWindow
+              externalClass={styles.popup}
+              onClose={() => setContentPopupIsVisible(false)}
+            >
+              <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
+            </ModalWindow> :
+            contentPopupIsVisible &&
+            <DrawerPopup
+              externalClass={styles.drawer}
+              onClose={() => setContentPopupIsVisible(false)}
+            >
+              <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
+            </DrawerPopup>
         }
 
         {/* Попап с цитатами */}
         {innerWidthWindow > 768 ?
           quotesPopupIsVisible &&
-          <ModalWindow
-            externalClass={styles.popup}
-            onClose={() => setQuotesPopupIsVisible(false)}
-          >
-            <QuotesPopup onClose={() => setQuotesPopupIsVisible(false)} />
-          </ModalWindow> :
-          quotesPopupIsVisible &&
-          <DrawerPopup
-            externalClass={styles.drawer}
-            onClose={() => setQuotesPopupIsVisible(false)}
-          >
-            <QuotesPopup onClose={() => setQuotesPopupIsVisible(false)} />
-          </DrawerPopup>
+            <ModalWindow
+              externalClass={styles.popup}
+              onClose={() => setQuotesPopupIsVisible(false)}
+            >
+              <QuotesPopup onClose={() => setQuotesPopupIsVisible(false)} />
+            </ModalWindow> :
+            quotesPopupIsVisible &&
+            <DrawerPopup
+              externalClass={styles.drawer}
+              onClose={() => setQuotesPopupIsVisible(false)}
+            >
+              <QuotesPopup onClose={() => setQuotesPopupIsVisible(false)} />
+            </DrawerPopup>
         }
 
         {/* Дропдаун с редактированием */}
         {editPopupIsVisible &&
-        <DrawerPopup
-          externalClass={styles.editPopup}
-          onClose={() => setEditPopupIsVisible(false)}
-        >
-          <EditPopup />
-        </DrawerPopup>
+            <div className={classNames('container', styles.editPopupWrapper)}>
+              <DrawerPopup
+                externalClass={styles.editPopup}
+                onClose={() => setEditPopupIsVisible(false)}
+              >
+                <EditPopup />
+              </DrawerPopup>
+            </div>
         }
 
         {/* Попап с закладками */}
         {innerWidthWindow <= 768 && markPopupIsVisible &&
-        <DrawerPopup
-          externalClass={styles.drawer}
-          onClose={() => setMarkPopupIsVisible(false)}
-        >
-          <MarksPopup
-            handleMarkClick={handleMarkClick}
-          />
-        </DrawerPopup>
+          <DrawerPopup
+            externalClass={styles.drawer}
+            onClose={() => setMarkPopupIsVisible(false)}
+          >
+            <MarksPopup
+              handleMarkClick={handleMarkClick}
+            />
+          </DrawerPopup>
         }
       </div>
 

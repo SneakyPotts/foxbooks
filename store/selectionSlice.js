@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import SelectionService from "../http/SelectionService";
-import {search} from "./searchSlice";
 
 const initialState = {
 	selections: {},
@@ -20,6 +19,14 @@ export const deleteCompilationFromFavorite = createAsyncThunk(
 	async data => {
 		const response = await SelectionService.deleteCompilationFromFavorite(data)
 		return data
+	}
+)
+
+export const editCompilation = createAsyncThunk(
+	'selection/editCompilation',
+	async data => {
+		const response = await SelectionService.editCompilation(data)
+		return response.data?.data
 	}
 )
 
@@ -64,6 +71,12 @@ export const selectionSlice = createSlice({
 					} :
 					i
 			)
+		},
+		[editCompilation.fulfilled]: (state, action) => {
+			state.selectionById.compilation = {
+				...state.selectionById.compilation,
+				...action.payload
+			}
 		},
 	}
 });

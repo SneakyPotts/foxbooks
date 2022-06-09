@@ -61,28 +61,38 @@ const MySelection = () => {
 
   const [choosePopupIsVisible, setChoosePopupIsVisible] = useState(false)
   const [createPopupIsVisible, setCreatePopupIsVisible] = useState(false)
-  const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
-  const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
+  const [deleteBookPopupIsVisible, setDeleteBookPopupIsVisible] = useState(false)
+  const [confirmBookPopupIsVisible, setConfirmBookPopupIsVisible] = useState(false)
+  const [deleteSelectionPopupIsVisible, setDeleteSelectionPopupIsVisible] = useState(false)
+  const [confirmSelectionPopupIsVisible, setConfirmSelectionPopupIsVisible] = useState(false)
+
   const [bookId, setBookId] = useState(null)
   const [bookType, setBookType] = useState(null)
   const [bookTitle, setBookTitle] = useState(null)
 
-  const showDeletePopup = ({id, type, title}) => {
+  const showDeleteBookPopup = ({id, type, title}) => {
     setBookId(id)
     setBookType(type)
     setBookTitle(title)
-    setDeletePopupIsVisible(true)
+    setDeleteBookPopupIsVisible(true)
   }
 
-  const deleteHandler = () => {
-    SelectionService.deleteBookFromCompilation({
-      compilation_id: router.query?.id,
-      book_id: bookId,
-      book_type: bookType
-    }).then(() => {
+  const deleteBookHandler = () => {
+    SelectionService.deleteBookFromCompilation(router.query?.id, bookId, bookType).then(() => {
       dispatch(deleteBookFromSelection(bookId))
-      setDeletePopupIsVisible(false)
-      setConfirmPopupIsVisible(true)
+      setDeleteBookPopupIsVisible(false)
+      setConfirmBookPopupIsVisible(true)
+    })
+  }
+
+  const showDeleteSelectionPopup = () => {
+    setDeleteSelectionPopupIsVisible(true)
+  }
+
+  const deleteSelectionHandler = () => {
+    SelectionService.deleteCompilation(router.query?.id).then(() => {
+      setDeleteSelectionPopupIsVisible(false)
+      setConfirmSelectionPopupIsVisible(true)
     })
   }
 
@@ -127,7 +137,7 @@ const MySelection = () => {
 
             <div
               className={styles.controlsItem}
-              onClick={() => showDeletePopup()}
+              onClick={showDeleteSelectionPopup}
             >
               <Bin />
               Удалить
@@ -190,7 +200,7 @@ const MySelection = () => {
               >
                 <Book
                   withDelete
-                  onDelete={() => showDeletePopup(i?.book_compilationable || i)}
+                  onDelete={() => showDeleteBookPopup(i?.book_compilationable || i)}
                   book={i?.book_compilationable || i}
                   type={i?.book_compilationable?.type || i?.type}
                   audio={i?.book_compilationable?.type === 'audioBooks' || i?.type === 'audioBooks'}
@@ -224,9 +234,9 @@ const MySelection = () => {
         />
       }
 
-      {deletePopupIsVisible &&
+      {deleteBookPopupIsVisible &&
         <ModalWindow
-          onClose={() => setDeletePopupIsVisible(false)}
+          onClose={() => setDeleteBookPopupIsVisible(false)}
         >
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Удалить книгу</h3>
@@ -237,16 +247,16 @@ const MySelection = () => {
               text="Удалить"
               typeButton="button"
               ClassName={styles.modalBtns}
-              click={deleteHandler}
-              cancelClick={() => setDeletePopupIsVisible(false)}
+              click={deleteBookHandler}
+              cancelClick={() => setDeleteBookPopupIsVisible(false)}
             />
           </div>
         </ModalWindow>
       }
 
-      {confirmPopupIsVisible &&
+      {confirmBookPopupIsVisible &&
         <ModalWindow
-          onClose={() => setConfirmPopupIsVisible(false)}
+          onClose={() => setConfirmBookPopupIsVisible(false)}
         >
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Книга удалена</h3>
@@ -254,7 +264,50 @@ const MySelection = () => {
             <Button
               text="Закрыть"
               typeButton="button"
-              click={() => setConfirmPopupIsVisible(false)}
+              click={() => setConfirmBookPopupIsVisible(false)}
+              classNames={styles.modalBtn}
+            />
+          </div>
+        </ModalWindow>
+      }
+
+      {deleteSelectionPopupIsVisible &&
+        <ModalWindow
+          onClose={() => setDeleteSelectionPopupIsVisible(false)}
+        >
+          <div className={styles.modal}>
+            <h3 className={styles.modalTitle}>Удалить подборку</h3>
+            <p className={styles.modalText}>
+              Вы действительно хотите удалить подборку?
+            </p>
+            <ButtonGroup
+              text="Удалить"
+              typeButton="button"
+              ClassName={styles.modalBtns}
+              click={deleteSelectionHandler}
+              cancelClick={() => setDeleteSelectionPopupIsVisible(false)}
+            />
+          </div>
+        </ModalWindow>
+      }
+
+      {confirmSelectionPopupIsVisible &&
+        <ModalWindow
+          onClose={() => {
+            setConfirmSelectionPopupIsVisible(false)
+            router.push('/mybooks/selections')
+          }}
+        >
+          <div className={styles.modal}>
+            <h3 className={styles.modalTitle}>Подборка удалена</h3>
+
+            <Button
+              text="Закрыть"
+              typeButton="button"
+              click={() => {
+                setConfirmSelectionPopupIsVisible(false)
+                router.push('/mybooks/selections')
+              }}
               classNames={styles.modalBtn}
             />
           </div>

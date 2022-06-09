@@ -35,7 +35,7 @@ const Reviews = ({type}) => {
 
   useEffect(() => {
     dispatch(getCurrentReviews(reviewRequestData))
-  }, [page]);
+  }, [page, id]);
 
 
   const handleLeaveReviewInput = () => {
@@ -56,10 +56,12 @@ const Reviews = ({type}) => {
       )}
 
       {reviewTyping && (
-        <ReviewForm
-          bookType={type}
-          onCancel={() => setReviewTyping(false)}
-        />
+        <div style={{paddingRight: '20px'}}>
+          <ReviewForm
+            bookType={type}
+            onCancel={() => setReviewTyping(false)}
+          />
+        </div>
       )}
 
       {reviewsList?.map((it, idx) => (

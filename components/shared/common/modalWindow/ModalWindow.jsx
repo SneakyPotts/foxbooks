@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import classNames from 'classnames';
 import styles from './index.module.scss';
@@ -10,6 +10,23 @@ const ModalWindow = ({
 	isFullScreen = false,
 	externalClass
 }) => {
+
+	useEffect(() => {
+		const closeHandler = ev => {
+			if(ev.key === "Escape" && onClose) {
+				onClose()
+			}
+		}
+
+		document.body.style.overflow = 'hidden'
+		document.body.addEventListener('keydown', closeHandler)
+
+		return () => {
+			document.body.style.overflow = 'auto'
+			document.body.removeEventListener('keydown', closeHandler)
+		}
+	}, [])
+
 	return (
 		<div
 			className={classNames(styles.wrapper)}

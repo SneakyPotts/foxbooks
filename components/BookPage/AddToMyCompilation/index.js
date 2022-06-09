@@ -9,6 +9,7 @@ import Loader from "../../shared/common/Loader";
 import CompilationItem from "../../CompilationItem";
 import BackBtn from "../../shared/common/BackBtn";
 import {useRouter} from "next/router";
+import {set} from "react-hook-form";
 
 const AddToMyCompilation = ({ onClose }) => {
   const router = useRouter()
@@ -79,6 +80,7 @@ const AddToMyCompilation = ({ onClose }) => {
       {createPopupIsVisible &&
         <CreateCompilationPopup
           onClose={() => setCreatePopupIsVisible(false)}
+          callback={comp => setData(prev => [...prev, comp])}
         />
       }
     </div>

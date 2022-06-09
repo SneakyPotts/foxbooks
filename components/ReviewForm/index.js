@@ -42,7 +42,7 @@ const ReviewForm = ({
       const obj = {
         ...data,
         id: router.query?.id,
-        type: bookType === 'books' ? 'book' : 'audioBook',
+        type: bookType === 'books' ? 'book' : 'audio_book',
         review_type: getValues('review_type')
       }
       dispatch(addReview(obj)).then(res => {

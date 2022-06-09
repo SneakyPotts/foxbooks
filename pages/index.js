@@ -14,8 +14,6 @@ export default function App(props) {
   dispatch(setSelections(props.compilations));
   dispatch(setReviews(props.reviews));
 
-  console.log(props)
-
   return (
     <Home
       audioBooks={props.audioBooks?.audio_books}
@@ -25,16 +23,7 @@ export default function App(props) {
 }
 
 export async function getServerSideProps ({query}) {
-	// const { cookies } = req
-	// const token = cookies.token
-
 	const { data } = await HomeService.getHomeData(query)
-
-	// let profile = {}
-	//
-	// if (token) {
-	// 	profile = await ProfileService.getProfile(token)
-	// }
 
 	return {
 		props: {
@@ -45,7 +34,6 @@ export async function getServerSideProps ({query}) {
             reviews: data?.data?.reviews,
             audioBooks: data?.data?.audioBooksList,
             newBooks: data?.data?.newBooksCompilations
-			// profile: profile?.data?.data || {}
 		}
 	}
 }
