@@ -3,7 +3,8 @@ import ReviewService from "../http/ReviewService";
 
 const initialState = {
   reviewTypes: [],
-  reviews: []
+  reviews: [],
+  error: ''
 };
 
 export const getCurrentReviews = createAsyncThunk(
@@ -24,9 +25,13 @@ export const getReviewTypes = createAsyncThunk(
 
 export const addReview = createAsyncThunk(
   'review/addReview',
-  async data => {
-    const response = await ReviewService.addReview(data)
-		return response.data.data
+  async (data, {rejectWithValue}) => {
+    try {
+      const response = await ReviewService.addReview(data)
+      return response.data.data
+    } catch (err) {
+      return rejectWithValue(err.response.data.errors.id[0])
+    }
   }
 )
 
@@ -45,6 +50,9 @@ export const review = createSlice({
 
     [addReview.fulfilled]: (state, action) => {
       state.reviews.data.push(action.payload)
+    },
+    [addReview.rejected]: (state, action) => {
+      state.error = action.payload
     },
 
     [getCurrentReviews.fulfilled]: (state, action) => {
