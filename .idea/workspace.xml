@@ -3,13 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/Date.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/Date/date.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/Date/date.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomePage/Updates/updates.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/similarBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/similarBooks.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/book/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,13 +160,6 @@
       <workItem from="1650876794539" duration="5761000" />
       <workItem from="1654502380798" duration="4979000" />
       <workItem from="1654685724619" duration="4702000" />
-    </task>
-    <task id="LOCAL-00006" summary="push">
-      <created>1642519651042</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1642519651042</updated>
     </task>
     <task id="LOCAL-00007" summary="pagination">
       <created>1642522129621</created>
@@ -502,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654267539194</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="handle review request error">
+      <created>1654761102330</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1654761102330</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +579,8 @@
     <MESSAGE value="my books" />
     <MESSAGE value="notifications" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="handle review request error" />
+    <option name="LAST_COMMIT_MESSAGE" value="handle review request error" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

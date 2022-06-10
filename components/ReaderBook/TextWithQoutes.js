@@ -168,7 +168,6 @@ const TextWithQoutes = () => {
 	}
 
 	const changePage = ev => {
-		// ev.stopPropagation()
 		if(innerWidthWindow <= 768 && !toolsIsVisible) {
 			const x = ev?.pageX || ev?.changedTouches[0]?.pageX
 			const w = innerWidthWindow / 3
@@ -189,6 +188,8 @@ const TextWithQoutes = () => {
 					window.scrollTo({top: 0, behavior: 'smooth'})
 				}
 			}
+		} else {
+			ev.stopPropagation()
 		}
 	}
 

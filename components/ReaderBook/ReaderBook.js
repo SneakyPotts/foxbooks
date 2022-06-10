@@ -218,7 +218,7 @@ const ReaderBook = () => {
 
         {/* Дропдаун с редактированием */}
         {editPopupIsVisible &&
-            <div className={classNames('container', styles.editPopupWrapper)}>
+            <div className={classNames('container', styles.editPopupContainer)}>
               <DrawerPopup
                 externalClass={styles.editPopup}
                 onClose={() => setEditPopupIsVisible(false)}

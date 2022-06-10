@@ -55,6 +55,10 @@ export default class BookService {
 		return axios.get(`${API_URL}/authors/${id}/audio-books`)
 	}
 
+	static async getSimilarBooks(id, type) {
+		return axios.get(`${API_URL}/${type === 'books' ? 'books' : 'audio-books'}/${id}/similar`)
+	}
+
 	static async getBookQuotes(id) {
 		return axios.get(`${API_URL}/books/${id}/quotes`)
 	}
