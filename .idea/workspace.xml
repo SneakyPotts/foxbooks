@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/SimilarBooks/similarBooks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/SimilarBooks/similarBooks.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BookPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/BookPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/common/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/common/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/BookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/BookService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/book/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/[id].js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +152,8 @@
       <workItem from="1650876794539" duration="5761000" />
       <workItem from="1654502380798" duration="4979000" />
       <workItem from="1654685724619" duration="4702000" />
+      <workItem from="1654862847400" duration="326000" />
+      <workItem from="1655118668004" duration="3029000" />
     </task>
     <task id="LOCAL-00007" summary="pagination">
       <created>1642522129621</created>

@@ -90,9 +90,15 @@ const TextWithQoutes = () => {
 	const handleMarkClick = (ev, id) => {
 		ev.stopPropagation()
 		setMarkId(id)
-		const x = ev?.pageX || ev?.changedTouches[0]?.pageX 
+
+		const x = ev?.pageX || ev?.changedTouches[0]?.pageX
 		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-		setToolsCoords({x, y})
+
+		const toolsWidth = 291
+		const windowWidth = window.innerWidth
+		const deltaX = windowWidth - x
+
+		setToolsCoords({x: toolsWidth >= deltaX ? x - toolsWidth : x, y})
 		setToolsIsVisible(true)
 	}
 
@@ -159,11 +165,19 @@ const TextWithQoutes = () => {
 	}
 
 	const shareQuot = () => {
-		let query = quotes?.find(i => i.id === markId) || rangeObj
+		let quot = quotes?.find(i => i.id === markId) || rangeObj
 
-		let str = `${window.location.origin}${router.asPath}&startKey=${query.startKey}&startTextIndex=${query.startTextIndex}&startOffset=${query.startOffset}&endKey=${query.endKey}&endTextIndex=${query.endTextIndex}&endOffset=${query.endOffset}`
+		const isQuot = quot.hasOwnProperty('id')
 
-		navigator.clipboard.writeText(str)
+		let str = `${window.location.origin}${router.asPath}
+			&startKey=${!isQuot ? quot.startKey : quot.start_key}
+			&startTextIndex=${!isQuot ? quot.startTextIndex : quot.start_text_index}
+			&startOffset=${!isQuot ? quot.startOffset : quot.start_offset}
+			&endKey=${!isQuot ? quot.endKey : quot.end_key}
+			&endTextIndex=${!isQuot ? quot.endTextIndex : quot.end_text_index}
+			&endOffset=${!isQuot ? quot.endOffset : quot.end_offset}`
+
+		navigator.clipboard.writeText(str.replace(/\s/g, ''))
 		setToolsIsVisible(false)
 	}
 
