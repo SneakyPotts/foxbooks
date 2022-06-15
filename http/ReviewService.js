@@ -13,4 +13,8 @@ export default class ReviewService {
 	static async addReview(data) {
 		return api.post(`${API_URL}/reviews`, data)
 	}
+
+	static async getUserReview() {
+		return api.get(`${API_URL}/reviews/list`)
+	}
 }
