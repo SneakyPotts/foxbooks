@@ -167,6 +167,8 @@ const TextWithQoutes = () => {
 	const shareQuot = () => {
 		let quot = quotes?.find(i => i.id === markId) || rangeObj
 
+        console.log(rangeObj)
+
 		const isQuot = quot.hasOwnProperty('id')
 
 		let str = `${window.location.origin}${router.asPath}
@@ -288,8 +290,8 @@ const TextWithQoutes = () => {
 		// select share quot
 		if(query.hasOwnProperty('startKey')) {
 			sel.addRange(objToRange(query))
-			document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
-			router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
+			// document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
+			// router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
 	}, [book?.pages[0]?.id, quotesIsLoading])
 

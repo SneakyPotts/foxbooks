@@ -20,7 +20,10 @@ const Categories = props => {
 
 export default Categories;
 
-export async function getServerSideProps({ params, query }) {
+export async function getServerSideProps({ req, params, query }) {
+  const { cookies } = req
+  const token = cookies.token
+
   const type = query?.type
   let categories = []
 
@@ -33,6 +36,7 @@ export async function getServerSideProps({ params, query }) {
   const books = await BookService.getBooks({
     ...query,
     findByCategory: params?.id,
+    token
   });
 
   return {
