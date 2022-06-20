@@ -165,9 +165,11 @@ const TextWithQoutes = () => {
 	}
 
 	const shareQuot = () => {
-		let quot = quotes?.find(i => i.id === markId) || rangeObj
+		const text = window.getSelection().toString()
 
-        console.log(rangeObj)
+		let quot = text?.length ? rangeObj : quotes?.find(i => i.id === markId)
+
+		console.log(quot)
 
 		const isQuot = quot.hasOwnProperty('id')
 

@@ -55,7 +55,7 @@ export const addKey = el => {
 			addKey(i)
 		})
 	}
-}	
+}
 
 export const objToRange = quot => {
 	const range = document.createRange()
@@ -72,13 +72,41 @@ export const objToRange = quot => {
 }
 
 export const rangeToObj = range => {
+	let nodes = []
+
+	function getNodes(childList) {
+		childList.forEach(node => {
+			const tempStr = node.nodeValue
+
+			if (node.nodeType === 3 && tempStr.replace(/^\s+|\s+$/gm, "") !== "") {
+				nodes.push(node)
+			}
+
+			if (node.nodeType === 1) {
+				if (node.childNodes) getNodes(node.childNodes)
+			}
+		});
+	}
+
+	getNodes(range.startContainer.parentNode.closest('p').childNodes)
+	const startNodes = [...nodes]
+	nodes = []
+	getNodes(range.endContainer.parentNode.closest('p').childNodes)
+	const endNodes = [...nodes]
+
+	console.log(range)
+
 	return {
-		startKey: range.startContainer.parentNode.dataset.key,
-		startTextIndex: Array.prototype.indexOf.call(range.startContainer.parentNode.childNodes, range.startContainer),
-		endKey: range.endContainer.parentNode.dataset.key,
-		endTextIndex: Array.prototype.indexOf.call(range.endContainer.parentNode.childNodes, range.endContainer),
-		startOffset: range.startOffset,
-		endOffset: range.endOffset
+		startKey: range.startContainer.parentNode.closest('p')?.dataset?.key,
+		endKey: range.endContainer.parentNode.closest('p')?.dataset?.key,
+		startTextIndex: Array?.prototype?.indexOf?.call(range?.startContainer?.parentNode?.childNodes, range?.startContainer),
+		endTextIndex: Array?.prototype?.indexOf?.call(range?.endContainer?.parentNode?.childNodes, range?.endContainer),
+		startOffset: startNodes.length > 1 ?
+			startNodes.slice(0, -1).reduce((acc, curr) => acc + curr.length, 0) + range?.startOffset :
+			range?.startOffset,
+		endOffset: endNodes.length > 1 ?
+			endNodes.slice(0, -1).reduce((acc, curr) => acc + curr.length, 0) + range?.endOffset :
+			range?.endOffset
 	}
 }
 
