@@ -94,8 +94,6 @@ export const rangeToObj = range => {
 	getNodes(range.endContainer.parentNode.closest('p').childNodes)
 	const endNodes = [...nodes]
 
-	console.log(range)
-
 	return {
 		startKey: range.startContainer.parentNode.closest('p')?.dataset?.key,
 		endKey: range.endContainer.parentNode.closest('p')?.dataset?.key,

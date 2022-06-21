@@ -127,6 +127,7 @@ const TextWithQoutes = () => {
 
 			sel.removeAllRanges()
 			setToolsIsVisible(false)
+            setSelectedText('')
 		}
 	}
 
@@ -162,14 +163,11 @@ const TextWithQoutes = () => {
 		const text = quotes?.find(i => i?.id == markId)?.text || selectedText
 		navigator.clipboard.writeText(text?.trim())
 		setToolsIsVisible(false)
+        setSelectedText('')
 	}
 
 	const shareQuot = () => {
-		const text = window.getSelection().toString()
-
-		let quot = text?.length ? rangeObj : quotes?.find(i => i.id === markId)
-
-		console.log(quot)
+		let quot = selectedText?.length ? rangeObj : quotes?.find(i => i.id === markId)
 
 		const isQuot = quot.hasOwnProperty('id')
 
@@ -183,6 +181,7 @@ const TextWithQoutes = () => {
 
 		navigator.clipboard.writeText(str.replace(/\s/g, ''))
 		setToolsIsVisible(false)
+        setSelectedText('')
 	}
 
 	const changePage = ev => {
