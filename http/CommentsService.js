@@ -21,17 +21,34 @@ export default class CommentsService {
 	static async getReplyComments({
 		id,
 		type,
+		page = 1,
+		reviewBranch
+	}) {
+		let t = type
+
+		if(type === 'books') {
+			t = reviewBranch ? 'book_review' : 'book'
+		} else if(type === 'audioBooks') {
+			t = reviewBranch ? 'audio_review' : 'audio_book'
+		}
+
+		return axios.get(`${API_URL}/comments/${id}?type=${t}&perpage=3&page=${page}`)
+	}
+
+	static async getReplyReviews({
+		id,
+		type,
 		page = 1
 	}) {
 		let t = type
 
 		if(type === 'books') {
-			t = 'book'
+			t = 'book_review'
 		} else if(type === 'audioBooks') {
-			t = 'audio_book'
+			t = 'audio_review'
 		}
 
-		return axios.get(`${API_URL}/comments/${id}?type=${t}&perpage=3&page=${page}`)
+		return axios.get(`${API_URL}/comments/book_review/${id}?type=${t}&perpage=3&page=${page}`)
 	}
 
 	static async addComment(data) {
