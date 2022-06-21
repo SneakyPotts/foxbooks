@@ -20,7 +20,6 @@ const CommentItem = ({
                        type,
                        reviews,
                        isReply,
-                       // recordType = '',
                        parentReviewId = null //ID сущности родительской рецензии, пробрасывается вглубь ветки ответов
                      }) => {
   const router = useRouter()
@@ -85,7 +84,6 @@ const CommentItem = ({
                     ? data?.id
                     : parentReviewId ? parentReviewId : router.query?.id;
 
-
     const dataObj = {
       id: varId,
       text: formData?.text,
@@ -100,25 +98,6 @@ const CommentItem = ({
       })
     })
   }
-
-  // const fetchReplies = async () => {
-  //   if (data?.id) {
-  //     const response = await CommentsService.getReplyComments({
-  //       id: data?.id,
-  //       type: router.query?.type,
-  //       page
-  //     })
-  //
-  //     if (replies?.data?.length) {
-  //       setReplies({
-  //         ...replies,
-  //         data: [...replies?.data, ...response?.data?.data?.data]
-  //       })
-  //     } else {
-  //       setReplies(response?.data?.data)
-  //     }
-  //   }
-  // }
 
   const fetchCurrentReplies = async () => {
     const typeMatching = reviews
@@ -146,12 +125,13 @@ const CommentItem = ({
 
   const setTypes = useCallback((routeType) => {
     const typeMatching = {
-      'books': reviews ? 'book_review' : 'book_comment',
-      'audioBooks': reviews ? 'audio_book_review' : 'audio_book_comment'
+      'books': reviews
+                ? 'book_review'
+                : parentReviewId ? 'book_review_comment' : 'book_comment',
+      'audioBooks': reviews
+                      ? 'audio_book_review'
+                      : parentReviewId ? 'audio_book_review_comment' : 'audio_book_comment'
     }
-
-//"book_review_comment"
-//"audio_book_review_comment"
 
     return typeMatching[routeType]
   }, [reviews]);
@@ -181,18 +161,8 @@ const CommentItem = ({
   }
 
   useEffect(() => {
-    // fetchReplies()
     fetchCurrentReplies()
   }, [page]);
-
-  // const setRecordType = useCallback(() => {
-  //     if (reviews || recordType?.indexOf('review') > -1)
-  //       return router.query?.type === 'books'
-  //         ? 'book_review'
-  //         : 'audio_review'
-  //   },
-  //   [reviews]);
-
 
   return (
     <div
@@ -309,7 +279,6 @@ const CommentItem = ({
             key={i?.id}
             data={i}
             isReply
-            // recordType={setRecordType()}
             parentReviewId={reviews ? data?.id : parentReviewId}
           />)
         : null
