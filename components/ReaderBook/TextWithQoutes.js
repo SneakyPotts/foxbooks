@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import Link from 'next/link';
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import AddQout from "./AddQout";
-import { highlight, rangeToObj, objToRange, addKey } from './../../utils'
+import {highlight, rangeToObj, objToRange, addKey, key, keyObj} from './../../utils'
 import styles from './styles.module.scss'
 import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
@@ -171,6 +171,8 @@ const TextWithQoutes = () => {
 
 		const isQuot = quot.hasOwnProperty('id')
 
+        console.log(quot)
+
 		let str = `${window.location.origin}${router.asPath}
 			&startKey=${!isQuot ? quot.startKey : quot.start_key}
 			&startTextIndex=${!isQuot ? quot.startTextIndex : quot.start_text_index}
@@ -269,8 +271,6 @@ const TextWithQoutes = () => {
 	}
 
 	useEffect(() => {
-		addKey(article.current)
-
 		const hideTools = () => setToolsIsVisible(false)
 
 		document.body.addEventListener('click', hideTools)
@@ -283,6 +283,8 @@ const TextWithQoutes = () => {
 	useEffect(() => {
 		if(isAuth && quotesIsLoading) return
 
+		addKey(article.current)
+		keyObj.keyValue = 0
 		filterAndCreateQuotes()
 
 		const query = router.query
