@@ -9,6 +9,7 @@ import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSl
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {setAuthPopupVisibility} from "../../store/commonSlice";
+import logoMobileActive from "../shared/icons/logoMobileActive";
 
 const options = {
 	replace: domNode => {
@@ -292,8 +293,11 @@ const TextWithQoutes = () => {
 
 		// select share quot
 		if(query.hasOwnProperty('startKey')) {
+			setTimeout(() => {
+
 			sel.addRange(objToRange(query))
-			// document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
+			}, 1000)
+			document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
 			// router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
 	}, [book?.pages[0]?.id, quotesIsLoading])
@@ -305,8 +309,6 @@ const TextWithQoutes = () => {
 			<Link href={`author?id=${book?.authors[0]?.id}`}>
 				<a className={styles.bookAuthor}>{book?.authors[0]?.author}</a>
 			</Link>
-
-			{/*<h2 className={styles.bookSubtitle}>Глава 1. Мальчик, который выжил</h2>*/}
 
 			<article
 				ref={article}

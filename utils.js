@@ -69,43 +69,70 @@ export const addKey = el => {
 export const objToRange = quot => {
 	const range = document.createRange()
 
+	let offset = 0
+	const calcTextIndex = (nodeList, startOffset) => {
+		let index = 0
+		for (let i = 0; i < nodeList.length; i++) {
+			if(offset + nodeList[i].textContent?.length < startOffset) {
+				offset += nodeList[i].textContent?.length
+			} else {
+				index = i
+				break
+			}
+		}
+		return index
+	}
+
+	const startTextIndex = calcTextIndex(document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes, quot.startOffset)
+	offset = 0
+	const endTextIndex = calcTextIndex(document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes, quot.endOffset)
+	offset = 0
+
+	console.log(startTextIndex)
+	console.log(endTextIndex)
+
 	range?.setStart(
-		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[quot.startTextIndex], 
-		quot.startOffset
+		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex],
+		quot.startOffset - offset
 	)
 	range?.setEnd(
-		document.querySelector(`[data-key="${quot.endKey}"]`).childNodes[quot.endTextIndex], 
-		quot.endOffset
+		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex],
+		quot.endOffset - offset
 	)
 	return range
 }
 
 export const rangeToObj = range => {
-	const isStartMark = range.startContainer.parentNode.tagName === 'MARK'
-	const isEndMark = range.endContainer.parentNode.tagName === 'MARK'
+	const startKey = range.startContainer.parentNode.tagName === 'MARK' ?
+		range.startContainer.parentNode.closest('[data-key]')?.dataset?.key :
+		range.startContainer.parentNode.dataset.key
+	const endKey = range.endContainer.parentNode.tagName === 'MARK' ?
+		range.endContainer.parentNode.closest('[data-key]')?.dataset?.key :
+		range.endContainer.parentNode.dataset.key
 
-	console.log(range)
-	// console.log(range.startContainer.parentNode.closest('[data-key]'))
+	let offset = 0
+	const calcOffset = node => {
+		if(!node.previousSibling) return
+
+		offset += node.previousSibling.textContent?.length || 0
+		calcOffset(node.previousSibling)
+	}
+
+	calcOffset(range.startContainer.parentNode.dataset.key === startKey ? range.startContainer : range.startContainer.parentNode)
+	const startOffset = offset + range.startOffset
+
+	offset = 0
+
+	calcOffset(range.endContainer.parentNode.dataset.key === endKey ? range.endContainer : range.endContainer.parentNode)
+	const endOffset = offset + range.endOffset
 
 	return {
-		startKey: isStartMark ?
-			range.startContainer.parentNode.closest('[data-key]')?.dataset?.key :
-			range.startContainer.parentNode.dataset.key,
-		endKey: isEndMark ?
-			range.endContainer.parentNode.closest('[data-key]')?.dataset?.key :
-			range.endContainer.parentNode.dataset.key,
-		startTextIndex: isStartMark ?
-			Array.prototype.indexOf.call(range.startContainer.parentNode.closest('[data-key]').childNodes, range.startContainer) :
-			Array.prototype.indexOf.call(range.startContainer.parentNode.childNodes, range.startContainer),
-		endTextIndex: isEndMark ?
-			Array.prototype.indexOf.call(range.endContainer.parentNode.closest('[data-key]').childNodes, range.endContainer) :
-			Array.prototype.indexOf.call(range.endContainer.parentNode.childNodes, range.endContainer),
-		startOffset: isStartMark ?
-			range.startContainer.parentNode.previousSibling.textContent.length + range.startOffset :
-			range.startOffset,
-		endOffset: isEndMark ?
-			range.endContainer.parentNode.previousSibling.textContent.length + range.endOffset :
-			range.endOffset
+		startKey,
+		endKey,
+		startTextIndex:0,
+		endTextIndex:0,
+		startOffset,
+		endOffset
 	}
 }
 
