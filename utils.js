@@ -84,21 +84,21 @@ export const objToRange = quot => {
 	}
 
 	const startTextIndex = calcTextIndex(document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes, quot.startOffset)
+	const startSelector = document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex].nodeType === 1 ?
+		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex].childNodes[0] :
+		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex]
+
+	range?.setStart(startSelector, Number(quot.startOffset) - offset)
 	offset = 0
+
 	const endTextIndex = calcTextIndex(document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes, quot.endOffset)
+	const endSelector = document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex].nodeType === 1 ?
+		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex].childNodes[0] :
+		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex]
+
+	range?.setEnd(endSelector, Number(quot.endOffset) - offset)
 	offset = 0
 
-	console.log(startTextIndex)
-	console.log(endTextIndex)
-
-	range?.setStart(
-		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex],
-		quot.startOffset - offset
-	)
-	range?.setEnd(
-		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex],
-		quot.endOffset - offset
-	)
 	return range
 }
 

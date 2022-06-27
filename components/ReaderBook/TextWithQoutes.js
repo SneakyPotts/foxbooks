@@ -293,12 +293,9 @@ const TextWithQoutes = () => {
 
 		// select share quot
 		if(query.hasOwnProperty('startKey')) {
-			setTimeout(() => {
-
 			sel.addRange(objToRange(query))
-			}, 1000)
 			document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
-			// router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
+			router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
 	}, [book?.pages[0]?.id, quotesIsLoading])
 
