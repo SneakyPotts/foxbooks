@@ -3,13 +3,12 @@ import {useSelector} from "react-redux";
 import Link from 'next/link';
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import AddQout from "./AddQout";
-import {highlight, rangeToObj, objToRange, addKey, key, keyObj} from './../../utils'
+import {highlight, rangeToObj, objToRange, addKey, keyObj} from './../../utils'
 import styles from './styles.module.scss'
 import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {setAuthPopupVisibility} from "../../store/commonSlice";
-import logoMobileActive from "../shared/icons/logoMobileActive";
 
 const options = {
 	replace: domNode => {
@@ -57,6 +56,24 @@ const TextWithQoutes = () => {
 
 	const [isError, setIsError] = useState(false)
 
+	const showTools = ev => {
+		const x = ev?.pageX || ev?.changedTouches[0]?.pageX
+		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
+
+		const toolsWidth = 291
+		const toolsHeight = 162
+		const windowWidth = window.innerWidth
+		const windowHeight = window.innerHeight + window.scrollY
+		const deltaX = windowWidth - x
+		const deltaY = windowHeight - y
+
+		setToolsCoords({
+			x: toolsWidth >= deltaX ? x - toolsWidth : x,
+			y: toolsHeight >= deltaY ? y - toolsHeight : y
+		})
+		setToolsIsVisible(true)
+	}
+
 	const mouseUpHandler = ev => {
 		setMarkId(null)
 		const text = window.getSelection().toString()
@@ -73,15 +90,7 @@ const TextWithQoutes = () => {
 			const err = quotes?.some(() => !obj.startKey || !obj.endKey) || text?.length > 300
 			setIsError(err);
 
-			const x = ev?.pageX || ev?.changedTouches[0]?.pageX
-			const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-
-			const toolsWidth = 291
-			const windowWidth = window.innerWidth
-			const deltaX = windowWidth - x
-
-			setToolsCoords({x: toolsWidth >= deltaX ? x - toolsWidth : x, y})
-			setToolsIsVisible(true)
+			showTools(ev)
 		} else {
 			setToolsIsVisible(false)			
 			setIsError(false)
@@ -92,15 +101,7 @@ const TextWithQoutes = () => {
 		ev.stopPropagation()
 		setMarkId(id)
 
-		const x = ev?.pageX || ev?.changedTouches[0]?.pageX
-		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-
-		const toolsWidth = 291
-		const windowWidth = window.innerWidth
-		const deltaX = windowWidth - x
-
-		setToolsCoords({x: toolsWidth >= deltaX ? x - toolsWidth : x, y})
-		setToolsIsVisible(true)
+		showTools(ev)
 	}
 
 	const addQuot = async color => {
