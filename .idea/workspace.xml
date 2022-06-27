@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
+      <change afterPath="$PROJECT_DIR$/components/ReaderBook/PageProgress.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/QuotesPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/QuotesPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/ReaderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ReaderService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/ReaderBook.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,14 +166,7 @@
       <workItem from="1655969805025" duration="1642000" />
       <workItem from="1655979325065" duration="5288000" />
       <workItem from="1656056151721" duration="21267000" />
-      <workItem from="1656314396016" duration="6584000" />
-    </task>
-    <task id="LOCAL-00014" summary="change book status">
-      <created>1643213168174</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1643213168174</updated>
+      <workItem from="1656314396016" duration="12908000" />
     </task>
     <task id="LOCAL-00015" summary="audio player">
       <created>1643291653821</created>
@@ -514,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656321144624</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="fix share quotes">
+      <created>1656325565993</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1656325565993</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

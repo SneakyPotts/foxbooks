@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import DrawerPopup from "../shared/common/DrawerPopup";
@@ -14,12 +14,11 @@ import classNames from 'classnames'
 import styles from './styles.module.scss'
 import BackBtn from '../shared/common/BackBtn';
 import { useRouter } from 'next/router';
-import InputRange from '../shared/common/InputRange/InputRange';
 import {addBookMark, deleteBookMark} from "../../store/readerSlice";
 import MarksPopup from "./MarksPopup";
 import {setAuthPopupVisibility} from "../../store/commonSlice";
 import GroupForms from "../Header/groupForms/GroupForms";
-import debounce from 'lodash.debounce';
+import PageProgress from "./PageProgress";
 
 const ReaderBook = () => {
   const router = useRouter()
@@ -34,8 +33,6 @@ const ReaderBook = () => {
   const [editPopupIsVisible, setEditPopupIsVisible] = useState(false)
   const [markPopupIsVisible, setMarkPopupIsVisible] = useState(false)
   const [mobileControlsIsVisible, setMobileControlsIsVisible] = useState(false)
-
-  const [currentPage, setCurrentPage] = useState(router.query?.page)
 
   const showContentPopup = () => {
     setContentPopupIsVisible(true)
@@ -96,10 +93,6 @@ const ReaderBook = () => {
     router.push({ query: { ...router.query, page } })
   }
 
-  const changePageHandler = useCallback(debounce((value) => {
-    router.push({ query: { ...router.query, page: value } })
-  }, 300), [])
-
   useEffect(() => {
     const closeHandler = ev => {
       if(ev.key === "Escape") {
@@ -113,10 +106,6 @@ const ReaderBook = () => {
       document.body.removeEventListener('keydown', closeHandler)
     }
   }, [])
-
-  useEffect(() => {
-    setCurrentPage(router.query?.page)
-  }, [router.query?.page])
 
   return (
     <div
@@ -151,23 +140,7 @@ const ReaderBook = () => {
         />
 
         {(innerWidthWindow > 768 || mobileControlsIsVisible) &&
-          <div className={styles.progress}>
-            <div className={styles.progressWrapper}>
-              <span>{book?.chapters[0]?.title}</span>
-              <span>{book?.reading_progress}%</span>
-            </div>
-            <InputRange
-              min={1}
-              max={book?.pages_count}
-              value={currentPage}
-              setValue={value => {
-                setCurrentPage(value)
-                changePageHandler(value)
-              }}
-              barColor={'var(--controls-color)'}
-              externalClass={styles.progressInput}
-            />
-          </div>
+          <PageProgress />
         }
 
         <div className={styles.mobileFooter}>
