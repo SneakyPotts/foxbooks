@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBooks/QuoteItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReaderBook/QuotesPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/QuotesPopup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReaderBook/TextWithQoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/ReaderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/ReaderService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,14 +169,7 @@
       <workItem from="1655969805025" duration="1642000" />
       <workItem from="1655979325065" duration="5288000" />
       <workItem from="1656056151721" duration="21267000" />
-      <workItem from="1656314396016" duration="4406000" />
-    </task>
-    <task id="LOCAL-00013" summary="ome page filters">
-      <created>1643205988763</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1643205988763</updated>
+      <workItem from="1656314396016" duration="6584000" />
     </task>
     <task id="LOCAL-00014" summary="change book status">
       <created>1643213168174</created>
@@ -511,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656082328132</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="fix share quotes">
+      <created>1656321144624</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1656321144624</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,7 +590,8 @@
     <MESSAGE value="notifications" />
     <MESSAGE value="handle review request error" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="fix share quotes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix share quotes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

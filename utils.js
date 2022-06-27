@@ -129,8 +129,6 @@ export const rangeToObj = range => {
 	return {
 		startKey,
 		endKey,
-		startTextIndex:0,
-		endTextIndex:0,
 		startOffset,
 		endOffset
 	}

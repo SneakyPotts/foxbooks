@@ -36,10 +36,8 @@ export default class ReaderService {
 			text: data?.text,
 			color: data?.color,
 			start_key: data?.startKey,
-			start_text_index: data?.startTextIndex,
 			start_offset: data?.startOffset,
 			end_key: data?.endKey,
-			end_text_index: data?.endTextIndex,
 			end_offset: data?.endOffset
 		}
 		return api.post(`${API_URL}/quotes`, obj)

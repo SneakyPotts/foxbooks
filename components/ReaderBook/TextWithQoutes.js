@@ -172,14 +172,10 @@ const TextWithQoutes = () => {
 
 		const isQuot = quot.hasOwnProperty('id')
 
-        console.log(quot)
-
 		let str = `${window.location.origin}${router.asPath}
 			&startKey=${!isQuot ? quot.startKey : quot.start_key}
-			&startTextIndex=${!isQuot ? quot.startTextIndex : quot.start_text_index}
 			&startOffset=${!isQuot ? quot.startOffset : quot.start_offset}
 			&endKey=${!isQuot ? quot.endKey : quot.end_key}
-			&endTextIndex=${!isQuot ? quot.endTextIndex : quot.end_text_index}
 			&endOffset=${!isQuot ? quot.endOffset : quot.end_offset}`
 
 		navigator.clipboard.writeText(str.replace(/\s/g, ''))
@@ -197,13 +193,11 @@ const TextWithQoutes = () => {
 
 			if(x > 0 && x <= w) {
 				if(currentPage - 1 >= 1) {
-					console.log('prev')
 					router.push({ query: { ...router.query, page: currentPage - 1 } })
 					window.scrollTo({top: 0, behavior: 'smooth'})
 				}
 			} else if((innerWidthWindow - x) < w) {
 				if(currentPage + 1 <= pages) {
-					console.log('next')
 					router.push({ query: { ...router.query, page: currentPage + 1 } })
 					window.scrollTo({top: 0, behavior: 'smooth'})
 				}
@@ -259,10 +253,8 @@ const TextWithQoutes = () => {
 			const quot = {
 				...i,
 				startKey: i.start_key,
-				startTextIndex: i.start_text_index,
 				startOffset: i.start_offset,
 				endKey: i.end_key,
-				endTextIndex: i.end_text_index,
 				endOffset: i.end_offset
 			}
 			sel.addRange(objToRange(quot))
