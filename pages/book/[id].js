@@ -15,9 +15,12 @@ const Book = ({ book, bookQuotes }) => {
 
 export default Book;
 
-export async function getServerSideProps ({params, query}) {
+export async function getServerSideProps ({req, params, query}) {
+	const { cookies } = req
+	const token = cookies.token
+
 	const book = await BookService.getBookById(params?.id, query?.type)
-	const bookQuotes = query?.type === 'books' ? await BookService.getBookQuotes(params?.id) : null
+	const bookQuotes = query?.type === 'books' ? await BookService.getBookQuotes(params?.id, token) : null
 	const audioBookChapters = query?.type === 'audioBooks' ? await BookService.audioBookChapters(params?.id) : null
 
 	return {

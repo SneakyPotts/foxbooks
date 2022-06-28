@@ -40,8 +40,8 @@ const Quotes = () => {
 };
 
 const QuoteItem = ({data}) => {
-  const [likesCount, setLikesCount] = useState(data.likes_count);
-  const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(data?.likes_count);
+  const [isLiked, setIsLiked] = useState(data?.is_liked);
   const {isAuth} = useSelector(state => state.auth);
   const dispatch = useDispatch();
 

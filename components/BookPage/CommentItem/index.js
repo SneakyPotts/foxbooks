@@ -37,7 +37,7 @@ const CommentItem = ({
   const [replies, setReplies] = useState({})
   const [page, setPage] = useState(1)
   const [isShowMore, setIsShowMore] = useState(false)
-  const [isLiked, setIsLiked] = useState(false)
+  const [isLiked, setIsLiked] = useState(data?.is_liked)
   const [likesCount, setLikesCount] = useState(data?.likes_count || 0)
 
   const {innerWidthWindow} = useSelector(state => state.common)
