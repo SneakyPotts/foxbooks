@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import ClickableSearch from "../ClickableSearch";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
@@ -11,17 +11,27 @@ import {setHeaderVisibility} from "../../store/commonSlice";
 import classNames from "classnames";
 import dataReview from '../data/reviews.json';
 import ReviewLogicItem from "../ReviewLogicItem";
+import {getUserReview} from "../../store/reviewSlice";
+import Loader from "../shared/common/Loader";
 
 const Reviews = () => {
   const dispatch = useDispatch()
+
   const {innerWidthWindow} = useSelector(state => state.common)
+  const {userReviews} = useSelector(state => state.review)
 
   const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
   const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleIconClick = () => {
     setDeletePopupIsVisible(true)
   }
+
+  useEffect(() => {
+    dispatch(getUserReview())
+      .then(() => setIsLoading(false))
+  }, []);
 
   return <>
     {innerWidthWindow > 768 &&
@@ -50,17 +60,25 @@ const Reviews = () => {
       </div>
     }
 
-    <div className={classNames(styles.grid, styles.reviewGrid)}>
-      {dataReview?.map(i =>
-        <div className={styles.gridItem}>
-          <ReviewLogicItem
-            data={i}
-            withControls
-            onDelete={handleIconClick}
-          />
-        </div>
-      )}
-    </div>
+    {isLoading
+      ? <p className={classNames("empty", styles.empty)}>
+          <Loader/>
+        </p>
+      : <div className={classNames(styles.grid, styles.reviewGrid)}>
+        {userReviews?.map(i =>
+          <div
+            key={i.id}
+            className={styles.gridItem}
+          >
+            <ReviewLogicItem
+              data={i}
+              withControls
+              onDelete={handleIconClick}
+            />
+          </div>
+        )}
+      </div>
+    }
 
     {deletePopupIsVisible &&
       <ModalWindow

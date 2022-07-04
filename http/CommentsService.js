@@ -1,4 +1,3 @@
-import axios from "axios";
 import api, { API_URL } from ".";
 
 export default class CommentsService {
@@ -15,10 +14,27 @@ export default class CommentsService {
 			t = 'audio_book'
 		}
 
-		return axios.get(`${API_URL}/comments/${t}/${id}?perpage=3&page=${page}`)
+		return api.get(`${API_URL}/comments/${t}/${id}?perpage=3&page=${page}`)
 	}
 
 	static async getReplyComments({
+		id,
+		type,
+		page = 1,
+		reviewBranch
+	}) {
+		let t = type
+
+		if(type === 'books') {
+			t = reviewBranch ? 'book_review' : 'book'
+		} else if(type === 'audioBooks') {
+			t = reviewBranch ? 'audio_review' : 'audio_book'
+		}
+
+		return api.get(`${API_URL}/comments/${id}?type=${t}&perpage=3&page=${page}`)
+	}
+
+	static async getReplyReviews({
 		id,
 		type,
 		page = 1
@@ -26,12 +42,12 @@ export default class CommentsService {
 		let t = type
 
 		if(type === 'books') {
-			t = 'book'
+			t = 'book_review'
 		} else if(type === 'audioBooks') {
-			t = 'audio_book'
+			t = 'audio_review'
 		}
 
-		return axios.get(`${API_URL}/comments/${id}?type=${t}&perpage=3&page=${page}`)
+		return api.get(`${API_URL}/comments/book_review/${id}?type=${t}&perpage=3&page=${page}`)
 	}
 
 	static async addComment(data) {

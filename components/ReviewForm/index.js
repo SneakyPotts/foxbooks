@@ -26,6 +26,7 @@ const ReviewForm = ({
   const { reviewTypes } = useSelector(state => state.review)
 
   const [optionsIsVisible, setOptionsIsVisible] = useState(false);
+  const [errorAlreadyAdded, setErrorAlreadyAdded] = useState('');
 
   const { register, handleSubmit, formState: {errors}, reset, setValue, getValues } = useForm({
     defaultValues: {
@@ -49,6 +50,9 @@ const ReviewForm = ({
         if(res.meta.requestStatus === "fulfilled") {
           reset()
           setValue('review_type', null)
+        } else if (res.meta.requestStatus === "rejected") {
+          reset();
+          setErrorAlreadyAdded(res.payload);
         }
       })
     }
@@ -145,6 +149,10 @@ const ReviewForm = ({
         rows={innerWidthWindow > 768 ? 4 : 1}
         err={errors?.text?.message}
       />
+
+      {errorAlreadyAdded
+        ? <p className={styles.error}>{errorAlreadyAdded}</p>
+        : null}
 
       <ButtonGroup
         text={'Отправить'}

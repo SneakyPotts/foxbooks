@@ -1,5 +1,5 @@
-import React, {useEffect, useMemo} from 'react';
-import { useState } from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
+import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import classnames from 'classnames';
 import Image from 'next/image';
@@ -10,17 +10,18 @@ import 'moment/locale/ru'
 import moment from "moment";
 import CommentForm from "../../CommentForm";
 import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
-import {addComment, addLikeToComment, deleteLikeFromComment} from "../../../store/commentsSlice";
+import {addComment} from "../../../store/commentsSlice";
 import {useRouter} from "next/router";
 import CommentsService from "../../../http/CommentsService";
 import {setAuthPopupVisibility} from "../../../store/commonSlice";
 
 const CommentItem = ({
-  data,
-  type,
-  reviews,
-  isReply
-}) => {
+                       data,
+                       type,
+                       reviews,
+                       isReply,
+                       parentReviewId = null //ID сущности родительской рецензии, пробрасывается вглубь ветки ответов
+                     }) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -30,18 +31,17 @@ const CommentItem = ({
 
   const replyDate = moment(data?.updated_at).from(moment())
 
-  const [likesCount, setLikesCount] = useState(data?.likes_count || 0)
-
   const [isFullText, setIsFullText] = useState(false)
   const [formIsVisible, setFormIsVisible] = useState(false)
 
-  const [replies, setReplies] = useState({});
-  const [page, setPage] = useState(1);
-  const [isShowMore, setIsShowMore] = useState(false);
-  const [isLiked, setIsLiked] = useState(false)
+  const [replies, setReplies] = useState({})
+  const [page, setPage] = useState(1)
+  const [isShowMore, setIsShowMore] = useState(false)
+  const [isLiked, setIsLiked] = useState(data?.is_liked)
+  const [likesCount, setLikesCount] = useState(data?.likes_count || 0)
 
-  const { innerWidthWindow } = useSelector(state => state.common)
-  const { isAuth } = useSelector(state => state.auth)
+  const {innerWidthWindow} = useSelector(state => state.common)
+  const {isAuth} = useSelector(state => state.auth)
 
   const sortedReplies = useMemo(() => {
     return [...new Set(replies?.data)].sort((a, b) => moment(a?.updated_at).diff(moment(b?.updated_at)))
@@ -56,8 +56,8 @@ const CommentItem = ({
   }
 
   const showMore = () => {
-    if(isReply) {
-      if(isShowMore && page < replies?.last_page) {
+    if (isReply) {
+      if (isShowMore && page < replies?.last_page) {
         setPage(page + 1)
       }
       setIsShowMore(true)
@@ -69,36 +69,50 @@ const CommentItem = ({
   const submitFunc = formData => {
     let t = type
 
-    if(router.query?.type === 'books') {
-      t = 'book'
-    } else if(router.query?.type === 'audioBooks') {
-      t = 'audio_book'
+    /** если рецензия или есть родительский ID рецензии - ветка рецензий
+     * иначе комментарии книги */
+    if (router.query?.type === 'books') {
+      t = reviews || parentReviewId ? 'book_review' : 'book'
+    } else if (router.query?.type === 'audioBooks') {
+      t = reviews || parentReviewId ? 'audio_review' : 'audio_book'
     }
 
+    /** если ответ на рецензию, то ID сущности = ID рецензии
+     * если передан родительский ID рецензии - это ветка ответов на рецензию и ID сущности = ID рецензии родителя
+     * если ответ не в ветке рецензий ID сущности = ID книги */
+    const varId = reviews
+                    ? data?.id
+                    : parentReviewId ? parentReviewId : router.query?.id;
+
     const dataObj = {
-      id: router.query?.id,
+      id: varId,
       text: formData?.text,
       type: t,
-      parent_comment_id: data?.id,
+      parent_comment_id: reviews ? null : data?.id //если ответ на рецензию - комментарий не имеет родителя
     }
 
     dispatch(addComment(dataObj)).then(res => {
       setReplies({
         ...replies,
-        data: replies?.data?.length ? [...replies?.data, res.payload.data] : [res.payload.data]
+        data: replies?.data?.length ? [...replies?.data, res.payload?.data] : [res.payload?.data]
       })
     })
   }
 
-  const fetchReplies = async () => {
-    if(data?.id) {
-      const response = await CommentsService.getReplyComments({
+  const fetchCurrentReplies = async () => {
+    const typeMatching = reviews
+                          ? 'getReplyReviews'
+                          : 'getReplyComments';
+
+    if (data?.id) {
+      const response = await CommentsService[typeMatching]({
         id: data?.id,
         type: router.query?.type,
-        page
+        page,
+        reviewBranch: !!parentReviewId // если передан родительский ID рецензии - ветка ответов рецензии
       })
 
-      if(replies?.data?.length) {
+      if (replies?.data?.length) {
         setReplies({
           ...replies,
           data: [...replies?.data, ...response?.data?.data?.data]
@@ -109,18 +123,30 @@ const CommentItem = ({
     }
   }
 
+  const setTypes = useCallback((routeType) => {
+    const typeMatching = {
+      'books': reviews
+                ? 'book_review'
+                : parentReviewId ? 'book_review_comment' : 'book_comment',
+      'audioBooks': reviews
+                      ? 'audio_book_review'
+                      : parentReviewId ? 'audio_book_review_comment' : 'audio_book_comment'
+    }
+
+    return typeMatching[routeType]
+  }, [reviews]);
+
+
   const likeHandler = async () => {
-    if(isAuth) {
-      const type = router.query?.type === 'books' ?
-        'book_comment' :
-        'audio_book_comment'
+    if (isAuth) {
+      const type = setTypes(router.query?.type);
 
       const obj = {
         id: data?.id,
         type
       }
 
-      if(isLiked) {
+      if (isLiked) {
         await CommentsService.deleteLikeFromComment(obj)
         setLikesCount(prev => prev - 1)
         setIsLiked(false)
@@ -135,7 +161,7 @@ const CommentItem = ({
   }
 
   useEffect(() => {
-    fetchReplies()
+    fetchCurrentReplies()
   }, [page]);
 
   return (
@@ -149,9 +175,9 @@ const CommentItem = ({
     >
       <div className={styles.reviewer}>
         <div className={styles.reviewerIcon}>
-          {data?.users?.avatar ? (
+          {data?.user?.avatar ? (
             <Image
-              src={data?.users?.avatar}
+              src={data?.user?.avatar}
               alt="Avatar"
               width="35"
               height="35"
@@ -161,12 +187,12 @@ const CommentItem = ({
           ) : (
             <AvatarWithLetter
               letter={
-                data?.users?.nickname?.slice(0, 1) ||
-                data?.users?.name?.slice(0, 1) ||
+                data?.user?.nickname?.slice(0, 1) ||
+                data?.user?.name?.slice(0, 1) ||
                 'П'
               }
               width={35}
-              id={data?.users?.id}
+              id={data?.user?.id}
               isProfile
             />
           )}
@@ -223,7 +249,7 @@ const CommentItem = ({
             })}
             onClick={likeHandler}
           >
-            <Like />
+            <Like/>
           </span>
           <span className={styles.reviewLike}>{likesCount}</span>
 
@@ -247,14 +273,15 @@ const CommentItem = ({
         </div>
       }
 
-      {sortedReplies?.length && (!isReply || (isReply && isShowMore)) ?
-        sortedReplies.map(i =>
+      {sortedReplies?.length && (!isReply || (isReply && isShowMore))
+        ? sortedReplies.map(i =>
           <CommentItem
             key={i?.id}
             data={i}
             isReply
-          />
-        ) : null
+            parentReviewId={reviews ? data?.id : parentReviewId}
+          />)
+        : null
       }
 
       {(!isReply && page < replies?.last_page) || ((isReply && sortedReplies?.length) && (!isShowMore || page < replies?.last_page)) ?

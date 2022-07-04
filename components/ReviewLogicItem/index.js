@@ -9,10 +9,13 @@ import EditPensil from "../shared/icons/editPencil";
 import Bin from "../shared/icons/trash";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import ReviewForm from "../ReviewForm";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import DotsDropdown from "../DotsDropdown";
 import moment from "moment";
 import 'moment/locale/ru'
+import CommentsService from "../../http/CommentsService";
+import {setAuthPopupVisibility} from "../../store/commonSlice";
+import classnames from "classnames";
 
 const ReviewLogicItem = ({
   type,
@@ -20,9 +23,38 @@ const ReviewLogicItem = ({
   withControls,
   onDelete
 }) => {
+  const dispatch = useDispatch();
+
   const { innerWidthWindow } = useSelector(state => state.common)
+  const { isAuth } = useSelector(state => state.auth)
 
   const [editFormIsVisible, setEditFormIsVisible] = useState(false)
+  const [likesCount, setLikesCount] = useState(data?.likes_count || 0)
+  const [isLiked, setIsLiked] = useState(false)
+
+
+
+  const likeHandler = async () => {
+      if(isAuth) {
+        const obj = {
+          id: data?.id,
+          type: data?.book?.type === "books" ? 'book_review' : 'audio_book_review'
+        }
+
+        if(isLiked) {
+          await CommentsService.deleteLikeFromComment(obj)
+          setLikesCount(prev => prev - 1)
+          setIsLiked(false)
+        } else {
+          await CommentsService.addLikeToComment(obj)
+          setLikesCount(prev => prev + 1)
+          setIsLiked(true)
+        }
+      } else {
+        dispatch(setAuthPopupVisibility(true))
+      }
+    }
+
 
   return (
     <div className={styles.review}>
@@ -62,10 +94,13 @@ const ReviewLogicItem = ({
 
       <div className={styles.reviewBottom}>
         <div className={styles.reviewBottomStatistic}>
-          <span className={styles.reviewIcon}>
+          <span
+            className={classnames(styles.reviewIcon, {[styles.active]: isLiked})}
+            onClick={likeHandler}
+          >
             <Like/>
           </span>
-          <span className={styles.reviewLike}>{data?.likes_count}</span>
+          <span className={styles.reviewLike}>{likesCount}</span>
           <span className={styles.reviewIcon}>
             <Comment/>
           </span>
