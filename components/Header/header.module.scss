@@ -163,6 +163,15 @@
   z-index: 5;
   background-color: $color-categories-btn;
 
+  &ShowMore {
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: $color-main;
+    margin-top: 30px;
+  }
+
   &Content {
     max-width: 1032px;
     margin-left: auto;
@@ -171,7 +180,6 @@
     &User {
       margin-right: 0;
       padding-top: 30px;
-      padding-left: 38px;
       border-bottom: 1px solid $color-star-border;
     }
 
@@ -187,7 +195,6 @@
 
     &Author {
       max-width: 872px;
-      margin-left: 38px;
       padding-top: 40px;
     }
 
@@ -210,7 +217,17 @@
           line-height: 1.143;
           margin-top: 10px;
           color: $color-main;
+          transition: .15s;
+
+          &:hover {
+            color: $text-hover;
+          }
         }
+      }
+
+      &Img {
+        border-radius: 5px;
+        overflow: hidden;
       }
     }
   }
@@ -228,6 +245,11 @@
   font-size: 14px;
   line-height: 1.143;
   color: $color-main;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .settingLink {
   display: grid;

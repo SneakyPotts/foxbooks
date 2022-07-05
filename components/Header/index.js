@@ -119,7 +119,7 @@ const Header = ({ socket }) => {
 
   const onChange = async str => {
     setSearchValue(str)
-    const response = await dispatch(search({ str, type: 'short' }))
+    const response = await dispatch(search({ search: str, type: 'short' }))
     const {books, authors} = response?.payload
 
     if(books?.length || authors?.length) {

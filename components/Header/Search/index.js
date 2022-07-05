@@ -1,77 +1,20 @@
 import React, {useMemo} from 'react';
-import st from './../header.module.scss'
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import {useSelector} from "react-redux";
 import ShowAll from "../../shared/common/showAll/ShowAll";
-
-const booksMock = [
-  {
-    id: '0',
-    image: {
-      link: '/reviewsBookCovers/cover1.png'
-    },
-    title: 'Пост 2. Спастись и сохранить',
-  },
-  {
-    id: '1',
-    image: {
-      link: '/reviewsBookCovers/cover2.png'
-    },
-    title: 'Девочка в нулевой степени',
-  },
-  {
-    id: '2',
-    image: {
-      link: '/reviewsBookCovers/cover3.png'
-    },
-    title: 'Предружба. Второй шанс',
-  },
-  {
-    id: '3',
-    image: {
-      link: '/reviewsBookCovers/cover1.png'
-    },
-    title: 'Четыре ветра',
-  },
-  {
-    id: '4',
-    image: {
-      link: '/reviewsBookCovers/cover2.png'
-    },
-    title: 'Последний ход',
-  },
-  {
-    id: '5',
-    image: {
-      link: '/reviewsBookCovers/cover3.png'
-    },
-    name: 'Лето в пионерском галстуке',
-  },
-];
-const authorsMock = [
-  {id: '0', author: 'Михаил Булгаков'},
-  {id: '1', author: 'Стивен Кинг'},
-  {id: '2', author: 'Эрих Мария Ремарк'},
-  {id: '3', author: 'Фёдор Достоевский'},
-  {id: '4', author: 'Оскар Уайльд'},
-  {id: '5', author: 'Рэй Брэдбери'},
-  {id: '6', author: 'Джоан Роулинг'},
-  {id: '7', author: 'Дэниел Киз'},
-  {id: '8', author: 'Джордж Оруэлл'},
-  {id: '9', author: 'Антуан де Сент-Экзюпери'},
-];
+import st from './../header.module.scss'
 
 const Search = ({ value , onClose }) => {
   const { data } = useSelector(state => state.search)
 
   const books = useMemo(() => {
-    return data?.books || booksMock
+    return data?.books
   }, [data])
 
   const authors = useMemo(() => {
-    return data?.authors || authorsMock
+    return data?.authors
   }, [data])
 
   return (
@@ -82,33 +25,41 @@ const Search = ({ value , onClose }) => {
       >
         <div className={classNames('container', st.border)}>
           <div className={st.dropDownContent}>
-                  <ShowAll
-                    text={'Все результаты'}
-                    url={`/search?search=${encodeURI(value)}&type=full`}
-                    arrowSecondary
-                  />
+            <ShowAll
+              text={'Все результаты'}
+              url={`/search?search=${value}&type=full`}
+              arrowSecondary
+              externalClass={st.dropDownShowMore}
+            />
             {!!books?.length &&
               <div className={st.dropDownContentUser}>
                 {/*{!!data?.books?.length ?*/}
                   {/*<h2 className={st.dropDownContentTitle}>Часто ищут</h2>*/}
-                }
+                {/*}*/}
                 <ul className={st.dropDownContentPopular}>
                   {books.map(i => (
                     <li
                       key={i?.id}
                       className={st.dropDownContentPopularItem}
                     >
-                      <Image
-                        src={i?.image?.link || '/blur.webp'}
-                        width={124}
-                        height={187}
-                        // layout="fill"
-                        placeholder="blur"
-                        blurDataURL="/blur.webp"
-                      />
-                      <span className={st.dropDownContentPopularItemName}>
-                        {i?.title}
-                      </span>
+                      <Link href={`/book/${i?.id}?type=${i?.type}`}>
+                        <a>
+                          <Image
+                            src={i?.image?.link || '/blur.webp'}
+                            width={124}
+                            height={187}
+                            // layout="fill"
+                            placeholder="blur"
+                            blurDataURL="/blur.webp"
+                            className={st.dropDownContentPopularImg}
+                          />
+                        </a>
+                      </Link>
+                      <Link href={`/book/${i?.id}?type=${i?.type}`}>
+                        <a className={st.dropDownContentPopularItemName}>
+                          {i?.title}
+                        </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -119,7 +70,7 @@ const Search = ({ value , onClose }) => {
                 <h2 className={st.dropDownContentTitle}>Авторы</h2>
                 <ul className={st.authorsList}>
                   {authors.map(({id, author}) => (
-                    <Link href="#" key={id} className={st.author}>
+                    <Link href={`/author?id=${id}`} key={id} className={st.author}>
                       <a>
                         <span className={st.authorName}>{author}</span>
                       </a>
