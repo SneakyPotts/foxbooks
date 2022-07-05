@@ -163,6 +163,17 @@
   z-index: 5;
   background-color: $color-categories-btn;
 
+  &ShowMore {
+    a {
+      font-family: "Merriweather", serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 30px;
+      color: $color-main;
+      margin-top: 30px;
+    }
+  }
+
   &Content {
     max-width: 1032px;
     margin-left: auto;
@@ -171,7 +182,6 @@
     &User {
       margin-right: 0;
       padding-top: 30px;
-      padding-left: 38px;
       border-bottom: 1px solid $color-star-border;
     }
 
@@ -187,13 +197,11 @@
 
     &Author {
       max-width: 872px;
-      margin-left: 38px;
       padding-top: 40px;
     }
 
     &Popular {
       display: flex;
-      justify-content: space-between;
       padding-bottom: 56px;
 
       &Item {
@@ -210,7 +218,21 @@
           line-height: 1.143;
           margin-top: 10px;
           color: $color-main;
+          transition: .15s;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+
+          &:hover {
+            color: $text-hover;
+          }
         }
+      }
+
+      &Img {
+        border-radius: 5px;
+        overflow: hidden;
       }
     }
   }
@@ -228,6 +250,11 @@
   font-size: 14px;
   line-height: 1.143;
   color: $color-main;
+  transition: .15s;
+
+  &:hover {
+    color: $text-hover;
+  }
 }
 .settingLink {
   display: grid;
@@ -310,6 +337,11 @@
       &:nth-of-type(n + 4) {
         display: none;
       }
+    }
+    &ShowMore a {
+      font-size: 20px;
+      line-height: 25px;
+      margin-top: 30px;
     }
   }
   .authorsList {

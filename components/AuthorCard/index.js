@@ -11,7 +11,7 @@ const AuthorCard = ({
       <Link href={`/author?id=${data?.id}`}>
         <a className={styles.img}>
           <Image
-            src={'/reviewsBookCovers/author.png'}
+            src={data?.avatar || '/preview.jpg'}
             alt={data?.author}
             width={180}
             height={272}
