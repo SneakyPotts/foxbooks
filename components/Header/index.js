@@ -124,6 +124,9 @@ const Header = ({ socket }) => {
 
     if(books?.length || authors?.length) {
       openModal()
+    } else {
+      router.push('/search-empty')
+      closeModal()
     }
   }
 

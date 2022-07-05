@@ -164,12 +164,14 @@
   background-color: $color-categories-btn;
 
   &ShowMore {
-    font-family: "Merriweather", serif;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 30px;
-    color: $color-main;
-    margin-top: 30px;
+    a {
+      font-family: "Merriweather", serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 30px;
+      color: $color-main;
+      margin-top: 30px;
+    }
   }
 
   &Content {
@@ -200,7 +202,6 @@
 
     &Popular {
       display: flex;
-      justify-content: space-between;
       padding-bottom: 56px;
 
       &Item {
@@ -218,6 +219,10 @@
           margin-top: 10px;
           color: $color-main;
           transition: .15s;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
 
           &:hover {
             color: $text-hover;
@@ -332,6 +337,11 @@
       &:nth-of-type(n + 4) {
         display: none;
       }
+    }
+    &ShowMore a {
+      font-size: 20px;
+      line-height: 25px;
+      margin-top: 30px;
     }
   }
   .authorsList {

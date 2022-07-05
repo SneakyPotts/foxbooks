@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b3d3de69-0cd4-4825-a0b0-10a515415819" name="Changes" comment="one book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header/Search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Search/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/header.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/SearchService.js" beforeDir="false" afterPath="$PROJECT_DIR$/http/SearchService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SearchInput/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SearchInput/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
