@@ -38,8 +38,8 @@ export const addReview = createAsyncThunk(
 
 export const getUserReview = createAsyncThunk(
   'review/getUserReview',
-  async () => {
-    const response = await ReviewService.getUserReview()
+  async (query) => {
+    const response = await ReviewService.getUserReview(query)
     return response.data.data;
   }
 )

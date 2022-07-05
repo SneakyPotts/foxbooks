@@ -13,9 +13,11 @@ import dataReview from '../data/reviews.json';
 import ReviewLogicItem from "../ReviewLogicItem";
 import {getUserReview} from "../../store/reviewSlice";
 import Loader from "../shared/common/Loader";
+import {useRouter} from "next/router";
 
 const Reviews = () => {
   const dispatch = useDispatch()
+  const router = useRouter();
 
   const {innerWidthWindow} = useSelector(state => state.common)
   const {userReviews} = useSelector(state => state.review)
@@ -27,17 +29,23 @@ const Reviews = () => {
   const handleIconClick = () => {
     setDeletePopupIsVisible(true)
   }
-
+  const onChange = value => {
+    router.push(
+      { query: { ...router.query, ['findByTitle']: encodeURI(value) } },
+      null,
+      { scroll: false }
+    );
+  }
   useEffect(() => {
-    dispatch(getUserReview())
+    dispatch(getUserReview(router.query))
       .then(() => setIsLoading(false))
-  }, []);
+  }, [router.query]);
 
   return <>
     {innerWidthWindow > 768 &&
       <div className={styles.filters}>
         <div className={styles.mlAuto}>
-          <ClickableSearch queryName={'search'}/>
+          <ClickableSearch queryName={'findByTitle'}/>
         </div>
       </div>
     }
@@ -52,7 +60,7 @@ const Reviews = () => {
           <SearchInput
             placeholder={'Искать книгу'}
             externalClass={styles.mobSearch}
-            // onChange={}
+            onChange={onChange}
           />
         </div>
 

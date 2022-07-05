@@ -215,27 +215,28 @@ const MyBooksLayout = ({ children }) => {
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           {tabs.map(i => (
-            <li
-              key={i?.title}
-              className={styles.navItem}
-            >
-              <Link href={i?.path} scroll={false}>
-                <a
-                  className={classNames(
-                    styles.navLink,
-                    {[styles.active]: router.pathname.includes(i?.path)}
-                  )}
-                  onClick={handleLinkClick}
-                >
-                  <span className={styles.navLinkCount}>{i?.count}</span>
-                  <span className={styles.navWrapper}>
+              <li
+                key={i?.title}
+                className={styles.navItem}
+              >
+                <Link href={i?.path} scroll={false}>
+                  <a
+                    className={classNames(
+                      styles.navLink,
+                      {[styles.active]: router.pathname === i?.path.split('?')[0]}
+                    )}
+                    onClick={handleLinkClick}
+                  >
+                    <span className={styles.navLinkCount}>{i?.count}</span>
+                    <span className={styles.navWrapper}>
                     <span className={styles.navIcon}>{i?.icon}</span>
-                    {i?.title}
+                      {i?.title}
                   </span>
-                </a>
-              </Link>
-            </li>
-          ))}
+                  </a>
+                </Link>
+              </li>
+            )
+          )}
         </ul>
       </nav>
     </>}

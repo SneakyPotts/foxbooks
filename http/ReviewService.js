@@ -14,7 +14,7 @@ export default class ReviewService {
 		return api.post(`${API_URL}/reviews`, data)
 	}
 
-	static async getUserReview() {
-		return api.get(`${API_URL}/reviews/list`)
+	static async getUserReview({findByTitle = ''}) {
+		return api.get(`${API_URL}/reviews/list${findByTitle && `?findByTitle=${findByTitle}`}`)
 	}
 }
