@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useRef, useState} from 'react';
 import classnames from 'classnames';
 import DropDownArrow from '../../public/chevron-down.svg';
 import Categories from '../HomePage/Categories';
@@ -14,6 +14,7 @@ const SideFilters = () => {
   const [filters, setFilters] = useState([
     {
       id: '0',
+      ref: useRef(null),
       flag: false,
       option: 'Автор',
       placeholder: 'Найти автора',
@@ -22,6 +23,7 @@ const SideFilters = () => {
     },
     {
       id: '1',
+      ref: useRef(null),
       flag: false,
       option: 'Книга',
       placeholder: 'Найти книгу',
@@ -30,6 +32,7 @@ const SideFilters = () => {
     },
     {
       id: '2',
+      ref: useRef(null),
       flag: false,
       option: 'Издательство',
       placeholder: 'Найти издательство',
@@ -50,7 +53,20 @@ const SideFilters = () => {
     });
   };
 
-  const setQuery = (value, queryName) => {
+  const setQuery = (value, queryName, ref = null, mainQuery = null) => {
+    if (ref) {
+      ref.current.focus();
+      ref.current.value = value;
+
+      router.push(
+        { query: { ...router.query, [queryName]: encodeURI(value), [mainQuery]: null } },
+        null,
+        { scroll: false }
+      );
+
+      return;
+    }
+
     router.push(
       { query: { ...router.query, [queryName]: encodeURI(value) } },
       null,
@@ -90,6 +106,7 @@ const SideFilters = () => {
                   placeholder={it?.placeholder}
                   className={st.input}
                   onChange={ev => handleChange(ev.target.value, it?.queryName)}
+                  ref={it?.ref}
                 />
                 <p className={st.alphabetTitle}>Алфавитный указатель</p>
                 <div className={st.dropContentAuthor}>
@@ -100,7 +117,7 @@ const SideFilters = () => {
                         [st.active]:
                           router.query[it?.alphabetQuery] === it?.alphabetQuery,
                       })}
-                      onClick={() => setQuery(i?.name, it.alphabetQuery)}
+                      onClick={() => setQuery(i?.name, it.alphabetQuery, it?.ref, it?.queryName)}
                     >
                       {i?.name}
                     </span>
