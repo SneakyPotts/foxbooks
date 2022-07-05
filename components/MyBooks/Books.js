@@ -41,7 +41,7 @@ const Books = ({ isAudio }) => {
       defaultValue: 5,
       options: [
         { id: 1, title: 'Популярные', value: 5 },
-        { id: 2, title: 'По дате добавления', value: 1 },
+        { id: 2, title: 'По дате добавления', value: 7 },
         { id: 3, title: 'По алфавиту', value: 6 }
       ],
       queryName: 'sortBy',
@@ -118,7 +118,7 @@ const Books = ({ isAudio }) => {
           ))}
         </div>
         <div>
-          <ClickableSearch queryName={'search'}/>
+          <ClickableSearch queryName={'findByTitle'}/>
           {filter2?.map((i, index) => (
             <Popular
               key={index + 2}

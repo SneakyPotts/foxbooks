@@ -29,12 +29,12 @@ export default class BookService {
 		`)
 	}
 
-	static async getMyBooks({sortBy = 5, status = "0"}) {
-		return api.get(`${API_URL}/profile/lists/books?sortBy=${sortBy}&status=${status}`)
+	static async getMyBooks({sortBy = 5, status = "0", findByTitle = ''}) {
+		return api.get(`${API_URL}/profile/lists/books?sortBy=${sortBy}&status=${status}${findByTitle && `&findByTitle=${findByTitle}`}`)
 	}
 
-	static async getMyAudioBooks({sortBy = 5, status = "0"}) {
-		return api.get(`${API_URL}/profile/lists/audio-books?sortBy=${sortBy}&status=${status}`)
+	static async getMyAudioBooks({sortBy = 5, status = "0", findByTitle = ''}) {
+		return api.get(`${API_URL}/profile/lists/audio-books?sortBy=${sortBy}&status=${status}${findByTitle && `&findByTitle=${findByTitle}`}`)
 	}
 
 	static async getBooksByLetter({letter, type, page = 1}) {
