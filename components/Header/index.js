@@ -150,7 +150,6 @@ const Header = ({ socket }) => {
             <SearchInput
               withModal
               showMenuFlag={showMenuFlag}
-              // onClick={openModal}
               onChange={onChange}
               onClose={closeModal}
               placeholder={

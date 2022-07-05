@@ -29,20 +29,6 @@ const SearchInput = ({
 
   const handleSearch = debounce(value => onChange(value), 300)
 
-  useEffect(() => {
-    const keyClose = ev => {
-      if(ev.code === 'Escape' && showMenuFlag === true) {
-        onClose && onClose()
-        input.current.value = ''
-      }
-    }
-    document.body.addEventListener('keydown', keyClose)
-
-    return () => {
-      document.body.removeEventListener('keydown', keyClose)
-    }
-  }, [])
-
   return (
     <div
       className={classNames(styles.input, externalClass)}

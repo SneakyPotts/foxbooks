@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,20 @@ const Search = ({ value , onClose }) => {
     return data?.authors
   }, [data])
 
+
+  useEffect(() => {
+    const keyClose = ev => {
+      if(ev.code === 'Escape' && onClose) {
+        onClose()
+      }
+    }
+    document.body.addEventListener('keydown', keyClose)
+
+    return () => {
+      document.body.removeEventListener('keydown', keyClose)
+    }
+  }, [])
+
   return (
     <div className={st.overlay} onClick={onClose}>
       <div
@@ -25,12 +39,14 @@ const Search = ({ value , onClose }) => {
       >
         <div className={classNames('container', st.border)}>
           <div className={st.dropDownContent}>
-            <ShowAll
-              text={'Все результаты'}
-              url={`/search?search=${value}&type=full`}
-              arrowSecondary
-              externalClass={st.dropDownShowMore}
-            />
+            <div onClick={onClose}>
+              <ShowAll
+                text={'Все результаты'}
+                url={`/search?search=${value}&type=full&sortBy=1`}
+                arrowSecondary
+                externalClass={st.dropDownShowMore}
+              />
+            </div>
             {!!books?.length &&
               <div className={st.dropDownContentUser}>
                 {/*{!!data?.books?.length ?*/}
@@ -43,7 +59,7 @@ const Search = ({ value , onClose }) => {
                       className={st.dropDownContentPopularItem}
                     >
                       <Link href={`/book/${i?.id}?type=${i?.type}`}>
-                        <a>
+                        <a onClick={onClose}>
                           <Image
                             src={i?.image?.link || '/blur.webp'}
                             width={124}
@@ -56,7 +72,7 @@ const Search = ({ value , onClose }) => {
                         </a>
                       </Link>
                       <Link href={`/book/${i?.id}?type=${i?.type}`}>
-                        <a className={st.dropDownContentPopularItemName}>
+                        <a className={st.dropDownContentPopularItemName} onClick={onClose}>
                           {i?.title}
                         </a>
                       </Link>
@@ -71,7 +87,7 @@ const Search = ({ value , onClose }) => {
                 <ul className={st.authorsList}>
                   {authors.map(({id, author}) => (
                     <Link href={`/author?id=${id}`} key={id} className={st.author}>
-                      <a>
+                      <a onClick={onClose}>
                         <span className={st.authorName}>{author}</span>
                       </a>
                     </Link>

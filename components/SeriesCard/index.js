@@ -2,27 +2,27 @@ import React from 'react';
 import s from './styles.module.scss';
 import Link from 'next/link'
 
-const SeriesCard = () => {
+const SeriesCard = ({data}) => {
   return (
     <div className={s.wrapper}>
-      <Link href="/">
+      <Link href={`/series?id=${data?.id}`}>
         <a className={s.images}>
           <img
-            src="reviewsBookCovers/cover2.png"
+            src={data?.books[0]?.image?.link || '/preview.jpg'}
             alt="Picture"
             width={146}
             height={221}
             className={s.img}
           />
           <img
-            src="reviewsBookCovers/cover2.png"
+            src={data?.books[1]?.image?.link || '/preview.jpg'}
             alt="Picture"
             width={146}
             height={221}
             className={s.img}
           />
           <img
-            src="reviewsBookCovers/cover2.png"
+            src={data?.books[2]?.image?.link || '/preview.jpg'}
             alt="Picture"
             width={146}
             height={221}
@@ -31,11 +31,11 @@ const SeriesCard = () => {
         </a>
       </Link>
 
-      <Link href={'/'}>
-        <a className={s.title}>Гарри Поттер</a>
+      <Link href={`/series?id=${data?.id}`}>
+        <a className={s.title}>{data?.series}</a>
       </Link>
 
-      <span className={s.count}>7 книг</span>
+      <span className={s.count}>{data?.books_count} книг</span>
     </div>
   );
 };
