@@ -3,6 +3,11 @@
 .container {
   width: 180px;
   margin-right: 24px;
+  position: relative;
+}
+.reset {
+  position: absolute;
+  top: -38px;
 }
 .filterStatus {
   padding: 20px 0;
