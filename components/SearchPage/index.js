@@ -151,10 +151,6 @@ const SearchPage = ({data}) => {
               <section className={s.mainSection}>
                 <div className={s.titleWrapper}>
                   <h2 className="title">Авторы</h2>
-                  <ShowAll
-                    url={'/'}
-                    externalClass={s.onlyMobile}
-                  />
                 </div>
 
                 <div className={s.grid}>
@@ -165,12 +161,6 @@ const SearchPage = ({data}) => {
                     />
                   )}
                 </div>
-
-                <ShowAll
-                  url={'/'}
-                  externalClass={s.onlyDesctop}
-                  arrowSecondary
-                />
               </section>
               :
               Number(router.query.sortBy) !== 1 && <p className="empty">Нет результатов</p>
@@ -215,10 +205,6 @@ const SearchPage = ({data}) => {
               <section className={s.mainSection}>
                 <div className={s.titleWrapper}>
                   <h2 className="title">Cерии</h2>
-                  <ShowAll
-                    url={'/'}
-                    externalClass={s.onlyMobile}
-                  />
                 </div>
 
                 <div className={s.grid}>
@@ -229,12 +215,6 @@ const SearchPage = ({data}) => {
                     />
                   )}
                 </div>
-
-                <ShowAll
-                  url={'/'}
-                  externalClass={s.onlyDesctop}
-                  arrowSecondary
-                />
               </section>
               :
               Number(router.query.sortBy) !== 1 && <p className="empty">Нет результатов</p>
