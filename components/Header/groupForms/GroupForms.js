@@ -17,7 +17,7 @@ import {useRouter} from "next/router";
 import PasswordField from "../../shared/common/PasswordField";
 import {getBookMarks, getBookQuotes, getSettings} from "../../../store/readerSlice";
 
-const GroupForms = ({modal,setModal}) => {
+const GroupForms = ({modal,setModal, emailVerify}) => {
 	const dispatch = useDispatch()
 	const router = useRouter()
 
@@ -29,7 +29,7 @@ const GroupForms = ({modal,setModal}) => {
 	const [flagNewPass, setFlagNewPass] = useState(false)
 	const [flagNewPassMessage, setFlagNewPassMessage] = useState(false)
 
-	//TODO modalType=registry
+	//TODO: modalType=registry
 
 	const { innerWidthWindow } = useSelector(state => state.common)
 	const { isError } = useSelector(state => state.auth)
@@ -103,7 +103,7 @@ const GroupForms = ({modal,setModal}) => {
 		setFlagNewPass(!!newPass)
 		setFlagNewPassMessage(false)
 		reset()
-		setFlagLogin(!newPass)
+		emailVerify ? setFlagLogin(false) : setFlagLogin(!newPass)
 	},[modal])
 
 	return modal && (
@@ -115,7 +115,7 @@ const GroupForms = ({modal,setModal}) => {
 				{flagLogin &&
 					<h2>Вход на FoxBooks</h2>
 				}
-				{(flagRegistration || flagSendEmail) &&
+				{(flagRegistration || flagSendEmail || emailVerify) &&
 					<h2 className={classnames({[css.loginMin]: flagSendEmail})}>Регистрация</h2>
 				}
 				{flagResetPassMessage &&
@@ -188,7 +188,7 @@ const GroupForms = ({modal,setModal}) => {
 					/>
 				</form>}
 
-				{(flagSendEmail || flagResetPassMessage || flagNewPassMessage ) &&
+				{(flagSendEmail || flagResetPassMessage || flagNewPassMessage || emailVerify) &&
 					<div>
 						{flagSendEmail &&
 							<p className={css.message}>
@@ -205,7 +205,11 @@ const GroupForms = ({modal,setModal}) => {
 								Ваш новый пароль вступил в силу.
 							</p>
 						}
-
+						{emailVerify &&
+							<p className={css.message}>
+								Поздравляем! Вы успешно зарегистрированны. Данные для входа отправлены на вашу электронную почту.
+							</p>
+						}
 						<Button
 							click={()=>setModal(!modal)}
 							typeButton='button'
