@@ -68,6 +68,7 @@ const Popular = ({
     }
     setActiveEl(typeof value === 'object' ? defaultValue : value);
     title && setActiveTitle(title);
+    closeMenu();
   };
 
   const closeMenu = () => {

@@ -3,6 +3,15 @@
 .container {
   width: 180px;
   margin-right: 24px;
+  position: relative;
+}
+.reset {
+  position: absolute;
+  top: -29px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 30px;
+  width: 100%;
 }
 .filterStatus {
   padding: 20px 0;

@@ -75,7 +75,7 @@ const ReviewLogicItem = ({
           <Link href={`/book/${data?.book?.id}?type=books`}>
             <a className={styles.bookTitle}>{data?.book?.title}</a>
           </Link>
-          <Link href={`author?id=${data?.book?.authors[0].id}`}>
+          <Link href={`/author?id=${data?.book?.authors[0].id}`}>
             <a className={styles.bookAuthor}>{data?.book?.authors[0].author}</a>
           </Link>
         </div>
@@ -96,7 +96,7 @@ const ReviewLogicItem = ({
         <div className={styles.reviewBottomStatistic}>
           <span
             className={classnames(styles.reviewIcon, {[styles.active]: isLiked})}
-            onClick={likeHandler}
+            // onClick={likeHandler}
           >
             <Like/>
           </span>

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './styles.module.scss'
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import Button from "../shared/common/Button/Button";
@@ -8,20 +8,32 @@ import {useRouter} from "next/router";
 
 const MobileFilterModal = ({ children }) => {
   const router = useRouter()
-  const initPath = useRef()
+  // const initPath = useRef()
 
   const [modalIsVisible, setModalIsVisible] = useState(false)
 
   const { innerWidthWindow } = useSelector(state => state.common)
 
   const handleClear = () => {
-    router.push(initPath.current)
+    const {id, showType, sortBy, type} = router.query;
+
+    router.push({
+      pathname: '/books/[id]',
+      query: {
+        id,
+        type,
+        showType,
+        sortBy
+      }
+    });
+
+    // router.push(initPath.current)
     setModalIsVisible(false)
   }
 
-  useEffect(() => {
-    initPath.current = router.asPath
-  }, [])
+  // useEffect(() => {
+  //   initPath.current = router.asPath
+  // }, [])
 
   return (
     <>

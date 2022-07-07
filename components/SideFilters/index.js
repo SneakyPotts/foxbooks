@@ -1,13 +1,15 @@
-import {useRef, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import classnames from 'classnames';
 import DropDownArrow from '../../public/chevron-down.svg';
 import Categories from '../HomePage/Categories';
 import alphabet from '../data/alphabet.json';
 import st from './sideFilters.module.scss';
 
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import debounce from 'lodash.debounce';
 import classNames from 'classnames';
+import Button from "../shared/common/Button/Button";
+import {useSelector} from "react-redux";
 
 const SideFilters = () => {
   const router = useRouter();
@@ -43,7 +45,7 @@ const SideFilters = () => {
 
   const filterShow = index => {
     setFilters(prev => {
-      const filterMap = prev.map(({ flag, ...rest }, i) => {
+      const filterMap = prev.map(({flag, ...rest}, i) => {
         return {
           flag: index === i ? !flag : flag,
           ...rest,
@@ -54,30 +56,75 @@ const SideFilters = () => {
   };
 
   const setQuery = (value, queryName, ref = null, mainQuery = null) => {
+    setResetIsVisible(true);
+
     if (ref) {
       ref.current.focus();
       ref.current.value = value;
 
       router.push(
-        { query: { ...router.query, [queryName]: encodeURI(value), [mainQuery]: null } },
+        {query: {...router.query, [queryName]: encodeURI(value), [mainQuery]: null}},
         null,
-        { scroll: false }
+        {scroll: false}
       );
 
       return;
     }
 
     router.push(
-      { query: { ...router.query, [queryName]: encodeURI(value) } },
+      {query: {...router.query, [queryName]: encodeURI(value)}},
       null,
-      { scroll: false }
+      {scroll: false}
     );
   };
 
   const handleChange = debounce(setQuery, 300);
 
+  const {innerWidthWindow} = useSelector(state => state.common);
+
+  const [resetIsVisible, setResetIsVisible] = useState(false);
+
+  const setDefaultUrl = useCallback(() => {
+      const {id, showType, sortBy, type} = router.query;
+
+      router.push({
+        pathname: '/books/[id]',
+        query: {
+          id,
+          type,
+          showType,
+          sortBy
+        }
+      });
+
+      filters.forEach((item, index) => {
+        item.ref.current.value = '';
+
+        item.flag = true;
+        filterShow(index);
+      })
+    },
+    [router.query]);
+
+
+  const handleReset = () => {
+    setResetIsVisible(false)
+    setDefaultUrl();
+  }
+
+  useEffect(() => {
+    if (!router.asPath.match(/sortBy=\d$/)) //если порядок параметров не будет меняться
+      setResetIsVisible(true);
+  }, [])
+
   return (
     <div className={st.container}>
+      {innerWidthWindow > 1024 && resetIsVisible &&
+        <Button
+          classNames={st.reset}
+          text='Сбросить'
+          click={handleReset}
+        />}
       <div className={st.inputFilters}>
         <ul className={st.filters}>
           {filters?.map((it, index) => (
@@ -91,9 +138,9 @@ const SideFilters = () => {
               >
                 {it?.option}
                 <span
-                  className={classnames(st.dropDownIcon, { [st.up]: it?.flag })}
+                  className={classnames(st.dropDownIcon, {[st.up]: it?.flag})}
                 >
-                  <DropDownArrow />
+                  <DropDownArrow/>
                 </span>
               </button>
               <div
@@ -115,7 +162,7 @@ const SideFilters = () => {
                       key={i?.id}
                       className={classNames(st.dropLinkAuthor, {
                         [st.active]:
-                          router.query[it?.alphabetQuery] === it?.alphabetQuery,
+                        router.query[it?.alphabetQuery] === it?.alphabetQuery,
                       })}
                       onClick={() => setQuery(i?.name, it.alphabetQuery, it?.ref, it?.queryName)}
                     >
@@ -128,7 +175,7 @@ const SideFilters = () => {
           ))}
         </ul>
       </div>
-      <Categories />
+      <Categories/>
     </div>
   );
 };
