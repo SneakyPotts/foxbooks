@@ -5,8 +5,10 @@ import Link from "next/link";
 import {useSelector} from "react-redux";
 import ShowAll from "../../shared/common/showAll/ShowAll";
 import st from './../header.module.scss'
+import {useRouter} from "next/router";
 
 const Search = ({ value , onClose }) => {
+  const router = useRouter()
   const { data } = useSelector(state => state.search)
 
   const books = useMemo(() => {
@@ -19,24 +21,25 @@ const Search = ({ value , onClose }) => {
 
 
   useEffect(() => {
-    const keyClose = ev => {
-      if(ev.code === 'Escape' && onClose) {
+    const handleKeyDown = ev => {
+      if(ev.code === 'Escape') {
+        onClose()
+      } else if(ev.code === 'Enter') {
+        router.push(`/search?search=${value}&type=full&sortBy=1`)
         onClose()
       }
     }
-    document.body.addEventListener('keydown', keyClose)
+    document.body.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.body.removeEventListener('keydown', keyClose)
+      document.body.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
 
   return (
-    <div className={st.overlay} onClick={onClose}>
-      <div
-        className={classNames(st.dropDown)}
-        onClick={e => e.stopPropagation()}
-      >
+    <>
+      <div className={st.overlay} onClick={onClose} />
+      <div className={classNames(st.dropDown)}>
         <div className={classNames('container', st.border)}>
           <div className={st.dropDownContent}>
             <div onClick={onClose}>
@@ -98,7 +101,7 @@ const Search = ({ value , onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -148,18 +148,20 @@
   }
 }
 .overlay {
-  position: fixed;
+  position: absolute;
   z-index: 5;
   top: 109px;
+  right: 0;
+  bottom: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
   background-color: rgba(52, 52, 52, 0.6);
   backdrop-filter: blur(10px);
 }
 .dropDown {
   position: absolute;
-  width: 100%;
+  top: 109px;
+  left: 0;
+  right: 0;
   z-index: 5;
   background-color: $color-categories-btn;
 
@@ -267,7 +269,7 @@
     max-height: initial;
     padding: 20px 15px;
   }
-  .overlay {
+  .overlay, .dropDown{
     top: 89px;
   }
 }
@@ -292,14 +294,14 @@
       max-height: 32px;
     }
   }
-  .overlay {
+  .overlay, .dropDown {
     top: 130px;
+    height: calc(100vh - 130px);
   }
   .border {
     border-top: none;
   }
   .dropDown {
-    height: 100%;
 
     &ContentTitle {
       font-size: 20px;
@@ -327,11 +329,11 @@
   }
 }
 @media (max-width: 480px) {
-  .overlay {
-    max-height: calc(100vh - 130px);
-    overflow: auto;
-    background: #fff;
-  }
+  //.overlay {
+  //  max-height: calc(100vh - 130px);
+  //  overflow: auto;
+  //  background: #fff;
+  //}
   .dropDown {
     &ContentPopularItem {
       &:nth-of-type(n + 4) {
