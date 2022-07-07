@@ -87,6 +87,7 @@ const SearchPage = ({data}) => {
                 <div className={s.titleWrapper}>
                   <h2 className="title">Книги</h2>
                   <ShowAll
+                    text={'Показать ещё'}
                     url={'/books?type=books&sortBy=1'}
                     externalClass={s.onlyMobile}
                   />
@@ -103,6 +104,7 @@ const SearchPage = ({data}) => {
                 </div>
 
                 <ShowAll
+                    text={'Показать ещё'}
                   url={'/books?type=books&sortBy=1'}
                   externalClass={s.onlyDesctop}
                   arrowSecondary
@@ -119,6 +121,7 @@ const SearchPage = ({data}) => {
                 <div className={s.titleWrapper}>
                   <h2 className="title">Аудиокниги</h2>
                   <ShowAll
+                    text={'Показать ещё'}
                     url={'/books?type=audioBooks&sortBy=1'}
                     externalClass={s.onlyMobile}
                   />
@@ -136,6 +139,7 @@ const SearchPage = ({data}) => {
                 </div>
 
                 <ShowAll
+                    text={'Показать ещё'}
                   url={'/books?type=audioBooks&sortBy=1'}
                   externalClass={s.onlyDesctop}
                   arrowSecondary
@@ -173,6 +177,7 @@ const SearchPage = ({data}) => {
                 <div className={s.titleWrapper}>
                   <h2 className="title">Подборки</h2>
                   <ShowAll
+                    text={'Показать ещё'}
                     url={'/selections?selectionCategory=3&bookType=all&showType=list'}
                     externalClass={s.onlyMobile}
                   />
@@ -190,6 +195,7 @@ const SearchPage = ({data}) => {
                 </div>
 
                 <ShowAll
+                    text={'Показать ещё'}
                   url={'/selections?selectionCategory=3&bookType=all&showType=list'}
                   externalClass={s.onlyDesctop}
                   arrowSecondary

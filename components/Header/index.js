@@ -59,13 +59,13 @@ const Header = ({ socket }) => {
 
   const openModal = () => {
     dispatch(showMenu(true));
-    document.body.classList.add('nonScroll');
+    innerWidthWindow <= 768 && document.body.classList.add('nonScroll');
   };
 
   const closeModal = () => {
     dispatch(showMenu(false));
-    dispatch(setSearch({}));
-    document.body.classList.remove('nonScroll');
+    // dispatch(setSearch({}));
+    innerWidthWindow <= 768 && document.body.classList.remove('nonScroll');
   };
 
   const logOut = () => {
@@ -120,9 +120,8 @@ const Header = ({ socket }) => {
   const onChange = async str => {
     setSearchValue(str)
     const response = await dispatch(search({ search: str, type: 'short' }))
-    const {books, authors} = response?.payload
 
-    if(books?.length || authors?.length) {
+    if(response?.payload?.books?.length || response?.payload?.authors?.length) {
       openModal()
     } else {
       router.push('/search-empty')
@@ -150,8 +149,14 @@ const Header = ({ socket }) => {
             <SearchInput
               withModal
               showMenuFlag={showMenuFlag}
+              onClick={() => {
+                searchValue && openModal()
+              }}
               onChange={onChange}
-              onClose={closeModal}
+              onClose={() => {
+                closeModal()
+                setSearchValue('')
+              }}
               placeholder={
                 innerWidthWindow >= 970
                   ? 'Искать книги, авторов, жанры, издательства'
