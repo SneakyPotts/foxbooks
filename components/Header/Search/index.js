@@ -38,10 +38,19 @@ const Search = ({ value , onClose }) => {
 
   return (
     <>
-      <div className={st.overlay} onClick={onClose} />
-      <div className={classNames(st.dropDown)}>
+      <div
+          className={st.overlay}
+          onClick={onClose}
+      />
+      <div
+          className={classNames(st.dropDown)}
+          onClick={onClose}
+      >
         <div className={classNames('container', st.border)}>
-          <div className={st.dropDownContent}>
+          <div
+              className={st.dropDownContent}
+              onClick={e => e.stopPropagation()}
+          >
             <div onClick={onClose}>
               <ShowAll
                 text={'Все результаты'}

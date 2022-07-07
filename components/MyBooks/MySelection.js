@@ -23,6 +23,7 @@ import CreateCompilationPopup from "../CreateCompilationPopup";
 import ChooseBookPopup from "./ChooseBookPopup";
 import SelectionService from "../../http/SelectionService";
 import {deleteBookFromSelection} from "../../store/selectionSlice";
+import {getNoun} from "../../utils";
 
 const filter1 = [
   {
@@ -152,7 +153,10 @@ const MySelection = () => {
           })}
         >
           <span>{selectionById?.compilation?.generalBooksCount}</span>
-          Книги
+          {!selectionById?.compilation?.books_count && selectionById?.compilation?.audio_books_count ?
+            getNoun(selectionById?.compilation?.generalBooksCount, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
+            getNoun(selectionById?.compilation?.generalBooksCount, 'Книга', 'Книги', 'Книг')
+          }
         </span>
 
         {innerWidthWindow > 768 &&

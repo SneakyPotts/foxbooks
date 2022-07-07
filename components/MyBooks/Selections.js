@@ -184,6 +184,7 @@ const Selections = () => {
               />
             </div>
           )}
+          {console.log(data)}
         </div> :
         <p className={classNames("empty", styles.empty)}>Пусто</p>
     }

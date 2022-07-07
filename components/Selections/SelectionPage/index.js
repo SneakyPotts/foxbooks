@@ -68,7 +68,10 @@ const SelectionPage = () => {
             })}
         >
           <span>{selectionById?.compilation?.generalBooksCount}</span>
-            {getNoun(selectionById?.compilation?.generalBooksCount, 'Книга', 'Книги', 'Книг')}
+            {!selectionById?.compilation?.books_count && selectionById?.compilation?.audio_books_count ?
+                getNoun(selectionById?.compilation?.generalBooksCount, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
+                getNoun(selectionById?.compilation?.generalBooksCount, 'Книга', 'Книги', 'Книг')
+            }
         </span>
 
                 <Button

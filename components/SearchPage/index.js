@@ -86,11 +86,11 @@ const SearchPage = ({data}) => {
               <section className={s.mainSection}>
                 <div className={s.titleWrapper}>
                   <h2 className="title">Книги</h2>
-                  <ShowAll
-                    text={'Показать ещё'}
-                    url={'/books?type=books&sortBy=1'}
-                    externalClass={s.onlyMobile}
-                  />
+                  {/*<ShowAll*/}
+                  {/*  text={'Показать ещё'}*/}
+                  {/*  url={'/books?type=books&sortBy=1'}*/}
+                  {/*  externalClass={s.onlyMobile}*/}
+                  {/*/>*/}
                 </div>
 
                 <div className={s.grid}>
@@ -103,12 +103,12 @@ const SearchPage = ({data}) => {
                   )}
                 </div>
 
-                <ShowAll
-                    text={'Показать ещё'}
-                  url={'/books?type=books&sortBy=1'}
-                  externalClass={s.onlyDesctop}
-                  arrowSecondary
-                />
+                {/*<ShowAll*/}
+                {/*    text={'Показать ещё'}*/}
+                {/*  url={'/books?type=books&sortBy=1'}*/}
+                {/*  externalClass={s.onlyDesctop}*/}
+                {/*  arrowSecondary*/}
+                {/*/>*/}
               </section>
               :
               Number(router.query.sortBy) !== 1 && <p className="empty">Нет результатов</p>
@@ -120,11 +120,11 @@ const SearchPage = ({data}) => {
               <section className={s.mainSection}>
                 <div className={s.titleWrapper}>
                   <h2 className="title">Аудиокниги</h2>
-                  <ShowAll
-                    text={'Показать ещё'}
-                    url={'/books?type=audioBooks&sortBy=1'}
-                    externalClass={s.onlyMobile}
-                  />
+                  {/*<ShowAll*/}
+                  {/*  text={'Показать ещё'}*/}
+                  {/*  url={'/books?type=audioBooks&sortBy=1'}*/}
+                  {/*  externalClass={s.onlyMobile}*/}
+                  {/*/>*/}
                 </div>
 
                 <div className={s.grid}>
@@ -138,12 +138,12 @@ const SearchPage = ({data}) => {
                   )}
                 </div>
 
-                <ShowAll
-                    text={'Показать ещё'}
-                  url={'/books?type=audioBooks&sortBy=1'}
-                  externalClass={s.onlyDesctop}
-                  arrowSecondary
-                />
+                {/*<ShowAll*/}
+                {/*    text={'Показать ещё'}*/}
+                {/*  url={'/books?type=audioBooks&sortBy=1'}*/}
+                {/*  externalClass={s.onlyDesctop}*/}
+                {/*  arrowSecondary*/}
+                {/*/>*/}
               </section>
               :
               Number(router.query.sortBy) !== 1 && <p className="empty">Нет результатов</p>
@@ -176,11 +176,11 @@ const SearchPage = ({data}) => {
               <section className={s.mainSection}>
                 <div className={s.titleWrapper}>
                   <h2 className="title">Подборки</h2>
-                  <ShowAll
-                    text={'Показать ещё'}
-                    url={'/selections?selectionCategory=3&bookType=all&showType=list'}
-                    externalClass={s.onlyMobile}
-                  />
+                  {/*<ShowAll*/}
+                  {/*  text={'Показать ещё'}*/}
+                  {/*  url={'/selections?selectionCategory=3&bookType=all&showType=list'}*/}
+                  {/*  externalClass={s.onlyMobile}*/}
+                  {/*/>*/}
                 </div>
 
                 <div className={classNames(s.grid, s.gridFull)}>
@@ -194,12 +194,12 @@ const SearchPage = ({data}) => {
                   )}
                 </div>
 
-                <ShowAll
-                    text={'Показать ещё'}
-                  url={'/selections?selectionCategory=3&bookType=all&showType=list'}
-                  externalClass={s.onlyDesctop}
-                  arrowSecondary
-                />
+                {/*<ShowAll*/}
+                {/*    text={'Показать ещё'}*/}
+                {/*  url={'/selections?selectionCategory=3&bookType=all&showType=list'}*/}
+                {/*  externalClass={s.onlyDesctop}*/}
+                {/*  arrowSecondary*/}
+                {/*/>*/}
               </section>
               :
               Number(router.query.sortBy) !== 1 && <p className="empty">Нет результатов</p>

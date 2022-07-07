@@ -91,6 +91,7 @@ const CreateCompilationPopup = ({
               setValue={setValue}
               setImgSrc={setImgSrc}
             />
+            <span className={styles.error} style={{marginTop: '5px'}}>{errors.image?.message}</span>
 
             <input
               type="text"
@@ -111,6 +112,7 @@ const CreateCompilationPopup = ({
             isTextarea
             rows={innerWidthWindow > 768 ? 7 : 1}
           />
+          <p className={styles.error}>{errors.description?.message}</p>
           <Button
             typeButton={'submit'}
             text={isEdit ? 'Редактировать подборку' : 'Создать подборку'}
