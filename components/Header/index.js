@@ -51,6 +51,7 @@ const Header = ({ socket }) => {
 
     setTimeout(() => {
       dispatch(setAuthPopupVisibility(false))
+      setEmailVerify(false)
     }, 0)
   }
 
