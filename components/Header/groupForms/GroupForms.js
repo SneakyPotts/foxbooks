@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import css from "./index.module.scss";
 import classnames from "classnames";
 import Input from "../../shared/common/Input/Input";
@@ -17,7 +17,7 @@ import {useRouter} from "next/router";
 import PasswordField from "../../shared/common/PasswordField";
 import {getBookMarks, getBookQuotes, getSettings} from "../../../store/readerSlice";
 
-const GroupForms = ({modal,setModal, emailVerify}) => {
+const GroupForms = ({modal,setModal}) => {
 	const dispatch = useDispatch()
 	const router = useRouter()
 
@@ -28,6 +28,7 @@ const GroupForms = ({modal,setModal, emailVerify}) => {
 	const [flagResetPassMessage, setFlagResetPassMessage] = useState(false)
 	const [flagNewPass, setFlagNewPass] = useState(false)
 	const [flagNewPassMessage, setFlagNewPassMessage] = useState(false)
+	const [flagVerifyEmail, setFlagVerifyEmail] = useState(false);
 
 	//TODO: modalType=registry
 
@@ -85,25 +86,48 @@ const GroupForms = ({modal,setModal, emailVerify}) => {
 	}
 
 	const onSubmitNewPassword = data => {
-		// dispatch(forgotPassword(data)).then(res => {
-		// 	if (res.meta.requestStatus === "fulfilled") {
+		console.log('data',data);
+		const {email} = router.query;
+		const reqData = {
+			email,
+			password: data.password
+		}
+		dispatch(forgotPassword(reqData)).then(res => {
+			if (res.meta.requestStatus === "fulfilled") {
 				setFlagNewPass(false)
 				setFlagNewPassMessage(true)
-			// }
-		// })
+			}
+		})
 	}
 
-	useEffect(() => {
-		const {newPass} = router.query
+	useLayoutEffect(() => {
+		const {modalType} = router.query
+
+		switch (modalType) {
+			case 'password_forgot':
+				setFlagNewPass(true);
+				setFlagLogin(false);
+				break;
+			case 'registry':
+				setFlagVerifyEmail(true);
+				setFlagLogin(false);
+				break;
+			default:
+				setFlagLogin(true);
+				setFlagNewPass(false);
+				setFlagVerifyEmail(false);
+				break;
+		}
+
 
 		setFlagSendEmail(false)
 		setFlagForgetPassword(false)
 		setFlagRegistration(false)
 		setFlagResetPassMessage(false)
-		setFlagNewPass(!!newPass)
+		// setFlagNewPass(!!newPass)
 		setFlagNewPassMessage(false)
 		reset()
-		emailVerify ? setFlagLogin(false) : setFlagLogin(!newPass)
+		// statusModalType ? setFlagLogin(false) : setFlagLogin(!newPass)
 	},[modal])
 
 	return modal && (
@@ -115,7 +139,7 @@ const GroupForms = ({modal,setModal, emailVerify}) => {
 				{flagLogin &&
 					<h2>Вход на FoxBooks</h2>
 				}
-				{(flagRegistration || flagSendEmail || emailVerify) &&
+				{(flagRegistration || flagSendEmail || flagVerifyEmail) &&
 					<h2 className={classnames({[css.loginMin]: flagSendEmail})}>Регистрация</h2>
 				}
 				{flagResetPassMessage &&
@@ -188,7 +212,7 @@ const GroupForms = ({modal,setModal, emailVerify}) => {
 					/>
 				</form>}
 
-				{(flagSendEmail || flagResetPassMessage || flagNewPassMessage || emailVerify) &&
+				{(flagSendEmail || flagResetPassMessage || flagNewPassMessage || flagVerifyEmail) &&
 					<div>
 						{flagSendEmail &&
 							<p className={css.message}>
@@ -205,7 +229,7 @@ const GroupForms = ({modal,setModal, emailVerify}) => {
 								Ваш новый пароль вступил в силу.
 							</p>
 						}
-						{emailVerify &&
+						{flagVerifyEmail &&
 							<p className={css.message}>
 								Поздравляем! Вы успешно зарегистрированны. Данные для входа отправлены на вашу электронную почту.
 							</p>

@@ -54,9 +54,9 @@ const Layout = ({ children }) => {
     );
 
     const storageToken = Cookies.get('token');
-    const { email, token, id } = router.query;
+    const { email, token, id, modalType } = router.query;
 
-    if (email && token) {
+    if (email && token && !modalType) {
       dispatch(verifyEmail({ email, token }));
     } else if (token && id) {
       Cookies.remove('token')

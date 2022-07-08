@@ -38,7 +38,7 @@ const Header = ({ socket }) => {
 
   const [flagSettings, setFlagSettings] = useState(false);
   const [searchValue, setSearchValue] = useState('')
-  const [emailVerify, setEmailVerify] = useState(false)
+  // const [statusModalType, setStatusModalType] = useState(false);
 
   const showAuthPopup = () => {
     dispatch(setAuthPopupVisibility(true))
@@ -51,7 +51,7 @@ const Header = ({ socket }) => {
 
     setTimeout(() => {
       dispatch(setAuthPopupVisibility(false))
-      setEmailVerify(false)
+      // setStatusModalType(false)
     }, 0)
   }
 
@@ -130,8 +130,8 @@ const Header = ({ socket }) => {
   }
 
   useEffect(() => {
-    if (router.query.modalType === 'registry') {
-      setEmailVerify(true);
+    if (router.query.modalType) {
+      // setStatusModalType(true);
       dispatch(setAuthPopupVisibility(true))
     }
 
@@ -252,7 +252,7 @@ const Header = ({ socket }) => {
       <GroupForms
         setModal={hideAuthPopup}
         modal={authPopupIsVisible}
-        emailVerify={emailVerify}
+        // statusModalType={statusModalType}
       />
     </div>
 };
