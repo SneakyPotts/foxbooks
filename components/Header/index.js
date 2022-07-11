@@ -38,7 +38,6 @@ const Header = ({ socket }) => {
 
   const [flagSettings, setFlagSettings] = useState(false);
   const [searchValue, setSearchValue] = useState('')
-  // const [statusModalType, setStatusModalType] = useState(false);
 
   const showAuthPopup = () => {
     dispatch(setAuthPopupVisibility(true))
@@ -51,7 +50,6 @@ const Header = ({ socket }) => {
 
     setTimeout(() => {
       dispatch(setAuthPopupVisibility(false))
-      // setStatusModalType(false)
     }, 0)
   }
 
@@ -131,7 +129,6 @@ const Header = ({ socket }) => {
 
   useEffect(() => {
     if (router.query.modalType) {
-      // setStatusModalType(true);
       dispatch(setAuthPopupVisibility(true))
     }
 
@@ -252,7 +249,6 @@ const Header = ({ socket }) => {
       <GroupForms
         setModal={hideAuthPopup}
         modal={authPopupIsVisible}
-        // statusModalType={statusModalType}
       />
     </div>
 };

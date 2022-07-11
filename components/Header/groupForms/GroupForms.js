@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import css from "./index.module.scss";
 import classnames from "classnames";
 import Input from "../../shared/common/Input/Input";
@@ -29,8 +29,6 @@ const GroupForms = ({modal,setModal}) => {
 	const [flagNewPass, setFlagNewPass] = useState(false)
 	const [flagNewPassMessage, setFlagNewPassMessage] = useState(false)
 	const [flagVerifyEmail, setFlagVerifyEmail] = useState(false);
-
-	//TODO: modalType=registry
 
 	const { innerWidthWindow } = useSelector(state => state.common)
 	const { isError } = useSelector(state => state.auth)
@@ -85,8 +83,8 @@ const GroupForms = ({modal,setModal}) => {
 		})
 	}
 
+	//TODO: replace service method
 	const onSubmitNewPassword = data => {
-		console.log('data',data);
 		const {email} = router.query;
 		const reqData = {
 			email,
@@ -124,10 +122,8 @@ const GroupForms = ({modal,setModal}) => {
 		setFlagForgetPassword(false)
 		setFlagRegistration(false)
 		setFlagResetPassMessage(false)
-		// setFlagNewPass(!!newPass)
 		setFlagNewPassMessage(false)
 		reset()
-		// statusModalType ? setFlagLogin(false) : setFlagLogin(!newPass)
 	},[modal])
 
 	return modal && (
