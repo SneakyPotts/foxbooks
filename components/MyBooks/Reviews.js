@@ -14,6 +14,7 @@ import ReviewLogicItem from "../ReviewLogicItem";
 import {getUserReview} from "../../store/reviewSlice";
 import Loader from "../shared/common/Loader";
 import {useRouter} from "next/router";
+import {resetQueryString} from "../../utils";
 
 const Reviews = () => {
   const dispatch = useDispatch()
@@ -39,6 +40,8 @@ const Reviews = () => {
   useEffect(() => {
     dispatch(getUserReview(router.query))
       .then(() => setIsLoading(false))
+
+    resetQueryString(router);
   }, [router.query]);
 
   return <>

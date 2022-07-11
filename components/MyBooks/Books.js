@@ -19,6 +19,7 @@ import MobileFilterModal from "../MobileFilterModal";
 import BooksService from "./../../http/BookService"
 import {useRouter} from "next/router";
 import Loader from "../shared/common/Loader";
+import {resetQueryString} from "../../utils";
 
 const Books = ({ isAudio }) => {
   const filter1 = [
@@ -97,6 +98,8 @@ const Books = ({ isAudio }) => {
       setData(response.data.data.data)
       setIsLoading(false)
     })()
+
+    resetQueryString(router);
   }, [router.query])
 
   return <>
