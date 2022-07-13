@@ -49,6 +49,7 @@ const NewPage = () => {
 							<BookFilters
 								filters={typeFilters}
 								queryName={'type'}
+								resetFlag={true}
 							/>
 						</div>
 					}
@@ -78,7 +79,6 @@ const NewPage = () => {
 							<div className={st.grid}>
 								{novelties?.data?.map(i => (
 									<div key={i?.id}>
-										{console.log(i?.type)}
 										<Book
 											book={i}
 											type={i?.type}
