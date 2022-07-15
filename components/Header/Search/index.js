@@ -36,6 +36,8 @@ const Search = ({ value , onClose }) => {
     }
   }, [])
 
+  if(!books?.length && !authors?.length) return null
+
   return (
     <>
       <div

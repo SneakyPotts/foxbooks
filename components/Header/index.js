@@ -149,9 +149,7 @@ const Header = ({ socket }) => {
             <SearchInput
               withModal
               showMenuFlag={showMenuFlag}
-              onClick={() => {
-                searchValue && openModal()
-              }}
+              onClick={openModal}
               onChange={onChange}
               onClose={() => {
                 closeModal()

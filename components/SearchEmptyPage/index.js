@@ -4,9 +4,7 @@ import classNames from "classnames";
 import Book from "../shared/common/book";
 import Link from 'next/link';
 
-const SearchEmptyPage = () => {
-  const mock = new Array(6).fill(1)
-
+const SearchEmptyPage = ({books}) => {
   const repeatHandler = () => {
     document.querySelector('header input').click()
     document.querySelector('header input').focus()
@@ -37,8 +35,12 @@ const SearchEmptyPage = () => {
 
       <h2 className="title">Книги, которые могут вам понравиться</h2>
       <div className={s.grid}>
-        {mock?.length > 0 && mock.map(i =>
-          <Book />
+        {books?.length > 0 && books.map(i =>
+          <Book
+            key={i?.id}
+            book={i}
+            type={i?.type}
+          />
         )}
       </div>
     </div>
