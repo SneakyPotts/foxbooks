@@ -6,12 +6,14 @@ export default class HomeService {
 		sortBy = 3,
 		findByCategory = '',
 		alphabetTitleIndex = '',
-		alphabetAuthorIndex = ''
+		alphabetAuthorIndex = '',
+		page = 1
 	}) {
 		return axios.get(`${API_URL}/home?sortBy=${sortBy}
 			${findByCategory && `&findByCategory=${findByCategory}`}
 			${alphabetTitleIndex && `&alphabetTitleIndex=${alphabetTitleIndex}`}
 			${alphabetAuthorIndex && `&alphabetAuthorIndex=${alphabetAuthorIndex}`}
+			${page && `&page=${page}`}
 		`)
 	}
 }

@@ -10,6 +10,7 @@ import All from "../shared/icons/all";
 import Share from "../shared/icons/share";
 import Bin from "../shared/icons/trash";
 import {deleteBookQuote} from "../../store/readerSlice";
+import {objToRange} from "../../utils";
 
 const filter = {
   title: 'Мои цитаты',
@@ -51,6 +52,14 @@ const QuotesPopup = ({onClose}) => {
     router.push({ query: { ...router.query, page: quot?.page?.page_number } }).then(() => {
         const interval = setInterval(() => {
             if(!!document?.querySelector(`[data-key="${quot?.start_key}"]`)) {
+                const q = {
+                  startKey: quot.start_key,
+                  startOffset: quot.start_offset,
+                  endKey: quot.end_key,
+                  endOffset: quot.end_offset
+                }
+                const sel = window.getSelection()
+                sel.addRange(objToRange(q))
                 document.querySelector(`[data-key="${quot.start_key}"]`).scrollIntoView({behavior: 'smooth'})
                 clearInterval(interval)
             }
@@ -59,7 +68,7 @@ const QuotesPopup = ({onClose}) => {
   }
 
   const handleShare = quot => {
-    let str = `${window.location.origin}/reader?id=${router.query?.id}&page=${quot?.page?.page_number}&startKey=${quot.start_key}&startTextIndex=${quot.start_text_index}&startOffset=${quot.start_offset}&endKey=${quot.end_key}&endTextIndex=${quot.end_text_index}&endOffset=${quot.end_offset}`
+    let str = `${window.location.origin}/reader?id=${router.query?.id}&page=${quot?.page?.page_number}&startKey=${quot.start_key}&startOffset=${quot.start_offset}&endKey=${quot.end_key}&endOffset=${quot.end_offset}`
     navigator.clipboard.writeText(str)
   }
 

@@ -81,9 +81,9 @@ const BookPage = () => {
           <div
             className={st.relatedInfo}
           >
-            {book?.similar?.length ?
+            {book?.similarBooks?.length ?
               <SimilarBooks
-                data={book?.similar}
+                data={book?.similarBooks}
               /> : null
             }
 

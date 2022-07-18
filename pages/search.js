@@ -3,8 +3,7 @@ import SearchPage from "../components/SearchPage";
 import SearchService from "../http/SearchService";
 
 const Search = (props) => {
-  console.log('props', props.data)
-  return <SearchPage />;
+  return <SearchPage data={props.data} />;
 };
 
 export default Search;

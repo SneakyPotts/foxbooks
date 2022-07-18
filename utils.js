@@ -46,39 +46,91 @@ export const getNoun = (number, one, two, five) => {
 	return five;
 }
 
-let key = 0
+export const keyObj = {
+	value: 0,
+	get keyValue() {
+		return this.value
+	},
+	set keyValue(prop) {
+		this.value = prop
+	}
+}
 
 export const addKey = el => {
 	if (el?.children?.length > 0) {
 		Array.from(el.children).forEach(i => {
-			i.dataset.key = key++
+			keyObj.keyValue = keyObj.keyValue + 1
+			i.dataset.key = keyObj.keyValue
 			addKey(i)
 		})
 	}
-}	
+}
 
 export const objToRange = quot => {
 	const range = document.createRange()
 
-	range?.setStart(
-		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[quot.startTextIndex], 
-		quot.startOffset
-	)
-	range?.setEnd(
-		document.querySelector(`[data-key="${quot.endKey}"]`).childNodes[quot.endTextIndex], 
-		quot.endOffset
-	)
+	let offset = 0
+	const calcTextIndex = (nodeList, startOffset) => {
+		let index = 0
+		for (let i = 0; i < nodeList.length; i++) {
+			if(offset + nodeList[i].textContent?.length < startOffset) {
+				offset += nodeList[i].textContent?.length
+			} else {
+				index = i
+				break
+			}
+		}
+		return index
+	}
+
+	const startTextIndex = calcTextIndex(document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes, quot.startOffset)
+	const startSelector = document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex].nodeType === 1 ?
+		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex].childNodes[0] :
+		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex]
+
+	range?.setStart(startSelector, Number(quot.startOffset) - offset)
+	offset = 0
+
+	const endTextIndex = calcTextIndex(document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes, quot.endOffset)
+	const endSelector = document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex].nodeType === 1 ?
+		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex].childNodes[0] :
+		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex]
+
+	range?.setEnd(endSelector, Number(quot.endOffset) - offset)
+	offset = 0
+
 	return range
 }
 
 export const rangeToObj = range => {
+	const startKey = range.startContainer.parentNode.tagName === 'MARK' ?
+		range.startContainer.parentNode.closest('[data-key]')?.dataset?.key :
+		range.startContainer.parentNode.dataset.key
+	const endKey = range.endContainer.parentNode.tagName === 'MARK' ?
+		range.endContainer.parentNode.closest('[data-key]')?.dataset?.key :
+		range.endContainer.parentNode.dataset.key
+
+	let offset = 0
+	const calcOffset = node => {
+		if(!node.previousSibling) return
+
+		offset += node.previousSibling.textContent?.length || 0
+		calcOffset(node.previousSibling)
+	}
+
+	calcOffset(range.startContainer.parentNode.dataset.key === startKey ? range.startContainer : range.startContainer.parentNode)
+	const startOffset = offset + range.startOffset
+
+	offset = 0
+
+	calcOffset(range.endContainer.parentNode.dataset.key === endKey ? range.endContainer : range.endContainer.parentNode)
+	const endOffset = offset + range.endOffset
+
 	return {
-		startKey: range.startContainer.parentNode.dataset.key,
-		startTextIndex: Array.prototype.indexOf.call(range.startContainer.parentNode.childNodes, range.startContainer),
-		endKey: range.endContainer.parentNode.dataset.key,
-		endTextIndex: Array.prototype.indexOf.call(range.endContainer.parentNode.childNodes, range.endContainer),
-		startOffset: range.startOffset,
-		endOffset: range.endOffset
+		startKey,
+		endKey,
+		startOffset,
+		endOffset
 	}
 }
 

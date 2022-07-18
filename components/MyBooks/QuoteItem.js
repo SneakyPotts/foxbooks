@@ -7,6 +7,7 @@ import Bin from "../shared/icons/trash";
 import styles from './styles.module.scss'
 import DotsDropdown from "../DotsDropdown";
 import {useRouter} from "next/router";
+import {objToRange} from "../../utils";
 
 const QuoteItem = ({
   data,
@@ -18,6 +19,14 @@ const QuoteItem = ({
     router.push(`/reader?id=${data?.book_id}&page=${data?.page?.page_number}`).then(() => {
       const interval = setInterval(() => {
         if(!!document?.querySelector(`[data-key="${data?.start_key}"]`)) {
+          const q = {
+            startKey: data.start_key,
+            startOffset: data.start_offset,
+            endKey: data.end_key,
+            endOffset: data.end_offset
+          }
+          const sel = window.getSelection()
+          sel.addRange(objToRange(q))
           document.querySelector(`[data-key="${data.start_key}"]`).scrollIntoView({behavior: 'smooth'})
           clearInterval(interval)
         }

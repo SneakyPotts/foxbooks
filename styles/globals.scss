@@ -10,7 +10,9 @@ body {
   font-family: 'Fira Sans', sans-serif;
   background-color: #fafafa;
 }
-
+body {
+  overflow-x: hidden;
+}
 a {
   color: inherit;
   text-decoration: none;

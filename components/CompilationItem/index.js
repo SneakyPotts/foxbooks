@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import moment from "moment";
 import 'moment/locale/ru'
+import {getNoun} from "../../utils";
 
 const CompilationItem = ({
   data,
@@ -27,7 +28,10 @@ const CompilationItem = ({
               placeholder="blur"
               blurDataURL="/blur.webp"
             />
-            <span className={styles.selectionCount}>{data?.total_count} книг</span>
+            <span className={styles.selectionCount}>
+              {data?.total_books_count}{' '}
+              {getNoun(data?.total_books_count, 'книга', 'книги', 'книг')}
+            </span>
           </a>
         </Link> :
         <div className={styles.selectionLink}>
@@ -41,7 +45,10 @@ const CompilationItem = ({
             placeholder="blur"
             blurDataURL="/blur.webp"
           />
-          <span className={styles.selectionCount}>{data?.total_count} книг</span>
+          <span className={styles.selectionCount}>
+            {data?.total_books_count}{' '}
+            {getNoun(data?.total_books_count, 'книга', 'книги', 'книг')}
+          </span>
         </div>
       }
 

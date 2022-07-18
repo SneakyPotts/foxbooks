@@ -1,14 +1,12 @@
 import { useSelector } from 'react-redux';
-import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import classnames from 'classnames';
 import Book from '../../shared/common/book';
-import ArrowRight from '../../../public/chevron-right.svg';
-import ShowAll from '../../shared/common/showAll/ShowAll';
 import st from './similarBooks.module.scss';
+import {useRouter} from "next/router";
 
 const SimilarBooks = ({ data }) => {
-  const { audioFlag } = useSelector(state => state.book);
+  const router = useRouter()
+
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const changeSpaceBtwSwiper = () => {
@@ -28,19 +26,14 @@ const SimilarBooks = ({ data }) => {
     >
       <div className={st.swiperTitle}>
         <h3 className={st.title}>
-          Похожие книги
+          {router.query?.type === 'books' ? 'Похожие книги' : 'Похожие аудиокниги'}
         </h3>
-        {innerWidthWindow <= 768 && (
-          <ShowAll externalClass={st.dicardDistance} />
-        )}
+        {/*{innerWidthWindow <= 768 && (*/}
+        {/*  <ShowAll externalClass={st.dicardDistance} />*/}
+        {/*)}*/}
       </div>
       <Swiper
         spaceBetween={changeSpaceBtwSwiper()}
-        modules={[Navigation]}
-        navigation={{
-          prevEl: '.prevArrow',
-          nextEl: '.nextArrow',
-        }}
         slidesPerView={changeSlidesPerView()}
       >
         {data.map(i => (
@@ -49,26 +42,11 @@ const SimilarBooks = ({ data }) => {
               classNames={st.slide}
               book={i}
               similar={true}
-              audio={audioFlag}
+              audio={i?.type === 'audioBooks'}
+              type={i?.type}
             />
           </SwiperSlide>
         ))}
-        <button
-          className={classnames('prevArrow', {
-            [st.btn]: !audioFlag,
-            [st.btnAudio]: audioFlag,
-          })}
-        >
-          <ArrowRight className="arrowNext" />
-        </button>
-        <button
-          className={classnames('nextArrow', {
-            [st.btn]: !audioFlag,
-            [st.btnAudio]: audioFlag,
-          })}
-        >
-          <ArrowRight className="arrowNext" />
-        </button>
       </Swiper>
     </div>
   );

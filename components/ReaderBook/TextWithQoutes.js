@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import Link from 'next/link';
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import AddQout from "./AddQout";
-import { highlight, rangeToObj, objToRange, addKey } from './../../utils'
+import {highlight, rangeToObj, objToRange, addKey, keyObj} from './../../utils'
 import styles from './styles.module.scss'
 import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
@@ -56,6 +56,24 @@ const TextWithQoutes = () => {
 
 	const [isError, setIsError] = useState(false)
 
+	const showTools = ev => {
+		const x = ev?.pageX || ev?.changedTouches[0]?.pageX
+		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
+
+		const toolsWidth = 291
+		const toolsHeight = 162
+		const windowWidth = window.innerWidth
+		const windowHeight = window.innerHeight + window.scrollY
+		const deltaX = windowWidth - x
+		const deltaY = windowHeight - y
+
+		setToolsCoords({
+			x: toolsWidth >= deltaX ? x - toolsWidth : x,
+			y: toolsHeight >= deltaY ? y - toolsHeight : y
+		})
+		setToolsIsVisible(true)
+	}
+
 	const mouseUpHandler = ev => {
 		setMarkId(null)
 		const text = window.getSelection().toString()
@@ -72,15 +90,7 @@ const TextWithQoutes = () => {
 			const err = quotes?.some(() => !obj.startKey || !obj.endKey) || text?.length > 300
 			setIsError(err);
 
-			const x = ev?.pageX || ev?.changedTouches[0]?.pageX
-			const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-
-			const toolsWidth = 291
-			const windowWidth = window.innerWidth
-			const deltaX = windowWidth - x
-
-			setToolsCoords({x: toolsWidth >= deltaX ? x - toolsWidth : x, y})
-			setToolsIsVisible(true)
+			showTools(ev)
 		} else {
 			setToolsIsVisible(false)			
 			setIsError(false)
@@ -90,10 +100,8 @@ const TextWithQoutes = () => {
 	const handleMarkClick = (ev, id) => {
 		ev.stopPropagation()
 		setMarkId(id)
-		const x = ev?.pageX || ev?.changedTouches[0]?.pageX 
-		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-		setToolsCoords({x, y})
-		setToolsIsVisible(true)
+
+		showTools(ev)
 	}
 
 	const addQuot = async color => {
@@ -121,6 +129,7 @@ const TextWithQoutes = () => {
 
 			sel.removeAllRanges()
 			setToolsIsVisible(false)
+            setSelectedText('')
 		}
 	}
 
@@ -156,19 +165,26 @@ const TextWithQoutes = () => {
 		const text = quotes?.find(i => i?.id == markId)?.text || selectedText
 		navigator.clipboard.writeText(text?.trim())
 		setToolsIsVisible(false)
+        setSelectedText('')
 	}
 
 	const shareQuot = () => {
-		let query = quotes?.find(i => i.id === markId) || rangeObj
+		let quot = selectedText?.length ? rangeObj : quotes?.find(i => i.id === markId)
 
-		let str = `${window.location.origin}${router.asPath}&startKey=${query.startKey}&startTextIndex=${query.startTextIndex}&startOffset=${query.startOffset}&endKey=${query.endKey}&endTextIndex=${query.endTextIndex}&endOffset=${query.endOffset}`
+		const isQuot = quot.hasOwnProperty('id')
 
-		navigator.clipboard.writeText(str)
+		let str = `${window.location.origin}${router.asPath}
+			&startKey=${!isQuot ? quot.startKey : quot.start_key}
+			&startOffset=${!isQuot ? quot.startOffset : quot.start_offset}
+			&endKey=${!isQuot ? quot.endKey : quot.end_key}
+			&endOffset=${!isQuot ? quot.endOffset : quot.end_offset}`
+
+		navigator.clipboard.writeText(str.replace(/\s/g, ''))
 		setToolsIsVisible(false)
+        setSelectedText('')
 	}
 
 	const changePage = ev => {
-		// ev.stopPropagation()
 		if(innerWidthWindow <= 768 && !toolsIsVisible) {
 			const x = ev?.pageX || ev?.changedTouches[0]?.pageX
 			const w = innerWidthWindow / 3
@@ -178,17 +194,17 @@ const TextWithQoutes = () => {
 
 			if(x > 0 && x <= w) {
 				if(currentPage - 1 >= 1) {
-					console.log('prev')
 					router.push({ query: { ...router.query, page: currentPage - 1 } })
 					window.scrollTo({top: 0, behavior: 'smooth'})
 				}
 			} else if((innerWidthWindow - x) < w) {
 				if(currentPage + 1 <= pages) {
-					console.log('next')
 					router.push({ query: { ...router.query, page: currentPage + 1 } })
 					window.scrollTo({top: 0, behavior: 'smooth'})
 				}
 			}
+		} else {
+			ev.stopPropagation()
 		}
 	}
 
@@ -238,10 +254,8 @@ const TextWithQoutes = () => {
 			const quot = {
 				...i,
 				startKey: i.start_key,
-				startTextIndex: i.start_text_index,
 				startOffset: i.start_offset,
 				endKey: i.end_key,
-				endTextIndex: i.end_text_index,
 				endOffset: i.end_offset
 			}
 			sel.addRange(objToRange(quot))
@@ -251,8 +265,6 @@ const TextWithQoutes = () => {
 	}
 
 	useEffect(() => {
-		addKey(article.current)
-
 		const hideTools = () => setToolsIsVisible(false)
 
 		document.body.addEventListener('click', hideTools)
@@ -265,6 +277,8 @@ const TextWithQoutes = () => {
 	useEffect(() => {
 		if(isAuth && quotesIsLoading) return
 
+		addKey(article.current)
+		keyObj.keyValue = 0
 		filterAndCreateQuotes()
 
 		const query = router.query
@@ -285,8 +299,6 @@ const TextWithQoutes = () => {
 			<Link href={`author?id=${book?.authors[0]?.id}`}>
 				<a className={styles.bookAuthor}>{book?.authors[0]?.author}</a>
 			</Link>
-
-			{/*<h2 className={styles.bookSubtitle}>Глава 1. Мальчик, который выжил</h2>*/}
 
 			<article
 				ref={article}

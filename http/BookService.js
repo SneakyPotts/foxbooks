@@ -3,6 +3,7 @@ import api, { API_URL } from ".";
 
 export default class BookService {
 	static async getBooks({
+		token,
 		type = 'books',
 		page = 1,
 		findByCategory = '',
@@ -15,18 +16,25 @@ export default class BookService {
 		alphabetPublisherIndex = '',
 		alphabetTitleIndex = ''
 	}) {
-		return axios.get(`${API_URL}/books?${type && `type=${type}`}
-			${page && `&page=${page}`}
-			${findByCategory && `&findByCategory=${findByCategory}`}
-			${showType && `&showType=${showType}`}
-			${sortBy && `&sortBy=${sortBy}`}
-			${findByAuthor && `&findByAuthor=${findByAuthor}`}
-			${findByPublisher && `&findByPublisher=${findByPublisher}`}
-			${findByTitle && `&findByTitle=${findByTitle}`}
-			${alphabetAuthorIndex && `&alphabetAuthorIndex=${alphabetAuthorIndex}`}
-			${alphabetPublisherIndex && `&alphabetPublisherIndex=${alphabetPublisherIndex}`}
-			${alphabetTitleIndex && `&alphabetTitleIndex=${alphabetTitleIndex}`}
-		`)
+		return axios.get(
+			`${API_URL}/books?${type && `type=${type}`}
+				${page && `&page=${page}`}
+				${findByCategory && `&findByCategory=${findByCategory}`}
+				${showType && `&showType=${showType}`}
+				${sortBy && `&sortBy=${sortBy}`}
+				${findByAuthor && `&findByAuthor=${findByAuthor}`}
+				${findByPublisher && `&findByPublisher=${findByPublisher}`}
+				${findByTitle && `&findByTitle=${findByTitle}`}
+				${alphabetAuthorIndex && `&alphabetAuthorIndex=${alphabetAuthorIndex}`}
+				${alphabetPublisherIndex && `&alphabetPublisherIndex=${alphabetPublisherIndex}`}
+				${alphabetTitleIndex && `&alphabetTitleIndex=${alphabetTitleIndex}`}
+			`,
+			{
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			}
+		)
 	}
 
 	static async getMyBooks({sortBy = 5, status = "0", findByTitle = ''}) {
@@ -53,6 +61,10 @@ export default class BookService {
 
 	static async getAudioBooksByAuthor(id) {
 		return axios.get(`${API_URL}/authors/${id}/audio-books`)
+	}
+
+	static async getSimilarBooks(id, type) {
+		return axios.get(`${API_URL}/${type === 'books' ? 'books' : 'audio-books'}/${id}/similar`)
 	}
 
 	static async getBookQuotes(id, token) {
