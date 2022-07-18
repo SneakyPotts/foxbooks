@@ -13,31 +13,17 @@ const initFilters = [
 ];
 
 const BookFilters = ({
-                       filters = initFilters,
-                       queryName = 'sortBy',
-                       onModal,
-                       resetFlag = false
-                     }) => {
+  filters = initFilters,
+  queryName = 'sortBy',
+  onModal
+}) => {
   const router = useRouter();
   const [currentIdx, setCurrentIdx] = useState(router.query[queryName]);
 
   const handleOnClick = value => {
-    if (resetFlag) {
-      router.push(
-        {query: {
-            'sortBy': router.query['sortBy'],
-            [queryName]: value
-          }},
-        null,
-        {scroll: false}
-      )
-    } else {
-      router.push(
-        { query: { ...router.query, [queryName]: value } },
-        null,
-        {scroll: false}
-      );
-    }
+    router.push({ query: { ...router.query, [queryName]: value } }, null, {
+      scroll: false,
+    });
     setCurrentIdx(value);
   };
 

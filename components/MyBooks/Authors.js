@@ -10,7 +10,6 @@ import AuthorCard from "../AuthorCard";
 import {useRouter} from "next/router";
 import AuthorService from "../../http/AuthorService";
 import Loader from "../shared/common/Loader";
-import {resetQueryString} from "../../utils";
 
 const Authors = () => {
   const dispatch = useDispatch()
@@ -35,8 +34,6 @@ const Authors = () => {
       setData(response.data.data.data)
       setIsLoading(false)
     })()
-
-    resetQueryString(router);
   }, [router.query])
 
   return <>

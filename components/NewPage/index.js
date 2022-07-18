@@ -49,7 +49,6 @@ const NewPage = () => {
 							<BookFilters
 								filters={typeFilters}
 								queryName={'type'}
-								resetFlag={true}
 							/>
 						</div>
 					}

@@ -14,7 +14,6 @@ import Button from "../shared/common/Button/Button";
 import CreateCompilationPopup from "../CreateCompilationPopup";
 import SelectionService from "../../http/SelectionService";
 import Loader from "../shared/common/Loader";
-import {resetQueryString} from "../../utils";
 
 const filter1 = [
   {
@@ -70,8 +69,6 @@ const Selections = () => {
       setData(response.data.data.data)
       setIsLoading(false)
     })()
-
-    resetQueryString(router);
   }, [router.query])
 
   return <>
@@ -187,7 +184,6 @@ const Selections = () => {
               />
             </div>
           )}
-          {console.log(data)}
         </div> :
         <p className={classNames("empty", styles.empty)}>Пусто</p>
     }
