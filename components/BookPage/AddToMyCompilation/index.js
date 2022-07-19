@@ -9,7 +9,6 @@ import Loader from "../../shared/common/Loader";
 import CompilationItem from "../../CompilationItem";
 import BackBtn from "../../shared/common/BackBtn";
 import {useRouter} from "next/router";
-import {set} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserCompilations} from "../../../store/selectionSlice";
 
@@ -19,8 +18,8 @@ const AddToMyCompilation = ({ onClose }) => {
 
   const [createPopupIsVisible, setCreatePopupIsVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  // const [data, setData] = useState([])
-  const {data} = useSelector(state => state.userCompilations)
+  const [alreadyAdded, setAlreadyAdded] = useState(null);
+  const {data} = useSelector(state => state.selection.userCompilations)
 
   const handleClick = async id => {
     await SelectionService.addBookToCompilation({
@@ -28,23 +27,16 @@ const AddToMyCompilation = ({ onClose }) => {
       book_id: router.query?.id,
       book_type: router.query?.type
     })
-    onClose()
+      .then(() => onClose())
+      .catch(() => setAlreadyAdded(id))
   }
 
   useEffect(() => {
-    // (async () => {
-    //   const response = await SelectionService.getUserCompilations({
-    //     sortBy: '1',
-    //     compType:'1'
-    //   })
-    //   setData(response.data.data.data)
-    //   setIsLoading(false)
-    // })()
-    const data = {
+    const queryParam = {
       sortBy: '1',
       compType:'1'
     }
-    dispatch(getUserCompilations(data))
+    dispatch(getUserCompilations(queryParam))
       .then(() => setIsLoading(false))
   }, [])
 
@@ -81,6 +73,9 @@ const AddToMyCompilation = ({ onClose }) => {
                   key={i?.id}
                   data={i}
                 />
+                {alreadyAdded === i?.id
+                  ? <p className={s.error}>Книга уже добавлена в данную подборку</p>
+                  : null}
               </div>
             )}
           </div> :
@@ -90,7 +85,6 @@ const AddToMyCompilation = ({ onClose }) => {
       {createPopupIsVisible &&
         <CreateCompilationPopup
           onClose={() => setCreatePopupIsVisible(false)}
-          //callback={comp => setData(prev => [...prev, comp])} //FIXME: по идее не нужен
         />
       }
     </div>

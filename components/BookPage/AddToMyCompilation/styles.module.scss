@@ -26,6 +26,12 @@
   cursor: pointer;
 }
 
+.error {
+  font-size: 12px;
+  line-height: 14px;
+  color: #e92a20;
+}
+
 @media screen and (max-width: 768px) {
   .descBack {
     display: none;
