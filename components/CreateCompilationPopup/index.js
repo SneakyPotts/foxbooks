@@ -13,7 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {generateFormData} from "../../utils";
 import SelectionService from "../../http/SelectionService";
 import {useRouter} from "next/router";
-import {editCompilation} from "../../store/selectionSlice";
+import {createCompilation, editCompilation} from "../../store/selectionSlice";
 
 const CreateCompilationPopup = ({
   image,
@@ -48,8 +48,10 @@ const CreateCompilationPopup = ({
       dispatch(editCompilation(d))
     } else {
       const d = generateFormData(data)
-      const resp = await SelectionService.createCompilation(d)
-      callback && callback(resp.data?.data)
+      // const resp = await SelectionService.createCompilation(d)
+      // callback && callback(resp.data?.data)
+
+      dispatch(createCompilation(d))
     }
     onClose()
   };

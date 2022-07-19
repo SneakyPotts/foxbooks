@@ -4,6 +4,7 @@ import SelectionService from "../http/SelectionService";
 const initialState = {
 	selections: {},
 	selectionById: {},
+	userCompilations: {}
 };
 
 export const addCompilationToFavorite = createAsyncThunk(
@@ -26,6 +27,22 @@ export const editCompilation = createAsyncThunk(
 	'selection/editCompilation',
 	async data => {
 		const response = await SelectionService.editCompilation(data)
+		return response.data?.data
+	}
+)
+
+export const getUserCompilations = createAsyncThunk(
+	'selection/getUserCompilations',
+	async (data) => {
+		const response = await SelectionService.getUserCompilations(data)
+		return response.data.data
+	}
+)
+
+export const createCompilation = createAsyncThunk(
+	'selection/createCompilation',
+	async (data) => {
+		const response = await SelectionService.createCompilation(data)
 		return response.data?.data
 	}
 )
@@ -78,6 +95,15 @@ export const selectionSlice = createSlice({
 				...action.payload
 			}
 		},
+		[getUserCompilations.fulfilled]: (state, action) => {
+			state.userCompilations = action.payload
+		},
+		[createCompilation.fulfilled]: (state, action) => {
+			state.userCompilations = {
+				...state.userCompilations,
+				...action.payload
+			}
+		}
 	}
 });
 

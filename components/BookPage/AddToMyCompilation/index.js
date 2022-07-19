@@ -10,13 +10,17 @@ import CompilationItem from "../../CompilationItem";
 import BackBtn from "../../shared/common/BackBtn";
 import {useRouter} from "next/router";
 import {set} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserCompilations} from "../../../store/selectionSlice";
 
 const AddToMyCompilation = ({ onClose }) => {
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const [createPopupIsVisible, setCreatePopupIsVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
+  const {data} = useSelector(state => state.userCompilations)
 
   const handleClick = async id => {
     await SelectionService.addBookToCompilation({
@@ -28,14 +32,20 @@ const AddToMyCompilation = ({ onClose }) => {
   }
 
   useEffect(() => {
-    (async () => {
-      const response = await SelectionService.getUserCompilations({
-        sortBy: '1',
-        compType:'1'
-      })
-      setData(response.data.data.data)
-      setIsLoading(false)
-    })()
+    // (async () => {
+    //   const response = await SelectionService.getUserCompilations({
+    //     sortBy: '1',
+    //     compType:'1'
+    //   })
+    //   setData(response.data.data.data)
+    //   setIsLoading(false)
+    // })()
+    const data = {
+      sortBy: '1',
+      compType:'1'
+    }
+    dispatch(getUserCompilations(data))
+      .then(() => setIsLoading(false))
   }, [])
 
   return (
@@ -80,7 +90,7 @@ const AddToMyCompilation = ({ onClose }) => {
       {createPopupIsVisible &&
         <CreateCompilationPopup
           onClose={() => setCreatePopupIsVisible(false)}
-          callback={comp => setData(prev => [...prev, comp])}
+          //callback={comp => setData(prev => [...prev, comp])} //FIXME: по идее не нужен
         />
       }
     </div>

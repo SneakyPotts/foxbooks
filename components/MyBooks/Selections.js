@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 import styles from './styles.module.scss'
 import Popular from "../Filter/Popular/Popular";
 import ClickableSearch from "../ClickableSearch";
@@ -14,6 +14,8 @@ import Button from "../shared/common/Button/Button";
 import CreateCompilationPopup from "../CreateCompilationPopup";
 import SelectionService from "../../http/SelectionService";
 import Loader from "../shared/common/Loader";
+import {resetQueryString} from "../../utils";
+import {getUserCompilations} from "../../store/selectionSlice";
 
 const filter1 = [
   {
@@ -31,7 +33,7 @@ const filter1 = [
 const filter2 = [
   {
     title: 'Популярные',
-    defaultValue: 1,
+    defaultValue: 3,
     options: [
       {id: 1, title: 'Популярные', value: 3},
       {id: 2, title: 'По дате добавления', value: 1},
@@ -49,11 +51,12 @@ const Selections = () => {
 
   const {innerWidthWindow} = useSelector(state => state.common)
   const {profile} = useSelector(state => state.profile)
+  const {data} = useSelector(state => state.selection.userCompilations)
 
   const [stateIndex, setStateIndex] = useState(null)
   const [createPopupIsVisible, setCreatePopupIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
 
   const onChange = value => {
     router.push(
@@ -64,11 +67,15 @@ const Selections = () => {
   }
 
   useEffect(() => {
-    (async () => {
-      const response = await SelectionService.getUserCompilations(router.query)
-      setData(response.data.data.data)
-      setIsLoading(false)
-    })()
+    // (async () => {
+    //   const response = await SelectionService.getUserCompilations(router.query)
+    //   setData(response.data.data.data)
+    //   setIsLoading(false)
+    // })()
+
+    dispatch(getUserCompilations(router.query))
+      .then(() => setIsLoading(false))
+
   }, [router.query])
 
   return <>
