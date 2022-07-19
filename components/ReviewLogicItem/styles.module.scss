@@ -96,9 +96,9 @@
   //cursor: pointer;
 
   //&:hover,
-  //&.active {
-  //  stroke: $text-hover;
-  //}
+  &.active {
+    stroke: $text-hover;
+  }
 }
 .reviewLike {
   margin-right: 36px;

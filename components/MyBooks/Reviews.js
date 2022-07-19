@@ -9,7 +9,6 @@ import BackBtn from "../shared/common/BackBtn";
 import SearchInput from "../SearchInput";
 import {setHeaderVisibility} from "../../store/commonSlice";
 import classNames from "classnames";
-import dataReview from '../data/reviews.json';
 import ReviewLogicItem from "../ReviewLogicItem";
 import {getUserReview} from "../../store/reviewSlice";
 import Loader from "../shared/common/Loader";

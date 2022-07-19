@@ -30,9 +30,7 @@ const ReviewLogicItem = ({
 
   const [editFormIsVisible, setEditFormIsVisible] = useState(false)
   const [likesCount, setLikesCount] = useState(data?.likes_count || 0)
-  const [isLiked, setIsLiked] = useState(false)
-
-
+  const [isLiked, setIsLiked] = useState(data?.is_liked)
 
   const likeHandler = async () => {
       if(isAuth) {
