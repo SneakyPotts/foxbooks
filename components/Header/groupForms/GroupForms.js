@@ -10,7 +10,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useDispatch, useSelector} from "react-redux";
 import SocialNetwork from "../../shared/common/SocialNetwork/SocialNetwork";
-import {forgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice";
+import {forgotPassword, resetForgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice";
 import {getProfile} from "../../../store/profileSlice";
 import {ref} from "yup";
 import {useRouter} from "next/router";
@@ -83,14 +83,15 @@ const GroupForms = ({modal,setModal}) => {
 		})
 	}
 
-	//TODO: replace service method
 	const onSubmitNewPassword = data => {
-		const {email} = router.query;
+		const {email, token} = router.query;
 		const reqData = {
 			email,
-			password: data.password
+			token,
+			password: data.password,
+			password_confirmation: data.password_confirm
 		}
-		dispatch(forgotPassword(reqData)).then(res => {
+		dispatch(resetForgotPassword(reqData)).then(res => {
 			if (res.meta.requestStatus === "fulfilled") {
 				setFlagNewPass(false)
 				setFlagNewPassMessage(true)

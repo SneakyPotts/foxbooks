@@ -34,6 +34,14 @@ export const forgotPassword = createAsyncThunk(
 	}
 )
 
+export const resetForgotPassword = createAsyncThunk(
+	'auth/resetForgotPassword',
+	async data => {
+		const response = await AuthService.resetForgotPassword(data)
+		return response.data
+	}
+)
+
 export const verifyEmail = createAsyncThunk(
 	'auth/verifyEmail',
 	async data => {
@@ -96,6 +104,19 @@ export const authSlice = createSlice({
 			state.isLoading = false
 		},
 		[forgotPassword.rejected]: state => {
+			state.isError = true
+			state.isLoading = false
+		},
+
+
+		[resetForgotPassword.pending]: state => {
+			state.isLoading = true
+		},
+		[resetForgotPassword.fulfilled]: state => {
+			state.isError = false
+			state.isLoading = false
+		},
+		[resetForgotPassword.rejected]: state => {
 			state.isError = true
 			state.isLoading = false
 		},
