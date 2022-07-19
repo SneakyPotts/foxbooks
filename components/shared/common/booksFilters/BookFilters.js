@@ -21,7 +21,11 @@ const BookFilters = ({
   const [currentIdx, setCurrentIdx] = useState(router.query[queryName]);
 
   const handleOnClick = value => {
-    router.push({ query: { ...router.query, [queryName]: value } }, null, {
+    router.push({ query: {
+        ...router.query,
+        [queryName]: value,
+        ['page']: 1
+    } }, null, {
       scroll: false,
     });
     setCurrentIdx(value);
