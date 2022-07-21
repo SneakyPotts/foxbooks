@@ -6,7 +6,6 @@ import ButtonGroup from "../SettingsProfile/buttonGroup";
 import Button from "../shared/common/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import BackBtn from "../shared/common/BackBtn";
-import SearchInput from "../SearchInput";
 import {setHeaderVisibility} from "../../store/commonSlice";
 import classNames from "classnames";
 import QuoteItem from "./QuoteItem";
@@ -88,11 +87,6 @@ const Quotes = () => {
           <BackBtn
             externalClass={styles.backBtn}
             onClick={() => dispatch(setHeaderVisibility(true))}
-          />
-          <SearchInput
-            placeholder={'Искать цитату'}
-            externalClass={styles.mobSearch}
-            // onChange={}
           />
         </div>
 

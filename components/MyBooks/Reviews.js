@@ -13,6 +13,7 @@ import ReviewLogicItem from "../ReviewLogicItem";
 import {getUserReview} from "../../store/reviewSlice";
 import Loader from "../shared/common/Loader";
 import {useRouter} from "next/router";
+import {setQueryString} from "../../utils";
 
 const Reviews = () => {
   const dispatch = useDispatch()
@@ -29,11 +30,12 @@ const Reviews = () => {
     setDeletePopupIsVisible(true)
   }
   const onChange = value => {
-    router.push(
-      { query: { ...router.query, ['findByTitle']: encodeURI(value) } },
-      null,
-      { scroll: false }
-    );
+    setQueryString(value, 'findByTitle', router)
+    // router.push(
+    //   { query: { ...router.query, ['findByTitle']: encodeURI(value) } },
+    //   null,
+    //   { scroll: false }
+    // );
   }
   useEffect(() => {
     dispatch(getUserReview(router.query))

@@ -14,6 +14,7 @@ import Button from "../shared/common/Button/Button";
 import CreateCompilationPopup from "../CreateCompilationPopup";
 import Loader from "../shared/common/Loader";
 import {getUserCompilations} from "../../store/selectionSlice";
+import {setQueryString} from "../../utils";
 
 const filter1 = [
   {
@@ -56,11 +57,7 @@ const Selections = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const onChange = value => {
-    router.push(
-      { query: { ...router.query, ['letter']: encodeURI(value) } },
-      null,
-      { scroll: false }
-    );
+    setQueryString(value, 'letter', router)
   }
 
   useEffect(() => {

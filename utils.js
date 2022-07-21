@@ -216,3 +216,30 @@ export const highlight = (id, color, func) => {
 
 	sel.removeRange(range)
 }
+
+export const setQueryString = (value, queryName, router) => {
+	let currentQuery = {};
+	const {query, pathname} = router;
+
+	if (!value) {
+		for (const queryKey in query) {
+			if (queryKey !== queryName && !!query[queryKey]) {
+				currentQuery = {
+					...currentQuery,
+					[queryKey]: query[queryKey]
+				}
+			}
+		}
+		router.replace(
+			{pathname, query: currentQuery},
+			undefined,
+			{shallow: true}
+		);
+	} else {
+		router.push(
+			{query: {...query, [queryName]: encodeURI(value)}},
+			null,
+			{scroll: false}
+		);
+	}
+}

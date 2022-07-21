@@ -10,6 +10,7 @@ import AuthorCard from "../AuthorCard";
 import {useRouter} from "next/router";
 import AuthorService from "../../http/AuthorService";
 import Loader from "../shared/common/Loader";
+import {setQueryString} from "../../utils";
 
 const Authors = () => {
   const dispatch = useDispatch()
@@ -21,11 +22,7 @@ const Authors = () => {
   const [data, setData] = useState([])
 
   const onChange = value => {
-    router.push(
-      { query: { ...router.query, ['letter']: encodeURI(value) } },
-      null,
-      { scroll: false }
-    );
+    setQueryString(value, 'letter', router)
   }
 
   useEffect(() => {

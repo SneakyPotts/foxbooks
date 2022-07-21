@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './styles.module.scss'
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import Button from "../shared/common/Button/Button";
@@ -6,9 +6,9 @@ import Filters from "../shared/icons/filters";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
 
-const MobileFilterModal = ({ children }) => {
+const MobileFilterModal = ({ children, category }) => {
   const router = useRouter()
-  // const initPath = useRef()
+  const initPath = useRef()
 
   const [modalIsVisible, setModalIsVisible] = useState(false)
 
@@ -17,23 +17,25 @@ const MobileFilterModal = ({ children }) => {
   const handleClear = () => {
     const {id, showType, sortBy, type} = router.query;
 
-    router.push({
-      pathname: '/books/[id]',
-      query: {
-        id,
-        type,
-        showType,
-        sortBy
-      }
-    });
+    if (category) {
+      router.push({
+        pathname: '/books/[id]',
+        query: {
+          id,
+          type,
+          showType,
+          sortBy
+        }
+      });
+    }
 
-    // router.push(initPath.current)
+    router.push(initPath.current)
     setModalIsVisible(false)
   }
 
-  // useEffect(() => {
-  //   initPath.current = router.asPath
-  // }, [])
+  useEffect(() => {
+    initPath.current = router.asPath
+  }, [])
 
   return (
     <>

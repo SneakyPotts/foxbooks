@@ -19,6 +19,7 @@ import MobileFilterModal from "../MobileFilterModal";
 import BooksService from "./../../http/BookService"
 import {useRouter} from "next/router";
 import Loader from "../shared/common/Loader";
+import {setQueryString} from "../../utils";
 
 const Books = ({ isAudio }) => {
   const filter1 = [
@@ -64,11 +65,7 @@ const Books = ({ isAudio }) => {
   const [data, setData] = useState([])
 
   const onChange = value => {
-    router.push(
-      { query: { ...router.query, ['letter']: encodeURI(value) } },
-      null,
-      { scroll: false }
-    );
+    setQueryString(value, 'findByTitle', router)
   }
 
   const showDeletePopup = ({id, type, title}) => {

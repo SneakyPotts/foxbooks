@@ -104,7 +104,7 @@ const Category = () => {
                 ))
               }
               {innerWidthWindow < 1024 &&
-                <MobileFilterModal>
+                <MobileFilterModal category={true}>
                   {data.map((it, index) => (
                     <Popular
                       key={index}

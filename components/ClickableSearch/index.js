@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import classNames from "classnames";
 import {useRouter} from "next/router";
 import debounce from 'lodash.debounce';
+import {setQueryString} from "../../utils";
 
 const ClickableSearch = ({ queryName }) => {
   const router = useRouter()
@@ -20,11 +21,7 @@ const ClickableSearch = ({ queryName }) => {
   }
 
   const setQuery = value => {
-    router.push(
-      { query: { ...router.query, [queryName]: encodeURI(value) } },
-      null,
-      { scroll: false }
-    );
+    setQueryString(value, queryName, router)
   };
 
   const handleChange = debounce(setQuery, 300);
