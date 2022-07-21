@@ -7,7 +7,7 @@ const schema = yup.object().shape({
     .max(100, 'Превышено максимальное количество символов'),
   description: yup.string()
     .required('Это обязательное поле'),
-  image: yup.string()
+  image: yup.mixed()
     .required('Загрузите изображение'),
 });
 

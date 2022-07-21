@@ -99,10 +99,7 @@ export const selectionSlice = createSlice({
 			state.userCompilations = action.payload
 		},
 		[createCompilation.fulfilled]: (state, action) => {
-			state.userCompilations = {
-				...state.userCompilations,
-				...action.payload
-			}
+			state.userCompilations.data.push(action.payload);
 		}
 	}
 });
