@@ -59,9 +59,9 @@ const AddToMyCompilation = ({ onClose }) => {
       />
 
       {isLoading ?
-        <p className={classNames("empty", s.empty)}>
+        <div className={classNames("empty", s.empty)}>
           <Loader/>
-        </p> :
+        </div> :
         data?.length ?
           <div className={s.wrapper}>
             {data.map(i =>

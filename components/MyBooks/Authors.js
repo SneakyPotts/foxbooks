@@ -61,15 +61,17 @@ const Authors = () => {
     }
 
     {isLoading ?
-      <p className={classNames("empty", styles.empty)}>
+      <div className={classNames("empty", styles.empty)}>
         <Loader/>
-      </p> :
+      </div> :
       data?.length ?
         <div className={styles.grid}>
           {data.map(i =>
-            <div className={styles.gridItem}>
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
               <AuthorCard
-                key={i?.id}
                 data={i}
               />
             </div>

@@ -70,9 +70,9 @@ const Reviews = () => {
     }
 
     {isLoading
-      ? <p className={classNames("empty", styles.empty)}>
+      ? <div className={classNames("empty", styles.empty)}>
           <Loader/>
-        </p>
+        </div>
       : <div className={classNames(styles.grid, styles.reviewGrid)}>
         {userReviews?.map(i =>
           <div
