@@ -43,9 +43,10 @@ export default class SelectionService {
 	static async getUserCompilations({
 		sortBy = '1',
 		compType = '3',
+		page = 1,
 		letter = ''
 	}) {
-		return api.get(`${API_URL}/compilations/user?sortBy=${sortBy}&compType=${compType}${letter && `&letter=${letter}`}`)
+		return api.get(`${API_URL}/compilations/user?sortBy=${sortBy}&compType=${compType}&page=${page}${letter && `&letter=${letter}`}`)
 	}
 
 	static async addBookToCompilation(data) {

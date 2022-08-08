@@ -13,8 +13,10 @@ import {useRouter} from "next/router";
 import Button from "../shared/common/Button/Button";
 import CreateCompilationPopup from "../CreateCompilationPopup";
 import Loader from "../shared/common/Loader";
-import {getUserCompilations} from "../../store/selectionSlice";
+import {setUserCompilations} from "../../store/selectionSlice";
 import {setQueryString} from "../../utils";
+import ShowAll from "../shared/common/showAll/ShowAll";
+import SelectionService from "../../http/SelectionService";
 
 const filter1 = [
   {
@@ -50,20 +52,44 @@ const Selections = () => {
 
   const {innerWidthWindow} = useSelector(state => state.common)
   const {profile} = useSelector(state => state.profile)
-  const {data} = useSelector(state => state.selection.userCompilations)
+  const data = useSelector(state => state.selection.userCompilations)
 
   const [stateIndex, setStateIndex] = useState(null)
   const [createPopupIsVisible, setCreatePopupIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true)
+
+  const [lastPage, setLastPage] = useState(1);
+  const [page, setPage] = useState(1);
 
   const onChange = value => {
     setQueryString(value, 'letter', router)
   }
 
   useEffect(() => {
-    dispatch(getUserCompilations(router.query))
-      .then(() => setIsLoading(false))
-  }, [router.query])
+    if (page > 1) {
+      setIsLoading(true);
+      (async () => {
+        SelectionService.getUserCompilations({...router.query, page})
+          .then(response => {
+            dispatch(setUserCompilations([...data, ...response.data.data.data]));
+            setLastPage(response.data.data.last_page);
+            setIsLoading(false);
+          });
+      })()
+    }
+  }, [page]);
+
+  useEffect(() => {
+    (async () => {
+      setPage(1);
+      SelectionService.getUserCompilations(router.query)
+        .then(response => {
+          dispatch(setUserCompilations(response.data.data.data));
+          setLastPage(response.data.data.last_page);
+          setIsLoading(false);
+        });
+    })()
+  }, [router.query]);
 
   return <>
     {innerWidthWindow > 768 &&
@@ -163,12 +189,8 @@ const Selections = () => {
       </div>
     }
 
-    {isLoading ?
-      <p className={classNames("empty", styles.empty)}>
-        <Loader/>
-      </p> :
-      data?.length ?
-        <div className={classNames(styles.grid, styles.compilationsGrid)}>
+    {data?.length
+      ? <div className={classNames(styles.grid, styles.compilationsGrid)}>
           {data.map(i =>
             <div className={styles.gridItem}>
               <CompilationItem
@@ -178,14 +200,32 @@ const Selections = () => {
               />
             </div>
           )}
-        </div> :
-        <p className={classNames("empty", styles.empty)}>Пусто</p>
+        </div>
+      : <p className={classNames("empty", styles.empty)}>Пусто</p>
+    }
+
+    {isLoading
+      ? <p className={classNames("empty", styles.empty)}>
+          <Loader/>
+        </p>
+      : null
     }
 
     {createPopupIsVisible &&
       <CreateCompilationPopup
         onClose={() => setCreatePopupIsVisible(false)}
       />
+    }
+
+    {lastPage > 1 && page !== lastPage
+      ? <ShowAll
+        text={'Показать ещё'}
+        externalClass={styles.onlyDesctop}
+        arrowSecondary
+        showMore={true}
+        setPage={setPage}
+      />
+      : null
     }
   </>
 };

@@ -9,8 +9,37 @@ const ShowAll = ({
   title,
   url = '/',
   externalClass,
-  arrowSecondary
+  arrowSecondary,
+  showMore = null,
+  setPage,
 }) => {
+  if (showMore) {
+    const handleChange = () => {
+      setPage(prev => prev + 1)
+    };
+
+    return (
+      <div className={classNames(st.showAll, {[st.showMoreBtn]: showMore})}>
+        {title && <h2 className={"title"}>{title}</h2>}
+        <button
+          type={'button'}
+          onClick={handleChange}
+        >
+          <a className={st.showAllLink}>
+            {text}
+            {arrowSecondary ?
+              <span className={st.iconAll}>
+              <ArrowAll className={st.arrowAll} />
+            </span>
+              :
+              <ArrowRight className={st.test} />
+            }
+          </a>
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className={classNames(st.showAll, externalClass)}>
       {title && <h2 className={"title"}>{title}</h2>}

@@ -34,7 +34,7 @@ export default class AuthorService {
 		return api.delete(`${API_URL}/profile/lists/authors?author_id=${id}`, { author_id: id })
 	}
 
-	static async getUserAuthors({letter = ''}) {
-		return api.get(`${API_URL}/profile/lists/authors${letter && `?letter=${letter}`}`)
+	static async getUserAuthors({letter = '', page = 1}) {
+		return api.get(`${API_URL}/profile/lists/authors?page=${page}${letter && `&letter=${letter}`}`)
 	}
 }

@@ -37,12 +37,12 @@ export default class BookService {
 		)
 	}
 
-	static async getMyBooks({sortBy = 5, status = "0", findByTitle = ''}) {
-		return api.get(`${API_URL}/profile/lists/books?sortBy=${sortBy}&status=${status}${findByTitle && `&findByTitle=${findByTitle}`}`)
+	static async getMyBooks({sortBy = 5, status = "0", page = 1, findByTitle = ''}) {
+		return api.get(`${API_URL}/profile/lists/books?sortBy=${sortBy}&status=${status}&page=${page}${findByTitle && `&findByTitle=${findByTitle}`}`)
 	}
 
-	static async getMyAudioBooks({sortBy = 5, status = "0", findByTitle = ''}) {
-		return api.get(`${API_URL}/profile/lists/audio-books?sortBy=${sortBy}&status=${status}${findByTitle && `&findByTitle=${findByTitle}`}`)
+	static async getMyAudioBooks({sortBy = 5, status = "0", page = 1, findByTitle = ''}) {
+		return api.get(`${API_URL}/profile/lists/audio-books?sortBy=${sortBy}&status=${status}&page=${page}${findByTitle && `&findByTitle=${findByTitle}`}`)
 	}
 
 	static async getBooksByLetter({letter, type, page = 1}) {
