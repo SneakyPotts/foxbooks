@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Stars from "../shared/common/stars/Stars";
 import {useRouter} from "next/router";
 import Link from 'next/link'
-import { InView } from 'react-intersection-observer';
+import {InView} from 'react-intersection-observer';
 import {getBooksByLetter} from "../../store/bookSlice";
 import {getAuthorsByLetter} from "../../store/authorSlice";
 import Loader from "../shared/common/Loader";
@@ -24,8 +24,8 @@ const LetterListPage = () => {
 
   const isBook = router.query?.type === 'books' || router.query?.type === 'audioBooks'
 
-  const { booksByLetter } = useSelector(state => state.book)
-  const { authorsByLetter } = useSelector(state => state.author)
+  const {booksByLetter} = useSelector(state => state.book)
+  const {authorsByLetter} = useSelector(state => state.author)
 
   const data = useMemo(() => {
     return isBook ? booksByLetter?.data : authorsByLetter?.data
@@ -40,7 +40,7 @@ const LetterListPage = () => {
   }, [isBook, booksByLetter, authorsByLetter])
 
   const fetch = page => {
-    if(isBook) {
+    if (isBook) {
       dispatch(getBooksByLetter({
         query: router.asPath,
         letter: router.query?.letter,
@@ -63,7 +63,7 @@ const LetterListPage = () => {
   }
 
   const dynamicLoad = inView => {
-    if(inView && page < lastPage) {
+    if (inView && page < lastPage) {
       setIsLoading(true)
       setPage(page + 1)
       fetch(page + 1)
@@ -77,9 +77,9 @@ const LetterListPage = () => {
 
   return (
     <div className={classNames('container', styles.container)}>
-      <Categories />
+      <Categories/>
       <div className={styles.block}>
-        <Alphabet />
+        <Alphabet/>
 
         {isBook &&
           <div className={styles.filters}>
@@ -95,10 +95,11 @@ const LetterListPage = () => {
         </h2>
 
         {isFirstLoading ?
-          <p className="empty"><Loader /></p> :
+          <div className="empty"><Loader/></div> :
           data?.length ?
             <div className={styles.tableWrapper}>
               <table className={styles.table}>
+                <tbody>
                 {data?.map(i =>
                   isBook ? (
                     <tr key={i?.id}>
@@ -116,7 +117,7 @@ const LetterListPage = () => {
                           <a className={styles.tableLink}>{i?.authors[0]?.author}</a>
                         </Link>
                       </td>
-                      <td><Stars value={i?.rates_avg} /> {i?.rates_avg} ({i?.rates_count})</td>
+                      <td><Stars value={i?.rates_avg}/> {i?.rates_avg} ({i?.rates_count})</td>
                     </tr>
                   ) : (
                     <tr key={i?.id}>
@@ -135,8 +136,9 @@ const LetterListPage = () => {
                   skip={isLoading}
                   onChange={inView => dynamicLoad(inView)}
                 />
+                </tbody>
               </table>
-              {isLoading && <p className="empty"><Loader/></p>}
+              {isLoading && <div className="empty"><Loader/></div>}
             </div> :
             <p className="empty">{isBook ? 'Книг не найдено' : 'Авторы не найдены'}</p>
         }
