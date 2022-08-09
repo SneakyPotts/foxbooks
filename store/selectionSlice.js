@@ -31,14 +31,6 @@ export const editCompilation = createAsyncThunk(
 	}
 )
 
-export const getUserCompilations = createAsyncThunk(
-	'selection/getUserCompilations',
-	async (data) => {
-		const response = await SelectionService.getUserCompilations(data)
-		return response.data.data
-	}
-)
-
 export const createCompilation = createAsyncThunk(
 	'selection/createCompilation',
 	async (data) => {
@@ -67,6 +59,9 @@ export const selectionSlice = createSlice({
 			state.selectionById.compilation.generalBooksCount += 1
 			state.selectionById.books.data.push(action.payload)
 		},
+		setUserCompilations: (state, action) => {
+			state.userCompilations = action.payload
+		}
 	},
 	extraReducers: {
 		[addCompilationToFavorite.fulfilled]: (state, action) => {
@@ -95,11 +90,9 @@ export const selectionSlice = createSlice({
 				...action.payload
 			}
 		},
-		[getUserCompilations.fulfilled]: (state, action) => {
-			state.userCompilations = action.payload
-		},
 		[createCompilation.fulfilled]: (state, action) => {
-			state.userCompilations.data.push(action.payload);
+			if (state.userCompilations.length % 9 !== 0)
+				state.userCompilations.push(action.payload);
 		}
 	}
 });
@@ -108,7 +101,8 @@ export const {
 	setSelections,
 	setSelectionById,
 	deleteBookFromSelection,
-	addBookToSelection
+	addBookToSelection,
+	setUserCompilations
 } = selectionSlice.actions;
 
 export default selectionSlice.reducer;
