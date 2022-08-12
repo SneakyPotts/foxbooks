@@ -40,6 +40,7 @@ const AudioPlayer = () => {
   const [currentChapter, setCurrentChapter] = useState(null)
 
   const [isClosed, setIsClosed] = useState(false)
+  const [mute, setMute] = useState(0);
 
   const duration = +player.current?.getDuration() || 0
 
@@ -81,6 +82,21 @@ const AudioPlayer = () => {
     if(nextChapterIndex !== playerData?.chapters?.length) {
       setCurrentChapter(playerData?.chapters[nextChapterIndex]?.id)
     }
+  }
+
+  const handleMute = () => {
+    if (!mute) {
+      setMute(settings?.volume)
+      setSettings({...settings, volume: 0})
+    } else {
+      setMute(0)
+      setSettings({...settings, volume: mute})
+    }
+  }
+
+  const handleSetValue = value => {
+    setSettings({...settings, volume: value})
+    setMute(0)
   }
 
   return (
@@ -204,12 +220,12 @@ const AudioPlayer = () => {
           }
         </div>
         <div className={classNames(styles.playerVolume, styles.playerControlItem)}>
-          <div onClick={() => setSettings({...settings, volume: 0})}>
-            <PlayerVolume/>
+          <div onClick={handleMute}>
+            <PlayerVolume mute={mute}/>
           </div>
           <InputRange
             value={settings?.volume}
-            setValue={value => setSettings({...settings, volume: value})}
+            setValue={handleSetValue}
             max={'1'}
             step={'0.1'}
             barColor={'rgba(255, 255, 255, 0.5)'}

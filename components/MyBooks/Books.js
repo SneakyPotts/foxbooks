@@ -201,9 +201,11 @@ const Books = ({ isAudio }) => {
     {data?.length
       ? <div className={styles.grid}>
           {data.map(i =>
-            <div className={styles.gridItem}>
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
               <Book
-                key={i?.id}
                 book={i}
                 withDelete
                 type={i?.type}
@@ -258,17 +260,6 @@ const Books = ({ isAudio }) => {
           />
         </div>
       </ModalWindow>
-    }
-
-    {lastPage > 1 && page !== lastPage
-      ? <ShowAll
-          text={'Показать ещё'}
-          externalClass={styles.onlyDesctop}
-          arrowSecondary
-          showMore={true}
-          setPage={setPage}
-        />
-      : null
     }
   </>
 };
