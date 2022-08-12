@@ -33,8 +33,11 @@ const Reader = (props) => {
 
 export default Reader;
 
-export async function getServerSideProps ({ query }) {
-	const bookRead = await ReaderService.getBookRead(query?.id, query?.page)
+export async function getServerSideProps ({ req, query }) {
+  const { cookies } = req
+  const token = cookies.token
+
+	const bookRead = await ReaderService.getBookRead(query?.id, query?.page, token)
 	const bookChapters = await ReaderService.getBookChapters(query?.id)
 
   return {

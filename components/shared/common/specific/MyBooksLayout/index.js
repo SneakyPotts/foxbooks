@@ -68,6 +68,7 @@ const MyBooksLayout = ({ children }) => {
   const tabIndex = tabs.findIndex(i => router.pathname.includes(i?.path))
 
   const { innerWidthWindow, headerIsVisible } = useSelector(state => state.common)
+  const { userReadingProgress } = useSelector(state => state.book)
 
   const dataBooks = [
     {
@@ -157,7 +158,7 @@ const MyBooksLayout = ({ children }) => {
 
         <h1 className={classNames('title', styles.title)}>Мои книги</h1>
 
-        {dataBooks?.length ?
+        {userReadingProgress?.length ?
           <Swiper
             modules={[Navigation]}
             navigation={{
@@ -167,7 +168,7 @@ const MyBooksLayout = ({ children }) => {
             spaceBetween={innerWidthWindow > 768 ? 24 : 10}
             slidesPerView={'auto'}
           >
-            {dataBooks.map(i => (
+            {userReadingProgress.map(i => (
               <SwiperSlide
                 key={i?.id}
                 className={classNames(
@@ -177,14 +178,14 @@ const MyBooksLayout = ({ children }) => {
                   }
                 )}
               >
-                <Link href="/reader">
+                <Link href={i?.type === 'books' ? `/reader?id=${i?.book_id}&page=${i?.page_number}` : `/book/${i?.book_id}?type=audioBooks`}>
                   <a className={styles.slideLink}>
                     <span className={styles.slideProgress}>
                       {i?.progress}%
                     </span>
 
                     <Image
-                      src={i?.img}
+                      src={i?.image.link || '/reviewsBookCovers/cover2.png'}
                       width={i?.type === 'audioBooks' ? 195 : 129}
                       height={195}
                       layout={"responsive"}
