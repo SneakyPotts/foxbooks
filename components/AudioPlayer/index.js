@@ -18,6 +18,7 @@ import {setPlayerVisibility} from "../../store/commonSlice";
 import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
 import {resetPlayerData} from "../../store/playerSlice";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -43,6 +44,8 @@ const AudioPlayer = () => {
   const [mute, setMute] = useState(0);
 
   const duration = +player.current?.getDuration() || 0
+
+  const playerBody = useRef(null);
 
   const changeSeek = value => {
     player.current?.seekTo(parseInt(value))
@@ -99,10 +102,13 @@ const AudioPlayer = () => {
     setMute(0)
   }
 
+  useOnClickOutside(playerBody, hideDrops);
+
   return (
     <div
       className={classNames(styles.wrapper, {[styles.hide] : isClosed})}
       onClick={hideDrops}
+      ref={playerBody}
     >
       <BackBtn
         onClick={closePlayer}
