@@ -95,7 +95,7 @@ const LetterListPage = () => {
         </h2>
 
         {isFirstLoading ?
-          <p className="empty"><Loader /></p> :
+          <div className="empty"><Loader /></div> :
           data?.length ?
             <div className={styles.tableWrapper}>
               <table className={styles.table}>
@@ -136,7 +136,7 @@ const LetterListPage = () => {
                   onChange={inView => dynamicLoad(inView)}
                 />
               </table>
-              {isLoading && <p className="empty"><Loader/></p>}
+              {isLoading && <div className="empty"><Loader/></div>}
             </div> :
             <p className="empty">{isBook ? 'Книг не найдено' : 'Авторы не найдены'}</p>
         }
