@@ -99,6 +99,7 @@ const LetterListPage = () => {
           data?.length ?
             <div className={styles.tableWrapper}>
               <table className={styles.table}>
+                <tbody>
                 {data?.map(i =>
                   isBook ? (
                     <tr key={i?.id}>
@@ -135,6 +136,7 @@ const LetterListPage = () => {
                   skip={isLoading}
                   onChange={inView => dynamicLoad(inView)}
                 />
+                </tbody>
               </table>
               {isLoading && <div className="empty"><Loader/></div>}
             </div> :
