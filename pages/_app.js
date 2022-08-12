@@ -17,12 +17,12 @@ function MyApp({Component, pageProps}) {
         src="https://use.fontawesome.com/releases/v5.13.1/js/all.js"
         data-auto-replace-svg="nest"
       />
-      <NextSeo
-        defaultTitle={'FoxBook'}
-        titleTemplate={'%s | FoxBook'}
-        title={pageProps.SEO?.title}
-        description={pageProps.SEO?.description}
-      />
+      {/*<NextSeo*/}
+      {/*  defaultTitle={'FoxBook'}*/}
+      {/*  titleTemplate={'%s | FoxBook'}*/}
+      {/*  title={pageProps.SEO?.title}*/}
+      {/*  description={pageProps.SEO?.description}*/}
+      {/*/>*/}
       <Layout>
         <main className="main">
           {getLayout(

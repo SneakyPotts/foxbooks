@@ -70,63 +70,6 @@ const MyBooksLayout = ({ children }) => {
   const { innerWidthWindow, headerIsVisible } = useSelector(state => state.common)
   const { userReadingProgress } = useSelector(state => state.book)
 
-  const dataBooks = [
-    {
-      id: '0',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-    {
-      id: '1',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '10',
-    },
-    {
-      id: '2',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-    {
-      id: '3',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '13',
-    },
-    {
-      id: '4',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-    {
-      id: '5',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'audioBooks',
-      progress: '54',
-    },
-    {
-      id: '6',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '1',
-    },
-    {
-      id: '7',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'audioBooks',
-      progress: '37',
-    },
-    {
-      id: '8',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-  ];
-
   const handleLinkClick = () => {
     if(innerWidthWindow <= 768) {
       dispatch(setHeaderVisibility(false))
