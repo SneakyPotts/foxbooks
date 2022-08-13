@@ -335,9 +335,13 @@
   //  background: #fff;
   //}
   .dropDown {
+    &ContentPopular {
+      flex-wrap: wrap;
+    }
     &ContentPopularItem {
+      flex-basis: 30%;
       &:nth-of-type(n + 4) {
-        display: none;
+        //display: none;
       }
     }
     &ShowMore a {

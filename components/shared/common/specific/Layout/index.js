@@ -129,7 +129,7 @@ const Layout = ({ children }) => {
       <Header socket={socket} />
       {children}
       {playerIsVisible && <AudioPlayer />}
-      {innerWidthWindow <= 768 && position > 500 && (
+      {innerWidthWindow >= 768 && position > 500 && (
         <div onClick={scrollUp} className={st.buttonUp}>
           <ArrowUp />
         </div>

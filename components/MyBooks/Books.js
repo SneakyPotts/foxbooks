@@ -21,6 +21,7 @@ import {useRouter} from "next/router";
 import Loader from "../shared/common/Loader";
 import {setQueryString} from "../../utils";
 import ShowAll from "../shared/common/showAll/ShowAll";
+import s from "../SearchPage/styles.module.scss";
 
 const Books = ({ isAudio }) => {
   const filter1 = [
@@ -260,6 +261,16 @@ const Books = ({ isAudio }) => {
           />
         </div>
       </ModalWindow>
+    }
+    {lastPage > 1 && page !== lastPage
+      ? <ShowAll
+        text={'Показать ещё'}
+        externalClass={s.onlyDesctop}
+        arrowSecondary
+        showMore={true}
+        setPage={setPage}
+      />
+      : null
     }
   </>
 };
