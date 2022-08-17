@@ -4,6 +4,8 @@ import InputRange from "../shared/common/InputRange/InputRange";
 import {useRouter} from "next/router";
 import {useSelector} from "react-redux";
 
+//FIXME: touch event on input range for click;
+
 const PageProgress = () => {
     const router = useRouter()
 
@@ -20,6 +22,10 @@ const PageProgress = () => {
         <div
             className={styles.progress}
             onMouseUp={() => router.push({ query: { ...router.query, page: currentPage } })}
+            onTouchEnd={() => {
+                console.log('end currentPage',currentPage)
+                router.push({query: {...router.query, page: currentPage}})
+            }}
         >
             <div className={styles.progressWrapper}>
                 <span>{index === -1 ? bookChapters[bookChapters.length - 1]?.title : bookChapters[index - 1]?.title}</span>
