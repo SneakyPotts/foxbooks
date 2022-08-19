@@ -13,7 +13,7 @@ const Alphabet = () => {
         <p className={css.title}>Автор:</p>
         <ul className={css.alphabet}>
           {alphabet.map(({ id, name }) => (
-            <li key={id} className={classNames(css.letter, {[css.active]: decodeURI(router.query?.letter) === name})}>
+            <li key={id} className={classNames(css.letter, {[css.active]: decodeURI(router.query?.letter) === name && !router.query?.type})}>
               <Link href={`/letterlist/${encodeURI(name)}`}>
                 <a>{name}</a>
               </Link>
@@ -25,7 +25,7 @@ const Alphabet = () => {
         <p className={css.title}>Книга:</p>
         <ul className={css.alphabet}>
           {alphabet.map(({ id, name }) => (
-            <li key={id} className={classNames(css.letter, {[css.active]: decodeURI(router.query?.letter) === name})}>
+            <li key={id} className={classNames(css.letter, {[css.active]: decodeURI(router.query?.letter) === name && router.query?.type})}>
               <Link href={`/letterlist/${encodeURI(name)}?type=books`}>
                 <a>{name}</a>
               </Link>

@@ -149,7 +149,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
                     alt="Avatar"
                     width="24"
                     height="24"
-                    placeholder="blur"
+                    // placeholder="blur" // рекомендуют убрать для изображений менее 40х40, для повышения производительности
                     blurDataURL="/blur.webp"
                   />
                 ) : (

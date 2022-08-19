@@ -95,10 +95,11 @@ const LetterListPage = () => {
         </h2>
 
         {isFirstLoading ?
-          <p className="empty"><Loader /></p> :
+          <div className="empty"><Loader /></div> :
           data?.length ?
             <div className={styles.tableWrapper}>
               <table className={styles.table}>
+                <tbody>
                 {data?.map(i =>
                   isBook ? (
                     <tr key={i?.id}>
@@ -135,8 +136,9 @@ const LetterListPage = () => {
                   skip={isLoading}
                   onChange={inView => dynamicLoad(inView)}
                 />
+                </tbody>
               </table>
-              {isLoading && <p className="empty"><Loader/></p>}
+              {isLoading && <div className="empty"><Loader/></div>}
             </div> :
             <p className="empty">{isBook ? 'Книг не найдено' : 'Авторы не найдены'}</p>
         }

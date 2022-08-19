@@ -313,6 +313,10 @@
     line-height: 35px;
     text-align: center;
     margin: 53px 0 10px;
+
+    &:hover {
+      color: $text-hover;
+    }
   }
   &Author {
     color: var(--author-color);
@@ -799,7 +803,8 @@
 
       span {
         &:first-of-type {
-          display: none;
+          //display: none;
+          margin-right: auto;
         }
       }
     }

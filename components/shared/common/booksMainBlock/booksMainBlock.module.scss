@@ -47,5 +47,9 @@
   .booksGrid {
     gap: 30px 10px;
     justify-content: space-around;
+
+    & > div:last-of-type {
+      display: none;
+    }
   }
 }

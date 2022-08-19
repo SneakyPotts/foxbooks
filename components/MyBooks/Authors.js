@@ -80,9 +80,11 @@ const Authors = () => {
     {data?.length
       ? <div className={styles.grid}>
           {data.map(i =>
-            <div className={styles.gridItem}>
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
               <AuthorCard
-                key={i?.id}
                 data={i}
               />
             </div>

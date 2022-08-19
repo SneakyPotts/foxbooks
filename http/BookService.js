@@ -96,4 +96,14 @@ export default class BookService {
 	static async audioBookChapters(audiobook) {
 		return axios.get(`${API_URL}/audio-books/${audiobook}/chapters`)
 	}
+
+	static async getUserReadingProgresses(token) {
+		return axios.get(`${API_URL}/profile/lists/progresses`,
+			{
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			}
+		)
+	}
 }

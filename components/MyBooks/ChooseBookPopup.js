@@ -115,7 +115,7 @@ const ChooseBookPopup = ({onClose}) => {
         </div>
 
         {isLoading ?
-          <p className={classNames("empty", styles.searchEmpty)}><Loader /></p> :
+          <div className={classNames("empty", styles.searchEmpty)}><Loader /></div> :
           !sortedBooks?.length && !sortedAudioBooks?.length ?
             <p className={classNames("empty", styles.searchEmpty)}>Ничего не найдено</p> :
             <>

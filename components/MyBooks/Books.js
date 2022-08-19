@@ -21,6 +21,7 @@ import {useRouter} from "next/router";
 import Loader from "../shared/common/Loader";
 import {setQueryString} from "../../utils";
 import ShowAll from "../shared/common/showAll/ShowAll";
+import s from "../SearchPage/styles.module.scss";
 
 const Books = ({ isAudio }) => {
   const filter1 = [
@@ -201,9 +202,11 @@ const Books = ({ isAudio }) => {
     {data?.length
       ? <div className={styles.grid}>
           {data.map(i =>
-            <div className={styles.gridItem}>
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
               <Book
-                key={i?.id}
                 book={i}
                 withDelete
                 type={i?.type}
@@ -259,15 +262,14 @@ const Books = ({ isAudio }) => {
         </div>
       </ModalWindow>
     }
-
     {lastPage > 1 && page !== lastPage
       ? <ShowAll
-          text={'Показать ещё'}
-          externalClass={styles.onlyDesctop}
-          arrowSecondary
-          showMore={true}
-          setPage={setPage}
-        />
+        text={'Показать ещё'}
+        externalClass={s.onlyDesctop}
+        arrowSecondary
+        showMore={true}
+        setPage={setPage}
+      />
       : null
     }
   </>

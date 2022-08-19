@@ -27,6 +27,10 @@ export async function getServerSideProps ({query}) {
 
 	return {
 		props: {
+      SEO: {
+        title: 'test text title',
+        description: 'some test description'
+      },
 		  books: data?.data?.mainPageBookFilter,
             categories: data?.data?.genres,
             dailyHotUpdates: data?.data?.dailyHotUpdates,

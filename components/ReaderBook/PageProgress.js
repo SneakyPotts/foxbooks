@@ -20,6 +20,7 @@ const PageProgress = () => {
         <div
             className={styles.progress}
             onMouseUp={() => router.push({ query: { ...router.query, page: currentPage } })}
+            onTouchEnd={() => router.push({query: {...router.query, page: currentPage}})}
         >
             <div className={styles.progressWrapper}>
                 <span>{index === -1 ? bookChapters[bookChapters.length - 1]?.title : bookChapters[index - 1]?.title}</span>

@@ -15,7 +15,7 @@ const MarksPopup = ({ handleMarkClick }) => {
             <li
               key={i?.id}
               className={classNames(styles.popupListItem, styles.markListItem)}
-              onClick={() => handleMarkClick(i?.page?.page_number)}
+              onClick={() => handleMarkClick(i?.page?.page_number || i?.page[0]?.page_number)}
             >
               Закладка (глава {bookChapters?.findIndex(j => j?.id === i?.chapter?.id) + 1} из {bookChapters?.length}): {i?.chapter?.title}
             </li>

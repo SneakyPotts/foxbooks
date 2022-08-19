@@ -18,6 +18,7 @@ import {setPlayerVisibility} from "../../store/commonSlice";
 import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
 import {resetPlayerData} from "../../store/playerSlice";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -40,8 +41,11 @@ const AudioPlayer = () => {
   const [currentChapter, setCurrentChapter] = useState(null)
 
   const [isClosed, setIsClosed] = useState(false)
+  const [mute, setMute] = useState(0);
 
   const duration = +player.current?.getDuration() || 0
+
+  const playerBody = useRef(null);
 
   const changeSeek = value => {
     player.current?.seekTo(parseInt(value))
@@ -83,10 +87,28 @@ const AudioPlayer = () => {
     }
   }
 
+  const handleMute = () => {
+    if (!mute) {
+      setMute(settings?.volume)
+      setSettings({...settings, volume: 0})
+    } else {
+      setMute(0)
+      setSettings({...settings, volume: mute})
+    }
+  }
+
+  const handleSetValue = value => {
+    setSettings({...settings, volume: value})
+    setMute(0)
+  }
+
+  useOnClickOutside(playerBody, hideDrops);
+
   return (
     <div
       className={classNames(styles.wrapper, {[styles.hide] : isClosed})}
       onClick={hideDrops}
+      ref={playerBody}
     >
       <BackBtn
         onClick={closePlayer}
@@ -204,12 +226,12 @@ const AudioPlayer = () => {
           }
         </div>
         <div className={classNames(styles.playerVolume, styles.playerControlItem)}>
-          <div onClick={() => setSettings({...settings, volume: 0})}>
-            <PlayerVolume/>
+          <div onClick={handleMute}>
+            <PlayerVolume mute={mute}/>
           </div>
           <InputRange
             value={settings?.volume}
-            setValue={value => setSettings({...settings, volume: value})}
+            setValue={handleSetValue}
             max={'1'}
             step={'0.1'}
             barColor={'rgba(255, 255, 255, 0.5)'}

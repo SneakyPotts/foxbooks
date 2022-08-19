@@ -68,63 +68,7 @@ const MyBooksLayout = ({ children }) => {
   const tabIndex = tabs.findIndex(i => router.pathname.includes(i?.path))
 
   const { innerWidthWindow, headerIsVisible } = useSelector(state => state.common)
-
-  const dataBooks = [
-    {
-      id: '0',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-    {
-      id: '1',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '10',
-    },
-    {
-      id: '2',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-    {
-      id: '3',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '13',
-    },
-    {
-      id: '4',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-    {
-      id: '5',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'audioBooks',
-      progress: '54',
-    },
-    {
-      id: '6',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '1',
-    },
-    {
-      id: '7',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'audioBooks',
-      progress: '37',
-    },
-    {
-      id: '8',
-      img: '/reviewsBookCovers/cover2.png',
-      type: 'books',
-      progress: '23',
-    },
-  ];
+  const { userReadingProgress } = useSelector(state => state.book)
 
   const handleLinkClick = () => {
     if(innerWidthWindow <= 768) {
@@ -157,7 +101,7 @@ const MyBooksLayout = ({ children }) => {
 
         <h1 className={classNames('title', styles.title)}>Мои книги</h1>
 
-        {dataBooks?.length ?
+        {userReadingProgress?.length ?
           <Swiper
             modules={[Navigation]}
             navigation={{
@@ -167,7 +111,7 @@ const MyBooksLayout = ({ children }) => {
             spaceBetween={innerWidthWindow > 768 ? 24 : 10}
             slidesPerView={'auto'}
           >
-            {dataBooks.map(i => (
+            {userReadingProgress.map(i => (
               <SwiperSlide
                 key={i?.id}
                 className={classNames(
@@ -177,14 +121,14 @@ const MyBooksLayout = ({ children }) => {
                   }
                 )}
               >
-                <Link href="/reader">
+                <Link href={i?.type === 'books' ? `/reader?id=${i?.book_id}&page=${i?.page_number}` : `/book/${i?.book_id}?type=audioBooks`}>
                   <a className={styles.slideLink}>
                     <span className={styles.slideProgress}>
                       {i?.progress}%
                     </span>
 
                     <Image
-                      src={i?.img}
+                      src={i?.image.link || '/reviewsBookCovers/cover2.png'}
                       width={i?.type === 'audioBooks' ? 195 : 129}
                       height={195}
                       layout={"responsive"}

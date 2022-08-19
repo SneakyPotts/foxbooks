@@ -12,6 +12,7 @@ const initialState = {
 	booksByAuthor: [],
 	audioBooksByAuthor: [],
 	audioFlag: false,
+	userReadingProgress: [],
 };
 
 export const getBooksByAuthor = createAsyncThunk(
@@ -89,6 +90,9 @@ export const bookSlice = createSlice({
 		},
 		audioBook: (state, action) => {
 			state.audioFlag = action.payload;
+		},
+		setUserReadingProgress: (state, action) => {
+			state.userReadingProgress = action.payload;
 		}
 	},
 	extraReducers: {
@@ -125,7 +129,8 @@ export const {
 	setBooks,
 	setBook,
 	setBookQuotes,
-	audioBook
+	audioBook,
+	setUserReadingProgress
 } = bookSlice.actions;
 
 export default bookSlice.reducer;
