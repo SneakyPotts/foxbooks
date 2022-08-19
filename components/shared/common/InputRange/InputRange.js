@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from "./index.module.scss";
 import classNames from "classnames";
-
-//FIXME: delete log code
 
 const InputRange = ({
 	value,
@@ -25,11 +23,6 @@ const InputRange = ({
 		}
 		return arr;
 	}
-
-	useEffect(() => {
-		console.log('value',value)
-		// setValue(value)
-	}, [value]);
 
 	return (
 		<div className={classNames(styles.inputWrapper, externalWrapperClass)}>
@@ -61,10 +54,7 @@ const InputRange = ({
 				max={max}
 				step={step}
 				value={value}
-				onChange={(e) => {
-					console.log('changed value ' + e.target.value)
-					setValue(e.target.value)
-				}}
+				onChange={(e) => setValue(e.target.value)}
 				className={classNames(styles.input, externalClass)}
 			/>
 		</div>
