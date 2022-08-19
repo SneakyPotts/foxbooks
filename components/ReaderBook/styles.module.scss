@@ -803,7 +803,8 @@
 
       span {
         &:first-of-type {
-          display: none;
+          //display: none;
+          margin-right: auto;
         }
       }
     }

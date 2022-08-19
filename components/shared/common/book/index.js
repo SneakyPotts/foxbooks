@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -37,6 +37,7 @@ const Book = ({
   const dispatch = useDispatch();
 
   const { innerWidthWindow } = useSelector(state => state.common);
+  const { isAuth } = useSelector(state => state.auth);
 
   const [changeIcon, setChangeIcon] = useState(book?.in_favorite);
 
@@ -244,7 +245,7 @@ const Book = ({
           </div>
         )}
 
-        {flagSwitcher && (
+        {(flagSwitcher && isAuth) && (
           <div>
             <span
                 className={classnames(st.addIcon, {[st.hide]: changeIcon})}
