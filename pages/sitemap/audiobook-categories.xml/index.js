@@ -1,11 +1,11 @@
 import {getServerSideSitemapIndex} from "next-sitemap";
-import CategoriesService from "../../../http/CategoriesService";
+import SelectionService from "../../../http/SitemapService";
 
 export async function getServerSideProps(ctx) {
   let fields = [];
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
-  const audioCategories = await CategoriesService.getAudioCategoriesWithCount()
+  const audioCategories = await SelectionService.getCategories('audiobooks');
 
   audioCategories.data?.data?.map(item => {
     fields.push(

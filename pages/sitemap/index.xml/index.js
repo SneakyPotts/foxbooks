@@ -6,11 +6,12 @@ export async function getServerSideProps(ctx) {
 
   fields.push(
     `${baseUrl}sitemap/pages.xml`,
-    `${baseUrl}sitemap/book-categories.xml`,
-    `${baseUrl}sitemap/audiobook-categories.xml`,
     `${baseUrl}sitemap/books.xml`,
     `${baseUrl}sitemap/audiobooks.xml`,
+    `${baseUrl}sitemap/novelties.xml`,
     `${baseUrl}sitemap/selections.xml`,
+    `${baseUrl}sitemap/book-categories.xml`,
+    `${baseUrl}sitemap/audiobook-categories.xml`,
   )
 
   return getServerSideSitemapIndex(ctx, fields)
