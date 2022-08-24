@@ -37,10 +37,10 @@ const Navigation = ({ setModal, bottomOnly }) => {
             Книги
           </a>
         </Link>
-        <Link href="/audiobooks">
+        <Link href="/books?type=audioBooks&sortBy=1">
           <a
             className={`${css.link} ${css.linkStroke} ${
-                router.asPath.includes('/audiobooks')
+                router.asPath.includes('/books?type=audioBooks')
                 ? css.activeStroke
                 : css.link
             }`}

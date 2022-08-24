@@ -18,12 +18,12 @@ const BookFilters = ({
   onModal
 }) => {
   const router = useRouter();
-  const [currentIdx, setCurrentIdx] = useState(router.query[queryName] ? router.query[queryName] : 1);
+  const [currentIdx, setCurrentIdx] = useState(router.query[queryName]);
 
   const handleOnClick = value => {
     router.push({ query: {
         ...router.query,
-        [queryName]: value ? value : '1',
+        [queryName]: value,
         ['page']: 1
     } }, null, {
       scroll: false,
