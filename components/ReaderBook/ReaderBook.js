@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import DrawerPopup from "../shared/common/DrawerPopup";
 import Header from './Header'
-import TextWithQoutes from './TextWithQoutes'
+import TextWithQuotes from './TextWithQuotes'
 import ContentPopup from "./ContentPopup";
 import QuotesPopup from "./QuotesPopup";
 import EditPopup from "./EditPopup";
@@ -132,7 +132,7 @@ const ReaderBook = () => {
         </>
         }
 
-        <TextWithQoutes />
+        <TextWithQuotes />
 
         <MyPagination
           externalClass={styles.pagination}
