@@ -3,16 +3,20 @@ import {useSelector} from "react-redux";
 import Link from 'next/link';
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import AddQout from "./AddQout";
-import {highlight, rangeToObj, objToRange, addKey, keyObj} from './../../utils'
+import {highlight, rangeToObj, objToRange, addKey, keyObj, calcCoordinates} from './../../utils'
 import styles from './styles.module.scss'
 import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {setAuthPopupVisibility} from "../../store/commonSlice";
+import NotesPopup from "./NotesPopup";
 
 const options = {
 	replace: domNode => {
 		if(domNode?.name === 'a' || domNode?.name === 'html' || domNode?.name === 'body') {
+			if (domNode?.name === 'a')
+				return <NotesPopup title={domNode?.attribs.title}>{domNode?.children[0].data}</NotesPopup>
+
 			return <>
 				{domToReact(domNode?.children, options)}
 			</>
@@ -29,7 +33,7 @@ const options = {
 	}
 }
 
-const TextWithQoutes = () => {
+const TextWithQuotes = () => {
 	const dispatch = useDispatch()
 	const router = useRouter()
 	const article = useRef()
@@ -57,20 +61,7 @@ const TextWithQoutes = () => {
 	const [isError, setIsError] = useState(false)
 
 	const showTools = ev => {
-		const x = ev?.pageX || ev?.changedTouches[0]?.pageX
-		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-
-		const toolsWidth = 291
-		const toolsHeight = 162
-		const windowWidth = window.innerWidth
-		const windowHeight = window.innerHeight + window.scrollY
-		const deltaX = windowWidth - x
-		const deltaY = windowHeight - y
-
-		setToolsCoords({
-			x: toolsWidth >= deltaX ? x - toolsWidth : x,
-			y: toolsHeight >= deltaY ? y - toolsHeight : y
-		})
+		setToolsCoords(() => calcCoordinates(ev))
 		setToolsIsVisible(true)
 	}
 
@@ -345,4 +336,4 @@ const TextWithQoutes = () => {
 	)
 }
 
-export default TextWithQoutes
+export default TextWithQuotes
