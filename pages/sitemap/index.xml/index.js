@@ -12,6 +12,7 @@ export async function getServerSideProps(ctx) {
     `${baseUrl}sitemap/selections.xml`,
     `${baseUrl}sitemap/book-categories.xml`,
     `${baseUrl}sitemap/audiobook-categories.xml`,
+    `${baseUrl}sitemap/authors.xml`,
   )
 
   return getServerSideSitemapIndex(ctx, fields)

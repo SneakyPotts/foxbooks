@@ -9,7 +9,7 @@ export async function getServerSideProps(ctx) {
 
   categories.data?.data?.map(item => {
     fields.push(
-      `${baseUrl}books/${item?.slug}`,
+      `${baseUrl}categories/books/${item?.slug}`,
     )
   })
 
