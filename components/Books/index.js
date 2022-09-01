@@ -13,9 +13,9 @@ import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import Button from "../shared/common/Button/Button";
 import MobileFilterModal from "../MobileFilterModal";
 
-const Books = () => {
+const Books = ({booksType}) => {
   const router = useRouter();
-  const type = router.query?.type
+  const type = booksType
 
   const [catsIsVisible, setCatsIsVisible] = useState(false)
 
@@ -81,7 +81,7 @@ const Books = () => {
         }
       </div>
 
-      <BooksMainBlock audio={router.query?.type === 'audioBooks'} />
+      <BooksMainBlock audio={type === 'audioBooks'} />
 
       {(innerWidthWindow <= 768 && catsIsVisible) &&
         <ModalWindow

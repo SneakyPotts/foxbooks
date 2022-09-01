@@ -13,7 +13,7 @@ const Books = props => {
 
   return (
     <div>
-      <BooksComponent />
+      <BooksComponent booksType='books'/>
     </div>
   );
 };
@@ -21,14 +21,7 @@ const Books = props => {
 export default Books;
 
 export async function getServerSideProps({ query }) {
-  const type = query?.type
-  let categories = []
-
-  if(type === 'books') {
-    categories = await CategoriesService.getCategoriesWithCount();
-  } else if(type === 'audioBooks') {
-    categories = await CategoriesService.getAudioCategoriesWithCount();
-  }
+  let categories = await CategoriesService.getCategories();
 
   const books = await BookService.getBooks(query);
 

@@ -13,7 +13,7 @@ const Books = props => {
 
   return (
     <div>
-      <BooksComponent bookType='audioBooks' />
+      <BooksComponent booksType='audioBooks' />
     </div>
   );
 };
@@ -21,7 +21,7 @@ const Books = props => {
 export default Books;
 
 export async function getServerSideProps({ query }) {
-  let categories =  await CategoriesService.getAudioCategoriesWithCount();
+  let categories =  await CategoriesService.getAudioCategories();
 
   const books = await BookService.getBooks({
     ...query,

@@ -11,23 +11,25 @@ const Comments = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const { bookComments } = useSelector(state => state.comments);
+  const {bookComments} = useSelector(state => state.comments);
+  const {book} = useSelector(state => state.book);
 
   const [page, setPage] = useState(1);
 
-  const submitFunc = data => {
-    let t = router.query?.type
 
-    if(t === 'books') {
-      t = 'book'
-    } else if(t === 'audioBooks') {
-      t = 'audio_book'
+  const submitFunc = data => {
+    let bookType = book?.type
+
+    if (bookType === 'books') {
+      bookType = 'book'
+    } else if (bookType === 'audioBooks') {
+      bookType = 'audio_book'
     }
 
     const dataObj = {
-      id: router.query?.id,
+      id: book?.id,
       text: data?.text,
-      type: t,
+      type: bookType,
       parent_comment_id: null,
     }
 
@@ -36,11 +38,11 @@ const Comments = () => {
 
   useEffect(() => {
     dispatch(getComments({
-      id: router.query?.id,
-      type: router.query?.type,
+      id: book?.id,
+      type: book?.type,
       page
     }))
-  }, [page, router.query?.id])
+  }, [page, book?.id])
 
   return (
     <div className={st.container}>

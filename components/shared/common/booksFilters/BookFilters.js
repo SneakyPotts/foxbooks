@@ -18,7 +18,7 @@ const BookFilters = ({
   onModal
 }) => {
   const router = useRouter();
-  const [currentIdx, setCurrentIdx] = useState(router.query[queryName]);
+  const [currentIdx, setCurrentIdx] = useState(1);
 
   const handleOnClick = value => {
     router.push({ query: {

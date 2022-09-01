@@ -25,10 +25,10 @@ const Navigation = ({ setModal, bottomOnly }) => {
   return (
     <nav className={css.navigation}>
       <div className={classNames(css.topMenu, {[css.hidden]: bottomOnly})}>
-        <Link href="/books?type=books&sortBy=1">
+        <Link href="/books">
           <a
             className={`${css.link} ${
-              router.pathname === 'books' ? css.active : css.link
+              router.pathname === '/books' ? css.active : css.link
             }`}
           >
             <span className={css.icon}>
@@ -37,10 +37,10 @@ const Navigation = ({ setModal, bottomOnly }) => {
             Книги
           </a>
         </Link>
-        <Link href="/books?type=audioBooks&sortBy=1">
+        <Link href="/audiobooks">
           <a
             className={`${css.link} ${css.linkStroke} ${
-                router.asPath.includes('/books?type=audioBooks')
+                router.asPath.includes('/audiobooks')
                 ? css.activeStroke
                 : css.link
             }`}

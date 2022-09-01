@@ -75,13 +75,13 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
 
     if(el?.isEdit) {
       dispatch(setBookStatus({
-        id: router.query?.id,
+        id: book.id,
         value: el?.value,
         type
       })).then(res => showPopup(res, el?.withPopup))
     } else if(el?.isDelete) {
       dispatch(deleteBookFromFavorite({
-        id: router.query?.id,
+        id: book.id,
         type
       }))
     } else {
@@ -94,7 +94,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       dispatch(setAuthPopupVisibility(true))
       return
     }
-    dispatch(setBookRating({ id: router.query.id, value }));
+    dispatch(setBookRating({ id: book.id, value }));
   };
 
   const onListen = () => {

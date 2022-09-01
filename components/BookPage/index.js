@@ -20,12 +20,12 @@ import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
 import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 
-const BookPage = () => {
+const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const type = router.query?.type
+  const type = bookType
 
-  const audioFlag = router.query?.type === 'audioBooks';
+  const audioFlag = bookType === 'audioBooks';
 
   const { book, booksByAuthor, audioBooksByAuthor } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -39,8 +39,9 @@ const BookPage = () => {
   };
 
   useEffect(() => {
-    const authorId = book?.authors[0]?.id
-
+    const authorId = null;
+    //FIXME: author data need
+    // const authorId = book?.authors[0]?.id
     if(authorId) {
       dispatch(getBooksByAuthor(authorId))
       dispatch(getAudioBooksByAuthor(authorId))
@@ -60,7 +61,7 @@ const BookPage = () => {
       <Breadcrumbs
         data={[
           {
-            path: `/books?type=${type}&sortBy=1`,
+            path: `/books`,
             title: type === 'books' ? 'Книги' : 'Аудиокниги'
           },
           {
@@ -97,7 +98,7 @@ const BookPage = () => {
 
             <Comments />
 
-            <Reviews type={router.query?.type} />
+            <Reviews type={book.type} />
 
             {!audioFlag && <Quotes />}
 
