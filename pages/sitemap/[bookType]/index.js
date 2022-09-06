@@ -8,7 +8,22 @@ export async function getServerSideProps(ctx) {
   const { bookType } = ctx.params;
 
   if (bookType.endsWith('.xml')) {
-    if ()
+    let data;
+    if (bookType.includes('books')) {
+      const type = bookType.includes('audiobooks')
+        ? 'audio_book'
+        : 'book';
+
+      data = await SelectionService.getBooksList(type);
+    } else if (bookType.includes('authors')) {
+      data = await SelectionService.getAuthorsList();
+    }
+
+    for (let i = 1; i <= data.data.data.last_page; i++) {
+      fields.push(
+        `${baseUrl}sitemap/${bookType.slice(0, bookType.length - 4)}/${i}.xml`,
+      )
+    }
   }
 
   return getServerSideSitemapIndex(ctx, fields)

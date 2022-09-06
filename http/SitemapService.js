@@ -7,10 +7,18 @@ export default class SelectionService {
   }
 
   static async getBooksList(bookType, page = 1) {
-    return  await axios.get(`${API_URL}/seo/slugs/${bookType}?page=${page}`);
+    return  await axios.get(`${API_URL}/seo/slugs/${bookType}${page && `?page=${page}`}`);
   }
 
   static async getAuthorsList() {
     return  await axios.get(`${API_URL}/seo/slugs/author`);
+  }
+
+  static async getStaticPagesList() {
+    return  await axios.get(`${API_URL}/seo/get-static-page`);
+  }
+
+  static async getSelectionsList(page = 1) {
+    return  await axios.get(`${API_URL}/seo/slugs/selections${page && `?page=${page}`}`);
   }
 }

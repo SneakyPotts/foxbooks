@@ -8,15 +8,20 @@ export async function getServerSideProps(ctx) {
   const {bookType, page} = ctx.params;
 
   if (!!page) {
-    const type = bookType === 'audiobooks'
-      ? 'audio_book'
-      : 'book';
+    let data;
+    if (bookType.includes('books')) {
+      const type = bookType === 'audiobooks'
+        ? 'audio_book'
+        : 'book';
 
-    const booksList = await SelectionService.getBooksList(type, page.slice(0, 1));
+      data = await SelectionService.getBooksList(type, page.slice(0, 1));
+    } else if (bookType.includes('authors')) {
+      data = await SelectionService.getAuthorsList(page.slice(0, 1));
+    }
 
-    booksList.data.data.data.map((book) => {
+    data.data.data.data.map((item) => {
       fields.push(
-        `${baseUrl}${bookType}/${book.slug}`,
+        `${baseUrl}${bookType}/${item.slug}`,
       )
     })
   }

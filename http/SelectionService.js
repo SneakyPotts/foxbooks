@@ -9,12 +9,6 @@ export default class SelectionService {
 		bookType = 'all',
 		page = 1
 	}) {
-		console.log({
-			showType,
-			selectionCategory,
-			bookType,
-			page
-		});
 		return axios.get(
 		`${API_URL}/compilations?showType=${showType}
 			${selectionCategory && `&selectionCategory=${selectionCategory}`}

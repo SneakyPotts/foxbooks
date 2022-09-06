@@ -119,6 +119,7 @@ const SelectionsPage = () => {
 										</div>
 										{
 											(
+												(!router.query?.bookType && i?.books.concat(i?.audio_books)?.length) ||
 												(router.query?.bookType === 'all' && i?.books.concat(i?.audio_books)?.length) ||
 												(router.query?.bookType === 'books' && i?.books?.length) ||
 												(router.query?.bookType === 'audioBooks' && i?.audio_books?.length)
@@ -145,9 +146,11 @@ const SelectionsPage = () => {
 													}}
 												>
 													{(
-														router.query?.bookType === 'books' ? i?.books :
-															router.query?.bookType === 'audioBooks' ? i?.audio_books :
-																i?.books.concat(i?.audio_books)
+														router.query?.bookType === 'books'
+															? i?.books
+															: router.query?.bookType === 'audioBooks'
+																? i?.audio_books
+																: i?.books.concat(i?.audio_books)
 													).map(j =>
 														<SwiperSlide key={j?.id}>
 															<Book
