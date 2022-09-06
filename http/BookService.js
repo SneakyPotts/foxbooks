@@ -56,11 +56,11 @@ export default class BookService {
 	}
 
 	static async getAudioBookBySlug(slug) {
-		return axios.get(`${API_URL}/audio-books/${slug}`)
+		return axios.get(`${API_URL}/audio-books/by-slug/${slug}`)
 	}
 
 	static async getBookBySlug(slug) {
-		return axios.get(`${API_URL}/books/${slug}`)
+		return axios.get(`${API_URL}/books/by-slug/${slug}`)
 	}
 
 	static async getBooksByAuthor(id) {

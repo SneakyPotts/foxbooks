@@ -21,7 +21,7 @@ const Books = props => {
 export default Books;
 
 export async function getServerSideProps({ query }) {
-  let categories =  await CategoriesService.getAudioCategories();
+  let categories =  await CategoriesService.getAudioCategoriesWithCount();
 
   const books = await BookService.getBooks({
     ...query,

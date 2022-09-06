@@ -30,7 +30,7 @@ const MyBooksLayout = ({ children }) => {
     {
       title: 'Книги',
       icon: <Book />,
-      path: '/mybooks?status=0&sortBy=5',
+      path: '/mybooks',
       count: counters?.books_count || 0
     },
     {
@@ -82,7 +82,7 @@ const MyBooksLayout = ({ children }) => {
       setCounters(response.data?.data)
     })()
   }, [])
-  
+
   return <>
     {(innerWidthWindow > 768 || headerIsVisible) && <>
       <div className="container">
@@ -93,8 +93,8 @@ const MyBooksLayout = ({ children }) => {
               path: '/mybooks'
             },
             {
-              title: tabs[tabIndex]?.title,
-              path: tabs[tabIndex]?.path
+              title: tabIndex === -1 ? tabs[0].title : tabs[tabIndex]?.title,
+              path: tabIndex === -1 ? tabs[0].path : tabs[tabIndex]?.path
             }
           ]}
         />

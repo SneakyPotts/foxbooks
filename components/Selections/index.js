@@ -53,7 +53,7 @@ const SelectionsPage = () => {
 		<div className="container">
 			<Breadcrumbs
 				data={[{
-					path: `/selections?selectionCategory=3&bookType=all&showType=list`,
+					path: `/selections`,
 					title: 'Подборки'
 				}]}
 			/>
@@ -177,7 +177,7 @@ const SelectionsPage = () => {
 								)
 							}
 
-							{router.query['showType'] === 'block' &&
+							{router.query['showType'] === 'block' || !router.query['showType'] &&
 								<div className={styles.mainGrid}>
 									{selections?.data?.map(i =>
 										<div className={styles.mainGridItem}>
@@ -203,7 +203,7 @@ const SelectionsPage = () => {
 				</div>
 
 				<div className={classNames(styles.advertisingBlock, {
-					[styles.mt]: router.query['showType'] === 'block'
+					[styles.mt]: router.query['showType'] === 'block' || !router.query['showType']
 				})}>
 					<div className={styles.bannerBlock}>
 						<img src="/banner.png" alt="" className={styles.banner} />

@@ -38,7 +38,7 @@ const Books = ({booksType}) => {
     <div className={classnames('container', st.abContainer)}>
       <Breadcrumbs
         data={[{
-          path: `/books?type=${type}&sortBy=1`,
+          path: type === 'books' ? `/books` : '/audiobooks',
           title: type === 'books' ? 'Книги' : 'Аудиокниги'
         }]}
       />
@@ -50,7 +50,7 @@ const Books = ({booksType}) => {
           <>
             {cats?.map(i => (
               <span key={i?.id} className={st.abCateg}>
-                <Link href={`/books/${i?.id}?type=${type}&showType=block&sortBy=1`}>
+                <Link href={`/categories/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
                   <a className={st.abCategLink}>
                     {i?.name}
                   </a>
@@ -95,7 +95,7 @@ const Books = ({booksType}) => {
                 key={cat?.id}
                 className={st.mobCategListItem}
               >
-                <Link href={`/books/${cat.id}?type=${type}&showType=block&sortBy=1`}>
+                <Link href={`/categories/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
                   <a className={st.mobCategLink}>
                     {cat?.name}
                     <span>{cat?.books_count}</span>

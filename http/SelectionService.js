@@ -6,12 +6,21 @@ export default class SelectionService {
 		token,
 		showType = 'block',
 		selectionCategory = 3,
-		bookType = 'all'
+		bookType = 'all',
+		page = 1
 	}) {
+		console.log({
+			showType,
+			selectionCategory,
+			bookType,
+			page
+		});
 		return axios.get(
 		`${API_URL}/compilations?showType=${showType}
 			${selectionCategory && `&selectionCategory=${selectionCategory}`}
-			${bookType && `&bookType=${bookType}`}`,
+			${bookType && `&bookType=${bookType}`}
+			${page && `&page=${page}`}`
+			,
 			{
 				headers: {
 					'Authorization': `Bearer ${token}`
