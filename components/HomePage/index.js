@@ -55,7 +55,7 @@ const HomeView = ({ audioBooks, newBooks }) => {
           </Swiper>
         </div>
       </div>
-      {innerWidthWindow <= 768 && <MobileBlock />}
+      {/*{innerWidthWindow <= 768 && <MobileBlock />}*/}
       <Hero />
       <div className={css.wrapper}>
         <BookUpdates />
