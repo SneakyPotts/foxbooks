@@ -18,11 +18,20 @@ export async function getServerSideProps ({ req, query }) {
 	const { cookies } = req
 	const token = cookies.token
 
-	const series = await AuthorService.getAuthorSeries({token, id: query?.id})
+	try {
+		const series = await AuthorService.getAuthorSeries({token, id: query?.id})
 
-	return {
-		props: {
-			series: series?.data?.data
+		return {
+			props: {
+				series: series?.data?.data
+			}
 		}
+	} catch {
+		return {
+			redirect: {
+				destination: "/404",
+				parameter: false
+			}
+		};
 	}
 }

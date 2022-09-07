@@ -25,24 +25,34 @@ export async function getServerSideProps({ req, params, query }) {
   const { type, slug } = params;
 
   const token = cookies.token
-  const categories = type === 'books'
-    ? await CategoriesService.getCategories()
-    : await CategoriesService.getAudioCategories()
 
-  const categoryData = await CategoriesService.getBookCategories(slug);
-  const books = await BookService.getBooks({
-    ...query,
-    type: query.type === 'audiobooks' ? 'audioBooks' : query.type,
-    showType: query.showType ? query.showType : 'block',
-    sortBy: query.sortBy ? query.sortBy : 1,
-    findByCategory: categoryData.data.data[0].id,
-    token
-  });
+  try {
+    const categories = type === 'books'
+      ? await CategoriesService.getCategories()
+      : await CategoriesService.getAudioCategories()
 
-  return {
-    props: {
-      categories: categories?.data?.data,
-      books: books?.data?.data,
-    },
-  };
+    const categoryData = await CategoriesService.getBookCategories(slug);
+    const books = await BookService.getBooks({
+      ...query,
+      type: query.type === 'audiobooks' ? 'audioBooks' : query.type,
+      showType: query.showType ? query.showType : 'block',
+      sortBy: query.sortBy ? query.sortBy : 1,
+      findByCategory: categoryData.data.data[0].id,
+      token
+    });
+
+    return {
+      props: {
+        categories: categories?.data?.data,
+        books: books?.data?.data,
+      },
+    }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
+  }
 }

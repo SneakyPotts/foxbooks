@@ -15,11 +15,20 @@ const LetterList = (props) => {
 export default LetterList;
 
 export async function getServerSideProps () {
-  const categories = await CategoriesService.getCategories()
+  try {
+    const categories = await CategoriesService.getCategories()
 
-  return {
-    props: {
-      categories: categories?.data?.data,
+    return {
+      props: {
+        categories: categories?.data?.data,
+      }
     }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
   }
 }

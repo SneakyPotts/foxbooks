@@ -17,17 +17,26 @@ export default Book;
 export async function getServerSideProps ({params}) {
   const type = 'audioBooks';
 
-  const book = await BookService.getAudioBookBySlug(params?.slug)
-  const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type)
-  const audioBookChapters = await BookService.audioBookChapters(book.data.data.id)
+  try {
+    const book = await BookService.getAudioBookBySlug(params?.slug)
+    const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type)
+    const audioBookChapters = await BookService.audioBookChapters(book.data.data.id)
 
-  return {
-    props: {
-      book: {
-        ...book?.data?.data,
-        similarBooks: similarBooks.data.data,
-        chapters: audioBookChapters?.data?.data?.chapters || []
-      },
+    return {
+      props: {
+        book: {
+          ...book?.data?.data,
+          similarBooks: similarBooks.data.data,
+          chapters: audioBookChapters?.data?.data?.chapters || []
+        },
+      }
     }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
   }
 }

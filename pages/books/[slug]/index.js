@@ -20,17 +20,26 @@ export async function getServerSideProps ({req, params}) {
   const token = cookies.token
   const type = 'books';
 
-  const book = await BookService.getBookBySlug(params?.slug)
-  const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type)
-  const bookQuotes = await BookService.getBookQuotes(book.data.data.id, token)
+  try {
+    const book = await BookService.getBookBySlug(params?.slug)
+    const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type)
+    const bookQuotes = await BookService.getBookQuotes(book.data.data.id, token)
 
-  return {
-    props: {
-      book: {
-        ...book?.data?.data,
-        similarBooks: similarBooks.data.data,
-      },
-      bookQuotes: bookQuotes?.data?.data || {}
+    return {
+      props: {
+        book: {
+          ...book?.data?.data,
+          similarBooks: similarBooks.data.data,
+        },
+        bookQuotes: bookQuotes?.data?.data || {}
+      }
     }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
   }
 }

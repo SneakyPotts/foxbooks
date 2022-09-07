@@ -26,11 +26,20 @@ export async function getServerSideProps ({ req, query }) {
     }
   }
 
-  const selectionById = await SelectionService.getSelectionById(query);
+  try {
+    const selectionById = await SelectionService.getSelectionById(query);
 
-  return {
-    props: {
-      selectionById: selectionById?.data?.data,
+    return {
+      props: {
+        selectionById: selectionById?.data?.data,
+      }
     }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
   }
 }

@@ -17,11 +17,20 @@ export async function getServerSideProps({ req, query }) {
   const { cookies } = req
   const token = cookies.token
 
-  const selectionById = await SelectionService.getSelectionById({token, ...query});
+  try {
+    const selectionById = await SelectionService.getSelectionById({token, ...query});
 
-  return {
-    props: {
-      selectionById: selectionById?.data?.data,
-    },
-  };
+    return {
+      props: {
+        selectionById: selectionById?.data?.data,
+      },
+    }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
+  }
 }
