@@ -21,4 +21,8 @@ export default class SelectionService {
   static async getSelectionsList(page = 1) {
     return  await axios.get(`${API_URL}/seo/slugs/selections${page && `?page=${page}`}`);
   }
+
+  static async getSeriesList(page = 1) {
+    return  await axios.get(`${API_URL}/authors/series${page && `?page=${page}`}`);
+  }
 }

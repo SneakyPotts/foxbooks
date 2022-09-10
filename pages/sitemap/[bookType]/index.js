@@ -17,6 +17,8 @@ export async function getServerSideProps(ctx) {
       data = await SelectionService.getBooksList(type);
     } else if (bookType.includes('authors')) {
       data = await SelectionService.getAuthorsList();
+    } else if (bookType.includes('series')) {
+      data = await SelectionService.getSeriesList();
     }
 
     for (let i = 1; i <= data.data.data.last_page; i++) {
