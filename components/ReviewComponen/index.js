@@ -1,8 +1,6 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import classnames from 'classnames';
-import Link from 'next/link';
 import Image from 'next/image';
 import Stars from '../shared/common/stars/Stars';
 import DropDownArrow from '../../public/chevron-down.svg';
@@ -12,13 +10,12 @@ import AvatarWithLetter from "../shared/common/AvatarWithLetter";
 import moment from "moment";
 import Book from "../shared/common/book";
 
-const ReviewComponent = ({ it, idx }) => {
-	const route = useRouter();
+const ReviewComponent = ({ it, idx, reviews }) => {
+	const date = moment(reviews ? it?.latest_review?.created_at : it?.latest_quote?.created_at)
+		.format('Do MMMM YYYY в HH:mm')
+		.replace('-го', '');
 
-	// const date = moment(data?.updated_at)
-	// 	.format('Do MMMM YYYY в HH:mm')
-	// 	.replace('-го', '')
-
+	const profile = reviews ? 'asdasd' : it.latest_quote?.user;
 	const [showMoreMap, setShowMoreMap] = useState(null);
 
 	const onShowMore = idx => {
@@ -34,6 +31,8 @@ const ReviewComponent = ({ it, idx }) => {
 	return (
 		<div className={st.review}>
 			<Book
+				book={it}
+				audio={it.type !== 'books'}
 				similar
 				inReview
 			/>
@@ -41,46 +40,44 @@ const ReviewComponent = ({ it, idx }) => {
 			<div className={st.reviewContent}>
 				<div
 					className={classnames(st.reviewHead, {
-						[st.quotes]: route.pathname === '/quotes',
+						[st.quotes]: !reviews,
 					})}
 				>
 					<div className={st.reviewer}>
 						<div className={st.reviewerImg}>
 							<div className={styles.avatar}>
-								{/*{profile?.avatar ? (*/}
-								{/*	<Image*/}
-								{/*		src={profile?.avatar}*/}
-								{/*		alt="Avatar"*/}
-								{/*		width="35"*/}
-								{/*		height="35"*/}
-								{/*		placeholder="blur"*/}
-								{/*		blurDataURL="/blur.webp"*/}
-								{/*	/>*/}
-								{/*) : (*/}
+								{profile?.avatar ? (
+									<Image
+										src={profile?.avatar}
+										alt="Avatar"
+										width="35"
+										height="35"
+										blurDataURL="/blur.webp"
+									/>
+								) : (
 									<AvatarWithLetter
 										letter={
-											// profile?.nickname?.slice(0, 1) ||
-											// profile?.name?.slice(0, 1) ||
+											profile?.nickname?.slice(0, 1) ||
+											profile?.name?.slice(0, 1) ||
 											'П'
 										}
 										width={35}
-										// id={profile?.id}
-										id={20}
+										id={profile?.id}
 										isProfile
 									/>
-								{/*)}*/}
+								)}
 							</div>
 						</div>
-						<span className={st.reviewerName}>Ник</span>
+						<span className={st.reviewerName}>{profile?.name}</span>
 					</div>
-					<p className={st.reviewDate}>20 октября 2021 в 14:05</p>
-					{route.pathname === '/reviews' && (
+					<p className={st.reviewDate}>{date}</p>
+					{reviews && (
 						<div className={st.reviewRaiting}>
 							<span>Оценил книгу</span> <Stars />
 						</div>
 					)}
 				</div>
-				{route.pathname === '/reviews' ? (
+				{reviews ? (
 					<div>
 						<h3 className={st.reviewTitle}>Гарри получает похвалы за то, что нарушает запреты</h3>
 						<p
@@ -88,29 +85,10 @@ const ReviewComponent = ({ it, idx }) => {
 								[st.reviewTextHide]: showMoreMap !== idx,
 							})}
 						>
-              Почему-то до этого момента у меня возникало к книге намного меньше
-              вопросов, хотя я перечитывала её всего пару лет назад. А сразу
-              после прочтения седьмой части и по сравнению с ней первая история
-              о Мальчике, Который Выжил выглядит сырой, недодуманной и слишком
-              детской - но да-да, эта книга изначально была для детей. И это
-              впечатление скорее говорит о том, насколько выросла история о
-              Гарри Поттере по прошествии лет, как оброс подробностями и жизнью
-              магический мир, захвативший так много читателей по всему миру.
-              Большинство знают историю о Гарри, частично или полностью, так что
-              спойлерить её весьма проблематично, и я тут порассуждаю над
-              некоторыми моментами, которые привлекли моё внимание или вызвали
-              недоумение в первой книге. О каких-то я уже слышала от других
-              людей, другие пришли мне в И это впечатление скорее говорит о том,
-              насколько выросла история о Гарри Поттере по прошествии лет, как
-              оброс подробностями и жизнью магический мир, захвативший так много
-              читателей по всему миру. Большинство знают историю о Гарри,
-              частично или полностью, так что спойлерить её весьма
-              проблематично, и я тут порассуждаю над некоторыми моментами,
-              которые привлекли моё внимание или вызвали недоумение в первой
-              книге. О каких-то я уже слышала от других людей, другие пришли мне
-              в
+							{it?.latest_review.content}
 						</p>
-						<span
+						{it?.latest_review.content.length > 602 &&
+							<span
 							className={classnames(st.showMoreLink)}
 							onClick={() => onShowMore(idx)}
 						>
@@ -120,13 +98,11 @@ const ReviewComponent = ({ it, idx }) => {
 									[st.up]: showMoreMap === idx,
 								})}
 							/>
-						</span>
+						</span>}
 					</div>
 				) : (
 					<p className={st.reviewText}>
-            Одна ложь тянет за собой другую. Солгав один раз, уже нельзя
-            остановиться. Всё равно что плыть в дырявой лодке: без конца
-            приходится вычерпывать воду, чтобы не утонуть.
+						{it?.latest_quote?.text}
 					</p>
 				)}
 			</div>

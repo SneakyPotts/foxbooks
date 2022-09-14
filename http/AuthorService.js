@@ -37,4 +37,12 @@ export default class AuthorService {
 	static async getUserAuthors({letter = '', page = 1}) {
 		return api.get(`${API_URL}/profile/lists/authors?page=${page}${letter && `&letter=${letter}`}`)
 	}
+
+	static async getAuthorQuotes(slug) {
+		return axios.get(`${API_URL}/authors/${slug}/quotes`);
+	}
+
+	static async getAuthorReviews(slug) {
+		return axios.get(`${API_URL}/authors/${slug}/reviews`);
+	}
 }

@@ -6,7 +6,7 @@ import Categories from '../HomePage/Categories';
 import Book from '../shared/common/book';
 import DropDownArrow from '../../public/chevron-down.svg';
 import ShowAll from '../shared/common/showAll/ShowAll';
-import { addAuthorToFavorite, deleteAuthorFromFavorite } from './../../store/authorSlice'
+import { addAuthorToFavorite, deleteAuthorFromFavorite } from '../../store/authorSlice'
 
 import classnames from 'classnames';
 import st from './author.module.scss';
@@ -211,7 +211,7 @@ const AuthorPage = () => {
               }
 
               <div className={st.selection}>
-                <Link href="/reviews">
+                <Link href={`/reviews/${author.id}`}>
                   <a className={classnames('title', st.seriesTitle)}>
                     Рецензии
                   </a>
@@ -223,7 +223,7 @@ const AuthorPage = () => {
               </div>
 
               <div className={classnames(st.selection, st.quotes)}>
-                <Link href="/quotes">
+                <Link href={`/quotes/${author.id}`}>
                   <a className={classnames('title', st.seriesTitle)}>
                     Цитаты
                   </a>

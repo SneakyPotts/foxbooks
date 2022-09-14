@@ -5,6 +5,8 @@ const initialState = {
 	author: [],
 	authorsByLetter: {},
 	series: {},
+	authorReviews: [],
+	authorQuotes: []
 };
 
 export const getAuthorsByLetter = createAsyncThunk(
@@ -43,6 +45,12 @@ export const authorSlice = createSlice({
 		},
 		setSeries: (state, action) => {
 			state.series = action.payload
+		},
+		setAuthorReviews: (state, action) => {
+			state.authorReviews = action.payload;
+		},
+		setAuthorQuotes: (state, action) => {
+			state.authorQuotes = action.payload;
 		}
 	},
 	extraReducers: {
@@ -55,12 +63,12 @@ export const authorSlice = createSlice({
 		},
 
 
-		[addAuthorToFavorite.fulfilled]: (state, action) => {
+		[addAuthorToFavorite.fulfilled]: (state) => {
 			state.author.in_favorite = true
 		},
 
 
-		[deleteAuthorFromFavorite.fulfilled]: (state, action) => {
+		[deleteAuthorFromFavorite.fulfilled]: (state) => {
 			state.author.in_favorite = false
 		},
 	}
@@ -68,7 +76,9 @@ export const authorSlice = createSlice({
 
 export const {
 	setAuthor,
-	setSeries
+	setSeries,
+	setAuthorReviews,
+	setAuthorQuotes
 } = authorSlice.actions;
 
 export default authorSlice.reducer;
