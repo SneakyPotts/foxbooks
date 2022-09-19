@@ -1,17 +1,19 @@
 import {getServerSideSitemapIndex} from "next-sitemap";
-import SitemapService from "../../../http/SitemapService";
 
 export async function getServerSideProps(ctx) {
   let fields = [];
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
-  const pages = await SitemapService.getStaticPagesList();
-
-  pages.data?.data?.map(item => {
-    fields.push(
-      `${baseUrl}/${item?.slug}`,
-    )
-  })
+  fields.push(
+    `${baseUrl}`,
+    `${baseUrl}audiobooks`,
+    `${baseUrl}books`,
+    `${baseUrl}categories`,
+    `${baseUrl}new`,
+    `${baseUrl}selections`,
+    `${baseUrl}holders`,
+    `${baseUrl}settings`,
+  )
 
   return getServerSideSitemapIndex(ctx, fields)
 }
