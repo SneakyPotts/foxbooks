@@ -25,7 +25,7 @@ const options = {
 				<img
 					{...attributesToProps({
 						...domNode?.attribs,
-						src: `https://loveread.webnauts.pro${domNode?.attribs?.src}`
+						src: `https://foxbooks.ec${domNode?.attribs?.src}`
 					})}
 				/>
 			)
@@ -43,7 +43,7 @@ const TextWithQuotes = () => {
 	const { book, settings, quotes, quotesIsLoading } = useSelector(state => state?.reader)
 
 	const text = useMemo(() => {
-		const str = book?.pages[0]?.content
+		const str = book?.page?.content
 			.replace(/<(\/*)(html|body)[^>]*>/g, '')
 			.replace('<div class="MsoNormal" style="margin:15px; text-align:left; width:800px; color:#333333;">', '')
 			.slice(0, -7)
@@ -83,7 +83,7 @@ const TextWithQuotes = () => {
 
 			showTools(ev)
 		} else {
-			setToolsIsVisible(false)			
+			setToolsIsVisible(false)
 			setIsError(false)
 		}
 	}
@@ -101,8 +101,8 @@ const TextWithQuotes = () => {
 		} else {
 			const quot = {
 				...rangeObj,
-				book_id: book?.pages[0]?.book_id,
-				page_id: book?.pages[0]?.id,
+				book_id: book?.page?.book_id,
+				page_id: book?.page?.id,
 				text: selectedText,
 				color
 			}
@@ -120,7 +120,7 @@ const TextWithQuotes = () => {
 
 			sel.removeAllRanges()
 			setToolsIsVisible(false)
-            setSelectedText('')
+			setSelectedText('')
 		}
 	}
 
@@ -134,7 +134,7 @@ const TextWithQuotes = () => {
 			dispatch(editBookQuote({id: markId, color}))
 		}
 	}
-	
+
 	const deleteQuot = () => {
 		if(!isAuth) {
 			dispatch(setAuthPopupVisibility(true))
@@ -156,7 +156,7 @@ const TextWithQuotes = () => {
 		const text = quotes?.find(i => i?.id == markId)?.text || selectedText
 		navigator.clipboard.writeText(text?.trim())
 		setToolsIsVisible(false)
-        setSelectedText('')
+		setSelectedText('')
 	}
 
 	const shareQuot = () => {
@@ -172,7 +172,7 @@ const TextWithQuotes = () => {
 
 		navigator.clipboard.writeText(str.replace(/\s/g, ''))
 		setToolsIsVisible(false)
-        setSelectedText('')
+		setSelectedText('')
 	}
 
 	const changePage = ev => {
@@ -233,7 +233,7 @@ const TextWithQuotes = () => {
 		if(!quotes?.length) return
 
 		const filteredQuotes = quotes
-			.filter(i => i?.page_id === book?.pages[0]?.id)
+			.filter(i => i?.page_id === book?.page?.id)
 			.sort((a, b) => a?.start_key - b?.start_key)
 
 		if(!filteredQuotes?.length) return
@@ -281,7 +281,7 @@ const TextWithQuotes = () => {
 			document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
 			router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
-	}, [book?.pages[0]?.id, quotesIsLoading])
+	}, [book?.page?.id, quotesIsLoading])
 
 	return (
 		<>

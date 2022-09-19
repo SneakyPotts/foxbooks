@@ -87,7 +87,11 @@ export const objToRange = quot => {
 	const startSelector = document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex].nodeType === 1 ?
 		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex].childNodes[0] :
 		document.querySelector(`[data-key="${quot.startKey}"]`)?.childNodes[startTextIndex]
-
+	console.log('startSelector',startSelector);
+	console.log('startSelector length',startSelector.length);
+	console.log('Number(quot.startOffset)',Number(quot.startOffset));
+	console.log('offset',offset);
+	console.log('Number(quot.startOffset) - offset',Number(quot.startOffset) - offset);
 	range?.setStart(startSelector, Number(quot.startOffset) - offset)
 	offset = 0
 
@@ -95,7 +99,7 @@ export const objToRange = quot => {
 	const endSelector = document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex].nodeType === 1 ?
 		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex].childNodes[0] :
 		document.querySelector(`[data-key="${quot.endKey}"]`)?.childNodes[endTextIndex]
-
+	console.log(typeof (Number(quot.endOffset) - offset));
 	range?.setEnd(endSelector, Number(quot.endOffset) - offset)
 	offset = 0
 
