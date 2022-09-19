@@ -1,18 +1,26 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import styles from './styles.module.scss'
 import {calcCoordinates} from "../../utils";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const NotesPopup = ({title, children}) => {
   const [openPopup, setOpenPopup] = useState(false);
   const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 })
+  const notesPopupRef = useRef();
 
-  const handleClick = ev => {
+  const handleClick = (ev) => {
     ev.stopPropagation();
     setToolsCoords(() => calcCoordinates(ev))
     setOpenPopup(prevState => !prevState);
   }
+
+  const handleClose = () => {
+    setOpenPopup(false);
+  }
   // const tag = JSON.stringify(children)
   // const text = tag.slice(tag.indexOf('['), tag.indexOf('[') + 3)
+
+  useOnClickOutside(notesPopupRef, handleClose)
 
   return (
     <span
@@ -21,6 +29,7 @@ const NotesPopup = ({title, children}) => {
       }}
       onClick={handleClick}
       onTouch={handleClick}
+      ref={notesPopupRef}
     >
       {children}
       {openPopup &&
