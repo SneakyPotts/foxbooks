@@ -23,8 +23,8 @@ export default class SelectionService {
 		)
 	}
 
-	static async getSelectionById({token, id}) {
-		return axios.get(`${API_URL}/compilations/${id}`, {
+	static async getSelectionBySlug({token, slug}) {
+		return axios.get(`${API_URL}/compilations/${slug}`, {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}

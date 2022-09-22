@@ -6,15 +6,16 @@ import {setSelectionById} from "../../../store/selectionSlice";
 const MyBooksPage = (props) => {
   const dispatch = useDispatch()
 
-  dispatch(setSelectionById(props.selectionById))
+  dispatch(setSelectionById(props.selectionBySlug))
 
   return <MySelection />
 };
 
 export default MyBooksPage;
 
-export async function getServerSideProps ({ req, query }) {
+export async function getServerSideProps ({ req, query, params }) {
   const { cookies } = req
+  const { slug } = params
   const token = cookies.token
 
   if(!token) {
@@ -27,11 +28,11 @@ export async function getServerSideProps ({ req, query }) {
   }
 
   try {
-    const selectionById = await SelectionService.getSelectionById(query);
+    const selectionBySlug = await SelectionService.getSelectionBySlug({...query, slug});
 
     return {
       props: {
-        selectionById: selectionById?.data?.data,
+        selectionBySlug: selectionBySlug?.data?.data,
       }
     }
   } catch {

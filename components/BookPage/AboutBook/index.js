@@ -51,7 +51,6 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
     }
   ]
 
-  const router = useRouter();
   const dispatch = useDispatch();
   const type = audioFlag ? 'audio-books' : 'books'
 
@@ -145,7 +144,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               <h1 className={st.bookTitle}>{book?.title}</h1>
               <p className={st.bookAuthor}>
                 {book?.authors?.length ?
-                  <Link href={`/author?id=${book?.authors[0]?.id}`}>
+                  <Link href={`/author/${book?.authors[0]?.slug}`}>
                     <a className={st.bookAuthorName}>
                       {book?.authors[0]?.author}
                     </a>
@@ -153,7 +152,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   <span className={st.bookAuthorName}>Нет автора</span>
                 }
                 {innerWidthWindow >= 768 && book?.authors?.length ?
-                  <Link href={`/author?id=${book?.authors[0]?.id}`}>
+                  <Link href={`/author/${book?.authors[0]?.slug}`}>
                     <a className={st.bookAuthorLink}>(все книги автора)</a>
                   </Link> : null
                 }
@@ -308,7 +307,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 </p>
                 <p>Серия:{' '}
                   <span>
-                    <Link href={`/series?id=${book?.series?.id}`}>
+                    <Link href={`/series/${book?.series?.slug}`}>
                       <a>{book?.series?.name || '-'}</a>
                     </Link>
                   </span>

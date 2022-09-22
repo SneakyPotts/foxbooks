@@ -110,7 +110,7 @@ const AuthorPage = () => {
                     key={i?.id}
                     className={st.series}
                   >
-                    <Link href={`/series?id=${i?.id}`}>
+                    <Link href={`/series/${i?.slug}`}>
                       <a className={classnames('title', st.seriesTitle)}>
                         Серия книг: {i?.series}
                       </a>
@@ -179,13 +179,13 @@ const AuthorPage = () => {
 
               {author?.non_author_compilation?.data?.length ?
                 <div className={st.compil}>
-                  <ShowAll title="Подборки" url="/selections?selectionCategory=3&bookType=all&showType=list" />
+                  <ShowAll title="Подборки" url="/selections" />
                   <div className={st.compilBlock}>
                     {author?.non_author_compilation?.data?.map(i =>
                       <CompilationItem
                         key={i?.id}
                         data={i}
-                        path={`/selections/${i?.id}`}
+                        path={`/selections/${i?.slug}`}
                         isMini
                       />
                     //   (
@@ -211,7 +211,7 @@ const AuthorPage = () => {
               }
 
               <div className={st.selection}>
-                <Link href={`/reviews/${author.id}`}>
+                <Link href={`/reviews/${author.slug}`}>
                   <a className={classnames('title', st.seriesTitle)}>
                     Рецензии
                   </a>
@@ -223,7 +223,7 @@ const AuthorPage = () => {
               </div>
 
               <div className={classnames(st.selection, st.quotes)}>
-                <Link href={`/quotes/${author.id}`}>
+                <Link href={`/quotes/${author.slug}`}>
                   <a className={classnames('title', st.seriesTitle)}>
                     Цитаты
                   </a>

@@ -39,9 +39,7 @@ const BookPage = ({bookType}) => {
   };
 
   useEffect(() => {
-    const authorId = null;
-    //FIXME: author data need
-    // const authorId = book?.authors[0]?.id
+    const authorId = book?.authors[0]?.id
     if(authorId) {
       dispatch(getBooksByAuthor(authorId))
       dispatch(getAudioBooksByAuthor(authorId))
@@ -55,14 +53,18 @@ const BookPage = ({bookType}) => {
       />
     )
   }
-
+  console.log(book)
   return (
     <div className={'container'}>
       <Breadcrumbs
         data={[
           {
-            path: `/books`,
+            path: `/${type.toLowerCase()}`,
             title: type === 'books' ? 'Книги' : 'Аудиокниги'
+          },
+          {
+            path: `categories/${type === 'books' ? book.book_genres[0].slug : book.genre.slug}`,
+            title: `${type === 'books' ? book.book_genres[0].name : book.genre.name}`
           },
           {
             path: router.asPath,

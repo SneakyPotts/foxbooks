@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import Image from 'next/image';
 import Stars from '../stars/Stars';
 import AddToBooks from '../../icons/add';
-import HorizontalDots from '../../icons/horizontalDots';
 import OpenBook from '../../icons/bookOpen';
 import Like from '../../icons/heart';
 import Comment from '../../icons/comment';
@@ -33,7 +32,6 @@ const Book = ({
   onDelete,
   inReview
 }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -197,7 +195,7 @@ const Book = ({
           </span>
         ) : (
           book?.authors?.length ?
-            <Link href={book?.authors?.length ? `/author?id=${book?.authors[0]?.id}` : ''}>
+            <Link href={book?.authors?.length ? `/author/${book?.authors[0]?.slug}` : ''}>
               <a className={st.bookAuthor}>
                 {book?.authors[0]?.author}
               </a>

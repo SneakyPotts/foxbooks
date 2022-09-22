@@ -198,7 +198,7 @@ const Selections = () => {
             >
               <CompilationItem
                 data={i}
-                path={i?.created_by == profile?.id ? `/mybooks/selection/${i?.id}` : `/selections/${i?.id}`}
+                path={i?.created_by == profile?.id ? `/mybooks/selection/${i?.slug}` : `/selections/${i?.slug}`}
               />
             </div>
           )}

@@ -105,7 +105,7 @@ const SelectionsPage = () => {
 								selections?.data?.map(i =>
 									<div className={styles.mainListItem}>
 										<div className={styles.titleFlex}>
-											<Link href={`/selections/${i?.id}`}>
+											<Link href={`/selections/${i?.slug}`}>
 												<a className={classNames("title", styles.title)}>{i?.title}</a>
 											</Link>
 											<button
@@ -171,7 +171,7 @@ const SelectionsPage = () => {
 
 												<ShowAll
 													text={'Смотреть все'}
-													url={`/selections/${i?.id}`}
+													url={`/selections/${i?.slug}`}
 													externalClass={styles.showMore}
 												/>
 											</>
@@ -187,7 +187,7 @@ const SelectionsPage = () => {
 											<CompilationItem
 												key={i?.id}
 												data={i}
-												path={`/selections/${i?.id}`}
+												path={`/selections/${i?.slug}`}
 											/>
 										</div>
 									)}

@@ -295,14 +295,14 @@ const TextWithQoutes = () => {
 	return (
 		<>
 			<h1 className={styles.bookTitle}>
-				<Link href={`book/${book?.id}?type=books`}>
+				<Link href={`books/${book?.slug}`}>
 					<a>
 						{book?.title}
 					</a>
 				</Link>
 			</h1>
 
-			<Link href={`author?id=${book?.authors[0]?.id}`}>
+			<Link href={`author/${book?.authors[0]?.slug}`}>
 				<a className={styles.bookAuthor}>{book?.authors[0]?.author}</a>
 			</Link>
 

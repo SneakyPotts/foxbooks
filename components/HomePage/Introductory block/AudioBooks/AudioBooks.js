@@ -12,7 +12,7 @@ const AudioBooks = ({ audioBooks }) => {
 
   return (
     <div className={css.container}>
-      <ShowAll title="Некогда читать - слушайте!" url="/books?type=audioBooks&sortBy=1" />
+      <ShowAll title="Некогда читать - слушайте!" url="/audiobooks" />
 
       <Swiper
         modules={[Navigation]}
@@ -20,7 +20,7 @@ const AudioBooks = ({ audioBooks }) => {
         slidesPerView={
           (innerWidthWindow <= 500 && 3) ||
           (innerWidthWindow <= 1024 && 4) ||
-          (innerWidthWindow >= 1200 && 5)
+          (innerWidthWindow >= 1200 && 6)
         }
         navigation={{
           prevEl: '.prevArrow',

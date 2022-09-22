@@ -6,7 +6,6 @@ import ShowAll from "../../shared/common/showAll/ShowAll";
 import React from "react";
 
 const Categories = () => {
-	const router = useRouter()
 	const { categories } = useSelector(state => state.book)
 
 	const cats = categories?.slice(0, 12) || []
@@ -15,9 +14,9 @@ const Categories = () => {
 		<div className={css.categNav}>
 			<h3 className={css.title}>Категории книг</h3>
 			<ul className={css.categList}>
-				{cats?.map(({ id, name }) => (
+				{cats?.map(({ id, name, slug }) => (
 					<li key={id} className={css.categ}>
-						<Link href={`/books/${id}?type=${router.query?.type || 'books'}&showType=block&sortBy=1`}>
+						<Link href={`/categories/books/${slug}`}>
 							{name}
 						</Link>
 					</li>

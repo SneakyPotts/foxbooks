@@ -66,7 +66,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
             Подборки
           </a>
         </Link>
-        <Link href={`/new?sortBy=1&type=all`}>
+        <Link href={`/new`}>
           <a
             className={`${css.link} ${
               router.pathname === '/new' ? css.active : css.link

@@ -105,14 +105,14 @@ const LetterListPage = () => {
                     <tr key={i?.id}>
                       <td>
                         <Link
-                          href={`/book/${i?.id}?type=${i?.type}`}
+                          href={`/${i?.type.toLowerCase()}/${i?.slug}`}
                         >
                           <a className={styles.tableLink}>{i?.title}</a>
                         </Link>
                       </td>
                       <td>
                         <Link
-                          href={`/author?id=${i?.authors[0]?.id}`}
+                          href={`/author/${i?.authors[0]?.slug}`}
                         >
                           <a className={styles.tableLink}>{i?.authors[0]?.author}</a>
                         </Link>
@@ -123,7 +123,7 @@ const LetterListPage = () => {
                     <tr key={i?.id}>
                       <td>
                         <Link
-                          href={`/author?id=${i?.id}`}
+                          href={`/author/${i?.slug}`}
                         >
                           <a className={styles.tableLink}>{i?.author}</a>
                         </Link>
