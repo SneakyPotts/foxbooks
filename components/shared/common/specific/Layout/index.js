@@ -74,55 +74,55 @@ const Layout = ({ children }) => {
     )
   }, []);
 
-  // useEffect(() => {
-  //   const token = Cookies.get('token');
-  //   const url = process.env.NEXT_PUBLIC_WEBSOCKET_URL;
-  //
-  //   if(token && profile?.id) {
-  //     setSocket(io(url, {
-  //       auth: {
-  //         token
-  //       }
-  //     }))
-  //   }
-  // }, [profile?.id])
-  //
-  // useEffect(() => {
-  //   if(socket) {
-  //     socket.on('new_comment_like', res => {
-  //       if(profile?.user_settings?.likes) {
-  //         const data = {
-  //           ...res,
-  //           type: 'like'
-  //         }
-  //         dispatch(setNewNotification(true))
-  //         dispatch(addNotification(data))
-  //       }
-  //     })
-  //
-  //     socket.on('new_answer_on_comment', res => {
-  //       if(profile?.user_settings?.commented) {
-  //         const data = {
-  //           ...res,
-  //           type: 'answer'
-  //         }
-  //         dispatch(setNewNotification(true))
-  //         dispatch(addNotification(data))
-  //       }
-  //     })
-  //
-  //     socket.on('new_answer_in_branch', res => {
-  //       if(profile?.user_settings?.commentedOthers) {
-  //         const data = {
-  //           ...res,
-  //           type: 'branchAnswer'
-  //         }
-  //         dispatch(setNewNotification(true))
-  //         dispatch(addNotification(data))
-  //       }
-  //     })
-  //   }
-  // }, [socket])
+  useEffect(() => {
+    const token = Cookies.get('token');
+    const url = process.env.NEXT_PUBLIC_WEBSOCKET_URL;
+
+    if(token && profile?.id) {
+      setSocket(io(url, {
+        auth: {
+          token
+        }
+      }))
+    }
+  }, [profile?.id])
+
+  useEffect(() => {
+    if(socket) {
+      socket.on('new_comment_like', res => {
+        if(profile?.user_settings?.likes) {
+          const data = {
+            ...res,
+            type: 'like'
+          }
+          dispatch(setNewNotification(true))
+          dispatch(addNotification(data))
+        }
+      })
+
+      socket.on('new_answer_on_comment', res => {
+        if(profile?.user_settings?.commented) {
+          const data = {
+            ...res,
+            type: 'answer'
+          }
+          dispatch(setNewNotification(true))
+          dispatch(addNotification(data))
+        }
+      })
+
+      socket.on('new_answer_in_branch', res => {
+        if(profile?.user_settings?.commentedOthers) {
+          const data = {
+            ...res,
+            type: 'branchAnswer'
+          }
+          dispatch(setNewNotification(true))
+          dispatch(addNotification(data))
+        }
+      })
+    }
+  }, [socket])
 
   return (
     <div className={st.wrapper}>

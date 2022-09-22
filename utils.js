@@ -243,3 +243,20 @@ export const setQueryString = (value, queryName, router) => {
 		);
 	}
 }
+
+export const calcCoordinates = ev => {
+	const x = ev?.pageX || ev?.changedTouches[0]?.pageX
+	const y = ev?.pageY || ev?.changedTouches[0]?.pageY
+
+	const toolsWidth = 291
+	const toolsHeight = 162
+	const windowWidth = window.innerWidth
+	const windowHeight = window.innerHeight + window.scrollY
+	const deltaX = windowWidth - x
+	const deltaY = windowHeight - y
+
+	return {
+		x: toolsWidth >= deltaX ? x - toolsWidth : x,
+		y: toolsHeight >= deltaY ? y - toolsHeight : y
+	}
+}

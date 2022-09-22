@@ -3,16 +3,20 @@ import {useSelector} from "react-redux";
 import Link from 'next/link';
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import AddQout from "./AddQout";
-import {highlight, rangeToObj, objToRange, addKey, keyObj} from './../../utils'
+import {highlight, rangeToObj, objToRange, addKey, keyObj, calcCoordinates} from './../../utils'
 import styles from './styles.module.scss'
 import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {setAuthPopupVisibility} from "../../store/commonSlice";
+import NotesPopup from "./NotesPopup";
 
 const options = {
 	replace: domNode => {
 		if(domNode?.name === 'a' || domNode?.name === 'html' || domNode?.name === 'body') {
+			if (domNode?.name === 'a')
+				return <NotesPopup title={domNode?.attribs.title}>{domNode?.children[0].data}</NotesPopup>
+
 			return <>
 				{domToReact(domNode?.children, options)}
 			</>
@@ -21,7 +25,7 @@ const options = {
 				<img
 					{...attributesToProps({
 						...domNode?.attribs,
-						src: `https://loveread.webnauts.pro${domNode?.attribs?.src}`
+						src: `https://foxbooks.ec${domNode?.attribs?.src}`
 					})}
 				/>
 			)
@@ -29,7 +33,7 @@ const options = {
 	}
 }
 
-const TextWithQoutes = () => {
+const TextWithQuotes = () => {
 	const dispatch = useDispatch()
 	const router = useRouter()
 	const article = useRef()
@@ -39,7 +43,7 @@ const TextWithQoutes = () => {
 	const { book, settings, quotes, quotesIsLoading } = useSelector(state => state?.reader)
 
 	const text = useMemo(() => {
-		const str = book?.pages[0]?.content
+		const str = book?.page?.content
 			.replace(/<(\/*)(html|body)[^>]*>/g, '')
 			.replace('<div class="MsoNormal" style="margin:15px; text-align:left; width:800px; color:#333333;">', '')
 			.slice(0, -7)
@@ -57,20 +61,7 @@ const TextWithQoutes = () => {
 	const [isError, setIsError] = useState(false)
 
 	const showTools = ev => {
-		const x = ev?.pageX || ev?.changedTouches[0]?.pageX
-		const y = ev?.pageY || ev?.changedTouches[0]?.pageY
-
-		const toolsWidth = 291
-		const toolsHeight = 162
-		const windowWidth = window.innerWidth
-		const windowHeight = window.innerHeight + window.scrollY
-		const deltaX = windowWidth - x
-		const deltaY = windowHeight - y
-
-		setToolsCoords({
-			x: toolsWidth >= deltaX ? x - toolsWidth : x,
-			y: toolsHeight >= deltaY ? y - toolsHeight : y
-		})
+		setToolsCoords(() => calcCoordinates(ev))
 		setToolsIsVisible(true)
 	}
 
@@ -92,7 +83,7 @@ const TextWithQoutes = () => {
 
 			showTools(ev)
 		} else {
-			setToolsIsVisible(false)			
+			setToolsIsVisible(false)
 			setIsError(false)
 		}
 	}
@@ -110,8 +101,8 @@ const TextWithQoutes = () => {
 		} else {
 			const quot = {
 				...rangeObj,
-				book_id: book?.pages[0]?.book_id,
-				page_id: book?.pages[0]?.id,
+				book_id: book?.page?.book_id,
+				page_id: book?.page?.id,
 				text: selectedText,
 				color
 			}
@@ -129,7 +120,7 @@ const TextWithQoutes = () => {
 
 			sel.removeAllRanges()
 			setToolsIsVisible(false)
-            setSelectedText('')
+			setSelectedText('')
 		}
 	}
 
@@ -143,7 +134,7 @@ const TextWithQoutes = () => {
 			dispatch(editBookQuote({id: markId, color}))
 		}
 	}
-	
+
 	const deleteQuot = () => {
 		if(!isAuth) {
 			dispatch(setAuthPopupVisibility(true))
@@ -165,7 +156,7 @@ const TextWithQoutes = () => {
 		const text = quotes?.find(i => i?.id == markId)?.text || selectedText
 		navigator.clipboard.writeText(text?.trim())
 		setToolsIsVisible(false)
-        setSelectedText('')
+		setSelectedText('')
 	}
 
 	const shareQuot = () => {
@@ -181,7 +172,7 @@ const TextWithQoutes = () => {
 
 		navigator.clipboard.writeText(str.replace(/\s/g, ''))
 		setToolsIsVisible(false)
-        setSelectedText('')
+		setSelectedText('')
 	}
 
 	const changePage = ev => {
@@ -242,7 +233,7 @@ const TextWithQoutes = () => {
 		if(!quotes?.length) return
 
 		const filteredQuotes = quotes
-			.filter(i => i?.page_id === book?.pages[0]?.id)
+			.filter(i => i?.page_id === book?.page?.id)
 			.sort((a, b) => a?.start_key - b?.start_key)
 
 		if(!filteredQuotes?.length) return
@@ -290,7 +281,7 @@ const TextWithQoutes = () => {
 			document.querySelector(`[data-key="${query.startKey}"]`).scrollIntoView({behavior: 'smooth'})
 			router.replace(`/reader?id=${query.id}&page=${query.page}`, null, {scroll: false})
 		}
-	}, [book?.pages[0]?.id, quotesIsLoading])
+	}, [book?.page?.id, quotesIsLoading])
 
 	return (
 		<>
@@ -345,4 +336,4 @@ const TextWithQoutes = () => {
 	)
 }
 
-export default TextWithQoutes
+export default TextWithQuotes
