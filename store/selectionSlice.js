@@ -31,6 +31,14 @@ export const editCompilation = createAsyncThunk(
 	}
 )
 
+export const getUserCompilations = createAsyncThunk(
+	'selection/getUserCompilations',
+	async (data) => {
+		const response = await SelectionService.getUserCompilations(data)
+		return response.data.data
+	}
+)
+
 export const createCompilation = createAsyncThunk(
 	'selection/createCompilation',
 	async (data) => {
