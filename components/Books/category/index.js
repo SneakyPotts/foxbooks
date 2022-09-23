@@ -15,7 +15,7 @@ import debounce from 'lodash.debounce';
 const data = [
   {
     title: 'Последние поступления',
-    defaultValue: 4,
+    defaultValue: 1,
     options: [
       { id: 1, title: 'Последние поступления', value: 1 },
       { id: 2, title: 'Популярные', value: 3 },
@@ -47,7 +47,7 @@ const mobileFilters = [
 
 const Category = () => {
   const router = useRouter();
-  const type = router.query?.type
+  const { type, slug } = router.query
 
   const [stateIndex, setStateIndex] = useState(null);
 
@@ -59,7 +59,7 @@ const Category = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const currentCategory = categories?.find(
-    i => i?.id == router?.query?.id
+    i => i?.slug == slug
   )?.name;
 
   const setQuery = (value, queryName) => {
@@ -77,7 +77,7 @@ const Category = () => {
       <Breadcrumbs
         data={[
           {
-            path: `/books?type=${type}&sortBy=1`,
+            path: `/${type}`,
             title: type === 'books' ? 'Книги' : 'Аудиокниги'
           },
           { path: router.asPath, title: currentCategory },
@@ -117,7 +117,7 @@ const Category = () => {
                       setFilStateIdx={setStateIndex}
                     />
                   ))}
-                  {mobileFilters.map((i, index) => 
+                  {mobileFilters.map((i, index) =>
                     <div
                       key={index}
                       className={st.filterItem}
@@ -129,7 +129,7 @@ const Category = () => {
                         className={st.input}
                         onChange={ev => handleChange(ev.target.value, i?.queryName)}
                       />
-                    </div>  
+                    </div>
                   )}
                 </MobileFilterModal>
               }
@@ -153,7 +153,7 @@ const Category = () => {
                       {books.data.map(book => (
                         <Book
                           key={book?.id}
-                          audio={router.query?.type === 'audioBooks'}
+                          audio={type === 'audiobooks'}
                           flagSwitcher={flagSwitcher}
                           book={book}
                           type={book?.type}

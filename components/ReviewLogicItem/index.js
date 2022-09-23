@@ -57,7 +57,7 @@ const ReviewLogicItem = ({
   return (
     <div className={styles.review}>
       <div className={styles.reviewCover}>
-        <Link href={`/book/${data?.book?.id}?type=books`}>
+        <Link href={`/books/${data?.book?.slug}`}>
           <a>
             <Image
               src={data?.book?.image?.link || '/preview.jpg'}
@@ -70,10 +70,10 @@ const ReviewLogicItem = ({
           </a>
         </Link>
         <div className={styles.bookWrapper}>
-          <Link href={`/book/${data?.book?.id}?type=books`}>
+          <Link href={`/books/${data?.book?.slug}`}>
             <a className={styles.bookTitle}>{data?.book?.title}</a>
           </Link>
-          <Link href={`/author?id=${data?.book?.authors[0].id}`}>
+          <Link href={`/author/${data?.book?.authors[0].slug}`}>
             <a className={styles.bookAuthor}>{data?.book?.authors[0].author}</a>
           </Link>
         </div>

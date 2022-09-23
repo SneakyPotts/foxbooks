@@ -8,6 +8,7 @@ import styles from "../../MyBooks/styles.module.scss";
 import Button from "../../shared/common/Button/Button";
 import {yupResolver} from "@hookform/resolvers/yup";
 import schema from "./schema";
+import {useSelector} from "react-redux";
 
 const Form = ({title}) => {
     const router = useRouter()
@@ -17,10 +18,12 @@ const Form = ({title}) => {
     });
     const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
 
+  const {book} = useSelector(state => state.book)
+
     const submitHandler = data => {
         BookService.recommendBook({
-            id: router.query?.id,
-            type: router.query?.type === 'books' ? 'book' : 'audio_book',
+            id: book.id,
+            type: book.type === 'books' ? 'book' : 'audio_book',
             content: data.content
         }).then(() => {
             reset()

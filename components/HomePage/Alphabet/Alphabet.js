@@ -26,7 +26,7 @@ const Alphabet = () => {
         <ul className={css.alphabet}>
           {alphabet.map(({ id, name }) => (
             <li key={id} className={classNames(css.letter, {[css.active]: decodeURI(router.query?.letter) === name && router.query?.type})}>
-              <Link href={`/letterlist/${encodeURI(name)}?type=books`}>
+              <Link href={`/letterlist/${encodeURI(name)}?type=${router.query.type ? router.query.type : 'books'}`}>
                 <a>{name}</a>
               </Link>
             </li>

@@ -13,6 +13,10 @@ import {useSelector} from "react-redux";
 
 const SideFilters = () => {
   const router = useRouter();
+
+  const {innerWidthWindow} = useSelector(state => state.common);
+
+  const [resetIsVisible, setResetIsVisible] = useState(false);
   const [filters, setFilters] = useState([
     {
       id: '0',
@@ -80,31 +84,26 @@ const SideFilters = () => {
 
   const handleChange = debounce(setQuery, 300);
 
-  const {innerWidthWindow} = useSelector(state => state.common);
 
-  const [resetIsVisible, setResetIsVisible] = useState(false);
 
-  const setDefaultUrl = useCallback(() => {
-      const {id, showType, sortBy, type} = router.query;
+  const setDefaultUrl = () => {
+    const { type, slug } = router.query;
 
-      router.push({
-        pathname: '/books/[id]',
-        query: {
-          id,
-          type,
-          showType,
-          sortBy
-        }
-      });
+    router.push({
+      pathname: '/categories/[type]/[slug]',
+      query: {
+        type,
+        slug
+      }
+    });
 
-      filters.forEach((item, index) => {
-        item.ref.current.value = '';
+    filters.forEach((item, index) => {
+      item.ref.current.value = '';
 
-        item.flag = true;
-        filterShow(index);
-      })
-    },
-    [router.query]);
+      item.flag = true;
+      filterShow(index);
+    })
+  }
 
 
   const handleReset = () => {
@@ -113,9 +112,9 @@ const SideFilters = () => {
   }
 
   useEffect(() => {
-    if (!router.asPath.match(/sortBy=\d$/)) //если порядок параметров не будет меняться
+    if (router.asPath.includes('?') || window.location.href.includes('?'))
       setResetIsVisible(true);
-  }, [])
+  }, [router.query])
 
   return (
     <div className={st.container}>

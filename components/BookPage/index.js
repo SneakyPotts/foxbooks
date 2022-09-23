@@ -20,12 +20,12 @@ import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
 import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 
-const BookPage = () => {
+const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const type = router.query?.type
+  const type = bookType
 
-  const audioFlag = router.query?.type === 'audioBooks';
+  const audioFlag = bookType === 'audioBooks';
 
   const { book, booksByAuthor, audioBooksByAuthor } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -40,7 +40,6 @@ const BookPage = () => {
 
   useEffect(() => {
     const authorId = book?.authors[0]?.id
-
     if(authorId) {
       dispatch(getBooksByAuthor(authorId))
       dispatch(getAudioBooksByAuthor(authorId))
@@ -54,14 +53,18 @@ const BookPage = () => {
       />
     )
   }
-
+  console.log(book)
   return (
     <div className={'container'}>
       <Breadcrumbs
         data={[
           {
-            path: `/books?type=${type}&sortBy=1`,
+            path: `/${type.toLowerCase()}`,
             title: type === 'books' ? 'Книги' : 'Аудиокниги'
+          },
+          {
+            path: `categories/${type === 'books' ? book.book_genres[0].slug : book.genre.slug}`,
+            title: `${type === 'books' ? book.book_genres[0].name : book.genre.name}`
           },
           {
             path: router.asPath,
@@ -97,7 +100,7 @@ const BookPage = () => {
 
             <Comments />
 
-            <Reviews type={router.query?.type} />
+            <Reviews type={book.type} />
 
             {!audioFlag && <Quotes />}
 

@@ -18,7 +18,8 @@ module.exports = {
       's12.knigavuhe.org',
       's13.knigavuhe.org',
       's14.knigavuhe.org',
-      's15.knigavuhe.org'
-    ],
-  },
+      's15.knigavuhe.org',
+      'api.foxbooks.ec'
+    ]
+  }
 };

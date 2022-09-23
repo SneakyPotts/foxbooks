@@ -42,6 +42,7 @@ const CommentItem = ({
 
   const {innerWidthWindow} = useSelector(state => state.common)
   const {isAuth} = useSelector(state => state.auth)
+  const {book} = useSelector(state => state.book)
 
   const sortedReplies = useMemo(() => {
     return [...new Set(replies?.data)].sort((a, b) => moment(a?.updated_at).diff(moment(b?.updated_at)))
@@ -71,10 +72,10 @@ const CommentItem = ({
 
     /** если рецензия или есть родительский ID рецензии - ветка рецензий
      * иначе комментарии книги */
-    if (router.query?.type === 'books') {
+    if (book.type === 'books') {
       t = reviews || parentReviewId ? 'book_review' : 'book'
-    } else if (router.query?.type === 'audioBooks') {
-      t = reviews || parentReviewId ? 'audio_review' : 'audio_book'
+    } else if (book.type === 'audioBooks') {
+      t = reviews || parentReviewId ? 'audio_book_review' : 'audio_book'
     }
 
     /** если ответ на рецензию, то ID сущности = ID рецензии
@@ -82,7 +83,7 @@ const CommentItem = ({
      * если ответ не в ветке рецензий ID сущности = ID книги */
     const varId = reviews
                     ? data?.id
-                    : parentReviewId ? parentReviewId : router.query?.id;
+                    : parentReviewId ? parentReviewId : book.id;
 
     const dataObj = {
       id: varId,
@@ -107,7 +108,7 @@ const CommentItem = ({
     if (data?.id) {
       const response = await CommentsService[typeMatching]({
         id: data?.id,
-        type: router.query?.type,
+        type: book.type,
         page,
         reviewBranch: !!parentReviewId // если передан родительский ID рецензии - ветка ответов рецензии
       })
@@ -139,7 +140,7 @@ const CommentItem = ({
 
   const likeHandler = async () => {
     if (isAuth) {
-      const type = setTypes(router.query?.type);
+      const type = setTypes(book.type);
 
       const obj = {
         id: data?.id,

@@ -37,13 +37,22 @@ export async function getServerSideProps ({ req, query }) {
   const { cookies } = req
   const token = cookies.token
 
-	const bookRead = await ReaderService.getBookRead(query?.id, query?.page, token)
-	const bookChapters = await ReaderService.getBookChapters(query?.id)
+  try {
+    const bookRead = await ReaderService.getBookRead(query?.id, query?.page, token)
+    const bookChapters = await ReaderService.getBookChapters(query?.id)
 
-  return {
-		props: {
-			bookRead: bookRead?.data?.data,
-			bookChapters: bookChapters?.data?.data
-		}
-	}
+    return {
+      props: {
+        bookRead: bookRead?.data?.data,
+        bookChapters: bookChapters?.data?.data
+      }
+    }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
+  }
 }

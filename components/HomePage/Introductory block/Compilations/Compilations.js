@@ -17,7 +17,7 @@ const Compilations = () => {
 
   return (
     <div className={styles.container}>
-      <ShowAll title="Подборки" url="/selections?selectionCategory=3&bookType=all&showType=list" />
+      <ShowAll title="Подборки" url="/selections" />
 
       <Swiper
         modules={[Navigation]}
@@ -33,7 +33,7 @@ const Compilations = () => {
             <CompilationItem
               data={i}
               isFull
-              path={`/selections/${i?.id}`}
+              path={`/selections/${i?.slug}`}
             />
           </SwiperSlide>
         )}

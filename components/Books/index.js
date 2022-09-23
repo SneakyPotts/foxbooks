@@ -13,9 +13,9 @@ import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import Button from "../shared/common/Button/Button";
 import MobileFilterModal from "../MobileFilterModal";
 
-const Books = () => {
+const Books = ({booksType}) => {
   const router = useRouter();
-  const type = router.query?.type
+  const type = booksType
 
   const [catsIsVisible, setCatsIsVisible] = useState(false)
 
@@ -38,7 +38,7 @@ const Books = () => {
     <div className={classnames('container', st.abContainer)}>
       <Breadcrumbs
         data={[{
-          path: `/books?type=${type}&sortBy=1`,
+          path: type === 'books' ? `/books` : '/audiobooks',
           title: type === 'books' ? 'Книги' : 'Аудиокниги'
         }]}
       />
@@ -50,7 +50,7 @@ const Books = () => {
           <>
             {cats?.map(i => (
               <span key={i?.id} className={st.abCateg}>
-                <Link href={`/books/${i?.id}?type=${type}&showType=block&sortBy=1`}>
+                <Link href={`/categories/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
                   <a className={st.abCategLink}>
                     {i?.name}
                   </a>
@@ -81,7 +81,7 @@ const Books = () => {
         }
       </div>
 
-      <BooksMainBlock audio={router.query?.type === 'audioBooks'} />
+      <BooksMainBlock audio={type === 'audioBooks'} />
 
       {(innerWidthWindow <= 768 && catsIsVisible) &&
         <ModalWindow
@@ -95,7 +95,7 @@ const Books = () => {
                 key={cat?.id}
                 className={st.mobCategListItem}
               >
-                <Link href={`/books/${cat.id}?type=${type}&showType=block&sortBy=1`}>
+                <Link href={`/categories/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
                   <a className={st.mobCategLink}>
                     {cat?.name}
                     <span>{cat?.books_count}</span>

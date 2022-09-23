@@ -53,7 +53,7 @@ const SelectionsPage = () => {
 		<div className="container">
 			<Breadcrumbs
 				data={[{
-					path: `/selections?selectionCategory=3&bookType=all&showType=list`,
+					path: `/selections`,
 					title: 'Подборки'
 				}]}
 			/>
@@ -105,7 +105,7 @@ const SelectionsPage = () => {
 								selections?.data?.map(i =>
 									<div className={styles.mainListItem}>
 										<div className={styles.titleFlex}>
-											<Link href={`/selections/${i?.id}`}>
+											<Link href={`/selections/${i?.slug}`}>
 												<a className={classNames("title", styles.title)}>{i?.title}</a>
 											</Link>
 											<button
@@ -119,6 +119,7 @@ const SelectionsPage = () => {
 										</div>
 										{
 											(
+												(!router.query?.bookType && i?.books.concat(i?.audio_books)?.length) ||
 												(router.query?.bookType === 'all' && i?.books.concat(i?.audio_books)?.length) ||
 												(router.query?.bookType === 'books' && i?.books?.length) ||
 												(router.query?.bookType === 'audioBooks' && i?.audio_books?.length)
@@ -145,9 +146,11 @@ const SelectionsPage = () => {
 													}}
 												>
 													{(
-														router.query?.bookType === 'books' ? i?.books :
-															router.query?.bookType === 'audioBooks' ? i?.audio_books :
-																i?.books.concat(i?.audio_books)
+														router.query?.bookType === 'books'
+															? i?.books
+															: router.query?.bookType === 'audioBooks'
+																? i?.audio_books
+																: i?.books.concat(i?.audio_books)
 													).map(j =>
 														<SwiperSlide key={j?.id}>
 															<Book
@@ -168,7 +171,7 @@ const SelectionsPage = () => {
 
 												<ShowAll
 													text={'Смотреть все'}
-													url={`/selections/${i?.id}`}
+													url={`/selections/${i?.slug}`}
 													externalClass={styles.showMore}
 												/>
 											</>
@@ -177,14 +180,14 @@ const SelectionsPage = () => {
 								)
 							}
 
-							{router.query['showType'] === 'block' &&
+							{router.query['showType'] === 'block' || !router.query['showType'] &&
 								<div className={styles.mainGrid}>
 									{selections?.data?.map(i =>
 										<div className={styles.mainGridItem}>
 											<CompilationItem
 												key={i?.id}
 												data={i}
-												path={`/selections/${i?.id}`}
+												path={`/selections/${i?.slug}`}
 											/>
 										</div>
 									)}
@@ -203,7 +206,7 @@ const SelectionsPage = () => {
 				</div>
 
 				<div className={classNames(styles.advertisingBlock, {
-					[styles.mt]: router.query['showType'] === 'block'
+					[styles.mt]: router.query['showType'] === 'block' || !router.query['showType']
 				})}>
 					<div className={styles.bannerBlock}>
 						<img src="/banner.png" alt="" className={styles.banner} />

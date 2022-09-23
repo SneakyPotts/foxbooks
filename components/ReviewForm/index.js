@@ -24,6 +24,7 @@ const ReviewForm = ({
   const { innerWidthWindow } = useSelector(state => state.common)
   const { isAuth } = useSelector(state => state.auth)
   const { reviewTypes } = useSelector(state => state.review)
+  const { book } = useSelector(state => state.book)
 
   const [optionsIsVisible, setOptionsIsVisible] = useState(false);
   const [errorAlreadyAdded, setErrorAlreadyAdded] = useState('');
@@ -42,7 +43,7 @@ const ReviewForm = ({
     } else {
       const obj = {
         ...data,
-        id: router.query?.id,
+        id: book.id,
         type: bookType === 'books' ? 'book' : 'audio_book',
         review_type: getValues('review_type')
       }

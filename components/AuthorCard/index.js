@@ -8,7 +8,7 @@ const AuthorCard = ({
 }) => {
   return (
     <div>
-      <Link href={`/author?id=${data?.id}`}>
+      <Link href={`/author/${data?.slug}`}>
         <a className={styles.img}>
           <Image
             src={data?.avatar || '/preview.jpg'}
@@ -20,7 +20,7 @@ const AuthorCard = ({
           />
         </a>
       </Link>
-      <Link href={`/author?id=${data?.id}`}>
+      <Link href={`/author/${data?.slug}`}>
         <a className={styles.name}>{data?.author}</a>
       </Link>
       <span className={styles.booksCount}>{data?.books_count} книг</span>

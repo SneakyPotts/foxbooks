@@ -28,7 +28,7 @@ export default class CommentsService {
 		if(type === 'books') {
 			t = reviewBranch ? 'book_review' : 'book'
 		} else if(type === 'audioBooks') {
-			t = reviewBranch ? 'audio_review' : 'audio_book'
+			t = reviewBranch ? 'audio_book_review' : 'audio_book'
 		}
 
 		return api.get(`${API_URL}/comments/${id}?type=${t}&perpage=3&page=${page}`)
@@ -44,7 +44,7 @@ export default class CommentsService {
 		if(type === 'books') {
 			t = 'book_review'
 		} else if(type === 'audioBooks') {
-			t = 'audio_review'
+			t = 'audio_book_review'
 		}
 
 		return api.get(`${API_URL}/comments/book_review/${id}?type=${t}&perpage=3&page=${page}`)

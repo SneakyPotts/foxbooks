@@ -4,75 +4,44 @@ import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import React from "react";
 import {useRouter} from "next/router";
 import MyPagination from "../shared/common/MyPagination";
+import {useSelector} from "react-redux";
 
 const ReviewPage = () => {
 	const router = useRouter()
 
-	const reviews = [
-		{
-			id: '0',
-			img: '/horizontalBookCovers/book.png',
-			raiting: '5',
-		},
-		{
-			id: '0',
-			img: '/horizontalBookCovers/book.png',
-			raiting: '5',
-		},
-		{
-			id: '0',
-			img: '/horizontalBookCovers/book.png',
-			raiting: '5',
-		},
-		{
-			id: '0',
-			img: '/horizontalBookCovers/book.png',
-			raiting: '5',
-		},
-		{
-			id: '0',
-			img: '/horizontalBookCovers/book.png',
-			raiting: '5',
-		},
-		{
-			id: '0',
-			img: '/horizontalBookCovers/book.png',
-			raiting: '5',
-		},
-		{
-			id: '0',
-			img: '/horizontalBookCovers/book.png',
-			raiting: '5',
-		},
-	];
+	const { authorQuotes, authorReviews } = useSelector(state => state.author)
+
+	const reviews = router.pathname.includes('/reviews');
+	const data = reviews ? authorReviews : authorQuotes;
 
 	return (
 		<div className="container">
 			<Breadcrumbs
 				data={[
 					{
-						title: `Автор “Джоан Кэтлин Роулинг”`,
+						title: `Автор «${data[0]?.author}»`,
 						path: '/'
 					},
 					{
-						title: router.pathname.includes('/reviews') ? 'Рецензии' : 'Цитаты',
+						title: reviews ? 'Рецензии' : 'Цитаты',
 						path: router.asPath
 					}
 				]}
 			/>
 
 			<h1 className="title">
-				{router.pathname.includes('/reviews') ? 'Рецензии на книги' : 'Цитаты из книг'} автора «Джоан Кэтлин Роулинг»
+				{reviews ? 'Рецензии на книги' : 'Цитаты из книг'} автора «{data[0]?.author}»
 			</h1>
-			<p className={st.amount}>2199 рецензий</p>
+			<p className={st.amount}>{reviews ? `${data[0]?.author_reviews_count} рецензий` : `${data[0]?.author_quotes_count} цитат`}</p>
 
 			<div className={st.wrapper}>
 				<div className={st.main}>
-					{reviews.map((it, idx) => (
-						<ReviewComponent key={idx} it={it} idx={idx} />
-					))}
+					{data[1]?.data.map((it, idx) => (
+							<ReviewComponent key={idx} it={it} idx={idx} reviews={reviews}/>
+						))
+					}
 
-					<MyPagination lastPage={20}/>
+					{data[1]?.last_page > 1 && <MyPagination lastPage={data[1]?.last_page}/>}
 				</div>
 
 				<div className={st.advertisingBlok}>
