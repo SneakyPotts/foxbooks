@@ -53,7 +53,7 @@ const BookPage = ({bookType}) => {
       />
     )
   }
-  console.log(book)
+
   return (
     <div className={'container'}>
       <Breadcrumbs
