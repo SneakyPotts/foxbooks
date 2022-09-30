@@ -15,7 +15,7 @@ const options = {
 	replace: domNode => {
 		if(domNode?.name === 'a' || domNode?.name === 'html' || domNode?.name === 'body') {
 			if (domNode?.name === 'a')
-				return <NotesPopup title={domNode?.attribs.title}>{domNode?.children[0].data}</NotesPopup>
+				return <NotesPopup title={domNode?.attribs.title}>{domNode?.children[0]?.data}</NotesPopup>
 
 			return <>
 				{domToReact(domNode?.children, options)}
