@@ -47,8 +47,8 @@
       "url" : "git+https://github.com/Bond-Anna/library-next.git"
    },
    "scripts" : {
-      "build" : "next build",
       "dev" : "next dev",
+      "build" : "next build",
       "lint" : "next lint",
       "start" : "next start"
    },
