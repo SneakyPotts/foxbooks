@@ -17,12 +17,25 @@ function MyApp({Component, pageProps}) {
         src="https://use.fontawesome.com/releases/v5.13.1/js/all.js"
         data-auto-replace-svg="nest"
       />
-      {/*<NextSeo*/}
-      {/*  defaultTitle={'FoxBook'}*/}
-      {/*  titleTemplate={'%s | FoxBook'}*/}
-      {/*  title={pageProps.SEO?.title}*/}
-      {/*  description={pageProps.SEO?.description}*/}
-      {/*/>*/}
+      <NextSeo
+        defaultTitle={'FoxBooks'}
+        titleTemplate={'%s | FoxBooks'}
+        title={pageProps.SEO?.title}
+        description={pageProps.SEO?.description}
+        openGraph={{
+          title: pageProps.SEO?.title,
+          description: pageProps.SEO?.description,
+          images: [
+            {
+              url: `https://api.foxbooks.ec/storage${pageProps.SEO?.image}`,
+              alt: `${pageProps.SEO?.title}`,
+              type: 'image/jpeg',
+            },
+          ],
+          site_name: 'FoxBooks',
+        }}
+        keywords={pageProps.SEO?.keywords?.toString()}
+      />
       <Layout>
         <main className="main">
           {getLayout(

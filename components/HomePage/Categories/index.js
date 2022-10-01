@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import css from './categories.module.scss';
 import { useSelector } from 'react-redux';
-import {useRouter} from "next/router";
 import ShowAll from "../../shared/common/showAll/ShowAll";
 import React from "react";
 
@@ -16,7 +15,7 @@ const Categories = () => {
 			<ul className={css.categList}>
 				{cats?.map(({ id, name, slug }) => (
 					<li key={id} className={css.categ}>
-						<Link href={`/categories/books/${slug}`}>
+						<Link href={`/books/${slug}`}>
 							{name}
 						</Link>
 					</li>

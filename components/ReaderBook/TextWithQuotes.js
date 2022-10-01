@@ -15,7 +15,7 @@ const options = {
 	replace: domNode => {
 		if(domNode?.name === 'a' || domNode?.name === 'html' || domNode?.name === 'body') {
 			if (domNode?.name === 'a')
-				return <NotesPopup title={domNode?.attribs.title}>{domNode?.children[0].data}</NotesPopup>
+				return <NotesPopup title={domNode?.attribs.title}>{domNode?.children[0]?.data}</NotesPopup>
 
 			return <>
 				{domToReact(domNode?.children, options)}
@@ -25,7 +25,7 @@ const options = {
 				<img
 					{...attributesToProps({
 						...domNode?.attribs,
-						src: `https://foxbooks.ec${domNode?.attribs?.src}`
+						src: `https://api.foxbooks.ec/storage${domNode?.attribs?.src}`
 					})}
 				/>
 			)

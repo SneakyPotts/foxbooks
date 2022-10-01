@@ -47,7 +47,7 @@ const mobileFilters = [
 
 const Category = () => {
   const router = useRouter();
-  const { type, slug } = router.query
+  const { books_type, category_slug } = router.query
 
   const [stateIndex, setStateIndex] = useState(null);
 
@@ -59,7 +59,7 @@ const Category = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const currentCategory = categories?.find(
-    i => i?.slug == slug
+    i => i?.slug === category_slug
   )?.name;
 
   const setQuery = (value, queryName) => {
@@ -77,8 +77,8 @@ const Category = () => {
       <Breadcrumbs
         data={[
           {
-            path: `/${type}`,
-            title: type === 'books' ? 'Книги' : 'Аудиокниги'
+            path: `/${books_type}`,
+            title: books_type === 'books' ? 'Книги' : 'Аудиокниги'
           },
           { path: router.asPath, title: currentCategory },
         ]}
@@ -153,7 +153,7 @@ const Category = () => {
                       {books.data.map(book => (
                         <Book
                           key={book?.id}
-                          audio={type === 'audiobooks'}
+                          audio={books_type === 'audiobooks'}
                           flagSwitcher={flagSwitcher}
                           book={book}
                           type={book?.type}
