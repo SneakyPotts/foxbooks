@@ -18,8 +18,8 @@ function MyApp({Component, pageProps}) {
         data-auto-replace-svg="nest"
       />
       <NextSeo
-        defaultTitle={'FoxBooks'}
-        titleTemplate={'%s | FoxBooks'}
+        defaultTitle={'Онлайн-библиотека книг FoxBooks 🦊'}
+        // titleTemplate={'%s | FoxBooks'}
         title={pageProps.SEO?.title}
         description={pageProps.SEO?.description}
         openGraph={{
@@ -27,8 +27,7 @@ function MyApp({Component, pageProps}) {
           description: pageProps.SEO?.description,
           images: [
             {
-              url: `https://api.foxbooks.ec/storage${pageProps.SEO?.image}`,
-              alt: `${pageProps.SEO?.title}`,
+              url: `https://api.foxbooks.ec/storage${pageProps.SEO?.image || '/FoxBooks_logo.jpg'}`,
               type: 'image/jpeg',
             },
           ],

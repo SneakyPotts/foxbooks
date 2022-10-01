@@ -286,7 +286,7 @@ const TextWithQuotes = () => {
 	return (
 		<>
 			<h1 className={styles.bookTitle}>
-				<Link href={`books/${book?.slug}`}>
+				<Link href={`books/${book?.genres?.[0]?.slug}/${book?.slug}`}>
 					<a>
 						{book?.title}
 					</a>

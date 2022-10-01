@@ -2,10 +2,8 @@ import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Book from '../../shared/common/book';
 import st from './similarBooks.module.scss';
-import {useRouter} from "next/router";
 
-const SimilarBooks = ({ data }) => {
-  const router = useRouter()
+const SimilarBooks = ({ type, data }) => {
 
   const { innerWidthWindow } = useSelector(state => state.common);
 
@@ -26,7 +24,7 @@ const SimilarBooks = ({ data }) => {
     >
       <div className={st.swiperTitle}>
         <h3 className={st.title}>
-          {router.query?.type === 'books' ? 'Похожие книги' : 'Похожие аудиокниги'}
+          {type === 'books' ? 'Похожие книги' : 'Похожие аудиокниги'}
         </h3>
         {/*{innerWidthWindow <= 768 && (*/}
         {/*  <ShowAll externalClass={st.dicardDistance} />*/}

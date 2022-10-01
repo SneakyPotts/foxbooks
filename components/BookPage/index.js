@@ -86,6 +86,7 @@ const BookPage = ({bookType}) => {
           >
             {book?.similarBooks?.length ?
               <SimilarBooks
+                type={type}
                 data={book?.similarBooks}
               /> : null
             }

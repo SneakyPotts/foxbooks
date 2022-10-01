@@ -82,7 +82,7 @@ const Book = ({
         className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher })}
       >
         {!noLinks ? (
-          <Link href={`/${book?.type?.toLowerCase()}/${book?.type === 'books' ? book?.genres?.[0].slug : book?.genre?.slug }/${book?.slug}`}>
+          <Link href={`/${book?.type?.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}/${book?.slug}`}>
             <a onClick={bookLinkClick}>
               <Image
                 src={book?.image?.link || '/preview.jpg'}
@@ -176,7 +176,7 @@ const Book = ({
             {book?.title}
           </h3>
         ) : (
-          <Link href={`/${book?.type?.toLowerCase()}/${book?.type === 'books' ? book?.genres?.[0].slug : book?.genre?.slug }/${book?.slug}`}>
+          <Link href={`/${book?.type?.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}/${book?.slug}`}>
             <a
               className={classnames(st.bookName, {
                 [st.bookNameSmaller]: similar,

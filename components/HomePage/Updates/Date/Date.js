@@ -32,7 +32,7 @@ const Date = ({ date, books }) => {
                 key={i?.id}
                 className={css.date}
             >
-              <Link href={`/books/${i?.slug}`}>
+              <Link href={`/books/${i?.genres?.[0]?.slug}/${i?.slug}`}>
                 <a className={css.title}>{i?.title}</a>
               </Link>
               <span className={css.dot}/>
