@@ -77,4 +77,8 @@ export default class ReaderService {
 		}
 		return api.put(`${API_URL}/reading_settings`, obj)
 	}
+
+	static async getDefaultSettings() {
+		return axios.get(`${API_URL}/default-reader-settings`)
+	}
 }

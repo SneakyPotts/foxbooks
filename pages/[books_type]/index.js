@@ -7,13 +7,14 @@ import CategoriesService from "../../http/CategoriesService";
 
 const Books = props => {
   const dispatch = useDispatch();
+  const booksType = props.books.books_type === 'audiobooks' ? 'audioBooks' : 'books';
 
   dispatch(setCategories(props.categories));
   dispatch(setBooks(props.books));
 
   return (
     <div>
-      <BooksComponent booksType={props.books.books_type}/>
+      <BooksComponent booksType={booksType}/>
     </div>
   );
 };
