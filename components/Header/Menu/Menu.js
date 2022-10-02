@@ -21,7 +21,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
   const { isAuth } = useSelector(state => state.auth);
   const { innerWidthWindow } = useSelector(state => state.common);
   const { profile, newNotification } = useSelector(state => state.profile);
-  console.log('router.pathname === \'/books\'',router.pathname)
+
   return (
     <nav className={css.navigation}>
       <div className={classNames(css.topMenu, {[css.hidden]: bottomOnly})}>
