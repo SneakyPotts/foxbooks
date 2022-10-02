@@ -88,11 +88,7 @@ const Header = ({ socket }) => {
       return false
     } else if (router.pathname.includes('404')) {
       return false
-    } else if (router.pathname.includes('categories') && innerWidthWindow <= 768) {
-      return false
-    } else {
-      return true
-    }
+    } else return !(router.pathname.includes('categories') && innerWidthWindow <= 768);
   }, [router.pathname, innerWidthWindow])
 
   const showOnlyMenu = useMemo(() => {
@@ -102,21 +98,17 @@ const Header = ({ socket }) => {
       return true
     } else if (router.pathname.includes('mybooks/selection') && router.query.id && innerWidthWindow <= 768) {
       return true
-    } else if (innerWidthWindow <= 768 && !headerIsVisible && router.pathname.includes('settings')) {
-      return true
-    } else {
-      return false
-    }
+    } else return innerWidthWindow <= 768 && !headerIsVisible && router.pathname.includes('settings');
   }, [router.pathname, innerWidthWindow, headerIsVisible])
 
-  const onChange = async str => {
+  const onChange = async (str) => {
     setSearchValue(str)
     const response = await dispatch(search({ search: str, type: 'short' }))
 
     if(response?.payload?.books?.length || response?.payload?.authors?.length) {
       openModal()
     } else {
-      router.push('/search-empty')
+      await router.push('/search-empty')
       closeModal()
     }
   }
