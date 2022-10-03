@@ -11,7 +11,6 @@ import moment from "moment";
 import CommentForm from "../../CommentForm";
 import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
 import {addComment} from "../../../store/commentsSlice";
-import {useRouter} from "next/router";
 import CommentsService from "../../../http/CommentsService";
 import {setAuthPopupVisibility} from "../../../store/commonSlice";
 
@@ -22,7 +21,6 @@ const CommentItem = ({
                        isReply,
                        parentReviewId = null //ID сущности родительской рецензии, пробрасывается вглубь ветки ответов
                      }) => {
-  const router = useRouter()
   const dispatch = useDispatch()
 
   const date = moment(data?.updated_at)
@@ -182,7 +180,7 @@ const CommentItem = ({
               alt="Avatar"
               width="35"
               height="35"
-              placeholder="blur"
+              // placeholder="blur"
               blurDataURL="/blur.webp"
             />
           ) : (

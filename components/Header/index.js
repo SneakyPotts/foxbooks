@@ -167,7 +167,7 @@ const Header = ({ socket }) => {
                         alt="Avatar"
                         width="40"
                         height="40"
-                        placeholder="blur"
+                        // placeholder="blur"
                         blurDataURL="/blur.webp"
                       />
                     ) : (

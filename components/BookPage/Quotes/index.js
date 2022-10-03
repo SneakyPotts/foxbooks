@@ -78,7 +78,7 @@ const QuoteItem = ({data}) => {
               alt="Avatar"
               width="35"
               height="35"
-              placeholder="blur"
+              // placeholder="blur"
               blurDataURL="/blur.webp"
             />
           ) : (
