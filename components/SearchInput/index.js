@@ -4,6 +4,7 @@ import {FiSearch} from "react-icons/fi";
 import Close from "../shared/icons/close";
 import styles from './styles.module.scss'
 import debounce from 'lodash.debounce';
+import {useRouter} from "next/router";
 
 const SearchInput = ({
   withModal,
@@ -14,6 +15,7 @@ const SearchInput = ({
   placeholder,
   externalClass
 }) => {
+  const router = useRouter()
   const input = useRef()
 
   const wrapperClick = () => {
@@ -21,13 +23,18 @@ const SearchInput = ({
     input.current.focus()
   }
 
-  const handleClose = ev => {
+  const handleClose = (ev) => {
     ev.stopPropagation()
     onClose && onClose()
     input.current.value = ''
   }
 
   const handleSearch = debounce(value => onChange(value), 300)
+
+  useEffect(() => {
+    if (!!router.query.books_type || router.pathname.includes('author'))
+      input.current.value = ''
+  }, [router.query]);
 
   return (
     <div

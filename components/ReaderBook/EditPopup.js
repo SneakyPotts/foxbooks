@@ -9,6 +9,7 @@ import classNames from "classnames";
 import styles from './styles.module.scss'
 import './variables.module.scss'
 import ReaderService from "../../http/ReaderService";
+import useLocalSettings from "../../hooks/useLocalSettings";
 
 const fontNames = [
   'Times New Roman',
@@ -22,6 +23,7 @@ const EditPopup = () => {
   const dispatch = useDispatch()
 
   const { settings } = useSelector(state => state?.reader)
+  const { isAuth } = useSelector(state => state.auth)
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false)
 
   const changeSettings = (value, name) => {
@@ -30,7 +32,9 @@ const EditPopup = () => {
       [name]: Number(value) || value
     }
     dispatch(setSettings(data))
-    ReaderService.updateSettings(data)
+    isAuth
+      ? ReaderService.updateSettings(data)
+      : useLocalSettings(data)
   }
 
   const toggleDropdown = ev => {

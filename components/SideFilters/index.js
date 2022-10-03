@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import classnames from 'classnames';
 import DropDownArrow from '../../public/chevron-down.svg';
 import Categories from '../HomePage/Categories';
@@ -87,13 +87,13 @@ const SideFilters = () => {
 
 
   const setDefaultUrl = () => {
-    const { type, slug } = router.query;
+    const { books_type, category_slug } = router.query;
 
     router.push({
-      pathname: '/categories/[type]/[slug]',
+      pathname: '/[books_type]/[category_slug]',
       query: {
-        type,
-        slug
+        books_type,
+        category_slug
       }
     });
 

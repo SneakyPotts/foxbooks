@@ -37,7 +37,7 @@ const QuoteItem = ({
   return (
     <div className={styles.quoteBlock}>
       <div className={styles.quoteBlockHeader}>
-        <Link href={`/books/${data?.book?.slug}`}>
+        <Link href={`/books/${data?.book?.genres?.[0]?.slug}/${data?.book?.slug}`}>
           <a>
             <Image
               src={data?.book?.image?.link}
@@ -52,7 +52,7 @@ const QuoteItem = ({
         </Link>
 
         <div className={styles.quoteBlockHeaderInfo}>
-          <Link href={`/books/${data?.book?.slug}`}>
+          <Link href={`/books/${data?.book?.genres?.[0]?.slug}/${data?.book?.slug}`}>
             <a className={styles.quoteBlockTitle}>{data?.book?.title}</a>
           </Link>
           <Link href={`/author/${data?.book?.authors[0]?.slug}`}>

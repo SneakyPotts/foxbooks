@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from "react-redux";
-import { useRouter } from 'next/router';
 import ArrowIcon from './../../public/chevron-right.svg';
 import Logo from "../shared/icons/Logo";
 import ReaderGambgurger from "../shared/icons/ReadderGambgurger";
@@ -20,10 +19,8 @@ const Header = ({
   addMarkToggler,
   handleMarkClick
 }) => {
-  const router = useRouter()
-
   const { innerWidthWindow } = useSelector(state => state?.common)
-  const { settings, bookMarks, bookChapters } = useSelector(state => state?.reader)
+  const { book, settings, bookMarks, bookChapters } = useSelector(state => state?.reader)
 
   const [isFullScreen, setIsFullScreen] = useState(false)
 
@@ -80,7 +77,7 @@ const Header = ({
       onClick={ev => innerWidthWindow <= 768 && ev.stopPropagation()}
     >
       <div className={styles.logoWrapper}>
-        <Link href={`/book/${router.query?.id}?type=books`}>
+        <Link href={`/books/${book?.genres?.[0]?.slug}/${book?.slug}`}>
           <a className={styles.backBtn}><ArrowIcon /></a>
         </Link>
         <Link href="/">

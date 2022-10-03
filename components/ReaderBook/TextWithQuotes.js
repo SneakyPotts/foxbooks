@@ -25,7 +25,7 @@ const options = {
 				<img
 					{...attributesToProps({
 						...domNode?.attribs,
-						src: `https://foxbooks.ec${domNode?.attribs?.src}`
+						src: `https://api.foxbooks.ec/storage${domNode?.attribs?.src}`
 					})}
 				/>
 			)
@@ -286,7 +286,7 @@ const TextWithQuotes = () => {
 	return (
 		<>
 			<h1 className={styles.bookTitle}>
-				<Link href={`books/${book?.slug}`}>
+				<Link href={`books/${book?.genres?.[0]?.slug}/${book?.slug}`}>
 					<a>
 						{book?.title}
 					</a>

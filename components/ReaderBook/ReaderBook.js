@@ -48,11 +48,11 @@ const ReaderBook = () => {
 
   const toggleEditPopup = ev => {
     ev.stopPropagation()
-    if(!isAuth) {
-      dispatch(setAuthPopupVisibility(true))
-    } else {
+    // if(!isAuth) {
+    //   dispatch(setAuthPopupVisibility(true))
+    // } else {
       setEditPopupIsVisible(!editPopupIsVisible)
-    }
+    // }
   }
 
   const toggleMobileControls = () => {

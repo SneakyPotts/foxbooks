@@ -63,7 +63,7 @@ const BookPage = ({bookType}) => {
             title: type === 'books' ? 'Книги' : 'Аудиокниги'
           },
           {
-            path: `categories/${type === 'books' ? book.book_genres[0].slug : book.genre.slug}`,
+            path: `/${type.toLowerCase()}/${type === 'books' ? book.book_genres[0].slug : book.genre.slug}`,
             title: `${type === 'books' ? book.book_genres[0].name : book.genre.name}`
           },
           {
@@ -86,6 +86,7 @@ const BookPage = ({bookType}) => {
           >
             {book?.similarBooks?.length ?
               <SimilarBooks
+                type={type}
                 data={book?.similarBooks}
               /> : null
             }

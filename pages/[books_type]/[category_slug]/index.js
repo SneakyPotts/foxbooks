@@ -22,19 +22,19 @@ export default Categories;
 
 export async function getServerSideProps({ req, params, query }) {
   const { cookies } = req
-  const { type, slug } = params;
+  const { books_type, category_slug } = params;
 
   const token = cookies.token
 
   try {
-    const categories = type === 'books'
+    const categories = books_type === 'books'
       ? await CategoriesService.getCategories()
       : await CategoriesService.getAudioCategories()
 
-    const categoryData = await CategoriesService.getBookCategories(slug);
+    const categoryData = await CategoriesService.getBookCategories(category_slug);
     const books = await BookService.getBooks({
       ...query,
-      type: query.type === 'audiobooks' ? 'audioBooks' : query.type,
+      type: books_type === 'audiobooks' ? 'audioBooks' : query.type,
       showType: query.showType ? query.showType : 'block',
       sortBy: query.sortBy ? query.sortBy : 1,
       findByCategory: categoryData.data.data[0].id,

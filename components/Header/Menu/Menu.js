@@ -28,7 +28,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
         <Link href="/books">
           <a
             className={`${css.link} ${
-              router.pathname === '/books' ? css.active : css.link
+              router.asPath.includes('/books')
+                ? css.active 
+                : css.link
             }`}
           >
             <span className={css.icon}>
@@ -41,8 +43,8 @@ const Navigation = ({ setModal, bottomOnly }) => {
           <a
             className={`${css.link} ${css.linkStroke} ${
                 router.asPath.includes('/audiobooks')
-                ? css.activeStroke
-                : css.link
+                  ? css.activeStroke
+                  : css.link
             }`}
           >
             <span className={css.icon}>
@@ -69,7 +71,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
         <Link href={`/new`}>
           <a
             className={`${css.link} ${
-              router.pathname === '/new' ? css.active : css.link
+              router.pathname === '/new' 
+                ? css.active 
+                : css.link
             } ${innerWidthWindow <= 768 && css.noSpace}`}
           >
             <span className={css.icon}>
@@ -84,7 +88,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
         <Link href="/">
           <a
             className={`${css.dovnMenuLogo} ${
-              router.pathname !== '/' ? css.dovnMenuLogo : css.active
+              router.pathname !== '/' 
+                ? css.dovnMenuLogo 
+                : css.active
             }`}
           >
             {router.pathname === '/' ? (
@@ -98,7 +104,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
         <Link href="/categories">
           <a
             className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
-              router.pathname === '/categories' ? css.activeStroke : css.link
+              router.pathname === '/categories' 
+                ? css.activeStroke 
+                : css.link
             }`}
           >
             <span className={css.icon}>
@@ -136,7 +144,9 @@ const Navigation = ({ setModal, bottomOnly }) => {
               }
             }}
             className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.mobileOnly} ${
-              router.pathname.includes('/settings') ? css.activeStroke : css.link
+              router.pathname.includes('/settings') 
+                ? css.activeStroke 
+                : css.link
             }`}
           >
             <span className={classNames(css.icon, {

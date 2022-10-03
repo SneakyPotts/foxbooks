@@ -3,7 +3,8 @@ import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import ReaderBook from "../components/ReaderBook/ReaderBook";
 import ReaderService from '../http/ReaderService';
-import {setReaderBook, setBookChapters, getBookMarks, getSettings, getBookQuotes} from '../store/readerSlice';
+import {setReaderBook, setBookChapters, getBookMarks, getSettings, getBookQuotes, setSettings, getDefaultSettings} from '../store/readerSlice';
+import useLocalSettings from "../hooks/useLocalSettings";
 
 const Reader = (props) => {
   const router = useRouter()
@@ -23,6 +24,10 @@ const Reader = (props) => {
         my: 1,
         search: ''
       }))
+    } else {
+      useLocalSettings()
+        ? dispatch(setSettings(useLocalSettings()))
+        : dispatch(getDefaultSettings())
     }
   }, [isAuth])
 

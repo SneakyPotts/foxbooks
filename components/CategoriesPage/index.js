@@ -56,7 +56,7 @@ const CategoriesPage = () => {
             <ul className={st.categoriesList}>
               {categories.map(cat => (
                 <li key={cat.id} className={st.categoriesListItem}>
-                  <Link href={`/categories/books/${cat.slug}`}>
+                  <Link href={`/books/${cat.slug}`}>
                     <a className={st.categoriesLink}>
                       {cat.name}
                       <span>{cat.books_count || 0}</span>
@@ -74,7 +74,7 @@ const CategoriesPage = () => {
             <ul className={st.categoriesList}>
               {audioCategories.map(cat => (
                 <li key={cat.id} className={st.categoriesListItem}>
-                  <Link href={`/categories/audiobooks/${cat.slug}`}>
+                  <Link href={`/audiobooks/${cat.slug}`}>
                     <a className={st.categoriesLink}>
                       {cat.name}
                       <span>{cat.books_count || 0}</span>
