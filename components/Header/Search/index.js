@@ -75,7 +75,7 @@ const Search = ({ value , onClose }) => {
                       <Link href={`/book/${i?.id}?type=${i?.type}`}>
                         <a onClick={onClose}>
                           <Image
-                            src={i?.image?.link || '/blur.webp'}
+                            src={i?.cover_url || '/blur.webp'}
                             width={124}
                             height={187}
                             // layout="fill"

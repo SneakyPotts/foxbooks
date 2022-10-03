@@ -79,11 +79,11 @@ const AudioPlayer = () => {
   }
 
   const handleEnd = () => {
-    const currentChapterIndex = playerData?.chapters.findIndex(i => i?.id === currentChapter)
+    const currentChapterIndex = playerData?.chapters?.findIndex(i => i?.id === currentChapter)
     const nextChapterIndex = currentChapterIndex === -1 ? 1 : currentChapterIndex + 1
 
     if(nextChapterIndex !== playerData?.chapters?.length) {
-      setCurrentChapter(playerData?.chapters[nextChapterIndex]?.id)
+      setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id)
     }
   }
 
@@ -126,7 +126,7 @@ const AudioPlayer = () => {
           <div className={styles.previewWrapper}>
             <h4 className={styles.previewTitle}>{playerData?.title}</h4>
             <span className={styles.previewText}>
-              {playerData?.chapters.find(i => i?.id === currentChapter)?.title || playerData?.chapters[0]?.title}
+              {playerData?.chapters?.find(i => i?.id === currentChapter)?.title || playerData?.chapters?.[0]?.title}
             </span>
           </div>
         </div>
@@ -242,7 +242,7 @@ const AudioPlayer = () => {
 
       <ReactPlayer
         ref={player}
-        url={playerData?.chapters.find(i => i?.id === currentChapter)?.public_path || playerData?.chapters[0]?.public_path}
+        url={playerData?.chapters?.find(i => i?.id === currentChapter)?.public_path || playerData?.chapters?.[0]?.public_path}
         width="0"
         height="0"
         onProgress={e => setProgress(parseInt(e.playedSeconds))}

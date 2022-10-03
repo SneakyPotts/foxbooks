@@ -128,7 +128,7 @@ const MyBooksLayout = ({ children }) => {
                     </span>
 
                     <Image
-                      src={i?.image.link || '/reviewsBookCovers/cover2.png'}
+                      src={i?.cover_url || '/reviewsBookCovers/cover2.png'}
                       width={i?.type === 'audioBooks' ? 195 : 129}
                       height={195}
                       layout={"responsive"}

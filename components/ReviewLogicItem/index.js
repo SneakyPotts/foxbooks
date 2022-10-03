@@ -60,7 +60,7 @@ const ReviewLogicItem = ({
         <Link href={`/books/${data?.book?.genres?.[0].slug || data?.book?.genre?.slug}/${data?.book?.slug}`}>
           <a>
             <Image
-              src={data?.book?.image?.link || '/preview.jpg'}
+              src={data?.book?.cover_url || '/preview.jpg'}
               alt="Picture"
               width="86"
               height="143"

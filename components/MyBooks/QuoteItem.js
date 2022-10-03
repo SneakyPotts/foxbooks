@@ -40,7 +40,7 @@ const QuoteItem = ({
         <Link href={`/books/${data?.book?.genres?.[0]?.slug}/${data?.book?.slug}`}>
           <a>
             <Image
-              src={data?.book?.image?.link}
+              src={data?.book?.cover_url}
               alt="Picture"
               width={41}
               height={64}
