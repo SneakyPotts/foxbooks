@@ -8,21 +8,21 @@ const SeriesCard = ({data}) => {
       <Link href={`/series?id=${data?.id}`}>
         <a className={s.images}>
           <img
-            src={data?.books[0]?.image?.link || '/preview.jpg'}
+            src={data?.books[0]?.cover_url || '/preview.jpg'}
             alt="Picture"
             width={146}
             height={221}
             className={s.img}
           />
           <img
-            src={data?.books[1]?.image?.link || '/preview.jpg'}
+            src={data?.books[1]?.cover_url || '/preview.jpg'}
             alt="Picture"
             width={146}
             height={221}
             className={s.img}
           />
           <img
-            src={data?.books[2]?.image?.link || '/preview.jpg'}
+            src={data?.books[2]?.cover_url || '/preview.jpg'}
             alt="Picture"
             width={146}
             height={221}

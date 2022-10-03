@@ -98,7 +98,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
   const onListen = () => {
     dispatch(setPlayerData({
       title: book?.title,
-      image: book?.image?.link,
+      image: book?.cover_url || "/preview.jpg",
       chapters: book?.chapters
     }))
     dispatch(setPlayerVisibility(true))
@@ -114,7 +114,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
             })}
           >
             <Image
-              src={book?.image?.link || "/preview.jpg"}
+              src={book?.cover_url || "/preview.jpg"}
               bookTitle
               height={
                 audioFlag
