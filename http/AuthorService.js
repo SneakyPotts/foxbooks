@@ -10,10 +10,6 @@ export default class AuthorService {
 		return axios.get(`${API_URL}/authors/filter?letter=${encodeURI(letter)}&page=${page}`)
 	}
 
-	static async getAuthorBooks(id) {
-		return axios.get(`${API_URL}/authors/${id}/books`)
-	}
-
 	static async getAuthorSeries({token, id}) {
 		return axios.get(`${API_URL}/authors/series/${id}`, {
 			headers: {
