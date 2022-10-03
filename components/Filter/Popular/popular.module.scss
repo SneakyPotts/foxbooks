@@ -15,11 +15,14 @@
   justify-content: space-between;
   padding: 6px 15px;
   min-width: 138px;
+  max-width: 138px;
   height: 32px;
   border: none;
   border-radius: 64px;
   stroke: $color-main;
   transition: 0.15s;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   > div {
     display: flex;
@@ -52,7 +55,7 @@
   margin-top: 22px;
   overflow-y: auto;
   background-color: #fff;
-  box-shadow: 0px 10px 30px rgba(77, 77, 77, 0.12);
+  box-shadow: 0 10px 30px rgba(77, 77, 77, 0.12);
   border: 1px solid #f1f1f1;
   border-radius: 10px;
 
