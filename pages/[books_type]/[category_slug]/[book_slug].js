@@ -24,14 +24,17 @@ export async function getServerSideProps ({req, params}) {
     const book = type === 'books'
       ? await BookService.getBookBySlug(params?.book_slug)
       : await BookService.getAudioBookBySlug(params.book_slug);
-    const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type)
-    const bookQuotes = await BookService.getBookQuotes(book.data.data.id, token)
+    const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type);
+
+    const bookQuotes = type === 'books' ? await BookService.getBookQuotes(book.data.data.id, token) : null;
+    const audioBookChapters = type === 'audioBooks' ? await BookService.audioBookChapters(book.data.data.id) : null;
 
     return {
       props: {
         book: {
           ...book?.data?.data,
           similarBooks: similarBooks.data.data,
+          chapters: audioBookChapters?.data?.data?.chapters || [],
         },
         bookQuotes: bookQuotes?.data?.data || {},
         books_type: type,
