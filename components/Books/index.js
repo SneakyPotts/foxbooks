@@ -50,7 +50,7 @@ const Books = ({booksType}) => {
           <>
             {cats?.map(i => (
               <span key={i?.id} className={st.abCateg}>
-                <Link href={`/categories/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
+                <Link href={`/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
                   <a className={st.abCategLink}>
                     {i?.name}
                   </a>
