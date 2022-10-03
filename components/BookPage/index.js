@@ -63,8 +63,8 @@ const BookPage = ({bookType}) => {
             title: type === 'books' ? 'Книги' : 'Аудиокниги'
           },
           {
-            path: `/${type.toLowerCase()}/${type === 'books' ? book.book_genres[0].slug : book.genre.slug}`,
-            title: `${type === 'books' ? book.book_genres[0].name : book.genre.name}`
+            path: `/${type.toLowerCase()}/${type === 'books' ? book.genres?.[0]?.slug : book.genre?.slug}`,
+            title: `${type === 'books' ? book.genres?.[0]?.name : book.genre?.name}`
           },
           {
             path: router.asPath,

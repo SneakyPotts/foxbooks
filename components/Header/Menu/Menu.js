@@ -28,7 +28,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
         <Link href="/books">
           <a
             className={`${css.link} ${
-              router.asPath.includes('/books')
+              router.query.books_type === 'books' && !router.query.category_slug
                 ? css.active 
                 : css.link
             }`}
@@ -42,7 +42,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
         <Link href="/audiobooks">
           <a
             className={`${css.link} ${css.linkStroke} ${
-                router.asPath.includes('/audiobooks')
+              router.query.books_type === 'audiobooks' && !router.query.category_slug
                   ? css.activeStroke
                   : css.link
             }`}

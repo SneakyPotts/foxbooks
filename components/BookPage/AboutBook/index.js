@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import classnames from 'classnames';
 import Image from 'next/image';
 import {deleteBookFromFavorite, setBookRating, setBookStatus} from '../../../store/bookSlice';
@@ -280,38 +279,49 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               </p>
               <div className={st.ditalInfo}>
                 {audioFlag ? (
-                  <p>
-                    Чтец: <span>{book?.actors?.length ? book?.actors[0]?.name : '-'}</span>
-                  </p>
+                  book?.actors?.length
+                    ? <p>
+                        Чтец: <span>{book?.actors[0]?.name}</span>
+                      </p>
+                    : null
                 ) : (
                   <>
-                    <p>
-                      Издательство: <span>{book?.publishers?.length ? book?.publishers[0]?.publisher : '-'}</span>
-                    </p>
-                    <p>
-                      Переводчик: <span>{book?.translator || '-'}</span>
-                    </p>
+                    {book?.publishers?.length
+                      ? <p>
+                          Издательство: <span>{book?.publishers[0]?.publisher}</span>
+                        </p>
+                      : null}
+                    {book?.translator
+                      ? <p>
+                          Переводчик: <span>{book?.translator}</span>
+                        </p>
+                      : null}
                   </>
                 )}
 
                 <p>
                   Жанр:{' '}
                   <span>
-                    {(book?.genres?.length ? book?.genres[0]?.name :
-                      book?.book_genres?.length ? book?.book_genres[0]?.name :
-                        book?.genre?.name) || '-'}
+                    {(book?.genres?.length
+                      ? book?.genres?.[0]?.name
+                      : book?.genre?.name
+                    ) || '-'}
                   </span>
                 </p>
-                <p>
-                  Правообладатель: <span>{book?.copyright_holder || '-'}</span>
-                </p>
-                <p>Серия:{' '}
-                  <span>
-                    <Link href={`/series/${book?.series?.slug}`}>
-                      <a>{book?.series?.name || '-'}</a>
-                    </Link>
-                  </span>
-                </p>
+                {book?.copyright_holder
+                  ? <p>
+                      Правообладатель: <span>{book?.copyright_holder}</span>
+                    </p>
+                  : null}
+                {book?.series?.name
+                  ? <p>Серия:{' '}
+                      <span>
+                        <Link href={`/series/${book?.series?.slug}`}>
+                          <a>{book?.series?.name || '-'}</a>
+                        </Link>
+                      </span>
+                    </p>
+                : null}
               </div>
             </div>
           </div>

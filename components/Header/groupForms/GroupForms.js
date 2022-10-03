@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import css from "./index.module.scss";
 import classnames from "classnames";
 import Input from "../../shared/common/Input/Input";
@@ -99,7 +99,7 @@ const GroupForms = ({modal,setModal}) => {
 		})
 	}
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const {modalType} = router.query
 
 		switch (modalType) {

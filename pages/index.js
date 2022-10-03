@@ -34,12 +34,12 @@ export async function getServerSideProps ({query}) {
         keywords: ['онлайн библиотека книг', 'читать книги онлайн бесплатно']
       },
 		  books: data?.data?.mainPageBookFilter,
-            categories: data?.data?.genres,
-            dailyHotUpdates: data?.data?.dailyHotUpdates,
-            compilations: data?.data?.compilations,
-            reviews: data?.data?.reviews,
-            audioBooks: data?.data?.audioBooksList,
-            newBooks: data?.data?.newBooksCompilations
+      categories: data?.data?.genres,
+      dailyHotUpdates: data?.data?.dailyHotUpdates,
+      compilations: data?.data?.compilations,
+      reviews: data?.data?.reviews,
+      audioBooks: data?.data?.audioBooksList,
+      newBooks: data?.data?.newBooksCompilations
 		}
 	}
 }
