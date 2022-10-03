@@ -7,7 +7,7 @@ import CategoriesService from "../../http/CategoriesService";
 
 const Books = props => {
   const dispatch = useDispatch();
-  const booksType = props.books.books_type === 'audiobooks' ? 'audioBooks' : 'books';
+  const booksType = props.books_type === 'audiobooks' ? 'audioBooks' : 'books';
 
   dispatch(setCategories(props.categories));
   dispatch(setBooks(props.books));
@@ -22,8 +22,12 @@ const Books = props => {
 export default Books;
 
 export async function getServerSideProps({query, params}) {
-  const categories = await CategoriesService.getCategoriesWithCount();
-  const books = await BookService.getBooks(query);
+    const categories = params.books_type === 'books'
+      ? await CategoriesService.getCategoriesWithCount()
+      : await CategoriesService.getAudioCategoriesWithCount();
+    const books = await BookService.getBooks({
+        ...query, type: params.books_type === 'books' ? 'books' : 'audioBooks'
+      })
 
   const dataSEO = params.books_type === 'books'
     ? {
