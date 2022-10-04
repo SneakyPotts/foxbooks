@@ -34,11 +34,11 @@ export default class AuthorService {
 		return api.get(`${API_URL}/profile/lists/authors?page=${page}${letter && `&letter=${letter}`}`)
 	}
 
-	static async getAuthorQuotes(slug) {
-		return axios.get(`${API_URL}/authors/${slug}/quotes`);
+	static async getAuthorQuotes(slug, page = 1) {
+		return axios.get(`${API_URL}/authors/${slug}/quotes${page && `?page=${page}`}`);
 	}
 
-	static async getAuthorReviews(slug) {
-		return axios.get(`${API_URL}/authors/${slug}/reviews`);
+	static async getAuthorReviews(slug, page = 1) {
+		return axios.get(`${API_URL}/authors/${slug}/reviews${page && `?page=${page}`}`);
 	}
 }
