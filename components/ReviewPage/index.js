@@ -20,7 +20,7 @@ const ReviewPage = () => {
 				data={[
 					{
 						title: `Автор «${data[0]?.author}»`,
-						path: '/'
+						path: `/author/${data[0]?.slug}`
 					},
 					{
 						title: reviews ? 'Рецензии' : 'Цитаты',
@@ -36,7 +36,7 @@ const ReviewPage = () => {
 
 			<div className={st.wrapper}>
 				<div className={st.main}>
-					{data[1]?.data.map((it, idx) => (
+					{data[1]?.data?.map((it, idx) => (
 							<ReviewComponent key={idx} it={it} idx={idx} reviews={reviews}/>
 						))
 					}

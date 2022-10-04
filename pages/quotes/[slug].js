@@ -14,10 +14,9 @@ const Quotes = (props) => {
 
 export default Quotes;
 
-export async function getServerSideProps({ query }) {
-
+export async function getServerSideProps({ params, query }) {
 	try {
-		const quotes = await AuthorService.getAuthorQuotes(query.slug);
+		const quotes = await AuthorService.getAuthorQuotes(params.slug, query.page);
 
 		return {
 			props: {

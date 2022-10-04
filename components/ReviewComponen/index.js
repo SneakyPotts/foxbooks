@@ -11,11 +11,11 @@ import moment from "moment";
 import Book from "../shared/common/book";
 
 const ReviewComponent = ({ it, idx, reviews }) => {
-	const date = moment(reviews ? it?.latest_review?.created_at : it?.latest_quote?.created_at)
+	const date = moment(it?.created_at)
 		.format('Do MMMM YYYY в HH:mm')
 		.replace('-го', '');
 
-	const profile = reviews ? 'asdasd' : it.latest_quote?.user;
+	const profile = it?.user;
 	const [showMoreMap, setShowMoreMap] = useState(null);
 
 	const onShowMore = idx => {
@@ -31,8 +31,8 @@ const ReviewComponent = ({ it, idx, reviews }) => {
 	return (
 		<div className={st.review}>
 			<Book
-				book={it}
-				audio={it.type !== 'books'}
+				book={it?.book}
+				audio={it?.book?.type !== 'books'}
 				similar
 				inReview
 			/>
@@ -56,11 +56,7 @@ const ReviewComponent = ({ it, idx, reviews }) => {
 									/>
 								) : (
 									<AvatarWithLetter
-										letter={
-											profile?.nickname?.slice(0, 1) ||
-											profile?.name?.slice(0, 1) ||
-											'П'
-										}
+										letter={ profile?.name?.slice(0, 1) || 'П' }
 										width={35}
 										id={profile?.id}
 										isProfile
@@ -73,21 +69,21 @@ const ReviewComponent = ({ it, idx, reviews }) => {
 					<p className={st.reviewDate}>{date}</p>
 					{reviews && (
 						<div className={st.reviewRaiting}>
-							<span>Оценил книгу</span> <Stars />
+							<span>Оценил книгу</span> <Stars value={it?.book?.rate_avg} />
 						</div>
 					)}
 				</div>
 				{reviews ? (
 					<div>
-						<h3 className={st.reviewTitle}>Гарри получает похвалы за то, что нарушает запреты</h3>
+						<h3 className={st.reviewTitle}>{it?.title}</h3>
 						<p
 							className={classnames(st.reviewText, {
 								[st.reviewTextHide]: showMoreMap !== idx,
 							})}
 						>
-							{it?.latest_review.content}
+							{it?.content}
 						</p>
-						{it?.latest_review.content.length > 602 &&
+						{it?.content.length > 602 &&
 							<span
 							className={classnames(st.showMoreLink)}
 							onClick={() => onShowMore(idx)}
@@ -102,7 +98,7 @@ const ReviewComponent = ({ it, idx, reviews }) => {
 					</div>
 				) : (
 					<p className={st.reviewText}>
-						{it?.latest_quote?.text}
+						{it?.text}
 					</p>
 				)}
 			</div>

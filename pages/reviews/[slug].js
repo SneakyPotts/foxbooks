@@ -14,10 +14,9 @@ const Reviews = (props) => {
 
 export default Reviews;
 
-export async function getServerSideProps({ query }) {
-
+export async function getServerSideProps({ params, query }) {
 	try {
-		const reviews = await AuthorService.getAuthorReviews(query.slug);
+		const reviews = await AuthorService.getAuthorReviews(params.slug ,query.page);
 
 		return {
 			props: {
