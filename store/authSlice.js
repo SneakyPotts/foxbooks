@@ -11,9 +11,13 @@ const initialState = {
 
 export const signUp = createAsyncThunk(
 	'auth/signUp',
-	async data => {
-		const response = await AuthService.signUp(data)
-		return response.data
+	async (data, {rejectWithValue}) => {
+		try {
+			const response = await AuthService.signUp(data)
+			return response.data
+		} catch (err) {
+			return rejectWithValue(err.response.data.errors.email[0])
+		}
 	}
 )
 

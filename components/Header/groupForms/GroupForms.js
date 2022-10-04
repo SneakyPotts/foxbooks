@@ -29,6 +29,7 @@ const GroupForms = ({modal,setModal}) => {
 	const [flagNewPass, setFlagNewPass] = useState(false)
 	const [flagNewPassMessage, setFlagNewPassMessage] = useState(false)
 	const [flagVerifyEmail, setFlagVerifyEmail] = useState(false);
+	const [errorAlreadyUsedEmail, setErrorAlreadyUsedEmail] = useState(false);
 
 	const { innerWidthWindow } = useSelector(state => state.common)
 	const { isError } = useSelector(state => state.auth)
@@ -70,6 +71,9 @@ const GroupForms = ({modal,setModal}) => {
 			if (res.meta.requestStatus === "fulfilled") {
 				setFlagRegistration(false)
 				setFlagSendEmail(true)
+				setErrorAlreadyUsedEmail(false)
+			} else if (res.meta.requestStatus === "rejected") {
+				setErrorAlreadyUsedEmail(res.payload)
 			}
 		})
 	}
@@ -191,7 +195,7 @@ const GroupForms = ({modal,setModal}) => {
 
 				{flagRegistration && <form onSubmit={handleSubmit(onSubmitRegistration)}>
 					<Input
-						err={errors.email?.message}
+						err={errors.email?.message || errorAlreadyUsedEmail}
 						textLabel='Электронная почта'
 						name='email'
 						register={register}
