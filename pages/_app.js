@@ -23,17 +23,17 @@ function MyApp({Component, pageProps}) {
         title={pageProps.SEO?.title}
         description={pageProps.SEO?.description}
         openGraph={{
-          title: pageProps.SEO?.title,
-          description: pageProps.SEO?.description,
+          title: pageProps.SEO?.og_title || pageProps.SEO?.title,
+          description: pageProps.SEO?.og_description || pageProps.SEO?.description,
           images: [
             {
-              url: `https://api.foxbooks.ec/storage${pageProps.SEO?.image || '/FoxBooks_logo.jpg'}`,
+              url: `https://api.foxbooks.ec/storage${pageProps.SEO?.og_img || '/FoxBooks_logo.jpg'}`,
               type: 'image/jpeg',
             },
           ],
           site_name: 'FoxBooks',
         }}
-        keywords={pageProps.SEO?.keywords?.toString()}
+        keywords={pageProps.SEO?.keywords || ''}
       />
       <Layout>
         <main className="main">
