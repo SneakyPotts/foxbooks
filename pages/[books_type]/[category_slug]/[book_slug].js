@@ -38,6 +38,14 @@ export async function getServerSideProps ({req, params}) {
         },
         bookQuotes: bookQuotes?.data?.data || {},
         books_type: type,
+        SEO: {
+          title: book?.data?.data?.seo_title,
+          description: book?.data?.data?.seo_description,
+          keywords: book?.data?.data?.seo_keywords,
+          og_title: book?.data?.data?.og_title,
+          og_description: book?.data?.data?.og_description,
+          og_img: book?.data?.data?.og_img,
+        }
       }
     }
   } catch {
