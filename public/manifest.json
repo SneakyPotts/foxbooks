@@ -1,0 +1,20 @@
+{
+	"name": "Онлайн-библиотека книг FoxBooks",
+	"short_name": "FoxBooks",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait-primary",
+	"background_color": "#fff",
+	"icons": [
+		{
+			"src": "/192x192-logo.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/144x144-logo.png",
+			"type": "image/png",
+			"sizes": "144x144"
+		}
+	]
+}
