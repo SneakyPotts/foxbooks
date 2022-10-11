@@ -13,7 +13,7 @@ import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import Button from "../shared/common/Button/Button";
 import MobileFilterModal from "../MobileFilterModal";
 
-const Books = ({booksType}) => {
+const Books = ({booksType, order}) => {
   const router = useRouter();
   const type = booksType
 
@@ -58,7 +58,7 @@ const Books = ({booksType}) => {
               </span>
             ))}
             <ShowAll url="/categories" text="Показать все"/>
-            <BookFilters/>
+            <BookFilters filters={order}/>
           </>
         }
 

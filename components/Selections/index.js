@@ -180,7 +180,7 @@ const SelectionsPage = () => {
 								)
 							}
 
-							{router.query['showType'] === 'block' || !router.query['showType'] &&
+							{(router.query['showType'] === 'block' || !router.query['showType']) &&
 								<div className={styles.mainGrid}>
 									{selections?.data?.map(i =>
 										<div className={styles.mainGridItem}>

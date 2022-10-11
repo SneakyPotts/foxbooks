@@ -1,5 +1,5 @@
 import {getServerSideSitemapIndex} from "next-sitemap";
-import SelectionService from "../../../http/SitemapService";
+import SitemapService from "../../../http/SitemapService";
 
 export async function getServerSideProps(ctx) {
   let fields = [];
@@ -14,11 +14,11 @@ export async function getServerSideProps(ctx) {
         ? 'audio_book'
         : 'book';
 
-      data = await SelectionService.getBooksList(type, page.slice(0, 1));
+      data = await SitemapService.getBooksList(type, page.slice(0, 1));
     } else if (bookType.includes('authors')) {
-      data = await SelectionService.getAuthorsList(page.slice(0, 1));
+      data = await SitemapService.getAuthorsList(page.slice(0, 1));
     } else if (bookType.includes('series')) {
-      data = await SelectionService.getSeriesList(page.slice(0, 1));
+      data = await SitemapService.getSeriesList(page.slice(0, 1));
     }
 
     data.data.data.data.map((item) => {

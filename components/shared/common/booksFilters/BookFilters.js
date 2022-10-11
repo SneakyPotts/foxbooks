@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useState } from 'react';
 import classnames from 'classnames';
 
@@ -18,7 +18,8 @@ const BookFilters = ({
   onModal
 }) => {
   const router = useRouter();
-  const [currentIdx, setCurrentIdx] = useState(filters[0].value);
+  const { query } = router;
+  const [currentIdx, setCurrentIdx] = useState(0);
 
   const handleOnClick = value => {
     router.push({ query: {
@@ -31,13 +32,17 @@ const BookFilters = ({
     setCurrentIdx(value);
   };
 
+  useEffect(() => {
+    setCurrentIdx(query[queryName] ? +query[queryName] : filters?.[0]?.value)
+  }, [filters]);
+
   return (
     <div className={onModal && st.wrapper}>
-      {filters?.map(i => (
+      {filters?.map((i, index) => (
         <span
-          key={i?.id}
+          key={i.id || index}
           className={classnames(st.abFilter, {
-            [st.active]: currentIdx == i?.value,
+            [st.active]: currentIdx === i?.value,
             [st.onModal]: onModal
           })}
           onClick={() => handleOnClick(i?.value)}

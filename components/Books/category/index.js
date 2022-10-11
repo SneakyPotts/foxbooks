@@ -12,21 +12,6 @@ import MobileFilterModal from './../../MobileFilterModal'
 import st from './category.module.scss';
 import debounce from 'lodash.debounce';
 
-const data = [
-  {
-    title: 'Последние поступления',
-    defaultValue: 1,
-    options: [
-      { id: 1, title: 'Последние поступления', value: 1 },
-      { id: 2, title: 'Популярные', value: 3 },
-      { id: 3, title: 'Бестселлеры', value: 5 },
-      { id: 4, title: 'По отзывам', value: 4 },
-      { id: 5, title: 'Сейчас читают', value: 2 },
-    ],
-    queryName: 'sortBy',
-  },
-];
-
 const mobileFilters = [
   {
     option: 'Автор',
@@ -45,15 +30,23 @@ const mobileFilters = [
   },
 ]
 
-const Category = () => {
+const Category = ({order}) => {
   const router = useRouter();
-  const { books_type, category_slug } = router.query
+  const { books_type, category_slug } = router.query;
 
   const [stateIndex, setStateIndex] = useState(null);
+  const data = [
+    {
+      title: order?.[0]?.title,
+      defaultValue: order?.[0]?.value,
+      options: order,
+      queryName: 'sortBy',
+    },
+  ];
 
   const flagSwitcher = useMemo(() => {
     return router.query['showType'] === 'list'
-  }, [router.query])
+  }, [router.query]);
 
   const { categories, books } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);

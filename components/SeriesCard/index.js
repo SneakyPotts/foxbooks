@@ -5,7 +5,7 @@ import Link from 'next/link'
 const SeriesCard = ({data}) => {
   return (
     <div className={s.wrapper}>
-      <Link href={`/series?id=${data?.id}`}>
+      <Link href={`/series/${data?.slug}`}>
         <a className={s.images}>
           <img
             src={data?.books[0]?.cover_url || '/preview.jpg'}
@@ -31,7 +31,7 @@ const SeriesCard = ({data}) => {
         </a>
       </Link>
 
-      <Link href={`/series?id=${data?.id}`}>
+      <Link href={`/series/${data?.slug}`}>
         <a className={s.title}>{data?.series}</a>
       </Link>
 
