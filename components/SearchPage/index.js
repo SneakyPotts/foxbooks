@@ -188,7 +188,7 @@ const SearchPage = ({data}) => {
                     <CompilationItem
                       key={i?.id}
                       data={i}
-                      path={`/selections/${i?.id}`}
+                      path={`/selections/${i?.slug}`}
                       isMini
                     />
                   )}

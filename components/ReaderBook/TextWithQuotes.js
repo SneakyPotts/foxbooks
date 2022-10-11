@@ -25,7 +25,7 @@ const options = {
 				<img
 					{...attributesToProps({
 						...domNode?.attribs,
-						src: `https://api.foxbooks.ec/storage${domNode?.attribs?.src}`
+						src: `https://api.foxbooks.ec/storage/${domNode?.attribs?.src}`
 					})}
 				/>
 			)

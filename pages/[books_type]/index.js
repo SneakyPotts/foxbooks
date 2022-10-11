@@ -4,6 +4,7 @@ import BookService from '../../http/BookService';
 import {useDispatch} from 'react-redux';
 import {setBooks, setCategories} from '../../store/bookSlice';
 import CategoriesService from "../../http/CategoriesService";
+import AdminSettings from "../../http/AdminSettings";
 
 const Books = props => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const Books = props => {
 
   return (
     <div>
-      <BooksComponent booksType={booksType}/>
+      <BooksComponent booksType={booksType} order={props.order}/>
     </div>
   );
 };
@@ -22,12 +23,15 @@ const Books = props => {
 export default Books;
 
 export async function getServerSideProps({query, params}) {
-    const categories = params.books_type === 'books'
-      ? await CategoriesService.getCategoriesWithCount()
-      : await CategoriesService.getAudioCategoriesWithCount();
-    const books = await BookService.getBooks({
-        ...query, type: params.books_type === 'books' ? 'books' : 'audioBooks'
-      })
+  const categories = params.books_type === 'books'
+    ? await CategoriesService.getCategoriesWithCount()
+    : await CategoriesService.getAudioCategoriesWithCount();
+
+  const order = await AdminSettings.getSortSetting(params.books_type);
+
+  const books = await BookService.getBooks({
+      ...query, type: params.books_type === 'books' ? 'books' : 'audioBooks', sortBy: order?.data?.data?.[0]?.value || 1
+    });
 
   const dataSEO = params.books_type === 'books'
     ? {
@@ -47,6 +51,7 @@ export async function getServerSideProps({query, params}) {
       categories: categories?.data?.data,
       books: books?.data?.data,
       books_type: params.books_type,
+      order: order?.data?.data
     },
   };
 }

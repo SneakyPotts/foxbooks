@@ -72,7 +72,7 @@ const Search = ({ value , onClose }) => {
                       key={i?.id}
                       className={st.dropDownContentPopularItem}
                     >
-                      <Link href={`/book/${i?.id}?type=${i?.type}`}>
+                      <Link href={`/${i?.type}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}>
                         <a onClick={onClose}>
                           <Image
                             src={i?.cover_url || '/blur.webp'}
@@ -85,7 +85,7 @@ const Search = ({ value , onClose }) => {
                           />
                         </a>
                       </Link>
-                      <Link href={`/book/${i?.id}?type=${i?.type}`}>
+                      <Link href={`/${i?.type}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}>
                         <a className={st.dropDownContentPopularItemName} onClick={onClose}>
                           {i?.title}
                         </a>
@@ -99,8 +99,8 @@ const Search = ({ value , onClose }) => {
               <div className={st.dropDownContentAuthor}>
                 <h2 className={st.dropDownContentTitle}>Авторы</h2>
                 <ul className={st.authorsList}>
-                  {authors.map(({id, author}) => (
-                    <Link href={`/author?id=${id}`} key={id} className={st.author}>
+                  {authors.map(({id, author, slug}) => (
+                    <Link href={`/author/${slug}`} key={id} className={st.author}>
                       <a onClick={onClose}>
                         <span className={st.authorName}>{author}</span>
                       </a>
