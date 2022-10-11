@@ -116,7 +116,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
           </a>
         </Link>
 
-        <Link href="/mybook">
+        <Link href="/mybooks">
           <a
             onClick={e => {
               if (!isAuth) {
