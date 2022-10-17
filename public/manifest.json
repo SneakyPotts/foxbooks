@@ -1,20 +1,42 @@
 {
-	"name": "Онлайн-библиотека книг FoxBooks",
-	"short_name": "FoxBooks",
+	"name": "Онлайн-библиотека книг FoxBooks \uD83E\uDD8A",
+	"short_name": "FoxBooks \uD83E\uDD8A",
+	"description": "Онлайн-библиотека зарубежной и отечественной литературы FoxBooks",
 	"start_url": "/",
+	"id": "/",
 	"display": "standalone",
 	"orientation": "portrait-primary",
 	"background_color": "#fff",
 	"icons": [
 		{
-			"src": "/192x192-logo.png",
+			"src": "/72x72-logo.png",
 			"type": "image/png",
-			"sizes": "192x192"
+			"sizes": "72x72"
+		},
+		{
+			"src": "/96x96-logo.png",
+			"type": "image/png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "/128x128-logo.png",
+			"type": "image/png",
+			"sizes": "128x128"
 		},
 		{
 			"src": "/144x144-logo.png",
 			"type": "image/png",
 			"sizes": "144x144"
+		},
+		{
+			"src": "/152x152-logo.png",
+			"type": "image/png",
+			"sizes": "152x152"
+		},
+		{
+			"src": "/192x192-logo.png",
+			"type": "image/png",
+			"sizes": "192x192"
 		}
 	]
 }

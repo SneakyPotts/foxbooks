@@ -346,6 +346,9 @@
   .container {
     width: 108px;
   }
+  .container:last-of-type {
+    //display: none;
+  }
   .wrapper {
     min-width: 100%;
   }

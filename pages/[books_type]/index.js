@@ -23,35 +23,49 @@ const Books = props => {
 export default Books;
 
 export async function getServerSideProps({query, params}) {
-  const categories = params.books_type === 'books'
-    ? await CategoriesService.getCategoriesWithCount()
-    : await CategoriesService.getAudioCategoriesWithCount();
+  const types = {
+    'books': 'books',
+    'audiobooks': 'audioBooks'
+  }
+  try {
+    const categories = params.books_type === 'books'
+      ? await CategoriesService.getCategoriesWithCount()
+      : await CategoriesService.getAudioCategoriesWithCount();
 
-  const order = await AdminSettings.getSortSetting(params.books_type);
+    const order = await AdminSettings.getSortSetting(params.books_type);
 
-  const books = await BookService.getBooks({
-      ...query, type: params.books_type === 'books' ? 'books' : 'audioBooks', sortBy: order?.data?.data?.[0]?.value || 1
+    const books = await BookService.getBooks({
+      ...query, type: types[params?.books_type], sortBy: order?.data?.data?.[0]?.value || 1
     });
 
-  const dataSEO = params.books_type === 'books'
-    ? {
-      title: 'Читать онлайн книги всех жанров на FoxBooks 🦊',
-      description: 'Слушать самые лучшие аудиокниги онлайн бесплатно и без регистрации на FoxBooks: популярные новинки, профессиональные чтецы, большая библиотека и доступ с любого гаджета!',
-      keywords: ['самые лучшие аудиокниги', 'слушать аудиокниги бесплатно']
-    }
-    : {
-      title: 'Самые лучшие аудиокниги на FoxBooks 🦊 | Слушать аудиокниги бесплатно',
-      description: 'Читать онлайн книги всех жанров на онлайн-библиотеке FoxBooks: фэнтези, фантастика, современная литература, любовные романы, отечественная и зарубежная литература и много другого! Сайт доступен на всех гаджетах.',
-      keywords: ['читать онлайн', 'книги всех жанров']
-    }
+    const dataSEO = params.books_type === 'books'
+      ? {
+        title: 'Читать онлайн книги всех жанров на FoxBooks 🦊',
+        description: 'Слушать самые лучшие аудиокниги онлайн бесплатно и без регистрации на FoxBooks: популярные новинки, профессиональные чтецы, большая библиотека и доступ с любого гаджета!',
+        keywords: ['самые лучшие аудиокниги', 'слушать аудиокниги бесплатно']
+      }
+      : {
+        title: 'Самые лучшие аудиокниги на FoxBooks 🦊 | Слушать аудиокниги бесплатно',
+        description: 'Читать онлайн книги всех жанров на онлайн-библиотеке FoxBooks: фэнтези, фантастика, современная литература, любовные романы, отечественная и зарубежная литература и много другого! Сайт доступен на всех гаджетах.',
+        keywords: ['читать онлайн', 'книги всех жанров']
+      }
 
-  return {
-    props: {
-      SEO: dataSEO,
-      categories: categories?.data?.data,
-      books: books?.data?.data,
-      books_type: params.books_type,
-      order: order?.data?.data
-    },
-  };
+    return {
+      props: {
+        SEO: dataSEO,
+        categories: categories?.data?.data,
+        books: books?.data?.data,
+        books_type: params.books_type,
+        order: order?.data?.data
+      },
+    };
+
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
+  }
 }

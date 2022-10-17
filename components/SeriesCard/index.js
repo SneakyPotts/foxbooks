@@ -32,7 +32,7 @@ const SeriesCard = ({data}) => {
       </Link>
 
       <Link href={`/series/${data?.slug}`}>
-        <a className={s.title}>{data?.series}</a>
+        <a className={s.title}>{data?.series || data?.name}</a>
       </Link>
 
       <span className={s.count}>{data?.books_count} книг</span>
