@@ -9,7 +9,7 @@ export async function getServerSideProps(ctx) {
 
   audioCategories.data?.data?.map(item => {
     fields.push(
-      `${baseUrl}categories/audiobooks/${item?.slug}`,
+      `${baseUrl}audiobooks/${item?.slug}`,
     )
   })
 

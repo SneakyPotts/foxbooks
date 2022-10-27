@@ -15,13 +15,13 @@ const SeriesPage = () => {
 			<Breadcrumbs
 				data={[
 					{
-						title: `Серия “${series?.series}”`,
+						title: `Серия “${series?.series || series?.name}”`,
 						path: router.asPath
 					}
 				]}
 			/>
 
-			<h1 className="title">Серия “{series?.series}”</h1>
+			<h1 className="title">Серия “{series?.series || series?.name}”</h1>
 			<p className={st.amount}>{series?.books_count} книг</p>
 
 			<div className={st.wrapper}>

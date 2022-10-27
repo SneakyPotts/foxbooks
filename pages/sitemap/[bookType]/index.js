@@ -5,7 +5,7 @@ export async function getServerSideProps(ctx) {
   let fields = [];
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
-  const { bookType } = ctx.params;
+  const {bookType} = ctx.params;
 
   if (bookType.endsWith('.xml')) {
     let data;
@@ -13,12 +13,17 @@ export async function getServerSideProps(ctx) {
       const type = bookType.includes('audiobooks')
         ? 'audio_book'
         : 'book';
-
       data = await SitemapService.getBooksList(type);
-    } else if (bookType.includes('authors')) {
+    }
+    if (bookType.includes('authors')) {
       data = await SitemapService.getAuthorsList();
-    } else if (bookType.includes('series')) {
-      data = await SitemapService.getSeriesList();
+    }
+
+    if (bookType.includes('series')) {
+      const type = bookType.includes('audiobooks')
+        ? 'audio-books'
+        : 'books';
+      data = await SitemapService.getSeriesList({type});
     }
 
     for (let i = 1; i <= data.data.data.last_page; i++) {

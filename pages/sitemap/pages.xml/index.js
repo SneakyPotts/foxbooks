@@ -11,8 +11,6 @@ export async function getServerSideProps(ctx) {
     `${baseUrl}categories`,
     `${baseUrl}new`,
     `${baseUrl}selections`,
-    `${baseUrl}holders`,
-    `${baseUrl}settings`,
   )
 
   return getServerSideSitemapIndex(ctx, fields)

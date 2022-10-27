@@ -9,23 +9,40 @@ export async function getServerSideProps(ctx) {
 
   if (!!page) {
     let data;
+    let customUrlPath = null;
+
     if (bookType.includes('books')) {
       const type = bookType === 'audiobooks'
         ? 'audio_book'
         : 'book';
-
       data = await SitemapService.getBooksList(type, page.slice(0, 1));
+
+      data.data.data.data.map((item) => {
+        fields.push(
+          `${baseUrl}${bookType}/${item?.genre?.slug || item?.genres[0].slug}/${item.slug}`,
+        )
+      })
     } else if (bookType.includes('authors')) {
       data = await SitemapService.getAuthorsList(page.slice(0, 1));
-    } else if (bookType.includes('series')) {
-      data = await SitemapService.getSeriesList(page.slice(0, 1));
-    }
 
-    data.data.data.data.map((item) => {
-      fields.push(
-        `${baseUrl}${bookType}/${item.slug}`,
-      )
-    })
+      data.data.data.data.map((item) => {
+        fields.push(
+          `${baseUrl}author/${item.slug}`,
+        )
+      })
+    } else if (bookType.includes('series')) {
+      const type = bookType.includes('audio')
+        ? 'audio-books'
+        : 'books';
+      data = await SitemapService.getSeriesList({type, page: page.slice(0, 1)});
+      customUrlPath = `series/${type}`;
+
+      data.data.data.data.map((item) => {
+        fields.push(
+          `${baseUrl}${customUrlPath}/${item.slug}`,
+        )
+      })
+    }
   }
 
   return getServerSideSitemapIndex(ctx, fields)

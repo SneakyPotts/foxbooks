@@ -342,15 +342,22 @@
     right: 5px;
   }
 }
+
+@media (max-width: 920px) {
+    .container {
+      width: 19vw;
+    }
+  .wrapper {
+    min-width: 100%;
+  }
+}
+
 @media (max-width: 769px) {
   .container {
     width: 108px;
   }
   .container:last-of-type {
     //display: none;
-  }
-  .wrapper {
-    min-width: 100%;
   }
   .wrapperList {
     min-width: 90px;
