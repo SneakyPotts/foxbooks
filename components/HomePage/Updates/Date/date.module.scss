@@ -45,7 +45,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 0px;
+  max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
@@ -109,4 +109,10 @@
 }
 .activeBtn {
   color: $text-hover;
+}
+
+@media (max-width: 1025px) {
+  .releaseDates {
+    display: none;
+  }
 }

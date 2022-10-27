@@ -95,3 +95,11 @@
     }
   }
 }
+
+@media (max-height: 751px) {
+  .mobCateg {
+    &List {
+      margin-bottom: 0;
+    }
+  }
+}

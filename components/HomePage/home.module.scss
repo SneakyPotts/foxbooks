@@ -75,11 +75,16 @@
     margin-left: 0;
   }
   .wrapper {
-    display: none;
+    //display: none;
+    flex-direction: column;
+    margin-bottom: 0;
   }
 }
 @media (max-width: 768px) {
   .mainContainer {
     order: 1;
+  }
+  .wrapper {
+    display: none;
   }
 }

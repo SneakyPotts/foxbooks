@@ -35,6 +35,8 @@ export async function getServerSideProps({ req, params, query }) {
     const order = await AdminSettings.getSortSetting('categories');
 
     const categoryData = await CategoriesService.getBookCategories(category_slug);
+    const { seo_data } = categoryData.data.data[0];
+
     const books = await BookService.getBooks({
       ...query,
       type: books_type === 'audiobooks' ? 'audioBooks' : query.type,
@@ -49,14 +51,14 @@ export async function getServerSideProps({ req, params, query }) {
         categories: categories?.data?.data,
         books: books?.data?.data,
         order: order?.data?.data,
-        // SEO: {
-        //   title: books?.data?.data?.seo_title,
-        //   description: books?.data?.data?.seo_description,
-        //   keywords: books?.data?.data?.seo_keywords,
-        //   og_title: books?.data?.data?.og_title,
-        //   og_description: books?.data?.data?.og_description,
-        //   og_img: books?.data?.data?.og_img,
-        // }
+        SEO: {
+          title: seo_data?.seo_title,
+          description: seo_data?.seo_description,
+          keywords: seo_data?.seo_keywords,
+          og_title: seo_data?.og_title,
+          og_description: seo_data?.og_description,
+          og_img: seo_data?.og_img,
+        }
       },
     }
   } catch {

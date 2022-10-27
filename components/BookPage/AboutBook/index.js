@@ -316,7 +316,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 {book?.series?.name
                   ? <p>Серия:{' '}
                       <span>
-                        <Link href={`/series/${book?.series?.slug}`}>
+                        <Link href={`/series/books/${book?.series?.slug}`}>
                           <a>{book?.series?.name || '-'}</a>
                         </Link>
                       </span>

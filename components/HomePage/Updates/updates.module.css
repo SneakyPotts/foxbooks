@@ -6,3 +6,9 @@
 .title {
   margin-bottom: 30px;
 }
+
+@media (max-width: 1025px) {
+  .container {
+    margin: 0;
+  }
+}

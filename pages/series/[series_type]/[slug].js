@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import SeriesPage from '../components/SeriesPage';
-import AuthorService from '../http/AuthorService';
-import {setSeries} from "../store/authorSlice";
+import {setSeries} from "../../../store/authorSlice";
+import SeriesPage from "../../../components/SeriesPage";
+import AuthorService from "../../../http/AuthorService";
+
 
 const series = ({ series }) => {
 	const dispatch = useDispatch()
@@ -14,12 +15,12 @@ const series = ({ series }) => {
 
 export default series;
 
-export async function getServerSideProps ({ req, query }) {
+export async function getServerSideProps ({ req, params }) {
 	const { cookies } = req
 	const token = cookies.token
 
 	try {
-		const series = await AuthorService.getAuthorSeries({token, id: query?.id})
+		const series = await AuthorService.getAuthorSeriesBySlug({token, slug: params?.slug, type: params?.series_type})
 
 		return {
 			props: {

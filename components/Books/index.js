@@ -95,7 +95,7 @@ const Books = ({booksType, order}) => {
                 key={cat?.id}
                 className={st.mobCategListItem}
               >
-                <Link href={`/categories/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
+                <Link href={`/${type === 'books' ? type : 'audiobooks'}/${cat?.slug}`}>
                   <a className={st.mobCategLink}>
                     {cat?.name}
                     <span>{cat?.books_count}</span>
