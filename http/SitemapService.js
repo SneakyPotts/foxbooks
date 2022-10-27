@@ -19,7 +19,7 @@ export default class SitemapService {
   }
 
   static async getSelectionsList(page = 1) {
-    return  await axios.get(`${API_URL}/seo/slugs/selections${page && `?page=${page}`}`);
+    return  await axios.get(`${API_URL}/seo/slugs/compilation${page && `?page=${page}`}`);
   }
 
   static async getSeriesList({type, page = 1}) {

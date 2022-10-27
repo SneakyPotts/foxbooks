@@ -211,7 +211,7 @@ const Book = ({
             </p>
             {innerWidthWindow >= 768 && (
               <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
-                {book?.text}
+                {book?.text || book?.description}
               </p>
             )}
             {!audio && (

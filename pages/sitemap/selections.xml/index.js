@@ -7,9 +7,9 @@ export async function getServerSideProps(ctx) {
 
   const selections = await SitemapService.getSelectionsList();
 
-  selections.data?.data?.map(item => {
+  selections.data?.data?.data?.map(item => {
     fields.push(
-      `${baseUrl}/${item?.slug}`,
+      `${baseUrl}selections/${item?.slug}`,
     )
   })
 
