@@ -18,6 +18,14 @@ export default class AuthorService {
 		})
 	}
 
+	static async getAuthorSeriesBySlug({token, slug, type = 'books'}) {
+		return axios.get(`${API_URL}/authors/series/by-slug/${slug}?type=${type}`, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
+	}
+
 	static async getAuthorAudioBooks(id) {
 		return axios.get(`${API_URL}/authors/${id}/audio-books`)
 	}

@@ -82,7 +82,7 @@ const AuthorPage = () => {
                   [st.authorBiographyHide]: !showMore,
                 })}
               >
-                {author?.about || 'Нет информации'}
+                {author?.about ? <div dangerouslySetInnerHTML={{ __html: author?.about }} /> : 'Нет информации'}
               </p>
               {author?.about?.length > 550 &&
                 <span
@@ -110,7 +110,7 @@ const AuthorPage = () => {
                     key={i?.id}
                     className={st.series}
                   >
-                    <Link href={`/series/${i?.slug}`}>
+                    <Link href={`/series/${i?.type}/${i?.slug}`}>
                       <a className={classnames('title', st.seriesTitle)}>
                         Серия книг: {i?.series}
                       </a>

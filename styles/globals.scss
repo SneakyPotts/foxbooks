@@ -278,3 +278,10 @@ ol[class] {
     line-height: 25px;
   }
 }
+
+@media (max-height: 751px) {
+  .modalMobileWrapper {
+    position: static;
+    padding-bottom: 0;
+  }
+}
