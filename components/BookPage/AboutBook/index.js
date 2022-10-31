@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
 import Image from 'next/image';
-import {deleteBookFromFavorite, setBookRating, setBookStatus} from '../../../store/bookSlice';
+import {deleteBookFromFavorite, setAudioBookRating, setBookRating, setBookStatus} from '../../../store/bookSlice';
 import Stars from '../../shared/common/stars/Stars';
 import BookMark from '../../shared/icons/myBookmark';
 import OpenBook from '../../shared/icons/bookOpen';
@@ -92,7 +92,9 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       dispatch(setAuthPopupVisibility(true))
       return
     }
-    dispatch(setBookRating({ id: book.id, value }));
+    book?.type === 'audioBooks'
+      ? dispatch(setAudioBookRating({ id: book.id, value }))
+      : dispatch(setBookRating({ id: book.id, value }))
   };
 
   const onListen = () => {

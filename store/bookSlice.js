@@ -66,6 +66,14 @@ export const setBookRating = createAsyncThunk(
 	}
 )
 
+export const setAudioBookRating = createAsyncThunk(
+	'book/setAudioBookRating',
+	async data => {
+		const response = await BookService.setAudioBookRating(data)
+		return response.data.data[0]
+	}
+)
+
 export const bookSlice = createSlice({
 	name: 'book',
 	initialState,
@@ -116,6 +124,11 @@ export const bookSlice = createSlice({
 
 
 		[setBookRating.fulfilled]: (state, action) => {
+			state.book.rates_avg = action.payload?.rate_avg
+			state.book.rates_count = action.payload?.rates_count
+		},
+
+		[setAudioBookRating.fulfilled]: (state, action) => {
 			state.book.rates_avg = action.payload?.rate_avg
 			state.book.rates_count = action.payload?.rates_count
 		}
