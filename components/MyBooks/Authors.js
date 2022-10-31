@@ -13,6 +13,9 @@ import Loader from "../shared/common/Loader";
 import {setQueryString} from "../../utils";
 import ShowAll from "../shared/common/showAll/ShowAll";
 import s from "../SearchPage/styles.module.scss";
+import ModalWindow from "../shared/common/modalWindow/ModalWindow";
+import ButtonGroup from "../SettingsProfile/buttonGroup";
+import Button from "../shared/common/Button/Button";
 
 const Authors = () => {
   const dispatch = useDispatch()
@@ -22,6 +25,10 @@ const Authors = () => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState([])
+  const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
+  const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
+  const [authorId, setAuthorId] = useState(null)
+  const [authorName, setAuthorName] = useState(null);
 
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
@@ -30,13 +37,35 @@ const Authors = () => {
     setQueryString(value, 'letter', router)
   }
 
+  const getFavoriteAuthors = async () => {
+      return await AuthorService.getUserAuthors(router.query)
+  }
+
+  const setCurrentData = (response) => {
+    setLastPage(response.data.data.last_page)
+    setData(response.data.data.data)
+    setIsLoading(false)
+  }
+
+  const showDeletePopup = ({id, author}) => {
+    setAuthorId(id)
+    setAuthorName(author)
+    setDeletePopupIsVisible(true)
+  }
+
+  const deleteHandler = () => {
+    AuthorService.deleteAuthorFromFavorite(authorId).then(() => {
+      getFavoriteAuthors()
+        .then(setCurrentData)
+
+      setDeletePopupIsVisible(false)
+      setConfirmPopupIsVisible(true)
+    })
+  }
+
   useEffect(() => {
-    (async () => {
-      const response = await AuthorService.getUserAuthors(router.query)
-      setLastPage(response.data.data.last_page)
-      setData(response.data.data.data)
-      setIsLoading(false)
-    })()
+    getFavoriteAuthors()
+      .then(setCurrentData)
   }, [router.query])
 
   useEffect(() => {
@@ -86,6 +115,8 @@ const Authors = () => {
             >
               <AuthorCard
                 data={i}
+                withDelete={true}
+                onDelete={() => showDeletePopup(i)}
               />
             </div>
           )}
@@ -98,6 +129,43 @@ const Authors = () => {
           <Loader/>
         </p>
       : null
+    }
+
+    {deletePopupIsVisible &&
+      <ModalWindow
+        onClose={() => setDeletePopupIsVisible(false)}
+      >
+        <div className={styles.modal}>
+          <h3 className={styles.modalTitle}>Удалить Автора</h3>
+          <p className={styles.modalText}>
+            Вы действительно хотите удалить автора “{authorName}”?
+          </p>
+          <ButtonGroup
+            text="Удалить"
+            typeButton="button"
+            ClassName={styles.modalBtns}
+            click={deleteHandler}
+            cancelClick={() => setDeletePopupIsVisible(false)}
+          />
+        </div>
+      </ModalWindow>
+    }
+
+    {confirmPopupIsVisible &&
+      <ModalWindow
+        onClose={() => setConfirmPopupIsVisible(false)}
+      >
+        <div className={styles.modal}>
+          <h3 className={styles.modalTitle}>Автор удалён</h3>
+
+          <Button
+            text="Закрыть"
+            typeButton="button"
+            click={() => setConfirmPopupIsVisible(false)}
+            classNames={styles.modalBtn}
+          />
+        </div>
+      </ModalWindow>
     }
 
     {lastPage > 1 && page !== lastPage

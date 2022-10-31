@@ -2,12 +2,15 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
+import Delete from "../../public/delete.svg";
 
 const AuthorCard = ({
-  data
+  data,
+  onDelete,
+  withDelete
 }) => {
   return (
-    <div>
+    <div className={styles.authorItem}>
       <Link href={`/author/${data?.slug}`}>
         <a className={styles.img}>
           <Image
@@ -24,6 +27,15 @@ const AuthorCard = ({
         <a className={styles.name}>{data?.author}</a>
       </Link>
       <span className={styles.booksCount}>{data?.books_count} книг</span>
+
+      {withDelete &&
+        <span
+          className={styles.deleteBtn}
+          onClick={onDelete}
+        >
+          <Delete />
+        </span>
+      }
     </div>
   );
 };
