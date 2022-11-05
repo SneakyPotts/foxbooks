@@ -74,7 +74,7 @@ const Books = ({ isAudio }) => {
 
   const showDeletePopup = ({id, type, title}) => {
     setBookId(id)
-    setBookType(type)
+    setBookType(type === 'audioBooks' ? 'audio-books' : type)
     setBookTitle(title)
     setDeletePopupIsVisible(true)
   }

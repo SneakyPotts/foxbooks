@@ -36,7 +36,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       withPopup: true,
       isEdit: true,
       link: audioFlag ? '/mybooks/audio' : '/mybooks',
-      message: 'в список читаемых'
+      message: `в список ${audioFlag ? 'слушаемых' : 'читаемых'}`
     },
     {
       icon: <Flag />,
@@ -218,7 +218,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     <p>Оцените книгу</p>
                     <Stars
                       activeStart={true}
-                      value={0}
+                      value={book?.user_rating}
                       color={'#4f4f4f'}
                       onChange={value => setRating(value)}
                     />
@@ -255,7 +255,9 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   {dataOptions.map(i => (
                     <p
                       key={i?.title}
-                      className={st.menuItem}
+                      className={classnames(st.menuItem, {
+                        [st.elect]: book?.book_status === i?.value
+                      })}
                       onClick={() => handleClick(i)}
                     >
                       {i?.icon}

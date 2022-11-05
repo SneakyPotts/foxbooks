@@ -25,8 +25,8 @@ export async function getServerSideProps ({req, params}) {
 
   try {
     const book = type === 'books'
-      ? await BookService.getBookBySlug(params?.book_slug)
-      : await BookService.getAudioBookBySlug(params.book_slug);
+      ? await BookService.getBookBySlug(params?.book_slug, token)
+      : await BookService.getAudioBookBySlug(params.book_slug, token);
     const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type);
 
     const banners = await AdminSettings.getPageBanner({page_slug: params?.book_slug});
