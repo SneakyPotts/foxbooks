@@ -11,6 +11,7 @@ import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
 import MobileFilterModal from './../../MobileFilterModal'
 import st from './category.module.scss';
 import debounce from 'lodash.debounce';
+import Banners from "../../shared/common/Banner/Banners";
 
 const mobileFilters = [
   {
@@ -169,12 +170,10 @@ const Category = ({order}) => {
             {[st.list]: flagSwitcher}
           )}
         >
-          <div className={st.bannerBlock}>
-            <img src="/banner.png" alt="" className={st.banner} />
-          </div>
-          <div className={st.bannerBlock}>
-            <img src="/banner.png" alt="" className={st.banner} />
-          </div>
+          {/*<div className={st.bannerBlock}>*/}
+          {/*  <img src="/banner.png" alt="" className={st.banner} />*/}
+          {/*</div>*/}
+          <Banners />
         </div>
       </div>
     </div>

@@ -5,12 +5,14 @@ import { useDispatch } from 'react-redux';
 import { setBooks, setCategories } from '../../../store/bookSlice';
 import CategoriesService from "../../../http/CategoriesService";
 import AdminSettings from "../../../http/AdminSettings";
+import {setCurrentPageBanners} from "../../../store/adminSlice";
 
 const Categories = props => {
   const dispatch = useDispatch();
 
   dispatch(setCategories(props.categories));
   dispatch(setBooks(props.books));
+  dispatch(setCurrentPageBanners(props.banners));
 
   return (
     <div>
@@ -46,11 +48,14 @@ export async function getServerSideProps({ req, params, query }) {
       token
     });
 
+    const banners = await AdminSettings.getPageBanner({page_slug: 'category', category_slug});
+
     return {
       props: {
         categories: categories?.data?.data,
         books: books?.data?.data,
         order: order?.data?.data,
+        banners: banners?.data?.data,
         SEO: {
           title: seo_data?.seo_title,
           description: seo_data?.seo_description,

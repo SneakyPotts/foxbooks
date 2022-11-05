@@ -1,8 +1,5 @@
 @import 'styles/variables.scss';
 
-// .bookInfo {
-//   display: flex;
-// }
 .bookInfo {
   display: flex;
   flex-direction: column;
@@ -180,6 +177,11 @@
     fill: none;
     white-space: nowrap;
     transition: 0.15s;
+
+    &.elect {
+      opacity: .5;
+      pointer-events: none;
+    }
 
     span {
       margin-left: 15px;

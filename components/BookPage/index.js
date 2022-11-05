@@ -19,6 +19,7 @@ import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
 import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
+import Banners from "../shared/common/Banner/Banners";
 
 const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
@@ -172,8 +173,7 @@ const BookPage = ({bookType}) => {
         </div>
 
         <div className={st.advertisingBlok}>
-          <img src="/banner.png" alt="" className={st.banner} />
-          <img src="/banner.png" alt="" className={st.banner} />
+          <Banners />
         </div>
       </div>
     </div>

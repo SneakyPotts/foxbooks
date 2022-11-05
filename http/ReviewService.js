@@ -17,4 +17,12 @@ export default class ReviewService {
 	static async getUserReview({findByTitle = ''}) {
 		return api.get(`${API_URL}/reviews/list${findByTitle && `?findByTitle=${findByTitle}`}`)
 	}
+
+	static async updateReview(data) {
+		return api.put(`${API_URL}/reviews`, data)
+	}
+
+	static async deleteUserReview({type, id}) {
+		return api.delete(`${API_URL}/reviews?id=${id}&type=${type}`)
+	}
 }

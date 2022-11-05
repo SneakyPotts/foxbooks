@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
 import Image from 'next/image';
-import {deleteBookFromFavorite, setBookRating, setBookStatus} from '../../../store/bookSlice';
+import {deleteBookFromFavorite, setAudioBookRating, setBookRating, setBookStatus} from '../../../store/bookSlice';
 import Stars from '../../shared/common/stars/Stars';
 import BookMark from '../../shared/icons/myBookmark';
 import OpenBook from '../../shared/icons/bookOpen';
@@ -25,28 +25,42 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       title: audioFlag ? 'Хочу прослушать' : 'Хочу прочитать',
       value: 1,
       withPopup: true,
-      isEdit: true
+      isEdit: true,
+      link: '/mybooks',
+      message: 'в вашу библиотеку'
     },
     {
       icon: <OpenBook />,
       title: audioFlag ? 'Слушаю' :'Читаю',
       value: 2,
-      isEdit: true
+      withPopup: true,
+      isEdit: true,
+      link: audioFlag ? '/mybooks/audio' : '/mybooks',
+      message: `в список ${audioFlag ? 'слушаемых' : 'читаемых'}`
     },
     {
       icon: <Flag />,
       title: audioFlag ? 'Прослушал' : 'Прочитано',
       value: 3,
-      isEdit: true
+      withPopup: true,
+      isEdit: true,
+      link: null,
+      message: `в список ${audioFlag ? 'прослушаных' : 'прочитаных'}`
     },
     {
       icon: <Add />,
-      title: 'В мои подборки'
+      title: 'В мои подборки',
+      withPopup: true,
+      link: '/mybooks/selections?compType=1',
+      message: 'в ваши подборки'
     },
     {
       icon: <Basket />,
       title: 'Удалить из моих книг',
-      isDelete: true
+      withPopup: true,
+      isDelete: true,
+      link: null,
+      message: 'из вашей библиотеки'
     }
   ]
 
@@ -54,6 +68,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
   const type = audioFlag ? 'audio-books' : 'books'
 
   const [showPopUp, setShowPopUp] = useState(false);
+  const [message, setMessage] = useState({status: 'добавлена', text: '', link: null});
 
   const { innerWidthWindow } = useSelector(state => state.common);
   const { isAuth } = useSelector(state => state.auth);
@@ -76,12 +91,18 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
         id: book.id,
         value: el?.value,
         type
-      })).then(res => showPopup(res, el?.withPopup))
+      })).then(res => {
+        setMessage({...message, text: el?.message, link: el?.link})
+        showPopup(res, el?.withPopup)
+      })
     } else if(el?.isDelete) {
       dispatch(deleteBookFromFavorite({
         id: book.id,
         type
-      }))
+      })).then(res => {
+        setMessage({status: 'удалена', text: el?.message, link: el?.link})
+        showPopup(res, el?.withPopup)
+      })
     } else {
       showMyComp()
     }
@@ -92,7 +113,9 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       dispatch(setAuthPopupVisibility(true))
       return
     }
-    dispatch(setBookRating({ id: book.id, value }));
+    book?.type === 'audioBooks'
+      ? dispatch(setAudioBookRating({ id: book.id, value }))
+      : dispatch(setBookRating({ id: book.id, value }))
   };
 
   const onListen = () => {
@@ -195,7 +218,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     <p>Оцените книгу</p>
                     <Stars
                       activeStart={true}
-                      value={0}
+                      value={book?.user_rating}
                       color={'#4f4f4f'}
                       onChange={value => setRating(value)}
                     />
@@ -232,7 +255,9 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   {dataOptions.map(i => (
                     <p
                       key={i?.title}
-                      className={st.menuItem}
+                      className={classnames(st.menuItem, {
+                        [st.elect]: book?.book_status === i?.value
+                      })}
                       onClick={() => handleClick(i)}
                     >
                       {i?.icon}
@@ -331,10 +356,12 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       {showPopUp && (
         <div className={st.popUp}>
           <p>
-            Книга “{book?.title}” добавлена{' '}
-            <Link href="/mybooks">
-              <a className={st.popUpLink}>в вашу библиотеку</a>
-            </Link>
+            Книга “{book?.title}” {message?.status}{' '}
+            {message?.link
+              ? <Link href={message?.link}>
+                  <a className={st.popUpLink}>{message?.text}</a>
+                </Link>
+              : message?.text}
           </p>
         </div>
       )}

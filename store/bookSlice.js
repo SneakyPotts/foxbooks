@@ -46,7 +46,7 @@ export const setBookStatus = createAsyncThunk(
 	'book/setBookStatus',
 	async data => {
 		const response = await BookService.setBookStatus(data)
-		return response.data
+		return response?.data?.data[0]
 	}
 )
 
@@ -62,7 +62,15 @@ export const setBookRating = createAsyncThunk(
 	'book/setBookRating',
 	async data => {
 		const response = await BookService.setBookRating(data)
-		return response.data.data[0]
+		return response.data.data
+	}
+)
+
+export const setAudioBookRating = createAsyncThunk(
+	'book/setAudioBookRating',
+	async data => {
+		const response = await BookService.setAudioBookRating(data)
+		return response.data.data
 	}
 )
 
@@ -114,10 +122,22 @@ export const bookSlice = createSlice({
 			state.audioBooksByAuthor = action.payload?.data?.audio_books
 		},
 
-
 		[setBookRating.fulfilled]: (state, action) => {
 			state.book.rates_avg = action.payload?.rate_avg
 			state.book.rates_count = action.payload?.rates_count
+		},
+
+		[setAudioBookRating.fulfilled]: (state, action) => {
+			state.book.rates_avg = action.payload?.rate_avg
+			state.book.rates_count = action.payload?.rates_count
+		},
+
+		[setBookStatus.fulfilled]: (state, action) => {
+			state.book.book_status = action.payload.status;
+		},
+
+		[deleteBookFromFavorite.fulfilled]: (state) => {
+			state.book.book_status = 0;
 		}
 	}
 });

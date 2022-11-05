@@ -14,6 +14,7 @@ import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {useRouter} from "next/router";
 import Button from "../shared/common/Button/Button";
 import CompilationItem from "../CompilationItem";
+import Banners from "../shared/common/Banner/Banners";
 
 const AuthorPage = () => {
   const dispatch = useDispatch()
@@ -264,8 +265,7 @@ const AuthorPage = () => {
         </div>
 
         <div className={st.advertisingBlok}>
-          <img src="/banner.png" alt="" className={st.banner} />
-          <img src="/banner.png" alt="" className={st.banner} />
+          <Banners />
         </div>
       </div>
       

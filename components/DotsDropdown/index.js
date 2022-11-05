@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import classNames from "classnames";
 import styles from './styles.module.scss'
 import Dots from "../shared/icons/horizontalDots";
 import DrawerPopup from "../shared/common/DrawerPopup";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const DotsDropdown = ({
   children,
@@ -11,22 +12,19 @@ const DotsDropdown = ({
   externalDrawerClass,
   isSmall
 }) => {
+  const modalRef = useRef(null);
+
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const closeMenu = () => {
     setMenuIsOpen(false)
   }
 
-  useEffect(() => {
-    document.body.addEventListener('click', closeMenu)
-
-    return () => {
-      document.body.removeEventListener('click', closeMenu)
-    }
-  }, [])
+  useOnClickOutside(modalRef, closeMenu)
 
   return (
     <div
+      ref={modalRef}
       className={classNames(styles.dropdown, externalClass)}
       onClick={ev => ev.stopPropagation()}
     >

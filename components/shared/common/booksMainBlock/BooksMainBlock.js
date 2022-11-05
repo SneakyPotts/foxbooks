@@ -1,9 +1,9 @@
 import React from 'react';
 import Book from '../book';
-import books from '../../../data/books.json';
 import st from './booksMainBlock.module.scss';
 import { useSelector } from 'react-redux';
 import MyPagination from '../MyPagination';
+import Banners from "../Banner/Banners";
 
 const BooksMainBlock = ({ audio }) => {
   const { books } = useSelector(state => state.book);
@@ -28,8 +28,7 @@ const BooksMainBlock = ({ audio }) => {
         )}
       </div>
       <div className={st.advertisingBlok}>
-        <img src="/banner.png" alt="" className={st.banner} />
-        <img src="/banner.png" alt="" className={st.banner} />
+        <Banners />
       </div>
     </div>
   );

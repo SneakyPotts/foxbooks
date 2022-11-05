@@ -10,7 +10,7 @@ import SearchInput from "../SearchInput";
 import {setHeaderVisibility} from "../../store/commonSlice";
 import classNames from "classnames";
 import ReviewLogicItem from "../ReviewLogicItem";
-import {getUserReview} from "../../store/reviewSlice";
+import {deleteUserReview, getUserReview} from "../../store/reviewSlice";
 import Loader from "../shared/common/Loader";
 import {useRouter} from "next/router";
 import {setQueryString} from "../../utils";
@@ -25,21 +25,40 @@ const Reviews = () => {
   const [deletePopupIsVisible, setDeletePopupIsVisible] = useState(false)
   const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
+  const [reqData, setReqData] = useState({id: '', type: ''});
 
-  const handleIconClick = () => {
+  const handleIconClick = (i) => {
     setDeletePopupIsVisible(true)
+
+    setReqData({
+      id: i.book
+            ? i.book.id
+            : i.audio_book.id,
+      type: i.book
+              ? 'book'
+              : 'audio_book',
+    })
   }
-  const onChange = value => {
-    setQueryString(value, 'findByTitle', router)
-    // router.push(
-    //   { query: { ...router.query, ['findByTitle']: encodeURI(value) } },
-    //   null,
-    //   { scroll: false }
-    // );
-  }
-  useEffect(() => {
+
+  const getUserReviews = () => {
+    !isLoading &&  setIsLoading(true);
+
     dispatch(getUserReview(router.query))
       .then(() => setIsLoading(false))
+  }
+
+  const deleteReview = () => {
+    setDeletePopupIsVisible(false)
+    dispatch(deleteUserReview(reqData))
+    setConfirmPopupIsVisible(true)
+  }
+
+  const onChange = value => {
+    setQueryString(value, 'findByTitle', router)
+  }
+
+  useEffect(() => {
+    getUserReviews();
   }, [router.query]);
 
   return <>
@@ -82,7 +101,7 @@ const Reviews = () => {
             <ReviewLogicItem
               data={i}
               withControls
-              onDelete={handleIconClick}
+              onDelete={() => handleIconClick(i)}
             />
           </div>
         )}
@@ -102,7 +121,7 @@ const Reviews = () => {
             text="Удалить"
             typeButton="button"
             ClassName={styles.modalBtns}
-            click={() => setConfirmPopupIsVisible(true)}
+            click={deleteReview}
             cancelClick={() => setDeletePopupIsVisible(false)}
           />
         </div>

@@ -139,7 +139,7 @@ const Book = ({
             {similar ? (
               <div className={st.starsBlock}>
                 <Stars count={1} value={book?.rates_avg} />
-                <span>{book?.rates_count}</span>
+                <span>{book?.rates_avg}</span>
               </div>
             ) : (
               <div className={st.starsBlock}>

@@ -5,6 +5,7 @@ import React from "react";
 import {useRouter} from "next/router";
 import MyPagination from "../shared/common/MyPagination";
 import {useSelector} from "react-redux";
+import Banners from "../shared/common/Banner/Banners";
 
 const ReviewPage = () => {
 	const router = useRouter()
@@ -45,8 +46,7 @@ const ReviewPage = () => {
 				</div>
 
 				<div className={st.advertisingBlok}>
-					<img src="/banner.png" alt="" className={st.banner} />
-					<img src="/banner.png" alt="" className={st.banner} />
+					<Banners />
 				</div>
 			</div>
 		</div>

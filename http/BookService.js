@@ -55,12 +55,22 @@ export default class BookService {
 			axios.get(`${API_URL}/audio-books/${id}`)
 	}
 
-	static async getAudioBookBySlug(slug) {
-		return axios.get(`${API_URL}/audio-books/by-slug/${slug}`)
+	static async getAudioBookBySlug(slug, token) {
+		return axios.get(`${API_URL}/audio-books/by-slug/${slug}`,
+			{
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			})
 	}
 
-	static async getBookBySlug(slug) {
-		return axios.get(`${API_URL}/books/by-slug/${slug}`)
+	static async getBookBySlug(slug, token) {
+		return axios.get(`${API_URL}/books/by-slug/${slug}`,
+			{
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			})
 	}
 
 	static async getBooksByAuthor(id) {
@@ -85,16 +95,20 @@ export default class BookService {
 
 	static async setBookStatus({id, value, type}) {
 		const idKey = type === 'books' ? 'book_id' : 'audio_book_id'
-		return api.put(`${API_URL}/profile/lists/${type}`, { [idKey]: id, status: value })
+		return api.post(`${API_URL}/profile/lists/${type}`, { [idKey]: id, status: value })
 	}
 
 	static async deleteBookFromFavorite({id, type}) {
 		const idKey = type === 'books' ? 'book_id' : 'audio_book_id'
-		return api.delete(`${API_URL}/profile/lists/${type}?book_id=${id}`, { [idKey]: id })
+		return api.delete(`${API_URL}/profile/lists/${type}?${idKey}=${id}`)
 	}
 
 	static async setBookRating({id, value}) {
 		return api.post(`${API_URL}/books/ratings`, {book_id: id, rating: value})
+	}
+
+	static async setAudioBookRating({id, value}) {
+		return api.post(`${API_URL}/audio-books/ratings`, {audio_book_id: id, rating: value})
 	}
 
 	static async recommendBook(data) {

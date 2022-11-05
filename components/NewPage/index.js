@@ -9,6 +9,7 @@ import {useRouter} from "next/router";
 import BookFilters from "../shared/common/booksFilters/BookFilters";
 import styles from "../Selections/selections.module.scss";
 import MobileFilterModal from "../MobileFilterModal";
+import Banners from "../shared/common/Banner/Banners";
 
 const sortFilters = [
 	{ id: 1, title: 'Последние поступления', value: 1 },
@@ -95,12 +96,7 @@ const NewPage = () => {
 				</div>
 
 				<div className={st.advertisingBlok}>
-					<div className={st.bannerBlock}>
-						<img src="/banner.png" alt="" className={st.banner} />
-					</div>
-					<div className={st.bannerBlock}>
-						<img src="/banner.png" alt="" className={st.banner} />
-					</div>
+					<Banners />
 				</div>
 			</div>
 

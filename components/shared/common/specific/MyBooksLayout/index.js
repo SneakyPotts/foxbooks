@@ -19,10 +19,14 @@ import Quote from "../../../icons/quote";
 import Smile from "../../../icons/smile";
 import Authors from "../../../icons/authors";
 import CommonService from "../../../../../http/CommonService";
+import BookService from "../../../../../http/BookService";
+import Cookies from "js-cookie";
+import {setUserReadingProgress} from "../../../../../store/bookSlice";
 
 const MyBooksLayout = ({ children }) => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const token = Cookies.get('token');
 
   const [counters, setCounters] = useState(null)
 
@@ -54,7 +58,7 @@ const MyBooksLayout = ({ children }) => {
     {
       title: 'Цитаты',
       icon: <Quote />,
-      path: '/mybooks/quotes?sortBy=1',
+      path: '/mybooks/quotes',
       count: counters?.quotes_count || 0
     },
     {
@@ -80,6 +84,9 @@ const MyBooksLayout = ({ children }) => {
     (async () => {
       const response = await CommonService.getMyListCounters()
       setCounters(response.data?.data)
+
+      const progresses = await BookService.getUserReadingProgresses(token)
+      dispatch(setUserReadingProgress(progresses?.data?.data))
     })()
   }, [])
 
