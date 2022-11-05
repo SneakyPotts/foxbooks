@@ -16,6 +16,7 @@ import Book from "../shared/common/book";
 import styles from './selections.module.scss';
 import {setAuthPopupVisibility} from "../../store/commonSlice";
 import {addCompilationToFavorite, deleteCompilationFromFavorite} from "../../store/selectionSlice";
+import Banners from "../shared/common/Banner/Banners";
 
 const popularSelections = [
 	{ id: '0', title: 'Все', value: 3 },
@@ -208,13 +209,8 @@ const SelectionsPage = () => {
 				<div className={classNames(styles.advertisingBlock, {
 					[styles.mt]: router.query['showType'] === 'block' || !router.query['showType']
 				})}>
-					<div className={styles.bannerBlock}>
-						<img src="/banner.png" alt="" className={styles.banner} />
-					</div>
 
-					<div className={styles.bannerBlock}>
-						<img src="/banner.png" alt="" className={styles.banner} />
-					</div>
+				<Banners />
 				</div>
 			</div>
 		</div>

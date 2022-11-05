@@ -1,10 +1,11 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import BooksComponent from '../../components/Books';
 import BookService from '../../http/BookService';
-import {useDispatch} from 'react-redux';
-import {setBooks, setCategories} from '../../store/bookSlice';
 import CategoriesService from "../../http/CategoriesService";
 import AdminSettings from "../../http/AdminSettings";
+import {setBooks, setCategories} from '../../store/bookSlice';
+import {setCurrentPageBanners} from "../../store/adminSlice";
 
 const Books = props => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Books = props => {
 
   dispatch(setCategories(props.categories));
   dispatch(setBooks(props.books));
+  dispatch(setCurrentPageBanners(props.banners));
 
   return (
     <div>
@@ -33,6 +35,7 @@ export async function getServerSideProps({query, params}) {
       : await CategoriesService.getAudioCategoriesWithCount();
 
     const order = await AdminSettings.getSortSetting(params.books_type);
+    const banners = await AdminSettings.getPageBanner({page_slug: types[params?.books_type]});
 
     const books = await BookService.getBooks({
       ...query, type: types[params?.books_type], sortBy: order?.data?.data?.[0]?.value || 1
@@ -56,8 +59,9 @@ export async function getServerSideProps({query, params}) {
         categories: categories?.data?.data,
         books: books?.data?.data,
         books_type: params.books_type,
-        order: order?.data?.data
-      },
+        order: order?.data?.data,
+        banners: banners?.data?.data,
+      }
     };
 
   } catch {

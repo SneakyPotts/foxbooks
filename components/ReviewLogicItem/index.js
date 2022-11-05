@@ -53,6 +53,9 @@ const ReviewLogicItem = ({
       }
     }
 
+    const onClose = () => {
+      setEditFormIsVisible(false);
+    }
 
   return (
     <div className={styles.review}>
@@ -60,7 +63,7 @@ const ReviewLogicItem = ({
         <Link href={`/books/${data?.book?.genres?.[0].slug || data?.book?.genre?.slug}/${data?.book?.slug}`}>
           <a>
             <Image
-              src={data?.book?.cover_url || '/preview.jpg'}
+              src={data?.book?.cover_url || data?.audio_book?.cover_url || '/preview.jpg'}
               alt="Picture"
               width="86"
               height="143"
@@ -137,9 +140,12 @@ const ReviewLogicItem = ({
           onClose={() => setEditFormIsVisible(false)}
         >
           <ReviewForm
+            bookId={data?.book_id}
             title={data?.title}
             text={data?.content}
+            myReviewType={data?.book?.type || data?.audio_book?.type}
             onCancel={() => setEditFormIsVisible(false)}
+            onClose={onClose}
           />
         </ModalWindow>
       }

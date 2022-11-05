@@ -8,7 +8,6 @@ class AdminSettings {
 
   static async getPageBanner({page_slug, category_slug}) {
     return await axios.get(`${API_URL}/banners?page_slug=${page_slug}${category_slug && `&category_slug=${category_slug}`}`);
-
   }
 }
 

@@ -44,6 +44,22 @@ export const getUserReview = createAsyncThunk(
   }
 )
 
+export const deleteUserReview = createAsyncThunk(
+  'review/deleteUserReview',
+  async (query) => {
+    await ReviewService.deleteUserReview(query)
+    return query.id;
+  }
+)
+
+export const updateReview = createAsyncThunk(
+  'review/updateReview',
+  async (query) => {
+    const response = await ReviewService.updateReview(query)
+    return response.data.data;
+  }
+)
+
 export const review = createSlice({
   name: 'review',
   initialState,
@@ -67,8 +83,27 @@ export const review = createSlice({
     [getCurrentReviews.fulfilled]: (state, action) => {
       state.reviews = action.payload
     },
+
     [getUserReview.fulfilled]: (state, action) => {
       state.userReviews = action.payload
+    },
+
+    [updateReview.fulfilled]: (state, action) => {
+      state.userReviews = state.userReviews.map((item) => {
+        const {content, title} = action.payload;
+
+        return item.id === action.payload.id
+                ? {...item, content, title}
+                : item
+      })
+    },
+
+    [deleteUserReview.fulfilled]: (state, action) => {
+      state.userReviews = state.userReviews.filter((item) => {
+        return item.book
+                ? item.book.id !== action.payload
+                : item.audio_book.id !== action.payload
+      })
     }
   }
 });

@@ -11,6 +11,7 @@ import CompilationItem from "../CompilationItem";
 import ShowAll from "../shared/common/showAll/ShowAll";
 import SeriesCard from "../SeriesCard";
 import {useRouter} from "next/router";
+import Banners from "../shared/common/Banner/Banners";
 
 const filters = [
   { id: 1, title: 'Все', value: 1 },
@@ -230,12 +231,7 @@ const SearchPage = ({data}) => {
         </div>
 
         <div className={classNames(st.advertisingBlok, s.advertisingBlok)}>
-          <div className={st.bannerBlock}>
-            <img src="/banner.png" alt="" className={st.banner} />
-          </div>
-          <div className={st.bannerBlock}>
-            <img src="/banner.png" alt="" className={st.banner} />
-          </div>
+          <Banners />
         </div>
       </div>
     </div>

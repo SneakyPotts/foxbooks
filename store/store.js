@@ -11,6 +11,7 @@ import reviewSlice from "./reviewSlice";
 import searchSlice from "./searchSlice";
 import commentsSlice from "./commentsSlice";
 import playerSlice from "./playerSlice";
+import adminSlice from "./adminSlice";
 
 export function makeStore() {
 	return configureStore({
@@ -27,6 +28,7 @@ export function makeStore() {
 			search: searchSlice,
 			comments: commentsSlice,
 			player: playerSlice,
+			adminSettings: adminSlice,
 		},
 	});
 }

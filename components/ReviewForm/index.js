@@ -6,17 +6,20 @@ import ButtonGroup from "../SettingsProfile/buttonGroup";
 import Input from "../shared/common/Input/Input";
 import { useForm } from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {addReview, getReviewTypes} from "../../store/reviewSlice";
+import {addReview, getReviewTypes, updateReview} from "../../store/reviewSlice";
 import {setAuthPopupVisibility} from "../../store/commonSlice";
 import {yupResolver} from "@hookform/resolvers/yup";
 import schema from "./schema";
 import {useRouter} from "next/router";
 
 const ReviewForm = ({
+  bookId,
   title,
   text,
   bookType,
-  onCancel
+  myReviewType,
+  onCancel,
+  onClose
 }) => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -47,15 +50,22 @@ const ReviewForm = ({
         type: bookType === 'books' ? 'book' : 'audio_book',
         review_type: getValues('review_type')
       }
-      dispatch(addReview(obj)).then(res => {
-        if(res.meta.requestStatus === "fulfilled") {
-          reset()
-          setValue('review_type', null)
-        } else if (res.meta.requestStatus === "rejected") {
-          reset();
-          setErrorAlreadyAdded(res.payload);
-        }
-      })
+
+      router.pathname === '/mybooks/reviews'
+        ? dispatch(updateReview({...obj, id: bookId, type: myReviewType === 'books' ? 'book' : 'audio_book'}))
+          .then(() => {
+            reset()
+            onClose()
+          })
+        : dispatch(addReview(obj)).then(res => {
+          if(res.meta.requestStatus === "fulfilled") {
+            reset()
+            setValue('review_type', null)
+          } else if (res.meta.requestStatus === "rejected") {
+            reset();
+            setErrorAlreadyAdded(res.payload);
+          }
+        })
     }
   };
 

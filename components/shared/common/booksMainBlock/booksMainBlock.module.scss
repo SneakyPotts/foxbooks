@@ -11,6 +11,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 24px;
   grid-row-gap: 40px;
+  justify-items: center;
 }
 .advertisingBlok {
   display: block;

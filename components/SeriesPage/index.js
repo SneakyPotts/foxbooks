@@ -5,6 +5,7 @@ import Book from '../shared/common/book';
 import st from './series.module.scss';
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {useRouter} from "next/router";
+import Banners from "../shared/common/Banner/Banners";
 
 const SeriesPage = () => {
 	const router = useRouter()
@@ -37,8 +38,7 @@ const SeriesPage = () => {
 				</div>
 
 				<div className={st.advertisingBlok}>
-					<img src="/banner.png" alt="" className={st.banner} />
-					<img src="/banner.png" alt="" className={st.banner} />
+					<Banners />
 				</div>
 			</div>
 		</div>
