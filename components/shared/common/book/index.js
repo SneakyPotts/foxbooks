@@ -138,12 +138,12 @@ const Book = ({
           <div className={st.stars}>
             {similar ? (
               <div className={st.starsBlock}>
-                <Stars count={1} value={book?.rates_avg} />
-                <span>{book?.rates_avg}</span>
+                <Stars count={1} value={book?.rate_avg} />
+                <span>{book?.rate_avg}</span>
               </div>
             ) : (
               <div className={st.starsBlock}>
-                <Stars count={count} value={book?.rates_avg} />
+                <Stars count={count} value={book?.rate_avg} />
                 {innerWidthWindow <= 768 && <span>{book?.rates_count}</span>}
               </div>
             )}
@@ -161,7 +161,7 @@ const Book = ({
 
           {flagSwitcher && (
             <div className={st.raitingAmount}>
-              <span>{book?.rates_avg}</span>
+              <span>{book?.rate_avg}</span>
               {!similar && <span>({book?.rates_count})</span>}
             </div>
           )}

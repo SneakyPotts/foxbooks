@@ -117,7 +117,7 @@ const LetterListPage = () => {
                           <a className={styles.tableLink}>{i?.authors[0]?.author}</a>
                         </Link>
                       </td>
-                      <td><Stars value={i?.rates_avg} /> {i?.rates_avg} ({i?.rates_count})</td>
+                      <td><Stars value={i?.rate_avg} /> {i?.rate_avg} ({i?.rates_count})</td>
                     </tr>
                   ) : (
                     <tr key={i?.id}>

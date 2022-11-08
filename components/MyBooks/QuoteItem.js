@@ -59,8 +59,8 @@ const QuoteItem = ({
             <a className={styles.quoteBlockAuthor}>{data?.book?.authors[0]?.author}</a>
           </Link>
           <div className={styles.quoteBlockStars}>
-            <Stars value={data?.book?.rates_avg}/>
-            <div className={styles.quoteBlockStarsRaiting}>{data?.book?.rates_avg} ({data?.book?.rates_count})</div>
+            <Stars value={data?.book?.rate_avg}/>
+            <div className={styles.quoteBlockStarsRaiting}>{data?.book?.rate_avg} ({data?.book?.rates_count})</div>
           </div>
         </div>
       </div>
