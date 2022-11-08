@@ -19,7 +19,7 @@ const BookFilters = ({
 }) => {
   const router = useRouter();
   const { query } = router;
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [currentIdx, setCurrentIdx] = useState(null);
 
   const handleOnClick = value => {
     router.push({ query: {
@@ -33,7 +33,9 @@ const BookFilters = ({
   };
 
   useEffect(() => {
-    setCurrentIdx(query[queryName] ? +query[queryName] : filters?.[0]?.value)
+    let currQuery = typeof query[queryName] === "string" ? query[queryName] : Number(query[queryName]);
+
+    setCurrentIdx(currQuery || filters?.[0]?.value);
   }, [filters]);
 
   return (

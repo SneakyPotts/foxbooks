@@ -105,7 +105,7 @@ const LetterListPage = () => {
                     <tr key={i?.id}>
                       <td>
                         <Link
-                          href={`/${i?.type.toLowerCase()}/${i?.genres?.[0]?.name || i?.genre?.name}/${i?.slug}`}
+                          href={`/${i?.type.toLowerCase()}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}
                         >
                           <a className={styles.tableLink}>{i?.title}</a>
                         </Link>
