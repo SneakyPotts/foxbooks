@@ -210,7 +210,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 <div className={st.bookRaiting}>
                   <Stars count={1} />
                   <p className={st.bookRaitingCount}>
-                    {book?.rates_avg} ({book?.rates_count} оценок)
+                    {book?.rate_avg} ({book?.rates_count} оценок)
                   </p>
                 </div>
                 {innerWidthWindow >= 768 && (

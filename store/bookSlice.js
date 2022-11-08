@@ -123,12 +123,12 @@ export const bookSlice = createSlice({
 		},
 
 		[setBookRating.fulfilled]: (state, action) => {
-			state.book.rates_avg = action.payload?.rate_avg
+			state.book.rate_avg = action.payload?.rate_avg
 			state.book.rates_count = action.payload?.rates_count
 		},
 
 		[setAudioBookRating.fulfilled]: (state, action) => {
-			state.book.rates_avg = action.payload?.rate_avg
+			state.book.rate_avg = action.payload?.rate_avg
 			state.book.rates_count = action.payload?.rates_count
 		},
 
