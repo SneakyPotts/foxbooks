@@ -44,7 +44,7 @@ export default class SelectionService {
 	}
 
 	static async getUserCompilations({
-		sortBy = '1',
+		sortBy = '3',
 		compType = '3',
 		page = 1,
 		letter = ''
