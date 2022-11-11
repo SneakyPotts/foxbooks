@@ -6,7 +6,7 @@ import Filters from "../shared/icons/filters";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
 
-const MobileFilterModal = ({ children, category }) => {
+const MobileFilterModal = ({ children }) => {
   const router = useRouter()
   const initPath = useRef()
 
@@ -15,20 +15,6 @@ const MobileFilterModal = ({ children, category }) => {
   const { innerWidthWindow } = useSelector(state => state.common)
 
   const handleClear = () => {
-    const {id, showType, sortBy, type} = router.query;
-
-    if (category) {
-      router.push({
-        pathname: '/books/[id]',
-        query: {
-          id,
-          type,
-          showType,
-          sortBy
-        }
-      });
-    }
-
     router.push(initPath.current)
     setModalIsVisible(false)
   }
