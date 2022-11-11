@@ -152,10 +152,10 @@ const MySelection = () => {
             [styles.empty]: 1
           })}
         >
-          <span>{selectionById?.compilation?.generalBooksCount}</span>
+          <span>{selectionById?.compilation?.total_books_count}</span>
           {!selectionById?.compilation?.books_count && selectionById?.compilation?.audio_books_count ?
-            getNoun(selectionById?.compilation?.generalBooksCount, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
-            getNoun(selectionById?.compilation?.generalBooksCount, 'Книга', 'Книги', 'Книг')
+            getNoun(selectionById?.compilation?.total_books_count, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
+            getNoun(selectionById?.compilation?.total_books_count, 'Книга', 'Книги', 'Книг')
           }
         </span>
 

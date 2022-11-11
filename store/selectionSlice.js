@@ -10,7 +10,7 @@ const initialState = {
 export const addCompilationToFavorite = createAsyncThunk(
 	'selection/addCompilationToFavorite',
 	async data => {
-		const response = await SelectionService.addCompilationToFavorite(data)
+		await SelectionService.addCompilationToFavorite(data)
 		return data
 	}
 )
@@ -34,7 +34,7 @@ export const editCompilation = createAsyncThunk(
 export const deleteCompilationFromFavorite = createAsyncThunk(
 	'selection/deleteCompilationFromFavorite',
 	async data => {
-		const response = await SelectionService.deleteCompilationFromFavorite(data)
+		await SelectionService.deleteCompilationFromFavorite(data)
 		return data
 	}
 )
@@ -50,13 +50,13 @@ export const selectionSlice = createSlice({
 			state.selectionById = action.payload
 		},
 		deleteBookFromSelection: (state, action) => {
-			state.selectionById.compilation.generalBooksCount -= 1
+			state.selectionById.compilation.total_books_count -= 1
 			state.selectionById.books.data = state.selectionById.books.data.filter(i =>
 				i.compilationable_id !== action.payload
 			)
 		},
 		addBookToSelection: (state, action) => {
-			state.selectionById.compilation.generalBooksCount += 1
+			state.selectionById.compilation.total_books_count += 1
 			state.selectionById.books.data.push(action.payload)
 		},
 		setUserCompilations: (state, action) => {
