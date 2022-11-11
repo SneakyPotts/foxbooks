@@ -35,7 +35,7 @@ const filter1 = [
       { id: 3, title: 'Читаю', value: 3, icon: <OpenBook stroke={'#FF781D'} /> },
       { id: 3, title: 'Прочитано', value: 4, icon: <Flag /> }
     ],
-    queryName: 'sortBy',
+    queryName: 'status',
   },
 ];
 
@@ -45,7 +45,7 @@ const filter2 = [
     defaultValue: 3,
     options: [
       { id: 1, title: 'Популярные', value: 3 },
-      { id: 2, title: 'По дате добавления', value: 2 },
+      { id: 2, title: 'По дате добавления', value: 1 },
       { id: 3, title: 'По алфавиту', value: 2 }
     ],
     queryName: 'sortBy',
@@ -79,7 +79,7 @@ const MySelection = () => {
   }
 
   const deleteBookHandler = () => {
-    SelectionService.deleteBookFromCompilation(router.query?.id, bookId, bookType).then(() => {
+    SelectionService.deleteBookFromCompilation(selectionById?.compilation?.id, bookId, bookType).then(() => {
       dispatch(deleteBookFromSelection(bookId))
       setDeleteBookPopupIsVisible(false)
       setConfirmBookPopupIsVisible(true)
@@ -91,7 +91,7 @@ const MySelection = () => {
   }
 
   const deleteSelectionHandler = () => {
-    SelectionService.deleteCompilation(router.query?.id).then(() => {
+    SelectionService.deleteCompilation(selectionById?.compilation?.id).then(() => {
       setDeleteSelectionPopupIsVisible(false)
       setConfirmSelectionPopupIsVisible(true)
     })
