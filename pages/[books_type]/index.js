@@ -38,7 +38,7 @@ export async function getServerSideProps({query, params}) {
     const banners = await AdminSettings.getPageBanner({page_slug: types[params?.books_type]});
 
     const books = await BookService.getBooks({
-      ...query, type: types[params?.books_type], sortBy: order?.data?.data?.[0]?.value || 1
+      ...query, type: types[params?.books_type], sortBy: query.sortBy || order?.data?.data?.[0]?.value
     });
 
     const dataSEO = params.books_type === 'books'

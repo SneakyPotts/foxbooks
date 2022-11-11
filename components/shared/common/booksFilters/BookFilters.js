@@ -44,7 +44,7 @@ const BookFilters = ({
         <span
           key={i.id || index}
           className={classnames(st.abFilter, {
-            [st.active]: currentIdx === i?.value,
+            [st.active]: currentIdx == i?.value,
             [st.onModal]: onModal
           })}
           onClick={() => handleOnClick(i?.value)}
