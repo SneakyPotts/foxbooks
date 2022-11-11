@@ -85,19 +85,16 @@ const SideFilters = () => {
 
   const handleChange = debounce(setQuery, 300);
 
-
-
   const setDefaultUrl = () => {
     const { books_type, category_slug, sortBy, showType } = router.query;
+    let queryObj = { books_type, category_slug }
 
     router.push({
       pathname: '/[books_type]/[category_slug]',
-      query: {
-        books_type,
-        category_slug,
-        sortBy,
-        showType
-      }
+      query: Object.assign(queryObj,
+        sortBy && {sortBy},
+        showType && {showType}
+      )
     });
 
     filters.forEach((item, index) => {
@@ -119,6 +116,10 @@ const SideFilters = () => {
       !allowedQueryParams.includes(key) && setResetIsVisible(true);
     });
   }, [router.query])
+
+  useEffect(() => {
+    router.query?.books_type === 'audiobooks' &&  setFilters((prev) => prev.slice(0, 2))
+  }, []);
 
   return (
     <div className={st.container}>
