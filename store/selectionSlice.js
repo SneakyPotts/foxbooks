@@ -52,7 +52,7 @@ export const selectionSlice = createSlice({
 		deleteBookFromSelection: (state, action) => {
 			state.selectionById.compilation.total_books_count -= 1
 			state.selectionById.books.data = state.selectionById.books.data.filter(i =>
-				i.compilationable_id !== action.payload
+				i.id !== action.payload
 			)
 		},
 		addBookToSelection: (state, action) => {

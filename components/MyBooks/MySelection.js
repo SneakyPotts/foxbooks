@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import Image from "next/image";
 import Button from "../shared/common/Button/Button";
@@ -28,12 +28,12 @@ import {getNoun} from "../../utils";
 const filter1 = [
   {
     title: 'Все',
-    defaultValue: 1,
+    defaultValue: '0',
     options: [
-      { id: 1, title: 'Все', value: 1, icon: <PageIcon /> },
-      { id: 2, title: 'Хочу прочитать', value: 2, icon: <BookMark /> },
-      { id: 3, title: 'Читаю', value: 3, icon: <OpenBook stroke={'#FF781D'} /> },
-      { id: 3, title: 'Прочитано', value: 4, icon: <Flag /> }
+      { id: 1, title: 'Все', value: '0', icon: <PageIcon /> },
+      { id: 2, title: 'Хочу прочитать', value: 1, icon: <BookMark /> },
+      { id: 3, title: 'Читаю', value: 2, icon: <OpenBook stroke={'#FF781D'} /> },
+      { id: 3, title: 'Прочитано', value: 3, icon: <Flag /> }
     ],
     queryName: 'status',
   },
@@ -97,7 +97,7 @@ const MySelection = () => {
     })
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if(innerWidthWindow <= 768) {
       dispatch(setHeaderVisibility(false))
     }

@@ -23,8 +23,8 @@ export default class SelectionService {
 		)
 	}
 
-	static async getSelectionBySlug({token, slug, sortBy ='3', status = '1'}) {
-		return axios.get(`${API_URL}/compilations/${slug}?sortBy=${sortBy}&status=${status}`, {
+	static async getSelectionBySlug({token, slug, sortBy ='3', status = '0', search = ''}) {
+		return axios.get(`${API_URL}/compilations/${slug}?sortBy=${sortBy}&status=${status}&search=${search}`, {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}
