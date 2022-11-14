@@ -1,15 +1,14 @@
 import React, {useEffect, useState, useMemo, useRef} from 'react'
-import {useSelector} from "react-redux";
-import Link from 'next/link';
+import {useSelector, useDispatch} from "react-redux";
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
-import AddQout from "./AddQout";
-import {highlight, rangeToObj, objToRange, addKey, keyObj, calcCoordinates} from './../../utils'
-import styles from './styles.module.scss'
-import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
-import { useDispatch } from 'react-redux';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {setAuthPopupVisibility} from "../../store/commonSlice";
+import AddQout from "./AddQout";
+import {highlight, rangeToObj, objToRange, addKey, keyObj, calcCoordinates} from '../../utils'
 import NotesPopup from "./NotesPopup";
+import {addBookQuote, deleteBookQuote, editBookQuote} from '../../store/readerSlice';
+import {setAuthPopupVisibility} from "../../store/commonSlice";
+import styles from './styles.module.scss'
 
 const options = {
 	replace: domNode => {

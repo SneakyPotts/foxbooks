@@ -25,11 +25,11 @@ const SelectionPage = () => {
         if (!isAuth) {
             dispatch(setAuthPopupVisibility(true))
         } else {
-            if (selectionById?.compilation?.in_favorite) {
-                await SelectionService.deleteCompilationFromFavorite(router.query?.id)
+            if (isAdded) {
+                await SelectionService.deleteCompilationFromFavorite(selectionById?.compilation?.id)
                 setIsAdded(false)
             } else {
-                await SelectionService.addCompilationToFavorite(router.query?.id)
+                await SelectionService.addCompilationToFavorite(selectionById?.compilation?.id)
                 setIsAdded(true)
             }
         }
@@ -64,13 +64,13 @@ const SelectionPage = () => {
             <div className={classNames("container", styles.compilationContainer, st.selectionContainer)}>
         <span
             className={classNames(styles.compilationBookCount, {
-                [styles.empty]: !selectionById?.compilation?.generalBooksCount
+                [styles.empty]: !selectionById?.compilation?.total_books_count
             })}
         >
-          <span>{selectionById?.compilation?.generalBooksCount}</span>
+          <span>{selectionById?.compilation?.total_books_count}</span>
             {!selectionById?.compilation?.books_count && selectionById?.compilation?.audio_books_count ?
-                getNoun(selectionById?.compilation?.generalBooksCount, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
-                getNoun(selectionById?.compilation?.generalBooksCount, 'Книга', 'Книги', 'Книг')
+                getNoun(selectionById?.compilation?.total_books_count, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
+                getNoun(selectionById?.compilation?.total_books_count, 'Книга', 'Книги', 'Книг')
             }
         </span>
 

@@ -11,6 +11,8 @@ import classNames from 'classnames';
 import Button from "../shared/common/Button/Button";
 import {useSelector} from "react-redux";
 
+const allowedQueryParams = ['books_type', 'category_slug', 'sortBy', 'showType'];
+
 const SideFilters = () => {
   const router = useRouter();
 
@@ -49,13 +51,12 @@ const SideFilters = () => {
 
   const filterShow = index => {
     setFilters(prev => {
-      const filterMap = prev.map(({flag, ...rest}, i) => {
+      return prev.map(({flag, ...rest}, i) => {
         return {
           flag: index === i ? !flag : flag,
           ...rest,
         };
       });
-      return filterMap;
     });
   };
 
@@ -84,17 +85,16 @@ const SideFilters = () => {
 
   const handleChange = debounce(setQuery, 300);
 
-
-
   const setDefaultUrl = () => {
-    const { books_type, category_slug } = router.query;
+    const { books_type, category_slug, sortBy, showType } = router.query;
+    let queryObj = { books_type, category_slug }
 
     router.push({
       pathname: '/[books_type]/[category_slug]',
-      query: {
-        books_type,
-        category_slug
-      }
+      query: Object.assign(queryObj,
+        sortBy && {sortBy},
+        showType && {showType}
+      )
     });
 
     filters.forEach((item, index) => {
@@ -112,9 +112,14 @@ const SideFilters = () => {
   }
 
   useEffect(() => {
-    if (router.asPath.includes('?') || window.location.href.includes('?'))
-      setResetIsVisible(true);
+    Object.keys(router.query).forEach((key) => {
+      !allowedQueryParams.includes(key) && setResetIsVisible(true);
+    });
   }, [router.query])
+
+  useEffect(() => {
+    router.query?.books_type === 'audiobooks' &&  setFilters((prev) => prev.slice(0, 2))
+  }, []);
 
   return (
     <div className={st.container}>

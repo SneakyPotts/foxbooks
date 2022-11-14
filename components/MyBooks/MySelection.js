@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import Image from "next/image";
 import Button from "../shared/common/Button/Button";
@@ -28,14 +28,14 @@ import {getNoun} from "../../utils";
 const filter1 = [
   {
     title: 'Все',
-    defaultValue: 1,
+    defaultValue: '0',
     options: [
-      { id: 1, title: 'Все', value: 1, icon: <PageIcon /> },
-      { id: 2, title: 'Хочу прочитать', value: 2, icon: <BookMark /> },
-      { id: 3, title: 'Читаю', value: 3, icon: <OpenBook stroke={'#FF781D'} /> },
-      { id: 3, title: 'Прочитано', value: 4, icon: <Flag /> }
+      { id: 1, title: 'Все', value: '0', icon: <PageIcon /> },
+      { id: 2, title: 'Хочу прочитать', value: 1, icon: <BookMark /> },
+      { id: 3, title: 'Читаю', value: 2, icon: <OpenBook stroke={'#FF781D'} /> },
+      { id: 3, title: 'Прочитано', value: 3, icon: <Flag /> }
     ],
-    queryName: 'sortBy',
+    queryName: 'status',
   },
 ];
 
@@ -45,7 +45,7 @@ const filter2 = [
     defaultValue: 3,
     options: [
       { id: 1, title: 'Популярные', value: 3 },
-      { id: 2, title: 'По дате добавления', value: 2 },
+      { id: 2, title: 'По дате добавления', value: 1 },
       { id: 3, title: 'По алфавиту', value: 2 }
     ],
     queryName: 'sortBy',
@@ -79,7 +79,7 @@ const MySelection = () => {
   }
 
   const deleteBookHandler = () => {
-    SelectionService.deleteBookFromCompilation(router.query?.id, bookId, bookType).then(() => {
+    SelectionService.deleteBookFromCompilation(selectionById?.compilation?.id, bookId, bookType).then(() => {
       dispatch(deleteBookFromSelection(bookId))
       setDeleteBookPopupIsVisible(false)
       setConfirmBookPopupIsVisible(true)
@@ -91,13 +91,13 @@ const MySelection = () => {
   }
 
   const deleteSelectionHandler = () => {
-    SelectionService.deleteCompilation(router.query?.id).then(() => {
+    SelectionService.deleteCompilation(selectionById?.compilation?.id).then(() => {
       setDeleteSelectionPopupIsVisible(false)
       setConfirmSelectionPopupIsVisible(true)
     })
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if(innerWidthWindow <= 768) {
       dispatch(setHeaderVisibility(false))
     }
@@ -152,10 +152,10 @@ const MySelection = () => {
             [styles.empty]: 1
           })}
         >
-          <span>{selectionById?.compilation?.generalBooksCount}</span>
+          <span>{selectionById?.compilation?.total_books_count}</span>
           {!selectionById?.compilation?.books_count && selectionById?.compilation?.audio_books_count ?
-            getNoun(selectionById?.compilation?.generalBooksCount, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
-            getNoun(selectionById?.compilation?.generalBooksCount, 'Книга', 'Книги', 'Книг')
+            getNoun(selectionById?.compilation?.total_books_count, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
+            getNoun(selectionById?.compilation?.total_books_count, 'Книга', 'Книги', 'Книг')
           }
         </span>
 

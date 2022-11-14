@@ -139,16 +139,17 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
             <Image
               src={book?.cover_url || "/preview.jpg"}
               bookTitle
-              height={
-                audioFlag
-                  ? innerWidthWindow > 768
-                    ? 270
-                    : 108
-                  : innerWidthWindow > 768
-                  ? 406
-                  : 160
-              }
-              width={innerWidthWindow > 768 ? 270 : 108}
+              /*deleted according to the recommendations*/
+              // height={
+              //   audioFlag
+              //     ? innerWidthWindow > 768
+              //       ? 270
+              //       : 108
+              //     : innerWidthWindow > 768
+              //     ? 406
+              //     : 160
+              // }
+              // width={innerWidthWindow > 768 ? 270 : 108}
               layout="fill"
               placeholder="blur"
               blurDataURL="/blur.webp"

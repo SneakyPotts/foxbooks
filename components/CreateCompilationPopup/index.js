@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import ModalWindow from "../shared/common/modalWindow/ModalWindow";
-import styles from './styles.module.scss'
+import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
-import PreviewUploader from "../shared/common/PreviewUploader";
-import Image from 'next/image'
 import classNames from "classnames";
+import Image from 'next/image'
 import {yupResolver} from "@hookform/resolvers/yup";
+import PreviewUploader from "../shared/common/PreviewUploader";
+import {createCompilation, editCompilation} from "../../store/selectionSlice";
+import ModalWindow from "../shared/common/modalWindow/ModalWindow";
 import schema from "./schema";
 import Input from "../shared/common/Input/Input";
 import Button from "../shared/common/Button/Button";
-import {useDispatch, useSelector} from "react-redux";
 import {generateFormData} from "../../utils";
-import {useRouter} from "next/router";
-import {createCompilation, editCompilation} from "../../store/selectionSlice";
+import styles from './styles.module.scss'
 
 const CreateCompilationPopup = ({
   image,
@@ -21,10 +20,10 @@ const CreateCompilationPopup = ({
   onClose,
   isEdit
 }) => {
-  const router = useRouter()
   const dispatch = useDispatch()
 
   const { innerWidthWindow } = useSelector(state => state.common)
+  const { id: selectionId } = useSelector(state => state.selection.selectionById.compilation)
 
   const [imgSrc, setImgSrc] = useState(image || '')
 
@@ -41,7 +40,7 @@ const CreateCompilationPopup = ({
     if(isEdit) {
       const d = generateFormData({
         ...data,
-        id: router.query?.id
+        id: selectionId
       })
       dispatch(editCompilation(d))
     } else {

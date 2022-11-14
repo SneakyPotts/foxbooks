@@ -48,7 +48,7 @@ const Selections = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const isMy = router.query.compType == 1
+  const isMy = router.query.compType === '1'
 
   const {innerWidthWindow} = useSelector(state => state.common)
   const {profile} = useSelector(state => state.profile)
@@ -198,7 +198,7 @@ const Selections = () => {
             >
               <CompilationItem
                 data={i}
-                path={i?.created_by == profile?.id ? `/mybooks/selection/${i?.slug}` : `/selections/${i?.slug}`}
+                path={i?.created_by === profile?.id ? `/mybooks/selection/${i?.slug}` : `/selections/${i?.slug}`}
               />
             </div>
           )}

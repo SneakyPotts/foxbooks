@@ -10,16 +10,16 @@ const initialState = {
 export const addCompilationToFavorite = createAsyncThunk(
 	'selection/addCompilationToFavorite',
 	async data => {
-		const response = await SelectionService.addCompilationToFavorite(data)
+		await SelectionService.addCompilationToFavorite(data)
 		return data
 	}
 )
 
-export const deleteCompilationFromFavorite = createAsyncThunk(
-	'selection/deleteCompilationFromFavorite',
-	async data => {
-		const response = await SelectionService.deleteCompilationFromFavorite(data)
-		return data
+export const createCompilation = createAsyncThunk(
+	'selection/createCompilation',
+	async (data) => {
+		const response = await SelectionService.createCompilation(data)
+		return response.data?.data
 	}
 )
 
@@ -31,19 +31,11 @@ export const editCompilation = createAsyncThunk(
 	}
 )
 
-export const getUserCompilations = createAsyncThunk(
-	'selection/getUserCompilations',
-	async (data) => {
-		const response = await SelectionService.getUserCompilations(data)
-		return response.data.data
-	}
-)
-
-export const createCompilation = createAsyncThunk(
-	'selection/createCompilation',
-	async (data) => {
-		const response = await SelectionService.createCompilation(data)
-		return response.data?.data
+export const deleteCompilationFromFavorite = createAsyncThunk(
+	'selection/deleteCompilationFromFavorite',
+	async data => {
+		await SelectionService.deleteCompilationFromFavorite(data)
+		return data
 	}
 )
 
@@ -58,13 +50,13 @@ export const selectionSlice = createSlice({
 			state.selectionById = action.payload
 		},
 		deleteBookFromSelection: (state, action) => {
-			state.selectionById.compilation.generalBooksCount -= 1
+			state.selectionById.compilation.total_books_count -= 1
 			state.selectionById.books.data = state.selectionById.books.data.filter(i =>
-				i.compilationable_id !== action.payload
+				i.id !== action.payload
 			)
 		},
 		addBookToSelection: (state, action) => {
-			state.selectionById.compilation.generalBooksCount += 1
+			state.selectionById.compilation.total_books_count += 1
 			state.selectionById.books.data.push(action.payload)
 		},
 		setUserCompilations: (state, action) => {
@@ -82,26 +74,29 @@ export const selectionSlice = createSlice({
 					i
 			)
 		},
-		[deleteCompilationFromFavorite.fulfilled]: (state, action) => {
-			state.selections.data = state.selections?.data?.map(i =>
-				i?.id === action.payload ?
-					{
-						...i,
-						in_favorite: false
-					} :
-					i
-			)
+
+		[createCompilation.fulfilled]: (state, action) => {
+			if (state.userCompilations.length % 9 !== 0)
+				state.userCompilations.push(action.payload);
 		},
+
 		[editCompilation.fulfilled]: (state, action) => {
 			state.selectionById.compilation = {
 				...state.selectionById.compilation,
 				...action.payload
 			}
 		},
-		[createCompilation.fulfilled]: (state, action) => {
-			if (state.userCompilations.length % 9 !== 0)
-				state.userCompilations.push(action.payload);
-		}
+
+		[deleteCompilationFromFavorite.fulfilled]: (state, action) => {
+			state.selections.data = state.selections?.data?.map(i =>
+				i?.id === action.payload
+					? {
+							...i,
+							in_favorite: false
+						}
+					: i
+			)
+		},
 	}
 });
 

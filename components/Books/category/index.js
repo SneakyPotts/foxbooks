@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
@@ -65,6 +65,10 @@ const Category = ({order}) => {
   };
 
   const handleChange = debounce(setQuery, 300);
+
+  useEffect(() => {
+    books_type === 'audiobooks' && mobileFilters.pop();
+  }, []);
 
   return (
     <div className="container">
