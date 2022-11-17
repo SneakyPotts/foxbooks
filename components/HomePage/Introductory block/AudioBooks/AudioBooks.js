@@ -6,6 +6,7 @@ import ArrowRight from '../../../../public/chevron-right.svg';
 import Book from '../../../shared/common/book';
 import css from './audioBooks.module.scss';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
+import cssBook from './../../../shared/common/book/book.module.scss'
 
 const AudioBooks = ({ audioBooks }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -33,7 +34,7 @@ const AudioBooks = ({ audioBooks }) => {
         {audioBooks.map(i =>
           <SwiperSlide
             key={i?.id}
-            className={css.slideAudio}
+            className={`${css.slideAudio} ${cssBook.slideAudio}`}
           >
             <Book
               book={i}
