@@ -17,6 +17,7 @@
     }
   }
 }
+
 .deleteBtn {
   display: flex;
   align-items: center;
@@ -32,13 +33,16 @@
   top: 10px;
   right: 10px;
 }
+
 .container {
   width: 180px;
 }
+
 .containerColumn {
   display: flex;
   margin-bottom: 40px;
 }
+
 .wrapper {
   position: relative;
   min-width: 180px;
@@ -49,6 +53,7 @@
     object-fit: cover;
   }
 }
+
 .bookRating {
   display: flex;
   justify-content: space-between;
@@ -60,37 +65,46 @@
   line-height: 1.43;
   color: $color-third;
 }
+
 .stars {
   display: flex;
+
   span {
     max-width: 18px;
     max-height: 18px;
     min-width: 18px;
     min-height: 18px;
   }
+
   > div > div {
     display: flex;
     gap: 2px;
   }
+
   &Block {
     display: flex;
+
     span:not(:first-child) {
       margin-left: 2px;
     }
   }
 }
+
 .starOrder {
   margin: 0;
   order: 3;
 }
+
 .starOrderList {
   // position: absolute;
   bottom: 53px;
   margin-right: auto;
 }
+
 .raitingAmount {
   margin-left: 26px;
 }
+
 .bookName {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -103,23 +117,28 @@
   // margin-right: 20px;
   margin-bottom: 10px;
   color: $color-main;
+
   &:hover {
     color: $text-hover;
   }
 }
+
 .bookNameSmaller {
   font-size: 14px;
   line-height: 1.143;
   // margin-bottom: 10px;
 }
+
 .bookNameMargin {
   margin-right: 30px;
 }
+
 .bookAuthor {
   font-size: 14px;
   line-height: 1.43;
   color: $color-second;
 }
+
 .bookCategorie {
   font-size: 12px;
   line-height: 1.167;
@@ -131,6 +150,7 @@
   color: $color-categories-btn;
   background-color: $color-main;
 }
+
 .audioIcon {
   position: absolute;
   display: flex;
@@ -144,6 +164,7 @@
   border-radius: 50%;
   stroke: $color-categories-btn;
 }
+
 .bookInfo {
   position: relative;
   display: flex;
@@ -151,6 +172,7 @@
   width: 100%;
   margin-left: 24px;
 }
+
 .extraInfo {
   font-size: 14px;
   line-height: 1.43;
@@ -158,9 +180,11 @@
   margin-bottom: 32px;
   color: $color-second;
 }
+
 .addInfo {
   margin-bottom: 10px;
 }
+
 .aboutBook {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -168,15 +192,18 @@
   overflow: hidden;
   margin-top: 10px;
 }
+
 .lines {
   -webkit-line-clamp: 5;
 }
+
 // .bookYear {
 //   margin-bottom: 10px;
 // }
 .bookGenre {
   margin-left: 20px;
 }
+
 .addIcon {
   position: absolute;
   top: 3px;
@@ -188,52 +215,63 @@
     transition: .15s;
   }
 }
+
 .addIcon:hover {
   stroke: $text-hover;
 }
+
 .hide {
   display: none;
 }
+
 .dotsIcon {
   position: absolute !important;
   top: 2px;
   right: 2px;
 }
+
 .dotsIcon:hover {
   border-color: $text-hover;
 }
+
 .optionWindow {
   font-size: 14px;
   line-height: 1.43;
   color: $color-second;
   stroke: $color-third;
 }
+
 .optionRead {
   display: flex;
   margin-bottom: 20px;
   transition: .15s;
   white-space: nowrap;
 }
+
 .optionRead:hover {
   cursor: pointer;
   color: $text-hover;
   stroke: $text-hover;
 }
+
 .optionIcon {
   width: 20px;
   height: 20px;
   margin-right: 15px;
 }
+
 .optionDelete {
   display: flex;
   transition: .15s;
   white-space: nowrap;
 }
+
 .optionDelete:hover {
   cursor: pointer;
   color: $text-hover;
   stroke: $text-hover;
 }
+
 .reviewStatistic {
   position: absolute;
   bottom: 0;
@@ -243,18 +281,22 @@
   line-height: 1.43;
   color: $color-third;
 }
+
 .reviewIcon {
   display: flex;
   align-items: center;
   margin-right: 10px;
   stroke: $color-third;
 }
+
 .distance {
   margin-left: 30px;
 }
+
 .reviewLike {
   margin-right: 26px;
 }
+
 .selectionDateViews {
   display: flex;
   justify-content: space-between;
@@ -266,6 +308,7 @@
     margin-right: 5px;
   }
 }
+
 .hide {
   display: none;
 }
@@ -322,6 +365,7 @@
     bottom: 5px;
     height: 24px;
     width: 24px;
+
     > svg {
       width: 16px;
       height: 16px;
@@ -344,11 +388,19 @@
 }
 
 @media (max-width: 920px) {
-    .container {
-      width: 19vw;
+  .container {
+    width: 19vw;
+  }
+  .swiperSlide {
+    .wrapper {
+      min-width: 100%;
     }
-  .wrapper {
-    min-width: 100%;
+  }
+
+  .upBook {
+    .wrapper {
+      min-width: 19vw;
+    }
   }
 }
 

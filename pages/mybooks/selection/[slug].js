@@ -28,7 +28,7 @@ export async function getServerSideProps ({ req, query, params }) {
   }
 
   try {
-    const selectionBySlug = await SelectionService.getSelectionBySlug({...query, slug});
+    const selectionBySlug = await SelectionService.getSelectionBySlug({...query, slug, token});
 
     return {
       props: {

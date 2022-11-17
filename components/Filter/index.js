@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import Popular from './Popular/Popular';
-import ClearAll from './Clear/Clear';
-import Book from '../shared/common/book';
-
-import css from './filter.module.css';
 import { useSelector } from 'react-redux';
+import Book from '../shared/common/book';
 import MyPagination from '../shared/common/MyPagination';
+import ClearAll from './Clear/Clear';
+import Popular from './Popular/Popular';
+import css from './filter.module.css';
+import cssBook from './../shared/common/book/book.module.scss';
 
 const Filters = ({order}) => {
   const data = [
@@ -135,7 +135,7 @@ const Filters = ({order}) => {
         <>
           <ul className={css.bookList}>
             {books?.data?.map(book => (
-              <li key={book?.id} className={css.book}>
+              <li key={book?.id} className={`${css.book} ${cssBook.upBook}`}>
                 <Book book={book} />
               </li>
             ))}
