@@ -14,6 +14,7 @@ import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 import MobileBlock from './MobileBlock';
 import css from './home.module.scss';
+import cssBook from './../shared/common/book/book.module.scss';
 
 const HomeView = ({ audioBooks, newBooks, order }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -39,7 +40,7 @@ const HomeView = ({ audioBooks, newBooks, order }) => {
             }}
           >
             {newBooks.map(book => (
-              <SwiperSlide key={book?.id} className={css.swiperSlide}>
+              <SwiperSlide key={book?.id} className={cssBook.swiperSlide}>
                 <Book
                   book={book}
                   type={book?.type}
