@@ -35,7 +35,7 @@ const MobileFilterModal = ({ children }) => {
         </span>
       </div>
 
-      {(innerWidthWindow <= 768 && modalIsVisible) &&
+      {(innerWidthWindow <= 1024 && modalIsVisible) &&
         <ModalWindow
           onClose={() => setModalIsVisible(false)}
           isFullScreen
