@@ -4,7 +4,7 @@
 	"description": "Онлайн-библиотека зарубежной и отечественной литературы FoxBooks",
 	"start_url": "/",
 	"id": "/",
-	"display": "standalone",
+	"display": "browser",
 	"orientation": "portrait-primary",
 	"background_color": "#fff",
 	"icons": [
