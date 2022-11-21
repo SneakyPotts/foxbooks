@@ -281,8 +281,8 @@
   .booksGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px 24px;
-    justify-content: space-around;
+    gap: 40px 20px;
+    //justify-content: space-around;
   }
 
   .booksColumn {
@@ -319,6 +319,6 @@
 @media (max-width: 500px) {
   .booksGrid {
     gap: 30px 10px;
-    justify-content: space-around;
+    //justify-content: space-around;
   }
 }

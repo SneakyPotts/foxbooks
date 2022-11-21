@@ -245,7 +245,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     className={st.readButton}
                     onClick={onListen}
                   >
-                    Начать слушать
+                    {`${book.user_progress ? 'Продолжить' : 'Начать'} слушать`}
                   </button>
                 ) : (
                   <Link href={`/reader?id=${book?.id}&page=1`}>

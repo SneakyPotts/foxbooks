@@ -32,10 +32,6 @@
     grid-template-columns: repeat(5, 1fr);
   }
 
-  .book:last-of-type {
-    display: none;
-  }
-
   .container {
     justify-content: space-between;
   }

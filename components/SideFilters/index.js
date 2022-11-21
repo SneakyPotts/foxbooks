@@ -23,7 +23,7 @@ const SideFilters = () => {
     {
       id: '0',
       ref: useRef(null),
-      flag: false,
+      flag: true,
       option: 'Автор',
       placeholder: 'Найти автора',
       queryName: 'findByAuthor',
@@ -32,7 +32,7 @@ const SideFilters = () => {
     {
       id: '1',
       ref: useRef(null),
-      flag: false,
+      flag: true,
       option: 'Книга',
       placeholder: 'Найти книгу',
       queryName: 'findByTitle',
@@ -41,7 +41,7 @@ const SideFilters = () => {
     {
       id: '2',
       ref: useRef(null),
-      flag: false,
+      flag: true,
       option: 'Издательство',
       placeholder: 'Найти издательство',
       queryName: 'findByPublisher',
@@ -97,12 +97,13 @@ const SideFilters = () => {
       )
     });
 
-    filters.forEach((item, index) => {
-      item.ref.current.value = '';
-
-      item.flag = true;
-      filterShow(index);
-    })
+    /*close filters*/
+    // filters.forEach((item, index) => {
+    //   item.ref.current.value = '';
+    //
+    //   item.flag = true;
+    //   filterShow(index);
+    // })
   }
 
 
