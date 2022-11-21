@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player'
 import PlayerBack from "../shared/icons/playerBack";
@@ -19,6 +19,7 @@ import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
 import {resetPlayerData} from "../../store/playerSlice";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
+import PlayerService from "../../http/PlayerService";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -33,12 +34,16 @@ const AudioPlayer = () => {
   });
 
   const { innerWidthWindow } = useSelector(state => state.common)
+  const { isAuth } = useSelector(state => state.auth)
   const playerData = useSelector(state => state.player)
+  const { book } = useSelector(state => state.book)
+  const { user_progress: current} = book;
 
   const [progress, setProgress] = useState(0)
   const [speedDropIsVisible, setSpeedDropIsVisible] = useState(false)
   const [pageDropIsVisible, setPageDropIsVisible] = useState(false)
-  const [currentChapter, setCurrentChapter] = useState(null)
+  const [currentChapter, setCurrentChapter] = useState(current?.audio_audiobook_id || book?.chapters?.[0]?.id);
+  const [currentTime, setCurrentTime] = useState(current?.current_audio_time || 0);
 
   const [isClosed, setIsClosed] = useState(false)
   const [mute, setMute] = useState(0);
@@ -101,6 +106,26 @@ const AudioPlayer = () => {
     setSettings({...settings, volume: value})
     setMute(0)
   }
+
+  const resumeListening = () => {
+    if (!!currentTime) {
+      player.current.seekTo(currentTime)
+    }
+  }
+
+  useEffect(() => {
+    let delta = Math.abs(progress - currentTime);
+
+    if (isAuth && delta >= 10) {
+      PlayerService.setProgress({
+        audio_book_id: book.id,
+        audio_audiobook_id: currentChapter,
+        current_time: progress
+      }).then(() => {
+        setCurrentTime(progress);
+      })
+    }
+  }, [progress]);
 
   useOnClickOutside(playerBody, hideDrops);
 
@@ -245,6 +270,7 @@ const AudioPlayer = () => {
         url={playerData?.chapters?.find(i => i?.id === currentChapter)?.public_path || playerData?.chapters?.[0]?.public_path}
         width="0"
         height="0"
+        onStart={resumeListening}
         onProgress={e => setProgress(parseInt(e.playedSeconds))}
         onEnded={handleEnd}
         {...settings}

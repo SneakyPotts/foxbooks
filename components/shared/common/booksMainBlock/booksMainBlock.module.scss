@@ -46,16 +46,18 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px 10px;
-    justify-content: space-around;
-  }
-}
-@media (max-width: 500px) {
-  .booksGrid {
-    gap: 30px 10px;
-    justify-content: space-around;
+    justify-content: space-between;
 
     & > div:last-of-type {
-      display: none;
+      margin-right: auto;
+    }
+  }
+}
+@media (max-width: 375px) {
+  .booksGrid {
+    justify-content: space-around;
+    & > div:last-of-type {
+      margin-right: 0;
     }
   }
 }

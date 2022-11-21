@@ -22,7 +22,7 @@ const Books = ({booksType, order}) => {
   const { categories } = useSelector(state => state.book);
   const { innerWidthWindow } = useSelector(state => state.common);
 
-  const cats = categories?.slice(0, 13)
+  const cats = categories/*?.slice(0, 13)*/
 
   const showCategories = () => {
     setCatsIsVisible(true)
@@ -57,7 +57,7 @@ const Books = ({booksType, order}) => {
                 </Link>
               </span>
             ))}
-            <ShowAll url="/categories" text="Показать все"/>
+            {/*<ShowAll url="/categories" text="Показать все"/>*/}
             <BookFilters filters={order}/>
           </>
         }

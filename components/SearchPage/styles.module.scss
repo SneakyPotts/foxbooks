@@ -85,10 +85,7 @@
 
     & > div:nth-of-type(n) {
       display: block;
-    }
-
-    & > div:nth-of-type(n + 4) {
-      //display: none;
+      max-width: 108px;
     }
 
     &Full {

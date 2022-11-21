@@ -128,7 +128,7 @@ const MyBooksLayout = ({ children }) => {
                   }
                 )}
               >
-                <Link href={i?.type === 'books' ? `/reader?id=${i?.book_id}&page=${i?.page_number}` : `/book/${i?.book_id}?type=audioBooks`}>
+                <Link href={i?.type === 'books' ? `/reader?id=${i?.book_id}&page=${i?.page_number}` : `/audiobooks/${i?.genre?.slug}/${i?.slug}`}>
                   <a className={styles.slideLink}>
                     <span className={styles.slideProgress}>
                       {i?.progress}%
