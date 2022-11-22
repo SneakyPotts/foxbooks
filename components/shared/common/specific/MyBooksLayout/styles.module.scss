@@ -122,7 +122,27 @@
   }
 }
 
+.progressPlace {
+  height: 216px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counterPlace {
+  height: 55px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 768px) {
+  .progressPlace {
+    height: 184px;
+  }
+
   .title {
     margin-bottom: 30px;
   }
@@ -136,7 +156,7 @@
   }
 
   .nav {
-    box-shadow: 0px 3px 10px rgba(121, 121, 121, 0.1);
+    box-shadow: 0 3px 10px rgba(121, 121, 121, 0.1);
     border-radius: 3px;
     border: 1px solid #F1F1F1;
     padding: 0 15px;
