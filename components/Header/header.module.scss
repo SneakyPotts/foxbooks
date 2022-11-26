@@ -210,6 +210,11 @@
         max-width: 124px;
         flex: 1;
 
+        @media (max-width: 480px) {
+          max-width: 108px;
+          margin-bottom: 30px;
+        }
+
         &:not(:last-child) {
           margin-right: 50px;
         }

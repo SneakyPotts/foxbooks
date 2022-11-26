@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import Button from "../shared/common/Button/Button";
 import {useSelector} from "react-redux";
 
-const allowedQueryParams = ['books_type', 'category_slug', 'sortBy', 'showType'];
+const allowedQueryParams = ['books_type', 'category_slug', 'sortBy', 'showType', 'page'];
 
 const SideFilters = () => {
   const router = useRouter();
@@ -68,7 +68,7 @@ const SideFilters = () => {
       ref.current.value = value;
 
       router.push(
-        {query: {...router.query, [queryName]: encodeURI(value), [mainQuery]: null}},
+        {query: {...router.query, page: 1, [queryName]: encodeURI(value), [mainQuery]: null}},
         null,
         {scroll: false}
       );
@@ -77,7 +77,7 @@ const SideFilters = () => {
     }
 
     router.push(
-      {query: {...router.query, [queryName]: encodeURI(value)}},
+      {query: {...router.query, page: 1, [queryName]: encodeURI(value)}},
       null,
       {scroll: false}
     );
@@ -93,17 +93,18 @@ const SideFilters = () => {
       pathname: '/[books_type]/[category_slug]',
       query: Object.assign(queryObj,
         sortBy && {sortBy},
-        showType && {showType}
+        showType && {showType},
+        {page: 1}
       )
     });
 
     /*close filters*/
-    // filters.forEach((item, index) => {
-    //   item.ref.current.value = '';
-    //
-    //   item.flag = true;
-    //   filterShow(index);
-    // })
+    filters.forEach((item, index) => {
+      item.ref.current.value = '';
+
+      item.flag = false;
+      filterShow(index);
+    })
   }
 
 

@@ -19,7 +19,7 @@ const Reviews = () => {
 
   return (
     <div className={st.container}>
-      <ShowAll title="Рецензии" url="/reviews" text="Показать все" />
+      {/*<ShowAll title="Рецензии" url="/reviews" text="Показать все" />*/}
       <Swiper
         modules={[Navigation]}
         navigation={{
