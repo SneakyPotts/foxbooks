@@ -9,9 +9,10 @@ import Popular from '../../Filter/Popular/Popular';
 import MyPagination from '../../shared/common/MyPagination';
 import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
 import MobileFilterModal from './../../MobileFilterModal'
-import st from './category.module.scss';
 import debounce from 'lodash.debounce';
 import Banners from "../../shared/common/Banner/Banners";
+import st from './category.module.scss';
+import cssBook from '../../shared/common/book/book.module.scss';
 
 const mobileFilters = [
   {
@@ -146,6 +147,7 @@ const Category = ({order}) => {
                       className={classnames({
                         [st.booksGrid]: !flagSwitcher,
                         [st.booksColumn]: flagSwitcher,
+                        [cssBook.mobileTitle]: innerWidthWindow <= 768
                       })}
                     >
                       {books.data.map(book => (

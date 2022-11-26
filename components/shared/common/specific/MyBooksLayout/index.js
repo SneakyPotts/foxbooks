@@ -22,6 +22,7 @@ import CommonService from "../../../../../http/CommonService";
 import BookService from "../../../../../http/BookService";
 import Cookies from "js-cookie";
 import {setUserReadingProgress} from "../../../../../store/bookSlice";
+import Loader from "../../Loader";
 
 const MyBooksLayout = ({ children }) => {
   const dispatch = useDispatch()
@@ -29,6 +30,8 @@ const MyBooksLayout = ({ children }) => {
   const token = Cookies.get('token');
 
   const [counters, setCounters] = useState(null)
+  const [counterLoad, setCounterLoad] = useState(true);
+  const [progressLoad, setProgressLoad] = useState(true);
 
   const tabs = useMemo(() => [
     {
@@ -81,13 +84,17 @@ const MyBooksLayout = ({ children }) => {
   }
 
   useEffect(() => {
-    (async () => {
-      const response = await CommonService.getMyListCounters()
-      setCounters(response.data?.data)
+      CommonService.getMyListCounters()
+        .then((res) => {
+          setCounters(res.data?.data)
+          setCounterLoad(false)
+        })
 
-      const progresses = await BookService.getUserReadingProgresses(token)
-      dispatch(setUserReadingProgress(progresses?.data?.data))
-    })()
+      BookService.getUserReadingProgresses(token)
+        .then((res) => {
+          dispatch(setUserReadingProgress(res?.data?.data))
+          setProgressLoad(false)
+        })
   }, [])
 
   return <>
@@ -108,7 +115,11 @@ const MyBooksLayout = ({ children }) => {
 
         <h1 className={classNames('title', styles.title)}>Мои книги</h1>
 
-        {userReadingProgress?.length ?
+        {progressLoad
+          ? <div className={styles.progressPlace}>
+              <Loader />
+            </div>
+          : userReadingProgress?.length ?
           <Swiper
             modules={[Navigation]}
             navigation={{
@@ -164,32 +175,36 @@ const MyBooksLayout = ({ children }) => {
       </div>
 
       <nav className={styles.nav}>
-        <ul className={styles.navList}>
+      {counterLoad
+        ? <div className={styles.counterPlace}>
+            <Loader/>
+          </div>
+        : <ul className={styles.navList}>
           {tabs.map(i => (
-              <li
-                key={i?.title}
-                className={styles.navItem}
-              >
-                <Link href={i?.path} scroll={false}>
-                  <a
-                    className={classNames(
-                      styles.navLink,
-                      {[styles.active]: router.pathname === i?.path.split('?')[0]}
-                    )}
-                    onClick={handleLinkClick}
-                  >
-                    <span className={styles.navLinkCount}>{i?.count}</span>
-                    <span className={styles.navWrapper}>
-                    <span className={styles.navIcon}>{i?.icon}</span>
-                      {i?.title}
-                  </span>
-                  </a>
-                </Link>
-              </li>
+            <li
+              key={i?.title}
+              className={styles.navItem}
+            >
+              <Link href={i?.path} scroll={false}>
+                <a
+                  className={classNames(
+                    styles.navLink,
+                    {[styles.active]: router.pathname === i?.path.split('?')[0]}
+                  )}
+                  onClick={handleLinkClick}
+                >
+                  <span className={styles.navLinkCount}>{i?.count}</span>
+                  <span className={styles.navWrapper}>
+                  <span className={styles.navIcon}>{i?.icon}</span>
+                    {i?.title}
+                </span>
+                </a>
+              </Link>
+            </li>
             )
           )}
-        </ul>
-      </nav>
+          </ul>}
+        </nav>
     </>}
 
     {(innerWidthWindow > 768 || !headerIsVisible) &&

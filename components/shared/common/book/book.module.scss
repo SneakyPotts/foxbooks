@@ -270,6 +270,12 @@
   display: none;
 }
 
+.mobileTitle {
+  .bookName {
+    -webkit-line-clamp: 1;
+  }
+}
+
 @media (max-width: 1200px) {
   .mainBlock {
     padding: 0 15px;

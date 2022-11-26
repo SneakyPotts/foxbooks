@@ -8,7 +8,12 @@
 }
 
 .options {
-  margin-right: 52px;
+  margin-right: auto;
+  display: flex;
+}
+
+.options button {
+  max-width: 19vw;
 }
 
 .bookList {
