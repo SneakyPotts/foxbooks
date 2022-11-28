@@ -1,10 +1,20 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import PlayerService from "../http/PlayerService";
 
 const initialState = {
 	title: '',
 	image: '',
-	chapters: []
+	chapters: [],
+	user_progress: {}
 };
+
+export const setAudioProgress = createAsyncThunk(
+	'player/setAudioProgress',
+	async (data) => {
+		await PlayerService.setProgress(data);
+		return data;
+	}
+)
 
 export const player = createSlice({
 	name: 'player',
@@ -20,9 +30,17 @@ export const player = createSlice({
 			state.image = ''
 			state.chapters = []
 		},
+		setListeningProgress: (state, action) => {
+			state.user_progress = action.payload
+		}
+	},
+	extraReducers: {
+		[setAudioProgress.fulfilled]: (state, action) => {
+			state.user_progress = action.payload
+		}
 	}
 });
 
-export const { setPlayerData, resetPlayerData } = player.actions;
+export const { setPlayerData, resetPlayerData, setListeningProgress } = player.actions;
 
 export default player.reducer;

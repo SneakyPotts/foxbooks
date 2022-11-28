@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import DropDownArrow from '../../../../public/chevron-down.svg';
 import css from './date.module.scss';
 import Link from 'next/link'
+import moment from "moment";
 
 const Date = ({ date, books }) => {
   const [menu, setMenu] = useState(true);
@@ -12,6 +13,18 @@ const Date = ({ date, books }) => {
     setMenu(!menu);
   };
 
+  const formatDate = (date) => {
+    const now = moment();
+    const formatted = moment(date.split('-').reverse().join('-'));
+    const delta = now - formatted;
+
+    /*86400000 - ms in day*/
+    if (delta < 86400000) return `Сегодня (${formatted.format('DD MMMM YYYY')})`
+    if (delta > 86400000 && delta < (2 * 86400000)) return `Вчера (${formatted.format('DD MMMM YYYY')})`
+
+    return formatted.format('DD MMMM YYYY');
+  }
+
   return (
     <>
       <div className={css.releaseDates}>
@@ -19,7 +32,7 @@ const Date = ({ date, books }) => {
           className={classnames(css.btn, { [css.activeBtn]: menu })}
           onClick={toggle}
         >
-          {date}
+          {formatDate(date)}
           <span
             className={classnames(css.dropDownIcon, { [css.active]: menu })}
           >

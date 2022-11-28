@@ -260,13 +260,3 @@ export const calcCoordinates = ev => {
 		y: toolsHeight >= deltaY ? y - toolsHeight : y
 	}
 }
-
-// export class LocalReaderSettings {
-// 	static setSettings = (data) => {
-// 		window.localStorage.setItem('localReader', JSON.stringify(data));
-// 	}
-//
-// 	static getSettings = () => {
-// 		return JSON.parse(localStorage.getItem('localReader'));
-// 	}
-// }
