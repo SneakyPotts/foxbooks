@@ -17,9 +17,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setPlayerVisibility} from "../../store/commonSlice";
 import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
-import {resetPlayerData} from "../../store/playerSlice";
+import {resetPlayerData, setAudioProgress} from "../../store/playerSlice";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-import PlayerService from "../../http/PlayerService";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -37,13 +36,13 @@ const AudioPlayer = () => {
   const { isAuth } = useSelector(state => state.auth)
   const playerData = useSelector(state => state.player)
   const { book } = useSelector(state => state.book)
-  const { user_progress: current} = book;
+  const userProgress = useSelector(state => state.player.user_progress);
 
   const [progress, setProgress] = useState(0)
   const [speedDropIsVisible, setSpeedDropIsVisible] = useState(false)
   const [pageDropIsVisible, setPageDropIsVisible] = useState(false)
-  const [currentChapter, setCurrentChapter] = useState(current?.audio_audiobook_id || book?.chapters?.[0]?.id);
-  const [currentTime, setCurrentTime] = useState(current?.current_audio_time || 0);
+  const [currentChapter, setCurrentChapter] = useState(userProgress?.audio_audiobook_id || book?.chapters?.[0]?.id);
+  const [currentTime, setCurrentTime] = useState(userProgress?.current_audio_time || 0);
 
   const [isClosed, setIsClosed] = useState(false)
   const [mute, setMute] = useState(0);
@@ -113,17 +112,28 @@ const AudioPlayer = () => {
     }
   }
 
+  const changeChapter = (chapterId) => {
+    setCurrentChapter(chapterId)
+    setCurrentTime(0)
+
+    dispatch(setAudioProgress({
+      audio_book_id: book.id,
+      audio_audiobook_id: chapterId,
+      current_audio_time: 0
+    }))
+  }
+
   useEffect(() => {
     let delta = Math.abs(progress - currentTime);
 
     if (isAuth && delta >= 10) {
-      PlayerService.setProgress({
-        audio_book_id: book.id,
-        audio_audiobook_id: currentChapter,
-        current_time: progress
-      }).then(() => {
-        setCurrentTime(progress);
-      })
+      dispatch(setAudioProgress({
+          audio_book_id: book.id,
+          audio_audiobook_id: currentChapter,
+          current_audio_time: progress
+        })).then(() => {
+          setCurrentTime(progress)
+        })
     }
   }, [progress]);
 
@@ -240,7 +250,7 @@ const AudioPlayer = () => {
                 {playerData?.chapters?.map((i, index) =>
                   <span
                     key={i?.id}
-                    onClick={() => setCurrentChapter(i?.id)}
+                    onClick={() => changeChapter(i?.id)}
                     className={classNames(styles.dropItem, {[styles.active]: currentChapter ? i?.id === currentChapter : index === 0})}
                   >
                     {i?.title}

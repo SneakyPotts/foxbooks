@@ -378,6 +378,12 @@
   }
   .wrapperList {
     min-width: 90px;
+
+    &.audioBook {
+      width: 108px;
+      height: 108px;
+      flex-shrink: 0;
+    }
   }
   .bookInfo {
     margin-left: 10px;

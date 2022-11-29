@@ -9,8 +9,16 @@ const PageProgress = () => {
 
     const { book, bookChapters } = useSelector(state => state.reader)
     const [currentPage, setCurrentPage] = useState(router.query?.page)
+    const [queryPage, setQueryPage] = useState(router.query?.page);
 
     const index = bookChapters.findIndex(i => i?.page?.page_number > Number(currentPage))
+
+    const tapChangePage = () => {
+        if (queryPage !== currentPage) {
+            router.push({query: {...router.query, page: currentPage}})
+            setQueryPage(currentPage)
+        }
+    }
 
     useEffect(() => {
         setCurrentPage(router.query?.page)
@@ -19,8 +27,8 @@ const PageProgress = () => {
     return (
         <div
             className={styles.progress}
-            onMouseUp={() => router.push({ query: { ...router.query, page: currentPage } })}
-            onTouchEnd={() => router.push({query: {...router.query, page: currentPage}})}
+            onMouseUp={tapChangePage}
+            onTouchEnd={tapChangePage}
         >
             <div className={styles.progressWrapper}>
                 <span>{index === -1 ? bookChapters[bookChapters.length - 1]?.title : bookChapters[index - 1]?.title}</span>

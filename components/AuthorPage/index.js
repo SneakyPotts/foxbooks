@@ -105,7 +105,7 @@ const AuthorPage = () => {
             <Categories />
 
             <div className={st.mainBlok}>
-              {author?.series?.length ? 
+              {author?.series?.length ?
                 author?.series?.map(i => (
                   <div
                     key={i?.id}
@@ -119,14 +119,14 @@ const AuthorPage = () => {
                     <ul className={st.seriesList}>
                       {i?.books?.map(i => (
                         <li
-                          key={i?.id} 
+                          key={i?.id}
                           className={st.seriesListBook}
                         >
                           <Book
                             book={i}
                             type={i?.type}
                             classNames={st.seriesListBookItem}
-                            similar={true} 
+                            similar={true}
                           />
                         </li>
                       ))}
@@ -135,7 +135,7 @@ const AuthorPage = () => {
                 )) : null
               }
 
-              {author?.books?.length ? 
+              {author?.books?.length ?
                 <div className={st.selection}>
                   <h2 className={classnames('title', st.selectionTitle)}>Книги вне серий</h2>
                   <ul className={st.selectionList}>
@@ -156,7 +156,7 @@ const AuthorPage = () => {
                 </div> : null
               }
 
-              {author?.audio_books?.length ? 
+              {author?.audio_books?.length ?
                 <div className={st.selection}>
                   <h2 className={classnames('title', st.seriesTitle)}>Аудиокниги автора</h2>
                   <ul className={st.selectionList}>
@@ -237,7 +237,7 @@ const AuthorPage = () => {
 
               {author?.similar_authors?.length ?
                 <div className={st.similarAuthors}>
-                  <ShowAll title="Похожие авторы" url="#" />
+                  {/*<ShowAll title="Похожие авторы" url="#" />*/}
                   <ul className={st.selectionList}>
                     {author?.similar_authors?.map(i => (
                       <li
@@ -245,14 +245,14 @@ const AuthorPage = () => {
                         className={classnames(st.selectionListBook, st.defolt)}
                       >
                         <Image
-                          src={i?.img}
+                          src={i?.avatar || '/preview.jpg'}
                           width={129}
                           height={195}
-                          alt={i?.name}
+                          alt={i?.author}
                         />
-                        <h3 className={st.selectionListBookAuthor}>{i?.name}</h3>
+                        <h3 className={st.selectionListBookAuthor}>{i?.author}</h3>
                         <p className={st.selectionListBookCount}>
-                          {i?.count}
+                          {i?.books_count}
                           <span> книг</span>
                         </p>
                       </li>
@@ -268,7 +268,7 @@ const AuthorPage = () => {
           <Banners />
         </div>
       </div>
-      
+
       {popupIsVisible && (
         <div className={st.popUp}>
           <p>

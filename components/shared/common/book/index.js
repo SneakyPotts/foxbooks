@@ -79,7 +79,7 @@ const Book = ({
       })}
     >
       <div
-        className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher })}
+        className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher, [st.audioBook]: audio })}
       >
         {!noLinks ? (
           <Link href={`/${book?.type?.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}/${book?.slug}`}>
