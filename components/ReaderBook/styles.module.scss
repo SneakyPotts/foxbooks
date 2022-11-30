@@ -9,7 +9,7 @@
 .pagination {
   margin: 60px auto 30px !important;
   max-width: 700px;
-  
+
   :global(.rc-pagination-item) {
     color: var(--modal-text-color) !important;
 
@@ -60,13 +60,13 @@
 
   &Input {
     &::-webkit-slider-thumb {
-      width: 16px !important;
-      height: 16px !important;
+      //width: 16px !important;
+      //height: 16px !important;
     }
 
     &::-moz-range-thumb {
-      width: 16px !important;
-      height: 16px !important;
+      //width: 16px !important;
+      //height: 16px !important;
     }
   }
 }
@@ -815,13 +815,13 @@
 
     &Input {
       &::-webkit-slider-thumb {
-        width: 12px !important;
-        height: 12px !important;
+        width: 16px !important;
+        height: 16px !important;
       }
 
       &::-moz-range-thumb {
-        width: 12px !important;
-        height: 12px !important;
+        width: 16px !important;
+        height: 16px !important;
       }
     }
   }

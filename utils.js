@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const _getExtension = fileName => {
 	if (!fileName || typeof fileName !== 'string') return false;
 
@@ -259,4 +261,16 @@ export const calcCoordinates = ev => {
 		x: toolsWidth >= deltaX ? x - toolsWidth : x,
 		y: toolsHeight >= deltaY ? y - toolsHeight : y
 	}
+}
+
+export const formatDate = (date) => {
+	const now = moment();
+	const formatted = moment(date.split('-').reverse().join('-'));
+	const delta = now - formatted;
+
+	/*86400000 - ms in day*/
+	if (delta < 86400000) return `Сегодня (${formatted.format('DD MMMM YYYY')})`
+	if (delta > 86400000 && delta < (2 * 86400000)) return `Вчера (${formatted.format('DD MMMM YYYY')})`
+
+	return formatted.format('DD MMMM YYYY');
 }

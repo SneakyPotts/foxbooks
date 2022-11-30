@@ -49,6 +49,18 @@
     object-fit: cover;
   }
 }
+
+.selectionList {
+  @media (min-width: 769px) {
+    .container {
+      width: 100%;
+    }
+    .wrapper {
+      min-width: 100%;
+    }
+  }
+}
+
 .bookRating {
   display: flex;
   justify-content: space-between;
