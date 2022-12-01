@@ -10,6 +10,10 @@
   max-height: 406px;
   height: 406px;
 
+  & img {
+    border-radius: 5px;
+  }
+
   &Icon {
     position: absolute;
     bottom: 20px;

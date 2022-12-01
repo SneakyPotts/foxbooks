@@ -1,22 +1,24 @@
-import Switcher from '../switcher/Switcher';
-import classNames from 'classnames';
-import { Navigation } from 'swiper/core';
+import Link from 'next/link'
+import {useRouter} from "next/router";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "next/router";
-import Breadcrumbs from "../BreadCrumps/BreadCrumps";
+import classNames from 'classnames';
+import { Navigation } from 'swiper/core';
+import Switcher from '../switcher/Switcher';
+import ShowAll from "../shared/common/showAll/ShowAll";
 import BookFilters from "../shared/common/booksFilters/BookFilters";
+import Breadcrumbs from "../BreadCrumps/BreadCrumps";
+import Banners from "../shared/common/Banner/Banners";
 import MobileFilterModal from "../MobileFilterModal";
 import MyPagination from "../shared/common/MyPagination";
 import CompilationItem from "../CompilationItem";
-import Link from 'next/link'
-import ArrowRight from '../../public/chevron-right.svg';
-import ShowAll from "../shared/common/showAll/ShowAll";
 import Book from "../shared/common/book";
-import styles from './selections.module.scss';
 import {setAuthPopupVisibility} from "../../store/commonSlice";
 import {addCompilationToFavorite, deleteCompilationFromFavorite} from "../../store/selectionSlice";
-import Banners from "../shared/common/Banner/Banners";
+import ArrowRight from '../../public/chevron-right.svg';
+import styles from './selections.module.scss';
+import cssBook from "../shared/common/book/book.module.scss";
+
 
 const popularSelections = [
 	{ id: '0', title: 'Все', value: 3 },
@@ -104,7 +106,7 @@ const SelectionsPage = () => {
 						<>
 							{router.query['showType'] === 'list' &&
 								selections?.data?.map(i =>
-									<div className={styles.mainListItem}>
+									<div className={`${styles.mainListItem} ${cssBook.selectionList}`}>
 										<div className={styles.titleFlex}>
 											<Link href={`/selections/${i?.slug}`}>
 												<a className={classNames("title", styles.title)}>{i?.title}</a>
