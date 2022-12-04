@@ -14,6 +14,9 @@ import classnames from "classnames";
 import SelectionService from "../../http/SelectionService";
 import {useDispatch, useSelector} from "react-redux";
 import {addBookToSelection} from "../../store/selectionSlice";
+import ShowAll from "../shared/common/showAll/ShowAll";
+import s from "../SearchPage/styles.module.scss";
+import debounce from "lodash.debounce";
 
 const filters = [
   { id: 1, title: 'Все', value: 'all' },
@@ -35,6 +38,10 @@ const ChooseBookPopup = ({onClose}) => {
 
   const [books, setBooks] = useState([])
   const [audioBooks, setAudioBooks] = useState([])
+
+  const [bookPage, setBookPage] = useState(1);
+  const [audioPage, setAudioPage] = useState(1);
+  const [lastPage, setLastPage] = useState({book: 1, audio: 1})
 
   const sortedBooks = useMemo(() => {
     return books.length ? books.filter(i => i?.title?.toLowerCase()?.includes(searchValue.toLowerCase())) : []
@@ -63,22 +70,48 @@ const ChooseBookPopup = ({onClose}) => {
     })
   }
 
+  const searchValueHandler = debounce(setSearchValue, 300)
+
+  useEffect(() => {
+    if (bookPage > 1) {
+      (async () => {
+        const booksData = await BooksService.getMyBooks({page: bookPage})
+        setBooks([...books, ...booksData.data.data.data])
+      })()
+    }
+  }, [bookPage]);
+
+  useEffect(() => {
+    if (audioPage > 1) {
+      (async () => {
+        const audioBooksData = await BooksService.getMyAudioBooks({page: audioPage})
+        setBooks([...books, ...audioBooksData.data.data.data])
+      })()
+    }
+  }, [audioPage]);
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
     (async () => {
-      const booksData = await BooksService.getMyBooks({})
-      const audioBooksData = await BooksService.getMyAudioBooks({})
+      setBookPage(1)
+      setAudioPage(1)
+      const booksData = await BooksService.getMyBooks({page: 1, findByTitle: searchValue})
+      const audioBooksData = await BooksService.getMyAudioBooks({page: 1, findByTitle: searchValue})
 
       setBooks(booksData.data.data.data)
       setAudioBooks(audioBooksData.data.data.data)
+      setLastPage({
+        book: booksData.data.data.last_page,
+        audio: audioBooksData.data.data.last_page
+      });
       setIsLoading(false)
     })()
 
     return () => {
       document.body.style.overflow = 'initial';
     }
-  }, [])
+  }, [searchValue])
 
   return (
     <div className={styles.chooseBook}>
@@ -96,7 +129,7 @@ const ChooseBookPopup = ({onClose}) => {
           <SearchInput
             placeholder={'Книга или аудиокнига'}
             externalClass={classNames(styles.mobSearch, styles.chooseBookInput)}
-            onChange={setSearchValue}
+            onChange={searchValueHandler}
           />
         </div>
 
@@ -116,31 +149,42 @@ const ChooseBookPopup = ({onClose}) => {
 
         {isLoading ?
           <div className={classNames("empty", styles.searchEmpty)}><Loader /></div> :
-          !sortedBooks?.length && !sortedAudioBooks?.length ?
+          !books?.length && !audioBooks?.length ?
             <p className={classNames("empty", styles.searchEmpty)}>Ничего не найдено</p> :
             <>
-              {!!sortedBooks?.length && (activeFilter === 'all' || activeFilter === 'books') && <>
-                <h2 className={classNames('title', styles.chooseBookTitle)}>Книги</h2>
-                <div className={classNames(styles.grid, styles.chooseBookGrid)}>
-                  {sortedBooks.map(i =>
-                    <div
-                      key={i?.id}
-                      className={styles.gridItem}
-                      onClick={() => handleClick(i)}
-                    >
-                      <Book
-                        book={i}
-                        noLinks
-                      />
-                    </div>
-                  )}
-                </div>
-              </>}
+              {!!books?.length && (activeFilter === 'all' || activeFilter === 'books') &&
+                <>
+                  <h2 className={classNames('title', styles.chooseBookTitle)}>Книги</h2>
+                  <div className={classNames(styles.grid, styles.chooseBookGrid)}>
+                    {books.map(i =>
+                      <div
+                        key={i?.id}
+                        className={styles.gridItem}
+                        onClick={() => handleClick(i)}
+                      >
+                        <Book
+                          book={i}
+                          noLinks
+                        />
+                      </div>
+                    )}
+                  </div>
+                  {lastPage.book > 1 && bookPage !== lastPage.book
+                    ? <ShowAll
+                      text={'Показать ещё'}
+                      externalClass={s.onlyDesctop}
+                      arrowSecondary
+                      showMore={true}
+                      setPage={setBookPage}
+                    />
+                    : null
+                  }
+                </>}
 
-              {!!sortedAudioBooks?.length && (activeFilter === 'all' || activeFilter === 'audioBooks') && <>
+              {!!audioBooks?.length && (activeFilter === 'all' || activeFilter === 'audioBooks') && <>
                 <h2 className={classNames('title', styles.chooseBookTitle)}>Аудиокниги</h2>
                 <div className={classNames(styles.grid, styles.chooseBookGrid)}>
-                  {sortedAudioBooks.map(i =>
+                  {audioBooks.map(i =>
                     <div
                       className={styles.gridItem}
                       onClick={() => handleClick(i)}
@@ -154,6 +198,16 @@ const ChooseBookPopup = ({onClose}) => {
                     </div>
                   )}
                 </div>
+                {lastPage.audio > 1 && bookPage !== lastPage.audio
+                  ? <ShowAll
+                    text={'Показать ещё'}
+                    externalClass={s.onlyDesctop}
+                    arrowSecondary
+                    showMore={true}
+                    setPage={setAudioPage}
+                  />
+                  : null
+                }
               </>}
             </>
         }

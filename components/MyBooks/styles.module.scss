@@ -124,6 +124,13 @@
     &:hover {
       color: $text-hover;
     }
+
+    @media (max-width: 1000px) {
+      min-height: 36px;
+    }
+    @media (max-width: 768px) {
+      min-height: unset;
+    }
   }
 
   &Text {
@@ -131,6 +138,15 @@
     line-height: 20px;
     margin: 20px 0;
     color: $color-second;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    min-height: 120px;
+
+    @media (max-width: 768px) {
+      min-height: unset;
+    }
   }
 
   &Stars {
@@ -286,7 +302,7 @@
     font-size: 14px;
     line-height: 140%;
     color: $color-main;
-    margin: 60px 0;
+    margin: 60px 0 0;
 
     &.empty {
       color: $color-third;
@@ -424,6 +440,7 @@
     &Block {
       padding: 0;
       border: none;
+      background-color: transparent;
 
       &Title {
         font-size: 14px;

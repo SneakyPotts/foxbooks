@@ -37,7 +37,7 @@
 }
 .containerColumn {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .wrapper {
   position: relative;
@@ -173,6 +173,10 @@
 .addInfo {
   margin-bottom: 10px;
 }
+
+.addInfoAudio {
+  margin-bottom: auto;
+}
 .aboutBook {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -286,6 +290,10 @@
   .bookName {
     -webkit-line-clamp: 1;
   }
+}
+
+.farView {
+  margin-left: auto;
 }
 
 @media (max-width: 1200px) {

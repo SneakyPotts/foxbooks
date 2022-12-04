@@ -23,6 +23,10 @@
   }
   &Img {
     grid-area: 1/1/3/2;
+
+    img {
+      border-radius: 5px;
+    }
   }
   &Info {
     &Name {

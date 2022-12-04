@@ -63,6 +63,9 @@
   .advertisingBlok {
     display: none;
   }
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media screen and (max-width: 768px) {
