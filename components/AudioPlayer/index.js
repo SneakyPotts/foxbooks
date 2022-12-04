@@ -91,7 +91,7 @@ const AudioPlayer = () => {
     if(nextChapterIndex !== playerData?.chapters?.length) {
       if (isAuth) {
         dispatch(setAudioProgress({
-          audio_book_id: userProgress.audio_book_id,
+          audio_book_id: userProgress?.audio_book_id || playerData?.chapters?.[0]?.book_id,
           audio_audiobook_id: playerData?.chapters?.[nextChapterIndex]?.id,
           current_audio_time: 0
         })).then(() => setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id))
@@ -117,18 +117,20 @@ const AudioPlayer = () => {
   }
 
   const resumeListening = () => {
-    if (!!userProgress && isAuth) {
-			setCurrentChapter(userProgress.audio_audiobook_id)
-      player.current.seekTo(userProgress.current_audio_time)
-    } else {
-			setCurrentChapter(currentChapter || playerData?.chapter?.[0].id)
-		}
+    if (isAuth) {
+      if (!!userProgress) {
+        setCurrentChapter(userProgress?.audio_audiobook_id)
+        player.current.seekTo(userProgress?.current_audio_time)
+      } else {
+        setCurrentChapter(playerData?.chapters?.[0].id)
+      }
+    }
   }
 
   const changeChapter = (chapterId) => {
 		if (isAuth) {
 			dispatch(setAudioProgress({
-				audio_book_id: userProgress.audio_book_id,
+				audio_book_id: userProgress?.audio_book_id || playerData?.chapters?.[0]?.book_id,
 				audio_audiobook_id: chapterId,
 				current_audio_time: 0
 			})).then(() => setCurrentChapter(chapterId))
@@ -139,11 +141,11 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     if (isAuth) {
-    	let delta = Math.abs(progress - userProgress?.current_audio_time)
+    	let delta = Math.abs(progress - (userProgress?.current_audio_time || 0))
 
 			if (delta >= 10 && currentChapter) {
 				dispatch(setAudioProgress({
-					audio_book_id: userProgress.audio_book_id,
+					audio_book_id: userProgress?.audio_book_id || playerData?.chapters?.[0]?.book_id,
 					audio_audiobook_id: currentChapter,
 					current_audio_time: progress
 				}))
