@@ -89,11 +89,15 @@ const AudioPlayer = () => {
     const nextChapterIndex = currentChapterIndex === -1 ? 1 : currentChapterIndex + 1
 
     if(nextChapterIndex !== playerData?.chapters?.length) {
-			dispatch(setAudioProgress({
-				audio_book_id: userProgress.audio_book_id,
-				audio_audiobook_id: playerData?.chapters?.[nextChapterIndex]?.id,
-				current_audio_time: 0
-			})).then(() => setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id))
+      if (isAuth) {
+        dispatch(setAudioProgress({
+          audio_book_id: userProgress.audio_book_id,
+          audio_audiobook_id: playerData?.chapters?.[nextChapterIndex]?.id,
+          current_audio_time: 0
+        })).then(() => setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id))
+      } else {
+        setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id)
+      }
     }
   }
 
@@ -117,7 +121,7 @@ const AudioPlayer = () => {
 			setCurrentChapter(userProgress.audio_audiobook_id)
       player.current.seekTo(userProgress.current_audio_time)
     } else {
-			setCurrentChapter(playerData?.chapter?.[0].id)
+			setCurrentChapter(currentChapter || playerData?.chapter?.[0].id)
 		}
   }
 
