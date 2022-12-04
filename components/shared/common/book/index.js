@@ -144,7 +144,7 @@ const Book = ({
             ) : (
               <div className={st.starsBlock}>
                 <Stars count={count} value={book?.rate_avg} />
-                {innerWidthWindow <= 768 && <span>{book?.rates_count}</span>}
+                {innerWidthWindow <= 768 && <span>{book?.rate_avg}</span>}
               </div>
             )}
           </div>
@@ -163,6 +163,17 @@ const Book = ({
             <div className={st.raitingAmount}>
               <span>{book?.rate_avg}</span>
               {!similar && <span>({book?.rates_count})</span>}
+            </div>
+          )}
+          {flagSwitcher && audio && (
+            <div
+              className={classnames(st.selectionDateViews, {
+                [st.farView]: innerWidthWindow > 768,
+                [st.hide]: mobalSimilar,
+              })}
+            >
+              <span>{book?.views_count}</span>
+              <Eye />
             </div>
           )}
         </div>
@@ -201,9 +212,9 @@ const Book = ({
             <span className={st.bookAuthor}>Нет автора</span>
         )}
         {flagSwitcher && (
-          <div className={classnames(st.extraInfo, { [st.addInfo]: !audio })}>
+          <div className={classnames(st.extraInfo, { [st.addInfo]: !audio }, {[st.addInfoAudio]: audio})}>
             <p className={st.bookYear}>
-              <span>{book?.year?.year}</span>
+              <span>{audio ? book?.year : book?.year?.year}</span>
               <span className={st.bookGenre}>
                 {book?.genres?.length ? book?.genres?.[0]?.name : null}
                 {book?.genre?.name || null}
