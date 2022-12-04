@@ -24,23 +24,22 @@ export const player = createSlice({
 			state.title = action.payload.title
 			state.image = action.payload.image
 			state.chapters = action.payload.chapters
+			state.user_progress = action.payload.user_progress
 		},
 		resetPlayerData: (state) => {
 			state.title = ''
 			state.image = ''
 			state.chapters = []
-		},
-		setListeningProgress: (state, action) => {
-			state.user_progress = action.payload
+			state.user_progress = {}
 		}
 	},
 	extraReducers: {
 		[setAudioProgress.fulfilled]: (state, action) => {
-			state.user_progress = action.payload
+			state.user_progress = {...state.user_progress, ...action.payload}
 		}
 	}
 });
 
-export const { setPlayerData, resetPlayerData, setListeningProgress } = player.actions;
+export const { setPlayerData, resetPlayerData } = player.actions;
 
 export default player.reducer;
