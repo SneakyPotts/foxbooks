@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -122,7 +122,8 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
     dispatch(setPlayerData({
       title: book?.title,
       image: book?.cover_url || "/preview.jpg",
-      chapters: book?.chapters
+      chapters: book?.chapters,
+      user_progress: book?.user_progress
     }))
     dispatch(setPlayerVisibility(true))
   }
@@ -138,7 +139,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
           >
             <Image
               src={book?.cover_url || "/preview.jpg"}
-              bookTitle
+              // bookTitle
               height={
                 audioFlag
                   ? innerWidthWindow > 768
@@ -149,8 +150,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   : 160
               }
               width={innerWidthWindow > 768 ? 270 : 108}
-              /*deleted according to the recommendations*/
-              // layout="fill"
+              layout="fill"
               placeholder="blur"
               blurDataURL="/blur.webp"
             />

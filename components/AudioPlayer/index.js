@@ -19,6 +19,7 @@ import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
 import {resetPlayerData, setAudioProgress} from "../../store/playerSlice";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
+import debounce from "lodash.debounce";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -35,14 +36,13 @@ const AudioPlayer = () => {
   const { innerWidthWindow } = useSelector(state => state.common)
   const { isAuth } = useSelector(state => state.auth)
   const playerData = useSelector(state => state.player)
-  const { book } = useSelector(state => state.book)
-  const userProgress = useSelector(state => state.player.user_progress);
+  const userProgress = playerData.user_progress
 
   const [progress, setProgress] = useState(0)
   const [speedDropIsVisible, setSpeedDropIsVisible] = useState(false)
   const [pageDropIsVisible, setPageDropIsVisible] = useState(false)
-  const [currentChapter, setCurrentChapter] = useState(userProgress?.audio_audiobook_id || book?.chapters?.[0]?.id);
-  const [currentTime, setCurrentTime] = useState(userProgress?.current_audio_time || 0);
+  const [currentChapter, setCurrentChapter] = useState(null)
+  const [saveProgress, setSaveProgress] = useState(0)
 
   const [isClosed, setIsClosed] = useState(false)
   const [mute, setMute] = useState(0);
@@ -50,6 +50,8 @@ const AudioPlayer = () => {
   const duration = +player.current?.getDuration() || 0
 
   const playerBody = useRef(null);
+
+  const saveProgressHandler = debounce(setSaveProgress, 100)
 
   const changeSeek = value => {
     player.current?.seekTo(parseInt(value))
@@ -87,7 +89,11 @@ const AudioPlayer = () => {
     const nextChapterIndex = currentChapterIndex === -1 ? 1 : currentChapterIndex + 1
 
     if(nextChapterIndex !== playerData?.chapters?.length) {
-      setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id)
+			dispatch(setAudioProgress({
+				audio_book_id: userProgress.audio_book_id,
+				audio_audiobook_id: playerData?.chapters?.[nextChapterIndex]?.id,
+				current_audio_time: 0
+			})).then(() => setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id))
     }
   }
 
@@ -107,35 +113,39 @@ const AudioPlayer = () => {
   }
 
   const resumeListening = () => {
-    if (!!currentTime) {
-      player.current.seekTo(currentTime)
-    }
+    if (!!userProgress && isAuth) {
+			setCurrentChapter(userProgress.audio_audiobook_id)
+      player.current.seekTo(userProgress.current_audio_time)
+    } else {
+			setCurrentChapter(playerData?.chapter?.[0].id)
+		}
   }
 
   const changeChapter = (chapterId) => {
-    setCurrentChapter(chapterId)
-    setCurrentTime(0)
-
-    dispatch(setAudioProgress({
-      audio_book_id: book.id,
-      audio_audiobook_id: chapterId,
-      current_audio_time: 0
-    }))
+		if (isAuth) {
+			dispatch(setAudioProgress({
+				audio_book_id: userProgress.audio_book_id,
+				audio_audiobook_id: chapterId,
+				current_audio_time: 0
+			})).then(() => setCurrentChapter(chapterId))
+		} else {
+			setCurrentChapter(chapterId)
+		}
   }
 
   useEffect(() => {
-    let delta = Math.abs(progress - currentTime);
+    if (isAuth) {
+    	let delta = Math.abs(progress - userProgress?.current_audio_time)
 
-    if (isAuth && delta >= 10) {
-      dispatch(setAudioProgress({
-          audio_book_id: book.id,
-          audio_audiobook_id: currentChapter,
-          current_audio_time: progress
-        })).then(() => {
-          setCurrentTime(progress)
-        })
+			if (delta >= 10 && currentChapter) {
+				dispatch(setAudioProgress({
+					audio_book_id: userProgress.audio_book_id,
+					audio_audiobook_id: currentChapter,
+					current_audio_time: progress
+				}))
+			}
     }
-  }, [progress]);
+  }, [saveProgress])
 
   useOnClickOutside(playerBody, hideDrops);
 
@@ -281,7 +291,10 @@ const AudioPlayer = () => {
         width="0"
         height="0"
         onStart={resumeListening}
-        onProgress={e => setProgress(parseInt(e.playedSeconds))}
+        onProgress={e => {
+          saveProgressHandler(e.playedSeconds)
+          setProgress(parseInt(e.playedSeconds))
+        }}
         onEnded={handleEnd}
         {...settings}
       />

@@ -5,16 +5,9 @@ import BookService from "../../../http/BookService";
 import AdminSettings from "../../../http/AdminSettings";
 import {setBook, setBookQuotes} from "../../../store/bookSlice";
 import {setCurrentPageBanners} from "../../../store/adminSlice";
-import {setListeningProgress} from "../../../store/playerSlice";
 
 const Book = ({ book, bookQuotes, books_type, banners }) => {
   const dispatch = useDispatch()
-
-  book.user_progress && dispatch(setListeningProgress({
-    audio_book_id: book.user_progress.audio_book_id,
-    audio_audiobook_id: book.user_progress.audio_audiobook_id,
-    current_audio_time: book.user_progress.current_audio_time,
-  }));
 
   dispatch(setBook(book));
   dispatch(setBookQuotes(bookQuotes));
