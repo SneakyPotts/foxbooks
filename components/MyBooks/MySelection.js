@@ -24,6 +24,7 @@ import ChooseBookPopup from "./ChooseBookPopup";
 import SelectionService from "../../http/SelectionService";
 import {deleteBookFromSelection} from "../../store/selectionSlice";
 import {getNoun} from "../../utils";
+import st from "../Selections/SelectionPage/selectionPage.module.scss";
 
 const filter1 = [
   {
@@ -153,11 +154,13 @@ const MySelection = () => {
           })}
         >
           <span>{selectionById?.compilation?.total_books_count}</span>
-          {!selectionById?.compilation?.books_count && selectionById?.compilation?.audio_books_count ?
-            getNoun(selectionById?.compilation?.total_books_count, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
-            getNoun(selectionById?.compilation?.total_books_count, 'Книга', 'Книги', 'Книг')
-          }
-        </span>
+            {!selectionById?.compilation?.books_count && selectionById?.compilation?.audio_books_count ?
+              getNoun(selectionById?.compilation?.total_books_count, 'Аудиокнига', 'Аудиокниги', 'Аудиокниг') :
+              getNoun(selectionById?.compilation?.total_books_count, 'Книга', 'Книги', 'Книг')
+            }
+          </span>
+
+        <p className={st.selectionText}>{selectionById?.compilation?.description}</p>
 
         {innerWidthWindow > 768 &&
           <div className={styles.filters}>

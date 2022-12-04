@@ -60,7 +60,7 @@ const ReviewLogicItem = ({
   return (
     <div className={styles.review}>
       <div className={styles.reviewCover}>
-        <Link href={`/books/${data?.book?.genres?.[0].slug || data?.book?.genre?.slug}/${data?.book?.slug}`}>
+        <Link href={`/${data?.book?.type || 'audiobooks'}/${data?.book?.genres?.[0].slug || data?.audio_book?.genre?.slug}/${data?.book?.slug || data?.audio_book?.slug}`}>
           <a>
             <Image
               src={data?.book?.cover_url || data?.audio_book?.cover_url || '/preview.jpg'}
@@ -73,11 +73,11 @@ const ReviewLogicItem = ({
           </a>
         </Link>
         <div className={styles.bookWrapper}>
-          <Link href={`/books/${data?.book?.genres?.[0].slug || data?.book?.genre?.slug}/${data?.book?.slug}`}>
-            <a className={styles.bookTitle}>{data?.book?.title}</a>
+          <Link href={`/${data?.book?.type || 'audiobooks'}/${data?.book?.genres?.[0].slug || data?.audio_book?.genre?.slug}/${data?.book?.slug || data?.audio_book?.slug}`}>
+            <a className={styles.bookTitle}>{data?.book?.title || data?.audio_book?.title}</a>
           </Link>
-          <Link href={`/author/${data?.book?.authors[0].slug}`}>
-            <a className={styles.bookAuthor}>{data?.book?.authors[0].author}</a>
+          <Link href={`/author/${data?.book?.authors[0].slug || data?.audio_book?.authors[0].slug}`}>
+            <a className={styles.bookAuthor}>{data?.book?.authors[0].author || data?.audio_book?.authors[0].author}</a>
           </Link>
         </div>
       </div>
@@ -140,7 +140,7 @@ const ReviewLogicItem = ({
           onClose={() => setEditFormIsVisible(false)}
         >
           <ReviewForm
-            bookId={data?.book_id}
+            bookId={data?.book_id || data?.audio_book_id}
             title={data?.title}
             text={data?.content}
             myReviewType={data?.book?.type || data?.audio_book?.type}
