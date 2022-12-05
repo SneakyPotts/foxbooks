@@ -89,9 +89,9 @@ const SelectionPage = () => {
                         {selectionById?.books?.data.map(i =>
                             <Book
                                 key={i?.id}
-                                book={i?.book_compilationable}
-                                type={i?.book_compilationable?.type}
-                                audio={i?.book_compilationable?.type === 'audioBooks'}
+                                book={i}
+                                type={i?.type}
+                                audio={i?.type === 'audioBooks'}
                             />
                         )}
                     </div> :

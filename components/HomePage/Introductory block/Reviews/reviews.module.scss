@@ -35,6 +35,18 @@
   font-size: 24px;
   line-height: 1.25;
   margin: 0;
+
+  &Main {
+    margin-bottom: 42px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 500px) {
+      max-width: 173px;
+    }
+  }
 }
 .newLink {
   display: flex;

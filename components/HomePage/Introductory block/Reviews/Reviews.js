@@ -8,6 +8,7 @@ import ShowAll from '../../../shared/common/showAll/ShowAll';
 import ReviewLogicItem from "../../../ReviewLogicItem";
 import AvatarWithLetter from "../../../shared/common/AvatarWithLetter";
 import React from "react";
+import classnames from "classnames";
 
 const Reviews = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
@@ -20,6 +21,7 @@ const Reviews = () => {
   return (
     <div className={st.container}>
       {/*<ShowAll title="Рецензии" url="/reviews" text="Показать все" />*/}
+      <h2 className={classnames('title', st.titleMain)}>Рецензии</h2>
       <Swiper
         modules={[Navigation]}
         navigation={{
