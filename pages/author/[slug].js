@@ -4,11 +4,14 @@ import AuthorService from "../../http/AuthorService";
 import AdminSettings from "../../http/AdminSettings";
 import {setAuthor} from "../../store/authorSlice";
 import {setCurrentPageBanners} from "../../store/adminSlice";
+import CategoriesService from "../../http/CategoriesService";
+import {setCategories} from "../../store/bookSlice";
 
 const index = (props) => {
   const dispatch = useDispatch()
 
   dispatch(setAuthor(props.author));
+  dispatch(setCategories(props.categories));
 	dispatch(setCurrentPageBanners(props.banners));
 
   return <AuthorPage/>;
@@ -21,9 +24,12 @@ export async function getServerSideProps({params}) {
     const author = await AuthorService.getAuthor(params.slug);
 		const banners = await AdminSettings.getPageBanner({page_slug: params.slug});
 
+    const categories = await CategoriesService.getCategoriesWithCount();
+
     return {
       props: {
         author: author?.data?.data,
+        categories: categories?.data?.data,
 				banners: banners?.data?.data,
       }
     }

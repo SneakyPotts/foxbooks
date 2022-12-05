@@ -274,3 +274,14 @@ export const formatDate = (date) => {
 
 	return formatted.format('DD MMMM YYYY');
 }
+
+export const wordsForCount = (count, word = 'оцен') => {
+	switch (count % 10) {
+		case 1:
+			return `${word}ка`
+		case 2 || 3 || 4:
+			return `${word}ки`
+		default:
+			return `${word}ок`
+	}
+}

@@ -16,6 +16,7 @@ import st from './aboutBook.module.scss';
 import DotsDropdown from "../../DotsDropdown";
 import {setAuthPopupVisibility, setPlayerVisibility} from "../../../store/commonSlice";
 import {setPlayerData} from "../../../store/playerSlice";
+import {wordsForCount} from "../../../utils";
 
 
 const AboutBook = ({ book, audioFlag, showMyComp }) => {
@@ -211,7 +212,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 <div className={st.bookRaiting}>
                   <Stars count={1} />
                   <p className={st.bookRaitingCount}>
-                    {book?.rate_avg} ({book?.rates_count} оценок)
+                    {book?.rate_avg} ({book?.rates_count} {wordsForCount(book?.rates_count)})
                   </p>
                 </div>
                 {innerWidthWindow >= 768 && (
