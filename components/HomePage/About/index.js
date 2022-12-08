@@ -24,7 +24,6 @@ const About = () => {
   const handleClick = index => {
     setCurrentIndex(prev => {
       if (prev === index) {
-        // console.log(1);
         return null;
       } else {
         return index;

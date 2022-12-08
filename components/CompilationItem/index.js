@@ -29,8 +29,8 @@ const CompilationItem = ({
               blurDataURL="/blur.webp"
             />
             <span className={styles.selectionCount}>
-              {data?.total_books_count ? data?.total_books_count : 0}{' '}
-              {getNoun(data?.total_books_count, 'книга', 'книги', 'книг')}
+              {data?.total_books_count || data?.books_count || '0'}{' '}
+              {getNoun(data?.total_books_count || data?.books_count || 0, 'книга', 'книги', 'книг')}
             </span>
           </a>
         </Link> :

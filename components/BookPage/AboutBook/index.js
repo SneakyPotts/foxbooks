@@ -41,7 +41,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
     },
     {
       icon: <Flag />,
-      title: audioFlag ? 'Прослушал' : 'Прочитано',
+      title: audioFlag ? 'Прослушано' : 'Прочитано',
       value: 3,
       withPopup: true,
       isEdit: true,
@@ -93,7 +93,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
         value: el?.value,
         type
       })).then(res => {
-        setMessage({...message, text: el?.message, link: el?.link})
+        setMessage({status: 'добавлена', text: el?.message, link: el?.link})
         showPopup(res, el?.withPopup)
       })
     } else if(el?.isDelete) {
@@ -123,6 +123,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
     dispatch(setPlayerData({
       title: book?.title,
       image: book?.cover_url || "/preview.jpg",
+      link: `/audiobooks/${book?.genre?.slug}/${book?.slug}`,
       chapters: book?.chapters,
       user_progress: book?.user_progress
     }))
@@ -194,19 +195,24 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 {/*)}*/}
                 {book?.year?.year && <span className={st.bookDateYear}>{book?.year?.year}</span>}
                 {/* <span className={st.bookDateAge}>{book.age}8</span> */}
-                {audioFlag ?
-                  book?.listeners_count ?
-                    <div className={st.selectionDateViews}>
-                      <span>{book?.listeners_count}</span>
-                      <Eye />
-                    </div> : null
-                  :
-                  book?.views_count ?
+                {/*{audioFlag ?*/}
+                {/*  book?.listeners_count ?*/}
+                {/*    <div className={st.selectionDateViews}>*/}
+                {/*      <span>{book?.listeners_count}</span>*/}
+                {/*      <Eye />*/}
+                {/*    </div> : null*/}
+                {/*  :*/}
+                {/*  book?.views_count ?*/}
+                {/*    <div className={st.selectionDateViews}>*/}
+                {/*      <span>{book?.views_count}</span>*/}
+                {/*      <Eye />*/}
+                {/*    </div> : null*/}
+                {/*}*/}
+                {book?.views_count ?
                     <div className={st.selectionDateViews}>
                       <span>{book?.views_count}</span>
                       <Eye />
-                    </div> : null
-                }
+                    </div> : null}
               </div>
               <div className={st.raiting}>
                 <div className={st.bookRaiting}>

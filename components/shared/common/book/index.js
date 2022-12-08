@@ -10,9 +10,9 @@ import Like from '../../icons/heart';
 import Comment from '../../icons/comment';
 import Basket from '../../icons/trash';
 import st from './book.module.scss';
+import aboutBookStyles from './../../../BookPage/AboutBook/aboutBook.module.scss';
 import Headphones from '../../icons/headphones';
 import Eye from '../../icons/eye';
-
 import {audioBook, deleteBookFromFavorite, setBookStatus} from '../../../../store/bookSlice';
 import Delete from "../../../../public/delete.svg";
 import DotsDropdown from "../../../DotsDropdown";
@@ -36,7 +36,24 @@ const Book = ({
   const { innerWidthWindow } = useSelector(state => state.common);
   const { isAuth } = useSelector(state => state.auth);
 
+  const changeData = {
+    wantRead: {
+      link: audio ? '/mybooks/audio' : '/mybooks',
+      message: 'в вашу библиотеку'
+    },
+    read: {
+      link: audio ? '/mybooks/audio' : '/mybooks',
+      message: `в список ${audio ? 'слушаемых' : 'читаемых'}`
+    },
+    delete: {
+      link: null,
+      message: 'из вашей библиотеки'
+    }
+  }
+
   const [changeIcon, setChangeIcon] = useState(book?.in_favorite);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [message, setMessage] = useState({status: '', text: '', link: null});
 
   const bookLinkClick = () => {
     if (audio) {
@@ -46,12 +63,27 @@ const Book = ({
     }
   };
 
+  const changeStatus = (res) => {
+    if (res.meta.requestStatus === 'fulfilled') {
+      setShowPopUp(true);
+      setTimeout(() => setShowPopUp(false), 5000);
+    }
+  };
+
   const handleWantReadClick = () => {
     dispatch(setBookStatus({
       id: book?.id,
       value: 1,
       type
-    })).then(() => setChangeIcon(true))
+    })).then((res) => {
+      setChangeIcon(true)
+      setMessage({
+        status: 'добавлена',
+        text: changeData.wantRead.message,
+        link: changeData.wantRead.link
+      })
+      changeStatus(res)
+    })
   }
 
   const handleReadClick = () => {
@@ -59,14 +91,28 @@ const Book = ({
       id: book?.id,
       value: 2,
       type
-    }))
+    })).then((res) => {
+      setMessage({
+        status: 'добавлена',
+        text: changeData.read.message,
+        link: changeData.read.link
+      })
+      changeStatus(res)
+    })
   }
 
   const deleteFromFavorite = () => {
     dispatch(deleteBookFromFavorite({
       id: book?.id,
       type
-    }))
+    })).then((res) => {
+      setMessage({
+        status: 'удалена',
+        text: changeData.delete.message,
+        link: null
+      })
+      changeStatus(res)
+    })
     setChangeIcon(false)
   }
 
@@ -301,6 +347,19 @@ const Book = ({
           <Delete />
         </span>
       }
+
+      {showPopUp && (
+        <div className={aboutBookStyles.popUp}>
+          <p>
+            Книга “{book?.title}” {message?.status}{' '}
+            {message?.link
+              ? <Link href={message?.link}>
+                <a className={aboutBookStyles.popUpLink}>{message?.text}</a>
+              </Link>
+              : message?.text}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -28,8 +28,6 @@ const AudioBooks = ({ audioBooks }) => {
           nextEl: '.nextArrow',
         }}
 
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
         {audioBooks.map(i =>
           <SwiperSlide

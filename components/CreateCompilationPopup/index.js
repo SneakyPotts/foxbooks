@@ -23,7 +23,7 @@ const CreateCompilationPopup = ({
   const dispatch = useDispatch()
 
   const { innerWidthWindow } = useSelector(state => state.common)
-  const { id: selectionId } = useSelector(state => state.selection.selectionById.compilation)
+  const selectionId = useSelector(state => state.selection.selectionById.compilation?.id)
 
   const [imgSrc, setImgSrc] = useState(image || '')
 

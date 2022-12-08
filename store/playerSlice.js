@@ -4,6 +4,7 @@ import PlayerService from "../http/PlayerService";
 const initialState = {
 	title: '',
 	image: '',
+	link: '',
 	chapters: [],
 	user_progress: {}
 };
@@ -23,12 +24,14 @@ export const player = createSlice({
 		setPlayerData: (state, action) => {
 			state.title = action.payload.title
 			state.image = action.payload.image
+			state.link = action.payload.link
 			state.chapters = action.payload.chapters
 			state.user_progress = action.payload.user_progress
 		},
 		resetPlayerData: (state) => {
 			state.title = ''
 			state.image = ''
+			state.link = ''
 			state.chapters = []
 			state.user_progress = {}
 		}

@@ -25,8 +25,6 @@ const MobileBlock = () => {
             prevEl: '.prevArrow',
             nextEl: '.nextArrow',
           }}
-          // onSlideChange={() => console.log('slide change')}
-          // onSwiper={swiper => console.log(swiper)}
         >
           {books.map(book => (
             <SwiperSlide key={book.id} className={st.swiperSlide}>
@@ -56,8 +54,6 @@ const MobileBlock = () => {
             nextEl: '.nextArrow',
           }}
 
-          // onSlideChange={() => console.log('slide change')}
-          // onSwiper={swiper => console.log(swiper)}
         >
           {books.map(book => (
             <SwiperSlide key={book.id} className={st.swiperSlide}>
