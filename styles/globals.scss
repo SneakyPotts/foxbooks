@@ -285,3 +285,9 @@ ol[class] {
     padding-bottom: 0;
   }
 }
+
+@media (max-width: 768px) {
+  input {
+    font-size: 16px;
+  }
+}

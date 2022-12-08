@@ -238,19 +238,28 @@ const AuthorPage = () => {
               {author?.similar_authors?.length ?
                 <div className={st.similarAuthors}>
                   {/*<ShowAll title="Похожие авторы" url="#" />*/}
+                  <h2 className={classnames('title', st.selectionTitle)}>Похожие авторы</h2>
                   <ul className={st.selectionList}>
                     {author?.similar_authors?.map(i => (
                       <li
                         key={i?.id}
                         className={classnames(st.selectionListBook, st.defolt)}
                       >
-                        <Image
-                          src={i?.avatar || '/preview.jpg'}
-                          width={129}
-                          height={195}
-                          alt={i?.author}
-                        />
-                        <h3 className={st.selectionListBookAuthor}>{i?.author}</h3>
+                        <Link href={`/author/${i?.slug}`}>
+                          <a>
+                            <Image
+                              src={i?.avatar || '/preview.jpg'}
+                              width={129}
+                              height={195}
+                              alt={i?.author}
+                            />
+                          </a>
+                        </Link>
+                        <Link href={`/author/${i?.slug}`}>
+                          <a>
+                            <h3 className={st.selectionListBookAuthor}>{i?.author}</h3>
+                          </a>
+                        </Link>
                         <p className={st.selectionListBookCount}>
                           {i?.books_count}
                           <span> книг</span>

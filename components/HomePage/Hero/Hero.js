@@ -1,4 +1,3 @@
-// import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/core';
 import { useSelector } from 'react-redux';
@@ -7,8 +6,6 @@ import ArrowRight from '../../../public/chevron-right.svg';
 import st from './hero.module.scss';
 
 const Hero = () => {
-  const { innerWidthWindow } = useSelector(state => state.common);
-
   const data = [
     { id: '1' },
     { id: '2' },
@@ -31,8 +28,6 @@ const Hero = () => {
         }}
         spaceBetween={24}
         slidesPerView={1}
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
         {data.map(id => (
           <SwiperSlide key={id} className={st.swiperTest}>

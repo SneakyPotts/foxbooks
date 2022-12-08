@@ -25,7 +25,7 @@ const Popular = ({
     data?.find(i => i?.value === +router.query[queryName])?.title || title
   );
   const [activeEl, setActiveEl] = useState(
-    +router.query[queryName] || defaultValue
+		isAlphabet ? router.query[queryName] : +router.query[queryName] || defaultValue
   );
 
   useEffect(() => {
@@ -35,6 +35,12 @@ const Popular = ({
       document.body.removeEventListener('click', closeMenu);
     };
   }, []);
+
+	useEffect(() => {
+		isAlphabet && setActiveEl(router.query[queryName])
+		!router.query[queryName] &&  setActiveTitle(title);
+	}, [router.query]);
+
 
   const toggleMenu = e => {
     e.stopPropagation();
@@ -122,7 +128,7 @@ const Popular = ({
             >
               {isAlphabet ? (
                 <span
-                  className={classNames({ [css.activeWord]: i === activeEl })}
+                  className={classNames({ [css.activeWord]: encodeURI(i) === activeEl })}
                 >
                   {i}
                 </span>

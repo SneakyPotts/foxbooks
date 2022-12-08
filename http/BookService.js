@@ -95,12 +95,13 @@ export default class BookService {
 
 	static async setBookStatus({id, value, type}) {
 		const idKey = type === 'books' ? 'book_id' : 'audio_book_id'
-		return api.post(`${API_URL}/profile/lists/${type}`, { [idKey]: id, status: value })
+		return api.post(`${API_URL}/profile/lists/${type === 'books' ? type : 'audio-books'}`, { [idKey]: id, status: value })
 	}
 
 	static async deleteBookFromFavorite({id, type}) {
 		const idKey = type === 'books' ? 'book_id' : 'audio_book_id'
-		return api.delete(`${API_URL}/profile/lists/${type}?${idKey}=${id}`)
+		const bookType = type === 'books' ? type : 'audio-books'
+		return api.delete(`${API_URL}/profile/lists/${bookType}?${idKey}=${id}`)
 	}
 
 	static async setBookRating({id, value}) {

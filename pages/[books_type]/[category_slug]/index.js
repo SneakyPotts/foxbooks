@@ -34,7 +34,7 @@ export async function getServerSideProps({ req, params, query }) {
       ? await CategoriesService.getCategoriesWithCount()
       : await CategoriesService.getAudioCategoriesWithCount()
 
-    const order = await AdminSettings.getSortSetting('categories');
+    const order = await AdminSettings.getSortSetting(books_type === 'books' ? 'categories' : 'audio-categories');
 
     const categoryData = await CategoriesService.getBookCategories(category_slug);
     const { seo_data } = categoryData.data.data[0];

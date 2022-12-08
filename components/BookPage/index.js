@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Image from 'next/image';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import classnames from 'classnames';
@@ -12,7 +11,6 @@ import Quotes from './Quotes';
 import AuthorOtherBooks from './AuthorOtherBooks';
 import AuthorOtherAudioBooks from './AuthorOtherAudiobooks';
 import SimilarBooks from './SimilarBooks';
-import ShowAll from '../shared/common/showAll/ShowAll';
 import st from './bookpage.module.scss';
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
@@ -20,6 +18,7 @@ import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
 import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 import Banners from "../shared/common/Banner/Banners";
+import CompilationItem from "../CompilationItem";
 
 const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
@@ -126,9 +125,6 @@ const BookPage = ({bookType}) => {
                   ) : (
                     <h3 className={st.compilTitle}>Подборки</h3>
                   )}
-                  {innerWidthWindow <= 768 && (
-                    <ShowAll externalClass={st.dicardDistance} />
-                  )}
                 </div>
                 <Swiper
                   spaceBetween={24}
@@ -141,21 +137,10 @@ const BookPage = ({bookType}) => {
                 >
                   {book?.compilations?.map(i => (
                     <SwiperSlide key={i?.id}>
-                      <div>
-                        <div className={st.compilBookCover}>
-                          <Image
-                            src="/horizontalBookCovers/bookCover2.png"
-                            width={180}
-                            height={108}
-                            alt=""
-                          />
-                          <div className={st.compilBookCoverStat}>
-                            <span>15</span>
-                            <span>книг</span>
-                          </div>
-                        </div>
-                        <h4 className={st.compilBookTitle}>{i?.title}</h4>
-                      </div>
+                      <CompilationItem
+                        path={`/selections/${i?.slug}`}
+                        data={i}
+                      />
                     </SwiperSlide>
                   ))}
                   <button className={classnames('prevArrow', st.btnCompil)}>

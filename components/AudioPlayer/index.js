@@ -20,6 +20,7 @@ import BackBtn from '../shared/common/BackBtn';
 import {resetPlayerData, setAudioProgress} from "../../store/playerSlice";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import debounce from "lodash.debounce";
+import Link from "next/link";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -167,15 +168,23 @@ const AudioPlayer = () => {
       />
       <div className={styles.wrapperColumn}>
         <div className={styles.preview}>
-          <Image
-            src={playerData?.image}
-            width={innerWidthWindow < 1024 ? 280 : 56}
-            height={innerWidthWindow < 1024 ? 280 : 56}
-            alt="Preview"
-            className={styles.previewImg}
-          />
+          <Link href={playerData?.link}>
+            <a>
+              <Image
+                src={playerData?.image}
+                width={innerWidthWindow < 1024 ? 280 : 56}
+                height={innerWidthWindow < 1024 ? 280 : 56}
+                alt="Preview"
+                className={styles.previewImg}
+              />
+            </a>
+          </Link>
           <div className={styles.previewWrapper}>
-            <h4 className={styles.previewTitle}>{playerData?.title}</h4>
+            <Link href={playerData?.link}>
+              <a>
+                <h4 className={styles.previewTitle}>{playerData?.title}</h4>
+              </a>
+            </Link>
             <span className={styles.previewText}>
               {playerData?.chapters?.find(i => i?.id === currentChapter)?.title || playerData?.chapters?.[0]?.title}
             </span>
