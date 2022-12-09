@@ -103,12 +103,16 @@ const Header = ({ socket }) => {
 
   const onChange = async (str) => {
     setSearchValue(str)
-    const response = await dispatch(search({ search: str, type: 'short' }))
+    if (str.length) {
+      const response = await dispatch(search({search: str, type: 'short'}))
 
-    if(response?.payload?.books?.length || response?.payload?.authors?.length) {
-      openModal()
+      if (response?.payload?.books?.length || response?.payload?.authors?.length) {
+        openModal()
+      } else {
+        await router.push('/search-empty')
+        closeModal()
+      }
     } else {
-      await router.push('/search-empty')
       closeModal()
     }
   }

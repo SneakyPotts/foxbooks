@@ -19,14 +19,15 @@ const Search = ({ value , onClose }) => {
     return data?.authors
   }, [data])
 
-
   useEffect(() => {
-    const handleKeyDown = ev => {
+    const handleKeyDown = (ev) => {
       if(ev.code === 'Escape') {
         onClose()
       } else if(ev.code === 'Enter') {
-        router.push(`/search?search=${value}&type=full&sortBy=1`)
-        onClose()
+        if (!!value.length) {
+          router.push(`/search?search=${value}&type=full&sortBy=1`)
+          onClose()
+        }
       }
     }
     document.body.addEventListener('keydown', handleKeyDown)
@@ -34,7 +35,7 @@ const Search = ({ value , onClose }) => {
     return () => {
       document.body.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [value])
 
   if(!books?.length && !authors?.length) return null
 
