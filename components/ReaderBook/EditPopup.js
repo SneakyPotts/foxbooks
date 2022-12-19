@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-import InputRange from "../shared/common/InputRange/InputRange";
-import Switch from "../shared/common/Switch";
 import {useDispatch, useSelector} from "react-redux";
+import classNames from "classnames";
+import Switch from "../shared/common/Switch";
+import InputRange from "../shared/common/InputRange/InputRange";
+import ReaderService from "../../http/ReaderService";
 import {setSettings} from "../../store/readerSlice";
 import ArrowIcon from './../../public/chevron-right.svg';
-
-import classNames from "classnames";
 import styles from './styles.module.scss'
 import './variables.module.scss'
-import ReaderService from "../../http/ReaderService";
-import useLocalSettings from "../../hooks/useLocalSettings";
+import {cookiesSettings} from "../../utils";
 
 const fontNames = [
   'Times New Roman',
@@ -34,7 +33,7 @@ const EditPopup = () => {
     dispatch(setSettings(data))
     isAuth
       ? ReaderService.updateSettings(data)
-      : useLocalSettings(data)
+      : cookiesSettings(data, 'set')
   }
 
   const toggleDropdown = ev => {

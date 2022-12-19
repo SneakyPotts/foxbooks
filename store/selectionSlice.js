@@ -76,8 +76,8 @@ export const selectionSlice = createSlice({
 		},
 
 		[createCompilation.fulfilled]: (state, action) => {
-			if (state.userCompilations.length % 9 !== 0)
-				state.userCompilations.push(action.payload);
+			state.userCompilations.length % 9 === 0 && state.userCompilations.pop()
+			state.userCompilations.unshift(action.payload)
 		},
 
 		[editCompilation.fulfilled]: (state, action) => {

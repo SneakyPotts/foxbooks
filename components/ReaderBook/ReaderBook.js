@@ -68,14 +68,14 @@ const ReaderBook = () => {
     if(!isAuth) {
       dispatch(setAuthPopupVisibility(true))
     } else {
-      const id = bookMarks.find(i => i?.book_id === book?.id && i?.page_id === book?.pages[0]?.id)?.id
+      const id = bookMarks.find(i => i?.book_id === book?.id && i?.page_id === book?.page?.id)?.id
 
       if(id) {
         dispatch(deleteBookMark(id))
       } else {
         dispatch(addBookMark({
           book_id: book?.id,
-          page_id: book?.pages[0]?.id
+          page_id: book?.page?.id
         }))
       }
     }

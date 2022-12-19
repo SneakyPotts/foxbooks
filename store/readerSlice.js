@@ -103,6 +103,17 @@ export const readerSlice = createSlice({
     setSettings: (state, action) => {
       state.settings = action.payload
     },
+    setServerSettings: (state, action) => {
+      state.settings = {
+        isTwoColumns: action.payload.is_two_columns,
+        fontSize: action.payload.font_size,
+        screenBrightness: action.payload.screen_brightness,
+        fontName: action.payload.font_name,
+        fieldSize: action.payload.field_size,
+        rowHeight: action.payload.row_height,
+        isCenterAlignment: action.payload.is_center_alignment
+      }
+    },
     setBookMarks: (state, action) => {
       state.bookMarks = action.payload
     },
@@ -150,7 +161,7 @@ export const readerSlice = createSlice({
       state.quotes = action.payload
       state.quotesIsLoading = false
     },
-    [getBookQuotes.rejected]: (state, action) => {
+    [getBookQuotes.rejected]: (state) => {
       state.quotesIsLoading = false
     },
 
@@ -181,6 +192,7 @@ export const {
   setReaderBook,
   setBookChapters,
   setSettings,
+  setServerSettings,
   setBookMarks,
   setQuotes
 } = readerSlice.actions;

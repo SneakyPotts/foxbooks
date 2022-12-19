@@ -37,7 +37,7 @@ const AddToMyCompilation = ({onClose}) => {
 
   useEffect(() => {
     if (page === 1) {
-      SelectionService.getUserCompilations({compType: 1})
+      SelectionService.getUserCompilations({compType: 1, sortBy: 1})
         .then((response) => {
           dispatch(setUserCompilations([...response.data.data.data]));
           setLastPage(response.data.data.last_page)
@@ -45,7 +45,7 @@ const AddToMyCompilation = ({onClose}) => {
         });
     } else {
       setIsLoading(true);
-      SelectionService.getUserCompilations({compType: 1, page})
+      SelectionService.getUserCompilations({compType: 1, sortBy: 1, page})
         .then((response) => {
           dispatch(setUserCompilations([...data, ...response.data.data.data]));
           setIsLoading(false);

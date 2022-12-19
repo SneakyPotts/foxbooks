@@ -44,9 +44,7 @@
 
 @media (max-width: 1024px) {
   .bookList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .options {
