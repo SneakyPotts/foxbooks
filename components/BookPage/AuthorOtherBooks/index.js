@@ -9,6 +9,7 @@ import st from './otherBooks.module.scss';
 
 const AuthorOtherBooks = ({ data }) => {
   const { innerWidthWindow } = useSelector(state => state.common);
+  const { authors } = useSelector(state => state.book.book);
 
   const changeSpaceBtwSwiper = () => {
     if (innerWidthWindow > 768) return 24;
@@ -27,7 +28,7 @@ const AuthorOtherBooks = ({ data }) => {
           Другие книги автора
         </h2>
         {innerWidthWindow <= 768 && (
-          <ShowAll externalClass={st.dicardDistance} />
+          <ShowAll externalClass={st.dicardDistance} url={`/author/${authors?.[0]?.slug}`}/>
         )}
       </div>
       <Swiper

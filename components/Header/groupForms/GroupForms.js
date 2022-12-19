@@ -16,6 +16,7 @@ import {ref} from "yup";
 import {useRouter} from "next/router";
 import PasswordField from "../../shared/common/PasswordField";
 import {getBookMarks, getBookQuotes, getSettings} from "../../../store/readerSlice";
+import {cookiesSettings} from "../../../utils";
 
 const GroupForms = ({modal,setModal}) => {
 	const dispatch = useDispatch()
@@ -51,6 +52,7 @@ const GroupForms = ({modal,setModal}) => {
 			if (res.meta.requestStatus === "fulfilled") {
 				dispatch(getProfile()).then(() => {
 					dispatch(setAuth(true))
+					cookiesSettings({}, 'remove')
 					setModal(!modal)
 				})
 				if(router.pathname.includes('reader')) {

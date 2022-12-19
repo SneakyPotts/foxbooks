@@ -15,7 +15,7 @@ import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
-import {search, setSearch} from "../../store/searchSlice";
+import {clearSearch, search} from "../../store/searchSlice";
 import SearchInput from "../SearchInput";
 import Notification from "../Notification";
 import {clearNotification, setProfile} from "../../store/profileSlice";
@@ -114,6 +114,7 @@ const Header = ({ socket }) => {
       }
     } else {
       closeModal()
+      dispatch(clearSearch())
     }
   }
 

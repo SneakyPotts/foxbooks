@@ -5,6 +5,8 @@ import Close from "../shared/icons/close";
 import styles from './styles.module.scss'
 import debounce from 'lodash.debounce';
 import {useRouter} from "next/router";
+import {useDispatch} from "react-redux";
+import {clearSearch} from "../../store/searchSlice";
 
 const SearchInput = ({
   withModal,
@@ -17,6 +19,7 @@ const SearchInput = ({
 }) => {
   const router = useRouter()
   const input = useRef()
+  const dispatch = useDispatch()
 
   const wrapperClick = () => {
     onClick && onClick()
@@ -27,6 +30,7 @@ const SearchInput = ({
     ev.stopPropagation()
     onClose && onClose()
     input.current.value = ''
+    dispatch(clearSearch())
   }
 
   const handleSearch = debounce(value => onChange(value), 300)

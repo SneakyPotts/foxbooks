@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import SearchService from "../http/SearchService";
-import {addAuthorToFavorite} from "./authorSlice";
 
 const initialState = {
 	data: {}
@@ -21,6 +20,9 @@ export const searchSlice = createSlice({
 		setSearch: (state, action) => {
 			state.data = action.payload
 		},
+		clearSearch: (state) => {
+			state.data = {}
+		}
 	},
 	extraReducers: {
 		[search.fulfilled]: (state, action) => {
@@ -32,6 +34,6 @@ export const searchSlice = createSlice({
 	}
 });
 
-export const { setSearch } = searchSlice.actions;
+export const { setSearch, clearSearch } = searchSlice.actions;
 
 export default searchSlice.reducer;

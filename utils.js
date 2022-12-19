@@ -1,4 +1,5 @@
 import moment from "moment";
+import Cookies from "js-cookie";
 
 const _getExtension = fileName => {
 	if (!fileName || typeof fileName !== 'string') return false;
@@ -283,5 +284,33 @@ export const wordsForCount = (count, word = 'оцен') => {
 			return `${word}ки`
 		default:
 			return `${word}ок`
+	}
+}
+
+export const durationString = (duration) => {
+	return Math.round((+duration  / 60) / 60)
+		? `${Math.round((+duration  / 60) / 60)} ч. ${Math.round((+duration  / 60) % 60)} мин.`
+		: `${Math.round((+duration  / 60) % 60)} мин.`
+}
+
+export const cookiesSettings = (data, status = '') => {
+	switch (status) {
+		case "set":
+			const settings = {
+				field_size: data.fieldSize,
+				font_name: data.fontName,
+				font_size: data.fontSize,
+				is_center_alignment: data.isCenterAlignment,
+				is_two_columns: data.isTwoColumns,
+				row_height: data.rowHeight,
+				screen_brightness: data.screenBrightness,
+			}
+			Cookies.set('settings', JSON.stringify(settings), { expires: 7 })
+			break
+		case "remove":
+			Cookies.remove('settings')
+			break
+		default:
+			return JSON.parse(data)
 	}
 }

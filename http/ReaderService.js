@@ -65,6 +65,15 @@ export default class ReaderService {
 		return api.get(`${API_URL}/reading_settings`)
 	}
 
+	static async getUserSettings(token) {
+		return axios.get(`${API_URL}/reading_settings`,
+			{
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			})
+	}
+
 	static async updateSettings(data) {
 		const obj = {
 			is_two_columns: data.isTwoColumns,

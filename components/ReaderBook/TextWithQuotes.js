@@ -26,6 +26,7 @@ const options = {
 						...domNode?.attribs,
 						src: `https://api.foxbooks.ec/storage/${domNode?.attribs?.src}`
 					})}
+				 alt='image'
 				/>
 			)
 		}
@@ -199,22 +200,22 @@ const TextWithQuotes = () => {
 	}
 
 	const width = useMemo(() => {
-		switch (settings?.fieldSize ) {
+		switch (+settings?.fieldSize) {
 			case 0:
-				return 672
+				return 912
 			case 1:
-				return 732
+				return 852
 			case 2:
 				return 792
 			case 3:
-				return 852
+				return 732
 			case 4:
-				return 912
+				return 672
 		}
 	}, [settings?.fieldSize])
 
 	const lineHeight = useMemo(() => {
-		switch (settings?.rowHeight  ) {
+		switch (+settings?.rowHeight) {
 			case 0:
 				return 18
 			case 1:

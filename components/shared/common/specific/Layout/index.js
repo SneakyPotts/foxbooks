@@ -16,8 +16,7 @@ import debounce from 'lodash.debounce';
 import ArrowUp from '../../../icons/arrowUp';
 import st from './layout.module.scss';
 import { io } from "socket.io-client";
-import {setCategories} from "../../../../../store/bookSlice";
-import CategoriesService from "../../../../../http/CategoriesService";
+import {cookiesSettings} from "../../../../../utils";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
@@ -56,7 +55,7 @@ const Layout = ({ children }) => {
     const storageToken = Cookies.get('token');
     const { email, token, id, modalType } = router.query;
 
-    if (email && token && !modalType) {
+    if (email && token && modalType === 'registry') {
       dispatch(verifyEmail({ email, token }));
     } else if (token && id) {
       Cookies.remove('token')
@@ -64,6 +63,7 @@ const Layout = ({ children }) => {
     } else if (storageToken) {
       dispatch(getProfile());
       dispatch(setAuth(true));
+      cookiesSettings({}, 'remove')
     }
 
     window.addEventListener(

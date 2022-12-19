@@ -34,6 +34,7 @@
   & > span {
     @media (max-width: 768px) {
       border-radius: 5px;
+      max-height: 108px;
     }
   }
 }
@@ -321,6 +322,11 @@
     margin-bottom: 10px;
   }
   .bookDate {
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .bookDuration {
+    flex-basis: 100%;
     margin-bottom: 10px;
   }
   .infoBlockBook {

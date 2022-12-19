@@ -16,7 +16,7 @@ import st from './aboutBook.module.scss';
 import DotsDropdown from "../../DotsDropdown";
 import {setAuthPopupVisibility, setPlayerVisibility} from "../../../store/commonSlice";
 import {setPlayerData} from "../../../store/playerSlice";
-import {wordsForCount} from "../../../utils";
+import {durationString, wordsForCount} from "../../../utils";
 
 
 const AboutBook = ({ book, audioFlag, showMyComp }) => {
@@ -183,31 +183,26 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 }
               </p>
               <div className={st.bookDate}>
-                {/*{audioFlag && (*/}
-                {/*  <div>*/}
-                {/*    <span className={st.audioInfo}>*/}
-                {/*      <span>40</span>мин.*/}
-                {/*    </span>*/}
-                {/*    <span className={st.audioInfo}>*/}
-                {/*      <span>42</span> Мбайт*/}
-                {/*    </span>*/}
-                {/*  </div>*/}
-                {/*)}*/}
-                {book?.year?.year && <span className={st.bookDateYear}>{book?.year?.year}</span>}
-                {/* <span className={st.bookDateAge}>{book.age}8</span> */}
-                {/*{audioFlag ?*/}
-                {/*  book?.listeners_count ?*/}
-                {/*    <div className={st.selectionDateViews}>*/}
-                {/*      <span>{book?.listeners_count}</span>*/}
-                {/*      <Eye />*/}
-                {/*    </div> : null*/}
-                {/*  :*/}
-                {/*  book?.views_count ?*/}
-                {/*    <div className={st.selectionDateViews}>*/}
-                {/*      <span>{book?.views_count}</span>*/}
-                {/*      <Eye />*/}
-                {/*    </div> : null*/}
-                {/*}*/}
+                {audioFlag && book?.total_duration !== '0' /*(book?.total_duration !== '0' || book?.total_size !== '0')*/ && (
+                  <div className={st.bookDuration}>
+                    {book?.total_duration !== '0' && (
+                      <span className={st.audioInfo}>
+                        {durationString(book?.total_duration)}
+                      </span>
+                    )}
+                    {/*{book?.total_size !== '0' && (*/}
+                    {/*  <span className={st.audioInfo}>*/}
+                    {/*    <span>{Math.round(+book?.total_size / 1048576)}</span> Мбайт*/}
+                    {/*  </span>*/}
+                    {/*)}*/}
+                  </div>
+                )}
+                {audioFlag && book?.year && (
+                  <span className={st.bookDateYear}>{book?.year}</span>
+                )}
+                {!audioFlag && book?.year?.year && (
+                  <span className={st.bookDateYear}>{book?.year?.year}</span>
+                )}
                 {book?.views_count ?
                     <div className={st.selectionDateViews}>
                       <span>{book?.views_count}</span>
@@ -255,7 +250,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     {`${book.user_progress ? 'Продолжить' : 'Начать'} слушать`}
                   </button>
                 ) : (
-                  <Link href={`/reader?id=${book?.id}&page=1`}>
+                  <Link href={`/reader?id=${book?.id}&page=${book?.last_page || 1}`}>
                     <a className={st.readButton}>Читать</a>
                   </Link>
                 )}
@@ -308,7 +303,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 }
               </ul>
               <p>
-                {book?.text || 'Нет описания'}
+                {book?.text || book?.description || 'Нет описания'}
               </p>
               <div className={st.ditalInfo}>
                 {audioFlag ? (
