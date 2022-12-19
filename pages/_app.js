@@ -12,11 +12,11 @@ function MyApp({Component, pageProps}) {
 
   return (
     <Provider store={store}>
-      {/*<Script*/}
-      {/*  strategy="afterInteractive"*/}
-      {/*  src="https://use.fontawesome.com/releases/v5.13.1/js/all.js"*/}
-      {/*  data-auto-replace-svg="nest"*/}
-      {/*/>*/}
+      <Script
+        strategy="afterInteractive"
+        src="https://use.fontawesome.com/releases/v5.13.1/js/all.js"
+        data-auto-replace-svg="nest"
+      />
       <NextSeo
         defaultTitle={'Онлайн-библиотека книг FoxBooks 🦊'}
         // titleTemplate={'%s | FoxBooks'}
