@@ -15,12 +15,13 @@ import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
-import {clearSearch, search} from "../../store/searchSlice";
+import {clearSearch, setSearch} from "../../store/searchSlice";
 import SearchInput from "../SearchInput";
 import Notification from "../Notification";
 import {clearNotification, setProfile} from "../../store/profileSlice";
 import Search from "./Search";
 import {getDefaultSettings, setBookMarks, setQuotes} from "../../store/readerSlice";
+import SearchService from "../../http/SearchService";
 
 const Header = ({ socket }) => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Header = ({ socket }) => {
 
   const {isAuth} = useSelector(state => state.auth);
   const {profile} = useSelector(state => state.profile);
+  const { data: store } = useSelector(state => state.search);
 
   const [flagSettings, setFlagSettings] = useState(false);
   const [searchValue, setSearchValue] = useState('')
@@ -64,7 +66,7 @@ const Header = ({ socket }) => {
 
   const closeModal = () => {
     dispatch(showMenu(false));
-    // dispatch(setSearch({}));
+    dispatch(clearSearch());
     innerWidthWindow <= 768 && document.body.classList.remove('nonScroll');
   };
 
@@ -101,20 +103,43 @@ const Header = ({ socket }) => {
     } else return innerWidthWindow <= 768 && !headerIsVisible && router.pathname.includes('settings');
   }, [router.pathname, innerWidthWindow, headerIsVisible])
 
+  const performSearch = (data, fullComparison = false) => {
+    if (data?.books?.length || data?.authors?.length) {
+      dispatch(setSearch(data))
+      openModal()
+    } else if (fullComparison) {
+      router.push('/search-empty')
+        // .then(() => closeModal())
+    }
+  }
+
   const onChange = async (str) => {
     setSearchValue(str)
     if (str.length) {
-      const response = await dispatch(search({search: str, type: 'short'}))
+      await SearchService.search({search: str, type: 'short'})
+        .then((res) => {
+          const { data } = res.data
 
-      if (response?.payload?.books?.length || response?.payload?.authors?.length) {
-        openModal()
-      } else {
-        await router.push('/search-empty')
-        closeModal()
-      }
+          if (store?.books?.length || store?.authors?.length) {
+            performSearch(data)
+          } else {
+            performSearch(data, true)
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          // closeModal()
+        })
+
+      // const response = await dispatch(search({search: str, type: 'short'}))
+      // if (response?.payload?.books?.length || response?.payload?.authors?.length) {
+      //   openModal()
+      // } else {
+      //   await router.push('/search-empty')
+      //   closeModal()
+      // }
     } else {
       closeModal()
-      dispatch(clearSearch())
     }
   }
 
