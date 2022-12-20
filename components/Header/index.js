@@ -15,7 +15,7 @@ import Cookies from 'js-cookie';
 import st from './header.module.scss';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
-import {clearSearch, search, setSearch} from "../../store/searchSlice";
+import {clearSearch, setSearch} from "../../store/searchSlice";
 import SearchInput from "../SearchInput";
 import Notification from "../Notification";
 import {clearNotification, setProfile} from "../../store/profileSlice";
@@ -67,7 +67,6 @@ const Header = ({ socket }) => {
   const closeModal = () => {
     dispatch(showMenu(false));
     dispatch(clearSearch());
-    setSearchValue('');
     innerWidthWindow <= 768 && document.body.classList.remove('nonScroll');
   };
 
@@ -110,7 +109,7 @@ const Header = ({ socket }) => {
       openModal()
     } else if (fullComparison) {
       router.push('/search-empty')
-        .then(() => closeModal())
+        // .then(() => closeModal())
     }
   }
 
@@ -170,7 +169,10 @@ const Header = ({ socket }) => {
               showMenuFlag={showMenuFlag}
               onClick={openModal}
               onChange={onChange}
-              onClose={closeModal}
+              onClose={() => {
+                closeModal()
+                setSearchValue('')
+              }}
               placeholder={
                 innerWidthWindow >= 970
                   ? 'Искать книги, авторов, жанры, издательства'
