@@ -235,7 +235,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   <p>Оцените книгу</p>
                   <Stars
                     activeStart={true}
-                    value={0}
+                    value={book?.user_rating}
                     color={'#4f4f4f'}
                     onChange={value => setRating(value)}
                   />
