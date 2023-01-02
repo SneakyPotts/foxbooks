@@ -62,6 +62,7 @@ const Header = ({ socket }) => {
   const openModal = () => {
     dispatch(showMenu(true));
     innerWidthWindow <= 768 && document.body.classList.add('nonScroll');
+    innerWidthWindow <= 768 && document.body.removeAttribute('style');
   };
 
   const closeModal = () => {
@@ -128,6 +129,7 @@ const Header = ({ socket }) => {
         })
         .catch((error) => {
           console.log(error)
+          router.push('/search-empty')
           // closeModal()
         })
 
@@ -139,7 +141,7 @@ const Header = ({ socket }) => {
       //   closeModal()
       // }
     } else {
-      closeModal()
+      // closeModal()
     }
   }
 

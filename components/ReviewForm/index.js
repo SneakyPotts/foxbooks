@@ -60,6 +60,7 @@ const ReviewForm = ({
         : dispatch(addReview(obj)).then(res => {
           if(res.meta.requestStatus === "fulfilled") {
             reset()
+            onClose()
             setValue('review_type', null)
           } else if (res.meta.requestStatus === "rejected") {
             reset();
@@ -161,9 +162,9 @@ const ReviewForm = ({
         err={errors?.text?.message}
       />
 
-      {errorAlreadyAdded
-        ? <p className={styles.error}>{errorAlreadyAdded}</p>
-        : null}
+      {errorAlreadyAdded &&
+        <p className={styles.error}>{errorAlreadyAdded}</p>
+      }
 
       <ButtonGroup
         text={'Отправить'}

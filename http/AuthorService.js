@@ -2,8 +2,12 @@ import axios from "axios";
 import api, { API_URL } from ".";
 
 export default class AuthorService {
-	static async getAuthor(slug) {
-		return axios.get(`${API_URL}/authors/${slug}`)
+	static async getAuthor(slug, token) {
+		return axios.get(`${API_URL}/authors/${slug}`, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
 	}
 
 	static async getAuthorsByLetter({letter, page}) {

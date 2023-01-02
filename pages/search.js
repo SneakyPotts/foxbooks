@@ -19,10 +19,21 @@ export async function getServerSideProps({query}) {
   const data = await SearchService.search(query);
   const banners = await AdminSettings.getPageBanner({page_slug: 'search'});
 
-  return {
-    props: {
-      data: data.data.data,
-      banners: banners?.data?.data,
-    }
+  let emptySearchResult = true;
+  for (let arrayField in data.data.data) {
+    emptySearchResult = !data?.data?.data?.[arrayField].length && emptySearchResult
   }
+  return emptySearchResult
+    ? {
+        redirect: {
+          destination: "/search-empty",
+          parameter: false
+        }
+      }
+    : {
+        props: {
+          data: data.data.data,
+          banners: banners?.data?.data,
+        }
+      }
 }

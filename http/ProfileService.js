@@ -10,7 +10,7 @@ export default class ProfileService {
 	}
 
 	static async resetPassword(data) {
-		return api.post(`${API_URL}/profile/password_change`, data)
+		return api.post(`${API_URL}/profile/password-change`, data)
 	}
 
 	static async setNotificationSettings(data) {

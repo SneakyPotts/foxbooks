@@ -60,6 +60,7 @@ const Reviews = ({type}) => {
           <ReviewForm
             bookType={type}
             onCancel={() => setReviewTyping(false)}
+            onClose={() => setReviewTyping(false)}
           />
         </div>
       )}
