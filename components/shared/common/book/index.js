@@ -190,7 +190,7 @@ const Book = ({
             ) : (
               <div className={st.starsBlock}>
                 <Stars count={count} value={book?.rate_avg} />
-                {innerWidthWindow <= 768 && <span>{book?.rate_avg}</span>}
+                {innerWidthWindow <= 768 && <span>{book?.rate_avg || 0}</span>}
               </div>
             )}
           </div>
@@ -223,6 +223,12 @@ const Book = ({
             </div>
           )}
         </div>
+        {!audio && flagSwitcher && (
+          <div className={st.selectionDateViewsMob}>
+            <span>{book?.views_count}</span>
+            <Eye/>
+          </div>
+          )}
         {noLinks ? (
           <h3
             className={classnames(st.bookName, {
@@ -280,12 +286,13 @@ const Book = ({
                     </span>
                     <span className={st.reviewLike}>3115</span>
                   </>
-                ) : (
+                ) : null
+                  /*(
                   <div className={st.selectionDateViews}>
                     <span>{book?.views_count}</span>
                     <Eye />
                   </div>
-                )}
+                )*/}
                 <span
                   className={classnames(st.reviewIcon, {
                     [st.distance]: flagSwitcher,

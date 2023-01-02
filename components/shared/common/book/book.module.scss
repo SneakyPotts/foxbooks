@@ -42,10 +42,10 @@
 .wrapper {
   position: relative;
   min-width: 180px;
-  border-radius: 5px;
   overflow: hidden;
 
   img {
+    border-radius: 5px;
     object-fit: cover;
   }
 }
@@ -278,18 +278,27 @@
   font-family: 'Fira Sans', sans-serif;
   color: $color-third;
 
+  &Mob {
+    display: flex;
+    align-items: center;
+    order: 4;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    color: $color-third;
+    margin-top: 10px;
+
+    > span {
+      margin-right: 5px;
+    }
+  }
+
   > span {
     margin-right: 5px;
   }
 }
 .hide {
   display: none;
-}
-
-.mobileTitle {
-  .bookName {
-    -webkit-line-clamp: 1;
-  }
 }
 
 .farView {
