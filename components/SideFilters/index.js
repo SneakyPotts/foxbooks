@@ -181,7 +181,7 @@ const SideFilters = () => {
           ))}
         </ul>
       </div>
-      <Categories/>
+      <Categories booksType={router.query.books_type}/>
     </div>
   );
 };

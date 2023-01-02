@@ -19,9 +19,12 @@ const index = (props) => {
 
 export default index;
 
-export async function getServerSideProps({params}) {
+export async function getServerSideProps ({ req, params }) {
+  const { cookies } = req
+  const token = cookies.token
+
   try {
-    const author = await AuthorService.getAuthor(params.slug);
+    const author = await AuthorService.getAuthor(params.slug, token);
 		const banners = await AdminSettings.getPageBanner({page_slug: params.slug});
 
     const categories = await CategoriesService.getCategoriesWithCount();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './styles.module.scss';
 import classNames from "classnames";
 import Book from "../shared/common/book";
@@ -9,6 +9,11 @@ const SearchEmptyPage = ({books}) => {
     document.querySelector('header input').click()
     document.querySelector('header input').focus()
   }
+
+  useEffect(() => {
+    repeatHandler()
+  }, []);
+
 
   return (
     <div className={classNames("container", s.container)}>

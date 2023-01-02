@@ -106,7 +106,7 @@ const SelectionsPage = () => {
 						<>
 							{router.query['showType'] === 'list' &&
 								selections?.data?.map(i =>
-									<div className={`${styles.mainListItem} ${cssBook.selectionList}`}>
+									<div key={i?.id} className={`${styles.mainListItem} ${cssBook.selectionList}`}>
 										<div className={styles.titleFlex}>
 											<Link href={`/selections/${i?.slug}`}>
 												<a className={classNames("title", styles.title)}>{i?.title}</a>
@@ -186,7 +186,7 @@ const SelectionsPage = () => {
 							{(router.query['showType'] === 'block' || !router.query['showType']) &&
 								<div className={styles.mainGrid}>
 									{selections?.data?.map(i =>
-										<div className={styles.mainGridItem}>
+										<div key={i?.id} className={styles.mainGridItem}>
 											<CompilationItem
 												key={i?.id}
 												data={i}

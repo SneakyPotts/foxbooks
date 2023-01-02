@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 import {useSelector} from "react-redux";
+import useOnClickOutside from "../../../../hooks/useOnClickOutside";
 
 const DrawerPopup = ({
   direction = 'down',
@@ -27,12 +28,16 @@ const DrawerPopup = ({
     }
   };
 
+  const closeDropdown = () => {
+    setIsClosed(true)
+    setTimeout(() => onClose(), 250)
+  }
+
   const upHandler = ev => {
     const y = ev?.clientY || ev?.changedTouches[0]?.clientY
 
     if (isFocus && yPos < y - 20) {
-      setIsClosed(true)
-      setTimeout(() => onClose(), 300)
+      closeDropdown()
     }
     setIsFocus(false)
   };
@@ -47,6 +52,8 @@ const DrawerPopup = ({
       if(innerWidthWindow <= 768) document.body.style.overflow = 'initial'
     }
   }, []);
+
+  useOnClickOutside(ref, closeDropdown)
 
   return (
     <div
