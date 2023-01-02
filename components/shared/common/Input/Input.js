@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './index.module.scss'
+import React, {useEffect, useRef} from 'react';
 import classnames from "classnames";
+import styles from './index.module.scss'
 
 const Input = ({
 	register,
@@ -15,13 +15,22 @@ const Input = ({
 	placeholder,
 	...props
 }) => {
+	const inputWrapper = useRef()
 	const autoHeightHandler = e => {
 		e.target.style.minHeight = 'auto';
 		e.target.style.minHeight = e.target.scrollHeight + 'px';
 	};
 
+	useEffect(() => {
+		const input = inputWrapper.current.children[1];
+
+		input.style.minHeight = 'auto';
+		input.style.minHeight = input.scrollHeight + 'px';
+	}, []);
+
 	return (
 		<div
+			ref={inputWrapper}
 			className={classnames(styles.wrapper, classNames, {[styles.wrapperErr]: err})}
 		>
 			{textLabel && <label htmlFor={name}>{textLabel}</label>}
