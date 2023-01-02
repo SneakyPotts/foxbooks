@@ -1,21 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import styles from './index.module.scss';
+import {useForm} from 'react-hook-form';
+import {useDispatch, useSelector} from "react-redux";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {useRouter} from "next/router";
 import Input from '../../shared/common/Input/Input';
 import SocialNetwork from '../../shared/common/SocialNetwork/SocialNetwork';
-import { useForm } from 'react-hook-form';
-import ButtonGroup from '../buttonGroup';
-import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
-import {useDispatch, useSelector} from "react-redux";
-import {deleteUser, updateProfile} from "../../../store/profileSlice";
-import AvatarUploader from "../../shared/common/AvatarUploader";
 import {generateFormData} from "../../../utils";
-import {yupResolver} from "@hookform/resolvers/yup";
 import schema from "./schema";
-import {setAuth} from "../../../store/authSlice";
-import Cookies from "js-cookie";
+import useLogOut from "../../../hooks/useLogOut";
+import ButtonGroup from '../buttonGroup';
+import AvatarUploader from "../../shared/common/AvatarUploader";
+import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
+import {deleteUser, updateProfile} from "../../../store/profileSlice";
+import styles from './index.module.scss';
 
 const EditingProfile = () => {
 	const dispatch = useDispatch()
+	const router = useRouter()
+
 	const [modal, setModal] = useState(false);
 
 	const { profile } = useSelector(state => state.profile)
@@ -44,13 +46,8 @@ const EditingProfile = () => {
 	}
 
 	const deleteProfile = () => {
-		dispatch(deleteUser()).then(() => {
-			setModal(false)
-			router.push('/');
-			dispatch(setAuth(false));
-			Cookies.remove('token');
-			localStorage.removeItem('avatarColor');
-		})
+		dispatch(deleteUser())
+			.then(() => useLogOut(router, dispatch))
 	}
 
 	useEffect(() => {

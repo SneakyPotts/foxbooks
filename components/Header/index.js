@@ -6,22 +6,19 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useRouter} from 'next/router';
 import Menu from './Menu/Menu';
 import User from '../shared/icons/user';
-import Logo from '../Logo';
 import GroupForms from './groupForms/GroupForms';
 import Setting from '../shared/icons/setting';
 import Exit from '../shared/icons/exit';
-import {setAuth} from '../../store/authSlice';
-import Cookies from 'js-cookie';
-import st from './header.module.scss';
+import SearchService from "../../http/SearchService";
+import useLogOut from "../../hooks/useLogOut";
+import Logo from '../Logo';
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
-import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
-import {clearSearch, setSearch} from "../../store/searchSlice";
 import SearchInput from "../SearchInput";
 import Notification from "../Notification";
-import {clearNotification, setProfile} from "../../store/profileSlice";
 import Search from "./Search";
-import {getDefaultSettings, setBookMarks, setQuotes} from "../../store/readerSlice";
-import SearchService from "../../http/SearchService";
+import {setAuthPopupVisibility, showMenu} from '../../store/commonSlice';
+import {clearSearch, setSearch} from "../../store/searchSlice";
+import st from './header.module.scss';
 
 const Header = ({ socket }) => {
   const dispatch = useDispatch();
@@ -72,18 +69,7 @@ const Header = ({ socket }) => {
   };
 
   const logOut = () => {
-    if (router.pathname.includes('settings') || router.pathname.includes('mybooks')) {
-      router.push('/');
-    }
-    dispatch(setAuth(false));
-    Cookies.remove('token');
-    localStorage.removeItem('avatarColor');
-    dispatch(setProfile([]))
-    dispatch(clearNotification())
-    dispatch(setBookMarks([]))
-    dispatch(setQuotes([]))
-    dispatch(getDefaultSettings())
-    socket.disconnect()
+    useLogOut(router, dispatch, socket)
   };
 
   const isShown = useMemo(() => {
