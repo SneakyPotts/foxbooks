@@ -80,6 +80,7 @@ const EditingProfile = () => {
 							textLabel="Ник"
 							name="nickname"
 							register={register}
+							disabled
 						/>
 					}
 				</div>
