@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
-import { useDispatch, useSelector } from 'react-redux';
 
 const Stars = ({
   activeStart = false,
@@ -9,12 +8,10 @@ const Stars = ({
   count = 5,
   onChange,
 }) => {
-  // const { innerWidthWindow } = useSelector(state => state.common);
-
   const secondExample = {
     size: 14,
-    count: count,
-    value: value,
+    count: Number(count),
+    value: Number(value),
     color: color,
     activeColor: '#FEC420',
     edit: activeStart,

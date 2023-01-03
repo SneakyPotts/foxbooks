@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import st from './comments.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
-import {useRouter} from "next/router";
 import CommentForm from "../../CommentForm";
 import {addComment, getComments} from "../../../store/commentsSlice";
 import CommentItem from "../CommentItem";
 
 const Comments = () => {
-  const router = useRouter()
   const dispatch = useDispatch()
+  const blockRef = useRef()
 
   const {bookComments} = useSelector(state => state.comments);
   const {book} = useSelector(state => state.book);
@@ -45,7 +44,7 @@ const Comments = () => {
   }, [page, book?.id])
 
   return (
-    <div className={st.container}>
+    <div ref={blockRef} className={st.container}>
       <h2 className={st.reviewsTitle}>Оставьте свой комментарий</h2>
 
       <CommentForm
@@ -67,6 +66,7 @@ const Comments = () => {
             currentPage={page}
             onClick={setPage}
             lastPage={bookComments?.last_page}
+            scrollTo={blockRef}
           />
           // :
           // <div className={st.pagination}>Показать еще</div>

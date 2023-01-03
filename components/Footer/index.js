@@ -13,13 +13,9 @@ const Footer = () => {
   const { innerWidthWindow } = useSelector(state => state.common);
 
   const isShown = () => {
-    if (router.pathname.includes('reader')) {
-      return false
-    } else if (router.pathname.includes('/404')) {
-      return false
-    } else if ( innerWidthWindow < 768 && router.pathname.includes('/categories')) {
-      return false
-    } else return true
+    return !(router.pathname.includes('reader')
+      || router.pathname.includes('/404')
+      || (innerWidthWindow < 768 && router.pathname.includes('/categories')));
   }
 
   return (
@@ -47,10 +43,10 @@ const Footer = () => {
               </a>
             </div>
             <nav className={st.pagesList}>
-              <Link href="/books?type=books&sortBy=1">
+              <Link href="/books">
                 <a className={st.page}>Книги</a>
               </Link>
-              <Link href="/books?type=audioBooks&sortBy=1">
+              <Link href="/audiobooks">
                 <a className={st.page}>Аудиокниги</a>
               </Link>
               <Link href="/holders">

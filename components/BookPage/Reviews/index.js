@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../../shared/common/Button/Button';
 import CommentComp from '../CommentItem';
@@ -9,6 +9,7 @@ import {getCurrentReviews} from "../../../store/reviewSlice";
 
 const Reviews = ({type}) => {
   const dispatch = useDispatch();
+  const blockRef = useRef();
 
   const [reviewTyping, setReviewTyping] = useState(false);
   const [page, setPage] = useState(1);
@@ -43,7 +44,7 @@ const Reviews = ({type}) => {
   };
 
   return (
-    <div id="reviews">
+    <div ref={blockRef} id="reviews">
       <h2 className={st.reviewTitle}>Рецензии</h2>
 
       {!reviewTyping && (
@@ -82,6 +83,7 @@ const Reviews = ({type}) => {
               currentPage={page}
               onClick={setPage}
               lastPage={reviews?.last_page}
+              scrollTo={blockRef}
             />)
           : (<div className={st.pagination}>Показать еще</div>)
         : null}

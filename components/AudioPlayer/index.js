@@ -1,26 +1,25 @@
 import React, {useEffect, useRef, useState} from 'react';
-import Image from 'next/image';
 import ReactPlayer from 'react-player'
+import {useDispatch, useSelector} from "react-redux";
+import classNames from "classnames";
+import Link from "next/link";
+import Image from 'next/image';
 import PlayerBack from "../shared/icons/playerBack";
 import PlayerNext from "../shared/icons/playerNext";
 import PlayerPause from "../shared/icons/playerPause";
 import PlayerPlay from "../shared/icons/playerPlay";
-
-import styles from './styles.module.scss'
 import InputRange from "../shared/common/InputRange/InputRange";
 import PlayerSpeed from "../shared/icons/playerSpeed";
 import PlayerPage from "../shared/icons/playerPage";
 import PlayerVolume from "../shared/icons/playerVolume";
-import classNames from "classnames";
 import Close from "../shared/icons/close";
-import {useDispatch, useSelector} from "react-redux";
-import {setPlayerVisibility} from "../../store/commonSlice";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import DrawerPopup from '../shared/common/DrawerPopup';
 import BackBtn from '../shared/common/BackBtn';
-import {resetPlayerData, setAudioProgress} from "../../store/playerSlice";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
 import debounce from "lodash.debounce";
-import Link from "next/link";
+import {resetPlayerData, setAudioProgress} from "../../store/playerSlice";
+import {setPlayerVisibility} from "../../store/commonSlice";
+import styles from './styles.module.scss'
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
@@ -32,6 +31,7 @@ const AudioPlayer = () => {
     playing: true,
     volume: 0.5,
     playbackRate: 1,
+    muted: false,
   });
 
   const { innerWidthWindow } = useSelector(state => state.common)
@@ -44,9 +44,8 @@ const AudioPlayer = () => {
   const [pageDropIsVisible, setPageDropIsVisible] = useState(false)
   const [currentChapter, setCurrentChapter] = useState(null)
   const [saveProgress, setSaveProgress] = useState(0)
-
   const [isClosed, setIsClosed] = useState(false)
-  const [mute, setMute] = useState(0);
+  const [lockControls, setLockControls] = useState(false);
 
   const duration = +player.current?.getDuration() || 0
 
@@ -54,7 +53,19 @@ const AudioPlayer = () => {
 
   const saveProgressHandler = debounce(setSaveProgress, 100)
 
-  const changeSeek = value => {
+  const changeSeek = (value) => {
+    if (lockControls) return
+
+    if (parseInt(value) === Math.floor(duration)) {
+      setLockControls(true)
+      handleEnd()
+    }
+
+    if (parseInt(value) === 0) {
+      setLockControls(true)
+      handlePrev()
+    }
+
     player.current?.seekTo(parseInt(value))
     setProgress(parseInt(value))
   }
@@ -85,59 +96,63 @@ const AudioPlayer = () => {
     }, 300)
   }
 
+  const changeChapter = (chapterId) => {
+    if (isAuth) {
+      dispatch(setAudioProgress({
+        audio_book_id: userProgress?.audio_book_id || playerData?.chapters?.[0]?.book_id,
+        audio_audiobook_id: chapterId,
+        current_audio_time: 0
+      })).then(() => {
+        setCurrentChapter(chapterId)
+      })
+    } else {
+      setCurrentChapter(chapterId)
+    }
+  }
+
   const handleEnd = () => {
     const currentChapterIndex = playerData?.chapters?.findIndex(i => i?.id === currentChapter)
     const nextChapterIndex = currentChapterIndex === -1 ? 1 : currentChapterIndex + 1
 
     if(nextChapterIndex !== playerData?.chapters?.length) {
-      if (isAuth) {
-        dispatch(setAudioProgress({
-          audio_book_id: userProgress?.audio_book_id || playerData?.chapters?.[0]?.book_id,
-          audio_audiobook_id: playerData?.chapters?.[nextChapterIndex]?.id,
-          current_audio_time: 0
-        })).then(() => setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id))
-      } else {
-        setCurrentChapter(playerData?.chapters?.[nextChapterIndex]?.id)
-      }
+      changeChapter(playerData?.chapters?.[nextChapterIndex]?.id)
     }
+  }
+
+  const handlePrev = () => {
+    const currentChapterIndex = playerData?.chapters?.findIndex(i => i?.id === currentChapter)
+    const prevChapterIndex = currentChapterIndex === -1 || currentChapterIndex === 0
+      ? 0
+      : currentChapterIndex - 1
+
+    changeChapter(playerData?.chapters?.[prevChapterIndex]?.id)
+  }
+
+  const handleOnProgress = (ev) => {
+    saveProgressHandler(ev.playedSeconds)
+    setProgress(parseInt(ev.playedSeconds))
+    lockControls && parseInt(ev.playedSeconds) > 1 && setLockControls(false)
   }
 
   const handleMute = () => {
-    if (!mute) {
-      setMute(settings?.volume)
-      setSettings({...settings, volume: 0})
-    } else {
-      setMute(0)
-      setSettings({...settings, volume: mute})
-    }
+    if (+settings.volume === 0) return
+
+    setSettings({...settings, muted: !settings.muted})
   }
 
-  const handleSetValue = value => {
-    setSettings({...settings, volume: value})
-    setMute(0)
+  const handleSetVolume = (value) => {
+    setSettings({...settings, volume: value, muted: +value === 0 })
   }
 
   const resumeListening = () => {
     if (isAuth) {
       if (!!userProgress) {
         setCurrentChapter(userProgress?.audio_audiobook_id)
-        player.current.seekTo(userProgress?.current_audio_time)
+        player.current?.seekTo(userProgress?.current_audio_time)
       } else {
         setCurrentChapter(playerData?.chapters?.[0].id)
       }
     }
-  }
-
-  const changeChapter = (chapterId) => {
-		if (isAuth) {
-			dispatch(setAudioProgress({
-				audio_book_id: userProgress?.audio_book_id || playerData?.chapters?.[0]?.book_id,
-				audio_audiobook_id: chapterId,
-				current_audio_time: 0
-			})).then(() => setCurrentChapter(chapterId))
-		} else {
-			setCurrentChapter(chapterId)
-		}
   }
 
   useEffect(() => {
@@ -196,7 +211,7 @@ const AudioPlayer = () => {
           <div className={styles.playerControls}>
             <button
               className={styles.playerBack}
-              onClick={() => changeSeek(progress - 10)}
+              onClick={() => changeSeek(progress - 10 > 0 ? progress - 10 : 0)}
             >
               <PlayerBack />
             </button>
@@ -211,7 +226,7 @@ const AudioPlayer = () => {
             </button>
             <button
               className={styles.playerNext}
-              onClick={() => changeSeek(progress + 10)}
+              onClick={() => changeSeek(progress + 10 <= duration ? progress + 10 : duration)}
             >
               <PlayerNext />
             </button>
@@ -222,7 +237,7 @@ const AudioPlayer = () => {
             <InputRange
               value={progress}
               setValue={changeSeek}
-              max={duration}
+              max={`${duration}`}
               barColor={'rgba(255, 255, 255, 0.5)'}
               externalClass={styles.playerRangeInput}
             />
@@ -287,11 +302,11 @@ const AudioPlayer = () => {
         </div>
         <div className={classNames(styles.playerVolume, styles.playerControlItem)}>
           <div onClick={handleMute}>
-            <PlayerVolume mute={mute}/>
+            <PlayerVolume mute={settings.muted}/>
           </div>
           <InputRange
             value={settings?.volume}
-            setValue={handleSetValue}
+            setValue={handleSetVolume}
             max={'1'}
             step={'0.1'}
             barColor={'rgba(255, 255, 255, 0.5)'}
@@ -306,10 +321,7 @@ const AudioPlayer = () => {
         width="0"
         height="0"
         onStart={resumeListening}
-        onProgress={e => {
-          saveProgressHandler(e.playedSeconds)
-          setProgress(parseInt(e.playedSeconds))
-        }}
+        onProgress={handleOnProgress}
         onEnded={handleEnd}
         {...settings}
       />

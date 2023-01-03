@@ -1,22 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import css from "./index.module.scss";
 import classnames from "classnames";
-import Input from "../../shared/common/Input/Input";
-import Button from "../../shared/common/Button/Button";
-import ModalWindow from "../../shared/common/modalWindow/ModalWindow";
-
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
 import {useDispatch, useSelector} from "react-redux";
-import SocialNetwork from "../../shared/common/SocialNetwork/SocialNetwork";
-import {forgotPassword, resetForgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice";
-import {getProfile} from "../../../store/profileSlice";
 import {ref} from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
 import {useRouter} from "next/router";
-import PasswordField from "../../shared/common/PasswordField";
-import {getBookMarks, getBookQuotes, getSettings} from "../../../store/readerSlice";
+import Input from "../../shared/common/Input/Input";
+import Button from "../../shared/common/Button/Button";
+import SocialNetwork from "../../shared/common/SocialNetwork/SocialNetwork";
 import {cookiesSettings} from "../../../utils";
+import PasswordField from "../../shared/common/PasswordField";
+import ModalWindow from "../../shared/common/modalWindow/ModalWindow";
+import {forgotPassword, resetError, resetForgotPassword, setAuth, signIn, signUp} from "../../../store/authSlice";
+import {getProfile} from "../../../store/profileSlice";
+import {getBookMarks, getBookQuotes, getSettings} from "../../../store/readerSlice";
+import css from "./index.module.scss";
 
 const GroupForms = ({modal,setModal}) => {
 	const dispatch = useDispatch()
@@ -29,8 +28,9 @@ const GroupForms = ({modal,setModal}) => {
 	const [flagResetPassMessage, setFlagResetPassMessage] = useState(false)
 	const [flagNewPass, setFlagNewPass] = useState(false)
 	const [flagNewPassMessage, setFlagNewPassMessage] = useState(false)
-	const [flagVerifyEmail, setFlagVerifyEmail] = useState(false);
-	const [errorAlreadyUsedEmail, setErrorAlreadyUsedEmail] = useState(false);
+	const [flagVerifyEmail, setFlagVerifyEmail] = useState(false)
+	const [errorAlreadyUsedEmail, setErrorAlreadyUsedEmail] = useState(false)
+	const [errorMissingEmail, setErrorMissingEmail] = useState(false)
 
 	const { innerWidthWindow } = useSelector(state => state.common)
 	const { isError } = useSelector(state => state.auth)
@@ -83,8 +83,11 @@ const GroupForms = ({modal,setModal}) => {
 	const onSubmitForgetPassword = data => {
 		dispatch(forgotPassword(data)).then(res => {
 			if (res.meta.requestStatus === "fulfilled") {
+				setErrorMissingEmail(false)
 				setFlagForgetPassword(false)
 				setFlagResetPassMessage(true)
+			} else if (res.meta.requestStatus === "rejected") {
+				setErrorMissingEmail(res.payload.message)
 			}
 		})
 	}
@@ -103,6 +106,19 @@ const GroupForms = ({modal,setModal}) => {
 				setFlagNewPassMessage(true)
 			}
 		})
+	}
+
+	const closeModal = () => {
+		dispatch(resetError())
+		setModal(false)
+		setFlagSendEmail(false)
+		setFlagForgetPassword(false)
+		setFlagRegistration(false)
+		setFlagResetPassMessage(false)
+		setFlagNewPassMessage(false)
+		setErrorAlreadyUsedEmail(false)
+		setErrorMissingEmail(false)
+		reset()
 	}
 
 	useEffect(() => {
@@ -135,7 +151,7 @@ const GroupForms = ({modal,setModal}) => {
 
 	return modal && (
 		<ModalWindow
-			onClose={() => setModal(false)}
+			onClose={closeModal}
 			isFullScreen={innerWidthWindow <= 480}
 		>
 			<div className={css.login}>
@@ -251,7 +267,7 @@ const GroupForms = ({modal,setModal}) => {
 						<p className={css.message}>Укажите электронную почту, указаную при регистрации</p>
 						<form onSubmit={handleSubmit(onSubmitForgetPassword)}>
 							<Input
-								err={errors.email?.message}
+								err={errors.email?.message || errorMissingEmail}
 								textLabel='Электронная почта'
 								name='email'
 								register={register}

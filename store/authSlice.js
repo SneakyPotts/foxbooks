@@ -32,9 +32,13 @@ export const signIn = createAsyncThunk(
 
 export const forgotPassword = createAsyncThunk(
 	'auth/forgotPassword',
-	async data => {
-		const response = await AuthService.forgotPassword(data)
-		return response.data
+	async (data, {rejectWithValue}) => {
+		try {
+			const response = await AuthService.forgotPassword(data)
+			return response.data
+		} catch (err) {
+			return rejectWithValue(err.response.data)
+		}
 	}
 )
 
@@ -70,6 +74,9 @@ export const authSlice = createSlice({
 	reducers: {
 		setAuth: (state, action) => {
 			state.isAuth = action.payload
+		},
+		resetError: (state) => {
+			state.isError = false
 		}
 	},
 	extraReducers: {
@@ -154,6 +161,6 @@ export const authSlice = createSlice({
 	}
 });
 
-export const { setAuth } = authSlice.actions;
+export const { setAuth, resetError } = authSlice.actions;
 
 export default authSlice.reducer;

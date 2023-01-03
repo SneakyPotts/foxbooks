@@ -151,6 +151,7 @@ const ReviewForm = ({
         rows={1}
         classNames={styles.textarea}
         err={errors?.title?.message}
+        maxlength={150}
       />
 
       <Input

@@ -12,14 +12,27 @@ const MyPagination = ({
   currentPage,
   lastPage,
   onClick,
-  externalClass
+  externalClass,
+  scrollTo,
+  smoothScroll = true
 }) => {
   const router = useRouter();
 
+  const scrollStartBlock = () => {
+    scrollTo && window.scrollTo({
+      top: scrollTo.current.offsetTop - 10,
+      left: 0,
+      behavior: smoothScroll ? "smooth" : "auto",
+    });
+  }
+
   const handleChange = current => {
-    onClick
-      ? onClick(current)
-      : router.push({ query: { ...router.query, page: current } });
+    if (onClick) {
+      onClick(current);
+    } else {
+      router.push({query: {...router.query, page: current}});
+    }
+    scrollStartBlock();
   };
 
   return (
