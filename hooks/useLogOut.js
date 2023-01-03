@@ -3,10 +3,12 @@ import Cookies from "js-cookie";
 import {setAuth} from "../store/authSlice";
 import {clearNotification, setProfile} from "../store/profileSlice";
 import {getDefaultSettings, setBookMarks, setQuotes} from "../store/readerSlice";
+import {setPlayerVisibility} from "../store/commonSlice";
+import {resetPlayerData} from "../store/playerSlice";
 
 const useLogOut = (router, dispatch, socket) => {
 	socket && socket.disconnect()
-	
+
 	Cookies.remove('token')
 	localStorage.removeItem('avatarColor')
 
@@ -24,6 +26,9 @@ const useLogOut = (router, dispatch, socket) => {
 	dispatch(setBookMarks([]))
 	dispatch(setQuotes([]))
 	dispatch(getDefaultSettings())
+
+	dispatch(setPlayerVisibility(false))
+	dispatch(resetPlayerData())
 }
 
 export default useLogOut

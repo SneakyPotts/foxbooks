@@ -11,7 +11,7 @@ const initialState = {
 
 export const setAudioProgress = createAsyncThunk(
 	'player/setAudioProgress',
-	async (data) => {
+	async (data = {}) => {
 		await PlayerService.setProgress(data);
 		return data;
 	}

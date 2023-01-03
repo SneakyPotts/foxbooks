@@ -26,7 +26,10 @@ export default function App(props) {
 
 export async function getServerSideProps ({query}) {
   const order = await AdminSettings.getSortSetting('home');
-	const { data } = await HomeService.getHomeData({...query, sortBy: query.sortBy || order?.data?.data?.[0].value});
+	const { data } = await HomeService.getHomeData({
+		...query,
+		sortBy: query.sortBy || order?.data?.data?.[0].value
+	});
 
 	return {
 		props: {
