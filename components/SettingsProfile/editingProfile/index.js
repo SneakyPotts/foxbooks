@@ -80,7 +80,6 @@ const EditingProfile = () => {
 							textLabel="Ник"
 							name="nickname"
 							register={register}
-							disabled
 						/>
 					}
 				</div>
@@ -89,6 +88,7 @@ const EditingProfile = () => {
 					textLabel="Электронная почта"
 					name="email"
 					register={register}
+					disabled
 				/>
 				<div className={styles.social}>
 					<span>Социальные сети</span>
