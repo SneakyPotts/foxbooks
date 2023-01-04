@@ -41,9 +41,10 @@ const CommentItem = ({
   const {innerWidthWindow} = useSelector(state => state.common)
   const {isAuth} = useSelector(state => state.auth)
   const {book} = useSelector(state => state.book)
+  const {initRender} = useSelector(state => state.comments)
 
   const sortedReplies = useMemo(() => {
-    return [...new Set(replies?.data)].sort((a, b) => moment(a?.updated_at).diff(moment(b?.updated_at)))
+    return [...new Set(replies?.data)]/*.sort((a, b) => moment(a?.updated_at).diff(moment(b?.updated_at)))*/
   }, [replies])
 
   const toggleMoreText = () => {
@@ -93,7 +94,7 @@ const CommentItem = ({
     dispatch(addComment(dataObj)).then(res => {
       setReplies({
         ...replies,
-        data: replies?.data?.length ? [...replies?.data, res.payload?.data] : [res.payload?.data]
+        data: replies?.data?.length ? [res.payload?.data, ...replies?.data.slice(0, -1)] : [res.payload?.data]
       })
     })
   }
@@ -135,7 +136,6 @@ const CommentItem = ({
     return typeMatching[routeType]
   }, [reviews]);
 
-
   const likeHandler = async () => {
     if (isAuth) {
       const type = setTypes(book.type);
@@ -160,7 +160,7 @@ const CommentItem = ({
   }
 
   useEffect(() => {
-    fetchCurrentReplies()
+    initRender && fetchCurrentReplies()
   }, [page]);
 
   return (
