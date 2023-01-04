@@ -15,7 +15,6 @@ const Comments = () => {
 
   const [page, setPage] = useState(1);
 
-
   const submitFunc = data => {
     let bookType = book?.type
 
