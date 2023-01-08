@@ -5,6 +5,7 @@ import HomeService from "../http/HomeService";
 import {setSelections} from "../store/selectionSlice";
 import {setReviews} from "../store/reviewSlice";
 import AdminSettings from "../http/AdminSettings";
+import {setNovelties} from "../store/noveltiesSlice";
 
 export default function App(props) {
   const dispatch = useDispatch();
@@ -14,11 +15,12 @@ export default function App(props) {
   dispatch(setBooks(props.books));
   dispatch(setSelections(props.compilations));
   dispatch(setReviews(props.reviews));
+  dispatch(setNovelties(props.newBooks?.books));
 
   return (
     <Home
       audioBooks={props.audioBooks?.audio_books}
-      newBooks={props.newBooks?.books}
+      // newBooks={props.newBooks?.books}
       order={props.order}
     />
   )

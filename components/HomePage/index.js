@@ -18,11 +18,12 @@ import ArrowRight from '../../public/chevron-right.svg';
 import css from './home.module.scss';
 import cssBook from './../shared/common/book/book.module.scss';
 
-const HomeView = ({audioBooks, newBooks, order}) => {
+const HomeView = ({audioBooks, order}) => {
 	const hotUpdates = useRef();
 	const {query} = useRouter();
 
 	const {innerWidthWindow} = useSelector(state => state.common);
+	const {novelties} = useSelector(state => state.novelties)
 
 	const [firstVisit, setFirstVisit] = useState(true);
 
@@ -35,6 +36,7 @@ const HomeView = ({audioBooks, newBooks, order}) => {
 			});
 		}
 		setFirstVisit(false)
+		console.log('newBooks',);
 	}, [query]);
 
 	return (
@@ -57,7 +59,7 @@ const HomeView = ({audioBooks, newBooks, order}) => {
 							nextEl: '.nextArrow',
 						}}
 					>
-						{newBooks.map(book => (
+						{novelties.map(book => (
 							<SwiperSlide key={book?.id} className={cssBook.swiperSlide}>
 								<Book
 									book={book}
