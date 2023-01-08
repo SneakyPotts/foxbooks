@@ -130,9 +130,25 @@ const Book = ({
         {!noLinks ? (
           <Link href={`/${book?.type?.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}/${book?.slug}`}>
             <a onClick={bookLinkClick}>
-              <Image
+              {/*<Image*/}
+              {/*  src={book?.cover_url || '/preview.jpg'}*/}
+              {/*  alt=""*/}
+              {/*  width={innerWidthWindow >= 768 ? 180 : 108}*/}
+              {/*  height={*/}
+              {/*    audio*/}
+              {/*      ? innerWidthWindow >= 768*/}
+              {/*        ? 180*/}
+              {/*        : 108*/}
+              {/*      : innerWidthWindow >= 768*/}
+              {/*      ? 271*/}
+              {/*      : 160*/}
+              {/*  }*/}
+              {/*  placeholder="blur"*/}
+              {/*  blurDataURL="/blur.webp"*/}
+              {/*  layout="responsive"*/}
+              {/*/>*/}
+              <img
                 src={book?.cover_url || '/preview.jpg'}
-                alt=""
                 width={innerWidthWindow >= 768 ? 180 : 108}
                 height={
                   audio
@@ -140,13 +156,10 @@ const Book = ({
                       ? 180
                       : 108
                     : innerWidthWindow >= 768
-                    ? 271
-                    : 160
+                      ? 271
+                      : 160
                 }
-                placeholder="blur"
-                blurDataURL="/blur.webp"
-                layout="responsive"
-              />
+                alt="book cover"/>
             </a>
           </Link>
         ) : (
