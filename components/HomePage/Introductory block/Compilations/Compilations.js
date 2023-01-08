@@ -7,11 +7,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
 import CompilationItem from "../../../CompilationItem";
 
-const Compilations = () => {
+const Compilations = ({test}) => {
   const { innerWidthWindow } = useSelector(state => state.common);
   const { selections } = useSelector(state => state.selection);
 
-  if(!selections?.length) {
+  if(!test?.length) {
     return null
   }
 
@@ -28,7 +28,7 @@ const Compilations = () => {
         spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
         slidesPerView={innerWidthWindow <= 600 ? 1 : 3}
       >
-        {selections.map(i =>
+        {test.map(i =>
           <SwiperSlide key={i?.id}>
             <CompilationItem
               data={i}
