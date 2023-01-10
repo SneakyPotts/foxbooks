@@ -92,6 +92,7 @@ const AudioPlayer = () => {
     setIsClosed(true)
     setTimeout(() => {
       dispatch(setPlayerVisibility(false))
+      document.body.removeAttribute('style')
       dispatch(resetPlayerData())
     }, 300)
   }

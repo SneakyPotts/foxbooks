@@ -28,6 +28,7 @@ const useLogOut = (router, dispatch, socket) => {
 	dispatch(getDefaultSettings())
 
 	dispatch(setPlayerVisibility(false))
+	document.body.removeAttribute('style')
 	dispatch(resetPlayerData())
 }
 

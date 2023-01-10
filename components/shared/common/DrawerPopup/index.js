@@ -13,7 +13,7 @@ const DrawerPopup = ({
 }) => {
   const ref = useRef();
 
-  const { innerWidthWindow } = useSelector(state => state.common)
+  const { innerWidthWindow, playerIsVisible } = useSelector(state => state.common)
 
   const [yPos, setYPos] = useState(0);
   const [drawerHeight, setDrawerHeight] = useState('auto');
@@ -49,7 +49,7 @@ const DrawerPopup = ({
     if(innerWidthWindow <= 768) document.body.style.overflow = 'hidden'
 
     return () => {
-      if(innerWidthWindow <= 768) document.body.style.overflow = 'initial'
+      if(innerWidthWindow <= 768 && !playerIsVisible) document.body.style.overflow = 'initial'
     }
   }, []);
 
