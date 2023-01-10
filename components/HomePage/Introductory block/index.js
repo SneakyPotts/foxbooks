@@ -2,10 +2,10 @@ import Compilations from './Compilations/Compilations';
 import AudioBooks from './AudioBooks/AudioBooks';
 import Reviews from './Reviews/Reviews';
 
-const Introductory = ({test, audioBooks}) => {
+const Introductory = ({audioBooks}) => {
   return (
     <>
-      <Compilations test={test} />
+      <Compilations />
       {!!audioBooks?.length &&
         <AudioBooks audioBooks={audioBooks} />
       }

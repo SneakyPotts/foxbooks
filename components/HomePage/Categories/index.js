@@ -5,11 +5,11 @@ import ShowAll from "../../shared/common/showAll/ShowAll";
 import React from "react";
 import {useRouter} from "next/router";
 
-const Categories = ({test, booksType}) => {
+const Categories = ({booksType}) => {
 	const router = useRouter();
 	const { categories } = useSelector(state => state.book)
 
-	const cats = test?.slice(0, 12) || []
+	const cats = categories?.slice(0, 12) || []
 
 	return (
 		<div className={css.categNav}>

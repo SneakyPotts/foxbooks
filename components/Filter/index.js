@@ -7,7 +7,7 @@ import Popular from './Popular/Popular';
 import css from './filter.module.css';
 import cssBook from './../shared/common/book/book.module.scss';
 
-const Filters = ({testBooks, testCategories, order}) => {
+const Filters = ({order}) => {
   const data = [
     {
       title: order?.[0]?.title,
@@ -101,7 +101,7 @@ const Filters = ({testBooks, testCategories, order}) => {
   const { categories } = useSelector(state => state.book);
   const { books } = useSelector(state => state.book);
 
-  const categoryOptions = testCategories?.map((i, index) => ({
+  const categoryOptions = categories?.map((i, index) => ({
     id: index + 1,
     title: i?.name,
     value: i?.id,
@@ -131,16 +131,16 @@ const Filters = ({testBooks, testCategories, order}) => {
           <ClearAll />
         </div>
       </div>
-      {testBooks?.data?.length ? (
+      {books?.data?.length ? (
         <>
           <ul className={css.bookList}>
-            {testBooks?.data?.map(book => (
+            {books?.data?.map(book => (
               <li key={book?.id} className={`${css.book} ${cssBook.upBook}`}>
                 <Book book={book} />
               </li>
             ))}
           </ul>
-          <MyPagination lastPage={testBooks?.last_page} />
+          <MyPagination lastPage={books?.last_page} />
         </>
       ) : (
         <p className="empty">Книги не найдены</p>
