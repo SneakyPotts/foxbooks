@@ -312,7 +312,7 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
-        margin-top: auto;
+        margin-top: 40px;
 
         @media (max-height: 750px) and (max-width: 1023px) {
           margin-top: unset;
