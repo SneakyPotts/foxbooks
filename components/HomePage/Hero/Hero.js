@@ -1,7 +1,7 @@
+import classnames from 'classnames';
+import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/core';
-import { useSelector } from 'react-redux';
-import classnames from 'classnames';
 import ArrowRight from '../../../public/chevron-right.svg';
 import st from './hero.module.scss';
 
@@ -31,7 +31,7 @@ const Hero = () => {
       >
         {data.map(id => (
           <SwiperSlide key={id} className={st.swiperTest}>
-            <img src="/hero.png" alt="" className={st.swiperImg} />
+            <Image src="/hero.png" width={1200} height={400} alt="banner image" className={st.swiperImg} />
           </SwiperSlide>
         ))}
         <button className={classnames('prevArrow', 'btnBefore')}>
