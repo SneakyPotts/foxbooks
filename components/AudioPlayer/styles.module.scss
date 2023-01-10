@@ -313,6 +313,10 @@
         width: 100%;
         justify-content: space-between;
         margin-top: auto;
+
+        @media (max-height: 750px) and (max-width: 1023px) {
+          margin-top: unset;
+        }
       }
     }
   }
@@ -396,5 +400,15 @@
      > span {
        width: 200px !important;
      }
+  }
+}
+
+@media (max-height: 750px) and (max-width: 1023px) {
+  .wrapper {
+    padding-top: 40px;
+  }
+
+  .closeArrow {
+    top: 15px;
   }
 }
