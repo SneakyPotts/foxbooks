@@ -261,15 +261,17 @@ const AudioPlayer = () => {
               direction='up'
               onClose={() => setSpeedDropIsVisible(false)}
             >
-              {speeds?.map(i =>
-                <span
-                  key={i}
-                  onClick={() => setSettings({...settings, playbackRate: i})}
-                  className={classNames(styles.dropItem, {[styles.active]: i === settings?.playbackRate})}
-                >
+              <div className={styles.playerPageDropdown}>
+                {speeds?.map(i =>
+                    <span
+                      key={i}
+                      onClick={() => setSettings({...settings, playbackRate: i})}
+                      className={classNames(styles.dropItem, {[styles.active]: i === settings?.playbackRate})}
+                    >
                   {i === 1 ? 'Обычная' : i}
                 </span>
-              )}
+                )}
+              </div>
             </DrawerPopup>
           }
         </div>
