@@ -1,4 +1,4 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px), (min-aspect-ratio: 2/1), (orientation: portrait) {
   .wrapper {
     position: fixed;
     top: 0;
@@ -10,10 +10,10 @@
     z-index: 40;
     animation: blurIn .15s;
     cursor: default;
-    
+
     &.hide {
       animation: blurOut .3s;
-      
+
       .drawer {
         animation: slideBottom .3s !important;
       }
@@ -30,9 +30,9 @@
     padding: 40px 30px 30px;
     animation: slideTop .15s !important;
     transition: none;
-    max-height: 80vh;
+    max-height: 60vh;
   }
-  
+
   .close {
     position: absolute;
     top: 0;
@@ -41,7 +41,7 @@
     height: 30px;
     background: transparent;
     cursor: pointer;
-    
+
     &::after {
       content: '';
       width: 56px;
