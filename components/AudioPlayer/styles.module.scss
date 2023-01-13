@@ -294,7 +294,8 @@
 @media screen and (max-width: 1023px) {
   .wrapper {
     top: 0;
-    min-height: 100vh;
+    min-height: 100%;
+    height: 100vh;
     border: none;
     z-index: 5;
     flex-direction: column;
@@ -311,7 +312,11 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
-        margin-top: auto;
+        margin-top: 40px;
+
+        @media (max-height: 750px) and (max-width: 1023px) {
+          margin-top: unset;
+        }
       }
     }
   }
@@ -395,5 +400,48 @@
      > span {
        width: 200px !important;
      }
+  }
+}
+
+@media screen and (max-height: 750px) and (max-width: 1023px) {
+  .wrapper {
+    padding-top: 40px;
+  }
+
+  .closeArrow {
+    top: 15px;
+  }
+
+  .preview {
+    &Wrapper {
+      margin-top: 40px;
+    }
+  }
+}
+
+@media screen and (max-height: 700px) and (max-width: 1023px) {
+  .preview {
+    max-width: 230px;
+
+    &Wrapper {
+      margin-top: 30px;
+    }
+  }
+
+  @media screen and (orientation: landscape) {
+    .wrapper {
+      padding-top: 15px;
+    }
+
+    .preview {
+      flex-direction: row;
+      max-width: 300px;
+      max-height: 100px;
+
+      &Wrapper {
+        flex: 1 0 80%;
+        margin-top: 0;
+      }
+    }
   }
 }

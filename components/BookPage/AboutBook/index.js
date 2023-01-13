@@ -128,6 +128,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       user_progress: book?.user_progress
     }))
     dispatch(setPlayerVisibility(true))
+    if (innerWidthWindow <= 1023) document.body.style.overflow = 'hidden';
   }
 
   return (
