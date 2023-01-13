@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from ".";
+import api, { API_URL } from ".";
 
 export default class AuthService {
 	static async signUp({ email, password }) {
@@ -24,5 +24,9 @@ export default class AuthService {
 
 	static async signInWithSocial({ id, token }) {
 		return axios.post(`${API_URL}/auth`, { id, token })
+	}
+
+	static async logOut() {
+		return api.post(`${API_URL}/profile/logout`)
 	}
 }

@@ -68,6 +68,13 @@ export const signInWithSocial = createAsyncThunk(
 	}
 )
 
+export const logOut = createAsyncThunk(
+	'auth/logOut',
+	async () => {
+		return await AuthService.logOut()
+	}
+)
+
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
@@ -106,6 +113,10 @@ export const authSlice = createSlice({
 			state.isLoading = false
 		},
 
+
+		[logOut.fulfilled]: state => {
+			state.isAuth = false
+		},
 
 		[forgotPassword.pending]: state => {
 			state.isLoading = true

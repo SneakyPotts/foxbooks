@@ -14,7 +14,7 @@ export default class ProfileService {
 	}
 
 	static async setNotificationSettings(data) {
-		return api.put(`${API_URL}/notification_settings`,data)
+		return api.post(`${API_URL}/notifications/settings`,data)
 	}
 
 	static async deleteUser() {
