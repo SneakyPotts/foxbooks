@@ -43,7 +43,7 @@ export const comments = createSlice({
 			state.initRender = false
 
 			if(!parentId) {
-				state.bookComments.data.pop()
+				// state.bookComments.data.length === 3 && state.bookComments.data.pop()
 				state.bookComments.data.unshift(data)
 			}
 		},

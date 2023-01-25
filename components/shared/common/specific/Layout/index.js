@@ -89,11 +89,36 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     if(socket) {
-      socket.on('new_comment_like', res => {
+      socket.on('liked_comment', res => {
         if(profile?.user_settings?.likes) {
           const data = {
             ...res,
-            type: 'like'
+            type: 'like',
+            caption: 'ваш комментарий'
+          }
+          dispatch(setNewNotification(true))
+          dispatch(addNotification(data))
+        }
+      })
+
+      socket.on('liked_review', res => {
+        if(profile?.user_settings?.likes) {
+          const data = {
+            ...res,
+            type: 'like',
+            caption: 'вашу рецензию'
+          }
+          dispatch(setNewNotification(true))
+          dispatch(addNotification(data))
+        }
+      })
+
+      socket.on('new_answer_on_review', res => {
+        if(profile?.user_settings?.commented) {
+          const data = {
+            ...res,
+            type: 'answer',
+            caption: 'на вашу рецензию о книге'
           }
           dispatch(setNewNotification(true))
           dispatch(addNotification(data))
@@ -104,7 +129,8 @@ const Layout = ({ children }) => {
         if(profile?.user_settings?.commented) {
           const data = {
             ...res,
-            type: 'answer'
+            type: 'answer',
+            caption: 'на ваш комментарий о книге'
           }
           dispatch(setNewNotification(true))
           dispatch(addNotification(data))
@@ -115,7 +141,8 @@ const Layout = ({ children }) => {
         if(profile?.user_settings?.commentedOthers) {
           const data = {
             ...res,
-            type: 'branchAnswer'
+            type: 'answer',
+            caption: 'в ветке коментариев о книге'
           }
           dispatch(setNewNotification(true))
           dispatch(addNotification(data))

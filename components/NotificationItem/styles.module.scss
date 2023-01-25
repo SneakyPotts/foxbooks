@@ -32,6 +32,10 @@
   font-size: 12px;
   line-height: 15px;
   color: $color-third;
+
+  &Comment {
+    color: $color-second;
+  }
 }
 
 .bookLink {
