@@ -7,6 +7,7 @@ import moment from "moment";
 import 'moment/locale/ru'
 
 const NotificationItem = ({data}) => {
+  console.log(data)
   return (
     <div className={s.wrapper}>
       <div className={s.senderAvatar}>
@@ -33,17 +34,34 @@ const NotificationItem = ({data}) => {
         )}
       </div>
 
-      <div className={s.content}>
+      {data?.type === 'like' && (<div className={s.content}>
         <p className={s.text}>
           <span className={s.senderName}>{data?.sender?.nickname || data?.sender?.name || 'Пользователь'}</span>&nbsp;
-          {data?.type === 'like' ? 'оценил(а) ' : 'оставил(а) уомментарий на '}вашу рецензию о книге&nbsp;
+          оценил(а) {data?.caption} о книге&nbsp;
           <Link href={`/book/${data?.book?.id}?type=${data?.book?.type}`}>
             <a className={s.bookLink}>{data?.book?.title}</a>
           </Link>
-          {data?.type !== 'like' && `: <br/> ${data?.text}`}
         </p>
         <p className={s.time}>{moment(data?.created_at).from(moment())}</p>
-      </div>
+      </div>)}
+
+      {data?.type === 'answer' && (
+        <div className={s.content}>
+          <p className={s.text}>
+            <span className={s.senderName}>{data?.sender?.nickname || data?.sender?.name || 'Пользователь'}</span>&nbsp;
+            {<>оставил(а) комментарий:<br/></>}
+            <span className={s.textComment}>{data?.text || 'Test comment text'}</span>
+          </p>
+          <p className={s.time}>
+            {moment(data?.created_at).from(moment())}&nbsp;
+            <span className={s.text}>{data?.caption}</span>&nbsp;
+            <Link href={`/${data?.book?.type}/some-genre/${data?.book?.slug}`}>
+              <a className={s.bookLink}>{data?.book?.title}</a>
+            </Link>
+          </p>
+
+        </div>
+      )}
     </div>
   );
 };

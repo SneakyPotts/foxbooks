@@ -94,7 +94,7 @@ const CommentItem = ({
     dispatch(addComment(dataObj)).then(res => {
       setReplies({
         ...replies,
-        data: replies?.data?.length ? [res.payload?.data, ...replies?.data.slice(0, -1)] : [res.payload?.data]
+        data: replies?.data?.length ? [res.payload?.data, ...replies?.data] : [res.payload?.data]
       })
     })
   }
