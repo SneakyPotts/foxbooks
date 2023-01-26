@@ -70,7 +70,11 @@ const Header = ({ socket }) => {
   const closeModal = () => {
     dispatch(showMenu(false));
     dispatch(clearSearch());
-    innerWidthWindow <= 768 && document.body.classList.remove('nonScroll');
+    if (innerWidthWindow <= 768) {
+      isIos
+        ? document.querySelector('#__next').classList.remove('nonScroll')
+        : document.body.classList.remove('nonScroll')
+    }
   };
 
   const logOut = () => {
