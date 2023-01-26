@@ -10,7 +10,6 @@ import {useRouter} from "next/router";
 const Search = ({ value , onClose }) => {
   const router = useRouter()
   const { data } = useSelector(state => state.search)
-  const { innerWidthWindow } = useSelector(state => state.common);
 
   const books = useMemo(() => {
     return data?.books
@@ -37,22 +36,6 @@ const Search = ({ value , onClose }) => {
       document.body.removeEventListener('keydown', handleKeyDown)
     }
   }, [value])
-
-  //FIXME
-  useEffect(() => {
-    if(data?.books?.length || data?.authors?.length) {
-      if (innerWidthWindow <= 768) {
-        document.body.style.touchAction = 'none'
-        document.body.classList.add('nonScroll')
-      }
-    }
-
-    return () => {
-      if (innerWidthWindow <= 768) {
-        document.body.style.touchAction = 'auto'
-      }
-    }
-  }, [data])
 
   if(!books?.length && !authors?.length) return null
 

@@ -58,7 +58,7 @@ const Header = ({ socket }) => {
 
   const openModal = () => {
     dispatch(showMenu(true));
-    // innerWidthWindow <= 768 && document.body.classList.add('nonScroll'); FIXME
+    innerWidthWindow <= 768 && document.body.classList.add('nonScroll');
     innerWidthWindow <= 768 && document.body.removeAttribute('style');
   };
 
