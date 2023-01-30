@@ -60,9 +60,12 @@ const Header = ({ socket }) => {
   const openModal = () => {
     dispatch(showMenu(true));
     if (innerWidthWindow <= 768) {
-      isIos
-        ? document.querySelector('#__next').classList.add('nonScroll')
-        : document.body.classList.add('nonScroll')
+      if (isIos) {
+        document.body.style.position = 'relative'
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.classList.add('nonScroll')
+      }
     }
     innerWidthWindow <= 768 && document.body.removeAttribute('style');
   };
