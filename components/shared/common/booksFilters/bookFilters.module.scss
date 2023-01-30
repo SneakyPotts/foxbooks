@@ -20,59 +20,59 @@
   background: $color-bg-icon;
   transition: .15s;
 
-  &.onModal {
-    font-size: 16px;
-    line-height: 24px;
-    height: auto;
-    color: #4F4F4F;
-    padding: 0;
-    position: relative;
-    margin-left: 34px;
-    background: transparent;
-
-    &:hover,
-    &.active {
-      background: transparent;
-      color: $color-main;
-
-      &::before {
-        border-color: $color-main;
-      }
-    }
-
-    &::before {
-      content: '';
-      width: 24px;
-      height: 24px;
-      border: 2px solid $color-third;
-      border-radius: 50%;
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translate(-100%, -50%);
-      transition: .15s;
-    }
-
-    &.active {
-      &::after {
-        content: '';
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: $color-main;
-        position: absolute;
-        left: -15px;
-        top: 50%;
-        transform: translate(-100%, -50%);
-      }
-    }
-  }
+//  &.onModal {
+//    font-size: 16px;
+//    line-height: 24px;
+//    height: auto;
+//    color: #4F4F4F;
+//    padding: 0;
+//    position: relative;
+//    margin-left: 34px;
+//    background: transparent;
+//
+//    &:hover,
+//    &.active {
+//      background: transparent;
+//      color: $color-main;
+//
+//      &::before {
+//        border-color: $color-main;
+//      }
+//    }
+//
+//    &::before {
+//      content: '';
+//      width: 24px;
+//      height: 24px;
+//      border: 2px solid $color-third;
+//      border-radius: 50%;
+//      position: absolute;
+//      left: -10px;
+//      top: 50%;
+//      transform: translate(-100%, -50%);
+//      transition: .15s;
+//    }
+//
+//    &.active {
+//      &::after {
+//        content: '';
+//        width: 14px;
+//        height: 14px;
+//        border-radius: 50%;
+//        background: $color-main;
+//        position: absolute;
+//        left: -15px;
+//        top: 50%;
+//        transform: translate(-100%, -50%);
+//      }
+//    }
+//  }
 }
-.abFilter:hover {
-  color: $color-categories-btn;
-  background-color: $color-main;
-}
-.active {
-  color: $color-categories-btn;
-  background-color: $color-main;
-}
+//.abFilter:hover {
+//  color: $color-categories-btn;
+//  background-color: $color-main;
+//}
+//.active {
+//  color: $color-categories-btn;
+//  background-color: $color-main;
+//}
