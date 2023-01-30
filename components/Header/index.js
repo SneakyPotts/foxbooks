@@ -61,13 +61,12 @@ const Header = ({ socket }) => {
     dispatch(showMenu(true));
     if (innerWidthWindow <= 768) {
       if (isIos) {
-        document.body.style.position = 'relative'
-        document.body.style.overflow = 'hidden'
+        document.body.style.cssText = 'position: relative; overflow: hidden;'
       } else {
         document.body.classList.add('nonScroll')
       }
     }
-    innerWidthWindow <= 768 && document.body.removeAttribute('style');
+    // innerWidthWindow <= 768 && !isIos && document.body.removeAttribute('style');
   };
 
   const closeModal = () => {
@@ -75,7 +74,7 @@ const Header = ({ socket }) => {
     dispatch(clearSearch());
     if (innerWidthWindow <= 768) {
       isIos
-        ? document.querySelector('#__next').classList.remove('nonScroll')
+        ? document.body.removeAttribute('style')
         : document.body.classList.remove('nonScroll')
     }
   };
