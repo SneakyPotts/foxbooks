@@ -32,7 +32,7 @@ const AuthorOtherBooks = ({ data }) => {
         )}
       </div>
       <Swiper
-        spaceBetween={changeSpaceBtwSwiper()}
+        spaceBetween={10}
         modules={[Navigation]}
         navigation={{
           prevEl: '.prevArrow',
