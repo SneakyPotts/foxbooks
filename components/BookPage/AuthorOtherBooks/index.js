@@ -32,13 +32,13 @@ const AuthorOtherBooks = ({ data }) => {
         )}
       </div>
       <Swiper
-        spaceBetween={10}
-        modules={[Navigation]}
-        navigation={{
-          prevEl: '.prevArrow',
-          nextEl: '.nextArrow',
-        }}
-        slidesPerView={changeSlidesPerView()}
+        // spaceBetween={changeSpaceBtwSwiper()}
+        // modules={[Navigation]}
+        // navigation={{
+        //   prevEl: '.prevArrow',
+        //   nextEl: '.nextArrow',
+        // }}
+        // slidesPerView={changeSlidesPerView()}
       >
         {data.map(i => (
           <SwiperSlide key={i?.id}>
