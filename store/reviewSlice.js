@@ -3,18 +3,9 @@ import ReviewService from "../http/ReviewService";
 
 const initialState = {
   reviewTypes: [],
-  reviews: [],
   userReviews: [],
   error: ''
 };
-
-export const getCurrentReviews = createAsyncThunk(
-  'review/getCurrentReviews',
-  async (data) => {
-    const response = await ReviewService.getCurrentReviews(data)
-    return response.data.data
-  }
-)
 
 export const getReviewTypes = createAsyncThunk(
   'review/getReviewTypes',
@@ -78,10 +69,6 @@ export const review = createSlice({
     },
     [addReview.rejected]: (state, action) => {
       state.error = action.payload
-    },
-
-    [getCurrentReviews.fulfilled]: (state, action) => {
-      state.reviews = action.payload
     },
 
     [getUserReview.fulfilled]: (state, action) => {

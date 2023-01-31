@@ -7,7 +7,6 @@ import moment from "moment";
 import 'moment/locale/ru'
 
 const NotificationItem = ({data}) => {
-  console.log(data)
   return (
     <div className={s.wrapper}>
       <div className={s.senderAvatar}>
@@ -17,7 +16,7 @@ const NotificationItem = ({data}) => {
             alt="Avatar"
             width="35"
             height="35"
-            // placeholder="blur"
+            placeholder="blur"
             blurDataURL="/blur.webp"
           />
         ) : (
@@ -38,7 +37,7 @@ const NotificationItem = ({data}) => {
         <p className={s.text}>
           <span className={s.senderName}>{data?.sender?.nickname || data?.sender?.name || 'Пользователь'}</span>&nbsp;
           оценил(а) {data?.caption} о книге&nbsp;
-          <Link href={`/book/${data?.book?.id}?type=${data?.book?.type}`}>
+          <Link href={`/${data?.book?.type}/some-genre/${data?.book?.slug}`}>
             <a className={s.bookLink}>{data?.book?.title}</a>
           </Link>
         </p>

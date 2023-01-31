@@ -158,12 +158,16 @@
   backdrop-filter: blur(10px);
 }
 .dropDown {
-  position: fixed;
+  position: absolute;
   top: 109px;
   left: 0;
   right: 0;
   z-index: 5;
   background-color: $color-categories-btn;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+  }
 
   &ShowMore {
     a {
