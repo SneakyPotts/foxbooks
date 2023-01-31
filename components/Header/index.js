@@ -36,7 +36,8 @@ const Header = ({ socket }) => {
   const { data: store } = useSelector(state => state.search);
 
   const [flagSettings, setFlagSettings] = useState(false);
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
+  const [isIos, setIsIos] = useState(false);
 
   const showAuthPopup = () => {
     dispatch(setAuthPopupVisibility(true))
@@ -58,14 +59,24 @@ const Header = ({ socket }) => {
 
   const openModal = () => {
     dispatch(showMenu(true));
-    innerWidthWindow <= 768 && document.body.classList.add('nonScroll');
-    innerWidthWindow <= 768 && document.body.removeAttribute('style');
+    if (innerWidthWindow <= 768) {
+      if (isIos) {
+        document.body.style.cssText = 'position: relative; overflow: hidden;'
+      } else {
+        document.body.classList.add('nonScroll')
+      }
+    }
+    // innerWidthWindow <= 768 && !isIos && document.body.removeAttribute('style');
   };
 
   const closeModal = () => {
     dispatch(showMenu(false));
     dispatch(clearSearch());
-    innerWidthWindow <= 768 && document.body.classList.remove('nonScroll');
+    if (innerWidthWindow <= 768) {
+      isIos
+        ? document.body.removeAttribute('style')
+        : document.body.classList.remove('nonScroll')
+    }
   };
 
   const logOut = () => {
@@ -137,6 +148,8 @@ const Header = ({ socket }) => {
     }
 
     document.body.addEventListener('click', hidePopup)
+
+    setIsIos(() => Boolean(window.navigator.userAgent.match(/iPhone|iPad|iPod/i)))
 
     return () => {
       document.body.removeEventListener('click', hidePopup)

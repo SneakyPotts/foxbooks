@@ -58,7 +58,7 @@ export const profileSlice = createSlice({
 			state.newNotification = action.payload
 		},
 		addNotification: (state, action) => {
-			state.notifications.push(action.payload)
+			state.notifications.unshift(action.payload)
 		},
 		clearNotification: state => {
 			state.notifications = []

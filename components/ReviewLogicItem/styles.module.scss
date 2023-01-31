@@ -64,6 +64,10 @@
   margin: 10px 0;
   color: $color-main;
   min-height: 38px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .reviewText {
   font-size: 14px;
@@ -170,6 +174,7 @@
       line-height: 14px;
     }
     &Title {
+      display: block;
       font-size: 14px;
       line-height: 140%;
       margin: 8px 0 10px;
