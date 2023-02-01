@@ -288,8 +288,8 @@ export const wordsForCount = (count, word = 'оцен') => {
 }
 
 export const durationString = (duration) => {
-	return Math.round((+duration  / 60) / 60)
-		? `${Math.round((+duration  / 60) / 60)} ч. ${Math.round((+duration  / 60) % 60)} мин.`
+	return (+duration  / 60) / 60 > 1
+		? `${Math.floor((+duration  / 60) / 60)} ч. ${Math.round((+duration  / 60) % 60)} мин.`
 		: `${Math.round((+duration  / 60) % 60)} мин.`
 }
 
