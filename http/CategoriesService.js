@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from ".";
+import {API_URL, API_URL_L} from ".";
 
 export default class CategoriesService {
 	static async getCategories() {
@@ -10,16 +10,18 @@ export default class CategoriesService {
 		return axios.get(`${API_URL}/audio-books/genres`)
 	}
 
-	static async getCategoriesWithCount() {
-		return axios.get(`${API_URL}/genres/books`)
+	static async getCategoriesWithCount(ssr = false) {
+		console.log('getCategoriesWithCount', `${ssr ? API_URL_L : API_URL}/genres/books`)
+		return axios.get(`${ssr ? API_URL_L : API_URL}/genres/books`)
 	}
 
 	static async getAudioCategoriesWithCount() {
 		return axios.get(`${API_URL}/genres/audio-books`)
 	}
 
-	static async getBookCategories(slug) {
-		return axios.get(`${API_URL}/genres/by-slug/${slug}`)
+	static async getBookCategories({slug, ssr = false}) {
+		console.log('getBookCategories', `${ssr ? API_URL_L : API_URL}/genres/by-slug/${slug}`)
+		return axios.get(`${ssr ? API_URL_L : API_URL}/genres/by-slug/${slug}`)
 	}
 
 	static async getAudioBookCategoriesData() {
