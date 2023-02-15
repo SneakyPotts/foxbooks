@@ -57,26 +57,10 @@ const BookPage = ({bookType}) => {
   }
 
   return (
-    <div className={'container'}>
 
-              <Swiper
-                spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
-                slidesPerView={innerWidthWindow <= 480 ? 3 : 4}
-              >
-                {book?.similarBooks.map(i => (
-                  <SwiperSlide key={i?.id}>
-                    <Book
-                      classNames={s.slide}
-                      book={i}
-                      similar={true}
-                      audio={i?.type === 'audioBooks'}
-                      type={i?.type}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-    </div>
+              <SimilarBooks
+                type={type}
+                data={book?.similarBooks} />
   );
 };
 
