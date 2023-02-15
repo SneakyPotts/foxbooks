@@ -19,6 +19,7 @@ import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 import Banners from "../shared/common/Banner/Banners";
 import CompilationItem from "../CompilationItem";
+import Image from "next/image";
 
 const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
@@ -91,13 +92,13 @@ const BookPage = ({bookType}) => {
               />
             }
 
-            {/*<img*/}
-            {/*  src="/horizontalBookCovers/bookCover1.png"*/}
-            {/*  alt=""*/}
-            {/*  width={588}*/}
-            {/*  height={250}*/}
-            {/*  className={st.relatedInfoBanner}*/}
-            {/*/>*/}
+            <Image
+              src="/horizontalBookCovers/bookCover1.png"
+              alt=""
+              width={588}
+              height={250}
+              className={st.relatedInfoBanner}
+            />
 
             <Comments />
 
