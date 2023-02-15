@@ -31,8 +31,8 @@ const SimilarBooks = ({ type, data }) => {
         {/*)}*/}
       </div>
       <Swiper
-        spaceBetween={changeSpaceBtwSwiper()}
-        slidesPerView={changeSlidesPerView()}
+        spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
+        slidesPerView={innerWidthWindow <= 480 ? 3 : 4}
       >
         {data.map(i => (
           <SwiperSlide key={i?.id}>
