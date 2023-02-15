@@ -29,17 +29,14 @@ export async function getServerSideProps({ req, params, query }) {
 
   const token = cookies.token
 
-  // try {
+  try {
     const categories = books_type === 'books'
-      ? await CategoriesService.getCategoriesWithCount(true)
+      ? await CategoriesService.getCategoriesWithCount()
       : await CategoriesService.getAudioCategoriesWithCount()
 
-    const order = await AdminSettings.getSortSetting(
-      books_type === 'books' ? 'categories' : 'audio-categories',
-      true
-  );
+    const order = await AdminSettings.getSortSetting(books_type === 'books' ? 'categories' : 'audio-categories');
 
-    const categoryData = await CategoriesService.getBookCategories({category_slug, ssr: true});
+    const categoryData = await CategoriesService.getBookCategories(category_slug);
     const { seo_data } = categoryData.data.data[0];
 
     const books = await BookService.getBooks({
@@ -48,15 +45,10 @@ export async function getServerSideProps({ req, params, query }) {
       showType: query.showType || 'block',
       sortBy: query.sortBy || order?.data?.data?.[0]?.value,
       findByCategory: categoryData.data.data[0].id,
-      token,
-      ssr: true
+      token
     });
 
-    const banners = await AdminSettings.getPageBanner({
-      page_slug: 'category',
-      category_slug,
-      ssr: true
-    });
+    const banners = await AdminSettings.getPageBanner({page_slug: 'category', category_slug});
 
     return {
       props: {
@@ -74,12 +66,12 @@ export async function getServerSideProps({ req, params, query }) {
         }
       },
     }
-  // } catch {
-  //   return {
-  //     redirect: {
-  //       destination: "/404",
-  //       parameter: false
-  //     }
-  //   };
-  // }
+  } catch {
+    return {
+      redirect: {
+        destination: "/404",
+        parameter: false
+      }
+    };
+  }
 }

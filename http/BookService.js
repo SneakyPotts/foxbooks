@@ -1,5 +1,5 @@
 import axios from "axios";
-import api, {API_URL, API_URL_L} from ".";
+import api, { API_URL } from ".";
 
 export default class BookService {
 	static async getBooks({
@@ -14,11 +14,10 @@ export default class BookService {
 		findByTitle = '',
 		alphabetAuthorIndex = '',
 		alphabetPublisherIndex = '',
-		alphabetTitleIndex = '',
-		ssr = false
+		alphabetTitleIndex = ''
 	}) {
 		return axios.get(
-			`${ssr ? API_URL_L : API_URL}/books?${type && `type=${type}`}
+			`${API_URL}/books?${type && `type=${type}`}
 				${page && `&page=${page}`}
 				${findByCategory && `&findByCategory=${findByCategory}`}
 				${showType && `&showType=${showType}`}
