@@ -12,7 +12,6 @@ import AuthorOtherBooks from './AuthorOtherBooks';
 import AuthorOtherAudioBooks from './AuthorOtherAudiobooks';
 import SimilarBooks from './SimilarBooks';
 import st from './bookpage.module.scss';
-import s from './SimilarBooks/similarBooks.module.scss';
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
@@ -20,7 +19,6 @@ import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 import Banners from "../shared/common/Banner/Banners";
 import CompilationItem from "../CompilationItem";
-import Book from "../shared/common/book";
 
 const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
@@ -57,10 +55,113 @@ const BookPage = ({bookType}) => {
   }
 
   return (
+    <div className={'container'}>
+      <Breadcrumbs
+        data={[
+          {
+            path: `/${type.toLowerCase()}`,
+            title: type === 'books' ? 'Книги' : 'Аудиокниги'
+          },
+          {
+            path: `/${type.toLowerCase()}/${type === 'books' ? book.genres?.[0]?.slug : book.genre?.slug}`,
+            title: `${type === 'books' ? book.genres?.[0]?.name : book.genre?.name}`
+          },
+          {
+            path: router.asPath,
+            title: book?.title
+          },
+        ]}
+      />
 
+      <div className={st.wrapper}>
+        <div className={st.mainBlock}>
+          <AboutBook
+            book={book}
+            audioFlag={audioFlag}
+            showMyComp={() => setMyCopmIsVisible(true)}
+          />
+
+          <div
+            className={st.relatedInfo}
+          >
+            {book?.similarBooks?.length ?
               <SimilarBooks
                 type={type}
-                data={book?.similarBooks} />
+                data={book?.similarBooks}
+              /> : null
+            }
+
+            <img
+              src="/horizontalBookCovers/bookCover1.png"
+              alt=""
+              width={588}
+              height={250}
+              className={st.relatedInfoBanner}
+            />
+
+            {/*<Comments />*/}
+
+            {/*<Reviews type={book.type} />*/}
+
+            {/*{!audioFlag && <Quotes />}*/}
+
+            {/*{booksByAuthor?.length ?*/}
+            {/*  <AuthorOtherBooks*/}
+            {/*    data={booksByAuthor}*/}
+            {/*  /> : null*/}
+            {/*}*/}
+
+            {/*{audioBooksByAuthor?.length ?*/}
+            {/*  <AuthorOtherAudioBooks*/}
+            {/*    data={audioBooksByAuthor}*/}
+            {/*  /> : null*/}
+            {/*}*/}
+
+            {/*{!audioFlag && book?.compilations?.length ?*/}
+            {/*  <div className={st.compilBlock}>*/}
+            {/*    <div className={st.title}>*/}
+            {/*      {innerWidthWindow > 768 ? (*/}
+            {/*        <h3 className={st.compilTitle}>Подборки с этой книгой</h3>*/}
+            {/*      ) : (*/}
+            {/*        <h3 className={st.compilTitle}>Подборки</h3>*/}
+            {/*      )}*/}
+            {/*    </div>*/}
+            {/*    <Swiper*/}
+            {/*      spaceBetween={24}*/}
+            {/*      modules={[Navigation]}*/}
+            {/*      navigation={{*/}
+            {/*        prevEl: '.prevArrow',*/}
+            {/*        nextEl: '.nextArrow',*/}
+            {/*      }}*/}
+            {/*      slidesPerView={changeSlidesPerView()}*/}
+            {/*    >*/}
+            {/*      {book?.compilations?.map(i => (*/}
+            {/*        <SwiperSlide key={i?.id}>*/}
+            {/*          <CompilationItem*/}
+            {/*            path={`/selections/${i?.slug}`}*/}
+            {/*            data={i}*/}
+            {/*          />*/}
+            {/*        </SwiperSlide>*/}
+            {/*      ))}*/}
+            {/*      <button className={classnames('prevArrow', st.btnCompil)}>*/}
+            {/*        <ArrowRight className="arrowNext" />*/}
+            {/*      </button>*/}
+            {/*      <button className={classnames('nextArrow', st.btnCompil)}>*/}
+            {/*        <ArrowRight className="arrowNext" />*/}
+            {/*      </button>*/}
+            {/*    </Swiper>*/}
+            {/*  </div> : null*/}
+            {/*}*/}
+
+            {/*<Form title={book?.title} />*/}
+          </div>
+        </div>
+
+        <div className={st.advertisingBlok}>
+          <Banners />
+        </div>
+      </div>
+    </div>
   );
 };
 
