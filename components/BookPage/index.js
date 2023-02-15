@@ -117,41 +117,41 @@ const BookPage = ({bookType}) => {
               /> : null
             }
 
-            {/*{!audioFlag && book?.compilations?.length ?*/}
-            {/*  <div className={st.compilBlock}>*/}
-            {/*    <div className={st.title}>*/}
-            {/*      {innerWidthWindow > 768 ? (*/}
-            {/*        <h3 className={st.compilTitle}>Подборки с этой книгой</h3>*/}
-            {/*      ) : (*/}
-            {/*        <h3 className={st.compilTitle}>Подборки</h3>*/}
-            {/*      )}*/}
-            {/*    </div>*/}
-            {/*    <Swiper*/}
-            {/*      spaceBetween={24}*/}
-            {/*      modules={[Navigation]}*/}
-            {/*      navigation={{*/}
-            {/*        prevEl: '.prevArrow',*/}
-            {/*        nextEl: '.nextArrow',*/}
-            {/*      }}*/}
-            {/*      slidesPerView={changeSlidesPerView()}*/}
-            {/*    >*/}
-            {/*      {book?.compilations?.map(i => (*/}
-            {/*        <SwiperSlide key={i?.id}>*/}
-            {/*          <CompilationItem*/}
-            {/*            path={`/selections/${i?.slug}`}*/}
-            {/*            data={i}*/}
-            {/*          />*/}
-            {/*        </SwiperSlide>*/}
-            {/*      ))}*/}
-            {/*      <button className={classnames('prevArrow', st.btnCompil)}>*/}
-            {/*        <ArrowRight className="arrowNext" />*/}
-            {/*      </button>*/}
-            {/*      <button className={classnames('nextArrow', st.btnCompil)}>*/}
-            {/*        <ArrowRight className="arrowNext" />*/}
-            {/*      </button>*/}
-            {/*    </Swiper>*/}
-            {/*  </div> : null*/}
-            {/*}*/}
+            {!audioFlag && book?.compilations?.length ?
+              <div className={st.compilBlock}>
+                <div className={st.title}>
+                  {innerWidthWindow > 768 ? (
+                    <h3 className={st.compilTitle}>Подборки с этой книгой</h3>
+                  ) : (
+                    <h3 className={st.compilTitle}>Подборки</h3>
+                  )}
+                </div>
+                <Swiper
+                  spaceBetween={24}
+                  modules={[Navigation]}
+                  navigation={{
+                    prevEl: '.prevArrow',
+                    nextEl: '.nextArrow',
+                  }}
+                  slidesPerView={changeSlidesPerView()}
+                >
+                  {book?.compilations?.map(i => (
+                    <SwiperSlide key={i?.id}>
+                      <CompilationItem
+                        path={`/selections/${i?.slug}`}
+                        data={i}
+                      />
+                    </SwiperSlide>
+                  ))}
+                  <button className={classnames('prevArrow', st.btnCompil)}>
+                    <ArrowRight className="arrowNext" />
+                  </button>
+                  <button className={classnames('nextArrow', st.btnCompil)}>
+                    <ArrowRight className="arrowNext" />
+                  </button>
+                </Swiper>
+              </div> : null
+            }
 
             <Form title={book?.title} />
           </div>
