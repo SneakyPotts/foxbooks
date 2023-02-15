@@ -12,6 +12,7 @@ export default class CategoriesService {
 
 	static async getCategoriesWithCount(ssr = false) {
 		console.log('getCategoriesWithCount', `${ssr ? API_URL_L : API_URL}/genres/books`)
+		console.log('LOCAL REQUEST',axios.get(`${API_URL_L}/genres/books`))
 		return axios.get(`${ssr ? API_URL_L : API_URL}/genres/books`)
 	}
 

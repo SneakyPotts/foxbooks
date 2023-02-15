@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Book from '../../shared/common/book';
 import st from './similarBooks.module.scss';
+import {useState} from "react";
 
 const SimilarBooks = ({ type, data }) => {
 
@@ -17,6 +18,8 @@ const SimilarBooks = ({ type, data }) => {
     if (innerWidthWindow > 500) return 4;
   };
 
+  const [state, setState] = useState('initState');
+
   return (
     <div
       id="similar"
@@ -30,9 +33,14 @@ const SimilarBooks = ({ type, data }) => {
         {/*  <ShowAll externalClass={st.dicardDistance} />*/}
         {/*)}*/}
       </div>
+      {state}
       <Swiper
         spaceBetween={changeSpaceBtwSwiper()}
         slidesPerView={changeSlidesPerView()}
+        onInit={(params) => {
+          setState('uje init')
+          console.log(params)
+        }}
       >
         {data.map(i => (
           <SwiperSlide key={i?.id}>
