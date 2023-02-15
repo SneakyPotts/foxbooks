@@ -86,7 +86,7 @@ const BookPage = ({bookType}) => {
           {/*<div*/}
           {/*  className={st.relatedInfo}*/}
           {/*>*/}
-            {book?.similarBooks?.length ?
+          {/*  {book?.similarBooks?.length ?*/}
               <div
                 id="similar"
                 className={s.swiper}
@@ -116,16 +116,16 @@ const BookPage = ({bookType}) => {
                   ))}
                 </Swiper>
               </div>
-              : null
-            }
+            {/*  : null*/}
+            {/*}*/}
 
-            <img
-              src="/horizontalBookCovers/bookCover1.png"
-              alt=""
-              width={588}
-              height={250}
-              className={st.relatedInfoBanner}
-            />
+            {/*<img*/}
+            {/*  src="/horizontalBookCovers/bookCover1.png"*/}
+            {/*  alt=""*/}
+            {/*  width={588}*/}
+            {/*  height={250}*/}
+            {/*  className={st.relatedInfoBanner}*/}
+            {/*/>*/}
 
             {/*<Comments />*/}
 
