@@ -12,6 +12,7 @@ import AuthorOtherBooks from './AuthorOtherBooks';
 import AuthorOtherAudioBooks from './AuthorOtherAudiobooks';
 import SimilarBooks from './SimilarBooks';
 import st from './bookpage.module.scss';
+import s from './SimilarBooks/similarBooks.module.scss';
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
@@ -19,6 +20,7 @@ import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 import Banners from "../shared/common/Banner/Banners";
 import CompilationItem from "../CompilationItem";
+import Book from "../shared/common/book";
 
 const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
@@ -89,6 +91,24 @@ const BookPage = ({bookType}) => {
                 type={type}
                 data={book?.similarBooks}
               /> : null
+            }
+            {
+              <Swiper
+                spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
+                slidesPerView={innerWidthWindow <= 480 ? 3 : 4}
+              >
+                {book?.similarBooks.map(i => (
+                  <SwiperSlide key={i?.id}>
+                    <Book
+                      classNames={s.slide}
+                      book={i}
+                      similar={true}
+                      audio={i?.type === 'audioBooks'}
+                      type={i?.type}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             }
 
             <img

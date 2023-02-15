@@ -30,22 +30,22 @@ const SimilarBooks = ({ type, data }) => {
         {/*  <ShowAll externalClass={st.dicardDistance} />*/}
         {/*)}*/}
       </div>
-      <Swiper
-        spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
-        slidesPerView={innerWidthWindow <= 480 ? 3 : 4}
-      >
-        {data.map(i => (
-          <SwiperSlide key={i?.id}>
-            <Book
-              classNames={st.slide}
-              book={i}
-              similar={true}
-              audio={i?.type === 'audioBooks'}
-              type={i?.type}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {/*<Swiper*/}
+      {/*  spaceBetween={innerWidthWindow <= 768 ? 10 : 24}*/}
+      {/*  slidesPerView={innerWidthWindow <= 480 ? 3 : 4}*/}
+      {/*>*/}
+      {/*  {data.map(i => (*/}
+      {/*    <SwiperSlide key={i?.id}>*/}
+      {/*      <Book*/}
+      {/*        classNames={st.slide}*/}
+      {/*        book={i}*/}
+      {/*        similar={true}*/}
+      {/*        audio={i?.type === 'audioBooks'}*/}
+      {/*        type={i?.type}*/}
+      {/*      />*/}
+      {/*    </SwiperSlide>*/}
+      {/*  ))}*/}
+      {/*</Swiper>*/}
     </div>
   );
 };
