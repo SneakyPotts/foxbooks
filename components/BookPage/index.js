@@ -99,23 +99,23 @@ const BookPage = ({bookType}) => {
             {/*  className={st.relatedInfoBanner}*/}
             {/*/>*/}
 
-            {/*<Comments />*/}
+            <Comments />
 
-            {/*<Reviews type={book.type} />*/}
+            <Reviews type={book.type} />
 
-            {/*{!audioFlag && <Quotes />}*/}
+            {!audioFlag && <Quotes />}
 
-            {/*{booksByAuthor?.length ?*/}
-            {/*  <AuthorOtherBooks*/}
-            {/*    data={booksByAuthor}*/}
-            {/*  /> : null*/}
-            {/*}*/}
+            {booksByAuthor?.length ?
+              <AuthorOtherBooks
+                data={booksByAuthor}
+              /> : null
+            }
 
-            {/*{audioBooksByAuthor?.length ?*/}
-            {/*  <AuthorOtherAudioBooks*/}
-            {/*    data={audioBooksByAuthor}*/}
-            {/*  /> : null*/}
-            {/*}*/}
+            {audioBooksByAuthor?.length ?
+              <AuthorOtherAudioBooks
+                data={audioBooksByAuthor}
+              /> : null
+            }
 
             {/*{!audioFlag && book?.compilations?.length ?*/}
             {/*  <div className={st.compilBlock}>*/}
@@ -153,7 +153,7 @@ const BookPage = ({bookType}) => {
             {/*  </div> : null*/}
             {/*}*/}
 
-            {/*<Form title={book?.title} />*/}
+            <Form title={book?.title} />
           </div>
         </div>
 
