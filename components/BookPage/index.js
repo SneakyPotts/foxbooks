@@ -75,11 +75,11 @@ const BookPage = ({bookType}) => {
 
       <div className={st.wrapper}>
         <div className={st.mainBlock}>
-          <AboutBook
-            book={book}
-            audioFlag={audioFlag}
-            showMyComp={() => setMyCopmIsVisible(true)}
-          />
+          {/*<AboutBook*/}
+          {/*  book={book}*/}
+          {/*  audioFlag={audioFlag}*/}
+          {/*  showMyComp={() => setMyCopmIsVisible(true)}*/}
+          {/*/>*/}
 
           <div
             className={st.relatedInfo}
