@@ -56,22 +56,22 @@ const BookPage = ({bookType}) => {
 
   return (
     <div className={'container'}>
-      <Breadcrumbs
-        data={[
-          {
-            path: `/${type.toLowerCase()}`,
-            title: type === 'books' ? 'Книги' : 'Аудиокниги'
-          },
-          {
-            path: `/${type.toLowerCase()}/${type === 'books' ? book.genres?.[0]?.slug : book.genre?.slug}`,
-            title: `${type === 'books' ? book.genres?.[0]?.name : book.genre?.name}`
-          },
-          {
-            path: router.asPath,
-            title: book?.title
-          },
-        ]}
-      />
+      {/*<Breadcrumbs*/}
+      {/*  data={[*/}
+      {/*    {*/}
+      {/*      path: `/${type.toLowerCase()}`,*/}
+      {/*      title: type === 'books' ? 'Книги' : 'Аудиокниги'*/}
+      {/*    },*/}
+      {/*    {*/}
+      {/*      path: `/${type.toLowerCase()}/${type === 'books' ? book.genres?.[0]?.slug : book.genre?.slug}`,*/}
+      {/*      title: `${type === 'books' ? book.genres?.[0]?.name : book.genre?.name}`*/}
+      {/*    },*/}
+      {/*    {*/}
+      {/*      path: router.asPath,*/}
+      {/*      title: book?.title*/}
+      {/*    },*/}
+      {/*  ]}*/}
+      {/*/>*/}
 
       <div className={st.wrapper}>
         <div className={st.mainBlock}>
@@ -157,9 +157,9 @@ const BookPage = ({bookType}) => {
           </div>
         </div>
 
-        <div className={st.advertisingBlok}>
-          <Banners />
-        </div>
+        {/*<div className={st.advertisingBlok}>*/}
+        {/*  <Banners />*/}
+        {/*</div>*/}
       </div>
     </div>
   );
