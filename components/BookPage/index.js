@@ -73,17 +73,17 @@ const BookPage = ({bookType}) => {
       {/*  ]}*/}
       {/*/>*/}
 
-      <div className={st.wrapper}>
-        <div className={st.mainBlock}>
+      {/*<div className={st.wrapper}>*/}
+      {/*  <div className={st.mainBlock}>*/}
           {/*<AboutBook*/}
           {/*  book={book}*/}
           {/*  audioFlag={audioFlag}*/}
           {/*  showMyComp={() => setMyCopmIsVisible(true)}*/}
           {/*/>*/}
 
-          <div
-            className={st.relatedInfo}
-          >
+          {/*<div*/}
+          {/*  className={st.relatedInfo}*/}
+          {/*>*/}
             {book?.similarBooks?.length ?
               <SimilarBooks
                 type={type}
@@ -154,13 +154,13 @@ const BookPage = ({bookType}) => {
             {/*}*/}
 
             {/*<Form title={book?.title} />*/}
-          </div>
-        </div>
+          {/*</div>*/}
+        {/*</div>*/}
 
         {/*<div className={st.advertisingBlok}>*/}
         {/*  <Banners />*/}
         {/*</div>*/}
-      </div>
+      {/*</div>*/}
     </div>
   );
 };
