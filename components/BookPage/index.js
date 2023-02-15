@@ -19,6 +19,7 @@ import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 import Banners from "../shared/common/Banner/Banners";
 import CompilationItem from "../CompilationItem";
+import Image from "next/image";
 
 const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
@@ -84,14 +85,14 @@ const BookPage = ({bookType}) => {
           <div
             className={st.relatedInfo}
           >
-            {book?.similarBooks?.length ?
+            {book?.similarBooks?.length &&
               <SimilarBooks
                 type={type}
                 data={book?.similarBooks}
-              /> : null
+              />
             }
 
-            <img
+            <Image
               src="/horizontalBookCovers/bookCover1.png"
               alt=""
               width={588}

@@ -17,7 +17,7 @@ const initialState = {
 
 export const getBooksByAuthor = createAsyncThunk(
 	'book/getBooksByAuthor',
-	async id => {
+	async (id = 0) => {
 		const response = await BookService.getBooksByAuthor(id)
 		return response.data
 	}
@@ -36,7 +36,7 @@ export const getBooksByLetter = createAsyncThunk(
 
 export const getAudioBooksByAuthor = createAsyncThunk(
 	'book/getAudioBooksByAuthor',
-	async id => {
+	async (id = 0) => {
 		const response = await BookService.getAudioBooksByAuthor(id)
 		return response.data
 	}
