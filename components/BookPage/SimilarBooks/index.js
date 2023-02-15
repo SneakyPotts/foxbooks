@@ -37,9 +37,11 @@ const SimilarBooks = ({ type, data }) => {
       <Swiper
         spaceBetween={changeSpaceBtwSwiper()}
         slidesPerView={changeSlidesPerView()}
-        init={false}
+        loop={true}
         onInit={(params) => {
-          setState('uje init')
+          setState(`uje init - ${params?.browser?.isSafari}`)
+        }}
+        onSwiper={(params) => {
           console.log(params)
         }}
       >
