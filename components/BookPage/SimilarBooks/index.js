@@ -20,6 +20,9 @@ const SimilarBooks = ({ type, data }) => {
 
   const [state, setState] = useState('initState');
 
+  if (data.length < 1)
+    return null
+
   return (
     <div
       id="similar"

@@ -84,12 +84,14 @@ const BookPage = ({bookType}) => {
           <div
             className={st.relatedInfo}
           >
-            {book?.similarBooks?.length ?
+            {/*{*/}
+            {/*  book?.similarBooks?.length ?*/}
               <SimilarBooks
                 type={type}
                 data={book?.similarBooks}
-              /> : null
-            }
+              />
+            {/*    : null*/}
+            {/*}*/}
 
             <img
               src="/horizontalBookCovers/bookCover1.png"
