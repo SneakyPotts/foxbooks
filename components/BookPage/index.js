@@ -91,69 +91,69 @@ const BookPage = ({bookType}) => {
               /> {/*: null
             }*/}
 
-            <img
-              src="/horizontalBookCovers/bookCover1.png"
-              alt=""
-              width={588}
-              height={250}
-              className={st.relatedInfoBanner}
-            />
+            {/*<img*/}
+            {/*  src="/horizontalBookCovers/bookCover1.png"*/}
+            {/*  alt=""*/}
+            {/*  width={588}*/}
+            {/*  height={250}*/}
+            {/*  className={st.relatedInfoBanner}*/}
+            {/*/>*/}
 
-            <Comments />
+            {/*<Comments />*/}
 
-            <Reviews type={book.type} />
+            {/*<Reviews type={book.type} />*/}
 
-            {!audioFlag && <Quotes />}
+            {/*{!audioFlag && <Quotes />}*/}
 
-            {booksByAuthor?.length ?
-              <AuthorOtherBooks
-                data={booksByAuthor}
-              /> : null
-            }
+            {/*{booksByAuthor?.length ?*/}
+            {/*  <AuthorOtherBooks*/}
+            {/*    data={booksByAuthor}*/}
+            {/*  /> : null*/}
+            {/*}*/}
 
-            {audioBooksByAuthor?.length ?
-              <AuthorOtherAudioBooks
-                data={audioBooksByAuthor}
-              /> : null
-            }
+            {/*{audioBooksByAuthor?.length ?*/}
+            {/*  <AuthorOtherAudioBooks*/}
+            {/*    data={audioBooksByAuthor}*/}
+            {/*  /> : null*/}
+            {/*}*/}
 
-            {!audioFlag && book?.compilations?.length ?
-              <div className={st.compilBlock}>
-                <div className={st.title}>
-                  {innerWidthWindow > 768 ? (
-                    <h3 className={st.compilTitle}>Подборки с этой книгой</h3>
-                  ) : (
-                    <h3 className={st.compilTitle}>Подборки</h3>
-                  )}
-                </div>
-                <Swiper
-                  spaceBetween={24}
-                  modules={[Navigation]}
-                  navigation={{
-                    prevEl: '.prevArrow',
-                    nextEl: '.nextArrow',
-                  }}
-                  slidesPerView={changeSlidesPerView()}
-                >
-                  {book?.compilations?.map(i => (
-                    <SwiperSlide key={i?.id}>
-                      <CompilationItem
-                        path={`/selections/${i?.slug}`}
-                        data={i}
-                      />
-                    </SwiperSlide>
-                  ))}
-                  <button className={classnames('prevArrow', st.btnCompil)}>
-                    <ArrowRight className="arrowNext" />
-                  </button>
-                  <button className={classnames('nextArrow', st.btnCompil)}>
-                    <ArrowRight className="arrowNext" />
-                  </button>
-                </Swiper>
-              </div> : null
-            }
+            {/*{!audioFlag && book?.compilations?.length ?*/}
+            {/*  <div className={st.compilBlock}>*/}
+            {/*    <div className={st.title}>*/}
+            {/*      {innerWidthWindow > 768 ? (*/}
+            {/*        <h3 className={st.compilTitle}>Подборки с этой книгой</h3>*/}
+            {/*      ) : (*/}
+            {/*        <h3 className={st.compilTitle}>Подборки</h3>*/}
+            {/*      )}*/}
+            {/*    </div>*/}
+            {/*    <Swiper*/}
+            {/*      spaceBetween={24}*/}
+            {/*      modules={[Navigation]}*/}
+            {/*      navigation={{*/}
+            {/*        prevEl: '.prevArrow',*/}
+            {/*        nextEl: '.nextArrow',*/}
+            {/*      }}*/}
+            {/*      slidesPerView={changeSlidesPerView()}*/}
+            {/*    >*/}
+            {/*      {book?.compilations?.map(i => (*/}
+            {/*        <SwiperSlide key={i?.id}>*/}
+            {/*          <CompilationItem*/}
+            {/*            path={`/selections/${i?.slug}`}*/}
+            {/*            data={i}*/}
+            {/*          />*/}
+            {/*        </SwiperSlide>*/}
+            {/*      ))}*/}
+            {/*      <button className={classnames('prevArrow', st.btnCompil)}>*/}
+            {/*        <ArrowRight className="arrowNext" />*/}
+            {/*      </button>*/}
+            {/*      <button className={classnames('nextArrow', st.btnCompil)}>*/}
+            {/*        <ArrowRight className="arrowNext" />*/}
+            {/*      </button>*/}
+            {/*    </Swiper>*/}
+            {/*  </div> : null*/}
+            {/*}*/}
 
-            <Form title={book?.title} />
+            {/*<Form title={book?.title} />*/}
           </div>
         </div>
 
