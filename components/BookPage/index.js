@@ -12,6 +12,7 @@ import AuthorOtherBooks from './AuthorOtherBooks';
 import AuthorOtherAudioBooks from './AuthorOtherAudiobooks';
 import SimilarBooks from './SimilarBooks';
 import st from './bookpage.module.scss';
+import s from './SimilarBooks/similarBooks.module.scss';
 import {useRouter} from "next/router";
 import Breadcrumbs from "../BreadCrumps/BreadCrumps";
 import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
@@ -19,6 +20,7 @@ import AddToMyCompilation from "./AddToMyCompilation";
 import Form from "./Form";
 import Banners from "../shared/common/Banner/Banners";
 import CompilationItem from "../CompilationItem";
+import Book from "../shared/common/book";
 
 const BookPage = ({bookType}) => {
   const dispatch = useDispatch()
@@ -85,10 +87,36 @@ const BookPage = ({bookType}) => {
           {/*  className={st.relatedInfo}*/}
           {/*>*/}
             {book?.similarBooks?.length ?
-              <SimilarBooks
-                type={type}
-                data={book?.similarBooks}
-              /> : null
+              <div
+                id="similar"
+                className={s.swiper}
+              >
+                <div className={s.swiperTitle}>
+                  <h3 className={s.title}>
+                    {type === 'books' ? 'Похожие книги' : 'Похожие аудиокниги'}
+                  </h3>
+                  {/*{innerWidthWindow <= 768 && (*/}
+                  {/*  <ShowAll externalClass={st.dicardDistance} />*/}
+                  {/*)}*/}
+                </div>
+                <Swiper
+                  spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
+                  slidesPerView={innerWidthWindow <= 500 ? 3 : 4}
+                >
+                  {book?.similarBooks.map(i => (
+                    <SwiperSlide key={i?.id}>
+                      <Book
+                        classNames={s.slide}
+                        book={i}
+                        similar={true}
+                        audio={i?.type === 'audioBooks'}
+                        type={i?.type}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+              : null
             }
 
             <img
