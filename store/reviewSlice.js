@@ -4,7 +4,11 @@ import ReviewService from "../http/ReviewService";
 const initialState = {
   reviewTypes: [],
   userReviews: [],
-  error: ''
+  reviews: [],
+  reviewsMobile: [],
+  lastPage: 1,
+  error: '',
+
 };
 
 export const getReviewTypes = createAsyncThunk(
@@ -20,6 +24,7 @@ export const addReview = createAsyncThunk(
   async (data, {rejectWithValue}) => {
     try {
       const response = await ReviewService.addReview(data)
+      console.log(response.data.data)
       return response.data.data
     } catch (err) {
       return rejectWithValue(err.response.data.errors.id[0])
@@ -32,6 +37,17 @@ export const getUserReview = createAsyncThunk(
   async (query) => {
     const response = await ReviewService.getUserReview(query)
     return response.data.data;
+  }
+)
+
+export const getCurrentReviews = createAsyncThunk(
+  'review/getCurrentReviews',
+  async (data= {}) => {
+    const response = await ReviewService.getCurrentReviews(data)
+    return {
+      reviews: response.data.data.data,
+      last: response.data.data.last_page,
+    }
   }
 )
 
@@ -58,6 +74,11 @@ export const review = createSlice({
     setReviews: (state, action) => {
       state.reviews = action.payload
     },
+    clearReviews: (state) => {
+      state.reviews = []
+      state.reviewsMobile = []
+      state.lastPage = 1
+    }
   },
   extraReducers: {
     [getReviewTypes.fulfilled]: (state, action) => {
@@ -65,7 +86,8 @@ export const review = createSlice({
     },
 
     [addReview.fulfilled]: (state, action) => {
-      state.reviews.data.push(action.payload)
+      state.reviews.push(action.payload)
+      state.reviewsMobile.push(action.payload)
     },
     [addReview.rejected]: (state, action) => {
       state.error = action.payload
@@ -73,6 +95,12 @@ export const review = createSlice({
 
     [getUserReview.fulfilled]: (state, action) => {
       state.userReviews = action.payload
+    },
+
+    [getCurrentReviews.fulfilled]: (state, action) => {
+      state.reviews = action.payload.reviews
+      state.reviewsMobile = [...state.reviewsMobile, ...action.payload.reviews]
+      state.lastPage = action.payload.last
     },
 
     [updateReview.fulfilled]: (state, action) => {
@@ -95,6 +123,6 @@ export const review = createSlice({
   }
 });
 
-export const {setReviews} = review.actions;
+export const {setReviews, clearReviews} = review.actions;
 
 export default review.reducer;
