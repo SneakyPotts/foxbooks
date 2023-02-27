@@ -1,22 +1,24 @@
 import {useEffect, useRef, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Button from '../../shared/common/Button/Button';
 import CommentComp from '../CommentItem';
 import st from './reviews.module.scss';
 import MyPagination from '../../shared/common/MyPagination';
 import ReviewForm from "../../ReviewForm";
-import ReviewService from "../../../http/ReviewService";
+import {clearReviews, getCurrentReviews} from "../../../store/reviewSlice";
 
 const Reviews = ({type}) => {
+	const dispatch = useDispatch();
 	const blockRef = useRef();
 
 	const {innerWidthWindow} = useSelector(state => state.common);
 	const {id} = useSelector(state => state.book?.book);
+	const {reviews} = useSelector(state => state.review)
+	const {reviewsMobile} = useSelector(state => state.review)
+	const {lastPage} = useSelector(state => state.review)
 
 	const [reviewTyping, setReviewTyping] = useState(false);
-	const [reviewsList, setReviewsList] = useState([]);
 	const [page, setPage] = useState(1);
-	const [lastPage, setLastPage] = useState(1);
 
 	const reviewsType = {
 		'1': 'positive',
@@ -36,14 +38,12 @@ const Reviews = ({type}) => {
 	}
 
 	useEffect(() => {
-		innerWidthWindow && ReviewService.getCurrentReviews(reviewRequestData)
-			.then((response) => {
-				setReviewsList((prev) => {
-					return innerWidthWindow > 768 ? response.data.data.data : [...prev, ...response.data.data.data]
-				});
-				setLastPage(response.data.data.last_page)
-			})
-	}, [page, id, innerWidthWindow]);
+		dispatch(getCurrentReviews(reviewRequestData))
+	}, [page]);
+
+	useEffect(() => {
+		dispatch(clearReviews())
+	},[id])
 
 
 	const handleLeaveReviewInput = () => {
@@ -73,7 +73,7 @@ const Reviews = ({type}) => {
 				</div>
 			)}
 
-			{reviewsList?.map((it, idx) => (
+			{(innerWidthWindow > 768 ? reviews : reviewsMobile).map((it, idx) => (
 				<div key={it.id} className={st.review}>
 					<CommentComp
 						idx={idx}
