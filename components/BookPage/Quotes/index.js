@@ -7,120 +7,149 @@ import st from './quotes.module.scss';
 import 'moment/locale/ru'
 import moment from "moment";
 import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import CommentsService from "../../../http/CommentsService";
 import {setAuthPopupVisibility} from "../../../store/commonSlice";
 import classnames from "classnames";
+import {useRouter} from "next/router";
+import Cookies from "js-cookie";
+import BookService from "../../../http/BookService";
+import {setBookQuotes} from "../../../store/bookSlice";
 
 const Quotes = () => {
-  const {bookQuotes} = useSelector(state => state.book);
+	const dispatch = useDispatch();
+	const { query: {books_type} } = useRouter();
+	const quote = useRef(null);
 
-  if (!bookQuotes?.data?.length) return null
+	const { book } = useSelector(state => state.book);
+	const { bookQuotes } = useSelector(state => state.book);
 
-  return (
-    <div
-      id="quotes"
-      className={st.container}
-    >
-      <h2 className={st.quotesTitle}>Цитаты</h2>
+	const [currentPage, setCurrentPage] = useState(1);
 
-      {bookQuotes?.data.map(i =>
-        <QuoteItem key={i.id} data={i} />
-      )}
+	const token = Cookies.get('token');
 
-      {bookQuotes?.last_page > 1 ?
-        <MyPagination
-          currentPage={bookQuotes?.current_page}
-          lastPage={bookQuotes?.last_page}
-        />
-        : null
-      }
-    </div>
-  );
+	useEffect(async () => {
+		if (books_type === 'books') {
+			const data = await BookService.getBookQuotes(book.id, token, currentPage)
+			dispatch(setBookQuotes(data?.data?.data));
+		}
+	}, [currentPage]);
+
+	return (
+		<>
+			{bookQuotes?.data?.length
+				? (
+					<div
+						ref={quote}
+						id="quotes"
+						className={st.container}
+					>
+						<h2 className={st.quotesTitle}>Цитаты</h2>
+
+						{bookQuotes?.data.map(i =>
+							<QuoteItem key={i.id} data={i}/>
+						)}
+
+						{bookQuotes?.last_page > 1 ?
+							<MyPagination
+								currentPage={bookQuotes?.current_page}
+								lastPage={bookQuotes?.last_page}
+								onClick={setCurrentPage}
+								scrollTo={quote}
+							/>
+							: null
+						}
+					</div>
+				)
+				: null
+			}
+		</>
+	)
+		;
 };
 
 const QuoteItem = ({data}) => {
-  const [likesCount, setLikesCount] = useState(data?.likes_count);
-  const [isLiked, setIsLiked] = useState(data?.is_liked);
-  const {isAuth} = useSelector(state => state.auth);
-  const dispatch = useDispatch();
+	const [likesCount, setLikesCount] = useState(data?.likes_count);
+	const [isLiked, setIsLiked] = useState(data?.is_liked);
+	const {isAuth} = useSelector(state => state.auth);
+	const dispatch = useDispatch();
 
-  const likeHandler = async () => {
-    if (isAuth) {
-      const obj = {
-        id: data.id,
-        type: "quote"
-      }
+	const likeHandler = async () => {
+		if (isAuth) {
+			const obj = {
+				id: data.id,
+				type: "quote"
+			}
 
-      if (isLiked) {
-        await CommentsService.deleteLikeFromComment(obj)
-        setLikesCount(prev => prev - 1)
-        setIsLiked(false)
-      } else {
-        await CommentsService.addLikeToComment(obj)
-        setLikesCount(prev => prev + 1)
-        setIsLiked(true)
-      }
-    } else {
-      dispatch(setAuthPopupVisibility(true))
-    }
-  }
+			if (isLiked) {
+				await CommentsService.deleteLikeFromComment(obj)
+				setLikesCount(prev => prev - 1)
+				setIsLiked(false)
+			} else {
+				await CommentsService.addLikeToComment(obj)
+				setLikesCount(prev => prev + 1)
+				setIsLiked(true)
+			}
+		} else {
+			dispatch(setAuthPopupVisibility(true))
+		}
+	}
 
-  return (
-    <div
-      className={st.quote}
-    >
-      <div className={st.user}>
-        <div className={st.userIcon}>
-          {data?.user?.avatar ? (
-            <Image
-              src={data?.user?.avatar}
-              alt="Avatar"
-              width="35"
-              height="35"
-              // placeholder="blur"
-              blurDataURL="/blur.webp"
-            />
-          ) : (
-            <AvatarWithLetter
-              letter={
-                data?.user?.nickname?.slice(0, 1) ||
-                data?.user?.name?.slice(0, 1) ||
-                'П'
-              }
-              width={35}
-              id={data?.user?.id}
-              isProfile
-            />
-          )}
-        </div>
-        <h3 className={st.userName}>{data?.user?.nickname || data?.user?.name || 'Пользователь'}</h3>
-      </div>
+	return (
+		<div
+			className={st.quote}
+		>
+			<div className={st.user}>
+				<div className={st.userIcon}>
+					{data?.user?.avatar ? (
+						<Image
+							src={data?.user?.avatar}
+							alt="Avatar"
+							width="35"
+							height="35"
+							// placeholder="blur"
+							blurDataURL="/blur.webp"
+						/>
+					) : (
+						<AvatarWithLetter
+							letter={
+								data?.user?.nickname?.slice(0, 1) ||
+								data?.user?.name?.slice(0, 1) ||
+								'П'
+							}
+							width={35}
+							id={data?.user?.id}
+							isProfile
+						/>
+					)}
+				</div>
+				<h3 className={st.userName}>{data?.user?.nickname || data?.user?.name || 'Пользователь'}</h3>
+			</div>
 
-      <div className={st.quoteInfo}>
-        <span>{moment(data?.updated_at).format('Do MMMM YYYY в HH:mm').replace('-го', '')}</span>
-        <span className={st.quoteView}>
+			<div className={st.quoteInfo}>
+				<span>{moment(data?.updated_at).format('Do MMMM YYYY в HH:mm').replace('-го', '')}</span>
+				<span className={st.quoteView}>
               <span className={st.quoteViewCount}>{data?.views_count}</span> <Eye/>
             </span>
-      </div>
+			</div>
 
-      <div className={st.quoteContainer}>
-        <p className={st.commentText}>{data?.text}</p>
-        <div className={st.quoteStatistic}>
+			<div className={st.quoteContainer}>
+				<p className={st.commentText}>{data?.text}</p>
+				<div className={st.quoteStatistic}>
               <span
-                className={classnames(st.quoteIcon, {
-                  [st.active]: isLiked
-                })}
-                // className={st.quoteIcon}
-                onClick={likeHandler}
-              >
+								className={classnames(st.quoteIcon, {
+									[st.active]: isLiked
+								})}
+								// className={st.quoteIcon}
+								onClick={likeHandler}
+							>
                 <Like/>
               </span>
-          <span className={st.quoteLike}>{likesCount}</span>
-        </div>
-      </div>
-    </div>
-  );
+					<span className={st.quoteLike}>{likesCount}</span>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default Quotes;

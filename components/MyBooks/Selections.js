@@ -33,11 +33,11 @@ const filter1 = [
 
 const filter2 = [
   {
-    title: 'Популярные',
-    defaultValue: 3,
+    title: 'По дате добавления',
+    defaultValue: 1,
     options: [
-      {id: 1, title: 'Популярные', value: 3},
-      {id: 2, title: 'По дате добавления', value: 1},
+      {id: 1, title: 'По дате добавления', value: 1},
+      {id: 2, title: 'Популярные', value: 3},
       {id: 3, title: 'По алфавиту', value: 2}
     ],
     queryName: 'sortBy',

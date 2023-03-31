@@ -85,8 +85,8 @@ export default class BookService {
 		return axios.get(`${API_URL}/${type === 'books' ? 'books' : 'audio-books'}/${id}/similar`)
 	}
 
-	static async getBookQuotes(id, token) {
-		return axios.get(`${API_URL}/books/${id}/quotes`, {
+	static async getBookQuotes(id, token, page = 1) {
+		return axios.get(`${API_URL}/books/${id}/quotes?page=${page}`, {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}
