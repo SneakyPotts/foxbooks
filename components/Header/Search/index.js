@@ -74,12 +74,12 @@ const Search = ({ value , onClose }) => {
                       className={st.dropDownContentPopularItem}
                     >
                       <Link href={`/${i?.type}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}>
-                        <a onClick={onClose}>
+                        <a onClick={onClose} style={{width: 124, height: 187, display: "block", position: "relative"}}>
                           <Image
                             src={i?.cover_url || '/blur.webp'}
                             width={124}
                             height={187}
-                            // layout="fill"
+                            layout="fill"
                             placeholder="blur"
                             blurDataURL="/blur.webp"
                             className={st.dropDownContentPopularImg}

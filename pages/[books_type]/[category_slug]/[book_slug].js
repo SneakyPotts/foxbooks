@@ -10,7 +10,7 @@ const Book = ({ book, bookQuotes, books_type, banners }) => {
   const dispatch = useDispatch()
 
   dispatch(setBook(book));
-  dispatch(setBookQuotes(bookQuotes));
+  // dispatch(setBookQuotes(bookQuotes));
   dispatch(setCurrentPageBanners(banners));
 
   return <BookPage bookType={books_type}/>
@@ -18,7 +18,7 @@ const Book = ({ book, bookQuotes, books_type, banners }) => {
 
 export default Book;
 
-export async function getServerSideProps ({req, params}) {
+export async function getServerSideProps ({req, params, query}) {
   const { cookies } = req
   const token = cookies.token
   const type = params.books_type === 'audiobooks' ? 'audioBooks' : 'books';
@@ -31,7 +31,7 @@ export async function getServerSideProps ({req, params}) {
 
     const banners = await AdminSettings.getPageBanner({page_slug: params?.book_slug});
 
-    const bookQuotes = type === 'books' ? await BookService.getBookQuotes(book.data.data.id, token) : null;
+    // const bookQuotes = type === 'books' ? await BookService.getBookQuotes(book.data.data.id, token, query?.page) : null;
     const audioBookChapters = type === 'audioBooks' ? await BookService.audioBookChapters(book.data.data.id) : null;
 
     return {
@@ -41,7 +41,7 @@ export async function getServerSideProps ({req, params}) {
           similarBooks: similarBooks.data.data,
           chapters: audioBookChapters?.data?.data?.chapters || [],
         },
-        bookQuotes: bookQuotes?.data?.data || {},
+        // bookQuotes: bookQuotes?.data?.data || {},
         books_type: type,
         SEO: {
           title: book?.data?.data?.seo_title,
