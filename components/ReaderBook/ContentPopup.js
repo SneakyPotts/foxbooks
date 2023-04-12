@@ -7,7 +7,7 @@ import {useRouter} from "next/router";
 const ContentPopup = ({onClose}) => {
   const router = useRouter()
   const { book, bookChapters } = useSelector(state => state.reader)
-
+  console.log(book)
   const handleClick = (pageNumber) => {
       router.push({ query: { ...router.query, page: pageNumber } }).then(() => {
         onClose && onClose()
@@ -30,7 +30,8 @@ const ContentPopup = ({onClose}) => {
                     })}
                     onClick={() => handleClick(i?.page?.page_number)}
                 >
-                    {i?.title}
+                  <span className={styles.chapterName}>{i?.title}</span>
+                  <span className={styles.chapterProgress}>{`${book?.reading_progress}%`}</span>
                 </span>
               </li>
             )}
