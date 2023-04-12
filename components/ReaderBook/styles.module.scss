@@ -747,9 +747,47 @@
   }
 }
 .markListItem {
-  font-size: 14px;
-  line-height: 140%;
   cursor: pointer;
+  display: flex;
+  column-gap: 20px;
+
+  .icon {
+    &Mark {
+      fill: #ff781d;
+      height: 20px;
+
+      & > svg {
+        max-height: 100%;
+      }
+    }
+    &Delete {
+      stroke: #D5D5D5;
+
+      display: flex;
+      height: fit-content;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+  }
+
+  .caption {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 120%;
+    color: $color-third;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 120%;
+    color: $color-second;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+
 }
 .empty {
   color: var(--text-color);
