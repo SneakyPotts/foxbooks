@@ -89,10 +89,6 @@ const ReaderBook = () => {
     }
   }
 
-  const handleMarkClick = page => {
-    router.push({ query: { ...router.query, page } })
-  }
-
   useEffect(() => {
     const closeHandler = ev => {
       if(ev.key === "Escape") {
@@ -127,7 +123,6 @@ const ReaderBook = () => {
             showQuotesPopup={showQuotesPopup}
             toggleEditPopup={toggleEditPopup}
             addMarkToggler={addMarkToggler}
-            handleMarkClick={handleMarkClick}
           />
         </>
         }
@@ -207,9 +202,7 @@ const ReaderBook = () => {
             externalClass={styles.drawer}
             onClose={() => setMarkPopupIsVisible(false)}
           >
-            <MarksPopup
-              handleMarkClick={handleMarkClick}
-            />
+            <MarksPopup />
           </DrawerPopup>
         }
       </div>

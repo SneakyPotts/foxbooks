@@ -5,9 +5,12 @@ import classNames from "classnames";
 import BookMark from "../shared/icons/BookMark";
 import Bin from "../shared/icons/trash";
 import {deleteBookMark} from "../../store/readerSlice";
+import Link from "next/link";
+import {useRouter} from "next/router";
 
-const MarksPopup = ({ handleMarkClick }) => {
+const MarksPopup = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { bookMarks, bookChapters } = useSelector(state => state.reader)
 
@@ -24,15 +27,20 @@ const MarksPopup = ({ handleMarkClick }) => {
             <li
               key={i?.id}
               className={classNames(styles.popupListItem, styles.markListItem)}
-              onClick={() => handleMarkClick(i?.page?.page_number || i?.page[0]?.page_number)}
             >
               <div className={styles.iconMark}>
                 <BookMark/>
               </div>
-              <div>
-                <p className={styles.caption}>{`Закладка (глава ${bookChapters?.findIndex(j => j?.id === i?.chapter?.id) + 1} из ${bookChapters?.length}): ${i?.page?.page_number} страница`}</p>
-                <p className={styles.text}>В закладке прописывается часть первого предложения на странице</p>
-              </div>
+              <Link href={{
+                query: { ...router.query, page: i?.page?.page_number },
+              }}>
+                <a>
+                  <p className={styles.caption}>
+                    {`Закладка (глава ${bookChapters?.findIndex(j => j?.id === i?.chapter?.id) + 1} из ${bookChapters?.length}): ${i?.page?.page_number} страница`}
+                  </p>
+                  <p className={styles.text}>{`${i?.page?.content}...`}</p>
+                </a>
+              </Link>
               <div onClick={() => handleDeleteMark(i?.id)} className={styles.iconDelete}>
                 <Bin />
               </div>

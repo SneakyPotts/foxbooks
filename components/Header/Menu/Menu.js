@@ -18,6 +18,7 @@ import React from "react";
 
 const Navigation = ({ setModal, bottomOnly }) => {
   const router = useRouter();
+
   const { isAuth } = useSelector(state => state.auth);
   const { innerWidthWindow } = useSelector(state => state.common);
   const { profile, newNotification } = useSelector(state => state.profile);
@@ -25,7 +26,10 @@ const Navigation = ({ setModal, bottomOnly }) => {
   return (
     <nav className={css.navigation}>
       <div className={classNames(css.topMenu, {[css.hidden]: bottomOnly})}>
-        <Link href="/books">
+        <Link href={{
+          pathname: '/[books_type]',
+          query: { books_type: 'books' },
+        }}>
           <a
             className={`${css.link} ${
               router.query.books_type === 'books' && !router.query.category_slug
@@ -39,7 +43,10 @@ const Navigation = ({ setModal, bottomOnly }) => {
             Книги
           </a>
         </Link>
-        <Link href="/audiobooks">
+        <Link href={{
+          pathname: '/[books_type]',
+          query: { books_type: 'audiobooks' },
+        }}>
           <a
             className={`${css.link} ${css.linkStroke} ${
               router.query.books_type === 'audiobooks' && !router.query.category_slug
