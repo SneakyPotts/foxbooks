@@ -7,14 +7,14 @@ import { useSelector } from 'react-redux';
 import ArrowIcon from './../../public/chevron-right.svg';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import BookMark from '../shared/icons/BookMark';
 import FullScreen from '../shared/icons/FullScreen';
 import Letter from '../shared/icons/Letter';
 import Logo from '../shared/icons/Logo';
 import ReaderGambgurger from '../shared/icons/ReadderGambgurger';
 import Quote from '../shared/icons/quote';
-
-import styles from './styles.module.scss';
 
 const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkToggler }) => {
   const router = useRouter();

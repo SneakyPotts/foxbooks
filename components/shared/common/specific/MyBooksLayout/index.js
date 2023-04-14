@@ -20,13 +20,13 @@ import { Navigation } from 'swiper/core';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import styles from './styles.module.scss';
+
 import { setUserReadingProgress } from '../../../../../store/bookSlice';
 import { setHeaderVisibility } from '../../../../../store/commonSlice';
 
 import BookService from '../../../../../http/BookService';
 import CommonService from '../../../../../http/CommonService';
-
-import styles from './styles.module.scss';
 
 const MyBooksLayout = ({ children }) => {
   const dispatch = useDispatch();

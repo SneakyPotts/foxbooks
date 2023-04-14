@@ -10,6 +10,8 @@ import classnames from 'classnames';
 import moment from 'moment';
 import 'moment/locale/ru';
 
+import styles from './styles.module.scss';
+
 import { setAuthPopupVisibility } from '../../store/commonSlice';
 
 import CommentsService from '../../http/CommentsService';
@@ -20,8 +22,6 @@ import EditPensil from '../shared/icons/editPencil';
 import Eye from '../shared/icons/eye';
 import Like from '../shared/icons/heart';
 import Bin from '../shared/icons/trash';
-
-import styles from './styles.module.scss';
 
 const ReviewLogicItem = ({ data, withControls, onDelete }) => {
   const dispatch = useDispatch();

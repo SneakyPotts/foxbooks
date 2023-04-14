@@ -1,14 +1,15 @@
 import { useSelector } from 'react-redux';
 
 import ArrowRight from '../../../../public/chevron-right.svg';
-import css from './audioBooks.module.scss';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import cssBook from './../../../shared/common/book/book.module.scss';
+import css from './audioBooks.module.scss';
+
 import Book from '../../../shared/common/book';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
-import cssBook from './../../../shared/common/book/book.module.scss';
 
 const AudioBooks = ({ audioBooks }) => {
   const { innerWidthWindow } = useSelector((state) => state.common);

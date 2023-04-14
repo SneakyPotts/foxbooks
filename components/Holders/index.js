@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import ButtonGroup from '../SettingsProfile/buttonGroup';
-import styles from './index.module.scss';
 import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
+
+import styles from './index.module.scss';
 
 import CommonService from '../../http/CommonService';
 

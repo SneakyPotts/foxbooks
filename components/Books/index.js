@@ -6,8 +6,9 @@ import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import MobileFilterModal from '../MobileFilterModal';
-import st from './books.module.scss';
 import classnames from 'classnames';
+
+import st from './books.module.scss';
 
 import Button from '../shared/common/Button/Button';
 import BookFilters from '../shared/common/booksFilters/BookFilters';

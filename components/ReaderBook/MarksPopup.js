@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { deleteBookMark } from '../../store/readerSlice';
 
 import BookMark from '../shared/icons/BookMark';
 import Bin from '../shared/icons/trash';
-
-import styles from './styles.module.scss';
 
 const MarksPopup = () => {
   const dispatch = useDispatch();

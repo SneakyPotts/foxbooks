@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 
 import Close from '../../../public/clear.svg';
+
 import css from './clear.module.css';
 
 const ClearAll = () => {

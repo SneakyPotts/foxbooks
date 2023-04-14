@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 import { objToRange } from '../../utils';
 import DotsDropdown from '../DotsDropdown';
 
+import styles from './styles.module.scss';
+
 import Stars from '../shared/common/stars/Stars';
 import All from '../shared/icons/all';
 import Like from '../shared/icons/heart';
 import Bin from '../shared/icons/trash';
-
-import styles from './styles.module.scss';
 
 const QuoteItem = ({ data, onDelete }) => {
   const router = useRouter();

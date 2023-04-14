@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { durationString, wordsForCount } from '../../../utils';
 import DotsDropdown from '../../DotsDropdown';
-import st from './aboutBook.module.scss';
 import classnames from 'classnames';
+
+import st from './aboutBook.module.scss';
 
 import { deleteBookFromFavorite, setAudioBookRating, setBookRating, setBookStatus } from '../../../store/bookSlice';
 import { setAuthPopupVisibility, setPlayerVisibility } from '../../../store/commonSlice';

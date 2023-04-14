@@ -6,16 +6,16 @@ import { useSelector } from 'react-redux';
 import AuthorCard from '../AuthorCard';
 import CompilationItem from '../CompilationItem';
 import Popular from '../Filter/Popular/Popular';
-import st from '../NewPage/newPage.module.scss';
 import SeriesCard from '../SeriesCard';
 import classNames from 'classnames';
+
+import st from '../NewPage/newPage.module.scss';
+import s from './styles.module.scss';
 
 import Banners from '../shared/common/Banner/Banners';
 import Book from '../shared/common/book';
 import BookFilters from '../shared/common/booksFilters/BookFilters';
 import ShowAll from '../shared/common/showAll/ShowAll';
-
-import s from './styles.module.scss';
 
 const filters = [
   { id: 1, title: 'Все', value: 1 },

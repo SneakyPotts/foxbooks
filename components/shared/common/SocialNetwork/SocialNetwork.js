@@ -5,8 +5,9 @@ import OK from '../../icons/OK';
 import VK from '../../icons/VK';
 import Google from '../../icons/google';
 import Yandex from '../../icons/yandex';
-import styles from './index.module.scss';
 import classnames from 'classnames';
+
+import styles from './index.module.scss';
 
 const SocialNetwork = ({ title = true, connect = false, ClassNames }) => {
   return (

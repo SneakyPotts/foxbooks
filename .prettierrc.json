@@ -9,14 +9,14 @@
     "^react/(.*)$",
     "^react",
     "<THIRD_PARTY_MODULES>",
+    "[./]*.module.*",
     "^components/(.*)$",
     "/store/(.*)$",
     "/http/(.*)$",
     "/hooks/(.*)$",
     "/shared/(.*)$",
     "^public/(.*)$",
-    "^styles/(.*)$",
-    "[./]styles.*"
+    "^styles/(.*)$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true

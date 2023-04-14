@@ -8,6 +8,8 @@ import ButtonGroup from '../SettingsProfile/buttonGroup';
 import QuoteItem from './QuoteItem';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { setHeaderVisibility } from '../../store/commonSlice';
 
 import ReaderService from '../../http/ReaderService';
@@ -16,8 +18,6 @@ import BackBtn from '../shared/common/BackBtn';
 import Button from '../shared/common/Button/Button';
 import Loader from '../shared/common/Loader';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
-
-import styles from './styles.module.scss';
 
 const filter = [
   {

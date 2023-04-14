@@ -9,10 +9,12 @@ import ClickableSearch from '../ClickableSearch';
 import CreateCompilationPopup from '../CreateCompilationPopup';
 import DotsDropdown from '../DotsDropdown';
 import Popular from '../Filter/Popular/Popular';
-import st from '../Selections/SelectionPage/selectionPage.module.scss';
 import ButtonGroup from '../SettingsProfile/buttonGroup';
 import ChooseBookPopup from './ChooseBookPopup';
 import classNames from 'classnames';
+
+import st from '../Selections/SelectionPage/selectionPage.module.scss';
+import styles from './styles.module.scss';
 
 import { setHeaderVisibility } from '../../store/commonSlice';
 import { deleteBookFromSelection } from '../../store/selectionSlice';
@@ -29,8 +31,6 @@ import Flag from '../shared/icons/flag';
 import BookMark from '../shared/icons/myBookmark';
 import PageIcon from '../shared/icons/page';
 import Bin from '../shared/icons/trash';
-
-import styles from './styles.module.scss';
 
 const filter1 = [
   {

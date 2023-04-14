@@ -7,8 +7,9 @@ import Telegram from '../../public/telegram.svg';
 import Twitter from '../../public/twitter.svg';
 import Vk from '../../public/vkontakte.svg';
 import Logo from '../Logo';
-import st from './footer.module.scss';
 import classNames from 'classnames';
+
+import st from './footer.module.scss';
 
 const Footer = () => {
   const router = useRouter();

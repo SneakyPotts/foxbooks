@@ -10,12 +10,12 @@ import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { setAuthPopupVisibility } from '../../store/commonSlice';
 import { addReview, getReviewTypes, updateReview } from '../../store/reviewSlice';
 
 import Input from '../shared/common/Input/Input';
-
-import styles from './styles.module.scss';
 
 const ReviewForm = ({ bookId, title, text, bookType, myReviewType, onCancel, onClose }) => {
   const dispatch = useDispatch();

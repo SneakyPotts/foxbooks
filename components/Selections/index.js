@@ -8,10 +8,12 @@ import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import CompilationItem from '../CompilationItem';
 import MobileFilterModal from '../MobileFilterModal';
 import Switcher from '../switcher/Switcher';
-import styles from './selections.module.scss';
 import classNames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import cssBook from '../shared/common/book/book.module.scss';
+import styles from './selections.module.scss';
 
 import { setAuthPopupVisibility } from '../../store/commonSlice';
 import { addCompilationToFavorite, deleteCompilationFromFavorite } from '../../store/selectionSlice';
@@ -19,7 +21,6 @@ import { addCompilationToFavorite, deleteCompilationFromFavorite } from '../../s
 import Banners from '../shared/common/Banner/Banners';
 import MyPagination from '../shared/common/MyPagination';
 import Book from '../shared/common/book';
-import cssBook from '../shared/common/book/book.module.scss';
 import BookFilters from '../shared/common/booksFilters/BookFilters';
 import ShowAll from '../shared/common/showAll/ShowAll';
 

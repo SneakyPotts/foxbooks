@@ -5,8 +5,10 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getNoun } from '../../../utils';
-import st from './selectionPage.module.scss';
 import classNames from 'classnames';
+
+import styles from '../../MyBooks/styles.module.scss';
+import st from './selectionPage.module.scss';
 
 import { setAuthPopupVisibility } from '../../../store/commonSlice';
 
@@ -15,8 +17,6 @@ import SelectionService from '../../../http/SelectionService';
 import BackBtn from '../../shared/common/BackBtn';
 import Button from '../../shared/common/Button/Button';
 import Book from '../../shared/common/book';
-
-import styles from '../../MyBooks/styles.module.scss';
 
 const SelectionPage = () => {
   const router = useRouter();

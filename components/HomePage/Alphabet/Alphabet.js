@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import alphabet from '../../data/alphabet.json';
-import css from './alphabet.module.css';
 import classNames from 'classnames';
+
+import css from './alphabet.module.css';
 
 const Alphabet = () => {
   const router = useRouter();

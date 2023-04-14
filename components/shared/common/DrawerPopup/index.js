@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 
-import useOnClickOutside from '../../../../hooks/useOnClickOutside';
-
 import styles from './styles.module.scss';
+
+import useOnClickOutside from '../../../../hooks/useOnClickOutside';
 
 const DrawerPopup = ({ direction = 'down', children, onClose, externalClass }) => {
   const ref = useRef();

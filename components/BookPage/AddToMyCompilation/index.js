@@ -5,6 +5,9 @@ import CompilationItem from '../../CompilationItem';
 import CreateCompilationPopup from '../../CreateCompilationPopup';
 import classNames from 'classnames';
 
+import styles from '../../MyBooks/styles.module.scss';
+import s from './styles.module.scss';
+
 import { setUserCompilations } from '../../../store/selectionSlice';
 
 import SelectionService from '../../../http/SelectionService';
@@ -14,9 +17,6 @@ import BackText from '../../shared/common/BackText';
 import Button from '../../shared/common/Button/Button';
 import Loader from '../../shared/common/Loader';
 import ShowAll from '../../shared/common/showAll/ShowAll';
-
-import styles from '../../MyBooks/styles.module.scss';
-import s from './styles.module.scss';
 
 const AddToMyCompilation = ({ onClose }) => {
   const dispatch = useDispatch();
