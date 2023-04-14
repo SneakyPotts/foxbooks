@@ -6,6 +6,10 @@ import classNames from 'classnames';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
 
+import s from '../SearchPage/styles.module.scss';
+import st from '../shared/common/booksFilters/bookFilters.module.scss';
+import styles from './styles.module.scss';
+
 import { addBookToSelection } from '../../store/selectionSlice';
 
 import BooksService from '../../http/BookService';
@@ -16,12 +20,8 @@ import BackText from '../shared/common/BackText';
 import Button from '../shared/common/Button/Button';
 import Loader from '../shared/common/Loader';
 import Book from '../shared/common/book';
-import st from '../shared/common/booksFilters/bookFilters.module.scss';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
 import ShowAll from '../shared/common/showAll/ShowAll';
-
-import s from '../SearchPage/styles.module.scss';
-import styles from './styles.module.scss';
 
 const filters = [
   { id: 1, title: 'Все', value: 'all' },

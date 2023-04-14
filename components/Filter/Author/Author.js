@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import ArrowAll from '../../../public/chevron-down.svg';
+
 import css from './../Popular/popular.module.scss';
 
 const Author = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {

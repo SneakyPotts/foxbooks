@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import st from './../header.module.scss';
 import classNames from 'classnames';
+
+import st from './../header.module.scss';
 
 import ShowAll from '../../shared/common/showAll/ShowAll';
 

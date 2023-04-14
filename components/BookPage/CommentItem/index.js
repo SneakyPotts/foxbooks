@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import DropDownArrow from '../../../public/chevron-down.svg';
 import CommentForm from '../../CommentForm';
-import styles from './comComp.module.scss';
 import classnames from 'classnames';
 import moment from 'moment';
 import 'moment/locale/ru';
+
+import styles from './comComp.module.scss';
 
 import { addComment } from '../../../store/commentsSlice';
 import { setAuthPopupVisibility } from '../../../store/commonSlice';

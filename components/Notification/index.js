@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import NotificationItem from '../NotificationItem';
 import classNames from 'classnames';
 
-import { setNewNotification } from '../../store/profileSlice';
-
 import s from './styles.module.scss';
+
+import { setNewNotification } from '../../store/profileSlice';
 
 const Notification = ({ callback }) => {
   const dispatch = useDispatch();

@@ -8,10 +8,11 @@ import AudioPlayer from '../../../../AudioPlayer';
 import Footer from '../../../../Footer';
 import Header from '../../../../Header';
 import ArrowUp from '../../../icons/arrowUp';
-import st from './layout.module.scss';
 import Cookies from 'js-cookie';
 import debounce from 'lodash.debounce';
 import { io } from 'socket.io-client';
+
+import st from './layout.module.scss';
 
 import { setAuth, signInWithSocial, verifyEmail } from '../../../../../store/authSlice';
 import { setAuthPopupVisibility, setBreakPoint } from '../../../../../store/commonSlice';

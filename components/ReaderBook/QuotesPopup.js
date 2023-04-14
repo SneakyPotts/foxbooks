@@ -8,6 +8,8 @@ import Popular from '../Filter/Popular/Popular';
 import SearchInput from '../SearchInput';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { deleteBookQuote } from '../../store/readerSlice';
 
 import ReaderService from '../../http/ReaderService';
@@ -15,8 +17,6 @@ import ReaderService from '../../http/ReaderService';
 import All from '../shared/icons/all';
 import Share from '../shared/icons/share';
 import Bin from '../shared/icons/trash';
-
-import styles from './styles.module.scss';
 
 const filter = {
   title: 'Мои цитаты',

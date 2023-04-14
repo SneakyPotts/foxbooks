@@ -16,10 +16,11 @@ import Form from './Form';
 import Quotes from './Quotes';
 import Reviews from './Reviews';
 import SimilarBooks from './SimilarBooks';
-import st from './bookpage.module.scss';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import st from './bookpage.module.scss';
 
 import { getAudioBooksByAuthor, getBooksByAuthor } from '../../store/bookSlice';
 

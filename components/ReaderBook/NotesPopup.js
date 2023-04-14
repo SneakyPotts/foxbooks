@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 
 import { calcCoordinates } from '../../utils';
 
-import useOnClickOutside from '../../hooks/useOnClickOutside';
-
 import styles from './styles.module.scss';
+
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const NotesPopup = ({ title, children }) => {
   const [openPopup, setOpenPopup] = useState(false);

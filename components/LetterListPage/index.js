@@ -9,14 +9,14 @@ import Alphabet from '../HomePage/Alphabet/Alphabet';
 import Categories from '../HomePage/Categories';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { getAuthorsByLetter } from '../../store/authorSlice';
 import { getBooksByLetter } from '../../store/bookSlice';
 
 import Loader from '../shared/common/Loader';
 import BookFilters from '../shared/common/booksFilters/BookFilters';
 import Stars from '../shared/common/stars/Stars';
-
-import styles from './styles.module.scss';
 
 const filters = [
   { id: 1, title: 'Книги', value: 'books' },

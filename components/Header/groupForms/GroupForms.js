@@ -5,11 +5,12 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { cookiesSettings } from '../../../utils';
-import css from './index.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classnames from 'classnames';
 import * as yup from 'yup';
 import { ref } from 'yup';
+
+import css from './index.module.scss';
 
 import { forgotPassword, resetError, resetForgotPassword, setAuth, signIn, signUp } from '../../../store/authSlice';
 import { getProfile } from '../../../store/profileSlice';

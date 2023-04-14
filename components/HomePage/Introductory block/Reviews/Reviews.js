@@ -5,10 +5,11 @@ import { useSelector } from 'react-redux';
 
 import ArrowRight from '../../../../public/chevron-right.svg';
 import ReviewLogicItem from '../../../ReviewLogicItem';
-import st from './reviews.module.scss';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import st from './reviews.module.scss';
 
 import AvatarWithLetter from '../../../shared/common/AvatarWithLetter';
 import ShowAll from '../../../shared/common/showAll/ShowAll';

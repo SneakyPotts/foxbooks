@@ -1,7 +1,8 @@
 import React from 'react';
 
-import styles from './index.module.scss';
 import classnames from 'classnames';
+
+import styles from './index.module.scss';
 
 const Button = ({ typeButton, text, classNames, click }) => {
   return (

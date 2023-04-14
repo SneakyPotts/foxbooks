@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { cookiesSettings } from '../../utils';
 import ArrowIcon from './../../public/chevron-right.svg';
-import './variables.module.scss';
 import classNames from 'classnames';
+
+import styles from './styles.module.scss';
+import './variables.module.scss';
 
 import { setSettings } from '../../store/readerSlice';
 
@@ -12,8 +14,6 @@ import ReaderService from '../../http/ReaderService';
 
 import InputRange from '../shared/common/InputRange/InputRange';
 import Switch from '../shared/common/Switch';
-
-import styles from './styles.module.scss';
 
 const fontNames = ['Times New Roman', 'Georgia', 'Arial', 'Fira Sans', 'Verdana'];
 

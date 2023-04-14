@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 
-import st from './switcher.module.scss';
 import classnames from 'classnames';
+
+import st from './switcher.module.scss';
 
 import List from '../shared/icons/list';
 import Grid from '../shared/icons/navMenu/grid';

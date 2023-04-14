@@ -9,12 +9,12 @@ import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { setAuthPopupVisibility } from '../../store/commonSlice';
 
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import Input from '../shared/common/Input/Input';
-
-import styles from './styles.module.scss';
 
 const CommentForm = ({ submitFunc, isTextarea, rows, onCancel }) => {
   const dispatch = useDispatch();

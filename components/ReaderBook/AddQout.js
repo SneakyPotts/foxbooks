@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 
-import Share from '../shared/icons/share';
-
 import styles from './styles.module.scss';
+
+import Share from '../shared/icons/share';
 
 const colors = ['#A5D5FF', '#FFE371', '#FED3CA', '#B8DF70'];
 

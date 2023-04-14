@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import DropDownArrow from '../../../../public/chevron-down.svg';
-import css from './date.module.scss';
 import classnames from 'classnames';
+
+import css from './date.module.scss';
 
 const Date = ({ date, books, show }) => {
   const [menu, setMenu] = useState(show);

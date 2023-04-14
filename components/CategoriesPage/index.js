@@ -5,8 +5,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
-import st from './categories.module.scss';
 import classnames from 'classnames';
+
+import st from './categories.module.scss';
 
 import Close from '../shared/icons/close';
 

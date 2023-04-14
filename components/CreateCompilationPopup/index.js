@@ -9,14 +9,14 @@ import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { createCompilation, editCompilation } from '../../store/selectionSlice';
 
 import Button from '../shared/common/Button/Button';
 import Input from '../shared/common/Input/Input';
 import PreviewUploader from '../shared/common/PreviewUploader';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
-
-import styles from './styles.module.scss';
 
 const CreateCompilationPopup = ({ image, title, description, onClose, isEdit }) => {
   const dispatch = useDispatch();

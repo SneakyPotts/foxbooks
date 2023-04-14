@@ -9,10 +9,10 @@ import AddQout from './AddQout';
 import NotesPopup from './NotesPopup';
 import parse, { attributesToProps, domToReact } from 'html-react-parser';
 
+import styles from './styles.module.scss';
+
 import { setAuthPopupVisibility } from '../../store/commonSlice';
 import { addBookQuote, deleteBookQuote, editBookQuote } from '../../store/readerSlice';
-
-import styles from './styles.module.scss';
 
 const options = {
   replace: (domNode) => {

@@ -14,9 +14,10 @@ import Headphones from '../../icons/headphones';
 import Like from '../../icons/heart';
 import Basket from '../../icons/trash';
 import Stars from '../stars/Stars';
+import classnames from 'classnames';
+
 import aboutBookStyles from './../../../BookPage/AboutBook/aboutBook.module.scss';
 import st from './book.module.scss';
-import classnames from 'classnames';
 
 import { audioBook, deleteBookFromFavorite, setBookStatus } from '../../../../store/bookSlice';
 

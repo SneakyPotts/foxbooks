@@ -4,11 +4,12 @@ import { useForm } from 'react-hook-form';
 import Clip from '../../public/clip.svg';
 import { generateFormData, isFileImage } from '../../utils';
 import ButtonGroup from '../SettingsProfile/buttonGroup';
-import styles from './index.module.scss';
 import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 import Compressor from 'compressorjs';
+
+import styles from './index.module.scss';
 
 import CommonService from '../../http/CommonService';
 

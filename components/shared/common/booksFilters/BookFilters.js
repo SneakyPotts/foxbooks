@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
-import st from './bookFilters.module.scss';
 import classnames from 'classnames';
+
+import st from './bookFilters.module.scss';
 
 const initFilters = [
   { id: 1, title: 'Последние поступления', value: 1 },

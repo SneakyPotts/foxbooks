@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
-import st from '../bookpage.module.scss';
 import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import styles from '../../MyBooks/styles.module.scss';
+import st from '../bookpage.module.scss';
 
 import BookService from '../../../http/BookService';
 
 import Button from '../../shared/common/Button/Button';
 import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
-
-import styles from '../../MyBooks/styles.module.scss';
 
 const Form = ({ title }) => {
   const {

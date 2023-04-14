@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import styles from './styles.module.scss';
+
 import Button from '../shared/common/Button/Button';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
 import Filters from '../shared/icons/filters';
-
-import styles from './styles.module.scss';
 
 const MobileFilterModal = ({ children }) => {
   const router = useRouter();

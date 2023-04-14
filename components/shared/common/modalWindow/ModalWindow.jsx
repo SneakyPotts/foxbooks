@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 
-import styles from './index.module.scss';
 import classNames from 'classnames';
+
+import styles from './index.module.scss';
 
 const ModalWindow = ({ children, onClose, click, isFullScreen = false, externalClass }) => {
   useEffect(() => {

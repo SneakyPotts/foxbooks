@@ -2,8 +2,9 @@ import { useSelector } from 'react-redux';
 
 import { formatDate } from '../../../utils';
 import Date from './Date/Date';
-import css from './updates.module.css';
 import classNames from 'classnames';
+
+import css from './updates.module.css';
 
 const BookUpdates = () => {
   const { dailyHotUpdates } = useSelector((state) => state.book);

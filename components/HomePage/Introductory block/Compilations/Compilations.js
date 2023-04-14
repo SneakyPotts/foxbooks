@@ -2,10 +2,11 @@ import { useSelector } from 'react-redux';
 
 import ArrowRight from '../../../../public/chevron-right.svg';
 import CompilationItem from '../../../CompilationItem';
-import styles from './index.module.scss';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import styles from './index.module.scss';
 
 import ShowAll from '../../../shared/common/showAll/ShowAll';
 

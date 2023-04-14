@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import Logo from '../Logo';
+
 import st from './error.module.scss';
 
 const Error = () => {

@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import css from './menu.module.scss';
 import classNames from 'classnames';
+
+import css from './menu.module.scss';
 
 import AvatarWithLetter from '../../shared/common/AvatarWithLetter';
 import Headphones from '../../shared/icons/headphones';

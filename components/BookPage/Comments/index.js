@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CommentForm from '../../CommentForm';
 import CommentItem from '../CommentItem';
+
 import st from './comments.module.scss';
 
 import { addComment, getComments } from '../../../store/commentsSlice';

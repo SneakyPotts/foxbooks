@@ -6,9 +6,9 @@ import React from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-import AvatarWithLetter from '../shared/common/AvatarWithLetter';
-
 import s from './styles.module.scss';
+
+import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 
 const NotificationItem = ({ data }) => {
   return (

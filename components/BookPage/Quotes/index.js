@@ -4,11 +4,12 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import st from './quotes.module.scss';
 import classnames from 'classnames';
 import Cookies from 'js-cookie';
 import moment from 'moment';
 import 'moment/locale/ru';
+
+import st from './quotes.module.scss';
 
 import { setBookQuotes } from '../../../store/bookSlice';
 import { setAuthPopupVisibility } from '../../../store/commonSlice';

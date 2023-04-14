@@ -4,6 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
+
 import st from './series.module.scss';
 
 import Banners from '../shared/common/Banner/Banners';

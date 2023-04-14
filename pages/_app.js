@@ -2,14 +2,13 @@ import Script from 'next/script';
 
 import { Provider } from 'react-redux';
 
+import '../styles/globals.scss';
 import { NextSeo } from 'next-seo';
 import 'swiper/css/bundle';
 
 import store from '../store/store';
 
 import Layout from '../components/shared/common/specific/Layout';
-
-import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
