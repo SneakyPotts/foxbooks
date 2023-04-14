@@ -247,6 +247,23 @@ export const calcCoordinates = (ev) => {
   };
 };
 
+export const calcQuotePosition = (data) => {
+  const x = data.x;
+  const y = data.y + window.scrollY + data.height;
+
+  const toolsWidth = 291;
+  const toolsHeight = 162;
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const deltaX = windowWidth - x;
+  const deltaY = windowHeight - y;
+
+  return {
+    x: toolsWidth >= deltaX ? x - toolsWidth : x,
+    y: toolsHeight >= deltaY ? y - toolsHeight - data.height : y,
+  };
+};
+
 export const formatDate = (date) => {
   const now = moment();
   const formatted = moment(date.split('-').reverse().join('-'));
