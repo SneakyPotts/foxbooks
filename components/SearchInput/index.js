@@ -7,11 +7,11 @@ import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 
+import styles from './styles.module.scss';
+
 import { clearSearch } from '../../store/searchSlice';
 
 import Close from '../shared/icons/close';
-
-import styles from './styles.module.scss';
 
 const SearchInput = ({ withModal, showMenuFlag, onClick, onChange, onClose, placeholder, externalClass }) => {
   const router = useRouter();

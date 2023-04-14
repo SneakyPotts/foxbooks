@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import ButtonGroup from '../buttonGroup';
-import styles from './index.module.scss';
 import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import styles from './index.module.scss';
 
 import { resetPassword } from '../../../store/profileSlice';
 

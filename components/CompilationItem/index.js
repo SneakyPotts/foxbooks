@@ -7,9 +7,9 @@ import { getNoun } from '../../utils';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-import Eye from '../shared/icons/eye';
-
 import styles from './styles.module.scss';
+
+import Eye from '../shared/icons/eye';
 
 const CompilationItem = ({ data, isFull, path, isMini }) => {
   return (

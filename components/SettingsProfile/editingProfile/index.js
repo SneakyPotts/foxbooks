@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { generateFormData } from '../../../utils';
 import ButtonGroup from '../buttonGroup';
-import styles from './index.module.scss';
 import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import styles from './index.module.scss';
 
 import { deleteUser, updateProfile } from '../../../store/profileSlice';
 

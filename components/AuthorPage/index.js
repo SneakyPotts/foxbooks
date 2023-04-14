@@ -9,8 +9,9 @@ import DropDownArrow from '../../public/chevron-down.svg';
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import CompilationItem from '../CompilationItem';
 import Categories from '../HomePage/Categories';
-import st from './author.module.scss';
 import classnames from 'classnames';
+
+import st from './author.module.scss';
 
 import { addAuthorToFavorite, deleteAuthorFromFavorite } from '../../store/authorSlice';
 

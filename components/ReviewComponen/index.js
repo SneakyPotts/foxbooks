@@ -4,15 +4,15 @@ import React from 'react';
 import { useState } from 'react';
 
 import DropDownArrow from '../../public/chevron-down.svg';
-import st from './reviewComponent.module.scss';
 import classnames from 'classnames';
 import moment from 'moment';
+
+import styles from '../CommentForm/styles.module.scss';
+import st from './reviewComponent.module.scss';
 
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import Book from '../shared/common/book';
 import Stars from '../shared/common/stars/Stars';
-
-import styles from '../CommentForm/styles.module.scss';
 
 const ReviewComponent = ({ it, idx, reviews }) => {
   const date = moment(it?.created_at).format('Do MMMM YYYY в HH:mm').replace('-го', '');

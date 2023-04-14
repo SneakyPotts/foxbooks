@@ -13,6 +13,8 @@ import QuotesPopup from './QuotesPopup';
 import TextWithQuotes from './TextWithQuotes';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { setAuthPopupVisibility } from '../../store/commonSlice';
 import { addBookMark, deleteBookMark } from '../../store/readerSlice';
 
@@ -21,8 +23,6 @@ import DrawerPopup from '../shared/common/DrawerPopup';
 import MyPagination from '../shared/common/MyPagination';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
 import BookMark from '../shared/icons/BookMark';
-
-import styles from './styles.module.scss';
 
 const ReaderBook = () => {
   const router = useRouter();

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ButtonGroup from '../buttonGroup';
+
 import styles from './index.module.scss';
 
 import { setNotificationSettings } from '../../../store/profileSlice';

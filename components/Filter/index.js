@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 
 import ClearAll from './Clear/Clear';
 import Popular from './Popular/Popular';
+
+import cssBook from './../shared/common/book/book.module.scss';
 import css from './filter.module.css';
 
 import MyPagination from '../shared/common/MyPagination';
 import Book from '../shared/common/book';
-import cssBook from './../shared/common/book/book.module.scss';
 
 const Filters = ({ order }) => {
   const data = [

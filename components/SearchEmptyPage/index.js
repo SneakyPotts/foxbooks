@@ -4,9 +4,9 @@ import React, { useEffect } from 'react';
 
 import classNames from 'classnames';
 
-import Book from '../shared/common/book';
-
 import s from './styles.module.scss';
+
+import Book from '../shared/common/book';
 
 const SearchEmptyPage = ({ books }) => {
   const repeatHandler = () => {

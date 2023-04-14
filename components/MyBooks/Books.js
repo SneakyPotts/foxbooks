@@ -11,6 +11,9 @@ import SearchInput from '../SearchInput';
 import ButtonGroup from '../SettingsProfile/buttonGroup';
 import classNames from 'classnames';
 
+import s from '../SearchPage/styles.module.scss';
+import styles from './styles.module.scss';
+
 import { setHeaderVisibility } from '../../store/commonSlice';
 
 import BooksService from './../../http/BookService';
@@ -25,9 +28,6 @@ import OpenBook from '../shared/icons/bookOpen';
 import Flag from '../shared/icons/flag';
 import BookMark from '../shared/icons/myBookmark';
 import PageIcon from '../shared/icons/page';
-
-import s from '../SearchPage/styles.module.scss';
-import styles from './styles.module.scss';
 
 const Books = ({ isAudio }) => {
   const filter1 = [

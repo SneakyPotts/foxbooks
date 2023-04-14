@@ -11,8 +11,9 @@ import SearchInput from '../SearchInput';
 import Menu from './Menu/Menu';
 import Search from './Search';
 import GroupForms from './groupForms/GroupForms';
-import st from './header.module.scss';
 import classNames from 'classnames';
+
+import st from './header.module.scss';
 
 import { setAuthPopupVisibility, showMenu } from '../../store/commonSlice';
 import { clearSearch, setSearch } from '../../store/searchSlice';

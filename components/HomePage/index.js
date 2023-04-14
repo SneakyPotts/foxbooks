@@ -12,14 +12,15 @@ import Hero from './Hero/Hero';
 import Introductory from './Introductory block';
 import MobileBlock from './MobileBlock';
 import BookUpdates from './Updates';
-import css from './home.module.scss';
 import classNames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import cssBook from './../shared/common/book/book.module.scss';
+import css from './home.module.scss';
+
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
-import cssBook from './../shared/common/book/book.module.scss';
 
 const HomeView = ({ audioBooks, newBooks, order }) => {
   const hotUpdates = useRef();

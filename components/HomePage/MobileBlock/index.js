@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 import ArrowRight from '../../../public/chevron-right.svg';
 import books from '../../data/books.json';
-import st from './mobile.module.scss';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import st from './mobile.module.scss';
 
 import Book from '../../shared/common/book';
 import ShowAll from '../../shared/common/showAll/ShowAll';

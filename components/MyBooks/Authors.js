@@ -10,6 +10,9 @@ import SearchInput from '../SearchInput';
 import ButtonGroup from '../SettingsProfile/buttonGroup';
 import classNames from 'classnames';
 
+import s from '../SearchPage/styles.module.scss';
+import styles from './styles.module.scss';
+
 import { setHeaderVisibility } from '../../store/commonSlice';
 
 import AuthorService from '../../http/AuthorService';
@@ -19,9 +22,6 @@ import Button from '../shared/common/Button/Button';
 import Loader from '../shared/common/Loader';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
 import ShowAll from '../shared/common/showAll/ShowAll';
-
-import s from '../SearchPage/styles.module.scss';
-import styles from './styles.module.scss';
 
 const Authors = () => {
   const dispatch = useDispatch();

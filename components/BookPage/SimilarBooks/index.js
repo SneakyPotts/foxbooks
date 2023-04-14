@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import st from './similarBooks.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import st from './similarBooks.module.scss';
 
 import Book from '../../shared/common/book';
 

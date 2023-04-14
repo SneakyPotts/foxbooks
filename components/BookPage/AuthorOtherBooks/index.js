@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
 
 import ArrowRight from '../../../public/chevron-right.svg';
-import st from './otherBooks.module.scss';
 import classNames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import st from './otherBooks.module.scss';
 
 import Book from '../../shared/common/book';
 import ShowAll from '../../shared/common/showAll/ShowAll';

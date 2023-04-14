@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 
+import styles from './styles.module.scss';
+
 import { setPlayerVisibility } from '../../store/commonSlice';
 import { resetPlayerData, setAudioProgress } from '../../store/playerSlice';
 
@@ -24,8 +26,6 @@ import PlayerPause from '../shared/icons/playerPause';
 import PlayerPlay from '../shared/icons/playerPlay';
 import PlayerSpeed from '../shared/icons/playerSpeed';
 import PlayerVolume from '../shared/icons/playerVolume';
-
-import styles from './styles.module.scss';
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
 

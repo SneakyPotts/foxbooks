@@ -8,14 +8,15 @@ import Popular from '../../Filter/Popular/Popular';
 import SideFilters from '../../SideFilters';
 import Switcher from '../../switcher/Switcher';
 import MobileFilterModal from './../../MobileFilterModal';
-import st from './category.module.scss';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
+
+import cssBook from '../../shared/common/book/book.module.scss';
+import st from './category.module.scss';
 
 import Banners from '../../shared/common/Banner/Banners';
 import MyPagination from '../../shared/common/MyPagination';
 import Book from '../../shared/common/book';
-import cssBook from '../../shared/common/book/book.module.scss';
 
 const mobileFilters = [
   {

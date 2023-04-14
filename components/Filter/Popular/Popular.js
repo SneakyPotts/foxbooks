@@ -3,9 +3,10 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import ArrowAll from '../../../public/chevron-down.svg';
-import css from './popular.module.scss';
 import classnames from 'classnames';
 import classNames from 'classnames';
+
+import css from './popular.module.scss';
 
 const Popular = ({ title, defaultValue, data, queryName, isAlphabet, filterStateIdx, elIdx, setFilStateIdx, isRight, onClick, externalClassName }) => {
   const router = useRouter();

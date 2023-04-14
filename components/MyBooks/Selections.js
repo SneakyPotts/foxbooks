@@ -12,6 +12,8 @@ import MobileFilterModal from '../MobileFilterModal';
 import SearchInput from '../SearchInput';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { setHeaderVisibility } from '../../store/commonSlice';
 import { setUserCompilations } from '../../store/selectionSlice';
 
@@ -21,8 +23,6 @@ import BackBtn from '../shared/common/BackBtn';
 import Button from '../shared/common/Button/Button';
 import Loader from '../shared/common/Loader';
 import ShowAll from '../shared/common/showAll/ShowAll';
-
-import styles from './styles.module.scss';
 
 const filter1 = [
   {

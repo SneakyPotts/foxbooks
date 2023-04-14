@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 
-import styles from './index.module.scss';
 import classnames from 'classnames';
+
+import styles from './index.module.scss';
 
 const Input = ({ register, name, complete = 'off', textLabel, err, classNames, typeInput = 'text', isTextarea, rows, placeholder, ...props }) => {
   const inputWrapper = useRef();

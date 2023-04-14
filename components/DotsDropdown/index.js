@@ -2,12 +2,12 @@ import React, { useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 import DrawerPopup from '../shared/common/DrawerPopup';
 import Dots from '../shared/icons/horizontalDots';
-
-import styles from './styles.module.scss';
 
 const DotsDropdown = ({ children, direction, externalClass, externalDrawerClass, isSmall }) => {
   const modalRef = useRef(null);

@@ -1,10 +1,11 @@
 import Image from 'next/image';
 
 import ArrowRight from '../../../public/chevron-right.svg';
-import st from './hero.module.scss';
 import classnames from 'classnames';
 import { Navigation, Pagination } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import st from './hero.module.scss';
 
 const Hero = () => {
   const data = [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }, { id: '5' }, { id: '6' }];

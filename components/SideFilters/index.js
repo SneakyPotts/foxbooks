@@ -6,10 +6,11 @@ import { useSelector } from 'react-redux';
 import DropDownArrow from '../../public/chevron-down.svg';
 import Categories from '../HomePage/Categories';
 import alphabet from '../data/alphabet.json';
-import st from './sideFilters.module.scss';
 import classnames from 'classnames';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
+
+import st from './sideFilters.module.scss';
 
 import Button from '../shared/common/Button/Button';
 

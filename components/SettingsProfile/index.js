@@ -8,11 +8,12 @@ import Notification from '../Notification';
 import NotificationItem from '../NotificationItem';
 import Arrow from './../../public/chevron-right.svg';
 import EditingProfile from './editingProfile';
-import styles from './index.module.scss';
 import SettingNotification from './settingNotification';
 import SettingPassword from './settingPassword';
 import classNames from 'classnames';
 import Cookies from 'js-cookie';
+
+import styles from './index.module.scss';
 
 import { setAuth } from '../../store/authSlice';
 import { setHeaderVisibility } from '../../store/commonSlice';

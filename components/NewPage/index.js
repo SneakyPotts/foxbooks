@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import MobileFilterModal from '../MobileFilterModal';
+
 import styles from '../Selections/selections.module.scss';
 import st from './newPage.module.scss';
 

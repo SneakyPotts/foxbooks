@@ -10,6 +10,8 @@ import SearchInput from '../SearchInput';
 import ButtonGroup from '../SettingsProfile/buttonGroup';
 import classNames from 'classnames';
 
+import styles from './styles.module.scss';
+
 import { setHeaderVisibility } from '../../store/commonSlice';
 import { deleteUserReview, getUserReview } from '../../store/reviewSlice';
 
@@ -17,8 +19,6 @@ import BackBtn from '../shared/common/BackBtn';
 import Button from '../shared/common/Button/Button';
 import Loader from '../shared/common/Loader';
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
-
-import styles from './styles.module.scss';
 
 const Reviews = () => {
   const dispatch = useDispatch();

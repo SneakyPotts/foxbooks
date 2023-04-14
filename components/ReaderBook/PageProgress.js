@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import InputRange from '../shared/common/InputRange/InputRange';
-
 import styles from './styles.module.scss';
+
+import InputRange from '../shared/common/InputRange/InputRange';
 
 const PageProgress = () => {
   const router = useRouter();
