@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Book from '../shared/common/book';
-import MyPagination from '../shared/common/MyPagination';
+
 import ClearAll from './Clear/Clear';
 import Popular from './Popular/Popular';
 import css from './filter.module.css';
+
+import MyPagination from '../shared/common/MyPagination';
+import Book from '../shared/common/book';
 import cssBook from './../shared/common/book/book.module.scss';
 
-const Filters = ({order}) => {
+const Filters = ({ order }) => {
   const data = [
     {
       title: order?.[0]?.title,
@@ -23,83 +25,21 @@ const Filters = ({order}) => {
     {
       title: 'Автор',
       isAlphabet: true,
-      options: [
-        'А',
-        'Б',
-        'В',
-        'Г',
-        'Д',
-        'Е',
-        'Ё',
-        'Ж',
-        'З',
-        'И',
-        'Й',
-        'К',
-        'Л',
-        'М',
-        'Н',
-        'О',
-        'П',
-        'Р',
-        'С',
-        'Т',
-        'У',
-        'Ф',
-        'Х',
-        'Ц',
-        'Ч',
-        'Ш',
-        'Щ',
-        'Э',
-        'Ю',
-        'Я',
-      ],
+      options: ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я'],
       queryName: 'alphabetAuthorIndex',
     },
     {
       title: 'Книга',
       isAlphabet: true,
-      options: [
-        'А',
-        'Б',
-        'В',
-        'Г',
-        'Д',
-        'Е',
-        'Ё',
-        'Ж',
-        'З',
-        'И',
-        'Й',
-        'К',
-        'Л',
-        'М',
-        'Н',
-        'О',
-        'П',
-        'Р',
-        'С',
-        'Т',
-        'У',
-        'Ф',
-        'Х',
-        'Ц',
-        'Ч',
-        'Ш',
-        'Щ',
-        'Э',
-        'Ю',
-        'Я',
-      ],
+      options: ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я'],
       queryName: 'alphabetTitleIndex',
     },
   ];
 
   const [stateIndex, setStateIndex] = useState(null);
 
-  const { categories } = useSelector(state => state.book);
-  const { books } = useSelector(state => state.book);
+  const { categories } = useSelector((state) => state.book);
+  const { books } = useSelector((state) => state.book);
 
   const categoryOptions = categories?.map((i, index) => ({
     id: index + 1,
@@ -134,7 +74,7 @@ const Filters = ({order}) => {
       {books?.data?.length ? (
         <>
           <ul className={css.bookList}>
-            {books?.data?.map(book => (
+            {books?.data?.map((book) => (
               <li key={book?.id} className={`${css.book} ${cssBook.upBook}`}>
                 <Book book={book} />
               </li>

@@ -1,4 +1,8 @@
 module.exports = {
+  webpack(config) {
+    config.infrastructureLogging = { debug: /PackFileCache/ };
+    return config;
+  },
   reactStrictMode: true,
   images: {
     domains: [
@@ -19,7 +23,7 @@ module.exports = {
       's13.knigavuhe.org',
       's14.knigavuhe.org',
       's15.knigavuhe.org',
-      'api.foxbooks.ec'
-    ]
-  }
+      'api.foxbooks.ec',
+    ],
+  },
 };

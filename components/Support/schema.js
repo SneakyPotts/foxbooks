@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from 'yup';
 
 const schema = yup.object().shape({
   subject: yup.string().required('Это обязательное поле'),
@@ -7,4 +7,4 @@ const schema = yup.object().shape({
   message: yup.string().required('Это обязательное поле'),
 });
 
-export default schema
+export default schema;

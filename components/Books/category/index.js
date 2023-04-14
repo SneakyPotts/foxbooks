@@ -1,38 +1,41 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import classnames from 'classnames';
-import Switcher from '../../switcher/Switcher';
-import Book from '../../shared/common/book';
-import SideFilters from '../../SideFilters';
-import Popular from '../../Filter/Popular/Popular';
-import MyPagination from '../../shared/common/MyPagination';
+
+import React, { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
-import MobileFilterModal from './../../MobileFilterModal'
-import debounce from 'lodash.debounce';
-import Banners from "../../shared/common/Banner/Banners";
+import Popular from '../../Filter/Popular/Popular';
+import SideFilters from '../../SideFilters';
+import Switcher from '../../switcher/Switcher';
+import MobileFilterModal from './../../MobileFilterModal';
 import st from './category.module.scss';
+import classnames from 'classnames';
+import debounce from 'lodash.debounce';
+
+import Banners from '../../shared/common/Banner/Banners';
+import MyPagination from '../../shared/common/MyPagination';
+import Book from '../../shared/common/book';
 import cssBook from '../../shared/common/book/book.module.scss';
 
 const mobileFilters = [
   {
     option: 'Автор',
     placeholder: 'Найти автора',
-    queryName: 'findByAuthor'
+    queryName: 'findByAuthor',
   },
   {
     option: 'Книга',
     placeholder: 'Найти книгу',
-    queryName: 'findByTitle'
+    queryName: 'findByTitle',
   },
   {
     option: 'Издательство',
     placeholder: 'Найти издательство',
-    queryName: 'findByPublisher'
+    queryName: 'findByPublisher',
   },
-]
+];
 
-const Category = ({order}) => {
+const Category = ({ order }) => {
   const router = useRouter();
   const { books_type, category_slug } = router.query;
 
@@ -47,22 +50,16 @@ const Category = ({order}) => {
   ];
 
   const flagSwitcher = useMemo(() => {
-    return router.query['showType'] === 'list'
+    return router.query['showType'] === 'list';
   }, [router.query]);
 
-  const { categories, books } = useSelector(state => state.book);
-  const { innerWidthWindow } = useSelector(state => state.common);
+  const { categories, books } = useSelector((state) => state.book);
+  const { innerWidthWindow } = useSelector((state) => state.common);
 
-  const currentCategory = categories?.find(
-    i => i?.slug === category_slug
-  )?.name;
+  const currentCategory = categories?.find((i) => i?.slug === category_slug)?.name;
 
   const setQuery = (value, queryName) => {
-    router.push(
-      { query: { ...router.query, [queryName]: encodeURI(value) } },
-      null,
-      { scroll: false }
-    );
+    router.push({ query: { ...router.query, [queryName]: encodeURI(value) } }, null, { scroll: false });
   };
 
   const handleChange = debounce(setQuery, 300);
@@ -77,7 +74,7 @@ const Category = ({order}) => {
         data={[
           {
             path: `/${books_type}`,
-            title: books_type === 'books' ? 'Книги' : 'Аудиокниги'
+            title: books_type === 'books' ? 'Книги' : 'Аудиокниги',
           },
           { path: router.asPath, title: currentCategory },
         ]}
@@ -100,9 +97,8 @@ const Category = ({order}) => {
                     elIdx={index}
                     setFilStateIdx={setStateIndex}
                   />
-                ))
-              }
-              {innerWidthWindow < 1024 &&
+                ))}
+              {innerWidthWindow < 1024 && (
                 <MobileFilterModal>
                   {data.map((it, index) => (
                     <Popular
@@ -116,66 +112,44 @@ const Category = ({order}) => {
                       setFilStateIdx={setStateIndex}
                     />
                   ))}
-                  {mobileFilters.map((i, index) =>
-                    <div
-                      key={index}
-                      className={st.filterItem}
-                    >
-                      <span className={st.line}/>
+                  {mobileFilters.map((i, index) => (
+                    <div key={index} className={st.filterItem}>
+                      <span className={st.line} />
                       <span className={st.filterTitle}>{i.option}</span>
-                      <input
-                        placeholder={i?.placeholder}
-                        className={st.input}
-                        onChange={ev => handleChange(ev.target.value, i?.queryName)}
-                      />
+                      <input placeholder={i?.placeholder} className={st.input} onChange={(ev) => handleChange(ev.target.value, i?.queryName)} />
                     </div>
-                  )}
+                  ))}
                 </MobileFilterModal>
-              }
-              <Switcher
-                flagSwitcher={flagSwitcher}
-              />
+              )}
+              <Switcher flagSwitcher={flagSwitcher} />
             </div>
           </div>
           <div className={st.mainBlock}>
             {innerWidthWindow >= 1024 && <SideFilters />}
             <div className="booksWrapper">
-              {
-                books?.data?.length ? (
-                  <>
-                    <div
-                      className={classnames({
-                        [st.booksGrid]: !flagSwitcher,
-                        [st.booksColumn]: flagSwitcher,
-                        [cssBook.mobileTitle]: innerWidthWindow <= 768
-                      })}
-                    >
-                      {books.data.map(book => (
-                        <Book
-                          key={book?.id}
-                          audio={books_type === 'audiobooks'}
-                          flagSwitcher={flagSwitcher}
-                          book={book}
-                          type={book?.type}
-                        />
-                      ))}
-                    </div>
-                    <MyPagination lastPage={books?.last_page} />
-                  </>
-                ) : (
-                  <p className="empty">Книги не найдены</p>
-                )
-              }
+              {books?.data?.length ? (
+                <>
+                  <div
+                    className={classnames({
+                      [st.booksGrid]: !flagSwitcher,
+                      [st.booksColumn]: flagSwitcher,
+                      [cssBook.mobileTitle]: innerWidthWindow <= 768,
+                    })}
+                  >
+                    {books.data.map((book) => (
+                      <Book key={book?.id} audio={books_type === 'audiobooks'} flagSwitcher={flagSwitcher} book={book} type={book?.type} />
+                    ))}
+                  </div>
+                  <MyPagination lastPage={books?.last_page} />
+                </>
+              ) : (
+                <p className="empty">Книги не найдены</p>
+              )}
             </div>
           </div>
         </div>
 
-        <div
-          className={classnames(
-            st.advertisingBlok,
-            {[st.list]: flagSwitcher}
-          )}
-        >
+        <div className={classnames(st.advertisingBlok, { [st.list]: flagSwitcher })}>
           {/*<div className={st.bannerBlock}>*/}
           {/*  <img src="/banner.png" alt="" className={st.banner} />*/}
           {/*</div>*/}

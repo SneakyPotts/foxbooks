@@ -1,4 +1,4 @@
-import {getServerSideSitemapIndex} from "next-sitemap";
+import { getServerSideSitemapIndex } from 'next-sitemap';
 
 export async function getServerSideProps(ctx) {
   let fields = [];
@@ -14,10 +14,9 @@ export async function getServerSideProps(ctx) {
     `${baseUrl}sitemap/authors.xml`,
     `${baseUrl}sitemap/series.xml`,
     `${baseUrl}sitemap/audio-series.xml`,
-  )
+  );
 
-  return getServerSideSitemapIndex(ctx, fields)
+  return getServerSideSitemapIndex(ctx, fields);
 }
 
-export default function SitemapIndex() {
-}
+export default function SitemapIndex() {}

@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import { useRouter } from 'next/router';
+
+import React, { useEffect } from 'react';
 import { useState } from 'react';
-import classnames from 'classnames';
 
 import st from './bookFilters.module.scss';
-import { useRouter } from 'next/router';
+import classnames from 'classnames';
 
 const initFilters = [
   { id: 1, title: 'Последние поступления', value: 1 },
@@ -12,28 +13,30 @@ const initFilters = [
   { id: 4, title: 'Сейчас читают', value: 2 },
 ];
 
-const BookFilters = ({
-  filters = initFilters,
-  queryName = 'sortBy',
-  onModal
-}) => {
+const BookFilters = ({ filters = initFilters, queryName = 'sortBy', onModal }) => {
   const router = useRouter();
   const { query } = router;
   const [currentIdx, setCurrentIdx] = useState(null);
 
-  const handleOnClick = value => {
-    router.push({ query: {
-        ...router.query,
-        [queryName]: value,
-        ['page']: 1
-    } }, null, {
-      scroll: false,
-    });
+  const handleOnClick = (value) => {
+    router.push(
+      {
+        query: {
+          ...router.query,
+          [queryName]: value,
+          ['page']: 1,
+        },
+      },
+      null,
+      {
+        scroll: false,
+      },
+    );
     setCurrentIdx(value);
   };
 
   useEffect(() => {
-    let currQuery = typeof query[queryName] === "string" ? query[queryName] : Number(query[queryName]);
+    let currQuery = typeof query[queryName] === 'string' ? query[queryName] : Number(query[queryName]);
 
     setCurrentIdx(currQuery || filters?.[0]?.value);
   }, [filters]);
@@ -45,7 +48,7 @@ const BookFilters = ({
           key={i.id || index}
           className={classnames(st.abFilter, {
             [st.active]: currentIdx == i?.value,
-            [st.onModal]: onModal
+            [st.onModal]: onModal,
           })}
           onClick={() => handleOnClick(i?.value)}
         >

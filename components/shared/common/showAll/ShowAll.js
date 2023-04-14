@@ -1,39 +1,29 @@
 import Link from 'next/link';
-import classNames from 'classnames';
-import st from './showAll.module.scss';
-import ArrowRight from '../../../../public/chevron-right.svg';
-import ArrowAll from '../../../../public/chevron-down.svg';
 
-const ShowAll = ({
-  text = 'Смотреть все',
-  title,
-  url = '/',
-  externalClass,
-  arrowSecondary,
-  showMore = null,
-  setPage,
-}) => {
+import ArrowAll from '../../../../public/chevron-down.svg';
+import ArrowRight from '../../../../public/chevron-right.svg';
+import st from './showAll.module.scss';
+import classNames from 'classnames';
+
+const ShowAll = ({ text = 'Смотреть все', title, url = '/', externalClass, arrowSecondary, showMore = null, setPage }) => {
   if (showMore) {
     const handleChange = () => {
-      setPage(prev => prev + 1)
+      setPage((prev) => prev + 1);
     };
 
     return (
-      <div className={classNames(st.showAll, {[st.showMoreBtn]: showMore})}>
-        {title && <h2 className={"title"}>{title}</h2>}
-        <button
-          type={'button'}
-          onClick={handleChange}
-        >
+      <div className={classNames(st.showAll, { [st.showMoreBtn]: showMore })}>
+        {title && <h2 className={'title'}>{title}</h2>}
+        <button type={'button'} onClick={handleChange}>
           <a className={st.showAllLink}>
             {text}
-            {arrowSecondary ?
+            {arrowSecondary ? (
               <span className={st.iconAll}>
-              <ArrowAll className={st.arrowAll} />
-            </span>
-              :
+                <ArrowAll className={st.arrowAll} />
+              </span>
+            ) : (
               <ArrowRight className={st.test} />
-            }
+            )}
           </a>
         </button>
       </div>
@@ -42,17 +32,17 @@ const ShowAll = ({
 
   return (
     <div className={classNames(st.showAll, externalClass)}>
-      {title && <h2 className={"title"}>{title}</h2>}
+      {title && <h2 className={'title'}>{title}</h2>}
       <Link href={url}>
         <a className={st.showAllLink}>
           {text}
-          {arrowSecondary ?
+          {arrowSecondary ? (
             <span className={st.iconAll}>
               <ArrowAll className={st.arrowAll} />
             </span>
-            :
+          ) : (
             <ArrowRight className={st.test} />
-          }
+          )}
         </a>
       </Link>
     </div>

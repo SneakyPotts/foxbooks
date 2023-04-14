@@ -1,36 +1,32 @@
-import React from 'react';
 import { useRouter } from 'next/router';
-import Pagination from 'rc-pagination';
+
+import React from 'react';
+
 import Button from '../Button/Button';
-import locale from './locale';
 import ArrowRight from './../../../../public/chevron-right.svg';
+import locale from './locale';
+import classNames from 'classnames';
+import Pagination from 'rc-pagination';
 
 import styles from './styles.module.scss';
-import classNames from 'classnames';
 
-const MyPagination = ({
-  currentPage,
-  lastPage,
-  onClick,
-  externalClass,
-  scrollTo,
-  smoothScroll = true
-}) => {
+const MyPagination = ({ currentPage, lastPage, onClick, externalClass, scrollTo, smoothScroll = true }) => {
   const router = useRouter();
 
   const scrollStartBlock = () => {
-    scrollTo && window.scrollTo({
-      top: scrollTo.current.offsetTop - 10,
-      left: 0,
-      behavior: smoothScroll ? "smooth" : "auto",
-    });
-  }
+    scrollTo &&
+      window.scrollTo({
+        top: scrollTo.current.offsetTop - 10,
+        left: 0,
+        behavior: smoothScroll ? 'smooth' : 'auto',
+      });
+  };
 
-  const handleChange = current => {
+  const handleChange = (current) => {
     if (onClick) {
       onClick(current);
     } else {
-      router.push({query: {...router.query, page: current}});
+      router.push({ query: { ...router.query, page: current } });
     }
     scrollStartBlock();
   };
@@ -41,7 +37,7 @@ const MyPagination = ({
       showQuickJumper={{
         goButton: <Button classNames={styles.btn} text="Перейти" />,
       }}
-			current={+router.query?.page || currentPage || 1}
+      current={+router.query?.page || currentPage || 1}
       defaultPageSize={1}
       total={lastPage}
       locale={locale}

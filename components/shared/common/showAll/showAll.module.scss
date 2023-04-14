@@ -17,7 +17,7 @@
   white-space: nowrap;
   color: $color-main;
   stroke: $color-main;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     cursor: pointer;
@@ -41,7 +41,7 @@
   height: 24px;
   border-radius: 50%;
   background-color: $color-bg-icon;
-  transition: .15s;
+  transition: 0.15s;
   margin-left: 20px;
 }
 .arrowAll {

@@ -1,6 +1,8 @@
 import React from 'react';
-import SearchEmptyPage from "../components/SearchEmptyPage";
-import NoveltiesService from "../http/NoveltiesService";
+
+import SearchEmptyPage from '../components/SearchEmptyPage';
+
+import NoveltiesService from '../http/NoveltiesService';
 
 const SearchEmpty = (props) => {
   return <SearchEmptyPage books={props.books.slice(0, 6)} />;
@@ -8,12 +10,12 @@ const SearchEmpty = (props) => {
 
 export default SearchEmpty;
 
-export async function getServerSideProps ({ query }) {
-  const novelties = await NoveltiesService.getNovelties(query)
+export async function getServerSideProps({ query }) {
+  const novelties = await NoveltiesService.getNovelties(query);
 
   return {
     props: {
-      books: novelties?.data?.data.data
-    }
-  }
+      books: novelties?.data?.data.data,
+    },
+  };
 }

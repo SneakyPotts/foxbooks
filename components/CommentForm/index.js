@@ -1,60 +1,61 @@
-import React, {useState} from 'react';
-import styles from './styles.module.scss'
-import Image from "next/image";
-import {useForm} from "react-hook-form";
-import Input from "../shared/common/Input/Input";
-import ButtonGroup from "../SettingsProfile/buttonGroup";
-import {useDispatch, useSelector} from "react-redux";
-import AvatarWithLetter from "../shared/common/AvatarWithLetter";
-import {setAuthPopupVisibility} from "../../store/commonSlice";
-import schema from "./schema";
-import {yupResolver} from "@hookform/resolvers/yup";
-import classNames from "classnames";
+import Image from 'next/image';
 
-const CommentForm = ({
-  submitFunc,
-  isTextarea,
-  rows,
-  onCancel
-}) => {
-  const dispatch = useDispatch()
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
-  const { isAuth } = useSelector(state => state.auth)
-  const { profile } = useSelector(state => state.profile)
+import ButtonGroup from '../SettingsProfile/buttonGroup';
+import schema from './schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import classNames from 'classnames';
+
+import { setAuthPopupVisibility } from '../../store/commonSlice';
+
+import AvatarWithLetter from '../shared/common/AvatarWithLetter';
+import Input from '../shared/common/Input/Input';
+
+import styles from './styles.module.scss';
+
+const CommentForm = ({ submitFunc, isTextarea, rows, onCancel }) => {
+  const dispatch = useDispatch();
+
+  const { isAuth } = useSelector((state) => state.auth);
+  const { profile } = useSelector((state) => state.profile);
 
   const [btnsIsVisible, setBtnsIsVisible] = useState(false);
 
-  const {register, handleSubmit, setValue, formState: {errors}} = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
   const handleInputClick = () => {
-    if(isAuth) {
-      setBtnsIsVisible(true)
+    if (isAuth) {
+      setBtnsIsVisible(true);
     } else {
-      dispatch(setAuthPopupVisibility(true))
+      dispatch(setAuthPopupVisibility(true));
     }
-  }
+  };
 
   const handleCancelClick = () => {
-    onCancel
-      ? onCancel()
-      : setBtnsIsVisible(false)
+    onCancel ? onCancel() : setBtnsIsVisible(false);
 
-    setValue('text', '')
-  }
+    setValue('text', '');
+  };
 
-  const onSubmit = data => {
-    submitFunc(data)
-    handleCancelClick()
-  }
+  const onSubmit = (data) => {
+    submitFunc(data);
+    handleCancelClick();
+  };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.wrapper}>
-        {isAuth &&
+        {isAuth && (
           <div className={styles.avatar}>
             {profile?.avatar ? (
               <Image
@@ -66,27 +67,18 @@ const CommentForm = ({
                 blurDataURL="/blur.webp"
               />
             ) : (
-              <AvatarWithLetter
-                letter={
-                  profile?.nickname?.slice(0, 1) ||
-                  profile?.name?.slice(0, 1) ||
-                  'П'
-                }
-                width={35}
-                id={profile?.id}
-                isProfile
-              />
+              <AvatarWithLetter letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'} width={35} id={profile?.id} isProfile />
             )}
           </div>
-        }
+        )}
 
         <Input
           classNames={classNames(styles.input, {
-            [styles.inline]: !isTextarea
+            [styles.inline]: !isTextarea,
           })}
           register={register}
           name={'text'}
-          placeholder={"Написать комментарий"}
+          placeholder={'Написать комментарий'}
           onClick={handleInputClick}
           err={errors?.text?.message}
           isTextarea={isTextarea}
@@ -94,14 +86,7 @@ const CommentForm = ({
         />
       </div>
 
-      {btnsIsVisible &&
-        <ButtonGroup
-          text={'Отправить'}
-          ClassName={styles.btns}
-          typeButton={'submit'}
-          cancelClick={handleCancelClick}
-        />
-      }
+      {btnsIsVisible && <ButtonGroup text={'Отправить'} ClassName={styles.btns} typeButton={'submit'} cancelClick={handleCancelClick} />}
     </form>
   );
 };

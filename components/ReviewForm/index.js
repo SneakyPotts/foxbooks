@@ -1,124 +1,119 @@
-import React, {useEffect, useState} from 'react';
-import styles from './styles.module.scss'
-import classNames from "classnames";
-import ArrowAll from "../../public/chevron-down.svg";
-import ButtonGroup from "../SettingsProfile/buttonGroup";
-import Input from "../shared/common/Input/Input";
-import { useForm } from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {addReview, getReviewTypes, updateReview} from "../../store/reviewSlice";
-import {setAuthPopupVisibility} from "../../store/commonSlice";
-import {yupResolver} from "@hookform/resolvers/yup";
-import schema from "./schema";
-import {useRouter} from "next/router";
+import { useRouter } from 'next/router';
 
-const ReviewForm = ({
-  bookId,
-  title,
-  text,
-  bookType,
-  myReviewType,
-  onCancel,
-  onClose
-}) => {
-  const dispatch = useDispatch()
-  const router = useRouter()
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
-  const { innerWidthWindow } = useSelector(state => state.common)
-  const { isAuth } = useSelector(state => state.auth)
-  const { reviewTypes } = useSelector(state => state.review)
-  const { book } = useSelector(state => state.book)
+import ArrowAll from '../../public/chevron-down.svg';
+import ButtonGroup from '../SettingsProfile/buttonGroup';
+import schema from './schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import classNames from 'classnames';
+
+import { setAuthPopupVisibility } from '../../store/commonSlice';
+import { addReview, getReviewTypes, updateReview } from '../../store/reviewSlice';
+
+import Input from '../shared/common/Input/Input';
+
+import styles from './styles.module.scss';
+
+const ReviewForm = ({ bookId, title, text, bookType, myReviewType, onCancel, onClose }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { innerWidthWindow } = useSelector((state) => state.common);
+  const { isAuth } = useSelector((state) => state.auth);
+  const { reviewTypes } = useSelector((state) => state.review);
+  const { book } = useSelector((state) => state.book);
 
   const [optionsIsVisible, setOptionsIsVisible] = useState(false);
   const [errorAlreadyAdded, setErrorAlreadyAdded] = useState('');
 
-  const { register, handleSubmit, formState: {errors}, reset, setValue, getValues } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    getValues,
+  } = useForm({
     defaultValues: {
       title,
-      text
+      text,
     },
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
-  const onSubmit = data => {
-    if(!isAuth) {
-      dispatch(setAuthPopupVisibility(true))
+  const onSubmit = (data) => {
+    if (!isAuth) {
+      dispatch(setAuthPopupVisibility(true));
     } else {
       const obj = {
         ...data,
         id: book.id,
         type: bookType === 'books' ? 'book' : 'audio_book',
-        review_type: getValues('review_type')
-      }
+        review_type: getValues('review_type'),
+      };
 
       router.pathname === '/mybooks/reviews'
-        ? dispatch(updateReview({...obj, id: bookId, type: myReviewType === 'books' ? 'book' : 'audio_book'}))
-          .then(() => {
-            reset()
-            onClose()
-          })
-        : dispatch(addReview(obj)).then(res => {
-          if(res.meta.requestStatus === "fulfilled") {
-            reset()
-            onClose()
-            setValue('review_type', null)
-          } else if (res.meta.requestStatus === "rejected") {
+        ? dispatch(updateReview({ ...obj, id: bookId, type: myReviewType === 'books' ? 'book' : 'audio_book' })).then(() => {
             reset();
-            setErrorAlreadyAdded(res.payload);
-          }
-        })
+            onClose();
+          })
+        : dispatch(addReview(obj)).then((res) => {
+            if (res.meta.requestStatus === 'fulfilled') {
+              reset();
+              onClose();
+              setValue('review_type', null);
+            } else if (res.meta.requestStatus === 'rejected') {
+              reset();
+              setErrorAlreadyAdded(res.payload);
+            }
+          });
     }
   };
 
-  const openDropdown = ev => {
-    ev.stopPropagation()
-    setOptionsIsVisible(true)
-  }
+  const openDropdown = (ev) => {
+    ev.stopPropagation();
+    setOptionsIsVisible(true);
+  };
 
   const closeDropdown = () => {
-    setOptionsIsVisible(false)
-  }
+    setOptionsIsVisible(false);
+  };
 
-  const chooseOption = id => {
-    setValue('review_type', id)
-    closeDropdown()
-  }
+  const chooseOption = (id) => {
+    setValue('review_type', id);
+    closeDropdown();
+  };
 
   useEffect(() => {
-    document.body.addEventListener('click', closeDropdown)
+    document.body.addEventListener('click', closeDropdown);
 
-    dispatch(getReviewTypes())
+    dispatch(getReviewTypes());
 
     return () => {
-      document.body.removeEventListener('click', closeDropdown)
-    }
-  }, [])
+      document.body.removeEventListener('click', closeDropdown);
+    };
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p
-        className={styles.label}
-        onClick={openDropdown}
-      >
+      <p className={styles.label} onClick={openDropdown}>
         Выберите тип вашей рецензии
       </p>
 
-      <div
-        className={styles.dropdown}
-        onClick={ev => ev.stopPropagation()}
-      >
+      <div className={styles.dropdown} onClick={(ev) => ev.stopPropagation()}>
         <div
           className={classNames(styles.dropdownBtn, {
-            [styles.active]: optionsIsVisible
+            [styles.active]: optionsIsVisible,
           })}
-          onClick={() => setOptionsIsVisible(prev => !prev)}
+          onClick={() => setOptionsIsVisible((prev) => !prev)}
         >
-          <span className={styles.dropBtnText}>
-            {reviewTypes.find(i => i?.id === getValues('review_type'))?.type || 'Тип рецензии'}
-          </span>
+          <span className={styles.dropBtnText}>{reviewTypes.find((i) => i?.id === getValues('review_type'))?.type || 'Тип рецензии'}</span>
           <span
             className={classNames(styles.arrow, {
-              [styles.active]: optionsIsVisible
+              [styles.active]: optionsIsVisible,
             })}
           >
             <ArrowAll />
@@ -127,12 +122,12 @@ const ReviewForm = ({
 
         {optionsIsVisible && (
           <ul className={styles.dropdownList}>
-            {reviewTypes?.map(i => (
+            {reviewTypes?.map((i) => (
               <li
                 key={i?.id}
                 onClick={() => chooseOption(i?.id)}
                 className={classNames(styles.dropdownItem, {
-                  [styles.active]: i?.id === getValues('review_type')
+                  [styles.active]: i?.id === getValues('review_type'),
                 })}
               >
                 {i?.type}
@@ -154,25 +149,11 @@ const ReviewForm = ({
         maxlength={150}
       />
 
-      <Input
-        register={register}
-        name={'text'}
-        textLabel={'Ваша рецензия'}
-        isTextarea
-        rows={innerWidthWindow > 768 ? 4 : 1}
-        err={errors?.text?.message}
-      />
+      <Input register={register} name={'text'} textLabel={'Ваша рецензия'} isTextarea rows={innerWidthWindow > 768 ? 4 : 1} err={errors?.text?.message} />
 
-      {errorAlreadyAdded &&
-        <p className={styles.error}>{errorAlreadyAdded}</p>
-      }
+      {errorAlreadyAdded && <p className={styles.error}>{errorAlreadyAdded}</p>}
 
-      <ButtonGroup
-        text={'Отправить'}
-        ClassName={styles.btns}
-        typeButton={'submit'}
-        cancelClick={onCancel}
-      />
+      <ButtonGroup text={'Отправить'} ClassName={styles.btns} typeButton={'submit'} cancelClick={onCancel} />
     </form>
   );
 };

@@ -48,7 +48,7 @@
   color: $color-third;
 
   .page {
-    transition: .15s;
+    transition: 0.15s;
 
     &:hover {
       color: $text-hover;
@@ -162,4 +162,4 @@
   .txt {
     height: 48px;
   }
-} ;
+}

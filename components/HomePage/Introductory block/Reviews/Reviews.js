@@ -1,21 +1,24 @@
 import Image from 'next/image';
+
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/core';
+
 import ArrowRight from '../../../../public/chevron-right.svg';
+import ReviewLogicItem from '../../../ReviewLogicItem';
 import st from './reviews.module.scss';
+import classnames from 'classnames';
+import { Navigation } from 'swiper/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import AvatarWithLetter from '../../../shared/common/AvatarWithLetter';
 import ShowAll from '../../../shared/common/showAll/ShowAll';
-import ReviewLogicItem from "../../../ReviewLogicItem";
-import AvatarWithLetter from "../../../shared/common/AvatarWithLetter";
-import React from "react";
-import classnames from "classnames";
 
 const Reviews = () => {
-  const { innerWidthWindow } = useSelector(state => state.common);
-  const { reviews } = useSelector(state => state.review);
+  const { innerWidthWindow } = useSelector((state) => state.common);
+  const { reviews } = useSelector((state) => state.review);
 
-  if(!reviews?.length) {
-    return null
+  if (!reviews?.length) {
+    return null;
   }
 
   return (
@@ -32,7 +35,7 @@ const Reviews = () => {
         slidesPerView={innerWidthWindow <= 600 ? 1 : 3}
         className={st.reviewSwiper}
       >
-        {reviews.map(review => (
+        {reviews.map((review) => (
           <SwiperSlide className={st.test} key={review.id}>
             <div className={st.reviewer}>
               <div className={st.reviewerImg}>
@@ -46,22 +49,12 @@ const Reviews = () => {
                     blurDataURL="/blur.webp"
                   />
                 ) : (
-                  <AvatarWithLetter
-                    letter={
-                      review?.user?.nickname?.slice(0, 1) ||
-                      review?.user?.name?.slice(0, 1) ||
-                      'П'
-                    }
-                    width={35}
-                    id={review?.user?.id}
-                  />
+                  <AvatarWithLetter letter={review?.user?.nickname?.slice(0, 1) || review?.user?.name?.slice(0, 1) || 'П'} width={35} id={review?.user?.id} />
                 )}
               </div>
               <span className={st.reviewerName}>{review.user?.nickname}</span>
             </div>
-            <ReviewLogicItem
-              data={review}
-            />
+            <ReviewLogicItem data={review} />
           </SwiperSlide>
         ))}
         <button className="prevArrow">

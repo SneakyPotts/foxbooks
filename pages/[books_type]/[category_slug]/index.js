@@ -1,13 +1,16 @@
 import React from 'react';
-import BookComponent from '../../../components/Books/category';
-import BookService from '../../../http/BookService';
 import { useDispatch } from 'react-redux';
-import { setBooks, setCategories } from '../../../store/bookSlice';
-import CategoriesService from "../../../http/CategoriesService";
-import AdminSettings from "../../../http/AdminSettings";
-import {setCurrentPageBanners} from "../../../store/adminSlice";
 
-const Categories = props => {
+import BookComponent from '../../../components/Books/category';
+
+import { setCurrentPageBanners } from '../../../store/adminSlice';
+import { setBooks, setCategories } from '../../../store/bookSlice';
+
+import AdminSettings from '../../../http/AdminSettings';
+import BookService from '../../../http/BookService';
+import CategoriesService from '../../../http/CategoriesService';
+
+const Categories = (props) => {
   const dispatch = useDispatch();
 
   dispatch(setCategories(props.categories));
@@ -16,7 +19,7 @@ const Categories = props => {
 
   return (
     <div>
-      <BookComponent order={props.order}/>
+      <BookComponent order={props.order} />
     </div>
   );
 };
@@ -24,15 +27,13 @@ const Categories = props => {
 export default Categories;
 
 export async function getServerSideProps({ req, params, query }) {
-  const { cookies } = req
+  const { cookies } = req;
   const { books_type, category_slug } = params;
 
-  const token = cookies.token
+  const token = cookies.token;
 
   try {
-    const categories = books_type === 'books'
-      ? await CategoriesService.getCategoriesWithCount()
-      : await CategoriesService.getAudioCategoriesWithCount()
+    const categories = books_type === 'books' ? await CategoriesService.getCategoriesBooks() : await CategoriesService.getAudioCategoriesWithCount();
 
     const order = await AdminSettings.getSortSetting(books_type === 'books' ? 'categories' : 'audio-categories');
 
@@ -45,10 +46,10 @@ export async function getServerSideProps({ req, params, query }) {
       showType: query.showType || 'block',
       sortBy: query.sortBy || order?.data?.data?.[0]?.value,
       findByCategory: categoryData.data.data[0].id,
-      token
+      token,
     });
 
-    const banners = await AdminSettings.getPageBanner({page_slug: 'category', category_slug});
+    const banners = await AdminSettings.getPageBanner({ page_slug: 'category', category_slug });
 
     return {
       props: {
@@ -63,15 +64,15 @@ export async function getServerSideProps({ req, params, query }) {
           og_title: seo_data?.og_title,
           og_description: seo_data?.og_description,
           og_img: seo_data?.og_img,
-        }
+        },
       },
-    }
+    };
   } catch {
     return {
       redirect: {
-        destination: "/404",
-        parameter: false
-      }
+        destination: '/404',
+        parameter: false,
+      },
     };
   }
 }

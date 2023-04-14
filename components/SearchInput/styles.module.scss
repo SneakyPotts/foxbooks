@@ -1,4 +1,4 @@
-@import './styles/variables';
+@import 'styles/variables';
 
 .input {
   position: relative;
@@ -76,7 +76,7 @@
   }
 
   svg path {
-    transition: .15s;
+    transition: 0.15s;
   }
 }
 
