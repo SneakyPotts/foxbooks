@@ -1,31 +1,34 @@
-import {useDispatch} from "react-redux";
+import { useDispatch } from 'react-redux';
+
 import AuthorPage from '../../components/AuthorPage';
-import AuthorService from "../../http/AuthorService";
-import AdminSettings from "../../http/AdminSettings";
-import {setAuthor} from "../../store/authorSlice";
-import {setCurrentPageBanners} from "../../store/adminSlice";
-import CategoriesService from "../../http/CategoriesService";
-import {setCategories} from "../../store/bookSlice";
+
+import { setCurrentPageBanners } from '../../store/adminSlice';
+import { setAuthor } from '../../store/authorSlice';
+import { setCategories } from '../../store/bookSlice';
+
+import AdminSettings from '../../http/AdminSettings';
+import AuthorService from '../../http/AuthorService';
+import CategoriesService from '../../http/CategoriesService';
 
 const index = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   dispatch(setAuthor(props.author));
   dispatch(setCategories(props.categories));
-	dispatch(setCurrentPageBanners(props.banners));
+  dispatch(setCurrentPageBanners(props.banners));
 
-  return <AuthorPage/>;
+  return <AuthorPage />;
 };
 
 export default index;
 
-export async function getServerSideProps ({ req, params }) {
-  const { cookies } = req
-  const token = cookies.token
+export async function getServerSideProps({ req, params }) {
+  const { cookies } = req;
+  const token = cookies.token;
 
   try {
     const author = await AuthorService.getAuthor(params.slug, token);
-		const banners = await AdminSettings.getPageBanner({page_slug: params.slug});
+    const banners = await AdminSettings.getPageBanner({ page_slug: params.slug });
 
     const categories = await CategoriesService.getCategoriesWithCount();
 
@@ -33,15 +36,15 @@ export async function getServerSideProps ({ req, params }) {
       props: {
         author: author?.data?.data,
         categories: categories?.data?.data,
-				banners: banners?.data?.data,
-      }
-    }
+        banners: banners?.data?.data,
+      },
+    };
   } catch {
     return {
       redirect: {
-        destination: "/404",
-        parameter: false
-      }
+        destination: '/404',
+        parameter: false,
+      },
     };
   }
 }

@@ -39,7 +39,7 @@
       padding: 15px 0;
       border-bottom: 1px solid $color-star-border;
 
-      >span {
+      > span {
         font-size: 14px;
         line-height: 1.43;
         color: #909190;
@@ -54,7 +54,7 @@
     font-size: 16px;
     line-height: 18px;
     color: $color-second;
-    transition: .15s;
+    transition: 0.15s;
 
     &:hover {
       color: $text-hover;
@@ -64,7 +64,7 @@
       }
     }
 
-    >span {
+    > span {
       font-size: 14px;
       line-height: 1.43;
       color: #909190;
@@ -72,7 +72,7 @@
   }
 }
 
-@media(max-width: 1024px) {
+@media (max-width: 1024px) {
   .mainBlock {
     justify-content: space-between;
   }
@@ -90,7 +90,7 @@
   }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .categories {
     width: 100%;
 

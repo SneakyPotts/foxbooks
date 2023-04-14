@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .container {
   margin: 60px auto 0;
@@ -19,7 +19,7 @@
   span {
     cursor: pointer;
     color: $text-hover;
-    transition: .15s;
+    transition: 0.15s;
 
     &:hover {
       color: $accent-hover;

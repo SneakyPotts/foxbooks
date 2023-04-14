@@ -1,59 +1,49 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
-import classnames from 'classnames';
-import Image from 'next/image';
-import Stars from '../stars/Stars';
+
+import Delete from '../../../../public/delete.svg';
+import DotsDropdown from '../../../DotsDropdown';
 import AddToBooks from '../../icons/add';
 import OpenBook from '../../icons/bookOpen';
-import Like from '../../icons/heart';
 import Comment from '../../icons/comment';
-import Basket from '../../icons/trash';
-import st from './book.module.scss';
-import aboutBookStyles from './../../../BookPage/AboutBook/aboutBook.module.scss';
-import Headphones from '../../icons/headphones';
 import Eye from '../../icons/eye';
-import {audioBook, deleteBookFromFavorite, setBookStatus} from '../../../../store/bookSlice';
-import Delete from "../../../../public/delete.svg";
-import DotsDropdown from "../../../DotsDropdown";
+import Headphones from '../../icons/headphones';
+import Like from '../../icons/heart';
+import Basket from '../../icons/trash';
+import Stars from '../stars/Stars';
+import aboutBookStyles from './../../../BookPage/AboutBook/aboutBook.module.scss';
+import st from './book.module.scss';
+import classnames from 'classnames';
 
-const Book = ({
-  audio,
-  flagSwitcher,
-  classNames,
-  similar,
-  mobalSimilar = false,
-  noLinks = false,
-  book,
-  count,
-  type,
-  withDelete,
-  onDelete,
-  inReview
-}) => {
+import { audioBook, deleteBookFromFavorite, setBookStatus } from '../../../../store/bookSlice';
+
+const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, noLinks = false, book, count, type, withDelete, onDelete, inReview }) => {
   const dispatch = useDispatch();
 
-  const { innerWidthWindow } = useSelector(state => state.common);
-  const { isAuth } = useSelector(state => state.auth);
+  const { innerWidthWindow } = useSelector((state) => state.common);
+  const { isAuth } = useSelector((state) => state.auth);
 
   const changeData = {
     wantRead: {
       link: audio ? '/mybooks/audio' : '/mybooks',
-      message: 'в вашу библиотеку'
+      message: 'в вашу библиотеку',
     },
     read: {
       link: audio ? '/mybooks/audio' : '/mybooks',
-      message: `в список ${audio ? 'слушаемых' : 'читаемых'}`
+      message: `в список ${audio ? 'слушаемых' : 'читаемых'}`,
     },
     delete: {
       link: null,
-      message: 'из вашей библиотеки'
-    }
-  }
+      message: 'из вашей библиотеки',
+    },
+  };
 
   const [changeIcon, setChangeIcon] = useState(book?.in_favorite);
   const [showPopUp, setShowPopUp] = useState(false);
-  const [message, setMessage] = useState({status: '', text: '', link: null});
+  const [message, setMessage] = useState({ status: '', text: '', link: null });
 
   const bookLinkClick = () => {
     if (audio) {
@@ -71,62 +61,66 @@ const Book = ({
   };
 
   const handleWantReadClick = () => {
-    dispatch(setBookStatus({
-      id: book?.id,
-      value: 1,
-      type
-    })).then((res) => {
-      setChangeIcon(true)
+    dispatch(
+      setBookStatus({
+        id: book?.id,
+        value: 1,
+        type,
+      }),
+    ).then((res) => {
+      setChangeIcon(true);
       setMessage({
         status: 'добавлена',
         text: changeData.wantRead.message,
-        link: changeData.wantRead.link
-      })
-      changeStatus(res)
-    })
-  }
+        link: changeData.wantRead.link,
+      });
+      changeStatus(res);
+    });
+  };
 
   const handleReadClick = () => {
-    dispatch(setBookStatus({
-      id: book?.id,
-      value: 2,
-      type
-    })).then((res) => {
+    dispatch(
+      setBookStatus({
+        id: book?.id,
+        value: 2,
+        type,
+      }),
+    ).then((res) => {
       setMessage({
         status: 'добавлена',
         text: changeData.read.message,
-        link: changeData.read.link
-      })
-      changeStatus(res)
-    })
-  }
+        link: changeData.read.link,
+      });
+      changeStatus(res);
+    });
+  };
 
   const deleteFromFavorite = () => {
-    dispatch(deleteBookFromFavorite({
-      id: book?.id,
-      type
-    })).then((res) => {
+    dispatch(
+      deleteBookFromFavorite({
+        id: book?.id,
+        type,
+      }),
+    ).then((res) => {
       setMessage({
         status: 'удалена',
         text: changeData.delete.message,
-        link: null
-      })
-      changeStatus(res)
-    })
-    setChangeIcon(false)
-  }
+        link: null,
+      });
+      changeStatus(res);
+    });
+    setChangeIcon(false);
+  };
 
   return (
     <div
       className={classnames(classNames, st.book, {
         [st.container]: !flagSwitcher,
         [st.containerColumn]: flagSwitcher,
-        [st.inReview]: inReview
+        [st.inReview]: inReview,
       })}
     >
-      <div
-        className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher, [st.audioBook]: audio })}
-      >
+      <div className={classnames(st.wrapper, { [st.wrapperList]: flagSwitcher, [st.audioBook]: audio })}>
         {!noLinks ? (
           <Link href={`/${book?.type?.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}/${book?.slug}`}>
             <a onClick={bookLinkClick}>
@@ -134,15 +128,7 @@ const Book = ({
                 src={book?.cover_url || '/preview.jpg'}
                 alt=""
                 width={innerWidthWindow >= 768 ? 180 : 108}
-                height={
-                  audio
-                    ? innerWidthWindow >= 768
-                      ? 180
-                      : 108
-                    : innerWidthWindow >= 768
-                    ? 271
-                    : 160
-                }
+                height={audio ? (innerWidthWindow >= 768 ? 180 : 108) : innerWidthWindow >= 768 ? 271 : 160}
                 placeholder="blur"
                 blurDataURL="/blur.webp"
                 layout="responsive"
@@ -150,15 +136,7 @@ const Book = ({
             </a>
           </Link>
         ) : (
-          <Image
-            src={book?.cover_url || '/preview.jpg'}
-            alt=""
-            width={180}
-            height={audio ? 180 : 271}
-            placeholder="blur"
-            blurDataURL="/blur.webp"
-            layout="responsive"
-          />
+          <Image src={book?.cover_url || '/preview.jpg'} alt="" width={180} height={audio ? 180 : 271} placeholder="blur" blurDataURL="/blur.webp" layout="responsive" />
         )}
 
         {/*{!flagSwitcher && !inReview &&*/}
@@ -226,9 +204,9 @@ const Book = ({
         {!audio && flagSwitcher && (
           <div className={st.selectionDateViewsMob}>
             <span>{book?.views_count}</span>
-            <Eye/>
+            <Eye />
           </div>
-          )}
+        )}
         {noLinks ? (
           <h3
             className={classnames(st.bookName, {
@@ -251,20 +229,16 @@ const Book = ({
         )}
 
         {noLinks ? (
-          <span className={st.bookAuthor}>
-            {book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}
-          </span>
+          <span className={st.bookAuthor}>{book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}</span>
+        ) : book?.authors?.length ? (
+          <Link href={book?.authors?.length ? `/author/${book?.authors[0]?.slug}` : ''}>
+            <a className={st.bookAuthor}>{book?.authors[0]?.author}</a>
+          </Link>
         ) : (
-          book?.authors?.length ?
-            <Link href={book?.authors?.length ? `/author/${book?.authors[0]?.slug}` : ''}>
-              <a className={st.bookAuthor}>
-                {book?.authors[0]?.author}
-              </a>
-            </Link> :
-            <span className={st.bookAuthor}>Нет автора</span>
+          <span className={st.bookAuthor}>Нет автора</span>
         )}
         {flagSwitcher && (
-          <div className={classnames(st.extraInfo, { [st.addInfo]: !audio }, {[st.addInfoAudio]: audio})}>
+          <div className={classnames(st.extraInfo, { [st.addInfo]: !audio }, { [st.addInfoAudio]: audio })}>
             <p className={st.bookYear}>
               <span>{audio ? book?.year : book?.year?.year}</span>
               <span className={st.bookGenre}>
@@ -272,27 +246,25 @@ const Book = ({
                 {book?.genre?.name || null}
               </span>
             </p>
-            {innerWidthWindow >= 768 && (
-              <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>
-                {book?.text || book?.description}
-              </p>
-            )}
+            {innerWidthWindow >= 768 && <p className={classnames(st.aboutBook, { [st.lines]: !audio })}>{book?.text || book?.description}</p>}
             {!audio && (
               <div className={st.reviewStatistic}>
-                {!flagSwitcher ? (
-                  <>
-                    <span className={st.reviewIcon}>
-                      <Like />
-                    </span>
-                    <span className={st.reviewLike}>3115</span>
-                  </>
-                ) : null
+                {
+                  !flagSwitcher ? (
+                    <>
+                      <span className={st.reviewIcon}>
+                        <Like />
+                      </span>
+                      <span className={st.reviewLike}>3115</span>
+                    </>
+                  ) : null
                   /*(
                   <div className={st.selectionDateViews}>
                     <span>{book?.views_count}</span>
                     <Eye />
                   </div>
-                )*/}
+                )*/
+                }
                 <span
                   className={classnames(st.reviewIcon, {
                     [st.distance]: flagSwitcher,
@@ -305,34 +277,22 @@ const Book = ({
           </div>
         )}
 
-        {(flagSwitcher && isAuth) && (
+        {flagSwitcher && isAuth && (
           <div>
-            <span
-                className={classnames(st.addIcon, {[st.hide]: changeIcon})}
-                onClick={handleWantReadClick}
-            >
-              <AddToBooks/>
+            <span className={classnames(st.addIcon, { [st.hide]: changeIcon })} onClick={handleWantReadClick}>
+              <AddToBooks />
             </span>
 
-            {changeIcon &&
-              <DotsDropdown
-                isSmall
-                externalClass={st.dotsIcon}
-              >
+            {changeIcon && (
+              <DotsDropdown isSmall externalClass={st.dotsIcon}>
                 <div className={st.optionWindow}>
-                  <p
-                    className={st.optionRead}
-                    onClick={handleReadClick}
-                  >
+                  <p className={st.optionRead} onClick={handleReadClick}>
                     <span className={st.optionIcon}>
                       <OpenBook />
                     </span>
                     {type === 'books' ? 'Читаю' : 'Слушаю'}
                   </p>
-                  <p
-                    className={st.optionDelete}
-                    onClick={deleteFromFavorite}
-                  >
+                  <p className={st.optionDelete} onClick={deleteFromFavorite}>
                     <span className={st.optionIcon}>
                       <Basket />
                     </span>
@@ -340,30 +300,28 @@ const Book = ({
                   </p>
                 </div>
               </DotsDropdown>
-            }
+            )}
           </div>
         )}
-
       </div>
 
-      {withDelete &&
-        <span
-          className={st.deleteBtn}
-          onClick={onDelete}
-        >
+      {withDelete && (
+        <span className={st.deleteBtn} onClick={onDelete}>
           <Delete />
         </span>
-      }
+      )}
 
       {showPopUp && (
         <div className={aboutBookStyles.popUp}>
           <p>
             Книга “{book?.title}” {message?.status}{' '}
-            {message?.link
-              ? <Link href={message?.link}>
+            {message?.link ? (
+              <Link href={message?.link}>
                 <a className={aboutBookStyles.popUpLink}>{message?.text}</a>
               </Link>
-              : message?.text}
+            ) : (
+              message?.text
+            )}
           </p>
         </div>
       )}

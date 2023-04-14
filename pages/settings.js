@@ -1,26 +1,27 @@
 import React from 'react';
-import SettingsProfile from "../components/SettingsProfile";
+
+import SettingsProfile from '../components/SettingsProfile';
 
 const Settings = () => {
-	return <SettingsProfile/>
+  return <SettingsProfile />;
 };
 
 export default Settings;
 
-export async function getServerSideProps ({ req }) {
-	const { cookies } = req
-	const token = cookies.token
+export async function getServerSideProps({ req }) {
+  const { cookies } = req;
+  const token = cookies.token;
 
-	if(!token) {
-		return {
-			redirect: {
-				destination: '/',
-				parameter: false
-			}
-		}
-	}
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/',
+        parameter: false,
+      },
+    };
+  }
 
-	return {
-		props: {}
-	}
+  return {
+    props: {},
+  };
 }

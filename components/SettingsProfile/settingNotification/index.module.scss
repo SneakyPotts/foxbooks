@@ -70,17 +70,14 @@
   }
   .groupButton {
     margin-top: 10px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
 }
 
 @media screen and (max-width: 480px) {
   .notification {
-
     .formContainer {
-
       .settingWrap {
-
         .setting {
           width: auto;
           border-bottom: none;

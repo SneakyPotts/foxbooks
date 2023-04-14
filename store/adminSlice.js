@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   banners: [],
@@ -9,9 +9,9 @@ const fromAdminPanel = createSlice({
   initialState,
   reducers: {
     setCurrentPageBanners: (state, action) => {
-      state.banners = action.payload
-    }
-  }
+      state.banners = action.payload;
+    },
+  },
 });
 
 export const { setCurrentPageBanners } = fromAdminPanel.actions;

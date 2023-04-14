@@ -1,7 +1,8 @@
 import { useState } from 'react';
+
 import DropDownArrow from '../../../public/chevron-down.svg';
-import classnames from 'classnames';
 import css from './about.module.css';
+import classnames from 'classnames';
 
 const About = () => {
   const data = [
@@ -21,8 +22,8 @@ const About = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleClick = index => {
-    setCurrentIndex(prev => {
+  const handleClick = (index) => {
+    setCurrentIndex((prev) => {
       if (prev === index) {
         return null;
       } else {
@@ -40,10 +41,7 @@ const About = () => {
                 [css.active]: currentIndex === index,
               })}
             >
-              <button
-                onClick={() => handleClick(index)}
-                className={css.dropDownBtn}
-              >
+              <button onClick={() => handleClick(index)} className={css.dropDownBtn}>
                 <span className={css.dropDownTitle}>{title}</span>
                 <span
                   className={classnames(css.dropDownIcon, {
@@ -53,9 +51,7 @@ const About = () => {
                   <DropDownArrow />
                 </span>
               </button>
-              {currentIndex === index && (
-                <p className={css.dropDownText}>{text}</p>
-              )}
+              {currentIndex === index && <p className={css.dropDownText}>{text}</p>}
             </div>
           </div>
         );

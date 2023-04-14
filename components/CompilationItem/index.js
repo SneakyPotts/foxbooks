@@ -1,21 +1,20 @@
-import React from 'react';
-import styles from "./styles.module.scss";
-import Eye from "../shared/icons/eye";
-import Image from 'next/image'
-import Link from 'next/link'
-import moment from "moment";
-import 'moment/locale/ru'
-import {getNoun} from "../../utils";
+import Image from 'next/image';
+import Link from 'next/link';
 
-const CompilationItem = ({
-  data,
-  isFull,
-  path,
-  isMini
-}) => {
+import React from 'react';
+
+import { getNoun } from '../../utils';
+import moment from 'moment';
+import 'moment/locale/ru';
+
+import Eye from '../shared/icons/eye';
+
+import styles from './styles.module.scss';
+
+const CompilationItem = ({ data, isFull, path, isMini }) => {
   return (
     <div className={styles.mini}>
-      {path ?
+      {path ? (
         <Link href={path}>
           <a className={styles.selectionLink}>
             <Image
@@ -29,11 +28,11 @@ const CompilationItem = ({
               blurDataURL="/blur.webp"
             />
             <span className={styles.selectionCount}>
-              {data?.total_books_count || data?.books_count || '0'}{' '}
-              {getNoun(data?.total_books_count || data?.books_count || 0, 'книга', 'книги', 'книг')}
+              {data?.total_books_count || data?.books_count || '0'} {getNoun(data?.total_books_count || data?.books_count || 0, 'книга', 'книги', 'книг')}
             </span>
           </a>
-        </Link> :
+        </Link>
+      ) : (
         <div className={styles.selectionLink}>
           <Image
             src={data?.background || '/preview.jpg'}
@@ -46,32 +45,30 @@ const CompilationItem = ({
             blurDataURL="/blur.webp"
           />
           <span className={styles.selectionCount}>
-            {data?.total_books_count}{' '}
-            {getNoun(data?.total_books_count, 'книга', 'книги', 'книг')}
+            {data?.total_books_count} {getNoun(data?.total_books_count, 'книга', 'книги', 'книг')}
           </span>
         </div>
-      }
+      )}
 
-      {isFull &&
+      {isFull && (
         <div className={styles.selectionDate}>
           <span>{moment(data?.created_at).format('D MMMM YYYY в LT')}</span>
           <div className={styles.selectionDateViews}>
             <span>{data?.views_count}</span>
-            <Eye/>
+            <Eye />
           </div>
         </div>
-      }
+      )}
 
-      {path ?
+      {path ? (
         <Link href={path}>
           <a className={styles.selectionTitle}>{data?.title}</a>
-        </Link> :
+        </Link>
+      ) : (
         <p className={styles.selectionTitle}>{data?.title}</p>
-      }
+      )}
 
-      {isFull &&
-        <p className={styles.selectionText}>{data?.description}</p>
-      }
+      {isFull && <p className={styles.selectionText}>{data?.description}</p>}
     </div>
   );
 };

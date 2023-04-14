@@ -1,6 +1,6 @@
 module.exports = {
-   webpack(config) {
-    config.infrastructureLogging = { debug: /PackFileCache/ }
+  webpack(config) {
+    config.infrastructureLogging = { debug: /PackFileCache/ };
     return config;
   },
   reactStrictMode: true,
@@ -23,7 +23,7 @@ module.exports = {
       's13.knigavuhe.org',
       's14.knigavuhe.org',
       's15.knigavuhe.org',
-      'api.foxbooks.ec'
-    ]
-  }
+      'api.foxbooks.ec',
+    ],
+  },
 };

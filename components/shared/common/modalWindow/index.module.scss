@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .wrapper {
   position: fixed;
@@ -101,7 +101,7 @@
   }
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
   .wrapper {
     &Block {
       margin: 0 15px;
@@ -112,13 +112,12 @@
   }
 }
 
-  .wrapper {
-    &BlockFullScreen {
-      padding-top: 60px;
+.wrapper {
+  &BlockFullScreen {
+    padding-top: 60px;
 
-      &Cross {
-        top: 60px;
-      }
+    &Cross {
+      top: 60px;
     }
   }
-
+}

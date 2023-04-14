@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .wrapper {
   padding: 0;
@@ -7,10 +7,10 @@
   & > div:first-of-type {
     top: 60px;
     right: 60px;
-    
+
     span {
       background: #fff;
-      transition: .15s;
+      transition: 0.15s;
     }
   }
 }
@@ -67,7 +67,7 @@
   font-weight: 400;
   font-size: 28px;
   line-height: 35px;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   background: transparent;
   outline: none;
@@ -80,7 +80,7 @@
     font-weight: 400;
     font-size: 28px;
     line-height: 35px;
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
   }
 }
@@ -88,7 +88,7 @@
 .error {
   font-size: 12px;
   line-height: 14px;
-  color: #E92A20;
+  color: #e92a20;
   margin-bottom: 10px;
   margin-top: -10px;
 }
@@ -108,7 +108,7 @@
   color: $color-third;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
   .wrapper {
     & > div:first-of-type {
       top: 30px;
@@ -121,7 +121,6 @@
       height: 300px;
     }
   }
-
 
   .title {
     font-weight: 700;

@@ -1,26 +1,29 @@
-import React, {useRef, useState} from 'react';
-import styles from './styles.module.scss'
-import {calcCoordinates} from "../../utils";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
+import React, { useRef, useState } from 'react';
 
-const NotesPopup = ({title, children}) => {
+import { calcCoordinates } from '../../utils';
+
+import useOnClickOutside from '../../hooks/useOnClickOutside';
+
+import styles from './styles.module.scss';
+
+const NotesPopup = ({ title, children }) => {
   const [openPopup, setOpenPopup] = useState(false);
-  const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 })
+  const [toolsCoords, setToolsCoords] = useState({ x: 0, y: 0 });
   const notesPopupRef = useRef();
 
   const handleClick = (ev) => {
     ev.stopPropagation();
-    setToolsCoords(() => calcCoordinates(ev))
-    setOpenPopup(prevState => !prevState);
-  }
+    setToolsCoords(() => calcCoordinates(ev));
+    setOpenPopup((prevState) => !prevState);
+  };
 
   const handleClose = () => {
     setOpenPopup(false);
-  }
+  };
   // const tag = JSON.stringify(children)
   // const text = tag.slice(tag.indexOf('['), tag.indexOf('[') + 3)
 
-  useOnClickOutside(notesPopupRef, handleClose)
+  useOnClickOutside(notesPopupRef, handleClose);
 
   return (
     <span
@@ -32,17 +35,17 @@ const NotesPopup = ({title, children}) => {
       ref={notesPopupRef}
     >
       {children}
-      {openPopup &&
+      {openPopup && (
         <span
           style={{
             top: toolsCoords.y + 'px',
-            left: toolsCoords.x + 'px'
+            left: toolsCoords.x + 'px',
           }}
           className={styles.addQuotWrapper}
         >
           {title}
         </span>
-      }
+      )}
     </span>
   );
 };
