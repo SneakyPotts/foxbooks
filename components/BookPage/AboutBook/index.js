@@ -8,6 +8,7 @@ import { durationString, wordsForCount } from '../../../utils';
 import DotsDropdown from '../../DotsDropdown';
 import st from './aboutBook.module.scss';
 import classnames from 'classnames';
+import moment from 'moment';
 
 import { deleteBookFromFavorite, setAudioBookRating, setBookRating, setBookStatus } from '../../../store/bookSlice';
 import { setAuthPopupVisibility, setPlayerVisibility } from '../../../store/commonSlice';
@@ -320,6 +321,11 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     </span>
                   </p>
                 ) : null}
+                {book?.created_at && (
+                  <p>
+                    Дата публикации: <span>{moment(book?.created_at).format('DD MMMM YYYY')}</span>
+                  </p>
+                )}
               </div>
             </div>
           </div>
