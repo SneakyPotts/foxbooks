@@ -29,7 +29,6 @@
       object-fit: cover;
     }
 
-
     .file {
       position: absolute;
       bottom: 0;
@@ -82,7 +81,7 @@
     cursor: pointer;
 
     span {
-      transition: .15s;
+      transition: 0.15s;
     }
 
     :hover {
@@ -100,23 +99,23 @@
 }
 
 .wrapDel {
-  >h2 {
+  > h2 {
     color: $color-main;
     font-family: 'Merriweather', serif;
     font-size: 28px;
     line-height: 35px;
   }
-  >p{
+  > p {
     margin-top: 10px;
     font-family: 'Fira Sans', sans-serif;
     color: $color-second;
     font-size: 14px;
   }
   .Button {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     flex-direction: row-reverse;
-    >button {
-      margin-left: 0px;
+    > button {
+      margin-left: 0;
       margin-right: 30px;
       width: 200px;
     }
@@ -148,7 +147,7 @@
   .wrapDel {
     margin: 0 -30px;
     .Button {
-      >button {
+      > button {
         width: 100%;
       }
     }

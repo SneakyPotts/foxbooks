@@ -1,5 +1,6 @@
-import {getServerSideSitemapIndex} from "next-sitemap";
-import SitemapService from "../../../http/SitemapService";
+import { getServerSideSitemapIndex } from 'next-sitemap';
+
+import SitemapService from '../../../http/SitemapService';
 
 export async function getServerSideProps(ctx) {
   let fields = [];
@@ -7,14 +8,11 @@ export async function getServerSideProps(ctx) {
 
   const categories = await SitemapService.getCategories('books');
 
-  categories.data?.data?.map(item => {
-    fields.push(
-      `${baseUrl}books/${item?.slug}`,
-    )
-  })
+  categories.data?.data?.map((item) => {
+    fields.push(`${baseUrl}books/${item?.slug}`);
+  });
 
-  return getServerSideSitemapIndex(ctx, fields)
+  return getServerSideSitemapIndex(ctx, fields);
 }
 
-export default function SitemapIndex() {
-}
+export default function SitemapIndex() {}

@@ -1,18 +1,20 @@
 import { useSelector } from 'react-redux';
-import styles from './index.module.scss';
+
 import ArrowRight from '../../../../public/chevron-right.svg';
+import CompilationItem from '../../../CompilationItem';
+import styles from './index.module.scss';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import ShowAll from '../../../shared/common/showAll/ShowAll';
-import CompilationItem from "../../../CompilationItem";
 
 const Compilations = () => {
-  const { innerWidthWindow } = useSelector(state => state.common);
-  const { selections } = useSelector(state => state.selection);
+  const { innerWidthWindow } = useSelector((state) => state.common);
+  const { selections } = useSelector((state) => state.selection);
 
-  if(!selections?.length) {
-    return null
+  if (!selections?.length) {
+    return null;
   }
 
   return (
@@ -28,15 +30,11 @@ const Compilations = () => {
         spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
         slidesPerView={innerWidthWindow <= 600 ? 1 : 3}
       >
-        {selections.map(i =>
+        {selections.map((i) => (
           <SwiperSlide key={i?.id}>
-            <CompilationItem
-              data={i}
-              isFull
-              path={`/selections/${i?.slug}`}
-            />
+            <CompilationItem data={i} isFull path={`/selections/${i?.slug}`} />
           </SwiperSlide>
-        )}
+        ))}
         <button className={classnames('prevArrow', styles.positionButton)}>
           <ArrowRight className="arrowNext" />
         </button>

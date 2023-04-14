@@ -109,7 +109,7 @@
   align-items: center;
   margin-right: 10px;
   cursor: pointer;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover,
   &.active {
@@ -123,7 +123,7 @@
   font-size: 14px;
   line-height: 140%;
   color: $color-main;
-  transition: .15s;
+  transition: 0.15s;
   cursor: pointer;
 
   &:hover {
@@ -131,7 +131,7 @@
   }
 
   &Item {
-    border-top: 1px solid #D5D5D5;
+    border-top: 1px solid #d5d5d5;
   }
 }
 .reviewShowMore {
@@ -141,7 +141,7 @@
   color: $text-hover;
   margin-top: 30px;
   cursor: pointer;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     color: $accent-hover;

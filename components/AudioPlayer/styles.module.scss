@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .wrapper {
   position: fixed;
@@ -8,17 +8,17 @@
   z-index: 2;
   height: 96px;
   background: $color-main;
-  border-top: 1px solid #D5D5D5;
+  border-top: 1px solid #d5d5d5;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
   gap: 10px;
   color: #fff;
-  animation: slideTop .15s;
+  animation: slideTop 0.15s;
 
   &.hide {
-    animation: slideBottom .3s;
+    animation: slideBottom 0.3s;
   }
 
   &Column {
@@ -96,7 +96,7 @@
 
     svg path {
       fill: #fff;
-      transition: .15s;
+      transition: 0.15s;
     }
 
     &:hover {
@@ -116,7 +116,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: .15s;
+    transition: 0.15s;
 
     &:active {
       transform: scale(1.2);
@@ -133,7 +133,7 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
-    color: #D5D5D5;
+    color: #d5d5d5;
 
     &Input {
       &::-webkit-slider-thumb {
@@ -170,7 +170,7 @@
     position: relative;
 
     svg path {
-      transition: .15s;
+      transition: 0.15s;
     }
 
     &:first-of-type {
@@ -248,16 +248,15 @@
         height: 11px !important;
       }
     }
-
   }
 }
 
 .dropItem {
   font-size: 16px;
   line-height: 18px;
-  color: #4F4F4F;
+  color: #4f4f4f;
   margin-bottom: 20px;
-  transition: .15s;
+  transition: 0.15s;
   cursor: pointer;
 
   &:last-of-type {
@@ -276,15 +275,15 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  background: #FFFFFF;
-  border: 1px solid #F1F1F1;
+  background: #ffffff;
+  border: 1px solid #f1f1f1;
   border-radius: 50%;
   box-shadow: 0 3px 10px rgba(121, 121, 121, 0.1);
   position: absolute;
   top: 0;
   right: 0;
   transform: translateY(-50%);
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     background: #eee;
@@ -391,15 +390,15 @@
   }
 }
 
-@media screen and (max-height: 800px) and (max-width: 1023px){
+@media screen and (max-height: 800px) and (max-width: 1023px) {
   .wrapper {
     padding-top: 100px;
   }
 
   .preview {
-     > span {
-       width: 200px !important;
-     }
+    > span {
+      width: 200px !important;
+    }
   }
 }
 

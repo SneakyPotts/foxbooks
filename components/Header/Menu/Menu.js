@@ -1,52 +1,54 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import React from 'react';
 import { useSelector } from 'react-redux';
+
+import css from './menu.module.scss';
+import classNames from 'classnames';
+
+import AvatarWithLetter from '../../shared/common/AvatarWithLetter';
+import Headphones from '../../shared/icons/headphones';
+import LogoMobileActive from '../../shared/icons/logoMobileActive';
+import LogoMobileWhite from '../../shared/icons/logoMobileWhite';
 import Book from '../../shared/icons/navMenu/book';
 import Fire from '../../shared/icons/navMenu/fire';
+import Grid from '../../shared/icons/navMenu/grid';
 import MyBooks from '../../shared/icons/navMenu/myBooks';
 import Selections from '../../shared/icons/navMenu/selections';
-import Headphones from '../../shared/icons/headphones';
-import Grid from '../../shared/icons/navMenu/grid';
-import LogoMobileWhite from '../../shared/icons/logoMobileWhite';
-import LogoMobileActive from '../../shared/icons/logoMobileActive';
 import User from '../../shared/icons/user';
-import css from './menu.module.scss';
-import classNames from "classnames";
-import Image from "next/image";
-import AvatarWithLetter from "../../shared/common/AvatarWithLetter";
-import React from "react";
 
 const Navigation = ({ setModal, bottomOnly }) => {
   const router = useRouter();
-  const { isAuth } = useSelector(state => state.auth);
-  const { innerWidthWindow } = useSelector(state => state.common);
-  const { profile, newNotification } = useSelector(state => state.profile);
+
+  const { isAuth } = useSelector((state) => state.auth);
+  const { innerWidthWindow } = useSelector((state) => state.common);
+  const { profile, newNotification } = useSelector((state) => state.profile);
 
   return (
     <nav className={css.navigation}>
-      <div className={classNames(css.topMenu, {[css.hidden]: bottomOnly})}>
-        <Link href="/books">
-          <a
-            className={`${css.link} ${
-              router.query.books_type === 'books' && !router.query.category_slug
-                ? css.active 
-                : css.link
-            }`}
-          >
+      <div className={classNames(css.topMenu, { [css.hidden]: bottomOnly })}>
+        <Link
+          href={{
+            pathname: '/[books_type]',
+            query: { books_type: 'books' },
+          }}
+        >
+          <a className={`${css.link} ${router.query.books_type === 'books' && !router.query.category_slug ? css.active : css.link}`}>
             <span className={css.icon}>
               <Book />
             </span>
             Книги
           </a>
         </Link>
-        <Link href="/audiobooks">
-          <a
-            className={`${css.link} ${css.linkStroke} ${
-              router.query.books_type === 'audiobooks' && !router.query.category_slug
-                  ? css.activeStroke
-                  : css.link
-            }`}
-          >
+        <Link
+          href={{
+            pathname: '/[books_type]',
+            query: { books_type: 'audiobooks' },
+          }}
+        >
+          <a className={`${css.link} ${css.linkStroke} ${router.query.books_type === 'audiobooks' && !router.query.category_slug ? css.activeStroke : css.link}`}>
             <span className={css.icon}>
               <Headphones />
             </span>
@@ -55,13 +57,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
           </a>
         </Link>
         <Link href="/selections">
-          <a
-            className={`${css.link} ${css.linkStroke} ${
-              router.pathname === '/selections'
-                ? css.activeStroke
-                : css.link
-            }`}
-          >
+          <a className={`${css.link} ${css.linkStroke} ${router.pathname === '/selections' ? css.activeStroke : css.link}`}>
             <span className={css.icon}>
               <Selections />
             </span>
@@ -69,13 +65,7 @@ const Navigation = ({ setModal, bottomOnly }) => {
           </a>
         </Link>
         <Link href={`/new`}>
-          <a
-            className={`${css.link} ${
-              router.pathname === '/new' 
-                ? css.active 
-                : css.link
-            } ${innerWidthWindow <= 768 && css.noSpace}`}
-          >
+          <a className={`${css.link} ${router.pathname === '/new' ? css.active : css.link} ${innerWidthWindow <= 768 && css.noSpace}`}>
             <span className={css.icon}>
               <Fire />
             </span>
@@ -86,29 +76,13 @@ const Navigation = ({ setModal, bottomOnly }) => {
 
       <div className={css.dovnMenu}>
         <Link href="/">
-          <a
-            className={`${css.dovnMenuLogo} ${
-              router.pathname !== '/' 
-                ? css.dovnMenuLogo 
-                : css.active
-            }`}
-          >
-            {router.pathname === '/' ? (
-              <LogoMobileActive />
-            ) : (
-              <LogoMobileWhite />
-            )}
+          <a className={`${css.dovnMenuLogo} ${router.pathname !== '/' ? css.dovnMenuLogo : css.active}`}>
+            {router.pathname === '/' ? <LogoMobileActive /> : <LogoMobileWhite />}
             <span className={css.dovnMenuLogoText}>Главная</span>
           </a>
         </Link>
         <Link href="/categories">
-          <a
-            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
-              router.pathname === '/categories' 
-                ? css.activeStroke 
-                : css.link
-            }`}
-          >
+          <a className={`${css.link} ${css.linkStroke} ${css.noSpace} ${router.pathname === '/categories' ? css.activeStroke : css.link}`}>
             <span className={css.icon}>
               <Grid />
             </span>
@@ -118,15 +92,13 @@ const Navigation = ({ setModal, bottomOnly }) => {
 
         <Link href="/mybooks">
           <a
-            onClick={e => {
+            onClick={(e) => {
               if (!isAuth) {
                 e.preventDefault();
                 setModal();
               }
             }}
-            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${
-              router.pathname.includes('/mybooks') ? css.activeStroke : css.link
-            }`}
+            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${router.pathname.includes('/mybooks') ? css.activeStroke : css.link}`}
           >
             <span className={css.icon}>
               <MyBooks />
@@ -137,22 +109,20 @@ const Navigation = ({ setModal, bottomOnly }) => {
 
         <Link href="/settings">
           <a
-            onClick={e => {
+            onClick={(e) => {
               if (!isAuth) {
                 e.preventDefault();
                 setModal();
               }
             }}
-            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.mobileOnly} ${
-              router.pathname.includes('/settings') 
-                ? css.activeStroke 
-                : css.link
-            }`}
+            className={`${css.link} ${css.linkStroke} ${css.noSpace} ${css.mobileOnly} ${router.pathname.includes('/settings') ? css.activeStroke : css.link}`}
           >
-            <span className={classNames(css.icon, {
-              [css.rounded]: isAuth
-            })}>
-              {isAuth ?
+            <span
+              className={classNames(css.icon, {
+                [css.rounded]: isAuth,
+              })}
+            >
+              {isAuth ? (
                 profile?.avatar ? (
                   <Image
                     src={profile?.avatar}
@@ -163,22 +133,14 @@ const Navigation = ({ setModal, bottomOnly }) => {
                     blurDataURL="/blur.webp"
                   />
                 ) : (
-                  <AvatarWithLetter
-                    letter={
-                      profile?.nickname?.slice(0, 1) ||
-                      profile?.name?.slice(0, 1) ||
-                      'П'
-                    }
-                    width={24}
-                    id={profile?.id}
-                    isProfile
-                  />
-                ) :
+                  <AvatarWithLetter letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'} width={24} id={profile?.id} isProfile />
+                )
+              ) : (
                 <User />
-              }
+              )}
             </span>
             Профиль
-            {isAuth && newNotification && <span className={css.indicator}/>}
+            {isAuth && newNotification && <span className={css.indicator} />}
           </a>
         </Link>
       </div>

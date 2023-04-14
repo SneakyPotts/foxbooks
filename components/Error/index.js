@@ -1,7 +1,8 @@
-import React from 'react';
 import Link from 'next/link';
+
+import React from 'react';
+
 import Logo from '../Logo';
-import Button from '../shared/common/Button/Button';
 import st from './error.module.scss';
 
 const Error = () => {
@@ -23,7 +24,7 @@ const Error = () => {
         </div>
         <h2 className={st.errorTitle}>Упс... страница не найдена</h2>
         <p className={st.errorText}>
-          К сожалению, запрашиваемая страница потерялась. <br/>
+          К сожалению, запрашиваемая страница потерялась. <br />
           Мы обязательно разберемся с этим недоразумением.
         </p>
         <Link href="/">

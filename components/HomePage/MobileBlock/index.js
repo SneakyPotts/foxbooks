@@ -1,15 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+
+import ArrowRight from '../../../public/chevron-right.svg';
+import books from '../../data/books.json';
+import st from './mobile.module.scss';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import ShowAll from '../../shared/common/showAll/ShowAll';
+
 import Book from '../../shared/common/book';
-import books from '../../data/books.json';
-import ArrowRight from '../../../public/chevron-right.svg';
-import st from './mobile.module.scss';
+import ShowAll from '../../shared/common/showAll/ShowAll';
 
 const MobileBlock = () => {
-  const { innerWidthWindow } = useSelector(state => state.common);
+  const { innerWidthWindow } = useSelector((state) => state.common);
   return (
     <div className={st.container}>
       <div className={st.mainBlock}>
@@ -18,15 +20,13 @@ const MobileBlock = () => {
         <Swiper
           modules={[Navigation]}
           spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
-          slidesPerView={
-            (innerWidthWindow <= 500 && 3) || (innerWidthWindow <= 768 && 4)
-          }
+          slidesPerView={(innerWidthWindow <= 500 && 3) || (innerWidthWindow <= 768 && 4)}
           navigation={{
             prevEl: '.prevArrow',
             nextEl: '.nextArrow',
           }}
         >
-          {books.map(book => (
+          {books.map((book) => (
             <SwiperSlide key={book.id} className={st.swiperSlide}>
               <Book book={book} />
             </SwiperSlide>
@@ -44,18 +44,13 @@ const MobileBlock = () => {
         <Swiper
           modules={[Navigation]}
           spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
-          slidesPerView={
-            (innerWidthWindow <= 500 && 3) ||
-            (innerWidthWindow <= 1024 && 4) ||
-            (innerWidthWindow >= 1200 && 5)
-          }
+          slidesPerView={(innerWidthWindow <= 500 && 3) || (innerWidthWindow <= 1024 && 4) || (innerWidthWindow >= 1200 && 5)}
           navigation={{
             prevEl: '.prevArrow',
             nextEl: '.nextArrow',
           }}
-
         >
-          {books.map(book => (
+          {books.map((book) => (
             <SwiperSlide key={book.id} className={st.swiperSlide}>
               <Book count={innerWidthWindow <= 500 ? 1 : 5} book={book} />
             </SwiperSlide>

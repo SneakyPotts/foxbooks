@@ -1,15 +1,17 @@
 import { useSelector } from 'react-redux';
+
+import ArrowRight from '../../../public/chevron-right.svg';
+import st from './otherBooks.module.scss';
+import classNames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import classNames from 'classnames';
+
 import Book from '../../shared/common/book';
-import ArrowRight from '../../../public/chevron-right.svg';
 import ShowAll from '../../shared/common/showAll/ShowAll';
-import st from './otherBooks.module.scss';
 
 const AuthorOtherBooks = ({ data }) => {
-  const { innerWidthWindow } = useSelector(state => state.common);
-  const { authors } = useSelector(state => state.book.book);
+  const { innerWidthWindow } = useSelector((state) => state.common);
+  const { authors } = useSelector((state) => state.book.book);
 
   const changeSpaceBtwSwiper = () => {
     if (innerWidthWindow > 768) return 24;
@@ -24,12 +26,8 @@ const AuthorOtherBooks = ({ data }) => {
   return (
     <div className={st.container}>
       <div className={st.blockTitle}>
-        <h2 className={st.title}>
-          Другие книги автора
-        </h2>
-        {innerWidthWindow <= 768 && (
-          <ShowAll externalClass={st.dicardDistance} url={`/author/${authors?.[0]?.slug}`}/>
-        )}
+        <h2 className={st.title}>Другие книги автора</h2>
+        {innerWidthWindow <= 768 && <ShowAll externalClass={st.dicardDistance} url={`/author/${authors?.[0]?.slug}`} />}
       </div>
       <Swiper
         spaceBetween={changeSpaceBtwSwiper()}
@@ -40,14 +38,9 @@ const AuthorOtherBooks = ({ data }) => {
         }}
         slidesPerView={changeSlidesPerView()}
       >
-        {data.map(i => (
+        {data.map((i) => (
           <SwiperSlide key={i?.id}>
-            <Book
-              classNames={st.slide}
-              book={i}
-              similar={true}
-              type={i?.type}
-            />
+            <Book classNames={st.slide} book={i} similar={true} type={i?.type} />
           </SwiperSlide>
         ))}
         <button className={classNames('prevArrow', st.btn)}>
