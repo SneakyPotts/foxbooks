@@ -355,9 +355,6 @@
     }
     &ContentPopularItem {
       flex-basis: 30%;
-      &:nth-of-type(n + 4) {
-        //display: none;
-      }
     }
     &ShowMore a {
       font-size: 20px;

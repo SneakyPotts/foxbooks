@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addKey, calcCoordinates, highlight, keyObj, objToRange, rangeToObj } from '../../utils';
+import { addKey, calcCoordinates, calcQuotePosition, highlight, keyObj, objToRange, rangeToObj } from '../../utils';
 import AddQout from './AddQout';
 import NotesPopup from './NotesPopup';
 import parse, { attributesToProps, domToReact } from 'html-react-parser';
@@ -62,30 +62,61 @@ const TextWithQuotes = () => {
   const [isError, setIsError] = useState(false);
 
   const showTools = (ev) => {
-    setToolsCoords(() => calcCoordinates(ev));
+    setToolsCoords(() => calcQuotePosition(ev));
     setToolsIsVisible(true);
   };
 
-  const mouseUpHandler = (ev) => {
+  const hideTools = () => {
+    setToolsIsVisible(false);
+  };
+
+  // const mouseUpHandler = (ev) => {
+  //   setMarkId(null);
+  //   const text = window.getSelection().toString();
+  //
+  //   if (text?.length && text !== ' ') {
+  //     ev.preventDefault();
+  //     // ev.stopPropagation()
+  //     setSelectedText(text);
+  //
+  //     const range = window.getSelection().getRangeAt(0);
+  //     const obj = rangeToObj(range);
+  //     setRangeObj(obj);
+  //
+  //     const err = quotes?.some(() => !obj.startKey || !obj.endKey) || text?.length > 300;
+  //     setIsError(err);
+  //
+  //     showTools(ev);
+  //   } else {
+  //     setToolsIsVisible(false);
+  //     setIsError(false);
+  //   }
+  // };
+
+  const handleKeyPress = (event) => {
     setMarkId(null);
+
     const text = window.getSelection().toString();
+    const range = window.getSelection().getRangeAt(0);
+    const obj = rangeToObj(range);
 
-    if (text?.length && text !== ' ') {
-      ev.preventDefault();
-      // ev.stopPropagation()
-      setSelectedText(text);
+    const article = document.querySelector(`[data-key="${obj.startKey}"]`);
 
-      const range = window.getSelection().getRangeAt(0);
-      const obj = rangeToObj(range);
-      setRangeObj(obj);
+    if (event.ctrlKey && event.code === 'KeyQ' && !!article) {
+      if (text?.length && text !== ' ') {
+        event.preventDefault();
+        setSelectedText(text);
 
-      const err = quotes?.some(() => !obj.startKey || !obj.endKey) || text?.length > 300;
-      setIsError(err);
+        setRangeObj(obj);
 
-      showTools(ev);
-    } else {
-      setToolsIsVisible(false);
-      setIsError(false);
+        const err = quotes?.some(() => !obj.startKey || !obj.endKey) || text?.length > 300;
+        setIsError(err);
+
+        showTools(range.getBoundingClientRect());
+      } else {
+        setToolsIsVisible(false);
+        setIsError(false);
+      }
     }
   };
 
@@ -255,16 +286,6 @@ const TextWithQuotes = () => {
   };
 
   useEffect(() => {
-    const hideTools = () => setToolsIsVisible(false);
-
-    document.body.addEventListener('click', hideTools);
-
-    return () => {
-      document.body.removeEventListener('click', hideTools);
-    };
-  }, []);
-
-  useEffect(() => {
     if (isAuth && quotesIsLoading) return;
 
     addKey(article.current);
@@ -282,6 +303,12 @@ const TextWithQuotes = () => {
     }
   }, [book?.page?.id, quotesIsLoading]);
 
+  useEffect(() => {
+    window.addEventListener('keypress', handleKeyPress);
+
+    return () => window.removeEventListener('keypress', handleKeyPress);
+  }, []);
+
   return (
     <>
       <h1 className={styles.bookTitle}>
@@ -297,8 +324,8 @@ const TextWithQuotes = () => {
       <article
         ref={article}
         className={styles.bookText}
-        onMouseUp={(ev) => mouseUpHandler(ev)}
-        onTouchEnd={(ev) => mouseUpHandler(ev)}
+        // onMouseUp={(ev) => mouseUpHandler(ev)}
+        // onTouchEnd={(ev) => mouseUpHandler(ev)}
         style={{
           fontFamily: settings?.fontName,
           fontSize: `${+settings?.fontSize + 16}px`,
@@ -326,6 +353,7 @@ const TextWithQuotes = () => {
             deleteQuot={deleteQuot}
             copyText={copyText}
             shareQuot={shareQuot}
+            onClose={hideTools}
           />
         )}
       </article>
