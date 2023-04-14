@@ -61,7 +61,7 @@ const Search = ({ value, onClose }) => {
                   {books.map((i) => (
                     <li key={i?.id} className={st.dropDownContentPopularItem}>
                       <Link href={`/${i?.type}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}>
-                        <a onClick={onClose} style={{ width: 124, height: 187, display: 'block', position: 'relative' }}>
+                        <a onClick={onClose} style={{ aspectRatio: '124 / 187', display: 'block', position: 'relative' }}>
                           <Image
                             src={i?.cover_url || '/blur.webp'}
                             width={124}

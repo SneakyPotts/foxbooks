@@ -1,15 +1,19 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
+import useOnClickOutside from '../../hooks/useOnClickOutside';
+
 import Share from '../shared/icons/share';
 
 const colors = ['#A5D5FF', '#FFE371', '#FED3CA', '#B8DF70'];
 
-const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, deleteQuot, copyText, shareQuot }) => {
+const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, deleteQuot, copyText, shareQuot, onClose }) => {
+  const popup = useRef();
+
   const { innerWidthWindow } = useSelector((state) => state.common);
 
   const [colorsIsVisible, setColorsIsVisible] = useState(false);
@@ -52,8 +56,11 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
     addQuot(colors[0]);
   };
 
+  useOnClickOutside(popup, onClose);
+
   return (
     <div
+      ref={popup}
       className={classNames(styles.addQuotWrapper, {
         [styles.around]: textCondition,
         [styles.error]: isError,
