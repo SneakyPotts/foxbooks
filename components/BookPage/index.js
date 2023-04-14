@@ -16,10 +16,11 @@ import Form from './Form';
 import Quotes from './Quotes';
 import Reviews from './Reviews';
 import SimilarBooks from './SimilarBooks';
-import st from './bookpage.module.scss';
 import classnames from 'classnames';
 import { Navigation } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import st from './bookpage.module.scss';
 
 import { getAudioBooksByAuthor, getBooksByAuthor } from '../../store/bookSlice';
 
@@ -79,7 +80,7 @@ const BookPage = ({ bookType }) => {
           <AboutBook book={book} audioFlag={audioFlag} showMyComp={() => setMyCopmIsVisible(true)} />
 
           <div className={st.relatedInfo}>
-            {book?.similarBooks?.length && <SimilarBooks type={type} data={book?.similarBooks} />}
+            {!!book?.similarBooks?.length && <SimilarBooks type={type} data={book?.similarBooks} />}
 
             <Image src="/horizontalBookCovers/bookCover1.png" alt="" width={588} height={250} className={st.relatedInfoBanner} />
 
