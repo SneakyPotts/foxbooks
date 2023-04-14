@@ -24,7 +24,7 @@
     height: 24px;
 
     path {
-      transition: .15s;
+      transition: 0.15s;
     }
   }
 }
@@ -34,7 +34,7 @@
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background: #E92A20;
+  background: #e92a20;
   border: 2px solid #fff;
   position: absolute;
   top: -7px;
@@ -43,8 +43,8 @@
 
 .dropdown {
   padding: 30px;
-  background: #FFFFFF;
-  border: 1px solid #F1F1F1;
+  background: #ffffff;
+  border: 1px solid #f1f1f1;
   box-shadow: 0px 6px 15px rgba(101, 101, 101, 0.12);
   border-radius: 10px;
   position: absolute;
@@ -85,5 +85,4 @@
   .dropdown {
     display: none;
   }
-
 }

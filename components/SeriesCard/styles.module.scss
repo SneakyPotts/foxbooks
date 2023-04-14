@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .wrapper {
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .img {
-  border: 1px solid #D5D5D5;
+  border: 1px solid #d5d5d5;
   border-radius: 5px;
   overflow: hidden;
   object-fit: cover;
@@ -26,13 +26,13 @@
   &:nth-of-type(2) {
     z-index: 2;
     left: 17px;
-    opacity: .7;
+    opacity: 0.7;
   }
 
   &:nth-of-type(3) {
     z-index: 1;
     left: 34px;
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
@@ -42,7 +42,7 @@
   line-height: 16px;
   color: $color-main;
   margin: 10px 0;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     color: $text-hover;

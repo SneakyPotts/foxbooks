@@ -5,7 +5,7 @@ const initialState = {
   showMenuFlag: false,
   playerIsVisible: false,
   headerIsVisible: true,
-  authPopupIsVisible: false
+  authPopupIsVisible: false,
 };
 
 export const commonSlice = createSlice({
@@ -26,16 +26,10 @@ export const commonSlice = createSlice({
     },
     setAuthPopupVisibility: (state, action) => {
       state.authPopupIsVisible = action.payload;
-    }
+    },
   },
 });
 
-export const {
-  showMenu,
-  setBreakPoint,
-  setPlayerVisibility,
-  setHeaderVisibility,
-  setAuthPopupVisibility
-} = commonSlice.actions;
+export const { showMenu, setBreakPoint, setPlayerVisibility, setHeaderVisibility, setAuthPopupVisibility } = commonSlice.actions;
 
 export default commonSlice.reducer;

@@ -1,34 +1,33 @@
 @import 'styles/variables';
 
+.helpTitle {
+  max-width: 588px;
+  margin-top: 30px;
+  > p {
+    margin-top: 20px;
+    padding-bottom: 5px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.43;
+    color: $color-second;
+  }
+}
 
-  .helpTitle {
-    max-width: 588px;
-    margin-top: 30px;
-    > p {
-      margin-top: 20px;
-      padding-bottom: 5px;
-      font-family: 'Fira Sans', sans-serif;
-      font-size: 14px;
-      line-height: 1.43;
+.form {
+  max-width: 588px;
+
+  .inputWidth {
+    margin-top: 35px;
+    max-width: 298px;
+    padding-bottom: 0;
+
+    > input {
+      font-size: 16px;
+      line-height: 18px;
       color: $color-second;
     }
   }
-
-  .form {
-    max-width: 588px;
-
-    .inputWidth {
-      margin-top: 35px;
-      max-width: 298px;
-      padding-bottom: 0;
-
-      > input {
-        font-size: 16px;
-        line-height: 18px;
-        color: $color-second;
-      }
-    }
-  }
+}
 .buttons {
   display: flex;
   flex-direction: row-reverse;

@@ -76,14 +76,14 @@
   padding: 10px 27px;
   border-radius: 5px;
   background: $text-hover;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     background: $accent-hover;
   }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
   .wrapper {
     padding: 20px 15px 54px;
   }
@@ -121,7 +121,7 @@
   }
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
   .btn {
     display: block;
     width: 100%;

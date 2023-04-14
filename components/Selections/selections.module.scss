@@ -26,7 +26,7 @@
     margin-bottom: 14px;
   }
   &Line {
-    background: #D5D5D5;
+    background: #d5d5d5;
     margin: 30px 0;
     height: 1px;
     display: block;
@@ -34,7 +34,7 @@
 }
 .main {
   &ListItem {
-    margin-bottom: 60px;    
+    margin-bottom: 60px;
   }
   &Grid {
     display: grid;
@@ -53,7 +53,7 @@
   margin-bottom: 40px;
 }
 .title {
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     color: $text-hover;
@@ -65,11 +65,11 @@
 .btn {
   font-size: 14px;
   line-height: 140%;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 3px 15px;
   border-radius: 5px;
   background: $text-hover;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     background: $accent-hover;

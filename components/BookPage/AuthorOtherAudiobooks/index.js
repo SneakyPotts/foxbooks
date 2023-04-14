@@ -1,13 +1,15 @@
 import { useSelector } from 'react-redux';
-import { Navigation } from 'swiper/core';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import classNames from 'classnames';
-import Book from '../../shared/common/book';
+
 import ArrowRight from '../../../public/chevron-right.svg';
 import st from './otherAudioBooks.module.scss';
+import classNames from 'classnames';
+import { Navigation } from 'swiper/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import Book from '../../shared/common/book';
 
 const AuthorOtherAudioBooks = ({ data }) => {
-  const { innerWidthWindow } = useSelector(state => state.common);
+  const { innerWidthWindow } = useSelector((state) => state.common);
 
   const changeSpaceBtwSwiper = () => {
     if (innerWidthWindow > 768) return 24;
@@ -21,9 +23,7 @@ const AuthorOtherAudioBooks = ({ data }) => {
 
   return (
     <div className={st.container}>
-      <h2 className={st.blockTitle}>
-        Другие аудиокниги автора
-      </h2>
+      <h2 className={st.blockTitle}>Другие аудиокниги автора</h2>
       <Swiper
         spaceBetween={changeSpaceBtwSwiper()}
         modules={[Navigation]}
@@ -33,16 +33,9 @@ const AuthorOtherAudioBooks = ({ data }) => {
         }}
         slidesPerView={changeSlidesPerView()}
       >
-        {data.map(i => (
+        {data.map((i) => (
           <SwiperSlide key={i?.id}>
-            <Book
-              classNames={st.slide}
-              book={i}
-              similar={true}
-              mobalSimilar={true}
-              audio={true}
-              type={i?.type}
-            />
+            <Book classNames={st.slide} book={i} similar={true} mobalSimilar={true} audio={true} type={i?.type} />
           </SwiperSlide>
         ))}
         <button className={classNames('prevArrow', st.btn)}>

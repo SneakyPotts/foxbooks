@@ -22,12 +22,12 @@
   color: $color-second;
   fill: $color-second;
   position: relative;
-  transition: .15s;
+  transition: 0.15s;
 }
 .linkStroke {
   stroke: $color-second;
   fill: none;
-  transition: .15s;
+  transition: 0.15s;
 }
 .link:hover {
   position: relative;
@@ -51,7 +51,7 @@
   height: 1px;
   background-color: $text-hover;
   opacity: 0;
-  transition: opacity .15s;
+  transition: opacity 0.15s;
 }
 .active {
   position: relative;
@@ -95,14 +95,13 @@
     overflow: hidden;
     margin: 0 0 4px !important;
   }
-
 }
 .indicator {
   display: inline-block;
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #E92A20;
+  background: #e92a20;
   position: absolute;
   top: -5px;
   right: 10px;

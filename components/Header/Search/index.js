@@ -1,80 +1,66 @@
-import React, {useEffect, useMemo} from 'react';
-import classNames from "classnames";
-import Image from "next/image";
-import Link from "next/link";
-import {useSelector} from "react-redux";
-import ShowAll from "../../shared/common/showAll/ShowAll";
-import st from './../header.module.scss'
-import {useRouter} from "next/router";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const Search = ({ value , onClose }) => {
-  const router = useRouter()
-  const { data } = useSelector(state => state.search)
+import React, { useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+
+import st from './../header.module.scss';
+import classNames from 'classnames';
+
+import ShowAll from '../../shared/common/showAll/ShowAll';
+
+const Search = ({ value, onClose }) => {
+  const router = useRouter();
+  const { data } = useSelector((state) => state.search);
 
   const books = useMemo(() => {
-    return data?.books
-  }, [data])
+    return data?.books;
+  }, [data]);
 
   const authors = useMemo(() => {
-    return data?.authors
-  }, [data])
+    return data?.authors;
+  }, [data]);
 
   useEffect(() => {
     const handleKeyDown = (ev) => {
-      if(ev.code === 'Escape') {
-        onClose()
-      } else if(ev.code === 'Enter') {
+      if (ev.code === 'Escape') {
+        onClose();
+      } else if (ev.code === 'Enter') {
         if (!!value.length) {
-          router.push(`/search?search=${value}&type=full&sortBy=1`)
-          onClose()
+          router.push(`/search?search=${value}&type=full&sortBy=1`);
+          onClose();
         }
       }
-    }
-    document.body.addEventListener('keydown', handleKeyDown)
+    };
+    document.body.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [value])
+      document.body.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [value]);
 
-  if(!books?.length && !authors?.length) return null
+  if (!books?.length && !authors?.length) return null;
 
   return (
     <>
-      <div
-          className={st.overlay}
-          onClick={onClose}
-      />
-      <div
-          className={classNames(st.dropDown)}
-          onClick={onClose}
-      >
+      <div className={st.overlay} onClick={onClose} />
+      <div className={classNames(st.dropDown)} onClick={onClose}>
         <div className={classNames('container', st.border)}>
-          <div
-              className={st.dropDownContent}
-              onClick={e => e.stopPropagation()}
-          >
+          <div className={st.dropDownContent} onClick={(e) => e.stopPropagation()}>
             <div onClick={onClose}>
-              <ShowAll
-                text={'Все результаты'}
-                url={`/search?search=${value}&type=full&sortBy=1`}
-                arrowSecondary
-                externalClass={st.dropDownShowMore}
-              />
+              <ShowAll text={'Все результаты'} url={`/search?search=${value}&type=full&sortBy=1`} arrowSecondary externalClass={st.dropDownShowMore} />
             </div>
-            {!!books?.length &&
+            {!!books?.length && (
               <div className={st.dropDownContentUser}>
                 {/*{!!data?.books?.length ?*/}
-                  {/*<h2 className={st.dropDownContentTitle}>Часто ищут</h2>*/}
+                {/*<h2 className={st.dropDownContentTitle}>Часто ищут</h2>*/}
                 {/*}*/}
                 <ul className={st.dropDownContentPopular}>
-                  {books.map(i => (
-                    <li
-                      key={i?.id}
-                      className={st.dropDownContentPopularItem}
-                    >
+                  {books.map((i) => (
+                    <li key={i?.id} className={st.dropDownContentPopularItem}>
                       <Link href={`/${i?.type}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}>
-                        <a onClick={onClose} style={{width: 124, height: 187, display: "block", position: "relative"}}>
+                        <a onClick={onClose} style={{ width: 124, height: 187, display: 'block', position: 'relative' }}>
                           <Image
                             src={i?.cover_url || '/blur.webp'}
                             width={124}
@@ -95,12 +81,12 @@ const Search = ({ value , onClose }) => {
                   ))}
                 </ul>
               </div>
-            }
-            {!!authors?.length &&
+            )}
+            {!!authors?.length && (
               <div className={st.dropDownContentAuthor}>
                 <h2 className={st.dropDownContentTitle}>Авторы</h2>
                 <ul className={st.authorsList}>
-                  {authors.map(({id, author, slug}) => (
+                  {authors.map(({ id, author, slug }) => (
                     <Link href={`/author/${slug}`} key={id} className={st.author}>
                       <a onClick={onClose}>
                         <span className={st.authorName}>{author}</span>
@@ -109,7 +95,7 @@ const Search = ({ value , onClose }) => {
                   ))}
                 </ul>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>

@@ -1,0 +1,23 @@
+{
+  "trailingComma": "all",
+  "printWidth": 175,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "importOrder": [
+    "^next/(.*)$",
+    "^react/(.*)$",
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^components/(.*)$",
+    "/store/(.*)$",
+    "/http/(.*)$",
+    "/hooks/(.*)$",
+    "/shared/(.*)$",
+    "^public/(.*)$",
+    "^styles/(.*)$",
+    "[./]styles.*"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}

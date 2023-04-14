@@ -19,13 +19,13 @@
   color: $color-main;
   border: none;
   background: $color-bg-icon;
-  transition: .15s;
+  transition: 0.15s;
 
   &.onModal {
     font-size: 16px;
     line-height: 24px;
     height: auto;
-    color: #4F4F4F;
+    color: #4f4f4f;
     padding: 0;
     position: relative;
     margin-left: 34px;
@@ -61,7 +61,7 @@
       left: -10px;
       top: 50%;
       transform: translate(-100%, -50%);
-      transition: .15s;
+      transition: 0.15s;
     }
 
     &.active {
@@ -85,7 +85,6 @@
     color: $color-categories-btn;
     background-color: $color-main;
   }
-
 }
 
 .active {

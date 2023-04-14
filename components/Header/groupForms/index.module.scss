@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .login {
   width: 298px;
@@ -30,7 +30,7 @@
   }
 
   &Min {
-    margin-bottom: 10px!important;
+    margin-bottom: 10px !important;
   }
 
   .message {
@@ -44,7 +44,7 @@
 .error {
   font-size: 12px;
   line-height: 14px;
-  color: #E92A20;
+  color: #e92a20;
 }
 
 @media screen and (max-width: 480px) {

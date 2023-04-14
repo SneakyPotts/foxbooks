@@ -64,7 +64,7 @@
   line-height: 1.125;
   color: $color-second;
   margin-right: 10px;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     color: $text-hover;
@@ -72,7 +72,7 @@
 }
 .bookAuthorLink {
   color: $color-third;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     color: $text-hover;
@@ -171,7 +171,7 @@
   background-color: $text-hover;
   color: $color-categories-btn;
   border-radius: 5px;
-  transition: .15s;
+  transition: 0.15s;
 }
 .readButton:hover {
   background-color: $accent-hover;
@@ -190,7 +190,7 @@
     transition: 0.15s;
 
     &.elect {
-      opacity: .5;
+      opacity: 0.5;
       pointer-events: none;
     }
 
@@ -255,10 +255,10 @@
     }
 
     a {
-      transition: .15s;
+      transition: 0.15s;
 
       &:hover {
-        color: $text-hover
+        color: $text-hover;
       }
     }
   }

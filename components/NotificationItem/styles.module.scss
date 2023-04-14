@@ -1,9 +1,9 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 .wrapper {
   display: flex;
   padding-bottom: 15px;
-  border-bottom: 1px solid #D5D5D5;
+  border-bottom: 1px solid #d5d5d5;
   margin-bottom: 15px;
 
   &:last-of-type {
@@ -42,7 +42,7 @@
   font-size: 12px;
   line-height: 15px;
   color: $color-main;
-  transition: .15s;
+  transition: 0.15s;
 
   &:hover {
     color: $text-hover;

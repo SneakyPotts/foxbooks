@@ -1,61 +1,62 @@
-import React, {useState} from 'react';
-import styles from './styles.module.scss'
-import Image from "next/image";
-import Link from "next/link";
-import Eye from "../shared/icons/eye";
-import Like from "../shared/icons/heart";
-import Comment from "../shared/icons/comment";
-import EditPensil from "../shared/icons/editPencil";
-import Bin from "../shared/icons/trash";
-import ModalWindow from "../shared/common/modalWindow/ModalWindow";
-import ReviewForm from "../ReviewForm";
-import {useDispatch, useSelector} from "react-redux";
-import DotsDropdown from "../DotsDropdown";
-import moment from "moment";
-import 'moment/locale/ru'
-import CommentsService from "../../http/CommentsService";
-import {setAuthPopupVisibility} from "../../store/commonSlice";
-import classnames from "classnames";
+import Image from 'next/image';
+import Link from 'next/link';
 
-const ReviewLogicItem = ({
-  type,
-  data,
-  withControls,
-  onDelete
-}) => {
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import DotsDropdown from '../DotsDropdown';
+import ReviewForm from '../ReviewForm';
+import classnames from 'classnames';
+import moment from 'moment';
+import 'moment/locale/ru';
+
+import { setAuthPopupVisibility } from '../../store/commonSlice';
+
+import CommentsService from '../../http/CommentsService';
+
+import ModalWindow from '../shared/common/modalWindow/ModalWindow';
+import Comment from '../shared/icons/comment';
+import EditPensil from '../shared/icons/editPencil';
+import Eye from '../shared/icons/eye';
+import Like from '../shared/icons/heart';
+import Bin from '../shared/icons/trash';
+
+import styles from './styles.module.scss';
+
+const ReviewLogicItem = ({ type, data, withControls, onDelete }) => {
   const dispatch = useDispatch();
 
-  const { innerWidthWindow } = useSelector(state => state.common)
-  const { isAuth } = useSelector(state => state.auth)
+  const { innerWidthWindow } = useSelector((state) => state.common);
+  const { isAuth } = useSelector((state) => state.auth);
 
-  const [editFormIsVisible, setEditFormIsVisible] = useState(false)
-  const [likesCount, setLikesCount] = useState(data?.likes_count || 0)
-  const [isLiked, setIsLiked] = useState(data?.is_liked)
+  const [editFormIsVisible, setEditFormIsVisible] = useState(false);
+  const [likesCount, setLikesCount] = useState(data?.likes_count || 0);
+  const [isLiked, setIsLiked] = useState(data?.is_liked);
 
   const likeHandler = async () => {
-      if(isAuth) {
-        const obj = {
-          id: data?.id,
-          type: data?.book?.type === "books" ? 'book_review' : 'audio_book_review'
-        }
+    if (isAuth) {
+      const obj = {
+        id: data?.id,
+        type: data?.book?.type === 'books' ? 'book_review' : 'audio_book_review',
+      };
 
-        if(isLiked) {
-          await CommentsService.deleteLikeFromComment(obj)
-          setLikesCount(prev => prev - 1)
-          setIsLiked(false)
-        } else {
-          await CommentsService.addLikeToComment(obj)
-          setLikesCount(prev => prev + 1)
-          setIsLiked(true)
-        }
+      if (isLiked) {
+        await CommentsService.deleteLikeFromComment(obj);
+        setLikesCount((prev) => prev - 1);
+        setIsLiked(false);
       } else {
-        dispatch(setAuthPopupVisibility(true))
+        await CommentsService.addLikeToComment(obj);
+        setLikesCount((prev) => prev + 1);
+        setIsLiked(true);
       }
+    } else {
+      dispatch(setAuthPopupVisibility(true));
     }
+  };
 
-    const onClose = () => {
-      setEditFormIsVisible(false);
-    }
+  const onClose = () => {
+    setEditFormIsVisible(false);
+  };
 
   return (
     <div className={styles.review}>
@@ -86,7 +87,7 @@ const ReviewLogicItem = ({
         <span className={styles.reviewDate}>{moment(data?.created_at).format('D MMMM YYYY в LT')}</span>
         <div className={styles.reviewViews}>
           <span className={styles.sumReviews}>{data?.views_count}</span>
-          <Eye/>
+          <Eye />
         </div>
       </div>
 
@@ -96,49 +97,37 @@ const ReviewLogicItem = ({
       <div className={styles.reviewBottom}>
         <div className={styles.reviewBottomStatistic}>
           <span
-            className={classnames(styles.reviewIcon, {[styles.active]: isLiked})}
+            className={classnames(styles.reviewIcon, { [styles.active]: isLiked })}
             // onClick={likeHandler}
           >
-            <Like/>
+            <Like />
           </span>
           <span className={styles.reviewLike}>{likesCount}</span>
           <span className={styles.reviewIcon}>
-            <Comment/>
+            <Comment />
           </span>
           <span>{data?.comments_count}</span>
         </div>
 
-        {withControls &&
+        {withControls && (
           <div>
-            <DotsDropdown
-              isSmall
-              direction={'up'}
-            >
-              <div
-                className={styles.controlsItem}
-                onClick={() => setEditFormIsVisible(true)}
-              >
+            <DotsDropdown isSmall direction={'up'}>
+              <div className={styles.controlsItem} onClick={() => setEditFormIsVisible(true)}>
                 <EditPensil />
                 Редактировать
               </div>
 
-              <div
-                className={styles.controlsItem}
-                onClick={onDelete}
-              >
+              <div className={styles.controlsItem} onClick={onDelete}>
                 <Bin />
                 Удалить
               </div>
             </DotsDropdown>
           </div>
-        }
+        )}
       </div>
 
-      {editFormIsVisible &&
-        <ModalWindow
-          isFullScreen={innerWidthWindow <= 768}
-          onClose={() => setEditFormIsVisible(false)}
-        >
+      {editFormIsVisible && (
+        <ModalWindow isFullScreen={innerWidthWindow <= 768} onClose={() => setEditFormIsVisible(false)}>
           <ReviewForm
             bookId={data?.book_id || data?.audio_book_id}
             title={data?.title}
@@ -148,7 +137,7 @@ const ReviewLogicItem = ({
             onClose={onClose}
           />
         </ModalWindow>
-      }
+      )}
     </div>
   );
 };

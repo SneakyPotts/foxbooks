@@ -81,7 +81,7 @@ ol[class] {
   stroke: #0e263e;
   border: 1px solid #f1f1f1;
   background: rgba(255, 255, 255, 0.5);
-  transition: .15s;
+  transition: 0.15s;
 }
 
 .nextArrow:hover {
@@ -111,7 +111,7 @@ ol[class] {
   stroke: #0e263e;
   border: 1px solid #f1f1f1;
   background: rgba(255, 255, 255, 0.5);
-  transition: .15s;
+  transition: 0.15s;
 }
 
 .prevArrow:hover {
@@ -262,7 +262,7 @@ ol[class] {
 }
 
 .title {
-  font-family: "Merriweather", serif;
+  font-family: 'Merriweather', serif;
   font-weight: 700;
   font-size: 24px;
   line-height: 30px;

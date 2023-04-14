@@ -1,37 +1,41 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { Navigation } from 'swiper/core';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import classnames from 'classnames';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import ArrowRight from '../../public/chevron-right.svg';
+import Breadcrumbs from '../BreadCrumps/BreadCrumps';
+import CompilationItem from '../CompilationItem';
 import AboutBook from './AboutBook';
-import Comments from './Comments';
-import Reviews from './Reviews';
-import Quotes from './Quotes';
-import AuthorOtherBooks from './AuthorOtherBooks';
+import AddToMyCompilation from './AddToMyCompilation';
 import AuthorOtherAudioBooks from './AuthorOtherAudiobooks';
+import AuthorOtherBooks from './AuthorOtherBooks';
+import Comments from './Comments';
+import Form from './Form';
+import Quotes from './Quotes';
+import Reviews from './Reviews';
 import SimilarBooks from './SimilarBooks';
 import st from './bookpage.module.scss';
-import {useRouter} from "next/router";
-import Breadcrumbs from "../BreadCrumps/BreadCrumps";
-import {getAudioBooksByAuthor, getBooksByAuthor} from "../../store/bookSlice";
-import AddToMyCompilation from "./AddToMyCompilation";
-import Form from "./Form";
-import Banners from "../shared/common/Banner/Banners";
-import CompilationItem from "../CompilationItem";
-import Image from "next/image";
+import classnames from 'classnames';
+import { Navigation } from 'swiper/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-const BookPage = ({bookType}) => {
-  const dispatch = useDispatch()
-  const router = useRouter()
-  const type = bookType
+import { getAudioBooksByAuthor, getBooksByAuthor } from '../../store/bookSlice';
+
+import Banners from '../shared/common/Banner/Banners';
+
+const BookPage = ({ bookType }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const type = bookType;
 
   const audioFlag = bookType === 'audioBooks';
 
-  const { book, booksByAuthor, audioBooksByAuthor } = useSelector(state => state.book);
-  const { innerWidthWindow } = useSelector(state => state.common);
+  const { book, booksByAuthor, audioBooksByAuthor } = useSelector((state) => state.book);
+  const { innerWidthWindow } = useSelector((state) => state.common);
 
-  const [myCopmIsVisible, setMyCopmIsVisible] = useState(false)
+  const [myCopmIsVisible, setMyCopmIsVisible] = useState(false);
 
   const changeSlidesPerView = () => {
     if (innerWidthWindow < 500) return 1;
@@ -40,19 +44,15 @@ const BookPage = ({bookType}) => {
   };
 
   useEffect(() => {
-    const authorId = book?.authors[0]?.id
-    if(authorId) {
-      dispatch(getBooksByAuthor(authorId))
-      dispatch(getAudioBooksByAuthor(authorId))
+    const authorId = book?.authors[0]?.id;
+    if (authorId) {
+      dispatch(getBooksByAuthor(authorId));
+      dispatch(getAudioBooksByAuthor(authorId));
     }
-  }, [])
+  }, []);
 
-  if(myCopmIsVisible) {
-    return (
-      <AddToMyCompilation
-        onClose={() => setMyCopmIsVisible(false)}
-      />
-    )
+  if (myCopmIsVisible) {
+    return <AddToMyCompilation onClose={() => setMyCopmIsVisible(false)} />;
   }
 
   return (
@@ -61,44 +61,27 @@ const BookPage = ({bookType}) => {
         data={[
           {
             path: `/${type.toLowerCase()}`,
-            title: type === 'books' ? 'Книги' : 'Аудиокниги'
+            title: type === 'books' ? 'Книги' : 'Аудиокниги',
           },
           {
             path: `/${type.toLowerCase()}/${type === 'books' ? book.genres?.[0]?.slug : book.genre?.slug}`,
-            title: `${type === 'books' ? book.genres?.[0]?.name : book.genre?.name}`
+            title: `${type === 'books' ? book.genres?.[0]?.name : book.genre?.name}`,
           },
           {
             path: router.asPath,
-            title: book?.title
+            title: book?.title,
           },
         ]}
       />
 
       <div className={st.wrapper}>
         <div className={st.mainBlock}>
-          <AboutBook
-            book={book}
-            audioFlag={audioFlag}
-            showMyComp={() => setMyCopmIsVisible(true)}
-          />
+          <AboutBook book={book} audioFlag={audioFlag} showMyComp={() => setMyCopmIsVisible(true)} />
 
-          <div
-            className={st.relatedInfo}
-          >
-            {book?.similarBooks?.length &&
-              <SimilarBooks
-                type={type}
-                data={book?.similarBooks}
-              />
-            }
+          <div className={st.relatedInfo}>
+            {book?.similarBooks?.length && <SimilarBooks type={type} data={book?.similarBooks} />}
 
-            <Image
-              src="/horizontalBookCovers/bookCover1.png"
-              alt=""
-              width={588}
-              height={250}
-              className={st.relatedInfoBanner}
-            />
+            <Image src="/horizontalBookCovers/bookCover1.png" alt="" width={588} height={250} className={st.relatedInfoBanner} />
 
             <Comments />
 
@@ -106,26 +89,14 @@ const BookPage = ({bookType}) => {
 
             {!audioFlag && <Quotes />}
 
-            {booksByAuthor?.length ?
-              <AuthorOtherBooks
-                data={booksByAuthor}
-              /> : null
-            }
+            {booksByAuthor?.length ? <AuthorOtherBooks data={booksByAuthor} /> : null}
 
-            {audioBooksByAuthor?.length ?
-              <AuthorOtherAudioBooks
-                data={audioBooksByAuthor}
-              /> : null
-            }
+            {audioBooksByAuthor?.length ? <AuthorOtherAudioBooks data={audioBooksByAuthor} /> : null}
 
-            {!audioFlag && book?.compilations?.length ?
+            {!audioFlag && book?.compilations?.length ? (
               <div className={st.compilBlock}>
                 <div className={st.title}>
-                  {innerWidthWindow > 768 ? (
-                    <h3 className={st.compilTitle}>Подборки с этой книгой</h3>
-                  ) : (
-                    <h3 className={st.compilTitle}>Подборки</h3>
-                  )}
+                  {innerWidthWindow > 768 ? <h3 className={st.compilTitle}>Подборки с этой книгой</h3> : <h3 className={st.compilTitle}>Подборки</h3>}
                 </div>
                 <Swiper
                   spaceBetween={24}
@@ -136,12 +107,9 @@ const BookPage = ({bookType}) => {
                   }}
                   slidesPerView={changeSlidesPerView()}
                 >
-                  {book?.compilations?.map(i => (
+                  {book?.compilations?.map((i) => (
                     <SwiperSlide key={i?.id}>
-                      <CompilationItem
-                        path={`/selections/${i?.slug}`}
-                        data={i}
-                      />
+                      <CompilationItem path={`/selections/${i?.slug}`} data={i} />
                     </SwiperSlide>
                   ))}
                   <button className={classnames('prevArrow', st.btnCompil)}>
@@ -151,8 +119,8 @@ const BookPage = ({bookType}) => {
                     <ArrowRight className="arrowNext" />
                   </button>
                 </Swiper>
-              </div> : null
-            }
+              </div>
+            ) : null}
 
             <Form title={book?.title} />
           </div>
