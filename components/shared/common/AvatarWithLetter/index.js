@@ -51,7 +51,7 @@ const AvatarWithLetter = ({ letter, width, id, isProfile }) => {
   }, [id]);
 
   return (
-    <span className={styles.wrapper} style={{ background: color, width, height: width, fontSize: `${width * 0.64}px` }}>
+    <span className={styles.wrapper} style={{ background: color, width, aspectRatio: '1 / 1', fontSize: `${width * 0.64}px` }}>
       {letter}
     </span>
   );

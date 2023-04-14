@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -16,8 +14,6 @@ import ModalWindow from '../../shared/common/modalWindow/ModalWindow';
 import styles from '../../MyBooks/styles.module.scss';
 
 const Form = ({ title }) => {
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -26,6 +22,7 @@ const Form = ({ title }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const [confirmPopupIsVisible, setConfirmPopupIsVisible] = useState(false);
 
   const { book } = useSelector((state) => state.book);

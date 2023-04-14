@@ -23,7 +23,7 @@ import Bin from '../shared/icons/trash';
 
 import styles from './styles.module.scss';
 
-const ReviewLogicItem = ({ type, data, withControls, onDelete }) => {
+const ReviewLogicItem = ({ data, withControls, onDelete }) => {
   const dispatch = useDispatch();
 
   const { innerWidthWindow } = useSelector((state) => state.common);

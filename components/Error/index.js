@@ -5,8 +5,6 @@ import React from 'react';
 import Logo from '../Logo';
 import st from './error.module.scss';
 
-import Button from '../shared/common/Button/Button';
-
 const Error = () => {
   return (
     <div className={st.wrapper}>

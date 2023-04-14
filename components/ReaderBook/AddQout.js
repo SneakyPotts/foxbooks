@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import Share from '../shared/icons/share';
-import Bin from '../shared/icons/trash';
 
 import styles from './styles.module.scss';
 
@@ -17,7 +16,7 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
 
   const textCondition = useMemo(() => {
     if (innerWidthWindow <= 768) {
-      return !markId ? true : false;
+      return !markId;
     } else {
       return true;
     }
@@ -25,7 +24,7 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
 
   const colorsCondition = useMemo(() => {
     if (innerWidthWindow <= 768) {
-      return markId ? true : false;
+      return !!markId;
     } else {
       return true;
     }
@@ -124,14 +123,14 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
             <path
               d="M16.6667 7.5H9.16667C8.24619 7.5 7.5 8.24619 7.5 9.16667V16.6667C7.5 17.5871 8.24619 18.3333 9.16667 18.3333H16.6667C17.5871 18.3333 18.3333 17.5871 18.3333 16.6667V9.16667C18.3333 8.24619 17.5871 7.5 16.6667 7.5Z"
               stroke="#FF781D"
-              stroke-width="1.66667"
+              strokeWidth="1.66667"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M4.16602 12.4993H3.33268C2.89065 12.4993 2.46673 12.3238 2.15417 12.0112C1.84161 11.6986 1.66602 11.2747 1.66602 10.8327V3.33268C1.66602 2.89065 1.84161 2.46673 2.15417 2.15417C2.46673 1.84161 2.89065 1.66602 3.33268 1.66602H10.8327C11.2747 1.66602 11.6986 1.84161 12.0112 2.15417C12.3238 2.46673 12.4993 2.89065 12.4993 3.33268V4.16602"
               stroke="#FF781D"
-              stroke-width="1.66667"
+              strokeWidth="1.66667"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -151,16 +150,16 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
         <div className={styles.addQuotFlex} onClick={deleteQuot}>
           <div className={styles.addQuotIcon}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2.5 5H4.16669H17.5002" stroke="#FF781D" stroke-width="1.66669" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M2.5 5H4.16669H17.5002" stroke="#FF781D" strokeWidth="1.66669" strokeLinecap="round" strokeLinejoin="round" />
               <path
                 d="M6.66605 4.99939V3.3327C6.66605 2.89067 6.84164 2.46674 7.15421 2.15418C7.46677 1.84161 7.8907 1.66602 8.33273 1.66602H11.6661C12.1081 1.66602 12.5321 1.84161 12.8446 2.15418C13.1572 2.46674 13.3328 2.89067 13.3328 3.3327V4.99939M15.8328 4.99939V16.6662C15.8328 17.1082 15.6572 17.5322 15.3447 17.8447C15.0321 18.1573 14.6082 18.3329 14.1661 18.3329H5.8327C5.39067 18.3329 4.96674 18.1573 4.65418 17.8447C4.34161 17.5322 4.16602 17.1082 4.16602 16.6662V4.99939H15.8328Z"
                 stroke="#FF781D"
-                stroke-width="1.66669"
+                strokeWidth="1.66669"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              <path d="M8.33398 9.16602V14.1661" stroke="#FF781D" stroke-width="1.66669" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M11.668 9.16602V14.1661" stroke="#FF781D" stroke-width="1.66669" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M8.33398 9.16602V14.1661" stroke="#FF781D" strokeWidth="1.66669" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M11.668 9.16602V14.1661" stroke="#FF781D" strokeWidth="1.66669" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           Удалить

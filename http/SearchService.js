@@ -1,4 +1,4 @@
-import api, { API_URL } from '.';
+import { API_URL } from '.';
 import axios from 'axios';
 
 export default class SearchService {
