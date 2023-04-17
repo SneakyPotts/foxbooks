@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ArrowIcon from './../../public/chevron-right.svg';
+import { ReactComponent as Settings } from './../../public/settings-new.svg';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
@@ -16,7 +17,7 @@ import Logo from '../shared/icons/Logo';
 import ReaderGambgurger from '../shared/icons/ReadderGambgurger';
 import Quote from '../shared/icons/quote';
 
-const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkToggler }) => {
+const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkToggler, showMarksPopup }) => {
   const router = useRouter();
 
   const { innerWidthWindow } = useSelector((state) => state?.common);
@@ -73,6 +74,29 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
     },
   ];
 
+  const mobileControls = [
+    {
+      icon: <BookMark />,
+      tooltip: 'Добавить закладку',
+      onClick: addMarkToggler,
+    },
+    {
+      icon: <BookMark />,
+      tooltip: 'Список закладок',
+      onClick: showMarksPopup,
+    },
+    {
+      icon: <ReaderGambgurger />,
+      tooltip: 'Содержание',
+      onClick: showContentPopup,
+    },
+    {
+      icon: <Settings />,
+      tooltip: 'Редактирование',
+      onClick: toggleEditPopup,
+    },
+  ];
+
   return (
     <div className={styles.header} onClick={(ev) => innerWidthWindow <= 768 && ev.stopPropagation()}>
       <div className={styles.logoWrapper}>
@@ -89,8 +113,8 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
       </div>
 
       <div className={styles.controls}>
-        {controls?.map((i, index) => (
-          <div key={index} className={styles.controlsBtn} onClick={i?.onClick}>
+        {(innerWidthWindow > 768 ? controls : mobileControls)?.map((i, index) => (
+          <div key={index} className={classNames(styles.controlsBtn, { [styles.mobile]: innerWidthWindow <= 768 })} onClick={i?.onClick}>
             {i?.icon}
             <span className={styles.tooltip}>{i?.tooltip}</span>
           </div>
