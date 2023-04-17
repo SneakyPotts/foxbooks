@@ -113,6 +113,10 @@ const ReaderBook = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setMarkPopupIsVisible(false);
+  }, [router.query]);
+
   return (
     <div className={classNames(styles.pageWrapper, styles[`brightness${settings?.screenBrightness}`])} onClick={toggleMobileControls}>
       <div className={classNames('container', styles.pageContainer)}>

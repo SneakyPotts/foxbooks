@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ArrowIcon from './../../public/chevron-right.svg';
@@ -51,26 +51,31 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
       icon: <ReaderGambgurger />,
       tooltip: 'Содержание',
       onClick: showContentPopup,
+      visible: true,
     },
     {
       icon: <Quote />,
       tooltip: 'Цитаты',
       onClick: showQuotesPopup,
+      visible: true,
     },
     {
       icon: <Letter />,
       tooltip: 'Редактирование',
       onClick: toggleEditPopup,
+      visible: true,
     },
     {
       icon: <FullScreen />,
       tooltip: 'На весь экран',
       onClick: setFullScreen,
+      visible: true,
     },
     {
       icon: <BookMark />,
       tooltip: 'Добавить закладку',
       onClick: addMarkToggler,
+      visible: true,
     },
   ];
 
@@ -79,23 +84,31 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
       icon: <BookMark />,
       tooltip: 'Добавить закладку',
       onClick: addMarkToggler,
+      visible: true,
     },
     {
       icon: <BookMark />,
       tooltip: 'Список закладок',
       onClick: showMarksPopup,
+      visible: !!bookMarks.length,
     },
     {
       icon: <ReaderGambgurger />,
       tooltip: 'Содержание',
       onClick: showContentPopup,
+      visible: true,
     },
     {
       icon: <Settings />,
       tooltip: 'Редактирование',
       onClick: toggleEditPopup,
+      visible: true,
     },
   ];
+
+  const showControls = useMemo(() => {
+    return (innerWidthWindow > 768 ? controls : mobileControls)?.filter((i) => i.visible === true);
+  }, [bookMarks]);
 
   return (
     <div className={styles.header} onClick={(ev) => innerWidthWindow <= 768 && ev.stopPropagation()}>
@@ -114,7 +127,7 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
 
       <div className={styles.controls}>
         {(innerWidthWindow > 768 ? controls : mobileControls)?.map((i, index) => (
-          <div key={index} className={classNames(styles.controlsBtn, { [styles.mobile]: innerWidthWindow <= 768 })} onClick={i?.onClick}>
+          <div key={index} className={classNames(styles.controlsBtn, { [styles.mobile]: innerWidthWindow <= 768, [styles.hidden]: !i.visible })} onClick={i?.onClick}>
             {i?.icon}
             <span className={styles.tooltip}>{i?.tooltip}</span>
           </div>
