@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addKey, calcCoordinates, calcQuotePosition, highlight, keyObj, objToRange, rangeToObj } from '../../utils';
-import AddQout from './AddQout';
+import AddQuot from './AddQuot';
 import NotesPopup from './NotesPopup';
 import parse, { attributesToProps, domToReact } from 'html-react-parser';
 
@@ -340,7 +340,7 @@ const TextWithQuotes = () => {
         {text}
 
         {toolsIsVisible && (
-          <AddQout
+          <AddQuot
             style={{
               top: toolsCoords.y + 'px',
               left: toolsCoords.x + 'px',

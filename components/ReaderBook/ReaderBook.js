@@ -61,7 +61,7 @@ const ReaderBook = () => {
 
   const toggleMobileControls = () => {
     if (innerWidthWindow <= 768) {
-      setMobileControlsIsVisible((prev) => !prev);
+      // setMobileControlsIsVisible((prev) => !prev);
     } else {
       setEditPopupIsVisible(false);
     }
@@ -88,11 +88,15 @@ const ReaderBook = () => {
   };
 
   const addMarkToggler = () => {
-    if (innerWidthWindow <= 768) {
-      setMarkPopupIsVisible(true);
-    } else {
-      addMarkHandler();
-    }
+    // if (innerWidthWindow <= 768) {
+    //   setMarkPopupIsVisible(true);
+    // } else {
+    addMarkHandler();
+    // }
+  };
+
+  const showMarkPopup = () => {
+    setMarkPopupIsVisible(true);
   };
 
   useEffect(() => {
@@ -112,12 +116,19 @@ const ReaderBook = () => {
   return (
     <div className={classNames(styles.pageWrapper, styles[`brightness${settings?.screenBrightness}`])} onClick={toggleMobileControls}>
       <div className={classNames('container', styles.pageContainer)}>
-        {(innerWidthWindow > 768 || mobileControlsIsVisible) && (
-          <>
-            <BackBtn onClick={() => router.back()} externalClass={styles.mobileBack} />
-            <Header showContentPopup={showContentPopup} showQuotesPopup={showQuotesPopup} toggleEditPopup={toggleEditPopup} addMarkToggler={addMarkToggler} />
-          </>
-        )}
+        {/*{(innerWidthWindow > 768 || mobileControlsIsVisible) && (*/}
+        {/*  <>*/}
+        {/*    <BackBtn onClick={() => router.back()} externalClass={styles.mobileBack} />*/}
+        {/*    <Header showContentPopup={showContentPopup} showQuotesPopup={showQuotesPopup} toggleEditPopup={toggleEditPopup} addMarkToggler={addMarkToggler} />*/}
+        {/*  </>*/}
+        {/*)}*/}
+        <Header
+          showContentPopup={showContentPopup}
+          showQuotesPopup={showQuotesPopup}
+          toggleEditPopup={toggleEditPopup}
+          addMarkToggler={addMarkToggler}
+          showMarksPopup={showMarkPopup}
+        />
 
         <TextWithQuotes />
 
@@ -125,14 +136,14 @@ const ReaderBook = () => {
 
         {(innerWidthWindow > 768 || mobileControlsIsVisible) && <PageProgress />}
 
-        <div className={styles.mobileFooter}>
-          <div className={styles.mobileFooterMark} onClick={addMarkHandler}>
-            <BookMark />
-          </div>
-          <span>
-            {router.query?.page} из {book?.pages_count}
-          </span>
-        </div>
+        {/*<div className={styles.mobileFooter}>*/}
+        {/*  <div className={styles.mobileFooterMark} onClick={addMarkHandler}>*/}
+        {/*    <BookMark />*/}
+        {/*  </div>*/}
+        {/*  <span>*/}
+        {/*    {router.query?.page} из {book?.pages_count}*/}
+        {/*  </span>*/}
+        {/*</div>*/}
 
         {/* Попап с главами */}
         {innerWidthWindow > 768
