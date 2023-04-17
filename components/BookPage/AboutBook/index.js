@@ -202,6 +202,10 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     <Eye />
                   </div>
                 ) : null}
+                <span className={st.bookDatePublish}>
+                  <span>Опубликовано: </span>
+                  <span>{moment(book?.created_at).format('DD.MM.YY')}</span>
+                </span>
               </div>
               <div className={st.raiting}>
                 <div className={st.bookRaiting}>
@@ -322,11 +326,6 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     </span>
                   </p>
                 ) : null}
-                {book?.created_at && (
-                  <p>
-                    Дата публикации: <span>{moment(book?.created_at).format('DD MMMM YYYY')}</span>
-                  </p>
-                )}
               </div>
             </div>
           </div>

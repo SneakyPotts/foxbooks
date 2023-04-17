@@ -84,6 +84,7 @@
   line-height: 1.43;
   color: $color-second;
   display: flex;
+  row-gap: 10px;
   margin-bottom: 23px;
 
   &Age {
@@ -92,6 +93,15 @@
 
   &Year {
     margin-right: 20px;
+  }
+  &Publish {
+    span:first-of-type {
+      color: #909190;
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-basis: 100%;
+    }
   }
 }
 .audioInfo {
@@ -103,6 +113,7 @@
   align-items: center;
   font-family: 'Fira Sans', sans-serif;
   color: $color-third;
+  margin-right: 20px;
 
   > span {
     margin-right: 10px;
@@ -296,7 +307,7 @@
 @media (max-width: 768px) {
   .bookCover {
     min-width: 108px;
-    height: 160px;
+    height: 170px;
     max-width: 108px;
   }
   .bookTitle {
@@ -327,7 +338,7 @@
   }
   .bookDuration {
     flex-basis: 100%;
-    margin-bottom: 10px;
+    //margin-bottom: 10px;
   }
   .infoBlockBook {
     flex-direction: column;

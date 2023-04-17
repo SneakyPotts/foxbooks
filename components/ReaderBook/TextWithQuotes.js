@@ -321,6 +321,8 @@ const TextWithQuotes = () => {
         <a className={styles.bookAuthor}>{book?.authors[0]?.author}</a>
       </Link>
 
+      <span className={styles.bookCurrentPage}>{`${book?.page?.page_number} страница`}</span>
+
       <article
         ref={article}
         className={styles.bookText}

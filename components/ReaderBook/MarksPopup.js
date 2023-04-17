@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
@@ -23,12 +23,16 @@ const MarksPopup = () => {
     dispatch(deleteBookMark(id));
   };
 
+  const sortedBookMarks = useMemo(() => {
+    return [...bookMarks].sort((a, b) => a.page.page_number - b.page.page_number);
+  }, [bookMarks]);
+
   return (
     <>
       <h3 className={styles.popupTitle}>Закладки</h3>
-      {bookMarks?.length > 0 ? (
+      {sortedBookMarks?.length > 0 ? (
         <ul className={styles.popupList}>
-          {bookMarks?.map((i) => (
+          {sortedBookMarks?.map((i) => (
             <li key={i?.id} className={classNames(styles.popupListItem, styles.markListItem)}>
               <div className={styles.iconMark}>
                 <BookMark />
