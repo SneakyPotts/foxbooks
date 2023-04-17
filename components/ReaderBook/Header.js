@@ -91,7 +91,7 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
       onClick: showContentPopup,
     },
     {
-      icon: <Settings fill={'tomato'} />,
+      icon: <Settings />,
       tooltip: 'Редактирование',
       onClick: toggleEditPopup,
     },

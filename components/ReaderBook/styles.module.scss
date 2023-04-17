@@ -880,7 +880,7 @@
     padding-top: 10px;
     padding-bottom: 20px;
 
-    background-color: #fff;
+    background-color: var(--modal-color);
     box-shadow: 0 13px 13px 4px rgba(0,0,0,0.75);
 
     & button:not([aria-label]) {
