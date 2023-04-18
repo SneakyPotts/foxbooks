@@ -184,6 +184,7 @@
       fill: var(--icons-color);
       stroke: var(--icons-color);
       margin-right: 5px;
+      position: relative;
 
       &:hover {
         fill: var(--icons-color);
@@ -215,6 +216,16 @@
       &.hidden {
         opacity: 0;
         pointer-events: none;
+      }
+
+      .counter {
+        position: absolute;
+        right: -8px;
+        top: 0;
+
+        color: #d55600;
+        font-size: 16px;
+        line-height: 100%;
       }
     }
   }
