@@ -87,7 +87,12 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
       visible: true,
     },
     {
-      icon: <BookMark />,
+      icon: (
+        <>
+          <BookMark />
+          <span className={styles.counter}>{bookMarks.length}</span>
+        </>
+      ),
       tooltip: 'Список закладок',
       onClick: showMarksPopup,
       visible: !!bookMarks.length,
@@ -105,10 +110,6 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
       visible: true,
     },
   ];
-
-  const showControls = useMemo(() => {
-    return (innerWidthWindow > 768 ? controls : mobileControls)?.filter((i) => i.visible === true);
-  }, [bookMarks]);
 
   return (
     <div className={styles.header} onClick={(ev) => innerWidthWindow <= 768 && ev.stopPropagation()}>

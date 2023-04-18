@@ -184,6 +184,7 @@
       fill: var(--icons-color);
       stroke: var(--icons-color);
       margin-right: 5px;
+      position: relative;
 
       &:hover {
         fill: var(--icons-color);
@@ -215,6 +216,16 @@
       &.hidden {
         opacity: 0;
         pointer-events: none;
+      }
+
+      .counter {
+        position: absolute;
+        right: -8px;
+        top: 0;
+
+        color: #d55600;
+        font-size: 16px;
+        line-height: 100%;
       }
     }
   }
@@ -866,7 +877,7 @@
 }
 @media screen and (max-width: 768px) {
   .pageWrapper {
-    padding-top: 60px;
+    padding-top: 0;
     padding-bottom: 0;
   }
   .mobileBack {
@@ -874,13 +885,9 @@
     top: 70px;
   }
   .header {
-    padding: 15px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background: var(--modal-color);
-    z-index: 5;
   }
   .logoWrapper {
     display: none;
