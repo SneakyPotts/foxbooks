@@ -127,10 +127,17 @@
 .bookNameMargin {
   margin-right: 30px;
 }
-.bookAuthor {
+.bookAuthor,
+.bookYearPub {
   font-size: 14px;
   line-height: 1.43;
   color: $color-second;
+}
+.bookAuthorYear {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .bookCategorie {
   font-size: 12px;
@@ -264,6 +271,10 @@
   align-items: center;
   margin-right: 10px;
   stroke: $color-third;
+
+  & > span {
+    margin-right: 5px;
+  }
 }
 .distance {
   margin-left: 80px;
