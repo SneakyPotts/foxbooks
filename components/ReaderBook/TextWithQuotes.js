@@ -234,15 +234,15 @@ const TextWithQuotes = () => {
   const width = useMemo(() => {
     switch (+settings?.fieldSize) {
       case 0:
-        return 912;
+        return 672;
       case 1:
-        return 852;
+        return 732;
       case 2:
         return 792;
       case 3:
-        return 732;
+        return 852;
       case 4:
-        return 672;
+        return 912;
     }
   }, [settings?.fieldSize]);
 

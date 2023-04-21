@@ -271,7 +271,8 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
                     [st.distance]: flagSwitcher,
                   })}
                 >
-                  <Comment /> {book?.comments_count}
+                  <span>{book?.comments_count}</span>
+                  <Comment />
                 </span>
               </div>
             )}

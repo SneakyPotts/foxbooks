@@ -264,6 +264,10 @@
   align-items: center;
   margin-right: 10px;
   stroke: $color-third;
+
+  & > span {
+    margin-right: 5px;
+  }
 }
 .distance {
   margin-left: 80px;

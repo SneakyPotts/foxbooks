@@ -92,7 +92,7 @@ const EditPopup = () => {
       </div>
 
       <div className={classNames(styles.editWrapper, styles.flex)}>
-        <span className={styles.editTitle}>Поля</span>
+        <span className={styles.editTitle}>Ширина текста</span>
         <InputRange
           value={settings?.fieldSize}
           setValue={(value) => changeSettings(value, 'fieldSize')}
@@ -104,8 +104,8 @@ const EditPopup = () => {
           externalWrapperClass={styles.inputWrapper}
         />
         <div className={styles.flex}>
-          <span className={styles.editSubtitle}>узкие</span>
-          <span className={styles.editSubtitle}>широкие</span>
+          <span className={styles.editSubtitle}>узкая</span>
+          <span className={styles.editSubtitle}>широкая</span>
         </div>
       </div>
 
