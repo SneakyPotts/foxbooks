@@ -229,15 +229,19 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
           </Link>
         )}
 
-        {noLinks ? (
-          <span className={st.bookAuthor}>{book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}</span>
-        ) : book?.authors?.length ? (
-          <Link href={book?.authors?.length ? `/author/${book?.authors[0]?.slug}` : ''}>
-            <a className={st.bookAuthor}>{book?.authors[0]?.author}</a>
-          </Link>
-        ) : (
-          <span className={st.bookAuthor}>Нет автора</span>
-        )}
+        <span className={st.bookAuthorYear}>
+          {!flagSwitcher && (book?.year || book?.year?.year) && <span className={st.bookYearPub}>{`${audio ? book?.year : book?.year?.year}, `}</span>}
+
+          {noLinks ? (
+            <span className={st.bookAuthor}>{book?.authors?.length ? book?.authors[0]?.author : 'Нет автора'}</span>
+          ) : book?.authors?.length ? (
+            <Link href={book?.authors?.length ? `/author/${book?.authors[0]?.slug}` : ''}>
+              <a className={st.bookAuthor}>{book?.authors[0]?.author}</a>
+            </Link>
+          ) : (
+            <span className={st.bookAuthor}>Нет автора</span>
+          )}
+        </span>
         {flagSwitcher && (
           <div className={classnames(st.extraInfo, { [st.addInfo]: !audio }, { [st.addInfoAudio]: audio })}>
             <p className={st.bookYear}>
