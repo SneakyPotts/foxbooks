@@ -202,10 +202,12 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     <Eye />
                   </div>
                 ) : null}
-                <span className={st.bookDatePublish}>
-                  <span>Опубликовано: </span>
-                  <span>{moment(book?.created_at).format('DD.MM.YY')}</span>
-                </span>
+                {book?.created_at && (
+                  <span className={st.bookDatePublish}>
+                    <span>Опубликовано: </span>
+                    <span>{moment(book?.created_at).format('DD.MM.YY')}</span>
+                  </span>
+                )}
               </div>
               <div className={st.raiting}>
                 <div className={st.bookRaiting}>
