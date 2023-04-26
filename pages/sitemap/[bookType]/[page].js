@@ -1,10 +1,12 @@
-import { getServerSideSitemapIndex } from 'next-sitemap';
+import moment from 'moment/moment';
+import { getServerSideSitemap } from 'next-sitemap';
 
 import SitemapService from '../../../http/SitemapService';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+
 export async function getServerSideProps(ctx) {
   let fields = [];
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
   const { bookType, page } = ctx.params;
 
@@ -17,13 +19,22 @@ export async function getServerSideProps(ctx) {
       data = await SitemapService.getBooksList(type, page.slice(0, 1));
 
       data.data.data.data.map((item) => {
-        fields.push(`${baseUrl}${bookType}/${item?.genre?.slug || item?.genres[0].slug}/${item.slug}`);
+        fields.push({
+          loc: `${baseUrl}${bookType}/${item?.genre?.slug || item?.genres[0].slug}/${item.slug}`,
+          changefreq: 'weekly',
+          priority: 0.8,
+          lastmod: moment(item.updated_at).format('YYYY-MM-DD'),
+        });
       });
     } else if (bookType.includes('authors')) {
       data = await SitemapService.getAuthorsList(page.slice(0, 1));
 
       data.data.data.data.map((item) => {
-        fields.push(`${baseUrl}author/${item.slug}`);
+        fields.push({
+          loc: `${baseUrl}author/${item.slug}`,
+          changefreq: 'weekly',
+          priority: 0.8,
+        });
       });
     } else if (bookType.includes('series')) {
       const type = bookType.includes('audio') ? 'audio-books' : 'books';
@@ -31,12 +42,21 @@ export async function getServerSideProps(ctx) {
       customUrlPath = `series/${type}`;
 
       data.data.data.data.map((item) => {
-        fields.push(`${baseUrl}${customUrlPath}/${item.slug}`);
+        fields.push(
+          Object.assign(
+            {
+              loc: `${baseUrl}${customUrlPath}/${item.slug}`,
+              changefreq: 'weekly',
+              priority: 0.8,
+            },
+            Object.hasOwn(item, 'updated_at') && { lastmod: moment(item.updated_at).format('YYYY-MM-DD') },
+          ),
+        );
       });
     }
   }
 
-  return getServerSideSitemapIndex(ctx, fields);
+  return getServerSideSitemap(ctx, fields);
 }
 
 export default function SitemapIndex() {}

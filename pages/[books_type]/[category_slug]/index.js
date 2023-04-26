@@ -18,21 +18,32 @@ const Categories = (props) => {
   dispatch(setCurrentPageBanners(props.banners));
 
   return (
-    <div>
+    <>
       <BookComponent order={props.order} />
-    </div>
+    </>
   );
 };
 
 export default Categories;
 
-export async function getServerSideProps({ req, params, query }) {
+export async function getServerSideProps({ req, params, query, ...props }) {
   const { cookies } = req;
   const { books_type, category_slug } = params;
 
   const token = cookies.token;
 
   try {
+    if (query.page === '1' || query.page === 1) {
+      const newUrl = props.resolvedUrl.replace(/[?&]page=1/, '');
+
+      return {
+        redirect: {
+          destination: newUrl,
+          permanent: true,
+        },
+      };
+    }
+
     const categories = books_type === 'books' ? await CategoriesService.getCategoriesBooks() : await CategoriesService.getAudioCategoriesWithCount();
 
     const order = await AdminSettings.getSortSetting(books_type === 'books' ? 'categories' : 'audio-categories');

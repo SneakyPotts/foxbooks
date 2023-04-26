@@ -1,18 +1,23 @@
-import { getServerSideSitemapIndex } from 'next-sitemap';
+import { getServerSideSitemap } from 'next-sitemap';
 
 import SitemapService from '../../../http/SitemapService';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+
 export async function getServerSideProps(ctx) {
   let fields = [];
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
   const audioCategories = await SitemapService.getCategories('audiobooks');
 
   audioCategories.data?.data?.map((item) => {
-    fields.push(`${baseUrl}audiobooks/${item?.slug}`);
+    fields.push({
+      loc: `${baseUrl}audiobooks/${item?.slug}`,
+      changefreq: 'weekly',
+      priority: 0.9,
+    });
   });
 
-  return getServerSideSitemapIndex(ctx, fields);
+  return getServerSideSitemap(ctx, fields);
 }
 
 export default function SitemapIndex() {}
