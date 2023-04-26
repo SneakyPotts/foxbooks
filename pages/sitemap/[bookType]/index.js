@@ -2,9 +2,10 @@ import { getServerSideSitemapIndex } from 'next-sitemap';
 
 import SitemapService from '../../../http/SitemapService';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+
 export async function getServerSideProps(ctx) {
   let fields = [];
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
   const { bookType } = ctx.params;
 

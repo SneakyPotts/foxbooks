@@ -8,6 +8,8 @@ import 'swiper/css/bundle';
 
 import store from '../store/store';
 
+import useSEO from '../hooks/useSEO';
+
 import Layout from '../components/shared/common/specific/Layout';
 
 function MyApp({ Component, pageProps }) {
@@ -16,7 +18,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Script strategy="afterInteractive" src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" />
+
       <NextSeo
+        noindex={useSEO().noIndex}
+        nofollow={useSEO().noIndex}
+        canonical={useSEO().canonical}
         defaultTitle={'Онлайн-библиотека книг FoxBooks 🦊'}
         // titleTemplate={'%s | FoxBooks'}
         title={pageProps.SEO?.title}

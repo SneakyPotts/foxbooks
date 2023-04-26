@@ -1,8 +1,9 @@
 import { getServerSideSitemapIndex } from 'next-sitemap';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+
 export async function getServerSideProps(ctx) {
   let fields = [];
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
   fields.push(
     `${baseUrl}sitemap/pages.xml`,
