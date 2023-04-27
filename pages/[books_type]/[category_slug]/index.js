@@ -18,9 +18,9 @@ const Categories = (props) => {
   dispatch(setCurrentPageBanners(props.banners));
 
   return (
-    <div>
+    <>
       <BookComponent order={props.order} />
-    </div>
+    </>
   );
 };
 

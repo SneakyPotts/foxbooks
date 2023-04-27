@@ -84,7 +84,7 @@ const Category = ({ order }) => {
       <div className={st.container}>
         <div className={st.wrapper}>
           <div className={st.head}>
-            <h2 className={st.title}>{currentCategory}</h2>
+            <h1 className={st.title}>{currentCategory}</h1>
             <div>
               {innerWidthWindow >= 1024 &&
                 data.map((it, index) => (
