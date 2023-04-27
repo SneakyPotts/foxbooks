@@ -1,4 +1,4 @@
-import { getServerSideSitemapIndex } from 'next-sitemap';
+import { getServerSideSitemap } from 'next-sitemap';
 
 import SitemapService from '../../../http/SitemapService';
 
@@ -17,7 +17,7 @@ export async function getServerSideProps(ctx) {
     });
   });
 
-  return getServerSideSitemapIndex(ctx, fields);
+  return getServerSideSitemap(ctx, fields);
 }
 
 export default function SitemapIndex() {}
