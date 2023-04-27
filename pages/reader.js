@@ -44,7 +44,7 @@ export async function getServerSideProps({ req, query }) {
   const settings = cookies.settings;
 
   try {
-    const bookRead = await ReaderService.getBookRead(query?.id, query?.page, token);
+    const bookRead = await ReaderService.getBookRead({ ...query, token });
     const bookChapters = await ReaderService.getBookChapters(query?.id);
 
     const readerSettings = token ? await ReaderService.getUserSettings(token) : await ReaderService.getDefaultSettings();

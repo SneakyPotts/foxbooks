@@ -2,7 +2,7 @@ import api, { API_URL } from '.';
 import axios from 'axios';
 
 export default class ReaderService {
-  static async getBookRead(id, page, token) {
+  static async getBookRead({ id, page = 1, token }) {
     return axios.get(`${API_URL}/books/${id}/read?pageNumber=${page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
