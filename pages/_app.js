@@ -2,6 +2,7 @@ import Script from 'next/script';
 
 import { Provider } from 'react-redux';
 
+import GoogleAnalytics from '../components/AnaliticsScript/GoogleAnalytics';
 import '../styles/globals.scss';
 import { NextSeo } from 'next-seo';
 import 'swiper/css/bundle';
@@ -19,12 +20,13 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <Script strategy="afterInteractive" src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" data-auto-replace-svg="nest" />
 
+      <GoogleAnalytics />
+
       <NextSeo
         noindex={useSEO().noIndex}
         nofollow={useSEO().noIndex}
         canonical={useSEO().canonical}
         defaultTitle={'Онлайн-библиотека книг FoxBooks 🦊'}
-        // titleTemplate={'%s | FoxBooks'}
         title={pageProps.SEO?.title}
         description={pageProps.SEO?.description}
         openGraph={{

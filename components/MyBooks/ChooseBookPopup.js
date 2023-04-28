@@ -171,8 +171,8 @@ const ChooseBookPopup = ({ onClose }) => {
                 <h2 className={classNames('title', styles.chooseBookTitle)}>Аудиокниги</h2>
                 <div className={classNames(styles.grid, styles.chooseBookGrid)}>
                   {audioBooks.map((i) => (
-                    <div className={styles.gridItem} onClick={() => handleClick(i)}>
-                      <Book key={i?.id} book={i} noLinks audio />
+                    <div key={i?.id} className={styles.gridItem} onClick={() => handleClick(i)}>
+                      <Book book={i} noLinks audio />
                     </div>
                   ))}
                 </div>

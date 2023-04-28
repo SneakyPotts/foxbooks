@@ -70,7 +70,7 @@ const CreateCompilationPopup = ({ image, title, description, onClose, isEdit }) 
             [styles.withOverlay]: imgSrc,
           })}
         >
-          {imgSrc && <Image src={imgSrc} layout={'fill'} className={styles.previewImg} />}
+          {imgSrc && <Image src={imgSrc} alt={'compilation image'} layout={'fill'} className={styles.previewImg} />}
 
           <div className={styles.controls}>
             <PreviewUploader name={'image'} setValue={setValue} setImgSrc={setImgSrc} />

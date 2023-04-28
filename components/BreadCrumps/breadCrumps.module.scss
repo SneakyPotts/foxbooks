@@ -6,13 +6,16 @@
   margin: 30px 0;
   color: $color-third;
 }
+
 .crumps {
   display: flex;
   align-items: center;
+  column-gap: 6.5px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .link {
   transition: 0.15s;
 
@@ -20,13 +23,22 @@
     color: $text-hover;
   }
 }
+
 .dot {
-  display: block;
-  width: 3px;
-  height: 3px;
-  margin: 0 5px;
-  border-radius: 50%;
-  background-color: $color-third;
+  padding-right: 6.5px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: $color-third;
+  }
 }
 
 @media (max-width: 768px) {

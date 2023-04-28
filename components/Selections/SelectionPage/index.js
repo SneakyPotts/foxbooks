@@ -44,7 +44,14 @@ const SelectionPage = () => {
   return (
     <>
       <div className={styles.compilationWrapper}>
-        <Image src={selectionById?.compilation?.background || '/preview.jpg'} layout={'fill'} placeholder="blur" blurDataURL="/blur.webp" className={styles.compilationImg} />
+        <Image
+          src={selectionById?.compilation?.background || '/preview.jpg'}
+          alt={`Подборка ${selectionById?.compilation?.title}`}
+          layout={'fill'}
+          placeholder="blur"
+          blurDataURL="/blur.webp"
+          className={styles.compilationImg}
+        />
 
         <BackBtn onClick={() => router.back()} externalClass={styles.compilationBack} />
         <h2 className={styles.compilationTitle}>{selectionById?.compilation?.title}</h2>
