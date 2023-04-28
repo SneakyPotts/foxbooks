@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ArrowIcon from './../../public/chevron-right.svg';
@@ -139,11 +139,12 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
         <div className={styles.marksList}>
           {bookMarks?.map((i) => (
             <Link
+              key={i?.page?.page_number || i?.page[0]?.page_number}
               href={{
                 query: { ...router.query, page: i?.page?.page_number },
               }}
             >
-              <a key={i?.page?.page_number || i?.page[0]?.page_number} className={styles.markItem}>
+              <a className={styles.markItem}>
                 <BookMark />
                 <span className={classNames(styles.tooltip, styles.markTooltip)}>
                   <span>

@@ -127,7 +127,7 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
             <a onClick={bookLinkClick}>
               <Image
                 src={book?.cover_url || '/preview.jpg'}
-                alt=""
+                alt={`Книга ${book?.title}`}
                 width={innerWidthWindow >= 768 ? 180 : 108}
                 height={audio ? (innerWidthWindow >= 768 ? 180 : 108) : innerWidthWindow >= 768 ? 271 : 160}
                 placeholder="blur"
@@ -137,7 +137,15 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
             </a>
           </Link>
         ) : (
-          <Image src={book?.cover_url || '/preview.jpg'} alt="" width={180} height={audio ? 180 : 271} placeholder="blur" blurDataURL="/blur.webp" layout="responsive" />
+          <Image
+            src={book?.cover_url || '/preview.jpg'}
+            alt={`Книга ${book?.title}`}
+            width={180}
+            height={audio ? 180 : 271}
+            placeholder="blur"
+            blurDataURL="/blur.webp"
+            layout="responsive"
+          />
         )}
 
         {/*{!flagSwitcher && !inReview &&*/}

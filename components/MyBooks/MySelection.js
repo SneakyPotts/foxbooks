@@ -113,7 +113,14 @@ const MySelection = () => {
   return (
     <>
       <div className={styles.compilationWrapper}>
-        <Image src={selectionById?.compilation?.background} layout={'fill'} placeholder="blur" blurDataURL="/blur.webp" className={styles.compilationImg} />
+        <Image
+          src={selectionById?.compilation?.background}
+          alt={`Подборка ${selectionById?.compilation?.title}`}
+          layout={'fill'}
+          placeholder="blur"
+          blurDataURL="/blur.webp"
+          className={styles.compilationImg}
+        />
 
         <BackBtn onClick={() => router.push('/mybooks/selections')} externalClass={styles.compilationBack} />
         <h2 className={styles.compilationTitle}>{selectionById?.compilation?.title}</h2>
