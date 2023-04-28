@@ -68,8 +68,8 @@ const AddToMyCompilation = ({ onClose }) => {
       {data?.length ? (
         <div className={s.wrapper}>
           {data.map((i) => (
-            <div className={s.item} onClick={() => handleClick(i?.id)}>
-              <CompilationItem key={i?.id} data={i} />
+            <div key={i?.id} className={s.item} onClick={() => handleClick(i?.id)}>
+              <CompilationItem data={i} />
               {alreadyAdded === i?.id ? <p className={s.error}>Книга уже добавлена в данную подборку</p> : null}
             </div>
           ))}

@@ -157,6 +157,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               layout="fill"
               placeholder="blur"
               blurDataURL="/blur.webp"
+              alt={`Книга ${book?.title}`}
             />
 
             {audioFlag && innerWidthWindow > 768 && (

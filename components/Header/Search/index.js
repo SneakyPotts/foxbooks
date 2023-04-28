@@ -64,6 +64,7 @@ const Search = ({ value, onClose }) => {
                         <a onClick={onClose} style={{ aspectRatio: '124 / 187', display: 'block', position: 'relative' }}>
                           <Image
                             src={i?.cover_url || '/blur.webp'}
+                            alt={`Книга ${i?.title}`}
                             width={124}
                             height={187}
                             layout="fill"
