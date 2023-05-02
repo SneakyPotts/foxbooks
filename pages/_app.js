@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }) {
       />
       <Layout>
         <main className="main">{getLayout(<Component {...pageProps} />)}</main>
-        google-site-verification: google106f429059b048b0.html
       </Layout>
     </Provider>
   );
