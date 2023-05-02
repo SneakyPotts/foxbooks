@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
           description: pageProps.SEO?.og_description || pageProps.SEO?.description,
           images: [
             {
-              url: `https://api.foxbooks.ec/storage${pageProps.SEO?.og_img || '/FoxBooks_logo.jpg'}`,
+              url: `${pageProps.SEO?.og_img || 'https://api.foxbooks.ec/storage/FoxBooks_logo.jpg'}`,
               type: 'image/jpeg',
             },
           ],

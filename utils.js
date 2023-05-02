@@ -312,3 +312,7 @@ export const cookiesSettings = (data, status = '') => {
       return JSON.parse(data);
   }
 };
+
+export const currentYear = () => {
+  return new Date().getFullYear();
+};

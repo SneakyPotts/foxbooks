@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Telegram from '../../public/telegram.svg';
 import Twitter from '../../public/twitter.svg';
 import Vk from '../../public/vkontakte.svg';
+import { currentYear } from '../../utils';
 import Logo from '../Logo';
 import classNames from 'classnames';
 
@@ -67,7 +68,7 @@ const Footer = () => {
                 </Link>
               </nav>
               <div className={st.txt}>
-                <p className={st.label}>© 2021 Foxbooks</p>
+                <p className={st.label}>&#169;{` 2021 - ${currentYear()} Foxbooks`}</p>
               </div>
             </div>
           </div>
