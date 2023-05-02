@@ -28,7 +28,7 @@ const Footer = () => {
               <div className={st.logo}>
                 <Logo />
               </div>
-              <p className={st.slogan}>Foxbooks.ag — мы лучшие в мире бесплатных онлайн книг</p>
+              <p className={st.slogan}>Foxbooks.ec — мы лучшие в мире бесплатных онлайн книг</p>
             </div>
             <div className={st.footerInfo}>
               <div className={st.socialmedia}>
@@ -43,10 +43,20 @@ const Footer = () => {
                 </a>
               </div>
               <nav className={st.pagesList}>
-                <Link href="/books">
+                <Link
+                  href={{
+                    pathname: '/[books_type]',
+                    query: { books_type: 'books' },
+                  }}
+                >
                   <a className={st.page}>Книги</a>
                 </Link>
-                <Link href="/audiobooks">
+                <Link
+                  href={{
+                    pathname: '/[books_type]',
+                    query: { books_type: 'audiobooks' },
+                  }}
+                >
                   <a className={st.page}>Аудиокниги</a>
                 </Link>
                 <Link href="/holders">
