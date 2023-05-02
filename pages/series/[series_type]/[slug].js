@@ -32,12 +32,10 @@ export async function getServerSideProps({ req, params }) {
       props: {
         series: series?.data?.data,
         SEO: {
-          title: series?.data?.data?.seo_title,
-          description: series?.data?.data?.seo_description,
-          keywords: series?.data?.data?.seo_keywords,
-          og_title: series?.data?.data?.og_title,
-          og_description: series?.data?.data?.og_description,
-          og_img: series?.data?.data?.og_img,
+          ...series?.data?.data.seo_data,
+          title: series?.data?.data.seo_data.seo_title,
+          description: series?.data?.data.seo_data.seo_description,
+          keywords: series?.data?.data.seo_data.seo_keywords,
         },
         banners: banners?.data?.data,
       },
