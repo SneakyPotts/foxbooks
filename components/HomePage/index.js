@@ -22,7 +22,7 @@ import css from './home.module.scss';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 
-const HomeView = ({ audioBooks, newBooks, order }) => {
+const HomeView = ({ audioBooks, newBooks, order, banners }) => {
   const hotUpdates = useRef();
   const { query } = useRouter();
 
@@ -73,7 +73,7 @@ const HomeView = ({ audioBooks, newBooks, order }) => {
         </div>
       </div>
       {/*{innerWidthWindow <= 768 && <MobileBlock />}*/}
-      <Hero />
+      <Hero bannersList={banners} />
       <div ref={hotUpdates} className={css.wrapper}>
         <BookUpdates />
         <Filters order={order} />

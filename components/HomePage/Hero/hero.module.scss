@@ -12,11 +12,14 @@
     display: none;
   }
 }
-.swiperImg {
-  display: block;
-  object-fit: contain;
-  width: 100%;
-  max-width: 1200px;
+.swiper {
+  &Wrapper {}
+  &Img {
+    display: block;
+    object-fit: contain;
+    width: 100%;
+    max-width: 1200px;
+  }
 }
 
 @media (max-width: 1200px) {
