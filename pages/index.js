@@ -18,7 +18,7 @@ export default function App(props) {
   dispatch(setSelections(props.compilations));
   dispatch(setReviews(props.reviews));
 
-  return <Home audioBooks={props.audioBooks?.audio_books} newBooks={props.newBooks?.books} order={props.order} />;
+  return <Home audioBooks={props.audioBooks?.audio_books} newBooks={props.newBooks?.books} order={props.order} banners={props.banners} />;
 }
 
 export async function getServerSideProps({ query }) {
@@ -45,6 +45,7 @@ export async function getServerSideProps({ query }) {
       reviews: data?.data?.reviews,
       audioBooks: data?.data?.audioBooksList,
       newBooks: data?.data?.newBooksCompilations,
+      banners: data?.data?.banners,
     },
   };
 }
