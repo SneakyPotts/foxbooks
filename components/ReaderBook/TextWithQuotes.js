@@ -208,6 +208,7 @@ const TextWithQuotes = () => {
   };
 
   const changePage = (ev) => {
+    console.log('doubleClick')
     if (innerWidthWindow <= 768 && !toolsIsVisible) {
       const x = ev?.pageX || ev?.changedTouches[0]?.pageX;
       const w = innerWidthWindow / 3;
@@ -337,7 +338,7 @@ const TextWithQuotes = () => {
           columnCount: settings?.isTwoColumns && innerWidthWindow ? 2 : 1,
           columnGap: settings?.isTwoColumns ? '104px' : 0,
         }}
-        onClick={changePage}
+        onDoubleClick={changePage}
       >
         {text}
 
