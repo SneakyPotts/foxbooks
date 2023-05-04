@@ -13,7 +13,8 @@
   }
 }
 .swiper {
-  &Wrapper {}
+  &Wrapper {
+  }
   &Img {
     display: block;
     object-fit: contain;

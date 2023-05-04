@@ -213,7 +213,7 @@ const TextWithQuotes = () => {
       const w = innerWidthWindow / 3;
 
       const pages = book?.pages_count;
-      const currentPage = Number(router.query.page);
+      const currentPage = Number(!!router.query.page ? router.query.page : 1);
 
       if (x > 0 && x <= w) {
         if (currentPage - 1 >= 1) {
@@ -337,7 +337,7 @@ const TextWithQuotes = () => {
           columnCount: settings?.isTwoColumns && innerWidthWindow ? 2 : 1,
           columnGap: settings?.isTwoColumns ? '104px' : 0,
         }}
-        onClick={changePage}
+        onDoubleClick={changePage}
       >
         {text}
 
