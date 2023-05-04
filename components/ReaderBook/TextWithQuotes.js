@@ -208,13 +208,12 @@ const TextWithQuotes = () => {
   };
 
   const changePage = (ev) => {
-    console.log('doubleClick')
     if (innerWidthWindow <= 768 && !toolsIsVisible) {
       const x = ev?.pageX || ev?.changedTouches[0]?.pageX;
       const w = innerWidthWindow / 3;
 
       const pages = book?.pages_count;
-      const currentPage = Number(router.query.page);
+      const currentPage = Number(!!router.query.page ? router.query.page : 1);
 
       if (x > 0 && x <= w) {
         if (currentPage - 1 >= 1) {
