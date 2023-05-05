@@ -11,8 +11,8 @@ const PageProgress = () => {
   const router = useRouter();
 
   const { book, bookChapters } = useSelector((state) => state.reader);
-  const [currentPage, setCurrentPage] = useState(router.query?.page);
-  const [queryPage, setQueryPage] = useState(router.query?.page);
+  const [currentPage, setCurrentPage] = useState(router.query?.page || 1);
+  const [queryPage, setQueryPage] = useState(router.query?.page || 1);
 
   const index = bookChapters.findIndex((i) => i?.page?.page_number > Number(currentPage));
 
@@ -24,7 +24,7 @@ const PageProgress = () => {
   };
 
   useEffect(() => {
-    setCurrentPage(router.query?.page);
+    router.query?.page && setCurrentPage(router.query?.page);
   }, [router.query?.page]);
 
   return (
