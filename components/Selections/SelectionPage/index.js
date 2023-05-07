@@ -17,6 +17,7 @@ import SelectionService from '../../../http/SelectionService';
 import BackBtn from '../../shared/common/BackBtn';
 import Button from '../../shared/common/Button/Button';
 import Book from '../../shared/common/book';
+import MyPagination from "../../shared/common/MyPagination";
 
 const SelectionPage = () => {
   const router = useRouter();
@@ -95,6 +96,10 @@ const SelectionPage = () => {
           </div>
         ) : (
           <p className={classNames('empty', st.empty)}>Книг не найдено</p>
+        )}
+
+        {selectionById?.books?.last_page > 1 && (
+          <MyPagination currentPage={selectionById?.books?.current_page} lastPage={selectionById?.books?.last_page} />
         )}
       </div>
     </>
