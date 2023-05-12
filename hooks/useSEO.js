@@ -2,24 +2,46 @@ import { useRouter } from 'next/router';
 
 import React from 'react';
 
+const siteUrl = 'https://foxbooks.ec';
+const noIndexFields = [
+  'findByAuthor',
+  'findByTitle',
+  'findByPublisher',
+  'findByCategory',
+  'alphabetAuthorIndex',
+  'alphabetTitleIndex',
+  'selectionCategory',
+  'bookType',
+  'type',
+];
+const canonicalFields = ['page', 'sortBy', 'showType'];
+
 const useSEO = () => {
   const router = useRouter();
 
-  const siteUrl = 'https://foxbooks.ec';
+  const isReader = router.pathname === '/reader';
+  const noIndex = isReader || !!findFields(router.query, noIndexFields).length;
+  const canonical = !isReader && !!findFields(router.query, canonicalFields).length;
 
   const cleanPath = router.asPath.split('#')[0].split('?')[0];
   const canonicalUrl = `${siteUrl}${router.asPath === '/' ? '' : cleanPath}`;
 
-  const fieldsCanonical = Object.keys(router.query);
-  const canonicalFields = fieldsCanonical.includes('page') || fieldsCanonical.includes('sortBy') || fieldsCanonical.includes('showType');
-
-  const fieldsNoindex = Object.keys(router.query);
-  const robotsFields = fieldsNoindex.includes('findByAuthor') || fieldsNoindex.includes('findByTitle') || fieldsNoindex.includes('findByPublisher');
-
   return {
-    canonical: canonicalFields ? canonicalUrl : null,
-    noIndex: robotsFields,
+    canonical: canonical || noIndex ? canonicalUrl : null,
+    noIndex: noIndex,
   };
 };
 
 export default useSEO;
+
+function findFields(object, fields) {
+  const result = [];
+
+  for (let field of fields) {
+    if (Object.hasOwn(object, field)) {
+      result.push(field);
+    }
+  }
+
+  return result;
+}
