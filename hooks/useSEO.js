@@ -20,7 +20,7 @@ const useSEO = () => {
   const router = useRouter();
 
   const isReader = router.pathname === '/reader';
-  const noIndex = isReader || !!findFields(router.query, noIndexFields).length;
+  const noIndex = !!findFields(router.query, noIndexFields).length;
   const canonical = !isReader && !!findFields(router.query, canonicalFields).length;
 
   const cleanPath = router.asPath.split('#')[0].split('?')[0];
@@ -28,7 +28,7 @@ const useSEO = () => {
 
   return {
     canonical: canonical || noIndex ? canonicalUrl : null,
-    noIndex: noIndex,
+    noIndex: isReader || noIndex,
   };
 };
 
