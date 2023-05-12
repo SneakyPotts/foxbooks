@@ -172,8 +172,12 @@ const TextWithQuotes = () => {
       dispatch(setAuthPopupVisibility(true));
     } else {
       const marks = document.querySelectorAll(`[data-id="${markId}"]`);
+
       marks.forEach((i) => {
-        const html = document.createTextNode(i.innerHTML);
+        const innerText = i.innerHTML;
+        const resultText = innerText.replace(/<mark[^>]*>(.*?)<\/mark>/g, (match, text) => text);
+
+        const html = document.createTextNode(resultText);
         i.parentNode.insertBefore(html, i);
         i.remove();
       });
