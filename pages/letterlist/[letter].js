@@ -19,7 +19,7 @@ export default LetterList;
 
 export async function getServerSideProps() {
   try {
-    const categories = await CategoriesService.getCategories();
+    const categories = await CategoriesService.getCategoriesBooks();
 
     return {
       props: {
