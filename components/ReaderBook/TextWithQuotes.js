@@ -338,7 +338,7 @@ const TextWithQuotes = () => {
           maxWidth: settings?.isTwoColumns ? '100%' : width + 'px',
           lineHeight: lineHeight + 'px',
           textAlign: settings?.isCenterAlignment ? 'justify' : 'left',
-          columnCount: settings?.isTwoColumns && innerWidthWindow ? 2 : 1,
+          columnCount: settings?.isTwoColumns && innerWidthWindow && innerWidthWindow > 768 ? 2 : 1,
           columnGap: settings?.isTwoColumns ? '104px' : 0,
         }}
         onDoubleClick={changePage}
