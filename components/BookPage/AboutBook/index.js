@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { durationString, wordsForCount } from '../../../utils';
@@ -75,6 +75,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
 
   const [showPopUp, setShowPopUp] = useState(false);
   const [message, setMessage] = useState({ status: 'добавлена', text: '', link: null });
+  const [marginForLongTitle, setMarginForLongTitle] = useState(0);
 
   const { innerWidthWindow } = useSelector((state) => state.common);
   const { isAuth } = useSelector((state) => state.auth);
@@ -140,6 +141,25 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
     if (innerWidthWindow <= 1023) document.body.style.overflow = 'hidden';
   };
 
+  useEffect(() => {
+    const calculateMarginForLongTitle = () => {
+      const currentBlockWidth = innerWidthWindow - 148; //minus fields+img width
+      const currentCharsCount = currentBlockWidth / 13;
+      const deltaByType = audioFlag ? 20 : 10;
+
+      return innerWidthWindow <= 768
+        ? book?.title.length / currentCharsCount > 1
+          ? `${Math.ceil(book?.title.length / currentCharsCount) * deltaByType}px`
+          : 0
+        : 0
+
+    }
+
+    setMarginForLongTitle(calculateMarginForLongTitle())
+
+  }, [innerWidthWindow]);
+
+
   return (
     <>
       <div key={book.id} className={st.bookInfo}>
@@ -148,6 +168,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
             className={classnames(st.bookCover, {
               [st.bookCoverAudio]: audioFlag,
             })}
+            style={{marginBottom: marginForLongTitle}}
           >
             <Image
               src={book?.cover_url || '/preview.jpg'}
