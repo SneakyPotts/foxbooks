@@ -14,9 +14,11 @@ export async function getServerSideProps(ctx) {
     let data;
     let customUrlPath = null;
 
+    const reqPage = page.replace(/\.xml/, '');
+
     if (bookType.includes('books')) {
       const type = bookType === 'audiobooks' ? 'audio_book' : 'book';
-      data = await SitemapService.getBooksList(type, page.slice(0, 1));
+      data = await SitemapService.getBooksList(type, reqPage);
 
       data.data.data.data.map((item) => {
         fields.push({
@@ -27,7 +29,7 @@ export async function getServerSideProps(ctx) {
         });
       });
     } else if (bookType.includes('authors')) {
-      data = await SitemapService.getAuthorsList(page.slice(0, 1));
+      data = await SitemapService.getAuthorsList(reqPage);
 
       data.data.data.data.map((item) => {
         fields.push({
@@ -38,7 +40,7 @@ export async function getServerSideProps(ctx) {
       });
     } else if (bookType.includes('series')) {
       const type = bookType.includes('audio') ? 'audio-books' : 'books';
-      data = await SitemapService.getSeriesList({ type, page: page.slice(0, 1) });
+      data = await SitemapService.getSeriesList({ type, page: reqPage });
       customUrlPath = `series/${type}`;
 
       data.data.data.data.map((item) => {
