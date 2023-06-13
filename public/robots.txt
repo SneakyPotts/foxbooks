@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /search/
+Disallow:/quotes/
+Disallow:/reviews/
+Disallow:/letterlist/
+
+
+#Sitemap: https://foxbooks.ec/sitemap.xml

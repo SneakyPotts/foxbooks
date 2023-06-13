@@ -1,3 +1,0 @@
-Disallow:/quotes/
-Disallow:/reviews/
-Disallow:/letterlist/
