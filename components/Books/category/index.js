@@ -17,6 +17,7 @@ import st from './category.module.scss';
 import Banners from '../../shared/common/Banner/Banners';
 import MyPagination from '../../shared/common/MyPagination';
 import Book from '../../shared/common/book';
+import About from "../../HomePage/About";
 
 const mobileFilters = [
   {
@@ -54,7 +55,7 @@ const Category = ({ order }) => {
     return router.query['showType'] === 'list';
   }, [router.query]);
 
-  const { categories, books } = useSelector((state) => state.book);
+  const { categories, books, infoBlocks } = useSelector((state) => state.book);
   const { innerWidthWindow } = useSelector((state) => state.common);
 
   const currentCategory = categories?.find((i) => i?.slug === category_slug)?.name;
@@ -125,7 +126,7 @@ const Category = ({ order }) => {
               <Switcher flagSwitcher={flagSwitcher} />
             </div>
           </div>
-          <div className={st.mainBlock}>
+          <div className={classnames(st.mainBlock, {[st.info]: !!infoBlocks?.length})}>
             {innerWidthWindow >= 1024 && <SideFilters />}
             <div className="booksWrapper">
               {books?.data?.length ? (
@@ -157,6 +158,8 @@ const Category = ({ order }) => {
           <Banners />
         </div>
       </div>
+
+      {!!infoBlocks?.length && <About data={infoBlocks}/>}
     </div>
   );
 };

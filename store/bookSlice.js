@@ -4,6 +4,7 @@ import BookService from '../http/BookService';
 
 const initialState = {
   categories: [],
+  infoBlocks: [],
   audioCategories: [],
   dailyHotUpdates: [],
   books: [],
@@ -60,6 +61,9 @@ export const bookSlice = createSlice({
   reducers: {
     setCategories: (state, action) => {
       state.categories = action.payload;
+    },
+    setCategoriesInfoBlocks: (state, action) => {
+      state.infoBlocks = action.payload;
     },
     setAudioCategories: (state, action) => {
       state.audioCategories = action.payload;
@@ -120,6 +124,6 @@ export const bookSlice = createSlice({
   },
 });
 
-export const { setCategories, setAudioCategories, setDailyHotUpdates, setBooks, setBook, setBookQuotes, audioBook, setUserReadingProgress } = bookSlice.actions;
+export const { setCategories, setCategoriesInfoBlocks, setAudioCategories, setDailyHotUpdates, setBooks, setBook, setBookQuotes, audioBook, setUserReadingProgress } = bookSlice.actions;
 
 export default bookSlice.reducer;

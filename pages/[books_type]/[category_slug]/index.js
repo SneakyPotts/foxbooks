@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import BookComponent from '../../../components/Books/category';
 
 import { setCurrentPageBanners } from '../../../store/adminSlice';
-import { setBooks, setCategories } from '../../../store/bookSlice';
+import {setBooks, setCategories, setCategoriesInfoBlocks} from '../../../store/bookSlice';
 
 import AdminSettings from '../../../http/AdminSettings';
 import BookService from '../../../http/BookService';
@@ -14,14 +14,11 @@ const Categories = (props) => {
   const dispatch = useDispatch();
 
   dispatch(setCategories(props.categories));
+  dispatch(setCategoriesInfoBlocks(props.infoBlocks));
   dispatch(setBooks(props.books));
   dispatch(setCurrentPageBanners(props.banners));
 
-  return (
-    <>
-      <BookComponent order={props.order} />
-    </>
-  );
+  return <BookComponent order={props.order} />;
 };
 
 export default Categories;
@@ -38,6 +35,7 @@ export async function getServerSideProps({ req, params, query }) {
     const order = await AdminSettings.getSortSetting(books_type === 'books' ? 'categories' : 'audio-categories');
 
     const categoryData = await CategoriesService.getBookCategories(category_slug);
+    const categoryInfoBlock = await CategoriesService.getInfoblock(category_slug);
     const { seo_data } = categoryData.data.data[0];
 
     const books = await BookService.getBooks({
@@ -65,6 +63,7 @@ export async function getServerSideProps({ req, params, query }) {
           og_description: seo_data?.og_description,
           og_img: seo_data?.og_img,
         },
+        infoBlocks: categoryInfoBlock?.data?.data
       },
     };
   } catch {

@@ -36,6 +36,14 @@ export async function getServerSideProps({ req, params }) {
       props: {
         author: author?.data?.data,
         categories: categories?.data?.data,
+        SEO: {
+          title: author?.data?.data?.seo_title,
+          description: author?.data?.data?.seo_description,
+          keywords: author?.data?.data?.seo_keywords || '',
+          og_title: author?.data?.data?.og_title || '',
+          og_description: author?.data?.data?.og_description || '',
+          og_img: author?.data?.data?.og_img || '',
+        },
         banners: banners?.data?.data,
       },
     };

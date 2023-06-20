@@ -29,4 +29,8 @@ export default class CategoriesService {
   static async getAudioBookCategoriesData() {
     return axios.get(`${API_URL}/genres/audio-books`);
   }
+
+  static async getInfoblock(slug) {
+    return axios.get(`${API_URL}/info-block/${slug}`);
+  }
 }
