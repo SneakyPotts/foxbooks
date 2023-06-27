@@ -5,6 +5,7 @@
   "semi": true,
   "singleQuote": true,
   "tabWidth": 2,
+  "singleAttributePerLine": true,
   "importOrder": [
     "^next/(.*)$",
     "^react/(.*)$",
