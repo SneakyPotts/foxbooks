@@ -74,8 +74,14 @@ const SelectionsPage = () => {
           <div className={styles.filters}>
             {innerWidthWindow > 768 && (
               <div className={styles.descFilters}>
-                <BookFilters filters={popularSelections} queryName={'selectionCategory'} />
-                <BookFilters filters={booksSelections} queryName={'bookType'} />
+                <BookFilters
+                  filters={popularSelections}
+                  queryName={'selectionCategory'}
+                />
+                <BookFilters
+                  filters={booksSelections}
+                  queryName={'bookType'}
+                />
               </div>
             )}
 
@@ -83,10 +89,18 @@ const SelectionsPage = () => {
               <div>
                 <MobileFilterModal>
                   <span className={styles.filterTitle}>Категория</span>
-                  <BookFilters filters={popularSelections} queryName={'selectionCategory'} onModal />
+                  <BookFilters
+                    filters={popularSelections}
+                    queryName={'selectionCategory'}
+                    onModal
+                  />
                   <span className={styles.filterLine} />
                   <span className={styles.filterTitle}>Тип</span>
-                  <BookFilters filters={booksSelections} queryName={'bookType'} onModal />
+                  <BookFilters
+                    filters={booksSelections}
+                    queryName={'bookType'}
+                    onModal
+                  />
                 </MobileFilterModal>
               </div>
             )}
@@ -98,7 +112,10 @@ const SelectionsPage = () => {
             <>
               {router.query['showType'] === 'list' &&
                 selections?.data?.map((i) => (
-                  <div key={i?.id} className={`${styles.mainListItem} ${cssBook.selectionList}`}>
+                  <div
+                    key={i?.id}
+                    className={`${styles.mainListItem} ${cssBook.selectionList}`}
+                  >
                     <div className={styles.titleFlex}>
                       <Link href={`/selections/${i?.slug}`}>
                         <a className={classNames('title', styles.title)}>{i?.title}</a>
@@ -141,7 +158,11 @@ const SelectionsPage = () => {
                           {(router.query?.bookType === 'books' ? i?.books : router.query?.bookType === 'audioBooks' ? i?.audio_books : i?.books.concat(i?.audio_books)).map(
                             (j) => (
                               <SwiperSlide key={j?.id}>
-                                <Book book={j} audio={j?.type === 'audioBooks'} type={j?.type} />
+                                <Book
+                                  book={j}
+                                  audio={j?.type === 'audioBooks'}
+                                  type={j?.type}
+                                />
                               </SwiperSlide>
                             ),
                           )}
@@ -153,7 +174,11 @@ const SelectionsPage = () => {
                           </button>
                         </Swiper>
 
-                        <ShowAll text={'Смотреть все'} url={`/selections/${i?.slug}`} externalClass={styles.showMore} />
+                        <ShowAll
+                          text={'Смотреть все'}
+                          url={`/selections/${i?.slug}`}
+                          externalClass={styles.showMore}
+                        />
                       </>
                     )}
                   </div>
@@ -162,8 +187,15 @@ const SelectionsPage = () => {
               {(router.query['showType'] === 'block' || !router.query['showType']) && (
                 <div className={styles.mainGrid}>
                   {selections?.data?.map((i) => (
-                    <div key={i?.id} className={styles.mainGridItem}>
-                      <CompilationItem key={i?.id} data={i} path={`/selections/${i?.slug}`} />
+                    <div
+                      key={i?.id}
+                      className={styles.mainGridItem}
+                    >
+                      <CompilationItem
+                        key={i?.id}
+                        data={i}
+                        path={`/selections/${i?.slug}`}
+                      />
                     </div>
                   ))}
                 </div>

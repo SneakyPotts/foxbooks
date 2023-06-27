@@ -37,10 +37,16 @@ const CategoriesPage = () => {
         </div>
       </div>
       <div className={st.btns}>
-        <button className={classnames(st.btnTitle, { [st.active]: isShown === 'books' })} onClick={handleBooksClick}>
+        <button
+          className={classnames(st.btnTitle, { [st.active]: isShown === 'books' })}
+          onClick={handleBooksClick}
+        >
           Книги
         </button>
-        <button className={classnames(st.btnTitle, { [st.active]: isShown === 'audioBooks' })} onClick={handleAudiobooksClick}>
+        <button
+          className={classnames(st.btnTitle, { [st.active]: isShown === 'audioBooks' })}
+          onClick={handleAudiobooksClick}
+        >
           Аудиокниги
         </button>
       </div>
@@ -60,7 +66,10 @@ const CategoriesPage = () => {
             <h2 className={st.categoriesTitle}>Категории книг</h2>
             <ul className={st.categoriesList}>
               {categories.map((cat) => (
-                <li key={cat.id} className={st.categoriesListItem}>
+                <li
+                  key={cat.id}
+                  className={st.categoriesListItem}
+                >
                   <Link href={`/books/${cat.slug}`}>
                     <a className={st.categoriesLink}>
                       {cat.name}
@@ -77,7 +86,10 @@ const CategoriesPage = () => {
             <h2 className={st.categoriesTitle}>Категории аудиокниг</h2>
             <ul className={st.categoriesList}>
               {audioCategories.map((cat) => (
-                <li key={cat.id} className={st.categoriesListItem}>
+                <li
+                  key={cat.id}
+                  className={st.categoriesListItem}
+                >
                   <Link href={`/audiobooks/${cat.slug}`}>
                     <a className={st.categoriesLink}>
                       {cat.name}

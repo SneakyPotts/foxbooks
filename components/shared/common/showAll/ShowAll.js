@@ -15,7 +15,10 @@ const ShowAll = ({ text = 'Смотреть все', title, url = '/', externalC
     return (
       <div className={classNames(st.showAll, { [st.showMoreBtn]: showMore })}>
         {title && <h2 className={'title'}>{title}</h2>}
-        <button type={'button'} onClick={handleChange}>
+        <button
+          type={'button'}
+          onClick={handleChange}
+        >
           <a className={st.showAllLink}>
             {text}
             {arrowSecondary ? (

@@ -12,7 +12,10 @@ const ClearAll = () => {
   };
 
   return (
-    <button className={css.clearAll} onClick={handleClear}>
+    <button
+      className={css.clearAll}
+      onClick={handleClear}
+    >
       Очистить все
       <Close className={css.clearIcon} />
     </button>

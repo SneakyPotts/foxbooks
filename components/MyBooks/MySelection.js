@@ -122,17 +122,30 @@ const MySelection = () => {
           className={styles.compilationImg}
         />
 
-        <BackBtn onClick={() => router.push('/mybooks/selections')} externalClass={styles.compilationBack} />
+        <BackBtn
+          onClick={() => router.push('/mybooks/selections')}
+          externalClass={styles.compilationBack}
+        />
         <h2 className={styles.compilationTitle}>{selectionById?.compilation?.title}</h2>
         <div className={styles.compilationControls}>
-          <Button text={'Добавить книгу'} classNames={styles.compilationBtn} click={() => setChoosePopupIsVisible(true)} />
+          <Button
+            text={'Добавить книгу'}
+            classNames={styles.compilationBtn}
+            click={() => setChoosePopupIsVisible(true)}
+          />
           <DotsDropdown externalClass={styles.compilationDropdown}>
-            <div className={styles.controlsItem} onClick={() => setCreatePopupIsVisible(true)}>
+            <div
+              className={styles.controlsItem}
+              onClick={() => setCreatePopupIsVisible(true)}
+            >
               <EditPensil />
               Редактировать
             </div>
 
-            <div className={styles.controlsItem} onClick={showDeleteSelectionPopup}>
+            <div
+              className={styles.controlsItem}
+              onClick={showDeleteSelectionPopup}
+            >
               <Bin />
               Удалить
             </div>
@@ -192,7 +205,10 @@ const MySelection = () => {
         {selectionById?.books?.data?.length ? (
           <div className={styles.grid}>
             {selectionById?.books?.data?.map((i) => (
-              <div className={styles.gridItem} key={i?.book_compilationable?.id || i?.id}>
+              <div
+                className={styles.gridItem}
+                key={i?.book_compilationable?.id || i?.id}
+              >
                 <Book
                   withDelete
                   onDelete={() => showDeleteBookPopup(i?.book_compilationable || i)}
@@ -207,7 +223,11 @@ const MySelection = () => {
           <p className="empty">Пусто</p>
         )}
 
-        <Button text={'Добавить книгу'} classNames={styles.compilationBtnMob} click={() => setChoosePopupIsVisible(true)} />
+        <Button
+          text={'Добавить книгу'}
+          classNames={styles.compilationBtnMob}
+          click={() => setChoosePopupIsVisible(true)}
+        />
       </div>
 
       {choosePopupIsVisible && <ChooseBookPopup onClose={() => setChoosePopupIsVisible(false)} />}
@@ -227,7 +247,13 @@ const MySelection = () => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Удалить книгу</h3>
             <p className={styles.modalText}>Вы действительно хотите удалить книгу “{bookTitle}”?</p>
-            <ButtonGroup text="Удалить" typeButton="button" ClassName={styles.modalBtns} click={deleteBookHandler} cancelClick={() => setDeleteBookPopupIsVisible(false)} />
+            <ButtonGroup
+              text="Удалить"
+              typeButton="button"
+              ClassName={styles.modalBtns}
+              click={deleteBookHandler}
+              cancelClick={() => setDeleteBookPopupIsVisible(false)}
+            />
           </div>
         </ModalWindow>
       )}
@@ -237,7 +263,12 @@ const MySelection = () => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Книга удалена</h3>
 
-            <Button text="Закрыть" typeButton="button" click={() => setConfirmBookPopupIsVisible(false)} classNames={styles.modalBtn} />
+            <Button
+              text="Закрыть"
+              typeButton="button"
+              click={() => setConfirmBookPopupIsVisible(false)}
+              classNames={styles.modalBtn}
+            />
           </div>
         </ModalWindow>
       )}

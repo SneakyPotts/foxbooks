@@ -159,7 +159,10 @@ const Layout = ({ children }) => {
       {children}
       {playerIsVisible && <AudioPlayer />}
       {innerWidthWindow <= 768 && position > 500 && router.pathname !== '/reader' && (
-        <div onClick={scrollUp} className={st.buttonUp}>
+        <div
+          onClick={scrollUp}
+          className={st.buttonUp}
+        >
           <ArrowUp />
         </div>
       )}

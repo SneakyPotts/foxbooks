@@ -28,7 +28,11 @@ const PageProgress = () => {
   }, [router.query?.page]);
 
   return (
-    <div className={styles.progress} onMouseUp={tapChangePage} onTouchEnd={tapChangePage}>
+    <div
+      className={styles.progress}
+      onMouseUp={tapChangePage}
+      onTouchEnd={tapChangePage}
+    >
       <div className={styles.progressWrapper}>
         <span>{index === -1 ? bookChapters[bookChapters.length - 1]?.title : bookChapters[index - 1]?.title}</span>
         <span>{Math.round((100 * currentPage) / book?.pages_count)}%</span>

@@ -67,7 +67,12 @@ const CommentForm = ({ submitFunc, isTextarea, rows, onCancel }) => {
                 blurDataURL="/blur.webp"
               />
             ) : (
-              <AvatarWithLetter letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'} width={35} id={profile?.id} isProfile />
+              <AvatarWithLetter
+                letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
+                width={35}
+                id={profile?.id}
+                isProfile
+              />
             )}
           </div>
         )}
@@ -86,7 +91,14 @@ const CommentForm = ({ submitFunc, isTextarea, rows, onCancel }) => {
         />
       </div>
 
-      {btnsIsVisible && <ButtonGroup text={'Отправить'} ClassName={styles.btns} typeButton={'submit'} cancelClick={handleCancelClick} />}
+      {btnsIsVisible && (
+        <ButtonGroup
+          text={'Отправить'}
+          ClassName={styles.btns}
+          typeButton={'submit'}
+          cancelClick={handleCancelClick}
+        />
+      )}
     </form>
   );
 };

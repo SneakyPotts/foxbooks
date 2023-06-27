@@ -171,12 +171,18 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
           <div className={st.stars}>
             {similar ? (
               <div className={st.starsBlock}>
-                <Stars count={1} value={book?.rate_avg} />
+                <Stars
+                  count={1}
+                  value={book?.rate_avg}
+                />
                 <span>{book?.rate_avg}</span>
               </div>
             ) : (
               <div className={st.starsBlock}>
-                <Stars count={count} value={book?.rate_avg} />
+                <Stars
+                  count={count}
+                  value={book?.rate_avg}
+                />
                 {innerWidthWindow <= 768 && <span>{book?.rate_avg || 0}</span>}
               </div>
             )}
@@ -293,20 +299,32 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
 
         {flagSwitcher && isAuth && (
           <div>
-            <span className={classnames(st.addIcon, { [st.hide]: changeIcon })} onClick={handleWantReadClick}>
+            <span
+              className={classnames(st.addIcon, { [st.hide]: changeIcon })}
+              onClick={handleWantReadClick}
+            >
               <AddToBooks />
             </span>
 
             {changeIcon && (
-              <DotsDropdown isSmall externalClass={st.dotsIcon}>
+              <DotsDropdown
+                isSmall
+                externalClass={st.dotsIcon}
+              >
                 <div className={st.optionWindow}>
-                  <p className={st.optionRead} onClick={handleReadClick}>
+                  <p
+                    className={st.optionRead}
+                    onClick={handleReadClick}
+                  >
                     <span className={st.optionIcon}>
                       <OpenBook />
                     </span>
                     {type === 'books' ? 'Читаю' : 'Слушаю'}
                   </p>
-                  <p className={st.optionDelete} onClick={deleteFromFavorite}>
+                  <p
+                    className={st.optionDelete}
+                    onClick={deleteFromFavorite}
+                  >
                     <span className={st.optionIcon}>
                       <Basket />
                     </span>
@@ -320,7 +338,10 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
       </div>
 
       {withDelete && (
-        <span className={st.deleteBtn} onClick={onDelete}>
+        <span
+          className={st.deleteBtn}
+          onClick={onDelete}
+        >
           <Delete />
         </span>
       )}

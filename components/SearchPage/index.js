@@ -55,7 +55,12 @@ const SearchPage = ({ data }) => {
       <h1 className="title">Результаты поиска</h1>
 
       <div className={s.filters}>
-        {innerWidthWindow > 768 && <BookFilters filters={filters} queryName={'sortBy'} />}
+        {innerWidthWindow > 768 && (
+          <BookFilters
+            filters={filters}
+            queryName={'sortBy'}
+          />
+        )}
 
         {innerWidthWindow <= 768 &&
           mobileFilters?.map((i, index) => (
@@ -88,7 +93,11 @@ const SearchPage = ({ data }) => {
 
                 <div className={s.grid}>
                   {books.map((i) => (
-                    <Book key={i?.id} book={i} type={i?.type} />
+                    <Book
+                      key={i?.id}
+                      book={i}
+                      type={i?.type}
+                    />
                   ))}
                 </div>
 
@@ -118,7 +127,12 @@ const SearchPage = ({ data }) => {
 
                 <div className={s.grid}>
                   {audio_books.map((i) => (
-                    <Book key={i?.id} book={i} type={i?.type} audio />
+                    <Book
+                      key={i?.id}
+                      book={i}
+                      type={i?.type}
+                      audio
+                    />
                   ))}
                 </div>
 
@@ -143,7 +157,10 @@ const SearchPage = ({ data }) => {
 
                 <div className={s.grid}>
                   {authors.map((i) => (
-                    <AuthorCard key={i?.id} data={i} />
+                    <AuthorCard
+                      key={i?.id}
+                      data={i}
+                    />
                   ))}
                 </div>
               </section>
@@ -166,7 +183,12 @@ const SearchPage = ({ data }) => {
 
                 <div className={classNames(s.grid, s.gridFull)}>
                   {compilations.map((i) => (
-                    <CompilationItem key={i?.id} data={i} path={`/selections/${i?.slug}`} isMini />
+                    <CompilationItem
+                      key={i?.id}
+                      data={i}
+                      path={`/selections/${i?.slug}`}
+                      isMini
+                    />
                   ))}
                 </div>
 
@@ -191,7 +213,10 @@ const SearchPage = ({ data }) => {
 
                 <div className={s.grid}>
                   {series.map((i) => (
-                    <SeriesCard key={i?.id} data={i} />
+                    <SeriesCard
+                      key={i?.id}
+                      data={i}
+                    />
                   ))}
                 </div>
               </section>

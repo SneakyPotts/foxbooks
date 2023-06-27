@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { durationString, wordsForCount } from '../../../utils';
@@ -147,28 +147,24 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
       const currentCharsCount = currentBlockWidth / 13;
       const deltaByType = audioFlag ? 20 : 10;
 
-      return innerWidthWindow <= 768
-        ? book?.title.length / currentCharsCount > 1
-          ? `${Math.ceil(book?.title.length / currentCharsCount) * deltaByType}px`
-          : 0
-        : 0
+      return innerWidthWindow <= 768 ? (book?.title.length / currentCharsCount > 1 ? `${Math.ceil(book?.title.length / currentCharsCount) * deltaByType}px` : 0) : 0;
+    };
 
-    }
-
-    setMarginForLongTitle(calculateMarginForLongTitle())
-
+    setMarginForLongTitle(calculateMarginForLongTitle());
   }, [innerWidthWindow]);
-
 
   return (
     <>
-      <div key={book.id} className={st.bookInfo}>
+      <div
+        key={book.id}
+        className={st.bookInfo}
+      >
         <div className={st.infoBlockBook}>
           <div
             className={classnames(st.bookCover, {
               [st.bookCoverAudio]: audioFlag,
             })}
-            style={{marginBottom: marginForLongTitle}}
+            style={{ marginBottom: marginForLongTitle }}
           >
             <Image
               src={book?.cover_url || '/preview.jpg'}
@@ -241,7 +237,12 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 {innerWidthWindow >= 768 && (
                   <div className={st.starsBlock}>
                     <p>Оцените книгу</p>
-                    <Stars activeStart={true} value={book?.user_rating} color={'#4f4f4f'} onChange={(value) => setRating(value)} />
+                    <Stars
+                      activeStart={true}
+                      value={book?.user_rating}
+                      color={'#4f4f4f'}
+                      onChange={(value) => setRating(value)}
+                    />
                   </div>
                 )}
               </div>
@@ -250,12 +251,20 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               {innerWidthWindow < 768 && (
                 <div className={classnames(st.starsBlock, st.addDistance)}>
                   <p>Оцените книгу</p>
-                  <Stars activeStart={true} value={book?.user_rating} color={'#4f4f4f'} onChange={(value) => setRating(value)} />
+                  <Stars
+                    activeStart={true}
+                    value={book?.user_rating}
+                    color={'#4f4f4f'}
+                    onChange={(value) => setRating(value)}
+                  />
                 </div>
               )}
               <div className={st.buttons}>
                 {audioFlag ? (
-                  <button className={st.readButton} onClick={onListen}>
+                  <button
+                    className={st.readButton}
+                    onClick={onListen}
+                  >
                     {`${book.user_progress ? 'Продолжить' : 'Начать'} слушать`}
                   </button>
                 ) : (

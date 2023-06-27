@@ -18,7 +18,14 @@ export default function App(props) {
   dispatch(setSelections(props.compilations));
   dispatch(setReviews(props.reviews));
 
-  return <Home audioBooks={props.audioBooks?.audio_books} newBooks={props.newBooks?.books} order={props.order} banners={props.banners} />;
+  return (
+    <Home
+      audioBooks={props.audioBooks?.audio_books}
+      newBooks={props.newBooks?.books}
+      order={props.order}
+      banners={props.banners}
+    />
+  );
 }
 
 export async function getServerSideProps({ query }) {

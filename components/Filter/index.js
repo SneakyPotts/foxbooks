@@ -76,7 +76,10 @@ const Filters = ({ order }) => {
         <>
           <ul className={css.bookList}>
             {books?.data?.map((book) => (
-              <li key={book?.id} className={`${css.book} ${cssBook.upBook}`}>
+              <li
+                key={book?.id}
+                className={`${css.book} ${cssBook.upBook}`}
+              >
                 <Book book={book} />
               </li>
             ))}

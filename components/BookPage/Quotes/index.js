@@ -24,9 +24,7 @@ import Like from '../../shared/icons/heart';
 
 const Quotes = () => {
   const dispatch = useDispatch();
-  const {
-    query: { books_type },
-  } = useRouter();
+  const { query } = useRouter();
   const quote = useRef(null);
 
   const { book } = useSelector((state) => state.book);
@@ -37,24 +35,36 @@ const Quotes = () => {
   const token = Cookies.get('token');
 
   useEffect(async () => {
-    if (books_type === 'books') {
+    if (query?.books_type === 'books') {
       const data = await BookService.getBookQuotes(book.id, token, currentPage);
       dispatch(setBookQuotes(data?.data?.data));
     }
-  }, [currentPage]);
+  }, [currentPage, query]);
 
   return (
     <>
       {bookQuotes?.data?.length ? (
-        <div ref={quote} id="quotes" className={st.container}>
+        <div
+          ref={quote}
+          id="quotes"
+          className={st.container}
+        >
           <h2 className={st.quotesTitle}>Цитаты</h2>
 
           {bookQuotes?.data.map((i) => (
-            <QuoteItem key={i.id} data={i} />
+            <QuoteItem
+              key={i.id}
+              data={i}
+            />
           ))}
 
           {bookQuotes?.last_page > 1 ? (
-            <MyPagination currentPage={bookQuotes?.current_page} lastPage={bookQuotes?.last_page} onClick={setCurrentPage} scrollTo={quote} />
+            <MyPagination
+              currentPage={bookQuotes?.current_page}
+              lastPage={bookQuotes?.last_page}
+              onClick={setCurrentPage}
+              scrollTo={quote}
+            />
           ) : null}
         </div>
       ) : null}
@@ -103,7 +113,12 @@ const QuoteItem = ({ data }) => {
               blurDataURL="/blur.webp"
             />
           ) : (
-            <AvatarWithLetter letter={data?.user?.nickname?.slice(0, 1) || data?.user?.name?.slice(0, 1) || 'П'} width={35} id={data?.user?.id} isProfile />
+            <AvatarWithLetter
+              letter={data?.user?.nickname?.slice(0, 1) || data?.user?.name?.slice(0, 1) || 'П'}
+              width={35}
+              id={data?.user?.id}
+              isProfile
+            />
           )}
         </div>
         <h3 className={st.userName}>{data?.user?.nickname || data?.user?.name || 'Пользователь'}</h3>
@@ -111,9 +126,9 @@ const QuoteItem = ({ data }) => {
 
       <div className={st.quoteInfo}>
         <span>{moment(data?.updated_at).format('Do MMMM YYYY в HH:mm').replace('-го', '')}</span>
-        <span className={st.quoteView}>
-          <span className={st.quoteViewCount}>{data?.views_count}</span> <Eye />
-        </span>
+        {/*<span className={st.quoteView}>*/}
+        {/*  <span className={st.quoteViewCount}>{data?.views_count}</span> <Eye />*/}
+        {/*</span>*/}
       </div>
 
       <div className={st.quoteContainer}>

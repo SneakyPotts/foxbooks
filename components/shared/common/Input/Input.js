@@ -19,13 +19,30 @@ const Input = ({ register, name, complete = 'off', textLabel, err, classNames, t
   }, []);
 
   return (
-    <div ref={inputWrapper} className={classnames(styles.wrapper, classNames, { [styles.wrapperErr]: err })}>
+    <div
+      ref={inputWrapper}
+      className={classnames(styles.wrapper, classNames, { [styles.wrapperErr]: err })}
+    >
       {textLabel && <label htmlFor={name}>{textLabel}</label>}
 
       {isTextarea ? (
-        <textarea id={name} {...register(name)} rows={rows} onChange={autoHeightHandler} placeholder={placeholder} {...props} />
+        <textarea
+          id={name}
+          {...register(name)}
+          rows={rows}
+          onChange={autoHeightHandler}
+          placeholder={placeholder}
+          {...props}
+        />
       ) : (
-        <input id={name} type={typeInput} {...register(name)} autoComplete={complete} placeholder={placeholder} {...props} />
+        <input
+          id={name}
+          type={typeInput}
+          {...register(name)}
+          autoComplete={complete}
+          placeholder={placeholder}
+          {...props}
+        />
       )}
 
       <p className={styles.wrapperError}>{err && err}</p>

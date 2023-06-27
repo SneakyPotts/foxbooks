@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
 import Popular from '../../Filter/Popular/Popular';
+import About from '../../HomePage/About';
 import SideFilters from '../../SideFilters';
 import Switcher from '../../switcher/Switcher';
 import MobileFilterModal from './../../MobileFilterModal';
@@ -17,7 +18,6 @@ import st from './category.module.scss';
 import Banners from '../../shared/common/Banner/Banners';
 import MyPagination from '../../shared/common/MyPagination';
 import Book from '../../shared/common/book';
-import About from "../../HomePage/About";
 
 const mobileFilters = [
   {
@@ -115,10 +115,17 @@ const Category = ({ order }) => {
                     />
                   ))}
                   {mobileFilters.map((i, index) => (
-                    <div key={index} className={st.filterItem}>
+                    <div
+                      key={index}
+                      className={st.filterItem}
+                    >
                       <span className={st.line} />
                       <span className={st.filterTitle}>{i.option}</span>
-                      <input placeholder={i?.placeholder} className={st.input} onChange={(ev) => handleChange(ev.target.value, i?.queryName)} />
+                      <input
+                        placeholder={i?.placeholder}
+                        className={st.input}
+                        onChange={(ev) => handleChange(ev.target.value, i?.queryName)}
+                      />
                     </div>
                   ))}
                 </MobileFilterModal>
@@ -126,7 +133,7 @@ const Category = ({ order }) => {
               <Switcher flagSwitcher={flagSwitcher} />
             </div>
           </div>
-          <div className={classnames(st.mainBlock, {[st.info]: !!infoBlocks?.length})}>
+          <div className={classnames(st.mainBlock, { [st.info]: !!infoBlocks?.length })}>
             {innerWidthWindow >= 1024 && <SideFilters />}
             <div className="booksWrapper">
               {books?.data?.length ? (
@@ -139,7 +146,13 @@ const Category = ({ order }) => {
                     })}
                   >
                     {books.data.map((book) => (
-                      <Book key={book?.id} audio={books_type === 'audiobooks'} flagSwitcher={flagSwitcher} book={book} type={book?.type} />
+                      <Book
+                        key={book?.id}
+                        audio={books_type === 'audiobooks'}
+                        flagSwitcher={flagSwitcher}
+                        book={book}
+                        type={book?.type}
+                      />
                     ))}
                   </div>
                   <MyPagination lastPage={books?.last_page} />
@@ -159,7 +172,7 @@ const Category = ({ order }) => {
         </div>
       </div>
 
-      {!!infoBlocks?.length && <About data={infoBlocks}/>}
+      {!!infoBlocks?.length && <About data={infoBlocks} />}
     </div>
   );
 };

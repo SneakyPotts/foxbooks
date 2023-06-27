@@ -16,7 +16,10 @@ const AudioBooks = ({ audioBooks }) => {
 
   return (
     <div className={css.container}>
-      <ShowAll title="Некогда читать - слушайте!" url="/audiobooks" />
+      <ShowAll
+        title="Некогда читать - слушайте!"
+        url="/audiobooks"
+      />
 
       <Swiper
         modules={[Navigation]}
@@ -28,8 +31,15 @@ const AudioBooks = ({ audioBooks }) => {
         }}
       >
         {audioBooks.map((i) => (
-          <SwiperSlide key={i?.id} className={`${css.slideAudio} ${cssBook.slideAudio}`}>
-            <Book book={i} audio={true} type={i?.type} />
+          <SwiperSlide
+            key={i?.id}
+            className={`${css.slideAudio} ${cssBook.slideAudio}`}
+          >
+            <Book
+              book={i}
+              audio={true}
+              type={i?.type}
+            />
           </SwiperSlide>
         ))}
         <button className={classnames('prevArrow', css.positionButton)}>

@@ -157,8 +157,15 @@ const Books = ({ isAudio }) => {
       {innerWidthWindow <= 768 && (
         <div className={styles.mobFilters}>
           <div className={styles.flex}>
-            <BackBtn externalClass={styles.backBtn} onClick={() => dispatch(setHeaderVisibility(true))} />
-            <SearchInput placeholder={'Искать книгу'} externalClass={styles.mobSearch} onChange={onChange} />
+            <BackBtn
+              externalClass={styles.backBtn}
+              onClick={() => dispatch(setHeaderVisibility(true))}
+            />
+            <SearchInput
+              placeholder={'Искать книгу'}
+              externalClass={styles.mobSearch}
+              onChange={onChange}
+            />
           </div>
 
           <h2 className={classNames('title', styles.title)}>Мои книги</h2>
@@ -198,8 +205,17 @@ const Books = ({ isAudio }) => {
       {data?.length ? (
         <div className={styles.grid}>
           {data.map((i) => (
-            <div key={i?.id} className={styles.gridItem}>
-              <Book book={i} withDelete type={i?.type} audio={isAudio} onDelete={() => showDeletePopup(i)} />
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
+              <Book
+                book={i}
+                withDelete
+                type={i?.type}
+                audio={isAudio}
+                onDelete={() => showDeletePopup(i)}
+              />
             </div>
           ))}
         </div>
@@ -218,7 +234,13 @@ const Books = ({ isAudio }) => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Удалить книгу</h3>
             <p className={styles.modalText}>Вы действительно хотите удалить книгу “{bookTitle}”?</p>
-            <ButtonGroup text="Удалить" typeButton="button" ClassName={styles.modalBtns} click={deleteHandler} cancelClick={() => setDeletePopupIsVisible(false)} />
+            <ButtonGroup
+              text="Удалить"
+              typeButton="button"
+              ClassName={styles.modalBtns}
+              click={deleteHandler}
+              cancelClick={() => setDeletePopupIsVisible(false)}
+            />
           </div>
         </ModalWindow>
       )}
@@ -228,11 +250,24 @@ const Books = ({ isAudio }) => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Книга удалена</h3>
 
-            <Button text="Закрыть" typeButton="button" click={() => setConfirmPopupIsVisible(false)} classNames={styles.modalBtn} />
+            <Button
+              text="Закрыть"
+              typeButton="button"
+              click={() => setConfirmPopupIsVisible(false)}
+              classNames={styles.modalBtn}
+            />
           </div>
         </ModalWindow>
       )}
-      {lastPage > 1 && page !== lastPage ? <ShowAll text={'Показать ещё'} externalClass={s.onlyDesctop} arrowSecondary showMore={true} setPage={setPage} /> : null}
+      {lastPage > 1 && page !== lastPage ? (
+        <ShowAll
+          text={'Показать ещё'}
+          externalClass={s.onlyDesctop}
+          arrowSecondary
+          showMore={true}
+          setPage={setPage}
+        />
+      ) : null}
     </>
   );
 };

@@ -16,7 +16,10 @@ const MobileBlock = () => {
   return (
     <div className={st.container}>
       <div className={st.mainBlock}>
-        <ShowAll title="Романы" url="/new" />
+        <ShowAll
+          title="Романы"
+          url="/new"
+        />
 
         <Swiper
           modules={[Navigation]}
@@ -28,7 +31,10 @@ const MobileBlock = () => {
           }}
         >
           {books.map((book) => (
-            <SwiperSlide key={book.id} className={st.swiperSlide}>
+            <SwiperSlide
+              key={book.id}
+              className={st.swiperSlide}
+            >
               <Book book={book} />
             </SwiperSlide>
           ))}
@@ -41,7 +47,10 @@ const MobileBlock = () => {
         </Swiper>
       </div>
       <div className={st.secondBlock}>
-        <ShowAll title="Научная фантастика" url="/new" />
+        <ShowAll
+          title="Научная фантастика"
+          url="/new"
+        />
         <Swiper
           modules={[Navigation]}
           spaceBetween={innerWidthWindow <= 768 ? 10 : 24}
@@ -52,8 +61,14 @@ const MobileBlock = () => {
           }}
         >
           {books.map((book) => (
-            <SwiperSlide key={book.id} className={st.swiperSlide}>
-              <Book count={innerWidthWindow <= 500 ? 1 : 5} book={book} />
+            <SwiperSlide
+              key={book.id}
+              className={st.swiperSlide}
+            >
+              <Book
+                count={innerWidthWindow <= 500 ? 1 : 5}
+                book={book}
+              />
             </SwiperSlide>
           ))}
           <button className="prevArrow">

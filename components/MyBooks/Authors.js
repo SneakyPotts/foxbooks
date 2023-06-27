@@ -96,8 +96,15 @@ const Authors = () => {
       {innerWidthWindow <= 768 && (
         <div className={styles.mobFilters}>
           <div className={styles.flex}>
-            <BackBtn externalClass={styles.backBtn} onClick={() => dispatch(setHeaderVisibility(true))} />
-            <SearchInput placeholder={'Искать автора'} externalClass={styles.mobSearch} onChange={onChange} />
+            <BackBtn
+              externalClass={styles.backBtn}
+              onClick={() => dispatch(setHeaderVisibility(true))}
+            />
+            <SearchInput
+              placeholder={'Искать автора'}
+              externalClass={styles.mobSearch}
+              onChange={onChange}
+            />
           </div>
 
           <h2 className={classNames('title', styles.title)}>Мои авторы</h2>
@@ -107,8 +114,15 @@ const Authors = () => {
       {data?.length ? (
         <div className={styles.grid}>
           {data.map((i) => (
-            <div key={i?.id} className={styles.gridItem}>
-              <AuthorCard data={i} withDelete={true} onDelete={() => showDeletePopup(i)} />
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
+              <AuthorCard
+                data={i}
+                withDelete={true}
+                onDelete={() => showDeletePopup(i)}
+              />
             </div>
           ))}
         </div>
@@ -127,7 +141,13 @@ const Authors = () => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Удалить Автора</h3>
             <p className={styles.modalText}>Вы действительно хотите удалить автора “{authorName}”?</p>
-            <ButtonGroup text="Удалить" typeButton="button" ClassName={styles.modalBtns} click={deleteHandler} cancelClick={() => setDeletePopupIsVisible(false)} />
+            <ButtonGroup
+              text="Удалить"
+              typeButton="button"
+              ClassName={styles.modalBtns}
+              click={deleteHandler}
+              cancelClick={() => setDeletePopupIsVisible(false)}
+            />
           </div>
         </ModalWindow>
       )}
@@ -137,12 +157,25 @@ const Authors = () => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Автор удалён</h3>
 
-            <Button text="Закрыть" typeButton="button" click={() => setConfirmPopupIsVisible(false)} classNames={styles.modalBtn} />
+            <Button
+              text="Закрыть"
+              typeButton="button"
+              click={() => setConfirmPopupIsVisible(false)}
+              classNames={styles.modalBtn}
+            />
           </div>
         </ModalWindow>
       )}
 
-      {lastPage > 1 && page !== lastPage ? <ShowAll text={'Показать ещё'} externalClass={s.onlyDesctop} arrowSecondary showMore={true} setPage={setPage} /> : null}
+      {lastPage > 1 && page !== lastPage ? (
+        <ShowAll
+          text={'Показать ещё'}
+          externalClass={s.onlyDesctop}
+          arrowSecondary
+          showMore={true}
+          setPage={setPage}
+        />
+      ) : null}
     </>
   );
 };

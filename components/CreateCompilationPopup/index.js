@@ -63,31 +63,67 @@ const CreateCompilationPopup = ({ image, title, description, onClose, isEdit }) 
   }, []);
 
   return (
-    <ModalWindow isFullScreen onClose={onClose} externalClass={styles.wrapper}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <ModalWindow
+      isFullScreen
+      onClose={onClose}
+      externalClass={styles.wrapper}
+    >
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div
           className={classNames(styles.previewWrapper, {
             [styles.withOverlay]: imgSrc,
           })}
         >
-          {imgSrc && <Image src={imgSrc} alt={'compilation image'} layout={'fill'} className={styles.previewImg} />}
+          {imgSrc && (
+            <Image
+              src={imgSrc}
+              alt={'compilation image'}
+              layout={'fill'}
+              className={styles.previewImg}
+            />
+          )}
 
           <div className={styles.controls}>
-            <PreviewUploader name={'image'} setValue={setValue} setImgSrc={setImgSrc} />
-            <span className={styles.error} style={{ marginTop: '5px' }}>
+            <PreviewUploader
+              name={'image'}
+              setValue={setValue}
+              setImgSrc={setImgSrc}
+            />
+            <span
+              className={styles.error}
+              style={{ marginTop: '5px' }}
+            >
               {errors.image?.message}
             </span>
 
-            <input type="text" {...register('title', { required: true, maxLength: 10 })} className={styles.title} placeholder={'Название'} />
+            <input
+              type="text"
+              {...register('title', { required: true, maxLength: 10 })}
+              className={styles.title}
+              placeholder={'Название'}
+            />
             <span className={styles.error}>{errors.title?.message}</span>
             <span className={styles.controlsText}>100 символов</span>
           </div>
         </div>
 
         <div className={classNames('container', styles.container)}>
-          <Input name={'description'} register={register} textLabel={'Опишите, о чем эта подборка'} isTextarea rows={innerWidthWindow > 768 ? 7 : 1} />
+          <Input
+            name={'description'}
+            register={register}
+            textLabel={'Опишите, о чем эта подборка'}
+            isTextarea
+            rows={innerWidthWindow > 768 ? 7 : 1}
+          />
           <p className={styles.error}>{errors.description?.message}</p>
-          <Button typeButton={'submit'} text={isEdit ? 'Редактировать подборку' : 'Создать подборку'} classNames={styles.btn} />
+          <Button
+            typeButton={'submit'}
+            text={isEdit ? 'Редактировать подборку' : 'Создать подборку'}
+            classNames={styles.btn}
+          />
           <p className={styles.text}>и перейти к добавлению книг</p>
         </div>
       </form>

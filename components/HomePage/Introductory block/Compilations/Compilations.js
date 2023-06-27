@@ -20,7 +20,10 @@ const Compilations = () => {
 
   return (
     <div className={styles.container}>
-      <ShowAll title="Подборки" url="/selections" />
+      <ShowAll
+        title="Подборки"
+        url="/selections"
+      />
 
       <Swiper
         modules={[Navigation]}
@@ -33,7 +36,11 @@ const Compilations = () => {
       >
         {selections.map((i) => (
           <SwiperSlide key={i?.id}>
-            <CompilationItem data={i} isFull path={`/selections/${i?.slug}`} />
+            <CompilationItem
+              data={i}
+              isFull
+              path={`/selections/${i?.slug}`}
+            />
           </SwiperSlide>
         ))}
         <button className={classnames('prevArrow', styles.positionButton)}>

@@ -33,7 +33,10 @@ const MarksPopup = () => {
       {sortedBookMarks?.length > 0 ? (
         <ul className={styles.popupList}>
           {sortedBookMarks?.map((i) => (
-            <li key={i?.id} className={classNames(styles.popupListItem, styles.markListItem)}>
+            <li
+              key={i?.id}
+              className={classNames(styles.popupListItem, styles.markListItem)}
+            >
               <div className={styles.iconMark}>
                 <BookMark />
               </div>
@@ -49,7 +52,10 @@ const MarksPopup = () => {
                   <p className={styles.text}>{`${i?.page?.content}...`}</p>
                 </a>
               </Link>
-              <div onClick={() => handleDeleteMark(i?.id)} className={styles.iconDelete}>
+              <div
+                onClick={() => handleDeleteMark(i?.id)}
+                className={styles.iconDelete}
+              >
                 <Bin />
               </div>
             </li>

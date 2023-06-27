@@ -95,7 +95,10 @@ const HomeView = ({ audioBooks, newBooks, order, banners }) => {
         <Categories />
         <div className={css.mainBlock}>
           <Alphabet />
-          <ShowAll title={innerWidthWindow >= 768 ? 'Новинки книг' : 'Новинки'} url={`/new`} />
+          <ShowAll
+            title={innerWidthWindow >= 768 ? 'Новинки книг' : 'Новинки'}
+            url={`/new`}
+          />
 
           <Swiper
             modules={[Navigation]}
@@ -107,8 +110,14 @@ const HomeView = ({ audioBooks, newBooks, order, banners }) => {
             }}
           >
             {newBooks.map((book) => (
-              <SwiperSlide key={book?.id} className={cssBook.swiperSlide}>
-                <Book book={book} type={book?.type} />
+              <SwiperSlide
+                key={book?.id}
+                className={cssBook.swiperSlide}
+              >
+                <Book
+                  book={book}
+                  type={book?.type}
+                />
               </SwiperSlide>
             ))}
             <button className="prevArrow">
@@ -122,7 +131,10 @@ const HomeView = ({ audioBooks, newBooks, order, banners }) => {
       </div>
       {/*{innerWidthWindow <= 768 && <MobileBlock />}*/}
       <Hero bannersList={banners} />
-      <div ref={hotUpdates} className={css.wrapper}>
+      <div
+        ref={hotUpdates}
+        className={css.wrapper}
+      >
         <BookUpdates />
         <Filters order={order} />
       </div>

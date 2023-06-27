@@ -27,19 +27,37 @@ const InputRange = ({
 
   return (
     <div className={classNames(styles.inputWrapper, externalWrapperClass)}>
-      <span className={styles.inputBar} style={{ background: barColor }}>
-        <span className={styles.inputFill} style={{ width: `${(value / max) * 100}%` }} />
+      <span
+        className={styles.inputBar}
+        style={{ background: barColor }}
+      >
+        <span
+          className={styles.inputFill}
+          style={{ width: `${(value / max) * 100}%` }}
+        />
       </span>
 
       {hasDots && dotsCount && (
         <div className={styles.dotsWrapper}>
           {getDots().map((i) => (
-            <span key={i} className={classNames(styles.inputDot, { [styles.active]: value >= i })} style={{ background: dotsColor }} />
+            <span
+              key={i}
+              className={classNames(styles.inputDot, { [styles.active]: value >= i })}
+              style={{ background: dotsColor }}
+            />
           ))}
         </div>
       )}
 
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => setValue(e.target.value)} className={classNames(styles.input, externalClass)} />
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className={classNames(styles.input, externalClass)}
+      />
     </div>
   );
 };

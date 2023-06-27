@@ -1,50 +1,58 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 import DropDownArrow from '../../../public/chevron-down.svg';
 import classnames from 'classnames';
 
 import css from './about.module.scss';
 
-const About = ({data}) => {
-	return (
-		<div className={css.container}>
-			{data.map(({title, content}, index) => (
-				<AboutItem
+const About = ({ data }) => {
+  return (
+    <div className={css.container}>
+      {data.map(({ title, content }, index) => (
+        <AboutItem
           key={`${index}${title}`}
           title={title}
           text={content}
           showStatus={index === 0}
         />
-			))}
-		</div>
-	);
+      ))}
+    </div>
+  );
 };
 export default About;
 
-const AboutItem = ({title, text, showStatus = false}) => {
-	const [show, setShow] = useState(showStatus);
+const AboutItem = ({ title, text, showStatus = false }) => {
+  const [show, setShow] = useState(showStatus);
 
-	const handleClick = () => {
-		setShow((prev) => !prev);
-	}
+  const handleClick = () => {
+    setShow((prev) => !prev);
+  };
 
-	return (
-		<div
-			className={classnames(css.dropDown, {
-				[css.active]: show,
-			})}
-		>
-			<button onClick={handleClick} className={css.dropDownBtn}>
-				<span className={css.dropDownTitle}>{title}</span>
-				<span
-					className={classnames(css.dropDownIcon, {
-						[css.activeBtn]: show,
-					})}
-				>
-          <DropDownArrow/>
+  return (
+    <div
+      className={classnames(css.dropDown, {
+        [css.active]: show,
+      })}
+    >
+      <button
+        onClick={handleClick}
+        className={css.dropDownBtn}
+      >
+        <span className={css.dropDownTitle}>{title}</span>
+        <span
+          className={classnames(css.dropDownIcon, {
+            [css.activeBtn]: show,
+          })}
+        >
+          <DropDownArrow />
         </span>
-			</button>
-			{show && <div className={css.dropDownText} dangerouslySetInnerHTML={{__html: text}}/>}
-		</div>
-	)
-}
+      </button>
+      {show && (
+        <div
+          className={css.dropDownText}
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
+      )}
+    </div>
+  );
+};

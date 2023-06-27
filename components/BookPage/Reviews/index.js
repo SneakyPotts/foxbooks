@@ -47,6 +47,7 @@ const Reviews = ({ type }) => {
 
   useEffect(() => {
     dispatch(clearReviews());
+    dispatch(getCurrentReviews(reviewRequestData));
   }, [id]);
 
   const handleLeaveReviewInput = () => {
@@ -54,28 +55,58 @@ const Reviews = ({ type }) => {
   };
 
   return (
-    <div ref={blockRef} id="reviews">
+    <div
+      ref={blockRef}
+      id="reviews"
+    >
       <h2 className={st.reviewTitle}>Рецензии</h2>
 
-      {!reviewTyping && <Button typeButton="button" text="Написать рецензию" classNames={st.submitButton} click={handleLeaveReviewInput} />}
+      {!reviewTyping && (
+        <Button
+          typeButton="button"
+          text="Написать рецензию"
+          classNames={st.submitButton}
+          click={handleLeaveReviewInput}
+        />
+      )}
 
       {reviewTyping && (
         <div style={{ paddingRight: '20px' }}>
-          <ReviewForm bookType={type} onCancel={() => setReviewTyping(false)} onClose={() => setReviewTyping(false)} />
+          <ReviewForm
+            bookType={type}
+            onCancel={() => setReviewTyping(false)}
+            onClose={() => setReviewTyping(false)}
+          />
         </div>
       )}
 
       {(innerWidthWindow > 768 ? reviews : reviewsMobile).map((it, idx) => (
-        <div key={it.id} className={st.review}>
-          <CommentComp idx={idx} data={it} type={reviewsType[it.review_type_id]} reviews={true} />
+        <div
+          key={it.id}
+          className={st.review}
+        >
+          <CommentComp
+            idx={idx}
+            data={it}
+            type={reviewsType[it.review_type_id]}
+            reviews={true}
+          />
         </div>
       ))}
 
       {lastPage > 1 ? (
         innerWidthWindow > 768 ? (
-          <MyPagination currentPage={page} onClick={setPage} lastPage={lastPage} scrollTo={blockRef} />
+          <MyPagination
+            currentPage={page}
+            onClick={setPage}
+            lastPage={lastPage}
+            scrollTo={blockRef}
+          />
         ) : lastPage > page ? (
-          <div className={st.pagination} onClick={() => setPage((prev) => prev + 1)}>
+          <div
+            className={st.pagination}
+            onClick={() => setPage((prev) => prev + 1)}
+          >
             Показать еще
           </div>
         ) : null

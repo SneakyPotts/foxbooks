@@ -20,7 +20,10 @@ const Books = (props) => {
 
   return (
     <div>
-      <BooksComponent booksType={booksType} order={props.order} />
+      <BooksComponent
+        booksType={booksType}
+        order={props.order}
+      />
     </div>
   );
 };

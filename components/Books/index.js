@@ -55,7 +55,10 @@ const Books = ({ booksType, order }) => {
         {innerWidthWindow > 768 && (
           <>
             {cats?.map((i) => (
-              <span key={i?.id} className={st.abCateg}>
+              <span
+                key={i?.id}
+                className={st.abCateg}
+              >
                 <Link href={`/${type === 'books' ? type : 'audiobooks'}/${i?.slug}`}>
                   <a className={st.abCategLink}>{i?.name}</a>
                 </Link>
@@ -68,7 +71,10 @@ const Books = ({ booksType, order }) => {
 
         {innerWidthWindow <= 768 && (
           <>
-            <div className={st.mobCateg} onClick={showCategories}>
+            <div
+              className={st.mobCateg}
+              onClick={showCategories}
+            >
               Категории
               <span>
                 <Grid />
@@ -85,11 +91,17 @@ const Books = ({ booksType, order }) => {
       <BooksMainBlock audio={type === 'audioBooks'} />
 
       {innerWidthWindow <= 768 && catsIsVisible && (
-        <ModalWindow onClose={hideCategories} isFullScreen>
+        <ModalWindow
+          onClose={hideCategories}
+          isFullScreen
+        >
           <h2 className={classnames(st.abTitle, st.modalTitle)}>Категории</h2>
           <ul className={st.mobCategList}>
             {cats?.map((cat) => (
-              <li key={cat?.id} className={st.mobCategListItem}>
+              <li
+                key={cat?.id}
+                className={st.mobCategListItem}
+              >
                 <Link href={`/${type === 'books' ? type : 'audiobooks'}/${cat?.slug}`}>
                   <a className={st.mobCategLink}>
                     {cat?.name}
@@ -101,7 +113,11 @@ const Books = ({ booksType, order }) => {
           </ul>
 
           <div className="modalMobileWrapper">
-            <Button text={'Посмотреть'} click={() => router.push('/categories')} classNames="modalMobileBtn" />
+            <Button
+              text={'Посмотреть'}
+              click={() => router.push('/categories')}
+              classNames="modalMobileBtn"
+            />
           </div>
         </ModalWindow>
       )}

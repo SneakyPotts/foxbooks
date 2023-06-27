@@ -183,7 +183,12 @@ const CommentItem = ({
               blurDataURL="/blur.webp"
             />
           ) : (
-            <AvatarWithLetter letter={data?.user?.nickname?.slice(0, 1) || data?.user?.name?.slice(0, 1) || 'П'} width={35} id={data?.user?.id} isProfile />
+            <AvatarWithLetter
+              letter={data?.user?.nickname?.slice(0, 1) || data?.user?.name?.slice(0, 1) || 'П'}
+              width={35}
+              id={data?.user?.id}
+              isProfile
+            />
           )}
         </div>
 
@@ -238,7 +243,10 @@ const CommentItem = ({
           </span>
           <span className={styles.reviewLike}>{likesCount}</span>
 
-          <span className={styles.reviewReply} onClick={toggleFormVisibility}>
+          <span
+            className={styles.reviewReply}
+            onClick={toggleFormVisibility}
+          >
             Ответить
           </span>
         </div>
@@ -256,7 +264,14 @@ const CommentItem = ({
       )}
 
       {sortedReplies?.length && (!isReply || (isReply && isShowMore))
-        ? sortedReplies.map((i) => <CommentItem key={i?.id} data={i} isReply parentReviewId={reviews ? data?.id : parentReviewId} />)
+        ? sortedReplies.map((i) => (
+            <CommentItem
+              key={i?.id}
+              data={i}
+              isReply
+              parentReviewId={reviews ? data?.id : parentReviewId}
+            />
+          ))
         : null}
 
       {(!isReply && page < replies?.last_page) || (isReply && sortedReplies?.length && (!isShowMore || page < replies?.last_page)) ? (

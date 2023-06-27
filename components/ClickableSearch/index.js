@@ -38,8 +38,14 @@ const ClickableSearch = ({ queryName }) => {
   }, []);
 
   return (
-    <div className={classNames(styles.wrapper, { [styles.active]: isActive })} onClick={(ev) => ev.stopPropagation()}>
-      <span className={styles.icon} onClick={handleClick}>
+    <div
+      className={classNames(styles.wrapper, { [styles.active]: isActive })}
+      onClick={(ev) => ev.stopPropagation()}
+    >
+      <span
+        className={styles.icon}
+        onClick={handleClick}
+      >
         <FiSearch />
       </span>
       <input

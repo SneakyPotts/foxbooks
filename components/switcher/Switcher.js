@@ -20,10 +20,16 @@ const Switcher = ({ flagSwitcher, setFlagSwitcher }) => {
 
   return (
     <div className={st.field}>
-      <span className={classnames({ [st.ball]: flagSwitcher })} onClick={() => handleClick('list')}>
+      <span
+        className={classnames({ [st.ball]: flagSwitcher })}
+        onClick={() => handleClick('list')}
+      >
         <List className={classnames(st.iconList)} />
       </span>
-      <span className={classnames({ [st.ball]: !flagSwitcher })} onClick={() => handleClick('block')}>
+      <span
+        className={classnames({ [st.ball]: !flagSwitcher })}
+        onClick={() => handleClick('block')}
+      >
         <Grid className={classnames(st.iconGrid)} />
       </span>
     </div>

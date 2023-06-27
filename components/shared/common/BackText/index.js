@@ -7,7 +7,10 @@ import styles from './styles.module.scss';
 
 const BackText = ({ onClick, externalClass }) => {
   return (
-    <div className={classNames(styles.wrapper, externalClass)} onClick={onClick}>
+    <div
+      className={classNames(styles.wrapper, externalClass)}
+      onClick={onClick}
+    >
       <span className={styles.icon}>
         <Arrow />
       </span>

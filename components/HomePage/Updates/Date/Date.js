@@ -17,7 +17,10 @@ const Date = ({ date, books, show }) => {
   return (
     <>
       <div className={css.releaseDates}>
-        <button className={classnames(css.btn, { [css.activeBtn]: menu })} onClick={toggle}>
+        <button
+          className={classnames(css.btn, { [css.activeBtn]: menu })}
+          onClick={toggle}
+        >
           {date}
           <span className={classnames(css.dropDownIcon, { [css.active]: menu })}>
             <DropDownArrow />
@@ -25,7 +28,10 @@ const Date = ({ date, books, show }) => {
         </button>
         <ul className={classnames(css.dates, { [css.showMenu]: menu })}>
           {books?.map((i) => (
-            <li key={i?.id} className={css.date}>
+            <li
+              key={i?.id}
+              className={css.date}
+            >
               <Link href={`/books/${i?.genres?.[0]?.slug}/${i?.slug}`}>
                 <a className={css.title}>{i?.title}</a>
               </Link>

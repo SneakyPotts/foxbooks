@@ -32,7 +32,12 @@ const ReviewComponent = ({ it, idx, reviews }) => {
 
   return (
     <div className={st.review}>
-      <Book book={it?.book} audio={it?.book?.type !== 'books'} similar inReview />
+      <Book
+        book={it?.book}
+        audio={it?.book?.type !== 'books'}
+        similar
+        inReview
+      />
 
       <div className={st.reviewContent}>
         <div
@@ -44,9 +49,20 @@ const ReviewComponent = ({ it, idx, reviews }) => {
             <div className={st.reviewerImg}>
               <div className={styles.avatar}>
                 {profile?.avatar ? (
-                  <Image src={profile?.avatar} alt="Avatar" width="35" height="35" blurDataURL="/blur.webp" />
+                  <Image
+                    src={profile?.avatar}
+                    alt="Avatar"
+                    width="35"
+                    height="35"
+                    blurDataURL="/blur.webp"
+                  />
                 ) : (
-                  <AvatarWithLetter letter={profile?.name?.slice(0, 1) || 'П'} width={35} id={profile?.id} isProfile />
+                  <AvatarWithLetter
+                    letter={profile?.name?.slice(0, 1) || 'П'}
+                    width={35}
+                    id={profile?.id}
+                    isProfile
+                  />
                 )}
               </div>
             </div>
@@ -70,7 +86,10 @@ const ReviewComponent = ({ it, idx, reviews }) => {
               {it?.content}
             </p>
             {it?.content.length > 602 && (
-              <span className={classnames(st.showMoreLink)} onClick={() => onShowMore(idx)}>
+              <span
+                className={classnames(st.showMoreLink)}
+                onClick={() => onShowMore(idx)}
+              >
                 Показать полностью{' '}
                 <DropDownArrow
                   className={classnames(st.dropDownArrow, {

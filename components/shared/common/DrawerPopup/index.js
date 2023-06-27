@@ -53,7 +53,13 @@ const DrawerPopup = ({ direction = 'down', children, onClose, externalClass }) =
   useOnClickOutside(ref, closeDropdown);
 
   return (
-    <div className={classNames(styles.wrapper, { [styles.hide]: isClosed })} onMouseUp={upHandler} onTouchEnd={upHandler} onMouseMove={moveHandler} onTouchMove={moveHandler}>
+    <div
+      className={classNames(styles.wrapper, { [styles.hide]: isClosed })}
+      onMouseUp={upHandler}
+      onTouchEnd={upHandler}
+      onMouseMove={moveHandler}
+      onTouchMove={moveHandler}
+    >
       <div
         ref={ref}
         className={classNames('dropdown', { ['dropdown--up']: direction === 'up' }, styles.drawer, externalClass)}
@@ -63,7 +69,11 @@ const DrawerPopup = ({ direction = 'down', children, onClose, externalClass }) =
         }}
         onClick={(ev) => ev.stopPropagation()}
       >
-        <div className={styles.close} onMouseDown={() => setIsFocus(true)} onTouchStart={() => setIsFocus(true)} />
+        <div
+          className={styles.close}
+          onMouseDown={() => setIsFocus(true)}
+          onTouchStart={() => setIsFocus(true)}
+        />
         {children}
       </div>
     </div>

@@ -7,7 +7,11 @@ import styles from './index.module.scss';
 const Button = ({ typeButton, text, classNames, click }) => {
   return (
     <>
-      <button onClick={click} className={classnames(styles.button, classNames)} type={typeButton}>
+      <button
+        onClick={click}
+        className={classnames(styles.button, classNames)}
+        type={typeButton}
+      >
         {text}
       </button>
     </>

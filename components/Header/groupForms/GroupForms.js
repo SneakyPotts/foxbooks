@@ -163,7 +163,10 @@ const GroupForms = ({ modal, setModal }) => {
 
   return (
     modal && (
-      <ModalWindow onClose={closeModal} isFullScreen={innerWidthWindow <= 480}>
+      <ModalWindow
+        onClose={closeModal}
+        isFullScreen={innerWidthWindow <= 480}
+      >
         <div className={css.login}>
           {flagLogin && <h2>Вход на FoxBooks</h2>}
           {(flagRegistration || flagSendEmail || flagVerifyEmail) && <h2 className={classnames({ [css.loginMin]: flagSendEmail })}>Регистрация</h2>}
@@ -173,10 +176,24 @@ const GroupForms = ({ modal, setModal }) => {
 
           {flagLogin && (
             <form onSubmit={handleSubmit(onSubmitLogin)}>
-              <Input err={errors.email?.message} textLabel="Электронная почта" name="email" register={register} />
-              <PasswordField err={errors.password?.message} textLabel="Пароль" name="password" register={register} />
+              <Input
+                err={errors.email?.message}
+                textLabel="Электронная почта"
+                name="email"
+                register={register}
+              />
+              <PasswordField
+                err={errors.password?.message}
+                textLabel="Пароль"
+                name="password"
+                register={register}
+              />
               {isError && <p className={css.error}>Неверная почта или пароль</p>}
-              <Button typeButton="submit" text="Вход" classNames={css.loginButton} />
+              <Button
+                typeButton="submit"
+                text="Вход"
+                classNames={css.loginButton}
+              />
               <div className={css.loginButtons}>
                 <button
                   onClick={() => {
@@ -206,9 +223,23 @@ const GroupForms = ({ modal, setModal }) => {
 
           {flagRegistration && (
             <form onSubmit={handleSubmit(onSubmitRegistration)}>
-              <Input err={errors.email?.message || errorAlreadyUsedEmail} textLabel="Электронная почта" name="email" register={register} />
-              <PasswordField err={errors.password?.message} textLabel="Пароль" name="password" register={register} />
-              <Button typeButton="submit" text="Зарегистрироваться" classNames={css.loginButton} />
+              <Input
+                err={errors.email?.message || errorAlreadyUsedEmail}
+                textLabel="Электронная почта"
+                name="email"
+                register={register}
+              />
+              <PasswordField
+                err={errors.password?.message}
+                textLabel="Пароль"
+                name="password"
+                register={register}
+              />
+              <Button
+                typeButton="submit"
+                text="Зарегистрироваться"
+                classNames={css.loginButton}
+              />
             </form>
           )}
 
@@ -218,7 +249,12 @@ const GroupForms = ({ modal, setModal }) => {
               {flagResetPassMessage && <p className={css.message}>Письмо со ссылкой для восстановления пароля выслано на вашу почту.</p>}
               {flagNewPassMessage && <p className={css.message}>Ваш новый пароль вступил в силу.</p>}
               {flagVerifyEmail && <p className={css.message}>Поздравляем! Вы успешно зарегистрированны. Данные для входа отправлены на вашу электронную почту.</p>}
-              <Button click={() => setModal(!modal)} typeButton="button" text="Закрыть" classNames={css.loginButton} />
+              <Button
+                click={() => setModal(!modal)}
+                typeButton="button"
+                text="Закрыть"
+                classNames={css.loginButton}
+              />
             </div>
           )}
 
@@ -226,8 +262,16 @@ const GroupForms = ({ modal, setModal }) => {
             <div>
               <p className={css.message}>Укажите электронную почту, указаную при регистрации</p>
               <form onSubmit={handleSubmit(onSubmitForgetPassword)}>
-                <Input err={errors.email?.message || errorMissingEmail} textLabel="Электронная почта" name="email" register={register} />
-                <Button text="Отправить" classNames={css.loginButton} />
+                <Input
+                  err={errors.email?.message || errorMissingEmail}
+                  textLabel="Электронная почта"
+                  name="email"
+                  register={register}
+                />
+                <Button
+                  text="Отправить"
+                  classNames={css.loginButton}
+                />
               </form>
             </div>
           )}
@@ -236,10 +280,23 @@ const GroupForms = ({ modal, setModal }) => {
             <div>
               <p className={css.message}>Укажите новый пароль</p>
               <form onSubmit={handleSubmit(onSubmitNewPassword)}>
-                <PasswordField err={errors.password?.message} textLabel="Новый пароль" name="password" register={register} />
-                <PasswordField err={errors.password_confirm?.message} textLabel="Повтор пароля" name="password_confirm" register={register} />
+                <PasswordField
+                  err={errors.password?.message}
+                  textLabel="Новый пароль"
+                  name="password"
+                  register={register}
+                />
+                <PasswordField
+                  err={errors.password_confirm?.message}
+                  textLabel="Повтор пароля"
+                  name="password_confirm"
+                  register={register}
+                />
                 <p className={css.message}>Используйте латинские буквы A-z верхнего или нижнего регистра, а так же числа от 1 до 0.</p>
-                <Button text="Изменить пароль" classNames={css.loginButton} />
+                <Button
+                  text="Изменить пароль"
+                  classNames={css.loginButton}
+                />
               </form>
             </div>
           )}

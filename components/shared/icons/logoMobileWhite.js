@@ -2,8 +2,17 @@ import React from 'react';
 
 const logoMobileWhite = () => {
   return (
-    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M19.3448 20.2432C19.4024 20.6348 19.5579 21.6676 19.5579 22.0678V24.0043H20.8919V20.2432H19.3448Z" fill="white" />
+    <svg
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.3448 20.2432C19.4024 20.6348 19.5579 21.6676 19.5579 22.0678V24.0043H20.8919V20.2432H19.3448Z"
+        fill="white"
+      />
       <path
         d="M18.6971 22.0678C18.6971 21.6181 18.5288 20.2819 18.5288 20.2819V20.2432H3.08972V24.0022H18.5309C18.5479 23.8064 18.6992 22.5218 18.6971 22.0678Z"
         fill="white"

@@ -114,7 +114,10 @@ const Selections = () => {
             ))}
           </div>
           {isMy ? (
-            <Button text={'Создать новую подборку'} click={() => setCreatePopupIsVisible(true)} />
+            <Button
+              text={'Создать новую подборку'}
+              click={() => setCreatePopupIsVisible(true)}
+            />
           ) : (
             <div>
               <ClickableSearch queryName={'letter'} />
@@ -139,8 +142,15 @@ const Selections = () => {
       {innerWidthWindow <= 768 && (
         <div className={styles.mobFilters}>
           <div className={styles.flex}>
-            <BackBtn externalClass={styles.backBtn} onClick={() => dispatch(setHeaderVisibility(true))} />
-            <SearchInput placeholder={'Искать книгу'} externalClass={styles.mobSearch} onChange={onChange} />
+            <BackBtn
+              externalClass={styles.backBtn}
+              onClick={() => dispatch(setHeaderVisibility(true))}
+            />
+            <SearchInput
+              placeholder={'Искать книгу'}
+              externalClass={styles.mobSearch}
+              onChange={onChange}
+            />
           </div>
 
           <h2 className={classNames('title', styles.title)}>Мои подборки</h2>
@@ -175,15 +185,27 @@ const Selections = () => {
             ))}
           </MobileFilterModal>
 
-          {isMy && <Button text={'Создать новую подборку'} classNames={styles.createBtn} click={() => setCreatePopupIsVisible(true)} />}
+          {isMy && (
+            <Button
+              text={'Создать новую подборку'}
+              classNames={styles.createBtn}
+              click={() => setCreatePopupIsVisible(true)}
+            />
+          )}
         </div>
       )}
 
       {data?.length ? (
         <div className={classNames(styles.grid, styles.compilationsGrid)}>
           {data.map((i) => (
-            <div key={i?.id} className={styles.gridItem}>
-              <CompilationItem data={i} path={i?.created_by === profile?.id ? `/mybooks/selection/${i?.slug}` : `/selections/${i?.slug}`} />
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
+              <CompilationItem
+                data={i}
+                path={i?.created_by === profile?.id ? `/mybooks/selection/${i?.slug}` : `/selections/${i?.slug}`}
+              />
             </div>
           ))}
         </div>
@@ -199,7 +221,15 @@ const Selections = () => {
 
       {createPopupIsVisible && <CreateCompilationPopup onClose={() => setCreatePopupIsVisible(false)} />}
 
-      {lastPage > 1 && page !== lastPage ? <ShowAll text={'Показать ещё'} externalClass={styles.onlyDesctop} arrowSecondary showMore={true} setPage={setPage} /> : null}
+      {lastPage > 1 && page !== lastPage ? (
+        <ShowAll
+          text={'Показать ещё'}
+          externalClass={styles.onlyDesctop}
+          arrowSecondary
+          showMore={true}
+          setPage={setPage}
+        />
+      ) : null}
     </>
   );
 };

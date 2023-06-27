@@ -45,12 +45,26 @@ const Search = ({ value, onClose }) => {
 
   return (
     <>
-      <div className={st.overlay} onClick={onClose} />
-      <div className={classNames(st.dropDown)} onClick={onClose}>
+      <div
+        className={st.overlay}
+        onClick={onClose}
+      />
+      <div
+        className={classNames(st.dropDown)}
+        onClick={onClose}
+      >
         <div className={classNames('container', st.border)}>
-          <div className={st.dropDownContent} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={st.dropDownContent}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div onClick={onClose}>
-              <ShowAll text={'Все результаты'} url={`/search?search=${value}&type=full&sortBy=1`} arrowSecondary externalClass={st.dropDownShowMore} />
+              <ShowAll
+                text={'Все результаты'}
+                url={`/search?search=${value}&type=full&sortBy=1`}
+                arrowSecondary
+                externalClass={st.dropDownShowMore}
+              />
             </div>
             {!!books?.length && (
               <div className={st.dropDownContentUser}>
@@ -59,9 +73,15 @@ const Search = ({ value, onClose }) => {
                 {/*}*/}
                 <ul className={st.dropDownContentPopular}>
                   {books.map((i) => (
-                    <li key={i?.id} className={st.dropDownContentPopularItem}>
+                    <li
+                      key={i?.id}
+                      className={st.dropDownContentPopularItem}
+                    >
                       <Link href={`/${i?.type}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}>
-                        <a onClick={onClose} style={{ aspectRatio: '124 / 187', display: 'block', position: 'relative' }}>
+                        <a
+                          onClick={onClose}
+                          style={{ aspectRatio: '124 / 187', display: 'block', position: 'relative' }}
+                        >
                           <Image
                             src={i?.cover_url || '/blur.webp'}
                             alt={`Книга ${i?.title}`}
@@ -75,7 +95,10 @@ const Search = ({ value, onClose }) => {
                         </a>
                       </Link>
                       <Link href={`/${i?.type}/${i?.genres?.[0]?.slug || i?.genre?.slug}/${i?.slug}`}>
-                        <a className={st.dropDownContentPopularItemName} onClick={onClose}>
+                        <a
+                          className={st.dropDownContentPopularItemName}
+                          onClick={onClose}
+                        >
                           {i?.title}
                         </a>
                       </Link>
@@ -89,7 +112,11 @@ const Search = ({ value, onClose }) => {
                 <h2 className={st.dropDownContentTitle}>Авторы</h2>
                 <ul className={st.authorsList}>
                   {authors.map(({ id, author, slug }) => (
-                    <Link href={`/author/${slug}`} key={id} className={st.author}>
+                    <Link
+                      href={`/author/${slug}`}
+                      key={id}
+                      className={st.author}
+                    >
                       <a onClick={onClose}>
                         <span className={st.authorName}>{author}</span>
                       </a>

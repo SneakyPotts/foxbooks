@@ -20,17 +20,29 @@ const SimilarBooks = ({ type, data }) => {
   };
 
   return (
-    <div id="similar" className={st.swiper}>
+    <div
+      id="similar"
+      className={st.swiper}
+    >
       <div className={st.swiperTitle}>
         <h3 className={st.title}>{type === 'books' ? 'Похожие книги' : 'Похожие аудиокниги'}</h3>
         {/*{innerWidthWindow <= 768 && (*/}
         {/*  <ShowAll externalClass={st.dicardDistance} />*/}
         {/*)}*/}
       </div>
-      <Swiper spaceBetween={changeSpaceBtwSwiper()} slidesPerView={changeSlidesPerView()}>
+      <Swiper
+        spaceBetween={changeSpaceBtwSwiper()}
+        slidesPerView={changeSlidesPerView()}
+      >
         {data.map((i) => (
           <SwiperSlide key={i?.id}>
-            <Book classNames={st.slide} book={i} similar={true} audio={i?.type === 'audioBooks'} type={i?.type} />
+            <Book
+              classNames={st.slide}
+              book={i}
+              similar={true}
+              audio={i?.type === 'audioBooks'}
+              type={i?.type}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

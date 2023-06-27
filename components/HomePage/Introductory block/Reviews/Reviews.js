@@ -37,7 +37,10 @@ const Reviews = () => {
         className={st.reviewSwiper}
       >
         {reviews.map((review) => (
-          <SwiperSlide className={st.test} key={review.id}>
+          <SwiperSlide
+            className={st.test}
+            key={review.id}
+          >
             <div className={st.reviewer}>
               <div className={st.reviewerImg}>
                 {review?.user?.avatar ? (
@@ -50,7 +53,11 @@ const Reviews = () => {
                     blurDataURL="/blur.webp"
                   />
                 ) : (
-                  <AvatarWithLetter letter={review?.user?.nickname?.slice(0, 1) || review?.user?.name?.slice(0, 1) || 'П'} width={35} id={review?.user?.id} />
+                  <AvatarWithLetter
+                    letter={review?.user?.nickname?.slice(0, 1) || review?.user?.name?.slice(0, 1) || 'П'}
+                    width={35}
+                    id={review?.user?.id}
+                  />
                 )}
               </div>
               <span className={st.reviewerName}>{review.user?.nickname}</span>

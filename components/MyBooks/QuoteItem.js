@@ -39,7 +39,15 @@ const QuoteItem = ({ data, onDelete }) => {
       <div className={styles.quoteBlockHeader}>
         <Link href={`/books/${data?.book?.genres?.[0]?.slug}/${data?.book?.slug}`}>
           <a>
-            <Image src={data?.book?.cover_url} alt="Picture" width={41} height={64} className={styles.quoteBlockImg} placeholder="blur" blurDataURL="/blur.webp" />
+            <Image
+              src={data?.book?.cover_url}
+              alt="Picture"
+              width={41}
+              height={64}
+              className={styles.quoteBlockImg}
+              placeholder="blur"
+              blurDataURL="/blur.webp"
+            />
           </a>
         </Link>
 
@@ -71,12 +79,18 @@ const QuoteItem = ({ data, onDelete }) => {
 
         <div>
           <DotsDropdown isSmall>
-            <div className={styles.controlsItem} onClick={showInBookHandler}>
+            <div
+              className={styles.controlsItem}
+              onClick={showInBookHandler}
+            >
               <All />
               Показать в книге
             </div>
 
-            <div className={styles.controlsItem} onClick={onDelete}>
+            <div
+              className={styles.controlsItem}
+              onClick={onDelete}
+            >
               <Bin />
               Удалить
             </div>

@@ -13,8 +13,16 @@ const Banners = () => {
           switch (banner?.type) {
             case 'image':
               return (
-                <a key={banner?.id} href={banner?.link} className={style.bannerBlock}>
-                  <img src={banner?.image} alt={banner?.alt} className={style.banner} />
+                <a
+                  key={banner?.id}
+                  href={banner?.link}
+                  className={style.bannerBlock}
+                >
+                  <img
+                    src={banner?.image}
+                    alt={banner?.alt}
+                    className={style.banner}
+                  />
                 </a>
               );
             case 'active':
@@ -29,8 +37,15 @@ const Banners = () => {
               );
             default:
               return (
-                <div key={banner?.id} className={style.bannerBlock}>
-                  <img src={banner?.image} alt={banner?.alt} className={style.banner} />
+                <div
+                  key={banner?.id}
+                  className={style.bannerBlock}
+                >
+                  <img
+                    src={banner?.image}
+                    alt={banner?.alt}
+                    className={style.banner}
+                  />
                 </div>
               );
           }
@@ -38,10 +53,18 @@ const Banners = () => {
       ) : (
         <>
           <div className={style.bannerBlock}>
-            <img src="/banner.png" alt="" className={style.banner} />
+            <img
+              src="/banner.png"
+              alt=""
+              className={style.banner}
+            />
           </div>
           <div className={style.bannerBlock}>
-            <img src="/banner.png" alt="" className={style.banner} />
+            <img
+              src="/banner.png"
+              alt=""
+              className={style.banner}
+            />
           </div>
         </>
       )}

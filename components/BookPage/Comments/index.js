@@ -49,16 +49,31 @@ const Comments = () => {
   }, [page, book?.id]);
 
   return (
-    <div ref={blockRef} className={st.container}>
+    <div
+      ref={blockRef}
+      className={st.container}
+    >
       <h2 className={st.reviewsTitle}>Оставьте свой комментарий</h2>
 
       <CommentForm submitFunc={submitFunc} />
 
-      {bookComments?.data?.length ? bookComments?.data.map((i) => <CommentItem key={i?.id} data={i} />) : null}
+      {bookComments?.data?.length
+        ? bookComments?.data.map((i) => (
+            <CommentItem
+              key={i?.id}
+              data={i}
+            />
+          ))
+        : null}
 
       {bookComments?.last_page > 1 ? (
         // innerWidthWindow > 768 ?
-        <MyPagination currentPage={page} onClick={setPage} lastPage={bookComments?.last_page} scrollTo={blockRef} />
+        <MyPagination
+          currentPage={page}
+          onClick={setPage}
+          lastPage={bookComments?.last_page}
+          scrollTo={blockRef}
+        />
       ) : // :
       // <div className={st.pagination}>Показать еще</div>
       null}

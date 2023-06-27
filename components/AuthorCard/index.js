@@ -12,7 +12,14 @@ const AuthorCard = ({ data, onDelete, withDelete }) => {
     <div className={styles.authorItem}>
       <Link href={`/author/${data?.slug}`}>
         <a className={styles.img}>
-          <Image src={data?.avatar || '/preview.jpg'} alt={data?.author} width={180} height={272} placeholder="blur" blurDataURL="/blur.webp" />
+          <Image
+            src={data?.avatar || '/preview.jpg'}
+            alt={data?.author}
+            width={180}
+            height={272}
+            placeholder="blur"
+            blurDataURL="/blur.webp"
+          />
         </a>
       </Link>
       <Link href={`/author/${data?.slug}`}>
@@ -21,7 +28,10 @@ const AuthorCard = ({ data, onDelete, withDelete }) => {
       <span className={styles.booksCount}>{data?.books_count} книг</span>
 
       {withDelete && (
-        <span className={styles.deleteBtn} onClick={onDelete}>
+        <span
+          className={styles.deleteBtn}
+          onClick={onDelete}
+        >
           <Delete />
         </span>
       )}

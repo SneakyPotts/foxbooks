@@ -99,11 +99,17 @@ const ReviewForm = ({ bookId, title, text, bookType, myReviewType, onCancel, onC
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p className={styles.label} onClick={openDropdown}>
+      <p
+        className={styles.label}
+        onClick={openDropdown}
+      >
         Выберите тип вашей рецензии
       </p>
 
-      <div className={styles.dropdown} onClick={(ev) => ev.stopPropagation()}>
+      <div
+        className={styles.dropdown}
+        onClick={(ev) => ev.stopPropagation()}
+      >
         <div
           className={classNames(styles.dropdownBtn, {
             [styles.active]: optionsIsVisible,
@@ -149,11 +155,23 @@ const ReviewForm = ({ bookId, title, text, bookType, myReviewType, onCancel, onC
         maxlength={150}
       />
 
-      <Input register={register} name={'text'} textLabel={'Ваша рецензия'} isTextarea rows={innerWidthWindow > 768 ? 4 : 1} err={errors?.text?.message} />
+      <Input
+        register={register}
+        name={'text'}
+        textLabel={'Ваша рецензия'}
+        isTextarea
+        rows={innerWidthWindow > 768 ? 4 : 1}
+        err={errors?.text?.message}
+      />
 
       {errorAlreadyAdded && <p className={styles.error}>{errorAlreadyAdded}</p>}
 
-      <ButtonGroup text={'Отправить'} ClassName={styles.btns} typeButton={'submit'} cancelClick={onCancel} />
+      <ButtonGroup
+        text={'Отправить'}
+        ClassName={styles.btns}
+        typeButton={'submit'}
+        cancelClick={onCancel}
+      />
     </form>
   );
 };
