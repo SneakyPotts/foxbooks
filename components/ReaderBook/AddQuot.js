@@ -72,9 +72,18 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
       {!isError && (
         <div className={styles.addQuotFlex}>
           {textCondition && (
-            <div className={styles.addQuotFlex} onClick={handleQuotClick}>
+            <div
+              className={styles.addQuotFlex}
+              onClick={handleQuotClick}
+            >
               <div className={styles.addQuotIcon}>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     d="M3.51394 8.74213C3.35214 8.74213 3.19054 8.76232 3.10994 8.80272C3.28974 8.08232 3.97134 7.27433 4.61254 6.92533C4.61394 6.92473 4.61494 6.92373 4.61614 6.92313C4.62094 6.92053 4.62574 6.91693 4.63034 6.91433L4.62974 6.91392C4.70074 6.87592 4.75074 6.80353 4.75074 6.71733C4.75026 6.68084 4.74079 6.64504 4.72317 6.61308C4.70556 6.58113 4.68033 6.55401 4.64974 6.53413L4.65474 6.52932L3.81554 5.99933L3.81294 6.00153C3.77498 5.97107 3.728 5.95405 3.67934 5.95312C3.64254 5.95312 3.60934 5.96392 3.57854 5.97952L3.57434 5.97573C2.32234 6.86413 1.49414 8.21692 1.49414 9.73172C1.49414 11.0441 2.34234 11.7911 3.29114 11.7911C4.15954 11.7911 4.88674 11.0643 4.88674 10.1957C4.88694 9.32772 4.28134 8.74213 3.51394 8.74213Z"
                     fill="#FF781D"
@@ -124,9 +133,18 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
         </div>
       )}
 
-      <div className={styles.addQuotFlex} onClick={copyText}>
+      <div
+        className={styles.addQuotFlex}
+        onClick={copyText}
+      >
         <div className={styles.addQuotIcon}>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M16.6667 7.5H9.16667C8.24619 7.5 7.5 8.24619 7.5 9.16667V16.6667C7.5 17.5871 8.24619 18.3333 9.16667 18.3333H16.6667C17.5871 18.3333 18.3333 17.5871 18.3333 16.6667V9.16667C18.3333 8.24619 17.5871 7.5 16.6667 7.5Z"
               stroke="#FF781D"
@@ -146,7 +164,10 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
         Скопировать
       </div>
 
-      <div className={styles.addQuotFlex} onClick={shareQuot}>
+      <div
+        className={styles.addQuotFlex}
+        onClick={shareQuot}
+      >
         <div className={styles.addQuotIcon}>
           <Share />
         </div>
@@ -154,10 +175,25 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
       </div>
 
       {markId && !isError && (
-        <div className={styles.addQuotFlex} onClick={deleteQuot}>
+        <div
+          className={styles.addQuotFlex}
+          onClick={deleteQuot}
+        >
           <div className={styles.addQuotIcon}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2.5 5H4.16669H17.5002" stroke="#FF781D" strokeWidth="1.66669" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.5 5H4.16669H17.5002"
+                stroke="#FF781D"
+                strokeWidth="1.66669"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
               <path
                 d="M6.66605 4.99939V3.3327C6.66605 2.89067 6.84164 2.46674 7.15421 2.15418C7.46677 1.84161 7.8907 1.66602 8.33273 1.66602H11.6661C12.1081 1.66602 12.5321 1.84161 12.8446 2.15418C13.1572 2.46674 13.3328 2.89067 13.3328 3.3327V4.99939M15.8328 4.99939V16.6662C15.8328 17.1082 15.6572 17.5322 15.3447 17.8447C15.0321 18.1573 14.6082 18.3329 14.1661 18.3329H5.8327C5.39067 18.3329 4.96674 18.1573 4.65418 17.8447C4.34161 17.5322 4.16602 17.1082 4.16602 16.6662V4.99939H15.8328Z"
                 stroke="#FF781D"
@@ -165,8 +201,20 @@ const AddPopup = ({ style, isError, markId, currColor, addQuot, changeColor, del
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              <path d="M8.33398 9.16602V14.1661" stroke="#FF781D" strokeWidth="1.66669" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M11.668 9.16602V14.1661" stroke="#FF781D" strokeWidth="1.66669" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M8.33398 9.16602V14.1661"
+                stroke="#FF781D"
+                strokeWidth="1.66669"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M11.668 9.16602V14.1661"
+                stroke="#FF781D"
+                strokeWidth="1.66669"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
           Удалить

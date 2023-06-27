@@ -19,7 +19,11 @@ const SocialNetwork = ({ title = true, connect = false, ClassNames }) => {
 					{connect && <p>Подключить</p>}
 				</div>*/}
         <div>
-          <a href={`${API_URL}/auth/google`} target="_blank" rel="noreferrer">
+          <a
+            href={`${API_URL}/auth/google`}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Google />
           </a>
           {connect && <p>Подключить</p>}

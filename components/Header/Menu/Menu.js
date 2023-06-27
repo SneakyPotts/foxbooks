@@ -134,7 +134,12 @@ const Navigation = ({ setModal, bottomOnly }) => {
                     blurDataURL="/blur.webp"
                   />
                 ) : (
-                  <AvatarWithLetter letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'} width={24} id={profile?.id} isProfile />
+                  <AvatarWithLetter
+                    letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
+                    width={24}
+                    id={profile?.id}
+                    isProfile
+                  />
                 )
               ) : (
                 <User />

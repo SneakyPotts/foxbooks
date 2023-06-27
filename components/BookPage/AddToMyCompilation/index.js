@@ -58,17 +58,30 @@ const AddToMyCompilation = ({ onClose }) => {
 
   return (
     <div className={classNames('container', s.container)}>
-      <BackText onClick={onClose} externalClass={s.descBack} />
+      <BackText
+        onClick={onClose}
+        externalClass={s.descBack}
+      />
 
-      <BackBtn onClick={onClose} externalClass={s.mobBack} />
+      <BackBtn
+        onClick={onClose}
+        externalClass={s.mobBack}
+      />
 
       <h2 className={classNames('title', s.title)}>Выберите подборку, в которую хотите добавить книгу</h2>
-      <Button text={'Создать новую подборку'} click={() => setCreatePopupIsVisible(true)} />
+      <Button
+        text={'Создать новую подборку'}
+        click={() => setCreatePopupIsVisible(true)}
+      />
 
       {data?.length ? (
         <div className={s.wrapper}>
           {data.map((i) => (
-            <div key={i?.id} className={s.item} onClick={() => handleClick(i?.id)}>
+            <div
+              key={i?.id}
+              className={s.item}
+              onClick={() => handleClick(i?.id)}
+            >
               <CompilationItem data={i} />
               {alreadyAdded === i?.id ? <p className={s.error}>Книга уже добавлена в данную подборку</p> : null}
             </div>
@@ -84,7 +97,15 @@ const AddToMyCompilation = ({ onClose }) => {
         </div>
       ) : null}
 
-      {lastPage > 1 && page !== lastPage ? <ShowAll text={'Показать ещё'} externalClass={styles.onlyDesctop} arrowSecondary showMore={true} setPage={setPage} /> : null}
+      {lastPage > 1 && page !== lastPage ? (
+        <ShowAll
+          text={'Показать ещё'}
+          externalClass={styles.onlyDesctop}
+          arrowSecondary
+          showMore={true}
+          setPage={setPage}
+        />
+      ) : null}
 
       {createPopupIsVisible && <CreateCompilationPopup onClose={() => setCreatePopupIsVisible(false)} />}
     </div>

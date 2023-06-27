@@ -33,13 +33,22 @@ const Footer = () => {
             </div>
             <div className={st.footerInfo}>
               <div className={st.socialmedia}>
-                <a href="" className={st.socialmediaLink}>
+                <a
+                  href=""
+                  className={st.socialmediaLink}
+                >
                   <Twitter />
                 </a>
-                <a href="" className={classNames(st.socialmediaLink, st.mobile)}>
+                <a
+                  href=""
+                  className={classNames(st.socialmediaLink, st.mobile)}
+                >
                   <Telegram />
                 </a>
-                <a href="" className={st.socialmediaLink}>
+                <a
+                  href=""
+                  className={st.socialmediaLink}
+                >
                   <Vk />
                 </a>
               </div>

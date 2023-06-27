@@ -37,7 +37,10 @@ const SearchInput = ({ withModal, showMenuFlag, onClick, onChange, onClose, plac
   }, [router.query]);
 
   return (
-    <div className={classNames(styles.input, externalClass)} onClick={wrapperClick}>
+    <div
+      className={classNames(styles.input, externalClass)}
+      onClick={wrapperClick}
+    >
       <input
         ref={input}
         type="text"
@@ -57,7 +60,10 @@ const SearchInput = ({ withModal, showMenuFlag, onClick, onChange, onClose, plac
       </span>
 
       {withModal && showMenuFlag && (
-        <span className={styles.closeIcon} onClick={(ev) => handleClose(ev)}>
+        <span
+          className={styles.closeIcon}
+          onClick={(ev) => handleClose(ev)}
+        >
           <Close />
         </span>
       )}

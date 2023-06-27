@@ -17,10 +17,17 @@ const BooksMainBlock = ({ audio }) => {
           <>
             <div className={st.booksGrid}>
               {books?.data?.map((book) => (
-                <Book key={book.id} audio={audio} book={book} />
+                <Book
+                  key={book.id}
+                  audio={audio}
+                  book={book}
+                />
               ))}
             </div>
-            <MyPagination currentPage={books?.current_page} lastPage={books?.last_page} />
+            <MyPagination
+              currentPage={books?.current_page}
+              lastPage={books?.last_page}
+            />
           </>
         ) : (
           <p className="empty">Книги не найдены</p>

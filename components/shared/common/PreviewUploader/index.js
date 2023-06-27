@@ -37,7 +37,11 @@ const PreviewUploader = ({ name, setValue, setImgSrc }) => {
   return (
     <div className={styles.wrapper}>
       <label className={styles.label}>
-        <input type="file" className="visually-hidden" onChange={handleChange} />
+        <input
+          type="file"
+          className="visually-hidden"
+          onChange={handleChange}
+        />
         <span className={styles.icon}>
           <Img />
         </span>

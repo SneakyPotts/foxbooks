@@ -15,8 +15,14 @@ const PasswordField = (props) => {
 
   return (
     <div className={s.wrapper}>
-      <Input typeInput={type} {...props} />
-      <div className={s.iconWrapper} onClick={toggleType}>
+      <Input
+        typeInput={type}
+        {...props}
+      />
+      <div
+        className={s.iconWrapper}
+        onClick={toggleType}
+      >
         {type === 'password' ? <CloseEye /> : <OpenEye />}
       </div>
     </div>

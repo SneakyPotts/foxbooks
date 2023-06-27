@@ -78,7 +78,10 @@ const SettingsProfile = () => {
 
           <div className={styles.settingFlex}>
             <Notification callback={handleNotificationClick} />
-            <span className={styles.settingControl} onClick={() => setSettingsIsVisible(true)}>
+            <span
+              className={styles.settingControl}
+              onClick={() => setSettingsIsVisible(true)}
+            >
               <Setting />
               Настройки
             </span>
@@ -87,15 +90,30 @@ const SettingsProfile = () => {
           <div className={styles.settingUser}>
             <div className={styles.settingUserAvatar}>
               {profile?.avatar ? (
-                <Image src={profile?.avatar} alt="Avatar" width="102" height="102" placeholder="blur" blurDataURL="/blur.webp" />
+                <Image
+                  src={profile?.avatar}
+                  alt="Avatar"
+                  width="102"
+                  height="102"
+                  placeholder="blur"
+                  blurDataURL="/blur.webp"
+                />
               ) : (
-                <AvatarWithLetter letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'} width={102} id={profile?.id} isProfile />
+                <AvatarWithLetter
+                  letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
+                  width={102}
+                  id={profile?.id}
+                  isProfile
+                />
               )}
             </div>
             <span className={styles.settingUserName}>{profile?.nickname || `${profile?.name} ${profile?.surname || ''}`}</span>
           </div>
 
-          <span className={classNames(styles.settingControl, styles.settingLogout)} onClick={logOut}>
+          <span
+            className={classNames(styles.settingControl, styles.settingLogout)}
+            onClick={logOut}
+          >
             <Exit />
             <span>Выйти</span>
           </span>
@@ -127,7 +145,11 @@ const SettingsProfile = () => {
                 <ul>
                   {settingMenu.map((r, index) => {
                     return (
-                      <li key={r.text} className={classNames(styles.menuItem, { [styles.active]: currentIndexMenu === index })} onClick={() => handleMenuItemClick(index)}>
+                      <li
+                        key={r.text}
+                        className={classNames(styles.menuItem, { [styles.active]: currentIndexMenu === index })}
+                        onClick={() => handleMenuItemClick(index)}
+                      >
                         {r.icon}
                         <span>{r.text}</span>
                       </li>
@@ -160,11 +182,19 @@ const SettingsProfile = () => {
 
       {innerWidthWindow <= 768 && !settingsIsVisible && notificationsIsVisible && (
         <>
-          <BackBtn onClick={backHandler} externalClass={styles.backBtn} />
+          <BackBtn
+            onClick={backHandler}
+            externalClass={styles.backBtn}
+          />
           <h1 className={classNames('title', styles.notificationTitle)}>Уведомления</h1>
 
           {notifications?.length ? (
-            notifications.map((i) => <NotificationItem key={i?.createdAt} data={i} />)
+            notifications.map((i) => (
+              <NotificationItem
+                key={i?.createdAt}
+                data={i}
+              />
+            ))
           ) : (
             <p className={classNames('empty', styles.empty)}>Уведомлений нет</p>
           )}

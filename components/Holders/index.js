@@ -54,31 +54,66 @@ const HoldersRight = () => {
         <p>Информация о спорном контенте авторского права.</p>
       </div>
 
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className={styles.formInput}>
-          <Input classNames={styles.firstInput} textLabel="Название объекта авторского права" register={register} name="subject" err={errors?.subject?.message} />
+          <Input
+            classNames={styles.firstInput}
+            textLabel="Название объекта авторского права"
+            register={register}
+            name="subject"
+            err={errors?.subject?.message}
+          />
           <Input
             textLabel="Подтверждающие документы (ссылка на первоисточник публикации/ ссылка на сайт-продавец публикации)"
             register={register}
             name="link_source"
             err={errors?.link_source?.message}
           />
-          <Input textLabel="Ссылка на спорный контент" register={register} name="link_content" err={errors?.link_content?.message} />
-          <Input textLabel="ФИО" register={register} name="name" err={errors?.name?.message} />
-          <Input textLabel="Электронная почта" register={register} typeInput={'email'} name="email" err={errors?.email?.message} />
+          <Input
+            textLabel="Ссылка на спорный контент"
+            register={register}
+            name="link_content"
+            err={errors?.link_content?.message}
+          />
+          <Input
+            textLabel="ФИО"
+            register={register}
+            name="name"
+            err={errors?.name?.message}
+          />
+          <Input
+            textLabel="Электронная почта"
+            register={register}
+            typeInput={'email'}
+            name="email"
+            err={errors?.email?.message}
+          />
         </div>
         <div className={styles.checkboxContainer}>
           {checkboxData.map((i) => (
             <>
-              <div key={i?.text} className={styles.checkWrap}>
-                <Checkbox register={register} name={i?.name} />
+              <div
+                key={i?.text}
+                className={styles.checkWrap}
+              >
+                <Checkbox
+                  register={register}
+                  name={i?.name}
+                />
                 <p>{i?.text}</p>
               </div>
               <p className={styles.error}>{errors?.[i?.name]?.message}</p>
             </>
           ))}
         </div>
-        <ButtonGroup text="Отправить" ClassName={styles.buttons} cancelClick={onCancel} />
+        <ButtonGroup
+          text="Отправить"
+          ClassName={styles.buttons}
+          cancelClick={onCancel}
+        />
       </form>
 
       {modal && (
@@ -86,7 +121,12 @@ const HoldersRight = () => {
           <div className={styles.modal}>
             <h3>Отправлено</h3>
             <p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
-            <Button classNames={styles.modalClose} text="Закрыть" typeButton="button" click={() => setModal(false)} />
+            <Button
+              classNames={styles.modalClose}
+              text="Закрыть"
+              typeButton="button"
+              click={() => setModal(false)}
+            />
           </div>
         </ModalWindow>
       )}

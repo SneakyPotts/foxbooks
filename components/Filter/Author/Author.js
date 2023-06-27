@@ -46,13 +46,24 @@ const Author = ({ title, data, filterStateIdx, elIdx, setFilStateIdx }) => {
   return (
     <>
       <div className={css.dropdown}>
-        <button className={`${css.dropBtn} ${menu || elIdx === filterStateIdx ? css.open : css.close}`} onClick={togleMenu}>
+        <button
+          className={`${css.dropBtn} ${menu || elIdx === filterStateIdx ? css.open : css.close}`}
+          onClick={togleMenu}
+        >
           <span className={css.dropBtnText}>{title}</span> <ArrowAll className={`${menu || (elIdx === filterStateIdx && css.up)}`} />
         </button>
         {menu || elIdx === filterStateIdx ? (
-          <ul className={css.dropContentAuthor} onClick={(e) => e.stopPropagation()}>
+          <ul
+            className={css.dropContentAuthor}
+            onClick={(e) => e.stopPropagation()}
+          >
             {data.map((it, index) => (
-              <Link key={it} href="#" value={index} onClick={handleOnClick}>
+              <Link
+                key={it}
+                href="#"
+                value={index}
+                onClick={handleOnClick}
+              >
                 <a className={css.dropLinkAuthor}>{it}</a>
               </Link>
             ))}

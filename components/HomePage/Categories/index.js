@@ -19,13 +19,19 @@ const Categories = ({ booksType }) => {
       <h3 className={css.title}>Категории книг</h3>
       <ul className={css.categList}>
         {cats?.map(({ id, name, slug }) => (
-          <li key={id} className={css.categ}>
+          <li
+            key={id}
+            className={css.categ}
+          >
             <Link href={`/${booksType || 'books'}/${slug}${router.query.showType ? `?showType=${router.query.showType}` : ''}`}>{name}</Link>
           </li>
         ))}
       </ul>
 
-      <ShowAll url={'/categories'} arrowSecondary />
+      <ShowAll
+        url={'/categories'}
+        arrowSecondary
+      />
     </div>
   );
 };

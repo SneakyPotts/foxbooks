@@ -102,10 +102,32 @@ const SupportPage = () => {
           может занимать до 24-х часов.
         </p>
       </div>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <Input classNames={styles.inputWidth} register={register} textLabel={'Тема обращения'} name="subject" err={errors?.subject?.message} />
-        <Input classNames={styles.inputWidth} register={register} textLabel={'Ваше имя'} name="name" err={errors?.name?.message} />
-        <Input classNames={styles.inputWidth} register={register} typeInput="email" textLabel={'Электронная почта'} name="email" err={errors?.email?.message} />
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Input
+          classNames={styles.inputWidth}
+          register={register}
+          textLabel={'Тема обращения'}
+          name="subject"
+          err={errors?.subject?.message}
+        />
+        <Input
+          classNames={styles.inputWidth}
+          register={register}
+          textLabel={'Ваше имя'}
+          name="name"
+          err={errors?.name?.message}
+        />
+        <Input
+          classNames={styles.inputWidth}
+          register={register}
+          typeInput="email"
+          textLabel={'Электронная почта'}
+          name="email"
+          err={errors?.email?.message}
+        />
         <div className={styles.inputArea}>
           <Input
             classNames={classNames(styles.textArea, {
@@ -119,7 +141,12 @@ const SupportPage = () => {
             rows={6}
           />
           <label className={styles.filesBlock}>
-            <input type="file" className="visually-hidden" multiple onChange={onChange} />
+            <input
+              type="file"
+              className="visually-hidden"
+              multiple
+              onChange={onChange}
+            />
 
             <span className={styles.textAreaClip}>
               <Clip />
@@ -130,15 +157,28 @@ const SupportPage = () => {
 
             <span className={styles.dropImgs}>
               {sources?.map((i) => (
-                <span key={i} className={styles.dropBlock}>
-                  <img height="86px" width="86px" src={i} alt={'Picture'} className={styles.dropBlockImg} />
+                <span
+                  key={i}
+                  className={styles.dropBlock}
+                >
+                  <img
+                    height="86px"
+                    width="86px"
+                    src={i}
+                    alt={'Picture'}
+                    className={styles.dropBlockImg}
+                  />
                 </span>
               ))}
             </span>
           </label>
         </div>
 
-        <ButtonGroup ClassName={styles.buttons} text="Отправить" cancelClick={onCancel} />
+        <ButtonGroup
+          ClassName={styles.buttons}
+          text="Отправить"
+          cancelClick={onCancel}
+        />
       </form>
 
       {modal && (
@@ -149,7 +189,10 @@ const SupportPage = () => {
             <br />
             <p>Наши сотрудники ответят на ваш запрос как можно скорее.</p>
           </div>
-          <Button text="Закрыть" click={() => setModal(false)} />
+          <Button
+            text="Закрыть"
+            click={() => setModal(false)}
+          />
         </ModalWindow>
       )}
     </div>

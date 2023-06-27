@@ -118,7 +118,10 @@ const ReaderBook = () => {
   }, [router.query]);
 
   return (
-    <div className={classNames(styles.pageWrapper, styles[`brightness${settings?.screenBrightness}`])} onClick={toggleMobileControls}>
+    <div
+      className={classNames(styles.pageWrapper, styles[`brightness${settings?.screenBrightness}`])}
+      onClick={toggleMobileControls}
+    >
       <div className={classNames('container', styles.pageContainer)}>
         {/*{(innerWidthWindow > 768 || mobileControlsIsVisible) && (*/}
         {/*  <>*/}
@@ -136,7 +139,10 @@ const ReaderBook = () => {
 
         <TextWithQuotes />
 
-        <MyPagination externalClass={styles.pagination} lastPage={book?.pages_count} />
+        <MyPagination
+          externalClass={styles.pagination}
+          lastPage={book?.pages_count}
+        />
 
         {(innerWidthWindow > 768 || mobileControlsIsVisible) && <PageProgress />}
 
@@ -152,12 +158,18 @@ const ReaderBook = () => {
         {/* Попап с главами */}
         {innerWidthWindow > 768
           ? contentPopupIsVisible && (
-              <ModalWindow externalClass={styles.popup} onClose={() => setContentPopupIsVisible(false)}>
+              <ModalWindow
+                externalClass={styles.popup}
+                onClose={() => setContentPopupIsVisible(false)}
+              >
                 <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
               </ModalWindow>
             )
           : contentPopupIsVisible && (
-              <DrawerPopup externalClass={styles.drawer} onClose={() => setContentPopupIsVisible(false)}>
+              <DrawerPopup
+                externalClass={styles.drawer}
+                onClose={() => setContentPopupIsVisible(false)}
+              >
                 <ContentPopup onClose={() => setContentPopupIsVisible(false)} />
               </DrawerPopup>
             )}
@@ -165,12 +177,18 @@ const ReaderBook = () => {
         {/* Попап с цитатами */}
         {innerWidthWindow > 768
           ? quotesPopupIsVisible && (
-              <ModalWindow externalClass={styles.popup} onClose={() => setQuotesPopupIsVisible(false)}>
+              <ModalWindow
+                externalClass={styles.popup}
+                onClose={() => setQuotesPopupIsVisible(false)}
+              >
                 <QuotesPopup onClose={() => setQuotesPopupIsVisible(false)} />
               </ModalWindow>
             )
           : quotesPopupIsVisible && (
-              <DrawerPopup externalClass={styles.drawer} onClose={() => setQuotesPopupIsVisible(false)}>
+              <DrawerPopup
+                externalClass={styles.drawer}
+                onClose={() => setQuotesPopupIsVisible(false)}
+              >
                 <QuotesPopup onClose={() => setQuotesPopupIsVisible(false)} />
               </DrawerPopup>
             )}
@@ -178,7 +196,10 @@ const ReaderBook = () => {
         {/* Дропдаун с редактированием */}
         {editPopupIsVisible && (
           <div className={classNames('container', styles.editPopupContainer)}>
-            <DrawerPopup externalClass={styles.editPopup} onClose={() => setEditPopupIsVisible(false)}>
+            <DrawerPopup
+              externalClass={styles.editPopup}
+              onClose={() => setEditPopupIsVisible(false)}
+            >
               <EditPopup />
             </DrawerPopup>
           </div>
@@ -186,13 +207,19 @@ const ReaderBook = () => {
 
         {/* Попап с закладками */}
         {innerWidthWindow <= 768 && markPopupIsVisible && (
-          <DrawerPopup externalClass={styles.drawer} onClose={() => setMarkPopupIsVisible(false)}>
+          <DrawerPopup
+            externalClass={styles.drawer}
+            onClose={() => setMarkPopupIsVisible(false)}
+          >
             <MarksPopup />
           </DrawerPopup>
         )}
       </div>
 
-      <GroupForms setModal={() => dispatch(setAuthPopupVisibility(false))} modal={authPopupIsVisible} />
+      <GroupForms
+        setModal={() => dispatch(setAuthPopupVisibility(false))}
+        modal={authPopupIsVisible}
+      />
     </div>
   );
 };

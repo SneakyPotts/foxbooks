@@ -49,8 +49,14 @@ const NewPage = () => {
         <div className={st.main}>
           {innerWidthWindow > 768 && (
             <div className={st.filters}>
-              <BookFilters filters={sortFilters} queryName={'sortBy'} />
-              <BookFilters filters={typeFilters} queryName={'type'} />
+              <BookFilters
+                filters={sortFilters}
+                queryName={'sortBy'}
+              />
+              <BookFilters
+                filters={typeFilters}
+                queryName={'type'}
+              />
             </div>
           )}
 
@@ -58,10 +64,18 @@ const NewPage = () => {
             <div className={st.filters}>
               <MobileFilterModal>
                 <span className={styles.filterTitle}>Категория</span>
-                <BookFilters filters={sortFilters} queryName={'sortBy'} onModal />
+                <BookFilters
+                  filters={sortFilters}
+                  queryName={'sortBy'}
+                  onModal
+                />
                 <span className={styles.filterLine} />
                 <span className={styles.filterTitle}>Тип</span>
-                <BookFilters filters={typeFilters} queryName={'type'} onModal />
+                <BookFilters
+                  filters={typeFilters}
+                  queryName={'type'}
+                  onModal
+                />
               </MobileFilterModal>
             </div>
           )}
@@ -71,7 +85,11 @@ const NewPage = () => {
               <div className={st.grid}>
                 {novelties?.data?.map((i) => (
                   <div key={i?.id}>
-                    <Book book={i} type={i?.type} audio={i?.type === 'audioBooks'} />
+                    <Book
+                      book={i}
+                      type={i?.type}
+                      audio={i?.type === 'audioBooks'}
+                    />
                   </div>
                 ))}
               </div>
@@ -88,7 +106,12 @@ const NewPage = () => {
       </div>
 
       <div className={st.mountains}>
-        <Image src="/mountains.png" width={1200} height={400} alt="" />
+        <Image
+          src="/mountains.png"
+          width={1200}
+          height={400}
+          alt=""
+        />
       </div>
     </div>
   );

@@ -92,7 +92,10 @@ const LetterListPage = () => {
 
         {isBook && (
           <div className={styles.filters}>
-            <BookFilters filters={filters} queryName={'type'} />
+            <BookFilters
+              filters={filters}
+              queryName={'type'}
+            />
           </div>
         )}
 
@@ -135,7 +138,11 @@ const LetterListPage = () => {
                     </tr>
                   ),
                 )}
-                <InView as={'tr'} skip={isLoading} onChange={(inView) => dynamicLoad(inView)} />
+                <InView
+                  as={'tr'}
+                  skip={isLoading}
+                  onChange={(inView) => dynamicLoad(inView)}
+                />
               </tbody>
             </table>
             {isLoading && (

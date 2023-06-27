@@ -21,7 +21,11 @@ const DotsDropdown = ({ children, direction, externalClass, externalDrawerClass,
   useOnClickOutside(modalRef, closeMenu);
 
   return (
-    <div ref={modalRef} className={classNames(styles.dropdown, externalClass)} onClick={(ev) => ev.stopPropagation()}>
+    <div
+      ref={modalRef}
+      className={classNames(styles.dropdown, externalClass)}
+      onClick={(ev) => ev.stopPropagation()}
+    >
       <span
         className={classNames(styles.dotsButton, {
           [styles.active]: menuIsOpen,
@@ -33,7 +37,11 @@ const DotsDropdown = ({ children, direction, externalClass, externalDrawerClass,
       </span>
 
       {menuIsOpen && (
-        <DrawerPopup externalClass={externalDrawerClass} onClose={closeMenu} direction={direction}>
+        <DrawerPopup
+          externalClass={externalDrawerClass}
+          onClose={closeMenu}
+          direction={direction}
+        >
           {children}
         </DrawerPopup>
       )}

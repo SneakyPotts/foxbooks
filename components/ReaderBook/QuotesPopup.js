@@ -96,7 +96,11 @@ const QuotesPopup = ({ onClose }) => {
   return (
     <>
       <h3 className={styles.popupTitle}>Цитаты</h3>
-      <SearchInput placeholder={'Введите слово из цитаты'} externalClass={styles.quotesSearch} onChange={handleSearch} />
+      <SearchInput
+        placeholder={'Введите слово из цитаты'}
+        externalClass={styles.quotesSearch}
+        onChange={handleSearch}
+      />
       <Popular
         title={filter?.title}
         defaultValue={filter?.defaultValue}
@@ -107,7 +111,10 @@ const QuotesPopup = ({ onClose }) => {
       {sortedQuotes?.length ? (
         <ul className={classNames(styles.popupList, styles.quotesList)}>
           {sortedQuotes?.map((i) => (
-            <li key={i?.id} className={classNames(styles.popupListItem, styles.quotesListItem)}>
+            <li
+              key={i?.id}
+              className={classNames(styles.popupListItem, styles.quotesListItem)}
+            >
               {i?.text}
               <div className={styles.quotesListWrapper}>
                 <div onClick={() => handleShow(i)}>

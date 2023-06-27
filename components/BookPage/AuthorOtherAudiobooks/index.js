@@ -36,7 +36,14 @@ const AuthorOtherAudioBooks = ({ data }) => {
       >
         {data.map((i) => (
           <SwiperSlide key={i?.id}>
-            <Book classNames={st.slide} book={i} similar={true} mobalSimilar={true} audio={true} type={i?.type} />
+            <Book
+              classNames={st.slide}
+              book={i}
+              similar={true}
+              mobalSimilar={true}
+              audio={true}
+              type={i?.type}
+            />
           </SwiperSlide>
         ))}
         <button className={classNames('prevArrow', st.btn)}>

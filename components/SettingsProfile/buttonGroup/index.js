@@ -10,7 +10,12 @@ const ButtonGroup = ({ ClassName, text = 'Сохранить изменения'
   return (
     <div className={classnames(styles.saveSettings, ClassName)}>
       <span onClick={() => cancelClick()}>Отменить</span>
-      <Button classNames={styles.saveButton} text={text} typeButton={typeButton} click={click} />
+      <Button
+        classNames={styles.saveButton}
+        text={text}
+        typeButton={typeButton}
+        click={click}
+      />
     </div>
   );
 };

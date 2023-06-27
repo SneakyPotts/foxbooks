@@ -79,12 +79,27 @@ const BookPage = ({ bookType }) => {
 
         <div className={st.wrapper}>
           <div className={st.mainBlock}>
-            <AboutBook book={book} audioFlag={audioFlag} showMyComp={() => setMyCopmIsVisible(true)} />
+            <AboutBook
+              book={book}
+              audioFlag={audioFlag}
+              showMyComp={() => setMyCopmIsVisible(true)}
+            />
 
             <div className={st.relatedInfo}>
-              {!!book?.similarBooks?.length && <SimilarBooks type={type} data={book?.similarBooks} />}
+              {!!book?.similarBooks?.length && (
+                <SimilarBooks
+                  type={type}
+                  data={book?.similarBooks}
+                />
+              )}
 
-              <Image src="/horizontalBookCovers/bookCover1.png" alt="" width={588} height={250} className={st.relatedInfoBanner} />
+              <Image
+                src="/horizontalBookCovers/bookCover1.png"
+                alt=""
+                width={588}
+                height={250}
+                className={st.relatedInfoBanner}
+              />
 
               <Comments />
 
@@ -112,7 +127,10 @@ const BookPage = ({ bookType }) => {
                   >
                     {book?.compilations?.map((i) => (
                       <SwiperSlide key={i?.id}>
-                        <CompilationItem path={`/selections/${i?.slug}`} data={i} />
+                        <CompilationItem
+                          path={`/selections/${i?.slug}`}
+                          data={i}
+                        />
                       </SwiperSlide>
                     ))}
                     <button className={classnames('prevArrow', st.btnCompil)}>
@@ -135,7 +153,10 @@ const BookPage = ({ bookType }) => {
         </div>
       </div>
 
-      <RatingAggregator rating={book?.rate_avg} ratingCount={book?.rates_count} />
+      <RatingAggregator
+        rating={book?.rate_avg}
+        ratingCount={book?.rates_count}
+      />
     </>
   );
 };

@@ -93,7 +93,11 @@ const Popular = ({ title, defaultValue, data, queryName, isAlphabet, filterState
           onClick={(e) => e.stopPropagation()}
         >
           {data?.map((i) => (
-            <li key={i?.id || i} onClick={() => handleOnClick(i?.value || i, i?.title)} className={classNames(css.dropItem, { [css.withIcon]: i?.icon })}>
+            <li
+              key={i?.id || i}
+              onClick={() => handleOnClick(i?.value || i, i?.title)}
+              className={classNames(css.dropItem, { [css.withIcon]: i?.icon })}
+            >
               {isAlphabet ? (
                 <span className={classNames({ [css.activeWord]: encodeURI(i) === activeEl })}>{i}</span>
               ) : (

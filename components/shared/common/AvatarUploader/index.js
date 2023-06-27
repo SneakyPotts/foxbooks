@@ -43,14 +43,35 @@ const AvatarUploader = ({ name, setValue }) => {
   return (
     <div className={styles.wrapper}>
       <label className={styles.label}>
-        <input type="file" className="visually-hidden" onChange={handleChange} />
+        <input
+          type="file"
+          className="visually-hidden"
+          onChange={handleChange}
+        />
         {imgSrc || profile?.avatar ? (
-          <Image src={imgSrc || profile?.avatar} alt="Avatar" width="102" height="102" placeholder="blur" blurDataURL="/blur.webp" layout="responsive" />
+          <Image
+            src={imgSrc || profile?.avatar}
+            alt="Avatar"
+            width="102"
+            height="102"
+            placeholder="blur"
+            blurDataURL="/blur.webp"
+            layout="responsive"
+          />
         ) : (
-          <AvatarWithLetter letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'} width={102} id={profile?.id} isProfile />
+          <AvatarWithLetter
+            letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
+            width={102}
+            id={profile?.id}
+            isProfile
+          />
         )}
         <span className={styles.icon}>
-          <Pencil w="20" h="20" c="#FFFFFF" />
+          <Pencil
+            w="20"
+            h="20"
+            c="#FFFFFF"
+          />
         </span>
       </label>
       <span className={styles.error}>{error}</span>

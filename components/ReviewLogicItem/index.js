@@ -111,13 +111,22 @@ const ReviewLogicItem = ({ data, withControls, onDelete }) => {
 
         {withControls && (
           <div>
-            <DotsDropdown isSmall direction={'up'}>
-              <div className={styles.controlsItem} onClick={() => setEditFormIsVisible(true)}>
+            <DotsDropdown
+              isSmall
+              direction={'up'}
+            >
+              <div
+                className={styles.controlsItem}
+                onClick={() => setEditFormIsVisible(true)}
+              >
                 <EditPensil />
                 Редактировать
               </div>
 
-              <div className={styles.controlsItem} onClick={onDelete}>
+              <div
+                className={styles.controlsItem}
+                onClick={onDelete}
+              >
                 <Bin />
                 Удалить
               </div>
@@ -127,7 +136,10 @@ const ReviewLogicItem = ({ data, withControls, onDelete }) => {
       </div>
 
       {editFormIsVisible && (
-        <ModalWindow isFullScreen={innerWidthWindow <= 768} onClose={() => setEditFormIsVisible(false)}>
+        <ModalWindow
+          isFullScreen={innerWidthWindow <= 768}
+          onClose={() => setEditFormIsVisible(false)}
+        >
           <ReviewForm
             bookId={data?.book_id || data?.audio_book_id}
             title={data?.title}

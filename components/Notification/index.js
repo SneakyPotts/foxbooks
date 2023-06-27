@@ -40,8 +40,14 @@ const Notification = ({ callback }) => {
   }, []);
 
   return (
-    <div className={s.wrapper} onClick={(ev) => ev.stopPropagation()}>
-      <span className={s.iconWrapper} onClick={toggleDropdown}>
+    <div
+      className={s.wrapper}
+      onClick={(ev) => ev.stopPropagation()}
+    >
+      <span
+        className={s.iconWrapper}
+        onClick={toggleDropdown}
+      >
         <FiBell />
         {newNotification && <span className={s.iconIndicator} />}
       </span>
@@ -49,7 +55,12 @@ const Notification = ({ callback }) => {
       {dropdownIsVisible && (
         <div className={s.dropdown}>
           {notifications?.length ? (
-            notifications.map((i) => <NotificationItem key={i?.createdAt} data={i} />)
+            notifications.map((i) => (
+              <NotificationItem
+                key={i?.createdAt}
+                data={i}
+              />
+            ))
           ) : (
             <p className={classNames('empty', s.empty)}>Уведомлений нет</p>
           )}

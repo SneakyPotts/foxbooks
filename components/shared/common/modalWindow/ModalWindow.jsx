@@ -22,7 +22,10 @@ const ModalWindow = ({ children, onClose, click, isFullScreen = false, externalC
   }, []);
 
   return (
-    <div className={classNames(styles.wrapper)} onClick={() => onClose()}>
+    <div
+      className={classNames(styles.wrapper)}
+      onClick={() => onClose()}
+    >
       <div
         className={classNames(styles.wrapperBlock, { [styles.wrapperBlockFullScreen]: isFullScreen }, externalClass)}
         onClick={(e) => {

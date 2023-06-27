@@ -2,7 +2,10 @@ import React, { memo } from 'react';
 
 const RatingAggregator = memo(function RatingAggregator({ rating = 0, ratingCount = 0 }) {
   return (
-    <script type="application/ld+json" className="reviews-schema">
+    <script
+      type="application/ld+json"
+      className="reviews-schema"
+    >
       {`
           {
             "@context": "http://schema.org",

@@ -91,7 +91,10 @@ const Quotes = () => {
       {innerWidthWindow <= 768 && (
         <div className={styles.mobFilters}>
           <div className={styles.flex}>
-            <BackBtn externalClass={styles.backBtn} onClick={() => dispatch(setHeaderVisibility(true))} />
+            <BackBtn
+              externalClass={styles.backBtn}
+              onClick={() => dispatch(setHeaderVisibility(true))}
+            />
           </div>
 
           <h2 className={classNames('title', styles.title)}>Мои цитаты</h2>
@@ -118,8 +121,14 @@ const Quotes = () => {
       ) : data?.length ? (
         <div className={classNames(styles.grid, styles.quotesGrid)}>
           {data.map((i) => (
-            <div key={i?.id} className={styles.gridItem}>
-              <QuoteItem data={i} onDelete={() => showDeletePopup(i?.id)} />
+            <div
+              key={i?.id}
+              className={styles.gridItem}
+            >
+              <QuoteItem
+                data={i}
+                onDelete={() => showDeletePopup(i?.id)}
+              />
             </div>
           ))}
         </div>
@@ -132,7 +141,13 @@ const Quotes = () => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Удалить цитату</h3>
             <p className={styles.modalText}>Вы действительно хотите удалить цитату?</p>
-            <ButtonGroup text="Удалить" typeButton="button" ClassName={styles.modalBtns} click={deleteHandler} cancelClick={() => setDeletePopupIsVisible(false)} />
+            <ButtonGroup
+              text="Удалить"
+              typeButton="button"
+              ClassName={styles.modalBtns}
+              click={deleteHandler}
+              cancelClick={() => setDeletePopupIsVisible(false)}
+            />
           </div>
         </ModalWindow>
       )}
@@ -142,7 +157,12 @@ const Quotes = () => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Цитата удалена</h3>
 
-            <Button text="Закрыть" typeButton="button" click={() => setConfirmPopupIsVisible(false)} classNames={styles.modalBtn} />
+            <Button
+              text="Закрыть"
+              typeButton="button"
+              click={() => setConfirmPopupIsVisible(false)}
+              classNames={styles.modalBtn}
+            />
           </div>
         </ModalWindow>
       )}

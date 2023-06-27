@@ -194,7 +194,12 @@ const Header = ({ socket }) => {
                           blurDataURL="/blur.webp"
                         />
                       ) : (
-                        <AvatarWithLetter letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'} width={40} id={profile?.id} isProfile />
+                        <AvatarWithLetter
+                          letter={profile?.nickname?.slice(0, 1) || profile?.name?.slice(0, 1) || 'П'}
+                          width={40}
+                          id={profile?.id}
+                          isProfile
+                        />
                       )}
                     </div>
                     <div
@@ -220,7 +225,10 @@ const Header = ({ socket }) => {
                     </div>
                   </div>
                 ) : (
-                  <div onClick={showAuthPopup} className={st.userMenu}>
+                  <div
+                    onClick={showAuthPopup}
+                    className={st.userMenu}
+                  >
                     <div className={st.iconUser}>
                       <User style={{ minWidth: '24px', minHeight: '24px' }} />
                     </div>
@@ -231,12 +239,23 @@ const Header = ({ socket }) => {
             </div>
           </header>
 
-          <Menu setModal={showAuthPopup} bottomOnly={showOnlyMenu} />
+          <Menu
+            setModal={showAuthPopup}
+            bottomOnly={showOnlyMenu}
+          />
         </div>
 
-        {showMenuFlag && <Search value={searchValue} onClose={closeModal} />}
+        {showMenuFlag && (
+          <Search
+            value={searchValue}
+            onClose={closeModal}
+          />
+        )}
 
-        <GroupForms setModal={hideAuthPopup} modal={authPopupIsVisible} />
+        <GroupForms
+          setModal={hideAuthPopup}
+          modal={authPopupIsVisible}
+        />
       </div>
     )
   );

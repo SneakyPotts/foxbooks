@@ -25,15 +25,30 @@ const Hero = ({ bannersList }) => {
         slidesPerView={1}
       >
         {bannersList.map(({ id, image, alt, link }) => (
-          <SwiperSlide key={id} className={st.swiperWrapper}>
+          <SwiperSlide
+            key={id}
+            className={st.swiperWrapper}
+          >
             {link ? (
               <Link href={link}>
                 <a>
-                  <Image src={image || '/hero.png'} width={1200} height={400} alt={alt || 'banner image'} className={st.swiperImg} />
+                  <Image
+                    src={image || '/hero.png'}
+                    width={1200}
+                    height={400}
+                    alt={alt || 'banner image'}
+                    className={st.swiperImg}
+                  />
                 </a>
               </Link>
             ) : (
-              <Image src={image || '/hero.png'} width={1200} height={400} alt={alt || 'banner image'} className={st.swiperImg} />
+              <Image
+                src={image || '/hero.png'}
+                width={1200}
+                height={400}
+                alt={alt || 'banner image'}
+                className={st.swiperImg}
+              />
             )}
           </SwiperSlide>
         ))}

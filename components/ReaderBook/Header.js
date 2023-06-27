@@ -112,7 +112,10 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
   ];
 
   return (
-    <div className={styles.header} onClick={(ev) => innerWidthWindow <= 768 && ev.stopPropagation()}>
+    <div
+      className={styles.header}
+      onClick={(ev) => innerWidthWindow <= 768 && ev.stopPropagation()}
+    >
       <div className={styles.logoWrapper}>
         <Link href={`/books/${book?.genres?.[0]?.slug}/${book?.slug}`}>
           <a className={styles.backBtn}>
@@ -128,7 +131,11 @@ const Header = ({ showContentPopup, showQuotesPopup, toggleEditPopup, addMarkTog
 
       <div className={styles.controls}>
         {(innerWidthWindow > 768 ? controls : mobileControls)?.map((i, index) => (
-          <div key={index} className={classNames(styles.controlsBtn, { [styles.mobile]: innerWidthWindow <= 768, [styles.hidden]: !i.visible })} onClick={i?.onClick}>
+          <div
+            key={index}
+            className={classNames(styles.controlsBtn, { [styles.mobile]: innerWidthWindow <= 768, [styles.hidden]: !i.visible })}
+            onClick={i?.onClick}
+          >
             {i?.icon}
             <span className={styles.tooltip}>{i?.tooltip}</span>
           </div>

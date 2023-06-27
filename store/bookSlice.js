@@ -124,6 +124,7 @@ export const bookSlice = createSlice({
   },
 });
 
-export const { setCategories, setCategoriesInfoBlocks, setAudioCategories, setDailyHotUpdates, setBooks, setBook, setBookQuotes, audioBook, setUserReadingProgress } = bookSlice.actions;
+export const { setCategories, setCategoriesInfoBlocks, setAudioCategories, setDailyHotUpdates, setBooks, setBook, setBookQuotes, audioBook, setUserReadingProgress } =
+  bookSlice.actions;
 
 export default bookSlice.reducer;

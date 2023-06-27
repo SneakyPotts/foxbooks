@@ -30,11 +30,32 @@ const SettingPassword = () => {
   };
 
   return (
-    <form className={styles.settingPassword} onSubmit={handleSubmit(onSubmit)}>
-      <PasswordField err={errors.old_password?.message} textLabel="Текущий пароль" name="old_password" register={register} />
-      <PasswordField err={errors.password?.message} textLabel="Новый пароль" name="password" register={register} />
-      <PasswordField err={errors.password_confirmation?.message} textLabel="Повторите новый пароль" name="password_confirmation" register={register} />
-      <ButtonGroup cancelClick={() => reset()} ClassName={styles.buttonDistance} />
+    <form
+      className={styles.settingPassword}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <PasswordField
+        err={errors.old_password?.message}
+        textLabel="Текущий пароль"
+        name="old_password"
+        register={register}
+      />
+      <PasswordField
+        err={errors.password?.message}
+        textLabel="Новый пароль"
+        name="password"
+        register={register}
+      />
+      <PasswordField
+        err={errors.password_confirmation?.message}
+        textLabel="Повторите новый пароль"
+        name="password_confirmation"
+        register={register}
+      />
+      <ButtonGroup
+        cancelClick={() => reset()}
+        ClassName={styles.buttonDistance}
+      />
     </form>
   );
 };

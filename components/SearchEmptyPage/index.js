@@ -35,7 +35,16 @@ const SearchEmptyPage = ({ books }) => {
       </div>
 
       <h2 className="title">Книги, которые могут вам понравиться</h2>
-      <div className={s.grid}>{books?.length > 0 && books.map((i) => <Book key={i?.id} book={i} type={i?.type} />)}</div>
+      <div className={s.grid}>
+        {books?.length > 0 &&
+          books.map((i) => (
+            <Book
+              key={i?.id}
+              book={i}
+              type={i?.type}
+            />
+          ))}
+      </div>
     </div>
   );
 };

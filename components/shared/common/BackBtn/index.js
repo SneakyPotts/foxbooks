@@ -7,7 +7,10 @@ import styles from './styles.module.scss';
 
 const BackBtn = ({ onClick, externalClass }) => {
   return (
-    <button className={classNames(styles.backBtn, externalClass)} onClick={onClick}>
+    <button
+      className={classNames(styles.backBtn, externalClass)}
+      onClick={onClick}
+    >
       <ArrowBack />
     </button>
   );

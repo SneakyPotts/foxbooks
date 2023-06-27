@@ -181,8 +181,15 @@ const AudioPlayer = () => {
   useOnClickOutside(playerBody, hideDrops);
 
   return (
-    <div className={classNames(styles.wrapper, { [styles.hide]: isClosed })} onClick={hideDrops} ref={playerBody}>
-      <BackBtn onClick={closePlayer} externalClass={styles.closeArrow} />
+    <div
+      className={classNames(styles.wrapper, { [styles.hide]: isClosed })}
+      onClick={hideDrops}
+      ref={playerBody}
+    >
+      <BackBtn
+        onClick={closePlayer}
+        externalClass={styles.closeArrow}
+      />
       <div className={styles.wrapperColumn}>
         <div className={styles.preview}>
           <Link href={playerData?.link}>
@@ -209,29 +216,50 @@ const AudioPlayer = () => {
       <div className={styles.wrapperColumn}>
         <div className={styles.player}>
           <div className={styles.playerControls}>
-            <button className={styles.playerBack} onClick={() => changeSeek(progress - 10 > 0 ? progress - 10 : 0)}>
+            <button
+              className={styles.playerBack}
+              onClick={() => changeSeek(progress - 10 > 0 ? progress - 10 : 0)}
+            >
               <PlayerBack />
             </button>
-            <button className={styles.playerPlay} onClick={() => setSettings({ ...settings, playing: !settings?.playing })}>
+            <button
+              className={styles.playerPlay}
+              onClick={() => setSettings({ ...settings, playing: !settings?.playing })}
+            >
               {settings?.playing ? <PlayerPause /> : <PlayerPlay />}
             </button>
-            <button className={styles.playerNext} onClick={() => changeSeek(progress + 10 <= duration ? progress + 10 : duration)}>
+            <button
+              className={styles.playerNext}
+              onClick={() => changeSeek(progress + 10 <= duration ? progress + 10 : duration)}
+            >
               <PlayerNext />
             </button>
           </div>
 
           <div className={styles.playerRange}>
             {new Date(progress * 1000).toISOString().substr(11, 8)}
-            <InputRange value={progress} setValue={changeSeek} max={`${duration}`} barColor={'rgba(255, 255, 255, 0.5)'} externalClass={styles.playerRangeInput} />
+            <InputRange
+              value={progress}
+              setValue={changeSeek}
+              max={`${duration}`}
+              barColor={'rgba(255, 255, 255, 0.5)'}
+              externalClass={styles.playerRangeInput}
+            />
             {new Date(duration * 1000).toISOString().substr(11, 8)}
           </div>
         </div>
       </div>
       <div className={styles.wrapperColumn}>
-        <div className={classNames(styles.playerSpeed, styles.playerControlItem, { [styles.active]: speedDropIsVisible })} onClick={(ev) => toggleSpeedDrop(ev)}>
+        <div
+          className={classNames(styles.playerSpeed, styles.playerControlItem, { [styles.active]: speedDropIsVisible })}
+          onClick={(ev) => toggleSpeedDrop(ev)}
+        >
           <PlayerSpeed />
           {speedDropIsVisible && (
-            <DrawerPopup direction="up" onClose={() => setSpeedDropIsVisible(false)}>
+            <DrawerPopup
+              direction="up"
+              onClose={() => setSpeedDropIsVisible(false)}
+            >
               <div className={styles.playerPageDropdown}>
                 {speeds?.map((i) => (
                   <span
@@ -246,10 +274,16 @@ const AudioPlayer = () => {
             </DrawerPopup>
           )}
         </div>
-        <div className={classNames(styles.playerPage, styles.playerControlItem, { [styles.active]: pageDropIsVisible })} onClick={(ev) => togglePageDrop(ev)}>
+        <div
+          className={classNames(styles.playerPage, styles.playerControlItem, { [styles.active]: pageDropIsVisible })}
+          onClick={(ev) => togglePageDrop(ev)}
+        >
           <PlayerPage />
           {pageDropIsVisible && (
-            <DrawerPopup direction="up" onClose={() => setPageDropIsVisible(false)}>
+            <DrawerPopup
+              direction="up"
+              onClose={() => setPageDropIsVisible(false)}
+            >
               <div className={styles.playerPageDropdown}>
                 {playerData?.chapters?.map((i, index) => (
                   <span
@@ -290,7 +324,10 @@ const AudioPlayer = () => {
         {...settings}
       />
 
-      <button className={styles.close} onClick={closePlayer}>
+      <button
+        className={styles.close}
+        onClick={closePlayer}
+      >
         <Close />
       </button>
     </div>

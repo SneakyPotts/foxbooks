@@ -44,10 +44,17 @@ const EditPopup = () => {
   };
 
   return (
-    <div className={styles.editPopupWrapper} onClick={() => setDropdownIsVisible(false)}>
+    <div
+      className={styles.editPopupWrapper}
+      onClick={() => setDropdownIsVisible(false)}
+    >
       <div className={classNames(styles.editWrapper, styles.flex)}>
         <span className={styles.editTitle}>Текст в 2 колонки</span>
-        <Switch value={settings?.isTwoColumns} setValue={(value) => changeSettings(value, 'isTwoColumns')} externalClass={styles.editSwitch} />
+        <Switch
+          value={settings?.isTwoColumns}
+          setValue={(value) => changeSettings(value, 'isTwoColumns')}
+          externalClass={styles.editSwitch}
+        />
       </div>
 
       <div className={styles.editWrapper}>
@@ -75,15 +82,24 @@ const EditPopup = () => {
 
       <div className={classNames(styles.editWrapper, styles.flex)}>
         <span className={styles.editTitle}>Шрифт</span>
-        <div className={classNames(styles.editDropdownWrapper, { [styles.active]: dropdownIsVisible })} onClick={(ev) => toggleDropdown(ev)}>
+        <div
+          className={classNames(styles.editDropdownWrapper, { [styles.active]: dropdownIsVisible })}
+          onClick={(ev) => toggleDropdown(ev)}
+        >
           {settings?.fontName?.split(' ')[0]}
           <span className={styles.editIcon}>
             <ArrowIcon />
           </span>
 
-          <div className={classNames(styles.editDropdown, { [styles.active]: dropdownIsVisible })} onClick={(ev) => ev.stopPropagation()}>
+          <div
+            className={classNames(styles.editDropdown, { [styles.active]: dropdownIsVisible })}
+            onClick={(ev) => ev.stopPropagation()}
+          >
             {fontNames?.map((i) => (
-              <span key={i} onClick={() => changeFont(i)}>
+              <span
+                key={i}
+                onClick={() => changeFont(i)}
+              >
                 {i}
               </span>
             ))}
@@ -131,7 +147,11 @@ const EditPopup = () => {
         <span className={styles.editTitle}>
           Выравнивание по <br /> ширине
         </span>
-        <Switch value={settings?.isCenterAlignment} setValue={(value) => changeSettings(value, 'isCenterAlignment')} externalClass={styles.editSwitch} />
+        <Switch
+          value={settings?.isCenterAlignment}
+          setValue={(value) => changeSettings(value, 'isCenterAlignment')}
+          externalClass={styles.editSwitch}
+        />
       </div>
     </div>
   );

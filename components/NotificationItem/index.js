@@ -15,9 +15,21 @@ const NotificationItem = ({ data }) => {
     <div className={s.wrapper}>
       <div className={s.senderAvatar}>
         {data?.sender?.avatar ? (
-          <Image src={data?.sender?.avatar} alt="Avatar" width="35" height="35" placeholder="blur" blurDataURL="/blur.webp" />
+          <Image
+            src={data?.sender?.avatar}
+            alt="Avatar"
+            width="35"
+            height="35"
+            placeholder="blur"
+            blurDataURL="/blur.webp"
+          />
         ) : (
-          <AvatarWithLetter letter={data?.sender?.nickname?.slice(0, 1) || data?.sender?.name?.slice(0, 1) || 'П'} width={35} id={data?.sender?.id} isProfile />
+          <AvatarWithLetter
+            letter={data?.sender?.nickname?.slice(0, 1) || data?.sender?.name?.slice(0, 1) || 'П'}
+            width={35}
+            id={data?.sender?.id}
+            isProfile
+          />
         )}
       </div>
 

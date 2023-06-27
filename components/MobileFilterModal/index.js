@@ -28,7 +28,10 @@ const MobileFilterModal = ({ children }) => {
 
   return (
     <>
-      <div className={styles.control} onClick={() => setModalIsVisible(true)}>
+      <div
+        className={styles.control}
+        onClick={() => setModalIsVisible(true)}
+      >
         Фильтры
         <span>
           <Filters />
@@ -36,7 +39,10 @@ const MobileFilterModal = ({ children }) => {
       </div>
 
       {innerWidthWindow <= 1024 && modalIsVisible && (
-        <ModalWindow onClose={() => setModalIsVisible(false)} isFullScreen>
+        <ModalWindow
+          onClose={() => setModalIsVisible(false)}
+          isFullScreen
+        >
           <div className={styles.topLine}>
             <h2 className={styles.topLineTitle}>Фильтры</h2>
             <span onClick={handleClear}>Очистить фильтры</span>
@@ -45,7 +51,11 @@ const MobileFilterModal = ({ children }) => {
           {children}
 
           <div className="modalMobileWrapper">
-            <Button text={'Посмотреть'} click={() => setModalIsVisible(false)} classNames="modalMobileBtn" />
+            <Button
+              text={'Посмотреть'}
+              click={() => setModalIsVisible(false)}
+              classNames="modalMobileBtn"
+            />
           </div>
         </ModalWindow>
       )}

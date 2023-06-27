@@ -23,7 +23,10 @@ const ContentPopup = ({ onClose }) => {
       {bookChapters?.length ? (
         <ul className={classNames(styles.popupList, styles.chapterList)}>
           {bookChapters?.map((i) => (
-            <li key={i?.id} className={styles.popupListItem}>
+            <li
+              key={i?.id}
+              className={styles.popupListItem}
+            >
               <span
                 className={classNames(styles.chapterLink, {
                   [styles.active]: book?.chapters[0]?.id === i?.id,

@@ -35,7 +35,7 @@ export async function getServerSideProps({ req, params }) {
           ...series?.data?.data?.seo_data,
           title: series?.data?.data?.seo_data?.seo_title || '',
           description: series?.data?.data?.seo_data?.seo_description || '',
-          keywords: series?.data?.data?.seo_data?.seo_keywords  || '',
+          keywords: series?.data?.data?.seo_data?.seo_keywords || '',
         },
         banners: banners?.data?.data,
       },

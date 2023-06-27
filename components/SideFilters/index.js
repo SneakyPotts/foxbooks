@@ -115,12 +115,24 @@ const SideFilters = () => {
 
   return (
     <div className={st.container}>
-      {innerWidthWindow > 1024 && resetIsVisible && <Button classNames={st.reset} text="Сбросить" click={handleReset} />}
+      {innerWidthWindow > 1024 && resetIsVisible && (
+        <Button
+          classNames={st.reset}
+          text="Сбросить"
+          click={handleReset}
+        />
+      )}
       <div className={st.inputFilters}>
         <ul className={st.filters}>
           {filters?.map((it, index) => (
-            <li key={it?.id} className={st.filterStatus}>
-              <button className={st.btn} onClick={() => filterShow(index)}>
+            <li
+              key={it?.id}
+              className={st.filterStatus}
+            >
+              <button
+                className={st.btn}
+                onClick={() => filterShow(index)}
+              >
                 {it?.option}
                 <span className={classnames(st.dropDownIcon, { [st.up]: it?.flag })}>
                   <DropDownArrow />
@@ -132,7 +144,12 @@ const SideFilters = () => {
                 })}
                 onClick={(e) => e.stopPropagation()}
               >
-                <input placeholder={it?.placeholder} className={st.input} onChange={(ev) => handleChange(ev.target.value, it?.queryName)} ref={it?.ref} />
+                <input
+                  placeholder={it?.placeholder}
+                  className={st.input}
+                  onChange={(ev) => handleChange(ev.target.value, it?.queryName)}
+                  ref={it?.ref}
+                />
                 <p className={st.alphabetTitle}>Алфавитный указатель</p>
                 <div className={st.dropContentAuthor}>
                   {alphabet?.map((i) => (

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import BookComponent from '../../../components/Books/category';
 
 import { setCurrentPageBanners } from '../../../store/adminSlice';
-import {setBooks, setCategories, setCategoriesInfoBlocks} from '../../../store/bookSlice';
+import { setBooks, setCategories, setCategoriesInfoBlocks } from '../../../store/bookSlice';
 
 import AdminSettings from '../../../http/AdminSettings';
 import BookService from '../../../http/BookService';
@@ -63,7 +63,7 @@ export async function getServerSideProps({ req, params, query }) {
           og_description: seo_data?.og_description,
           og_img: seo_data?.og_img,
         },
-        infoBlocks: categoryInfoBlock?.data?.data
+        infoBlocks: categoryInfoBlock?.data?.data,
       },
     };
   } catch {

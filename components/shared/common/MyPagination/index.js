@@ -35,7 +35,12 @@ const MyPagination = ({ currentPage, lastPage, onClick, externalClass, scrollTo,
     <Pagination
       className={classNames(styles.pagination, externalClass)}
       showQuickJumper={{
-        goButton: <Button classNames={styles.btn} text="Перейти" />,
+        goButton: (
+          <Button
+            classNames={styles.btn}
+            text="Перейти"
+          />
+        ),
       }}
       current={+router.query?.page || currentPage || 1}
       defaultPageSize={1}

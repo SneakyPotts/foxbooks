@@ -28,7 +28,12 @@ const AuthorOtherBooks = ({ data }) => {
     <div className={st.container}>
       <div className={st.blockTitle}>
         <h2 className={st.title}>Другие книги автора</h2>
-        {innerWidthWindow <= 768 && <ShowAll externalClass={st.dicardDistance} url={`/author/${authors?.[0]?.slug}`} />}
+        {innerWidthWindow <= 768 && (
+          <ShowAll
+            externalClass={st.dicardDistance}
+            url={`/author/${authors?.[0]?.slug}`}
+          />
+        )}
       </div>
       <Swiper
         spaceBetween={changeSpaceBtwSwiper()}
@@ -41,7 +46,12 @@ const AuthorOtherBooks = ({ data }) => {
       >
         {data.map((i) => (
           <SwiperSlide key={i?.id}>
-            <Book classNames={st.slide} book={i} similar={true} type={i?.type} />
+            <Book
+              classNames={st.slide}
+              book={i}
+              similar={true}
+              type={i?.type}
+            />
           </SwiperSlide>
         ))}
         <button className={classNames('prevArrow', st.btn)}>

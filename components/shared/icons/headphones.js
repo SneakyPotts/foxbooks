@@ -2,7 +2,13 @@ import React from 'react';
 
 const Headphones = () => {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M4 17.1667V11.5C4 9.24566 4.89553 7.08365 6.48959 5.48959C8.08365 3.89553 10.2457 3 12.5 3C14.7543 3 16.9163 3.89553 18.5104 5.48959C20.1045 7.08365 21 9.24566 21 11.5V17.1667"
         stroke="inherit"

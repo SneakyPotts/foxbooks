@@ -61,26 +61,58 @@ const EditingProfile = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.formProfile}>
-        <AvatarUploader name="avatar" setValue={setValue} />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.formProfile}
+      >
+        <AvatarUploader
+          name="avatar"
+          setValue={setValue}
+        />
         <div className={styles.formFlex}>
           {profile?.name ? (
             <>
-              <Input textLabel="Имя" name="name" register={register} />
-              <Input textLabel="Фамилия" name="surname" register={register} />
+              <Input
+                textLabel="Имя"
+                name="name"
+                register={register}
+              />
+              <Input
+                textLabel="Фамилия"
+                name="surname"
+                register={register}
+              />
             </>
           ) : (
-            <Input classNames={styles.inputNik} textLabel="Ник" name="nickname" register={register} />
+            <Input
+              classNames={styles.inputNik}
+              textLabel="Ник"
+              name="nickname"
+              register={register}
+            />
           )}
         </div>
-        <Input err={errors?.email?.message} textLabel="Электронная почта" name="email" register={register} disabled />
+        <Input
+          err={errors?.email?.message}
+          textLabel="Электронная почта"
+          name="email"
+          register={register}
+          disabled
+        />
         <div className={styles.social}>
           <span>Социальные сети</span>
           <p>Подключите социальные сети, чтобы входить через них в FoxBooks</p>
-          <SocialNetwork ClassNames={styles.socialProfile} connect={true} title={false} />
+          <SocialNetwork
+            ClassNames={styles.socialProfile}
+            connect={true}
+            title={false}
+          />
         </div>
         <ButtonGroup cancelClick={setDefaultValues} />
-        <div onClick={() => setModal(true)} className={styles.delProfile}>
+        <div
+          onClick={() => setModal(true)}
+          className={styles.delProfile}
+        >
           <span>Вы можете удалить свой профиль</span>
         </div>
       </form>
@@ -90,7 +122,12 @@ const EditingProfile = () => {
           <div className={styles.wrapDel}>
             <h3 className={'title'}>Удалить профиль</h3>
             <p>Вы действительно хотите удалить профиль?</p>
-            <ButtonGroup cancelClick={() => setModal(false)} click={deleteProfile} text="Удалить" ClassName={styles.Button} />
+            <ButtonGroup
+              cancelClick={() => setModal(false)}
+              click={deleteProfile}
+              text="Удалить"
+              ClassName={styles.Button}
+            />
           </div>
         </ModalWindow>
       )}

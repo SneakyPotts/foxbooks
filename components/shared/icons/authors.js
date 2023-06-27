@@ -2,7 +2,13 @@ import React from 'react';
 
 const Authors = () => {
   return (
-    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="20"
+      height="21"
+      viewBox="0 0 20 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M14.1667 17.5039V15.8372C14.1667 14.9532 13.8155 14.1053 13.1904 13.4802C12.5652 12.8551 11.7174 12.5039 10.8333 12.5039H4.16668C3.28262 12.5039 2.43478 12.8551 1.80965 13.4802C1.18453 14.1053 0.833344 14.9532 0.833344 15.8372V17.5039"
         stroke="inherit"

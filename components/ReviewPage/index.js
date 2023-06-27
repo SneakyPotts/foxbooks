@@ -42,7 +42,12 @@ const ReviewPage = () => {
       <div className={st.wrapper}>
         <div className={st.main}>
           {data[1]?.data?.map((it, idx) => (
-            <ReviewComponent key={idx} it={it} idx={idx} reviews={reviews} />
+            <ReviewComponent
+              key={idx}
+              it={it}
+              idx={idx}
+              reviews={reviews}
+            />
           ))}
 
           {data[1]?.last_page > 1 && <MyPagination lastPage={data[1]?.last_page} />}

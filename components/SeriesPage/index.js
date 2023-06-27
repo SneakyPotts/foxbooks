@@ -31,7 +31,13 @@ const SeriesPage = () => {
       <div className={st.wrapper}>
         <div className={st.booksColumn}>
           {series?.books?.map((i) => (
-            <Book key={i?.id} book={i} type={i?.type} flagSwitcher={true} audio={i?.type === 'audioBooks'} />
+            <Book
+              key={i?.id}
+              book={i}
+              type={i?.type}
+              flagSwitcher={true}
+              audio={i?.type === 'audioBooks'}
+            />
           ))}
         </div>
 

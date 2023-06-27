@@ -16,8 +16,8 @@ import SelectionService from '../../../http/SelectionService';
 
 import BackBtn from '../../shared/common/BackBtn';
 import Button from '../../shared/common/Button/Button';
+import MyPagination from '../../shared/common/MyPagination';
 import Book from '../../shared/common/book';
-import MyPagination from "../../shared/common/MyPagination";
 
 const SelectionPage = () => {
   const router = useRouter();
@@ -54,7 +54,10 @@ const SelectionPage = () => {
           className={styles.compilationImg}
         />
 
-        <BackBtn onClick={() => router.back()} externalClass={styles.compilationBack} />
+        <BackBtn
+          onClick={() => router.back()}
+          externalClass={styles.compilationBack}
+        />
         <h2 className={styles.compilationTitle}>{selectionById?.compilation?.title}</h2>
         <div className={styles.compilationControls}>
           <Button
@@ -91,7 +94,12 @@ const SelectionPage = () => {
         {selectionById?.books?.data?.length ? (
           <div className={st.selectionGrid}>
             {selectionById?.books?.data.map((i) => (
-              <Book key={i?.id} book={i} type={i?.type} audio={i?.type === 'audioBooks'} />
+              <Book
+                key={i?.id}
+                book={i}
+                type={i?.type}
+                audio={i?.type === 'audioBooks'}
+              />
             ))}
           </div>
         ) : (
@@ -99,7 +107,10 @@ const SelectionPage = () => {
         )}
 
         {selectionById?.books?.last_page > 1 && (
-          <MyPagination currentPage={selectionById?.books?.current_page} lastPage={selectionById?.books?.last_page} />
+          <MyPagination
+            currentPage={selectionById?.books?.current_page}
+            lastPage={selectionById?.books?.last_page}
+          />
         )}
       </div>
     </>

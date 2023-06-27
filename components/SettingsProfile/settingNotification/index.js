@@ -48,12 +48,21 @@ const SettingNotification = () => {
   return (
     <div className={styles.container}>
       <div className={styles.notification}>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles.formContainer}
+        >
           {data.map(({ svg, title, subTitle, name, bg }) => {
             return (
-              <div className={styles.settingWrap} key={title}>
+              <div
+                className={styles.settingWrap}
+                key={title}
+              >
                 <div className={styles.setting}>
-                  <div style={{ background: `${bg}` }} className={styles.settingIcon}>
+                  <div
+                    style={{ background: `${bg}` }}
+                    className={styles.settingIcon}
+                  >
                     {svg}
                   </div>
                   <div className={styles.settingDescription}>
@@ -62,12 +71,18 @@ const SettingNotification = () => {
                   </div>
                 </div>
                 <div className={styles.checkbox}>
-                  <Checkbox register={register} name={name} />
+                  <Checkbox
+                    register={register}
+                    name={name}
+                  />
                 </div>
               </div>
             );
           })}
-          <ButtonGroup cancelClick={setDefaultValues} ClassName={styles.groupButton} />
+          <ButtonGroup
+            cancelClick={setDefaultValues}
+            ClassName={styles.groupButton}
+          />
         </form>
       </div>
     </div>

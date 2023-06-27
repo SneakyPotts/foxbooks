@@ -121,11 +121,21 @@ const ChooseBookPopup = ({ onClose }) => {
   return (
     <div className={styles.chooseBook}>
       <div className={styles.chooseBookContainer}>
-        <BackText onClick={onClose} externalClass={styles.chooseBookBackText} />
+        <BackText
+          onClick={onClose}
+          externalClass={styles.chooseBookBackText}
+        />
 
         <div className={styles.flex}>
-          <BackBtn externalClass={styles.backBtn} onClick={onClose} />
-          <SearchInput placeholder={'Книга или аудиокнига'} externalClass={classNames(styles.mobSearch, styles.chooseBookInput)} onChange={searchValueHandler} />
+          <BackBtn
+            externalClass={styles.backBtn}
+            onClick={onClose}
+          />
+          <SearchInput
+            placeholder={'Книга или аудиокнига'}
+            externalClass={classNames(styles.mobSearch, styles.chooseBookInput)}
+            onChange={searchValueHandler}
+          />
         </div>
 
         <div>
@@ -155,13 +165,26 @@ const ChooseBookPopup = ({ onClose }) => {
                 <h2 className={classNames('title', styles.chooseBookTitle)}>Книги</h2>
                 <div className={classNames(styles.grid, styles.chooseBookGrid)}>
                   {books.map((i) => (
-                    <div key={i?.id} className={styles.gridItem} onClick={() => handleClick(i)}>
-                      <Book book={i} noLinks />
+                    <div
+                      key={i?.id}
+                      className={styles.gridItem}
+                      onClick={() => handleClick(i)}
+                    >
+                      <Book
+                        book={i}
+                        noLinks
+                      />
                     </div>
                   ))}
                 </div>
                 {lastPage.book > 1 && bookPage !== lastPage.book ? (
-                  <ShowAll text={'Показать ещё'} externalClass={s.onlyDesctop} arrowSecondary showMore={true} setPage={setBookPage} />
+                  <ShowAll
+                    text={'Показать ещё'}
+                    externalClass={s.onlyDesctop}
+                    arrowSecondary
+                    showMore={true}
+                    setPage={setBookPage}
+                  />
                 ) : null}
               </>
             )}
@@ -171,13 +194,27 @@ const ChooseBookPopup = ({ onClose }) => {
                 <h2 className={classNames('title', styles.chooseBookTitle)}>Аудиокниги</h2>
                 <div className={classNames(styles.grid, styles.chooseBookGrid)}>
                   {audioBooks.map((i) => (
-                    <div key={i?.id} className={styles.gridItem} onClick={() => handleClick(i)}>
-                      <Book book={i} noLinks audio />
+                    <div
+                      key={i?.id}
+                      className={styles.gridItem}
+                      onClick={() => handleClick(i)}
+                    >
+                      <Book
+                        book={i}
+                        noLinks
+                        audio
+                      />
                     </div>
                   ))}
                 </div>
                 {lastPage.audio > 1 && bookPage !== lastPage.audio ? (
-                  <ShowAll text={'Показать ещё'} externalClass={s.onlyDesctop} arrowSecondary showMore={true} setPage={setAudioPage} />
+                  <ShowAll
+                    text={'Показать ещё'}
+                    externalClass={s.onlyDesctop}
+                    arrowSecondary
+                    showMore={true}
+                    setPage={setAudioPage}
+                  />
                 ) : null}
               </>
             )}
@@ -190,7 +227,12 @@ const ChooseBookPopup = ({ onClose }) => {
           <div className={styles.modal}>
             <h3 className={styles.modalTitle}>Добавить книгу в подборку “{selectionById?.compilation?.title}”?</h3>
 
-            <Button text="Добавить" typeButton="button" click={addBookHandler} classNames={styles.modalBtn} />
+            <Button
+              text="Добавить"
+              typeButton="button"
+              click={addBookHandler}
+              classNames={styles.modalBtn}
+            />
           </div>
         </ModalWindow>
       )}
