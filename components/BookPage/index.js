@@ -47,11 +47,12 @@ const BookPage = ({ bookType }) => {
 
   useEffect(() => {
     const authorId = book?.authors[0]?.id;
+
     if (authorId) {
       dispatch(getBooksByAuthor(authorId));
       dispatch(getAudioBooksByAuthor(authorId));
     }
-  }, []);
+  }, [router.query]);
 
   if (myCopmIsVisible) {
     return <AddToMyCompilation onClose={() => setMyCopmIsVisible(false)} />;

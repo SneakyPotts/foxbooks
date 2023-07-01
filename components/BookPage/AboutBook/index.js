@@ -349,12 +349,12 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     Правообладатель: <span>{book?.copyright_holder}</span>
                   </p>
                 ) : null}
-                {book?.series?.name ? (
+                {!!book?.series?.name || !!book?.series?.series ? (
                   <p>
                     Серия:{' '}
                     <span>
-                      <Link href={`/series/books/${book?.series?.slug}`}>
-                        <a>{book?.series?.name || '-'}</a>
+                      <Link href={`/series/${book?.series?.type}/${book?.series?.slug}`}>
+                        <a>{book?.series?.name || book?.series?.series}</a>
                       </Link>
                     </span>
                   </p>
