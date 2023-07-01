@@ -10,8 +10,8 @@ export default class SitemapService {
     return await axios.get(`${API_URL}/seo/slugs/${bookType}${page && `?page=${page}`}`);
   }
 
-  static async getAuthorsList() {
-    return await axios.get(`${API_URL}/seo/slugs/author`);
+  static async getAuthorsList(page = 1) {
+    return await axios.get(`${API_URL}/seo/slugs/author${page && `?page=${page}`}`);
   }
 
   static async getStaticPagesList() {
