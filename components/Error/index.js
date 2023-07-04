@@ -1,12 +1,19 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Logo from '../Logo';
 
 import st from './error.module.scss';
 
 const Error = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/404', undefined, { statusCode: 404 });
+  }, []);
+
   return (
     <div className={st.wrapper}>
       <div className={st.lineV} />
