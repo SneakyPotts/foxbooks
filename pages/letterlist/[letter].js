@@ -28,10 +28,7 @@ export async function getServerSideProps() {
     };
   } catch {
     return {
-      redirect: {
-        destination: '/404',
-        parameter: false,
-      },
+      notFound: true, // triggers 404
     };
   }
 }

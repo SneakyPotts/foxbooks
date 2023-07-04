@@ -4,16 +4,15 @@ import { useDispatch } from 'react-redux';
 import BookPage from '../../../components/BookPage';
 
 import { setCurrentPageBanners } from '../../../store/adminSlice';
-import { setBook, setBookQuotes } from '../../../store/bookSlice';
+import { setBook } from '../../../store/bookSlice';
 
 import AdminSettings from '../../../http/AdminSettings';
 import BookService from '../../../http/BookService';
 
-const Book = ({ book, bookQuotes, books_type, banners }) => {
+const Book = ({ book, books_type, banners }) => {
   const dispatch = useDispatch();
 
   dispatch(setBook(book));
-  // dispatch(setBookQuotes(bookQuotes));
   dispatch(setCurrentPageBanners(banners));
 
   return <BookPage bookType={books_type} />;
@@ -21,7 +20,7 @@ const Book = ({ book, bookQuotes, books_type, banners }) => {
 
 export default Book;
 
-export async function getServerSideProps({ req, params, query }) {
+export async function getServerSideProps({ req, params }) {
   const { cookies } = req;
   const token = cookies.token;
   const type = params.books_type === 'audiobooks' ? 'audioBooks' : 'books';
@@ -32,7 +31,6 @@ export async function getServerSideProps({ req, params, query }) {
 
     const banners = await AdminSettings.getPageBanner({ page_slug: params?.book_slug });
 
-    // const bookQuotes = type === 'books' ? await BookService.getBookQuotes(book.data.data.id, token, query?.page) : null;
     const audioBookChapters = type === 'audioBooks' ? await BookService.audioBookChapters(book.data.data.id) : null;
 
     return {
@@ -42,7 +40,6 @@ export async function getServerSideProps({ req, params, query }) {
           similarBooks: similarBooks.data.data,
           chapters: audioBookChapters?.data?.data?.chapters || [],
         },
-        // bookQuotes: bookQuotes?.data?.data || {},
         books_type: type,
         SEO: {
           title: book?.data?.data?.seo_title,
@@ -57,10 +54,7 @@ export async function getServerSideProps({ req, params, query }) {
     };
   } catch {
     return {
-      redirect: {
-        destination: '/404',
-        parameter: false,
-      },
+      notFound: true, // triggers 404
     };
   }
 }
