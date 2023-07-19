@@ -163,3 +163,15 @@
     height: 48px;
   }
 }
+
+.extraInfo {
+  font-size: 10px;
+  line-height: 12px;
+  margin: 5px 0 0;
+  color: $color-third;
+  text-align: center;
+
+  &:first-of-type {
+    margin-top: 10px;
+  }
+}
