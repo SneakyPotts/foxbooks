@@ -342,7 +342,10 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 )}
 
                 <p>
-                  Жанр: <span>{(book?.genres?.length ? book?.genres?.[0]?.name : book?.genre?.name) || '-'}</span>
+                  Жанр:{' '}
+                  <Link href={`/${book?.type.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}`}>
+                    <a>{(book?.genres?.length ? book?.genres?.[0]?.name : book?.genre?.name) || '-'}</a>
+                  </Link>
                 </p>
                 {book?.copyright_holder ? (
                   <p>

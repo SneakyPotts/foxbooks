@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
 
-import React from 'react';
-
 const siteUrl = 'https://foxbooks.ec';
 const noIndexFields = [
   'findByAuthor',
@@ -14,20 +12,21 @@ const noIndexFields = [
   'bookType',
   'type',
 ];
-const canonicalFields = ['page', 'sortBy', 'showType'];
+// const canonicalFields = ['page', 'sortBy', 'showType'];
 
 const useSEO = () => {
   const router = useRouter();
 
   const isReader = router.pathname === '/reader';
   const noIndex = !!findFields(router.query, noIndexFields).length;
-  const canonical = !isReader && !!findFields(router.query, canonicalFields).length;
+  // const canonical = !isReader && !!findFields(router.query, canonicalFields).length;
 
   const cleanPath = router.asPath.split('#')[0].split('?')[0];
   const canonicalUrl = `${siteUrl}${router.asPath === '/' ? '' : cleanPath}`;
 
   return {
-    canonical: canonical || noIndex ? canonicalUrl : null,
+    // canonical: canonical || noIndex ? canonicalUrl : null,
+    canonical: canonicalUrl,
     noIndex: isReader || noIndex,
   };
 };

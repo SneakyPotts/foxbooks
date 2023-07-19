@@ -17,9 +17,7 @@ const Reviews = ({ type }) => {
 
   const { innerWidthWindow } = useSelector((state) => state.common);
   const { id } = useSelector((state) => state.book?.book);
-  const { reviews } = useSelector((state) => state.review);
-  const { reviewsMobile } = useSelector((state) => state.review);
-  const { lastPage } = useSelector((state) => state.review);
+  const { reviews, reviewsMobile, lastPage } = useSelector((state) => state.review);
 
   const [reviewTyping, setReviewTyping] = useState(false);
   const [page, setPage] = useState(1);
@@ -39,6 +37,10 @@ const Reviews = ({ type }) => {
     type: requestType[type],
     id: id,
     page,
+  };
+
+  const filteredMobile = () => {
+    return reviewsMobile.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
   };
 
   useEffect(() => {
@@ -80,7 +82,7 @@ const Reviews = ({ type }) => {
         </div>
       )}
 
-      {(innerWidthWindow > 768 ? reviews : reviewsMobile).map((it, idx) => (
+      {(innerWidthWindow > 768 ? reviews : filteredMobile()).map((it, idx) => (
         <div
           key={it.id}
           className={st.review}
