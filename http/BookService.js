@@ -61,11 +61,10 @@ export default class BookService {
     });
   }
 
-  static async getBookBySlug(slug, token, ip) {
+  static async getBookBySlug(slug, token) {
     return axios.get(`${API_URL}/books/by-slug/${slug}`, {
       headers: {
         Authorization: `Bearer ${token}`,
-        'X-Forwarded-For': ip,
       },
     });
   }
