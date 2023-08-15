@@ -7,3 +7,14 @@ const Support = () => {
 };
 
 export default Support;
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      SEO: {
+        title: `Помощь на сайте Foxbooks`,
+        description: `Техническя помощь на Foxbooks`,
+      },
+    },
+  };
+}
