@@ -24,9 +24,17 @@ export async function getServerSideProps({ req, query, params }) {
   try {
     const selectionBySlug = await SelectionService.getSelectionBySlug({ token, slug, ...query });
 
+    const { compilation } = selectionBySlug?.data?.data;
+    console.log(compilation);
     return {
       props: {
         selectionById: selectionBySlug?.data?.data,
+        SEO: {
+          title: compilation?.seo_title,
+          description: compilation?.seo_description,
+          og_title: compilation?.og_title,
+          og_description: compilation?.og_description,
+        },
       },
     };
   } catch {
