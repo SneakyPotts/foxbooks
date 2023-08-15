@@ -21,12 +21,14 @@ const Book = ({ book, books_type, banners }) => {
 export default Book;
 
 export async function getServerSideProps({ req, params }) {
+  const userIP = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+
   const { cookies } = req;
   const token = cookies.token;
   const type = params.books_type === 'audiobooks' ? 'audioBooks' : 'books';
 
   try {
-    const book = type === 'books' ? await BookService.getBookBySlug(params?.book_slug, token) : await BookService.getAudioBookBySlug(params.book_slug, token);
+    const book = type === 'books' ? await BookService.getBookBySlug(params?.book_slug, token, userIP) : await BookService.getAudioBookBySlug(params.book_slug, token);
     const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type);
 
     const banners = await AdminSettings.getPageBanner({ page_slug: params?.book_slug });
