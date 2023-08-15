@@ -20,7 +20,7 @@ const Book = ({ book, books_type, banners }) => {
 
 export default Book;
 
-export async function getServerSideProps({ req, params }) {
+export async function getServerSideProps({ req, params, res }) {
   const { cookies } = req;
   const token = cookies.token;
   const type = params.books_type === 'audiobooks' ? 'audioBooks' : 'books';
@@ -32,6 +32,8 @@ export async function getServerSideProps({ req, params }) {
     const banners = await AdminSettings.getPageBanner({ page_slug: params?.book_slug });
 
     const audioBookChapters = type === 'audioBooks' ? await BookService.audioBookChapters(book.data.data.id) : null;
+
+    res.setHeader('Last-modified', book.headers['last-modified']);
 
     return {
       props: {
