@@ -47,7 +47,7 @@ const TextWithQuotes = () => {
     const str = book?.page?.content
       .replace(/<(\/*)(html|body)[^>]*>/g, '')
       .replace('<div class="MsoNormal" style="margin:15px; text-align:left; width:800px; color:#333333;">', '')
-      .slice(0, -7);
+      .replace('</div>$', '');
 
     return parse(str, options);
   }, [book]);
