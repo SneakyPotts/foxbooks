@@ -19,10 +19,13 @@ export default Selection;
 export async function getServerSideProps({ req, query, params }) {
   const { cookies } = req;
   const { slug } = params;
+
   const token = cookies.token;
+  const userIP =
+    req.headers['x-real-ip'] || (req.headers['x-forwarded-for'] && req.headers['x-forwarded-for'].split(',')[0]) || req.connection.remoteAddress || req.socket.remoteAddress;
 
   try {
-    const selectionBySlug = await SelectionService.getSelectionBySlug({ token, slug, ...query });
+    const selectionBySlug = await SelectionService.getSelectionBySlug({ token, slug, userIP, ...query });
 
     const { compilation } = selectionBySlug?.data?.data;
     console.log(compilation);

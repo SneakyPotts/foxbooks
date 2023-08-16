@@ -19,7 +19,10 @@ export default MyBooksPage;
 export async function getServerSideProps({ req, query, params }) {
   const { cookies } = req;
   const { slug } = params;
+
   const token = cookies.token;
+  const userIP =
+    req.headers['x-real-ip'] || (req.headers['x-forwarded-for'] && req.headers['x-forwarded-for'].split(',')[0]) || req.connection.remoteAddress || req.socket.remoteAddress;
 
   if (!token) {
     return {
@@ -31,7 +34,7 @@ export async function getServerSideProps({ req, query, params }) {
   }
 
   try {
-    const selectionBySlug = await SelectionService.getSelectionBySlug({ ...query, slug, token });
+    const selectionBySlug = await SelectionService.getSelectionBySlug({ token, slug, userIP, ...query });
 
     return {
       props: {

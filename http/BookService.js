@@ -53,10 +53,11 @@ export default class BookService {
     return type === 'books' ? axios.get(`${API_URL}/books/${id}`) : axios.get(`${API_URL}/audio-books/${id}`);
   }
 
-  static async getAudioBookBySlug(slug, token) {
+  static async getAudioBookBySlug(slug, token, ip) {
     return axios.get(`${API_URL}/audio-books/by-slug/${slug}`, {
       headers: {
         Authorization: `Bearer ${token}`,
+        'X-Forwarded-For': ip,
       },
     });
   }
