@@ -9,19 +9,35 @@ import { setBook } from '../../../store/bookSlice';
 import AdminSettings from '../../../http/AdminSettings';
 import BookService from '../../../http/BookService';
 
-const Book = ({ book, books_type, banners }) => {
+const Book = ({ book, books_type, banners, userIP }) => {
   const dispatch = useDispatch();
 
   dispatch(setBook(book));
   dispatch(setCurrentPageBanners(banners));
 
-  return <BookPage bookType={books_type} />;
+  return (
+    <BookPage
+      bookType={books_type}
+      userIP={userIP}
+    />
+  );
 };
 
 export default Book;
 
 export async function getServerSideProps({ req, params }) {
-  const userIP = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+  const userIP =
+    req.headers['x-real-ip'] || (req.headers['x-forwarded-for'] && req.headers['x-forwarded-for'].split(',')[0]) || req.connection.remoteAddress || req.socket.remoteAddress;
+
+  // let ip;
+  //
+  // if (req.headers['x-forwarded-for']) {
+  //   ip = req.headers['x-forwarded-for'].split(',')[0];
+  // } else if (req.headers['x-real-ip']) {
+  //   ip = req.connection.remoteAddress;
+  // } else {
+  //   ip = req.connection.remoteAddress;
+  // }
 
   const { cookies } = req;
   const token = cookies.token;
@@ -52,6 +68,7 @@ export async function getServerSideProps({ req, params }) {
           og_img: book?.data?.data?.og_img,
         },
         banners: banners?.data?.data,
+        userIP: userIP,
       },
     };
   } catch {

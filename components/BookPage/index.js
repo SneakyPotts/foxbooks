@@ -27,7 +27,7 @@ import { getAudioBooksByAuthor, getBooksByAuthor } from '../../store/bookSlice';
 
 import Banners from '../shared/common/Banner/Banners';
 
-const BookPage = ({ bookType }) => {
+const BookPage = ({ bookType, userIP }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const type = bookType;
@@ -61,6 +61,7 @@ const BookPage = ({ bookType }) => {
   return (
     <>
       <div className={'container'}>
+        <p>{`userIP - ${userIP}`}</p>
         <Breadcrumbs
           data={[
             {
