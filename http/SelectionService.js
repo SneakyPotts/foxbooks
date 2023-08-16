@@ -16,10 +16,11 @@ export default class SelectionService {
     );
   }
 
-  static async getSelectionBySlug({ token, slug, sortBy = '0', status = '0', search = '', page = 1 }) {
+  static async getSelectionBySlug({ token, slug, ip, sortBy = '0', status = '0', search = '', page = 1 }) {
     return axios.get(`${API_URL}/compilations/${slug}?sortBy=${sortBy}&status=${status}&page=${page}${search && `&findByTitle=${search}`}`, {
       headers: {
         Authorization: `Bearer ${token}`,
+        'X-Forwarded-For': ip,
       },
     });
   }
