@@ -53,7 +53,7 @@ export default class BookService {
     return type === 'books' ? axios.get(`${API_URL}/books/${id}`) : axios.get(`${API_URL}/audio-books/${id}`);
   }
 
-  static async getAudioBookBySlug(slug, token, ip) {
+  static async getAudioBookBySlug(slug, token, ip = '127.0.0.1') {
     return axios.get(`${API_URL}/audio-books/by-slug/${slug}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ export default class BookService {
     });
   }
 
-  static async getBookBySlug(slug, token, ip) {
+  static async getBookBySlug(slug, token, ip = '127.0.0.1') {
     return axios.get(`${API_URL}/books/by-slug/${slug}`, {
       headers: {
         Authorization: `Bearer ${token}`,
