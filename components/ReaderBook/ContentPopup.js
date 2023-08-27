@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 const ContentPopup = ({ onClose }) => {
   const router = useRouter();
   const { book, bookChapters } = useSelector((state) => state.reader);
-  console.log(book);
+
   const handleClick = (pageNumber) => {
     router.push({ query: { ...router.query, page: pageNumber } }).then(() => {
       onClose && onClose();

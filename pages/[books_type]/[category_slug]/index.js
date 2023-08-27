@@ -18,7 +18,12 @@ const Categories = (props) => {
   dispatch(setBooks(props.books));
   dispatch(setCurrentPageBanners(props.banners));
 
-  return <BookComponent order={props.order} />;
+  return (
+    <BookComponent
+      order={props.order}
+      current={props.currentCategory}
+    />
+  );
 };
 
 export default Categories;
@@ -51,6 +56,11 @@ export async function getServerSideProps({ req, params, query }) {
 
     return {
       props: {
+        currentCategory: {
+          id: categoryData?.data?.data[0].id,
+          name: categoryData?.data?.data[0].name,
+          slug: categoryData?.data?.data[0].slug,
+        },
         categories: categories?.data?.data,
         books: books?.data?.data,
         order: order?.data?.data,

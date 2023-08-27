@@ -19,7 +19,7 @@ export const getReviewTypes = createAsyncThunk('review/getReviewTypes', async ()
 export const addReview = createAsyncThunk('review/addReview', async (data, { rejectWithValue }) => {
   try {
     const response = await ReviewService.addReview(data);
-    console.log(response.data.data);
+
     return response.data.data;
   } catch (err) {
     return rejectWithValue(err.response.data.errors.id[0]);

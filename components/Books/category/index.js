@@ -37,9 +37,9 @@ const mobileFilters = [
   },
 ];
 
-const Category = ({ order }) => {
+const Category = ({ order, current }) => {
   const router = useRouter();
-  const { books_type, category_slug } = router.query;
+  const { books_type } = router.query;
 
   const [stateIndex, setStateIndex] = useState(null);
   const data = [
@@ -55,10 +55,8 @@ const Category = ({ order }) => {
     return router.query['showType'] === 'list';
   }, [router.query]);
 
-  const { categories, books, infoBlocks } = useSelector((state) => state.book);
+  const { books, infoBlocks } = useSelector((state) => state.book);
   const { innerWidthWindow } = useSelector((state) => state.common);
-
-  const currentCategory = categories?.find((i) => i?.slug === category_slug)?.name;
 
   const setQuery = (value, queryName) => {
     router.push({ query: { ...router.query, [queryName]: encodeURI(value) } }, null, { scroll: false });
@@ -78,14 +76,14 @@ const Category = ({ order }) => {
             path: `/${books_type}`,
             title: books_type === 'books' ? 'Книги' : 'Аудиокниги',
           },
-          { path: router.asPath, title: currentCategory },
+          { path: router.asPath, title: current?.name },
         ]}
       />
 
       <div className={st.container}>
         <div className={st.wrapper}>
           <div className={st.head}>
-            <h1 className={st.title}>{currentCategory}</h1>
+            <h1 className={st.title}>{current?.name}</h1>
             <div>
               {innerWidthWindow >= 1024 &&
                 data.map((it, index) => (
@@ -155,7 +153,8 @@ const Category = ({ order }) => {
                       />
                     ))}
                   </div>
-                  <MyPagination lastPage={books?.last_page} />
+
+                  {books?.last_page > 1 && <MyPagination lastPage={books?.last_page} />}
                 </>
               ) : (
                 <p className="empty">Книги не найдены</p>
