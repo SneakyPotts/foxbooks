@@ -413,7 +413,8 @@
       flex: 1;
     }
 
-    :global(.take_h1), h3 {
+    :global(.take_h1),
+    h3 {
       color: var(--main-color);
       font-weight: 700;
       text-align: center;
