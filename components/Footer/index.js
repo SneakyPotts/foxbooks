@@ -77,7 +77,7 @@ const Footer = () => {
                 </Link>
               </nav>
               <div className={st.txt}>
-                <p className={st.label}>&#169;{`2024 - ${currentYear()} Foxbooks`}</p>
+                <p className={st.label}>&#169;{`${currentYear()} Foxbooks`}</p>
               </div>
             </div>
           </div>
