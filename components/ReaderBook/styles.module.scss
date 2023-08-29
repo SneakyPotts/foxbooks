@@ -426,7 +426,15 @@
     }
 
     img {
-      max-width: calc(100vw - 50px);
+      max-width: 100%;
+
+      display: block;
+      margin: 26px auto 30px auto !important;
+    }
+
+    p > img {
+      max-width: 200px !important;
+      margin: 10px !important;
     }
   }
 }
