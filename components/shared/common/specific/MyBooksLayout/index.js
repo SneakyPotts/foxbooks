@@ -153,6 +153,9 @@ const MyBooksLayout = ({ children }) => {
                           width={i?.type === 'audioBooks' ? 195 : 129}
                           height={195}
                           layout={'responsive'}
+                          placeholder="blur"
+                          blurDataURL="/blur.webp"
+                          priority={true}
                           className={styles.navItemImg}
                         />
 
