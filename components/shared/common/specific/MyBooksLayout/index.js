@@ -136,7 +136,7 @@ const MyBooksLayout = ({ children }) => {
                 spaceBetween={innerWidthWindow > 768 ? 24 : 10}
                 slidesPerView={'auto'}
               >
-                {userReadingProgress.map((i) => (
+                {userReadingProgress.map((i, j) => (
                   <SwiperSlide
                     key={i?.id}
                     className={classNames(styles.slide, {
@@ -155,7 +155,7 @@ const MyBooksLayout = ({ children }) => {
                           layout={'responsive'}
                           placeholder="blur"
                           blurDataURL="/blur.webp"
-                          priority={true}
+                          priority={j < 9}
                           className={styles.navItemImg}
                         />
 
