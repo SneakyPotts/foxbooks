@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { durationString, wordsForCount } from '../../../utils';
@@ -289,7 +289,6 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               </div>
 
               <ul className={st.navLinks}>
-                <li>О книге</li>
                 {book?.reviews_count ? (
                   <li>
                     <a href="#reviews">
@@ -317,8 +316,16 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     <a href="#similar">Похожие книги</a>
                   </li>
                 ) : null}
+                <li>
+                  <h2>{`Аннотация книги${audioFlag ? ` "${book?.title}" - ${book?.authors[0]?.author}` : ''}`}</h2>
+                </li>
               </ul>
-              <p>{book?.text || book?.description || 'Нет описания'}</p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: book?.text || book?.description || 'Нет описания',
+                }}
+              />
+              {/*<p>{book?.text || book?.description || 'Нет описания'}</p>*/}
               <div className={st.ditalInfo}>
                 {audioFlag ? (
                   book?.actors?.length ? (

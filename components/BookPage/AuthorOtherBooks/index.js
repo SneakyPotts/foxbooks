@@ -27,7 +27,7 @@ const AuthorOtherBooks = ({ data }) => {
   return (
     <div className={st.container}>
       <div className={st.blockTitle}>
-        <h2 className={st.title}>Другие книги автора</h2>
+        <h2 className={st.title}>Другие книги автора {authors?.[0]?.author}</h2>
         {innerWidthWindow <= 768 && (
           <ShowAll
             externalClass={st.dicardDistance}

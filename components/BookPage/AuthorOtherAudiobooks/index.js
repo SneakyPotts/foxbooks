@@ -10,6 +10,7 @@ import st from './otherAudioBooks.module.scss';
 import Book from '../../shared/common/book';
 
 const AuthorOtherAudioBooks = ({ data }) => {
+  console.log(data);
   const { innerWidthWindow } = useSelector((state) => state.common);
 
   const changeSpaceBtwSwiper = () => {
@@ -24,7 +25,7 @@ const AuthorOtherAudioBooks = ({ data }) => {
 
   return (
     <div className={st.container}>
-      <h2 className={st.blockTitle}>Другие аудиокниги автора</h2>
+      <h2 className={st.blockTitle}>Аудиокниги автора {data?.[0]?.authors?.[0]?.author}</h2>
       <Swiper
         spaceBetween={changeSpaceBtwSwiper()}
         modules={[Navigation]}

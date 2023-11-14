@@ -6,7 +6,7 @@ import st from './similarBooks.module.scss';
 
 import Book from '../../shared/common/book';
 
-const SimilarBooks = ({ type, data }) => {
+const SimilarBooks = ({ type, data, bookTitle }) => {
   const { innerWidthWindow } = useSelector((state) => state.common);
 
   const changeSpaceBtwSwiper = () => {
@@ -25,7 +25,7 @@ const SimilarBooks = ({ type, data }) => {
       className={st.swiper}
     >
       <div className={st.swiperTitle}>
-        <h3 className={st.title}>{type === 'books' ? 'Похожие книги' : 'Похожие аудиокниги'}</h3>
+        <h2 className={st.title}>{type === 'books' ? `Похожие книги на "${bookTitle}"` : `Похожие аудиокниги на "${bookTitle}"`}</h2>
         {/*{innerWidthWindow <= 768 && (*/}
         {/*  <ShowAll externalClass={st.dicardDistance} />*/}
         {/*)}*/}
