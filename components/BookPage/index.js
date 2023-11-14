@@ -91,6 +91,7 @@ const BookPage = ({ bookType }) => {
                 <SimilarBooks
                   type={type}
                   data={book?.similarBooks}
+                  bookTitle={book?.title}
                 />
               )}
 

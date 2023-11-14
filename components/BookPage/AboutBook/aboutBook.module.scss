@@ -256,10 +256,16 @@
 .navLinks {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
   margin-bottom: 20px;
 
   li {
     margin-right: 30px;
+
+    &:last-child {
+      flex-basis: 100%;
+    }
 
     .number {
       color: $color-third;
@@ -271,6 +277,11 @@
       &:hover {
         color: $text-hover;
       }
+    }
+
+    h2 {
+      font-size: inherit;
+      font-weight: inherit;
     }
   }
 }

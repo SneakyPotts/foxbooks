@@ -71,7 +71,7 @@ const AuthorPage = () => {
               />
             </div>
             <div className={st.authorInfo}>
-              <h1 className={st.authorInfoName}>{author?.author}</h1>
+              <h1 className={st.authorInfoName}>Книги автора {author?.author}</h1>
               <p className={st.authorInfoCount}>
                 <span>{author?.total_books}</span> книг
               </p>
@@ -160,7 +160,7 @@ const AuthorPage = () => {
 
               {author?.audio_books?.length ? (
                 <div className={st.selection}>
-                  <h2 className={classnames('title', st.seriesTitle)}>Аудиокниги автора</h2>
+                  <h2 className={classnames('title', st.seriesTitle)}>Аудиокниги автора - {author?.author}</h2>
                   <ul className={st.selectionList}>
                     {author?.audio_books?.map((i) => (
                       <li

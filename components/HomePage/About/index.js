@@ -38,7 +38,7 @@ const AboutItem = ({ title, text, showStatus = false }) => {
         onClick={handleClick}
         className={css.dropDownBtn}
       >
-        <span className={css.dropDownTitle}>{title}</span>
+        <h2 className={css.dropDownTitle}>{title}</h2>
         <span
           className={classnames(css.dropDownIcon, {
             [css.activeBtn]: show,
