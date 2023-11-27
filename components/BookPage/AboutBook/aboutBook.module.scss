@@ -422,10 +422,10 @@
       width: 0;
       height: 0;
     }
-    &::-moz-scrollbar {
-      width: 0;
-      height: 0;
-    }
+    //&::-moz-scrollbar {
+    //  width: 0;
+    //  height: 0;
+    //}
   }
   .menu {
     width: 100vw;
