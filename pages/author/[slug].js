@@ -10,17 +10,17 @@ import AdminSettings from '../../http/AdminSettings';
 import AuthorService from '../../http/AuthorService';
 import CategoriesService from '../../http/CategoriesService';
 
-const index = (props) => {
+const AuthorBySlugPage = (props) => {
   const dispatch = useDispatch();
 
   dispatch(setAuthor(props.author));
   dispatch(setCategories(props.categories));
   dispatch(setCurrentPageBanners(props.banners));
 
-  return <AuthorPage />;
+  return <AuthorPage infoBlocks={props.authorInfoBlock} />;
 };
 
-export default index;
+export default AuthorBySlugPage;
 
 export async function getServerSideProps({ req, params }) {
   const { cookies } = req;
@@ -29,6 +29,7 @@ export async function getServerSideProps({ req, params }) {
   try {
     const author = await AuthorService.getAuthor(params.slug, token);
     const banners = await AdminSettings.getPageBanner({ page_slug: params.slug });
+    const authorInfoBlock = await AuthorService.getAuthorInfoBlock(params.slug);
 
     const categories = await CategoriesService.getCategoriesWithCount();
 
@@ -45,6 +46,7 @@ export async function getServerSideProps({ req, params }) {
           og_img: author?.data?.data?.og_img || '',
         },
         banners: banners?.data?.data,
+        authorInfoBlock: authorInfoBlock?.data.data,
       },
     };
   } catch {

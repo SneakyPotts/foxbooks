@@ -53,4 +53,8 @@ export default class AuthorService {
   static async getAuthorReviews(slug, page = 1) {
     return axios.get(`${API_URL}/authors/${slug}/reviews${page && `?page=${page}`}`);
   }
+
+  static async getAuthorInfoBlock(slug) {
+    return axios.get(`${API_URL}/author-info-block/${slug}`);
+  }
 }
