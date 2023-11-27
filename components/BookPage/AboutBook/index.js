@@ -276,7 +276,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     method={'POST'}
                   >
                     <input
-                      className={st.readButton}
+                      className={classnames(st.readButton, st.input)}
                       type="submit"
                       value="Читати"
                     />

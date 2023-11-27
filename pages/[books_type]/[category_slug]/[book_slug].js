@@ -34,7 +34,7 @@ export async function getServerSideProps({ req, params }) {
     const banners = await AdminSettings.getPageBanner({ page_slug: params?.book_slug });
 
     const audioBookChapters = type === 'audioBooks' ? await BookService.audioBookChapters(book.data.data.id) : null;
-    console.log('getBookBySlug', book?.data?.data);
+
     return {
       props: {
         book: {
