@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { durationString, wordsForCount } from '../../../utils';
@@ -268,9 +268,19 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     {`${book.user_progress ? 'Продолжить' : 'Начать'} слушать`}
                   </button>
                 ) : (
-                  <Link href={`/reader?id=${book?.id}&page=${book?.last_page || 1}`}>
-                    <a className={st.readButton}>Читать</a>
-                  </Link>
+                  // <Link href={`/reader?id=${book?.id}&page=${book?.last_page || 1}`}>
+                  //   <a className={st.readButton}>Читать</a>
+                  // </Link>
+                  <form
+                    action={`/reader?id=${book?.id}&page=${book?.last_page || 1}`}
+                    method={'POST'}
+                  >
+                    <input
+                      className={st.readButton}
+                      type="submit"
+                      value="Читати"
+                    />
+                  </form>
                 )}
                 <DotsDropdown>
                   {dataOptions.map((i) => (
@@ -354,6 +364,11 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                     <a>{(book?.genres?.length ? book?.genres?.[0]?.name : book?.genre?.name) || '-'}</a>
                   </Link>
                 </p>
+                {!!book?.language.length && (
+                  <p>
+                    Язык книги: <span>{book?.language}</span>
+                  </p>
+                )}
                 {book?.copyright_holder ? (
                   <p>
                     Правообладатель: <span>{book?.copyright_holder}</span>

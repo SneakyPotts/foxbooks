@@ -183,6 +183,10 @@
   color: $color-categories-btn;
   border-radius: 5px;
   transition: 0.15s;
+
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 .readButton:hover {
   background-color: $accent-hover;

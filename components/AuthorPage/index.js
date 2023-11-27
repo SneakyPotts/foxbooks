@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DropDownArrow from '../../public/chevron-down.svg';
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import CompilationItem from '../CompilationItem';
+import About from '../HomePage/About';
 import Categories from '../HomePage/Categories';
 import classnames from 'classnames';
 
@@ -20,7 +21,7 @@ import Button from '../shared/common/Button/Button';
 import Book from '../shared/common/book';
 import ShowAll from '../shared/common/showAll/ShowAll';
 
-const AuthorPage = () => {
+const AuthorPage = ({ infoBlocks }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -291,6 +292,8 @@ const AuthorPage = () => {
           </p>
         </div>
       )}
+
+      {!!infoBlocks?.length && <About data={infoBlocks} />}
     </div>
   );
 };
