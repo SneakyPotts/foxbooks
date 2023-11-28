@@ -277,6 +277,11 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   >
                     <input
                       className={classnames(st.readButton, st.input)}
+                      style={{
+                        border: 'none',
+                        outline: 'none',
+                        cursor: 'pointer',
+                      }}
                       type="submit"
                       value="Читати"
                     />
