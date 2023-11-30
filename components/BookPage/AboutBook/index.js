@@ -340,6 +340,11 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   <h2>{`Аннотация книги${audioFlag ? ` "${book?.title}" - ${book?.authors[0]?.author}` : ''}`}</h2>
                 </li>
               </ul>
+
+              <h1 style={{ fontSize: '14px', fontWeight: '400', marginBottom: 10 }}>{`${audioFlag ? 'Аудиокнига' : 'Книга'} ${book?.title}${
+                !!book?.authors?.length ? ` - ${book?.authors[0]?.author}` : ''
+              } ${audioFlag ? '' : ' - читать онлайн'}`}</h1>
+
               <div
                 dangerouslySetInnerHTML={{
                   __html: book?.text || book?.description || 'Нет описания',
@@ -347,9 +352,6 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               />
               {/*<p>{book?.text || book?.description || 'Нет описания'}</p>*/}
               <div className={st.ditalInfo}>
-                <h1 style={{ fontSize: '14px', fontWeight: '400', marginBottom: 10 }}>{`Книга ${book?.title} - ${
-                  !!book?.authors?.length ? `${book?.authors[0]?.author} -` : ''
-                } ${audioFlag ? 'слушать' : 'читать'} онлайн`}</h1>
                 {audioFlag ? (
                   book?.actors?.length ? (
                     <p>
