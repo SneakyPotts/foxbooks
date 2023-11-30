@@ -186,7 +186,12 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
 
           <div className={st.blockBookTitle}>
             <div className={st.wrapperBookTitle}>
-              <p className={st.bookTitle}>{book?.title}</p>
+              <p
+                className={st.bookTitle}
+                style={{ fontWeight: 700 }}
+              >
+                {book?.title}
+              </p>
               <p className={st.bookAuthor}>
                 {book?.authors?.length ? (
                   <Link href={`/author/${book?.authors[0]?.slug}`}>
@@ -342,7 +347,9 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
               />
               {/*<p>{book?.text || book?.description || 'Нет описания'}</p>*/}
               <div className={st.ditalInfo}>
-                <h1>{`Книга ${book?.title} - ${!!book?.authors?.length ? `${book?.authors[0]?.author} -` : ''} читать онлайн`}</h1>
+                <h1 style={{ fontSize: '14px', fontWeight: '400', marginBottom: 10 }}>{`Книга ${book?.title} - ${
+                  !!book?.authors?.length ? `${book?.authors[0]?.author} -` : ''
+                } ${audioFlag ? 'слушать' : 'читать'} онлайн`}</h1>
                 {audioFlag ? (
                   book?.actors?.length ? (
                     <p>
