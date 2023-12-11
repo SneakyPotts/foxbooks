@@ -220,9 +220,24 @@ const AuthorPage = ({ infoBlocks }) => {
               ) : null}
 
               <div className={st.selection}>
-                <Link href={`/reviews/${author.slug}`}>
-                  <a className={classnames('title', st.seriesTitle)}>Рецензии</a>
-                </Link>
+                {/*<Link href={`/reviews/${author.slug}`}>*/}
+                {/*  <a className={classnames('title', st.seriesTitle)}>Рецензии</a>*/}
+                {/*</Link>*/}
+                <form
+                  action={`/reviews/${author.slug}`}
+                  method={'GET'}
+                >
+                  <input
+                    className={classnames('title', st.seriesTitle)}
+                    style={{
+                      border: 'none',
+                      outline: 'none',
+                      cursor: 'pointer',
+                    }}
+                    type="submit"
+                    value="Рецензии"
+                  />
+                </form>
                 <div className={st.reviewBlock}>
                   <h3 className={st.reviewBlockTitle}>Рецензии из книг</h3>
                   <p>{author?.author_reviews_count}</p>
@@ -230,9 +245,24 @@ const AuthorPage = ({ infoBlocks }) => {
               </div>
 
               <div className={classnames(st.selection, st.quotes)}>
-                <Link href={`/quotes/${author.slug}`}>
-                  <a className={classnames('title', st.seriesTitle)}>Цитаты</a>
-                </Link>
+                {/*<Link href={`/quotes/${author.slug}`}>*/}
+                {/*  <a className={classnames('title', st.seriesTitle)}>Цитаты</a>*/}
+                {/*</Link>*/}
+                <form
+                  action={`/quotes/${author.slug}`}
+                  method={'GET'}
+                >
+                  <input
+                    className={classnames('title', st.seriesTitle)}
+                    style={{
+                      border: 'none',
+                      outline: 'none',
+                      cursor: 'pointer',
+                    }}
+                    type="submit"
+                    value="Цитаты"
+                  />
+                </form>
                 <div className={st.reviewBlock}>
                   <h3 className={st.reviewBlockTitle}>Цитаты из книг</h3>
                   <p>{author?.author_quotes_count}</p>
