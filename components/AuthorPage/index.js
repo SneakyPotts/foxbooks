@@ -229,11 +229,6 @@ const AuthorPage = ({ infoBlocks }) => {
                 >
                   <input
                     className={classnames('title', st.seriesTitle)}
-                    style={{
-                      border: 'none',
-                      outline: 'none',
-                      cursor: 'pointer',
-                    }}
                     type="submit"
                     value="Рецензии"
                   />
@@ -254,11 +249,6 @@ const AuthorPage = ({ infoBlocks }) => {
                 >
                   <input
                     className={classnames('title', st.seriesTitle)}
-                    style={{
-                      border: 'none',
-                      outline: 'none',
-                      cursor: 'pointer',
-                    }}
                     type="submit"
                     value="Цитаты"
                   />

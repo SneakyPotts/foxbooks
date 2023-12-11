@@ -282,11 +282,6 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                   >
                     <input
                       className={classnames(st.readButton, st.input)}
-                      style={{
-                        border: 'none',
-                        outline: 'none',
-                        cursor: 'pointer',
-                      }}
                       type="submit"
                       value="Читати"
                     />
@@ -341,9 +336,9 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                 </li>
               </ul>
 
-              <h1 style={{ fontSize: '14px', fontWeight: '400', marginBottom: 10 }}>{`${audioFlag ? 'Аудиокнига' : 'Книга'} ${book?.title}${
-                !!book?.authors?.length ? ` - ${book?.authors[0]?.author}` : ''
-              } ${audioFlag ? '' : ' - читать онлайн'}`}</h1>
+              <h1 className={st.seoName}>{`${audioFlag ? 'Аудиокнига' : 'Книга'} ${book?.title}${!!book?.authors?.length ? ` - ${book?.authors[0]?.author}` : ''} ${
+                audioFlag ? '' : ' - читать онлайн'
+              }`}</h1>
 
               <div
                 dangerouslySetInnerHTML={{

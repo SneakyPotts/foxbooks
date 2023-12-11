@@ -189,10 +189,17 @@
     outline: none;
     border: none;
     cursor: pointer;
+    padding: 0;
   }
 }
 .readButton:hover {
   background-color: $accent-hover;
+}
+
+.seoName {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 10px;
 }
 
 .menu {
