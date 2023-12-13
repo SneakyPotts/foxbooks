@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getNoun } from '../../../utils';
+import { addView, getNoun } from '../../../utils';
 import classNames from 'classnames';
 
 import styles from '../../MyBooks/styles.module.scss';
@@ -12,6 +12,7 @@ import st from './selectionPage.module.scss';
 
 import { setAuthPopupVisibility } from '../../../store/commonSlice';
 
+import AdminSettings from '../../../http/AdminSettings';
 import SelectionService from '../../../http/SelectionService';
 
 import BackBtn from '../../shared/common/BackBtn';
@@ -41,6 +42,10 @@ const SelectionPage = () => {
       }
     }
   };
+
+  useEffect(() => {
+    AdminSettings.addView({ id: selectionById?.compilation?.id, type: 'compilation' }).catch((err) => console.log('error - ', err));
+  }, []);
 
   return (
     <>

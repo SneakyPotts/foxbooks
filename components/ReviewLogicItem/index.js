@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DotsDropdown from '../DotsDropdown';
@@ -14,6 +15,7 @@ import styles from './styles.module.scss';
 
 import { setAuthPopupVisibility } from '../../store/commonSlice';
 
+import AdminSettings from '../../http/AdminSettings';
 import CommentsService from '../../http/CommentsService';
 
 import ModalWindow from '../shared/common/modalWindow/ModalWindow';
@@ -28,6 +30,11 @@ const ReviewLogicItem = ({ data, withControls, onDelete }) => {
 
   const { innerWidthWindow } = useSelector((state) => state.common);
   const { isAuth } = useSelector((state) => state.auth);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Зробить, щоб обробник був викликаний лише один раз
+    threshold: 0.5, // Поріг видимості елемента в viewport (від 0 до 1)
+  });
 
   const [editFormIsVisible, setEditFormIsVisible] = useState(false);
   const [likesCount, setLikesCount] = useState(data?.likes_count || 0);
@@ -58,8 +65,15 @@ const ReviewLogicItem = ({ data, withControls, onDelete }) => {
     setEditFormIsVisible(false);
   };
 
+  useEffect(() => {
+    !withControls && inView && AdminSettings.addView({ id: data.id, type: 'review' }).catch((err) => console.log('error - ', err));
+  }, [inView]);
+
   return (
-    <div className={styles.review}>
+    <div
+      ref={ref}
+      className={styles.review}
+    >
       <div className={styles.reviewCover}>
         <Link href={`/${data?.book?.type || 'audiobooks'}/${data?.book?.genres?.[0].slug || data?.audio_book?.genre?.slug}/${data?.book?.slug || data?.audio_book?.slug}`}>
           <a>

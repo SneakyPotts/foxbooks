@@ -1,7 +1,8 @@
 import Image from 'next/image';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import DropDownArrow from '../../public/chevron-down.svg';
 import classnames from 'classnames';
@@ -10,11 +11,18 @@ import moment from 'moment';
 import styles from '../CommentForm/styles.module.scss';
 import st from './reviewComponent.module.scss';
 
+import AdminSettings from '../../http/AdminSettings';
+
 import AvatarWithLetter from '../shared/common/AvatarWithLetter';
 import Book from '../shared/common/book';
 import Stars from '../shared/common/stars/Stars';
 
 const ReviewComponent = ({ it, idx, reviews }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Зробить, щоб обробник був викликаний лише один раз
+    threshold: 0.5, // Поріг видимості елемента в viewport (від 0 до 1)
+  });
+
   const date = moment(it?.created_at).format('Do MMMM YYYY в HH:mm').replace('-го', '');
 
   const profile = it?.user;
@@ -30,8 +38,15 @@ const ReviewComponent = ({ it, idx, reviews }) => {
     });
   };
 
+  useEffect(() => {
+    reviews && inView && AdminSettings.addView({ id: it.id, type: 'review' }).catch((err) => console.log('error - ', err));
+  }, [inView]);
+
   return (
-    <div className={st.review}>
+    <div
+      ref={ref}
+      className={st.review}
+    >
       <Book
         book={it?.book}
         audio={it?.book?.type !== 'books'}

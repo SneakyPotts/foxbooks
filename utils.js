@@ -318,7 +318,3 @@ export const cookiesSettings = (data, status = '') => {
 export const currentYear = () => {
   return new Date().getFullYear();
 };
-
-export const addView = async ({ id, type }) => {
-  return await axios.post(`${API_URL}/add-view`, { id, type });
-};

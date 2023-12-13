@@ -15,6 +15,8 @@ import { deleteBookFromFavorite, setAudioBookRating, setBookRating, setBookStatu
 import { setAuthPopupVisibility, setPlayerVisibility } from '../../../store/commonSlice';
 import { setPlayerData } from '../../../store/playerSlice';
 
+import AdminSettings from '../../../http/AdminSettings';
+
 import Stars from '../../shared/common/stars/Stars';
 import OpenBook from '../../shared/icons/bookOpen';
 import Eye from '../../shared/icons/eye';
@@ -154,8 +156,8 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
   }, [innerWidthWindow]);
 
   useEffect(() => {
-    addView({ id: book.id, type: audioFlag ? 'audioBooks' : 'books' });
-  }, []);
+    AdminSettings.addView({ id: book.id, type: audioFlag ? 'audioBooks' : 'books' }).catch((err) => console.log('error - ', err));
+  }, [book.id]);
 
   return (
     <>

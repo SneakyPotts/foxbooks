@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DropDownArrow from '../../../public/chevron-down.svg';
@@ -15,6 +16,7 @@ import styles from './comComp.module.scss';
 import { addComment } from '../../../store/commentsSlice';
 import { setAuthPopupVisibility } from '../../../store/commonSlice';
 
+import AdminSettings from '../../../http/AdminSettings';
 import CommentsService from '../../../http/CommentsService';
 
 import AvatarWithLetter from '../../shared/common/AvatarWithLetter';
@@ -28,6 +30,11 @@ const CommentItem = ({
   parentReviewId = null, //ID сущности родительской рецензии, пробрасывается вглубь ветки ответов
 }) => {
   const dispatch = useDispatch();
+
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Зробить, щоб обробник був викликаний лише один раз
+    threshold: 0.5, // Поріг видимості елемента в viewport (від 0 до 1)
+  });
 
   const date = moment(data?.updated_at).format('Do MMMM YYYY в HH:mm').replace('-го', '');
 
@@ -162,8 +169,13 @@ const CommentItem = ({
     initRender && fetchCurrentReplies();
   }, [page]);
 
+  useEffect(() => {
+    reviews && inView && AdminSettings.addView({ id: data.id, type: 'review' }).catch((err) => console.log('error - ', err));
+  }, [inView]);
+
   return (
     <div
+      ref={ref}
       className={classnames(styles.reviewColor, {
         [styles.reviewReplyItem]: isReply,
         [styles.reviewColorPositive]: type === 'positive',
