@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { durationString, wordsForCount } from '../../../utils';
+import { addView, durationString, wordsForCount } from '../../../utils';
 import DotsDropdown from '../../DotsDropdown';
 import classnames from 'classnames';
 import moment from 'moment';
@@ -152,6 +152,10 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
 
     setMarginForLongTitle(calculateMarginForLongTitle());
   }, [innerWidthWindow]);
+
+  useEffect(() => {
+    addView({ id: book.id, type: audioFlag ? 'audioBooks' : 'books' });
+  }, []);
 
   return (
     <>

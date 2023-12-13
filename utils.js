@@ -1,3 +1,5 @@
+import { API_URL } from './http';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import moment from 'moment';
 
@@ -315,4 +317,8 @@ export const cookiesSettings = (data, status = '') => {
 
 export const currentYear = () => {
   return new Date().getFullYear();
+};
+
+export const addView = async ({ id, type }) => {
+  return await axios.post(`${API_URL}/add-view`, { id, type });
 };
