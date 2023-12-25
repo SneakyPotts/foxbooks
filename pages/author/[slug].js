@@ -28,7 +28,7 @@ export async function getServerSideProps({ req, params }) {
 
   try {
     const author = await AuthorService.getAuthor(params.slug, token);
-    const banners = await AdminSettings.getPageBanner({ page_slug: params.slug });
+    const banners = await AdminSettings.getPageBanner({ page_slug: 'author' });
     const authorInfoBlock = await AuthorService.getAuthorInfoBlock(params.slug);
 
     const categories = await CategoriesService.getCategoriesWithCount();
