@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Provider } from 'react-redux';
 
 import GoogleAnalytics from '../components/AnaliticsScript/GoogleAnalytics';
+import { MicroMarkingOtherPages } from '../components/AnaliticsScript/RatingAggregator';
 import '../styles/globals.scss';
 import { NextSeo } from 'next-seo';
 import 'swiper/css/bundle';
@@ -46,6 +47,9 @@ function MyApp({ Component, pageProps }) {
         }}
         keywords={pageProps.SEO?.keywords || ''}
       />
+
+      <MicroMarkingOtherPages {...pageProps.SEO} />
+
       <Layout>
         <main className="main">{getLayout(<Component {...pageProps} />)}</main>
       </Layout>

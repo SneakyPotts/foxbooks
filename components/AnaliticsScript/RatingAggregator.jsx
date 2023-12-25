@@ -90,3 +90,26 @@ export default RatingAggregator;
 //       }
 //     `}
 // </script>
+
+export function MicroMarkingOtherPages({ ...props }) {
+  const router = useRouter();
+
+  const imgField = props?.og_img ? { primaryImageOfPage: props?.og_img } : {};
+
+  return (
+    <>
+      {router.pathname !== '/[books_type]/[category_slug]/[book_slug]' ? (
+        <WebPageJsonLd
+          id={`${baseUrl}${router.asPath}`}
+          openGraph={{
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: props?.title,
+            description: removeQuotesAndTags(props?.description) || 'Нет описания',
+            ...imgField,
+          }}
+        />
+      ) : null}
+    </>
+  );
+}
