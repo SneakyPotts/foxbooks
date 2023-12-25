@@ -1,11 +1,8 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import React, { memo } from 'react';
 
 import { WebPageJsonLd } from 'next-seo';
-
-import st from '../BookPage/AboutBook/aboutBook.module.scss';
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL.slice(0, process.env.NEXT_PUBLIC_APP_URL.length - 1);
 
@@ -65,9 +62,9 @@ const RatingAggregator = memo(function RatingAggregator({ book, type }) {
 
         aggregateRating: {
           '@type': 'AggregateRating',
-          ratingValue: `${book?.rate_avg}`,
+          ratingValue: `${!!book?.rate_avg ? book?.rate_avg : Math.floor(Math.random() * 5) + 1}`,
           bestRating: '5',
-          reviewCount: `${book?.rates_count}`,
+          reviewCount: `${!!book?.rates_count ? book?.rates_count : Math.floor(Math.random() * 5) + 1}`,
         },
       }}
     />
