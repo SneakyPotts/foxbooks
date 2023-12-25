@@ -156,6 +156,7 @@ const BookPage = ({ bookType }) => {
       </div>
 
       <RatingAggregator
+        name={book?.title}
         rating={book?.rate_avg}
         ratingCount={book?.rates_count}
       />

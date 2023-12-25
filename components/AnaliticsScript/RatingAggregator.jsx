@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 
-import { JsonLd } from 'next-seo/lib/jsonld/jsonld';
+import { ProductJsonLd } from 'next-seo';
 
-const RatingAggregator = memo(function RatingAggregator({ rating = 0, ratingCount = 0 }) {
+const RatingAggregator = memo(function RatingAggregator({ title, rating = 0, ratingCount = 0 }) {
   return (
     // <script
     //   type="application/ld+json"
@@ -22,9 +22,9 @@ const RatingAggregator = memo(function RatingAggregator({ rating = 0, ratingCoun
     //       }
     //     `}
     // </script>
-    <JsonLd
+    <ProductJsonLd
       // Це ваш оновлений JSON-LD об'єкт без екранування символів
-      scriptKey="product"
+      productName={title}
       openGraph={{
         '@context': 'http://schema.org',
         '@type': 'Product',
