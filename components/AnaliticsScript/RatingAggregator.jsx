@@ -98,7 +98,7 @@ export function MicroMarkingOtherPages({ ...props }) {
 
   return (
     <>
-      {router.pathname !== '/[books_type]/[category_slug]/[book_slug]' ? (
+      {router.pathname !== '/[books_type]/[category_slug]/[book_slug]' && !!Object.keys(props).length ? (
         <WebPageJsonLd
           id={`${baseUrl}${router.asPath}`}
           openGraph={{
