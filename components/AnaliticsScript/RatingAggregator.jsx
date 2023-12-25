@@ -37,7 +37,7 @@ const RatingAggregator = memo(function RatingAggregator({ book, type }) {
       id={`${baseUrl}${router.asPath}`}
       openGraph={{
         '@context': 'http://schema.org',
-        '@type': 'Product',
+        '@type': 'WebPage',
         name: fullName,
         description: removeQuotesAndTags(book?.text || book?.description) || 'Нет описания',
         primaryImageOfPage: book?.cover_url,
