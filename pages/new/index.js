@@ -21,7 +21,7 @@ export default New;
 
 export async function getServerSideProps({ query }) {
   const novelties = await NoveltiesService.getNovelties(query);
-  const banners = await AdminSettings.getPageBanner({ page_slug: 'novelties' });
+  const banners = await AdminSettings.getPageBanner({ page_slug: 'new' });
 
   return {
     props: {
