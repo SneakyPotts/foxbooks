@@ -1,8 +1,18 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 import React, { memo } from 'react';
 
-import { ProductJsonLd } from 'next-seo';
+import { WebPageJsonLd } from 'next-seo';
 
-const RatingAggregator = memo(function RatingAggregator({ name, rating = 0, ratingCount = 0 }) {
+import st from '../BookPage/AboutBook/aboutBook.module.scss';
+
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL.slice(0, process.env.NEXT_PUBLIC_APP_URL.length - 1);
+
+const RatingAggregator = memo(function RatingAggregator({ book, type }) {
+  const router = useRouter();
+  const audio = type === 'audioBooks';
+
   return (
     // <script
     //   type="application/ld+json"
@@ -22,18 +32,42 @@ const RatingAggregator = memo(function RatingAggregator({ name, rating = 0, rati
     //       }
     //     `}
     // </script>
-    <ProductJsonLd
+    <WebPageJsonLd
       // Це ваш оновлений JSON-LD об'єкт без екранування символів
-      productName={name}
+      id={`${baseUrl}${router.asPath}`}
       openGraph={{
         '@context': 'http://schema.org',
         '@type': 'Product',
-        name: 'Star rating snippet aggregator',
+        name: `${audio ? 'Аудиокнига' : 'Книга'} ${book?.title}${!!book?.authors?.length ? ` - ${book?.authors[0]?.author}` : ''} ${audio ? '' : ' - читать онлайн'}`,
+        description: book?.text || book?.description || 'Нет описания',
+        primaryImageOfPage: book?.cover_url,
+        mainEntity: {
+          '@type': 'Book',
+          author: {
+            '@type': 'Person',
+            name: `${book?.authors[0]?.author}`,
+            '@id': `${baseUrl}/author/${book?.authors[0]?.slug}`,
+          },
+        },
+        bookFormat: 'https://schema.org/EBook',
+        datePublished: book?.created_at,
+        image: book?.cover_url,
+        inLanguage: {
+          '@type': 'Language',
+          name: 'Russian', // Название языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
+          alternateName: 'ru', // Сабтег языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
+        },
+        // Указываем эту характеристику только для печатных книг
+        publisher: {
+          '@type': 'Organization',
+          name: book?.publishers[0]?.publisher,
+        },
+
         aggregateRating: {
           '@type': 'AggregateRating',
-          ratingValue: `${rating}`,
+          ratingValue: `${book?.rate_avg}`,
           bestRating: '5',
-          reviewCount: `${ratingCount}`,
+          reviewCount: `${book?.rates_count}`,
         },
       }}
     />

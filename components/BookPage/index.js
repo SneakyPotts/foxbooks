@@ -156,9 +156,8 @@ const BookPage = ({ bookType }) => {
       </div>
 
       <RatingAggregator
-        name={`${audioFlag ? 'Аудиокнига' : 'Книга'} ${book?.title}${!!book?.authors?.length ? ` - ${book?.authors[0]?.author}` : ''} ${audioFlag ? '' : ' - читать онлайн'}`}
-        rating={book?.rate_avg}
-        ratingCount={book?.rates_count}
+        type={type}
+        book={book}
       />
     </>
   );
