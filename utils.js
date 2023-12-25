@@ -1,5 +1,3 @@
-import { API_URL } from './http';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import moment from 'moment';
 
@@ -318,3 +316,14 @@ export const cookiesSettings = (data, status = '') => {
 export const currentYear = () => {
   return new Date().getFullYear();
 };
+
+export function removeQuotesAndTags(input) {
+  const withoutQuotes = input.replace(/"/g, '');
+
+  return withoutQuotes.replace(/<[^>]*>/g, '');
+}
+
+export function secondsToISO8601Duration(seconds) {
+  const duration = new Date(seconds * 1000).toISOString().substr(11, 8);
+  return `P${duration}`;
+}
