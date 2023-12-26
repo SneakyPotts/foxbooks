@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 
 import React, { memo } from 'react';
+import { Helmet } from 'react-helmet';
 
 import { removeQuotesAndTags, secondsToISO8601Duration } from '../../utils';
 import { WebPageJsonLd } from 'next-seo';
@@ -33,40 +34,42 @@ const RatingAggregator = memo(function RatingAggregator({ book, type }) {
       };
 
   return (
-    <WebPageJsonLd
-      id={`${baseUrl}${router.asPath}`}
-      openGraph={{
-        '@context': 'http://schema.org',
-        '@type': 'WebPage',
-        name: fullName,
-        description: removeQuotesAndTags(book?.text || book?.description) || 'Нет описания',
-        primaryImageOfPage: book?.cover_url,
-        mainEntity: {
-          '@type': audio ? 'Audiobook' : 'Book',
-          author: {
-            '@type': 'Person',
-            name: book?.authors[0]?.author,
-            '@id': `${baseUrl}/author/${book?.authors[0]?.slug}`,
-          },
-          bookFormat: audio ? 'https://schema.org/AudiobookFormat' : 'https://schema.org/EBook',
-          image: book?.cover_url,
-          inLanguage: {
-            '@type': 'Language',
-            name: 'Russian', // Название языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
-            alternateName: 'ru', // Сабтег языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
-          },
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          id: `${baseUrl}${router.asPath}`,
+          '@context': 'http://schema.org',
+          '@type': 'WebPage',
           name: fullName,
           description: removeQuotesAndTags(book?.text || book?.description) || 'Нет описания',
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: !!book?.rate_avg ? book?.rate_avg : randomNum,
-            bestRating: '5',
-            reviewCount: !!book?.rates_count ? book?.rates_count : randomNum,
+          primaryImageOfPage: book?.cover_url,
+          mainEntity: {
+            '@type': audio ? 'Audiobook' : 'Book',
+            author: {
+              '@type': 'Person',
+              name: book?.authors[0]?.author,
+              '@id': `${baseUrl}/author/${book?.authors[0]?.slug}`,
+            },
+            bookFormat: audio ? 'https://schema.org/AudiobookFormat' : 'https://schema.org/EBook',
+            image: book?.cover_url,
+            inLanguage: {
+              '@type': 'Language',
+              name: 'Russian', // Название языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
+              alternateName: 'ru', // Сабтег языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
+            },
+            name: fullName,
+            description: removeQuotesAndTags(book?.text || book?.description) || 'Нет описания',
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: !!book?.rate_avg ? book?.rate_avg : randomNum,
+              bestRating: '5',
+              reviewCount: !!book?.rates_count ? book?.rates_count : randomNum,
+            },
+            ...typeFields,
           },
-          ...typeFields,
-        },
-      }}
-    />
+        })}
+      </script>
+    </Helmet>
   );
 });
 
@@ -90,6 +93,41 @@ export default RatingAggregator;
 //       }
 //     `}
 // </script>
+
+// <WebPageJsonLd
+//   id={`${baseUrl}${router.asPath}`}
+//   openGraph={{
+//     '@context': 'http://schema.org',
+//     '@type': 'WebPage',
+//     name: fullName,
+//     description: removeQuotesAndTags(book?.text || book?.description) || 'Нет описания',
+//     primaryImageOfPage: book?.cover_url,
+//     mainEntity: {
+//       '@type': audio ? 'Audiobook' : 'Book',
+//       author: {
+//         '@type': 'Person',
+//         name: book?.authors[0]?.author,
+//         '@id': `${baseUrl}/author/${book?.authors[0]?.slug}`,
+//       },
+//       bookFormat: audio ? 'https://schema.org/AudiobookFormat' : 'https://schema.org/EBook',
+//       image: book?.cover_url,
+//       inLanguage: {
+//         '@type': 'Language',
+//         name: 'Russian', // Название языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
+//         alternateName: 'ru', // Сабтег языка согласно этого формата https://en.wikipedia.org/wiki/IETF_language_tag
+//       },
+//       name: fullName,
+//       description: removeQuotesAndTags(book?.text || book?.description) || 'Нет описания',
+//       aggregateRating: {
+//         '@type': 'AggregateRating',
+//         ratingValue: !!book?.rate_avg ? book?.rate_avg : randomNum,
+//         bestRating: '5',
+//         reviewCount: !!book?.rates_count ? book?.rates_count : randomNum,
+//       },
+//       ...typeFields,
+//     },
+//   }}
+// />
 
 export function MicroMarkingOtherPages({ ...props }) {
   const router = useRouter();
