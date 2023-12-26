@@ -31,7 +31,8 @@ export async function getServerSideProps({ req, params }) {
     const book = type === 'books' ? await BookService.getBookBySlug(params?.book_slug, token) : await BookService.getAudioBookBySlug(params.book_slug, token);
     const similarBooks = await BookService.getSimilarBooks(book.data.data.id, type);
 
-    const banners = await AdminSettings.getPageBanner({ page_slug: params?.book_slug });
+    const banners = await AdminSettings.getPageBanner({ page_slug: type });
+    const contentBanners = await AdminSettings.getPageContentBanner({ type });
 
     const audioBookChapters = type === 'audioBooks' ? await BookService.audioBookChapters(book.data.data.id) : null;
 
@@ -51,7 +52,10 @@ export async function getServerSideProps({ req, params }) {
           og_description: book?.data?.data?.og_description,
           og_img: book?.data?.data?.og_img,
         },
-        banners: banners?.data?.data,
+        banners: {
+          aside: banners?.data?.data,
+          content: contentBanners?.data?.data,
+        },
       },
     };
   } catch {

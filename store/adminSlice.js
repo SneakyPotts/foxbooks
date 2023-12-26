@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  banners: [],
+  banners: {
+    aside: [],
+    content: [],
+  },
 };
 
 const fromAdminPanel = createSlice({

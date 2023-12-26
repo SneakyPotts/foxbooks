@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import React, { useEffect, useState } from 'react';
@@ -95,13 +94,7 @@ const BookPage = ({ bookType }) => {
                 />
               )}
 
-              <Image
-                src="/horizontalBookCovers/bookCover1.png"
-                alt=""
-                width={588}
-                height={250}
-                className={st.relatedInfoBanner}
-              />
+              <Banners type={'content'} />
 
               <Comments />
 

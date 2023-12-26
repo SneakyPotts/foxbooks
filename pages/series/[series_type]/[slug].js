@@ -37,7 +37,9 @@ export async function getServerSideProps({ req, params }) {
           description: series?.data?.data?.seo_data?.seo_description || '',
           keywords: series?.data?.data?.seo_data?.seo_keywords || '',
         },
-        banners: banners?.data?.data,
+        banners: {
+          aside: banners?.data?.data,
+        },
       },
     };
   } catch {
