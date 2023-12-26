@@ -12,6 +12,10 @@ class AdminSettings {
                                 ${category_slug && `&category_slug=${category_slug}`}`);
   }
 
+  static async getPageContentBanner({ type }) {
+    return await axios.get(`${API_URL}/content-banner?type=${type}`);
+  }
+
   static async addView({ id, type }) {
     const requestApi = Cookies.get('token') ? api : axios;
 

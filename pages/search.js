@@ -36,7 +36,9 @@ export async function getServerSideProps({ query }) {
     : {
         props: {
           data: data.data.data,
-          banners: banners?.data?.data,
+          banners: {
+            aside: banners?.data?.data,
+          },
         },
       };
 }

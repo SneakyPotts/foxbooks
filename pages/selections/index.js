@@ -34,7 +34,9 @@ export async function getServerSideProps({ req, query }) {
         keywords: [`лучшие подборки книг`, `электронные книги бесплатно`],
       },
       selections: selections?.data?.data,
-      banners: banners?.data?.data,
+      banners: {
+        aside: banners?.data?.data,
+      },
     },
   };
 }

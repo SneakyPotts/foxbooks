@@ -28,7 +28,9 @@ export async function getServerSideProps({ params, query }) {
     return {
       props: {
         reviews: reviews.data.data,
-        banners: banners?.data?.data,
+        banners: {
+          aside: banners?.data?.data,
+        },
       },
     };
   } catch {

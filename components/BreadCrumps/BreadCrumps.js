@@ -40,40 +40,17 @@ const Breadcrumbs = ({ data }) => {
 
         {data?.map(({ path, title }, index) => {
           return (
-            path &&
-            (data?.length - 1 !== index ? (
-              <Fragment key={path}>
-                <li
-                  className={st.dot}
-                  itemProp="itemListElement"
-                  itemScope
-                  itemType="https://schema.org/ListItem"
-                >
-                  <Link href={path}>
-                    <a
-                      className={st.link}
-                      title={title}
-                      itemProp="item"
-                      itemID={`${baseUrl}${path}`}
-                    >
-                      <span itemProp="name">{title}</span>
-                      <meta
-                        itemProp="position"
-                        content={index + 1}
-                      />
-                    </a>
-                  </Link>
-                </li>
-              </Fragment>
-            ) : (
-              <Fragment key={path}>
-                <li
-                  className={classNames({ [st.dot]: data?.length - 1 !== index })}
-                  itemProp="itemListElement"
-                  itemScope
-                  itemType="https://schema.org/ListItem"
-                >
-                  <span
+            path && (
+              // (data?.length - 1 !== index ? (
+              <li
+                key={path}
+                className={classNames({ [st.dot]: data?.length - 1 !== index })}
+                itemProp="itemListElement"
+                itemScope
+                itemType="https://schema.org/ListItem"
+              >
+                <Link href={path}>
+                  <a
                     className={st.link}
                     title={title}
                     itemProp="item"
@@ -84,10 +61,32 @@ const Breadcrumbs = ({ data }) => {
                       itemProp="position"
                       content={index + 1}
                     />
-                  </span>
-                </li>
-              </Fragment>
-            ))
+                  </a>
+                </Link>
+              </li>
+            )
+            // ) : (
+            //   <li
+            //     key={path}
+            //     className={classNames({ [st.dot]: data?.length - 1 !== index })}
+            //     itemProp="itemListElement"
+            //     itemScope
+            //     itemType="https://schema.org/ListItem"
+            //   >
+            //     <span
+            //       className={st.link}
+            //       title={title}
+            //       itemProp="item"
+            //       itemID={`${baseUrl}${path}`}
+            //     >
+            //       <span itemProp="name">{title}</span>
+            //       <meta
+            //         itemProp="position"
+            //         content={index + 1}
+            //       />
+            //     </span>
+            //   </li>
+            // ))
           );
         })}
       </ul>

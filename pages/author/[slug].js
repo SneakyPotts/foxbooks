@@ -45,7 +45,9 @@ export async function getServerSideProps({ req, params }) {
           og_description: author?.data?.data?.og_description || '',
           og_img: author?.data?.data?.og_img || '',
         },
-        banners: banners?.data?.data,
+        banners: {
+          aside: banners?.data?.data,
+        },
         authorInfoBlock: authorInfoBlock?.data.data,
       },
     };

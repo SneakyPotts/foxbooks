@@ -69,7 +69,9 @@ export async function getServerSideProps({ query, params }) {
         books: books?.data?.data,
         books_type: params.books_type,
         order: order?.data?.data,
-        banners: banners?.data?.data,
+        banners: {
+          aside: banners?.data?.data,
+        },
       },
     };
   } catch {

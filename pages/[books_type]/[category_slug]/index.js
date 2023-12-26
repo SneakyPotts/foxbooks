@@ -64,7 +64,9 @@ export async function getServerSideProps({ req, params, query }) {
         categories: categories?.data?.data,
         books: books?.data?.data,
         order: order?.data?.data,
-        banners: banners?.data?.data,
+        banners: {
+          aside: banners?.data?.data,
+        },
         SEO: {
           title: seo_data?.seo_title,
           description: seo_data?.seo_description,

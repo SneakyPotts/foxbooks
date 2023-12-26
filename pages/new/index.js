@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import NewPage from '../../components/NewPage';
+import { currentYear } from '../../utils';
 
 import { setCurrentPageBanners } from '../../store/adminSlice';
 import { setNovelties } from '../../store/noveltiesSlice';
@@ -26,12 +27,14 @@ export async function getServerSideProps({ query }) {
   return {
     props: {
       SEO: {
-        title: `Новинки книг ${new Date().getFullYear()} на FoxBooks 🦊| Новинки книжного рынка`,
-        description: `Все новинки книг ${new Date().getFullYear()} в онлайн библиотеке FoxBooks. Просматривайте новинки книжного рынка и читайте или слушайте актуальные новинки на смартфоне или компьютере!`,
-        keywords: [`новинки книг ${new Date().getFullYear()}`, `новинки книжного рынка`],
+        title: `Новинки книг ${currentYear()} на FoxBooks 🦊| Новинки книжного рынка`,
+        description: `Все новинки книг ${currentYear()} в онлайн библиотеке FoxBooks. Просматривайте новинки книжного рынка и читайте или слушайте актуальные новинки на смартфоне или компьютере!`,
+        keywords: [`новинки книг ${currentYear()}`, `новинки книжного рынка`],
       },
       novelties: novelties?.data?.data,
-      banners: banners?.data?.data,
+      banners: {
+        aside: banners?.data?.data,
+      },
     },
   };
 }

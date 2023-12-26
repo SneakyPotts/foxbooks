@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 
 import style from './banner.module.scss';
 
-const Banners = () => {
+const Banners = ({ type = 'aside' }) => {
   const { banners } = useSelector((state) => state.adminSettings);
 
   return (
     <>
-      {banners.length ? (
-        banners.map((banner) => {
+      {banners[type]?.length ? (
+        banners[type]?.map((banner) => {
           switch (banner?.type) {
             case 'image':
               return (
@@ -73,3 +73,14 @@ const Banners = () => {
 };
 
 export default Banners;
+
+//CONTENT BANNER
+/*
+*             <Image
+                src="/horizontalBookCovers/bookCover1.png"
+                alt=""
+                width={588}
+                height={250}
+                className={st.relatedInfoBanner}
+              />
+* */
