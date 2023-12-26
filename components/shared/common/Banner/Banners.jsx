@@ -1,3 +1,5 @@
+import { Image } from 'next/image';
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -52,20 +54,32 @@ const Banners = ({ type = 'aside' }) => {
         })
       ) : (
         <>
-          <div className={style.bannerBlock}>
+          {type === 'aside' ? (
+            <>
+              <div className={style.bannerBlock}>
+                <img
+                  src="/banner.png"
+                  alt=""
+                  className={style.banner}
+                />
+              </div>
+              <div className={style.bannerBlock}>
+                <img
+                  src="/banner.png"
+                  alt=""
+                  className={style.banner}
+                />
+              </div>
+            </>
+          ) : (
             <img
-              src="/banner.png"
+              src="/horizontalBookCovers/bookCover1.png"
               alt=""
-              className={style.banner}
+              width={588}
+              height={250}
+              className={style.bannerContent}
             />
-          </div>
-          <div className={style.bannerBlock}>
-            <img
-              src="/banner.png"
-              alt=""
-              className={style.banner}
-            />
-          </div>
+          )}
         </>
       )}
     </>
