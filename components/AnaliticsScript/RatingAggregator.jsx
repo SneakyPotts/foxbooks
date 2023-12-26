@@ -4,7 +4,6 @@ import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { removeQuotesAndTags, secondsToISO8601Duration } from '../../utils';
-import { WebPageJsonLd } from 'next-seo';
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL.slice(0, process.env.NEXT_PUBLIC_APP_URL.length - 1);
 
@@ -137,17 +136,30 @@ export function MicroMarkingOtherPages({ ...props }) {
   return (
     <>
       {router.pathname !== '/[books_type]/[category_slug]/[book_slug]' && !!Object.keys(props).length ? (
-        <WebPageJsonLd
-          id={`${baseUrl}${router.asPath}`}
-          openGraph={{
-            '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            name: props?.title,
-            description: removeQuotesAndTags(props?.description) || 'Нет описания',
-            ...imgField,
-          }}
-        />
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              id: `${baseUrl}${router.asPath}`,
+              '@context': 'https://schema.org',
+              '@type': 'WebPage',
+              name: props?.title,
+              description: removeQuotesAndTags(props?.description) || 'Нет описания',
+              ...imgField,
+            })}
+          </script>
+        </Helmet>
       ) : null}
     </>
   );
 }
+
+// <WebPageJsonLd
+//   id={`${baseUrl}${router.asPath}`}
+//   openGraph={{
+//     '@context': 'https://schema.org',
+//     '@type': 'WebPage',
+//     name: props?.title,
+//     description: removeQuotesAndTags(props?.description) || 'Нет описания',
+//     ...imgField,
+//   }}
+// />
