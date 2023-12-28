@@ -17,8 +17,13 @@ const initialState = {
   userReadingProgress: [],
 };
 
-export const getBooksByAuthor = createAsyncThunk('book/getBooksByAuthor', async (id = 0) => {
-  const response = await BookService.getBooksByAuthor(id);
+export const getBooksByAuthor = createAsyncThunk('book/getBooksByAuthor', async ({ id = 0, book_id = 0 }) => {
+  const response = await BookService.getBooksByAuthor({ id, book_id });
+  return response.data;
+});
+
+export const getAudioBooksByAuthor = createAsyncThunk('book/getAudioBooksByAuthor', async ({ id = 0, book_id = 0 }) => {
+  const response = await BookService.getAudioBooksByAuthor({ id, book_id });
   return response.data;
 });
 
@@ -28,11 +33,6 @@ export const getBooksByLetter = createAsyncThunk('book/getBooksByLetter', async 
     ...response.data.data,
     query,
   };
-});
-
-export const getAudioBooksByAuthor = createAsyncThunk('book/getAudioBooksByAuthor', async (id = 0) => {
-  const response = await BookService.getAudioBooksByAuthor(id);
-  return response.data;
 });
 
 export const setBookStatus = createAsyncThunk('book/setBookStatus', async (data) => {

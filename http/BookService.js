@@ -69,12 +69,12 @@ export default class BookService {
     });
   }
 
-  static async getBooksByAuthor(id) {
-    return axios.get(`${API_URL}/authors/${id}/books`);
+  static async getBooksByAuthor({ id, book_id }) {
+    return axios.get(`${API_URL}/authors/${id}/books?book_id=${book_id}`);
   }
 
-  static async getAudioBooksByAuthor(id) {
-    return axios.get(`${API_URL}/authors/${id}/audio-books`);
+  static async getAudioBooksByAuthor({ id, book_id }) {
+    return axios.get(`${API_URL}/authors/${id}/audio-books?book_id=${book_id}`);
   }
 
   static async getSimilarBooks(id, type) {

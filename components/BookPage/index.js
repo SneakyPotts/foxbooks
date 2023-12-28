@@ -48,8 +48,8 @@ const BookPage = ({ bookType }) => {
     const authorId = book?.authors[0]?.id;
 
     if (authorId) {
-      dispatch(getBooksByAuthor(authorId));
-      dispatch(getAudioBooksByAuthor(authorId));
+      dispatch(getBooksByAuthor({ id: authorId, book_id: book?.id }));
+      dispatch(getAudioBooksByAuthor({ id: authorId, book_id: book?.id }));
     }
   }, [router.query]);
 
