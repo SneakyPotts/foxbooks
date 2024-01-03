@@ -43,6 +43,6 @@ export const comments = createSlice({
   },
 });
 
-export const {} = comments.actions;
+// export const {} = comments.actions; //uncomment for reducers
 
 export default comments.reducer;
