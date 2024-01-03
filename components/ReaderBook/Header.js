@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ArrowIcon from './../../public/chevron-right.svg';
-import { ReactComponent as Settings } from './../../public/settings-new.svg';
+import Settings from './../../public/settings-new.svg';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
