@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
         keywords={pageProps.SEO?.keywords || ''}
       />
 
-      <MicroMarkingOtherPages {...pageProps.SEO} />
+      {/*<MicroMarkingOtherPages {...pageProps.SEO} />*/}
 
       <Layout>
         <main className="main">{getLayout(<Component {...pageProps} />)}</main>
