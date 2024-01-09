@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../../components/AnaliticsScript/MicroMarking';
 import CategoriesPage from '../../components/CategoriesPage';
 
 import { setAudioCategories, setCategories } from '../../store/bookSlice';
@@ -13,7 +14,12 @@ const index = (props) => {
   dispatch(setCategories(props.categories));
   dispatch(setAudioCategories(props.audioCategories));
 
-  return <CategoriesPage />;
+  return (
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
+      <CategoriesPage />
+    </>
+  );
 };
 
 export default index;

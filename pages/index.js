@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../components/AnaliticsScript/MicroMarking';
 import Home from '../components/HomePage';
 
 import { setBooks, setCategories, setDailyHotUpdates } from '../store/bookSlice';
@@ -19,12 +20,15 @@ export default function App(props) {
   dispatch(setReviews(props.reviews));
 
   return (
-    <Home
-      audioBooks={props.audioBooks?.audio_books}
-      newBooks={props.newBooks?.books}
-      order={props.order}
-      banners={props.banners}
-    />
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
+      <Home
+        audioBooks={props.audioBooks?.audio_books}
+        newBooks={props.newBooks?.books}
+        order={props.order}
+        banners={props.banners}
+      />
+    </>
   );
 }
 

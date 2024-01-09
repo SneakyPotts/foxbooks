@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ArrowRight from '../../public/chevron-right.svg';
-import RatingAggregator from '../AnaliticsScript/RatingAggregator';
+import { MicroMarking } from '../AnaliticsScript/MicroMarking';
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import CompilationItem from '../CompilationItem';
 import AboutBook from './AboutBook';
@@ -147,11 +147,6 @@ const BookPage = ({ bookType }) => {
           </div>
         </div>
       </div>
-
-      {/*<RatingAggregator*/}
-      {/*  type={type}*/}
-      {/*  book={book}*/}
-      {/*/>*/}
     </>
   );
 };

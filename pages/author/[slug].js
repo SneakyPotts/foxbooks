@@ -1,5 +1,7 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../../components/AnaliticsScript/MicroMarking';
 import AuthorPage from '../../components/AuthorPage';
 
 import { setCurrentPageBanners } from '../../store/adminSlice';
@@ -17,7 +19,12 @@ const AuthorBySlugPage = (props) => {
   dispatch(setCategories(props.categories));
   dispatch(setCurrentPageBanners(props.banners));
 
-  return <AuthorPage infoBlocks={props.authorInfoBlock} />;
+  return (
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
+      <AuthorPage infoBlocks={props.authorInfoBlock} />
+    </>
+  );
 };
 
 export default AuthorBySlugPage;

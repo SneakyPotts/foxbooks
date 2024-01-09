@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../../../components/AnaliticsScript/MicroMarking';
 import SeriesPage from '../../../components/SeriesPage';
 
 import { setCurrentPageBanners } from '../../../store/adminSlice';
@@ -9,13 +10,18 @@ import { setSeries } from '../../../store/authorSlice';
 import AdminSettings from '../../../http/AdminSettings';
 import AuthorService from '../../../http/AuthorService';
 
-const series = ({ series, banners }) => {
+const series = (props) => {
   const dispatch = useDispatch();
 
-  dispatch(setSeries(series));
-  dispatch(setCurrentPageBanners(banners));
+  dispatch(setSeries(props.series));
+  dispatch(setCurrentPageBanners(props.banners));
 
-  return <SeriesPage />;
+  return (
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
+      <SeriesPage />
+    </>
+  );
 };
 
 export default series;
