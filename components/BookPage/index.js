@@ -148,10 +148,10 @@ const BookPage = ({ bookType }) => {
         </div>
       </div>
 
-      <RatingAggregator
-        type={type}
-        book={book}
-      />
+      {/*<RatingAggregator*/}
+      {/*  type={type}*/}
+      {/*  book={book}*/}
+      {/*/>*/}
     </>
   );
 };

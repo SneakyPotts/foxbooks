@@ -318,6 +318,8 @@ export const currentYear = () => {
 };
 
 export function removeQuotesAndTags(input) {
+  if (!input || !input?.length) return '';
+
   const withoutQuotes = input.replace(/"/g, '');
 
   return withoutQuotes.replace(/<[^>]*>/g, '');

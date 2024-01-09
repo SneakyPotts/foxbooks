@@ -40,7 +40,7 @@ const RatingAggregator = memo(function RatingAggregator({ book, type }) {
           '@context': 'http://schema.org',
           '@type': 'WebPage',
           name: fullName,
-          description: removeQuotesAndTags(book?.text || book?.description) || 'Нет описания',
+          description: removeQuotesAndTags(book?.text || book?.description || 'Нет описания'),
           primaryImageOfPage: book?.cover_url,
           mainEntity: {
             '@type': audio ? 'Audiobook' : 'Book',
