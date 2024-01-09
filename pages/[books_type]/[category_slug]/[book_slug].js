@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { MicroMarking } from '../../../components/AnaliticsScript/MicroMarking';
 import BookPage from '../../../components/BookPage';
 
 import { setCurrentPageBanners } from '../../../store/adminSlice';
@@ -15,7 +16,15 @@ const Book = ({ book, books_type, banners }) => {
   dispatch(setBook(book));
   dispatch(setCurrentPageBanners(banners));
 
-  return <BookPage bookType={books_type} />;
+  return (
+    <>
+      <MicroMarking
+        type={books_type}
+        book={book}
+      />
+      <BookPage bookType={books_type} />
+    </>
+  );
 };
 
 export default Book;

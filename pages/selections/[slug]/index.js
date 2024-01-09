@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../../../components/AnaliticsScript/MicroMarking';
 import SelectionPage from '../../../components/Selections/SelectionPage';
 
 import { setSelectionById } from '../../../store/selectionSlice';
@@ -11,7 +12,12 @@ const Selection = (props) => {
 
   dispatch(setSelectionById(props.selectionById));
 
-  return <SelectionPage />;
+  return (
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
+      <SelectionPage />
+    </>
+  );
 };
 
 export default Selection;

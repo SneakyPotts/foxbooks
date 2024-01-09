@@ -2,9 +2,6 @@ import React from 'react';
 
 import HoldersRight from '../components/Holders';
 
-import AdminSettings from '../http/AdminSettings';
-import SelectionService from '../http/SelectionService';
-
 const Holders = () => {
   return <HoldersRight />;
 };

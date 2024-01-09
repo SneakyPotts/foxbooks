@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../../components/AnaliticsScript/MicroMarking';
 import NewPage from '../../components/NewPage';
 import { currentYear } from '../../utils';
 
@@ -15,7 +16,12 @@ const New = (props) => {
   dispatch(setNovelties(props.novelties));
   dispatch(setCurrentPageBanners(props.banners));
 
-  return <NewPage />;
+  return (
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
+      <NewPage />
+    </>
+  );
 };
 
 export default New;

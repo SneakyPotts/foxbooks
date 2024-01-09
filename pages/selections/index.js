@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../../components/AnaliticsScript/MicroMarking';
 import SelectionsPage from '../../components/Selections';
 
 import { setCurrentPageBanners } from '../../store/adminSlice';
@@ -14,7 +15,12 @@ const Selections = (props) => {
   dispatch(setSelections(props?.selections));
   dispatch(setCurrentPageBanners(props.banners));
 
-  return <SelectionsPage />;
+  return (
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
+      <SelectionsPage />
+    </>
+  );
 };
 
 export default Selections;

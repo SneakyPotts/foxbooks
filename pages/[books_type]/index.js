@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { MicroMarkingOtherPages } from '../../components/AnaliticsScript/MicroMarking';
 import BooksComponent from '../../components/Books';
 
 import { setCurrentPageBanners } from '../../store/adminSlice';
@@ -19,12 +20,13 @@ const Books = (props) => {
   dispatch(setCurrentPageBanners(props.banners));
 
   return (
-    <div>
+    <>
+      <MicroMarkingOtherPages {...props.SEO} />
       <BooksComponent
         booksType={booksType}
         order={props.order}
       />
-    </div>
+    </>
   );
 };
 

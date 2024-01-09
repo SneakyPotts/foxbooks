@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 
 import React, { memo } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 import { removeQuotesAndTags, secondsToISO8601Duration } from '../../utils';
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL.slice(0, process.env.NEXT_PUBLIC_APP_URL.length - 1);
 
-const RatingAggregator = memo(function RatingAggregator({ book, type }) {
+export const MicroMarking = memo(function MicroMarkup({ book, type }) {
   const router = useRouter();
 
   const audio = type === 'audioBooks';
@@ -72,8 +72,6 @@ const RatingAggregator = memo(function RatingAggregator({ book, type }) {
   );
 });
 
-export default RatingAggregator;
-
 // <script
 //   type="application/ld+json"
 //   className="reviews-schema"
@@ -128,30 +126,29 @@ export default RatingAggregator;
 //   }}
 // />
 
-export function MicroMarkingOtherPages({ ...props }) {
+export const MicroMarkingOtherPages = memo(function MicroMarkingOtherPages({ ...props }) {
   const router = useRouter();
 
   const imgField = props?.og_img ? { primaryImageOfPage: props?.og_img } : {};
 
+  if (!Object.keys(props).length) return null;
+
+  // if (router.pathname !== '/[books_type]/[category_slug]/[book_slug]' && !!Object.keys(props).length)
   return (
-    <>
-      {router.pathname !== '/[books_type]/[category_slug]/[book_slug]' && !!Object.keys(props).length ? (
-        <Helmet>
-          <script type="application/ld+json">
-            {JSON.stringify({
-              id: `${baseUrl}${router.asPath}`,
-              '@context': 'https://schema.org',
-              '@type': 'WebPage',
-              name: props?.title,
-              description: removeQuotesAndTags(props?.description) || 'Нет описания',
-              ...imgField,
-            })}
-          </script>
-        </Helmet>
-      ) : null}
-    </>
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          id: `${baseUrl}${router.asPath}`,
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: props?.title,
+          description: removeQuotesAndTags(props?.description) || 'Нет описания',
+          ...imgField,
+        })}
+      </script>
+    </Helmet>
   );
-}
+});
 
 // <WebPageJsonLd
 //   id={`${baseUrl}${router.asPath}`}
