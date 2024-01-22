@@ -50,7 +50,7 @@ export async function getServerSideProps({ req, params, query }) {
     const books = await BookService.getBooks({
       ...query,
       type: books_type === 'audiobooks' ? 'audioBooks' : query.type,
-      showType: query.showType || 'block',
+      showType: 'list',
       sortBy: query.sortBy || order?.data?.data?.[0]?.value,
       findByCategory: categoryData.data.data[0].id,
       token,
