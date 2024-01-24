@@ -66,16 +66,18 @@ const SideFilters = () => {
   const setQuery = (value, queryName, ref = null, mainQuery = null) => {
     setResetIsVisible(true);
 
+    const { page, ...query } = router.query;
+
     if (ref) {
       ref.current.focus();
       ref.current.value = value;
 
-      router.push({ query: { ...router.query, page: 1, [queryName]: encodeURI(value), [mainQuery]: null } }, null, { scroll: false });
+      router.push({ query: { ...query, [queryName]: encodeURI(value), [mainQuery]: null } }, null, { scroll: false });
 
       return;
     }
 
-    router.push({ query: { ...router.query, page: 1, [queryName]: encodeURI(value) } }, null, { scroll: false });
+    router.push({ query: { ...query, [queryName]: encodeURI(value) } }, null, { scroll: false });
   };
 
   const handleChange = debounce(setQuery, 300);
@@ -86,7 +88,7 @@ const SideFilters = () => {
 
     router.push({
       pathname: '/[books_type]/[category_slug]',
-      query: Object.assign(queryObj, sortBy && { sortBy }, showType && { showType }, { page: 1 }),
+      query: Object.assign(queryObj, sortBy && { sortBy }, showType && { showType }),
     });
 
     /*close filters*/

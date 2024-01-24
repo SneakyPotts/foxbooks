@@ -16,9 +16,34 @@ const Switcher = ({ flagSwitcher, setFlagSwitcher, isCategory }) => {
   const handleClick = (value) => {
     const showTypeSearch = isCategory ? {} : { ['showType']: value };
 
-    router.push({ query: { ...router.query, page: 1, ...showTypeSearch } }, null, {
-      scroll: false,
+    // router.push({ query: { ...router.query, page: 1, ...showTypeSearch } }, null, {
+    //   scroll: false,
+    // });
+
+    const newQuery = { ...router.query, ...showTypeSearch };
+
+    // Create new URL
+    const newUrl = {
+      pathname: router.pathname,
+      query: newQuery,
+    };
+
+    // Convert new URL to string
+    const newUrlStr = JSON.stringify(newUrl);
+
+    // Convert current URL to string
+    const currentUrlStr = JSON.stringify({
+      pathname: router.pathname,
+      query: router.query,
     });
+
+    // Only navigate if the URL has actually changed
+    if (newUrlStr !== currentUrlStr) {
+      router.push(newUrl, undefined, {
+        scroll: false,
+      });
+    }
+
     isCategory && setShowType(value);
   };
 
