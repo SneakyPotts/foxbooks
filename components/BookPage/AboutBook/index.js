@@ -294,7 +294,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                         cursor: 'pointer',
                       }}
                       type="submit"
-                      value="Читати"
+                      value="Читать"
                     />
                   </form>
                 )}
