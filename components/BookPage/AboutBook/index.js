@@ -294,7 +294,7 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
                         cursor: 'pointer',
                       }}
                       type="submit"
-                      value="Читати"
+                      value="Читать"
                     />
                   </form>
                 )}
@@ -381,9 +381,23 @@ const AboutBook = ({ book, audioFlag, showMyComp }) => {
 
                 <p>
                   Жанр:{' '}
-                  <Link href={`/${book?.type.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}`}>
-                    <a>{(book?.genres?.length ? book?.genres?.[0]?.name : book?.genre?.name) || '-'}</a>
-                  </Link>
+                  {Array.isArray(book?.genres)
+                    ? book?.genres.map((v, i) => (
+                        <Link href={`/${book?.type.toLowerCase()}/${v.slug}`}>
+                          <a>
+                            {!!i && ', '}
+                            {v.name}
+                          </a>
+                        </Link>
+                      ))
+                    : (
+                        <Link href={`/${book?.type.toLowerCase()}/${book?.genre?.slug}`}>
+                          <a>{book?.genre?.name}</a>
+                        </Link>
+                      ) || '-'}
+                  {/*<Link href={`/${book?.type.toLowerCase()}/${book?.genres?.[0]?.slug || book?.genre?.slug}`}>*/}
+                  {/*  <a>{(book?.genres?.length ? book?.genres?.[0]?.name : book?.genre?.name) || '-'}</a>*/}
+                  {/*</Link>*/}
                 </p>
                 {!!book?.language.length && (
                   <p>

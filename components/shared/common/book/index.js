@@ -21,7 +21,7 @@ import st from './book.module.scss';
 
 import { audioBook, deleteBookFromFavorite, setBookStatus } from '../../../../store/bookSlice';
 
-const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, noLinks = false, book, count, type, withDelete, onDelete, inReview }) => {
+const Book = ({ audio, flagSwitcher, classNames, isCategory, similar, mobalSimilar = false, noLinks = false, book, count, type, withDelete, onDelete, inReview }) => {
   const dispatch = useDispatch();
 
   const { innerWidthWindow } = useSelector((state) => state.common);
@@ -256,7 +256,7 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
             <span className={st.bookAuthor}>Нет автора</span>
           )}
         </span>
-        {flagSwitcher && (
+        {flagSwitcher ? (
           <div className={classnames(st.extraInfo, { [st.addInfo]: !audio }, { [st.addInfoAudio]: audio })}>
             <p className={st.bookYear}>
               <span>{audio ? book?.year : book?.year?.year}</span>
@@ -295,6 +295,8 @@ const Book = ({ audio, flagSwitcher, classNames, similar, mobalSimilar = false, 
               </div>
             )}
           </div>
+        ) : (
+          isCategory && <p className={st.hidden}>{book?.text || book?.description}</p>
         )}
 
         {flagSwitcher && isAuth && (

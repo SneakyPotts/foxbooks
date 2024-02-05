@@ -31,6 +31,7 @@
     "sharp": "^0.31.1",
     "socket.io-client": "^4.4.1",
     "swiper": "^9.0.5",
+    "usehooks-ts": "^2.9.5",
     "yup": "^0.32.11"
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",

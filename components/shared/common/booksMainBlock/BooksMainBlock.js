@@ -27,6 +27,7 @@ const BooksMainBlock = ({ audio }) => {
             <MyPagination
               currentPage={books?.current_page}
               lastPage={books?.last_page}
+              customLink={`/${audio ? 'audiobooks' : 'books'}`}
             />
           </>
         ) : (

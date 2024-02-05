@@ -50,13 +50,15 @@ export async function getServerSideProps({ req, params, query }) {
     const books = await BookService.getBooks({
       ...query,
       type: books_type === 'audiobooks' ? 'audioBooks' : query.type,
-      showType: query.showType || 'block',
+      showType: 'list',
       sortBy: query.sortBy || order?.data?.data?.[0]?.value,
       findByCategory: categoryData.data.data[0].id,
       token,
     });
 
     const banners = await AdminSettings.getPageBanner({ page_slug: 'category', category_slug });
+
+    const pageSEO = query.page > 1 ? `Страница ${query.page}.` : '';
 
     return {
       props: {
@@ -72,11 +74,11 @@ export async function getServerSideProps({ req, params, query }) {
           aside: banners?.data?.data,
         },
         SEO: {
-          title: seo_data?.seo_title,
-          description: seo_data?.seo_description,
+          title: `${pageSEO} ${seo_data?.seo_title}`.trim(),
+          description: `${seo_data?.seo_description} ${pageSEO}`.trim(),
           keywords: seo_data?.seo_keywords,
-          og_title: seo_data?.og_title,
-          og_description: seo_data?.og_description,
+          og_title: `${pageSEO} ${seo_data?.og_title}`.trim(),
+          og_description: `${seo_data?.og_description} ${pageSEO}`.trim(),
           og_img: seo_data?.og_img,
         },
         infoBlocks: categoryInfoBlock?.data?.data,

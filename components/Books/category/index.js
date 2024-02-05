@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../../BreadCrumps/BreadCrumps';
@@ -11,6 +11,7 @@ import Switcher from '../../switcher/Switcher';
 import MobileFilterModal from './../../MobileFilterModal';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
+import { useLocalStorage } from 'usehooks-ts';
 
 import cssBook from '../../shared/common/book/book.module.scss';
 import st from './category.module.scss';
@@ -38,8 +39,10 @@ const mobileFilters = [
 ];
 
 const Category = ({ order, current }) => {
+  const [showType, setShowType] = useLocalStorage('categoryShowType', 'block');
+
   const router = useRouter();
-  const { books_type } = router.query;
+  const { books_type, page } = router.query;
 
   const [stateIndex, setStateIndex] = useState(null);
   const data = [
@@ -51,10 +54,6 @@ const Category = ({ order, current }) => {
     },
   ];
 
-  const flagSwitcher = useMemo(() => {
-    return router.query['showType'] === 'list';
-  }, [router.query]);
-
   const { books, infoBlocks } = useSelector((state) => state.book);
   const { innerWidthWindow } = useSelector((state) => state.common);
 
@@ -65,7 +64,11 @@ const Category = ({ order, current }) => {
   const handleChange = debounce(setQuery, 300);
 
   useEffect(() => {
+    setShowType('block');
+
     books_type === 'audiobooks' && mobileFilters.pop();
+
+    return () => localStorage.removeItem('categoryShowType');
   }, []);
 
   return (
@@ -128,7 +131,10 @@ const Category = ({ order, current }) => {
                   ))}
                 </MobileFilterModal>
               )}
-              <Switcher flagSwitcher={flagSwitcher} />
+              <Switcher
+                flagSwitcher={showType === 'list'}
+                isCategory
+              />
             </div>
           </div>
           <div className={classnames(st.mainBlock, { [st.info]: !!infoBlocks?.length })}>
@@ -138,8 +144,8 @@ const Category = ({ order, current }) => {
                 <>
                   <div
                     className={classnames({
-                      [st.booksGrid]: !flagSwitcher,
-                      [st.booksColumn]: flagSwitcher,
+                      [st.booksGrid]: showType === 'block',
+                      [st.booksColumn]: showType === 'list',
                       [cssBook.mobileTitle]: innerWidthWindow <= 768,
                     })}
                   >
@@ -147,14 +153,20 @@ const Category = ({ order, current }) => {
                       <Book
                         key={book?.id}
                         audio={books_type === 'audiobooks'}
-                        flagSwitcher={flagSwitcher}
+                        flagSwitcher={showType === 'list'}
+                        isCategory
                         book={book}
                         type={book?.type}
                       />
                     ))}
                   </div>
 
-                  {books?.last_page > 1 && <MyPagination lastPage={books?.last_page} />}
+                  {books?.last_page > 1 && (
+                    <MyPagination
+                      lastPage={books?.last_page}
+                      customLink={router.asPath}
+                    />
+                  )}
                 </>
               ) : (
                 <p className="empty">Книги не найдены</p>
@@ -163,7 +175,7 @@ const Category = ({ order, current }) => {
           </div>
         </div>
 
-        <div className={classnames(st.advertisingBlok, { [st.list]: flagSwitcher })}>
+        <div className={classnames(st.advertisingBlok, { [st.list]: showType === 'list' })}>
           {/*<div className={st.bannerBlock}>*/}
           {/*  <img src="/banner.png" alt="" className={st.banner} />*/}
           {/*</div>*/}
@@ -171,7 +183,7 @@ const Category = ({ order, current }) => {
         </div>
       </div>
 
-      {!!infoBlocks?.length && <About data={infoBlocks} />}
+      {!!infoBlocks?.length && !(page > 1) && <About data={infoBlocks} />}
     </div>
   );
 };

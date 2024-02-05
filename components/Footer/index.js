@@ -40,7 +40,7 @@ const Footer = () => {
                   <Twitter />
                 </a>
                 <a
-                  href=""
+                  href="https://t.me/foxbooksec"
                   className={classNames(st.socialmediaLink, st.mobile)}
                 >
                   <Telegram />
