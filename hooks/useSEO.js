@@ -26,7 +26,7 @@ const useSEO = () => {
 
   return {
     // canonical: canonical || noIndex ? canonicalUrl : null,
-    canonical: canonicalUrl,
+    canonical: !findFields(router.query, ['page']).length && canonicalUrl,
     noIndex: isReader || noIndex,
   };
 };

@@ -42,7 +42,7 @@ const Category = ({ order, current }) => {
   const [showType, setShowType] = useLocalStorage('categoryShowType', 'block');
 
   const router = useRouter();
-  const { books_type } = router.query;
+  const { books_type, page } = router.query;
 
   const [stateIndex, setStateIndex] = useState(null);
   const data = [
@@ -161,7 +161,12 @@ const Category = ({ order, current }) => {
                     ))}
                   </div>
 
-                  {books?.last_page > 1 && <MyPagination lastPage={books?.last_page} />}
+                  {books?.last_page > 1 && (
+                    <MyPagination
+                      lastPage={books?.last_page}
+                      customLink={router.asPath}
+                    />
+                  )}
                 </>
               ) : (
                 <p className="empty">Книги не найдены</p>
@@ -178,7 +183,7 @@ const Category = ({ order, current }) => {
         </div>
       </div>
 
-      {!!infoBlocks?.length && <About data={infoBlocks} />}
+      {!!infoBlocks?.length && !(page > 1) && <About data={infoBlocks} />}
     </div>
   );
 };

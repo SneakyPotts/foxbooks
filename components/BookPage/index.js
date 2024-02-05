@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ArrowRight from '../../public/chevron-right.svg';
-import { MicroMarking } from '../AnaliticsScript/MicroMarking';
 import Breadcrumbs from '../BreadCrumps/BreadCrumps';
 import CompilationItem from '../CompilationItem';
 import AboutBook from './AboutBook';
@@ -139,6 +138,15 @@ const BookPage = ({ bookType }) => {
               ) : null}
 
               <Form title={book?.title} />
+
+              {bookType === 'books' && (
+                <p className={st.recomInputLabel}>
+                  Читайте полную версию (весть текст) издания <strong>“{book?.title}”</strong> бесплатно в online-библиотеке foxbooks.ec без SMS и регистрации. Жанр
+                  произведения: <strong>{Array.isArray(book?.genres) ? book?.genres.map((v) => v.name).join(', ') : book?.genre.name}</strong>, язык -{' '}
+                  <strong>{book?.language}</strong>. Вы также можете ознакомиться с кратким содержанием и отзывами (комментариями) об этом романе от пользователей нашей
+                  онлайн-библиотеки.
+                </p>
+              )}
             </div>
           </div>
 
