@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import React from 'react';
@@ -10,8 +11,23 @@ import Pagination from 'rc-pagination';
 
 import styles from './styles.module.scss';
 
-const MyPagination = ({ currentPage, lastPage, onClick, externalClass, scrollTo, smoothScroll = true }) => {
+const MyPagination = ({ currentPage, lastPage, onClick, externalClass, scrollTo, smoothScroll = true, customLink }) => {
   const router = useRouter();
+
+  const NewLink = ({ current }) => {
+    const newLink = customLink.includes('page=')
+      ? customLink
+          .replace(/\?page=\d+$/, current === 1 ? '' : `?page=${current}`)
+          .replace(/\?page=\d+&/, current === 1 ? '?' : `?page=${current}&`)
+          .replace(/&page=\d+/, current === 1 ? '' : `&page=${current}`)
+      : `${customLink}${customLink.includes('?') ? '&' : '?'}page=${current}`;
+
+    return (
+      <Link href={newLink}>
+        <a>{current}</a>
+      </Link>
+    );
+  };
 
   const scrollStartBlock = () => {
     scrollTo &&
@@ -26,8 +42,11 @@ const MyPagination = ({ currentPage, lastPage, onClick, externalClass, scrollTo,
     if (onClick) {
       onClick(current);
     } else {
-      router.push({ query: { ...router.query, page: current } });
+      const { page, ...query } = router.query;
+
+      router.push({ query: current === 1 ? { ...query } : { ...query, page: current } });
     }
+
     scrollStartBlock();
   };
 
@@ -42,6 +61,7 @@ const MyPagination = ({ currentPage, lastPage, onClick, externalClass, scrollTo,
           />
         ),
       }}
+      itemRender={(current, type, element) => (type === 'page' && customLink ? <NewLink current={current} /> : element)}
       current={+router.query?.page || currentPage || 1}
       defaultPageSize={1}
       total={lastPage}

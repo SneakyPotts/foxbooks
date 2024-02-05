@@ -9,7 +9,7 @@ export function middleware(request) {
       .replace(/\?page=1&/, '?')
       .replace(/&page=1/, '');
 
-    return NextResponse.redirect(newUrl, 308);
+    return NextResponse.redirect(new URL(newUrl), 308);
   } else {
     return NextResponse.next();
   }
