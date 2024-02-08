@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }) {
         />
 
         <Layout>
-          <main className="main">{getLayout(<Component {...pageProps} />, pageProps)}</main>
+          <main className="main">{getLayout(<Component {...pageProps} />)}</main>
         </Layout>
       </Provider>
     </HelmetProvider>

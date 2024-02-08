@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ArrowRight from '../../../../../public/chevron-right.svg';
@@ -13,7 +13,9 @@ import Book from '../../../icons/navMenu/book';
 import Selections from '../../../icons/navMenu/selections';
 import Quote from '../../../icons/quote';
 import Smile from '../../../icons/smile';
+import Loader from '../../Loader';
 import classNames from 'classnames';
+import Cookies from 'js-cookie';
 import { Navigation } from 'swiper/core';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -22,9 +24,18 @@ import styles from './styles.module.scss';
 
 import { setHeaderVisibility } from '../../../../../store/commonSlice';
 
-const MyBooksLayout = ({ userProgress, counters, children }) => {
+import BookService from '../../../../../http/BookService';
+import CommonService from '../../../../../http/CommonService';
+
+const MyBooksLayout = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const [counters, setCounters] = useState(null);
+  const [counterLoad, setCounterLoad] = useState(true);
+
+  const [userReadingProgress, setUserReadingProgress] = useState([]);
+  const [progressLoad, setProgressLoad] = useState(true);
 
   const tabs = useMemo(
     () => [
@@ -78,6 +89,28 @@ const MyBooksLayout = ({ userProgress, counters, children }) => {
     }
   };
 
+  const fetchData = async (token) => {
+    if (!token) return;
+
+    try {
+      const [countersResponse, readingProgressResponse] = await Promise.all([CommonService.getMyListCounters(), BookService.getUserReadingProgresses(token)]);
+
+      setCounters(countersResponse?.data?.data);
+      setCounterLoad(false);
+
+      setUserReadingProgress(Array.from({ length: 50 }, (_, i) => readingProgressResponse?.data?.data[i]));
+      setProgressLoad(false);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    }
+  };
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+
+    fetchData(token).then();
+  }, []);
+
   return (
     <>
       {(innerWidthWindow > 768 || headerIsVisible) && (
@@ -98,7 +131,11 @@ const MyBooksLayout = ({ userProgress, counters, children }) => {
 
             <h1 className={classNames('title', styles.title)}>Мои книги</h1>
 
-            {userProgress?.length ? (
+            {progressLoad ? (
+              <div className={styles.progressPlace}>
+                <Loader />
+              </div>
+            ) : userReadingProgress?.length ? (
               <Swiper
                 modules={[Navigation]}
                 navigation={{
@@ -108,9 +145,9 @@ const MyBooksLayout = ({ userProgress, counters, children }) => {
                 spaceBetween={innerWidthWindow > 768 ? 24 : 10}
                 slidesPerView={'auto'}
               >
-                {userProgress.map((i, j) => (
+                {userReadingProgress.map((i, j) => (
                   <SwiperSlide
-                    key={i?.id}
+                    key={`${i?.book_id}_${i.id}-${j}`}
                     className={classNames(styles.slide, {
                       [styles.audioSlide]: i?.type === 'audioBooks',
                     })}
@@ -154,30 +191,36 @@ const MyBooksLayout = ({ userProgress, counters, children }) => {
           </div>
 
           <nav className={styles.nav}>
-            <ul className={styles.navList}>
-              {tabs.map((i) => (
-                <li
-                  key={i?.title}
-                  className={styles.navItem}
-                >
-                  <Link
-                    href={i?.path}
-                    scroll={false}
+            {counterLoad ? (
+              <div className={styles.counterPlace}>
+                <Loader />
+              </div>
+            ) : (
+              <ul className={styles.navList}>
+                {tabs.map((i) => (
+                  <li
+                    key={i?.title}
+                    className={styles.navItem}
                   >
-                    <a
-                      className={classNames(styles.navLink, { [styles.active]: router.pathname === i?.path.split('?')[0] })}
-                      onClick={handleLinkClick}
+                    <Link
+                      href={i?.path}
+                      scroll={false}
                     >
-                      <span className={styles.navLinkCount}>{i?.count}</span>
-                      <span className={styles.navWrapper}>
-                        <span className={styles.navIcon}>{i?.icon}</span>
-                        {i?.title}
-                      </span>
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                      <a
+                        className={classNames(styles.navLink, { [styles.active]: router.pathname === i?.path.split('?')[0] })}
+                        onClick={handleLinkClick}
+                      >
+                        <span className={styles.navLinkCount}>{i?.count}</span>
+                        <span className={styles.navWrapper}>
+                          <span className={styles.navIcon}>{i?.icon}</span>
+                          {i?.title}
+                        </span>
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </nav>
         </>
       )}
