@@ -58,7 +58,8 @@ export async function getServerSideProps({ req, params, query }) {
 
     const banners = await AdminSettings.getPageBanner({ page_slug: 'category', category_slug });
 
-    const pageSEO = query.page > 1 ? `Страница ${query.page}.` : '';
+    const pageSEOTitle = query.page > 1 ? `Страница ${query.page}. ${categoryData?.data?.data[0].name}` : seo_data?.seo_title;
+    const pageSEODesc = `${seo_data?.og_description}${query.page > 1 ? ` Страница ${query.page}.` : ''}`;
 
     return {
       props: {
@@ -74,11 +75,11 @@ export async function getServerSideProps({ req, params, query }) {
           aside: banners?.data?.data,
         },
         SEO: {
-          title: `${pageSEO} ${seo_data?.seo_title}`.trim(),
-          description: `${seo_data?.seo_description} ${pageSEO}`.trim(),
+          title: pageSEOTitle,
+          description: pageSEODesc,
           keywords: seo_data?.seo_keywords,
-          og_title: `${pageSEO} ${seo_data?.og_title}`.trim(),
-          og_description: `${seo_data?.og_description} ${pageSEO}`.trim(),
+          og_title: pageSEOTitle,
+          og_description: pageSEODesc,
           og_img: seo_data?.og_img,
         },
         infoBlocks: categoryInfoBlock?.data?.data,

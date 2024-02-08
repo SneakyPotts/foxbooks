@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ArrowRight from '../../../../../public/chevron-right.svg';
@@ -13,29 +13,18 @@ import Book from '../../../icons/navMenu/book';
 import Selections from '../../../icons/navMenu/selections';
 import Quote from '../../../icons/quote';
 import Smile from '../../../icons/smile';
-import Loader from '../../Loader';
 import classNames from 'classnames';
-import Cookies from 'js-cookie';
 import { Navigation } from 'swiper/core';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import styles from './styles.module.scss';
 
-import { setUserReadingProgress } from '../../../../../store/bookSlice';
 import { setHeaderVisibility } from '../../../../../store/commonSlice';
 
-import BookService from '../../../../../http/BookService';
-import CommonService from '../../../../../http/CommonService';
-
-const MyBooksLayout = ({ children }) => {
+const MyBooksLayout = ({ userProgress, counters, children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const token = Cookies.get('token');
-
-  const [counters, setCounters] = useState(null);
-  const [counterLoad, setCounterLoad] = useState(true);
-  const [progressLoad, setProgressLoad] = useState(true);
 
   const tabs = useMemo(
     () => [
@@ -82,25 +71,12 @@ const MyBooksLayout = ({ children }) => {
   const tabIndex = tabs.findIndex((i) => router.pathname.includes(i?.path));
 
   const { innerWidthWindow, headerIsVisible } = useSelector((state) => state.common);
-  const { userReadingProgress } = useSelector((state) => state.book);
 
   const handleLinkClick = () => {
     if (innerWidthWindow <= 768) {
       dispatch(setHeaderVisibility(false));
     }
   };
-
-  useEffect(() => {
-    CommonService.getMyListCounters().then((res) => {
-      setCounters(res.data?.data);
-      setCounterLoad(false);
-    });
-
-    BookService.getUserReadingProgresses(token).then((res) => {
-      dispatch(setUserReadingProgress(res?.data?.data));
-      setProgressLoad(false);
-    });
-  }, []);
 
   return (
     <>
@@ -122,11 +98,7 @@ const MyBooksLayout = ({ children }) => {
 
             <h1 className={classNames('title', styles.title)}>Мои книги</h1>
 
-            {progressLoad ? (
-              <div className={styles.progressPlace}>
-                <Loader />
-              </div>
-            ) : userReadingProgress?.length ? (
+            {userProgress?.length ? (
               <Swiper
                 modules={[Navigation]}
                 navigation={{
@@ -136,7 +108,7 @@ const MyBooksLayout = ({ children }) => {
                 spaceBetween={innerWidthWindow > 768 ? 24 : 10}
                 slidesPerView={'auto'}
               >
-                {userReadingProgress.map((i, j) => (
+                {userProgress.map((i, j) => (
                   <SwiperSlide
                     key={i?.id}
                     className={classNames(styles.slide, {
@@ -182,36 +154,30 @@ const MyBooksLayout = ({ children }) => {
           </div>
 
           <nav className={styles.nav}>
-            {counterLoad ? (
-              <div className={styles.counterPlace}>
-                <Loader />
-              </div>
-            ) : (
-              <ul className={styles.navList}>
-                {tabs.map((i) => (
-                  <li
-                    key={i?.title}
-                    className={styles.navItem}
+            <ul className={styles.navList}>
+              {tabs.map((i) => (
+                <li
+                  key={i?.title}
+                  className={styles.navItem}
+                >
+                  <Link
+                    href={i?.path}
+                    scroll={false}
                   >
-                    <Link
-                      href={i?.path}
-                      scroll={false}
+                    <a
+                      className={classNames(styles.navLink, { [styles.active]: router.pathname === i?.path.split('?')[0] })}
+                      onClick={handleLinkClick}
                     >
-                      <a
-                        className={classNames(styles.navLink, { [styles.active]: router.pathname === i?.path.split('?')[0] })}
-                        onClick={handleLinkClick}
-                      >
-                        <span className={styles.navLinkCount}>{i?.count}</span>
-                        <span className={styles.navWrapper}>
-                          <span className={styles.navIcon}>{i?.icon}</span>
-                          {i?.title}
-                        </span>
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+                      <span className={styles.navLinkCount}>{i?.count}</span>
+                      <span className={styles.navWrapper}>
+                        <span className={styles.navIcon}>{i?.icon}</span>
+                        {i?.title}
+                      </span>
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
         </>
       )}
