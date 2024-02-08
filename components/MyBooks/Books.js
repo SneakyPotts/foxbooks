@@ -224,9 +224,9 @@ const Books = ({ isAudio }) => {
       )}
 
       {isLoading ? (
-        <p className={classNames('empty', styles.empty)}>
+        <div className={classNames('empty', styles.empty)}>
           <Loader />
-        </p>
+        </div>
       ) : null}
 
       {deletePopupIsVisible && (

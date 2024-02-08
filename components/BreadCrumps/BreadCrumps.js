@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import classNames from 'classnames';
 
@@ -43,7 +43,7 @@ const Breadcrumbs = ({ data }) => {
             path && (
               // (data?.length - 1 !== index ? (
               <li
-                key={path}
+                key={`${path}${title}_${index}`}
                 className={classNames({ [st.dot]: data?.length - 1 !== index })}
                 itemProp="itemListElement"
                 itemScope
