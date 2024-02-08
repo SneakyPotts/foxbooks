@@ -1,4 +1,4 @@
-import { API_URL } from '.';
+import api, { API_URL } from '.';
 import axios from 'axios';
 
 export default class CommonService {
@@ -10,11 +10,7 @@ export default class CommonService {
     return axios.post(`${API_URL}/claim`, data);
   }
 
-  static async getMyListCounters(token) {
-    return axios.get(`${API_URL}/profile/lists/counter`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  static async getMyListCounters() {
+    return api.get(`${API_URL}/profile/lists/counter`);
   }
 }
