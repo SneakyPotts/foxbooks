@@ -58,7 +58,7 @@ export async function getServerSideProps({ req, params, query }) {
 
     const banners = await AdminSettings.getPageBanner({ page_slug: 'category', category_slug });
 
-    const pageSEOTitle = query.page > 1 ? `Страница ${query.page}. ${categoryData?.data?.data[0].name}` : seo_data?.seo_title;
+    const pageSEOTitle = query.page > 1 ? `Страница ${query.page}. ${categoryData?.data?.data[0].name} - FoxBooks` : seo_data?.seo_title;
     const pageSEODesc = `${seo_data?.og_description}${query.page > 1 ? ` Страница ${query.page}.` : ''}`;
 
     return {
