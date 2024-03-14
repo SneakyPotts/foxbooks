@@ -20,7 +20,7 @@ const MyPagination = ({ currentPage, lastPage, onClick, externalClass, scrollTo,
           .replace(/\?page=\d+$/, current === 1 ? '' : `?page=${current}`)
           .replace(/\?page=\d+&/, current === 1 ? '?' : `?page=${current}&`)
           .replace(/&page=\d+/, current === 1 ? '' : `&page=${current}`)
-      : `${customLink}${customLink.includes('?') ? '&' : '?'}page=${current}`;
+      : `${customLink}${current === 1 ? '' : `${customLink.includes('?') ? '&' : '?'}page=${current}`}`;
 
     return (
       <Link href={newLink}>

@@ -47,10 +47,12 @@ const Popular = ({ title, defaultValue, data, queryName, isAlphabet, filterState
     if (onClick) {
       onClick(value);
     } else {
+      const { page, ...query } = router.query;
+
       router.push(
         {
           query: {
-            ...router.query,
+            ...query,
             [queryName]: typeof value === 'string' ? encodeURI(value) : value,
           },
         },
