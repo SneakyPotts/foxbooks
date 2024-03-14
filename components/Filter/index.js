@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -36,6 +38,8 @@ const Filters = ({ order }) => {
       queryName: 'alphabetTitleIndex',
     },
   ];
+
+  const router = useRouter();
 
   const [stateIndex, setStateIndex] = useState(null);
 
@@ -84,7 +88,10 @@ const Filters = ({ order }) => {
               </li>
             ))}
           </ul>
-          <MyPagination lastPage={books?.last_page} />
+          <MyPagination
+            lastPage={books?.last_page}
+            customLink={router.asPath}
+          />
         </>
       ) : (
         <p className="empty">Книги не найдены</p>

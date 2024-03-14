@@ -59,7 +59,9 @@ const Layout = ({ children }) => {
       dispatch(verifyEmail({ email, token }));
     } else if (token && id) {
       Cookies.remove('token');
-      dispatch(signInWithSocial({ id, token }));
+      dispatch(signInWithSocial({ id, token })).then(() => {
+        router.replace('/', { query: {} }, { shallow: true });
+      });
     } else if (storageToken) {
       dispatch(getProfile());
       dispatch(setAuth(true));
